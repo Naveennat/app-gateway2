@@ -25,7 +25,7 @@ AppGateway::AppGateway()
     , _permissionEnforcement(true)
     , _jwtEnabled(false)
     , _callsign("org.rdk.AppGateway") {
-    std::printf("Hello from AppGateway constructor7!\n");
+    std::printf("Hello from AppGateway constructor8!\n");
     RegisterMethods();
 }
 
