@@ -39,9 +39,8 @@ set(THUNDER_INSTALL_PATH "${CMAKE_CURRENT_LIST_DIR}/../../dependencies/install" 
 get_filename_component(THUNDER_INSTALL_PATH_ABS "${THUNDER_INSTALL_PATH}" REALPATH)
 
 set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
-set(THUNDER_INCLUDE_ROOT "${THUNDER_INSTALL_PATH_ABS}/include")
 # Note: Headers like <core/core.h> reside under ${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}/core/core.h
-# Therefore we only need to add ${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE} (and optionally the root include).
+# Therefore we only need to add ${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}.
 set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH_ABS}/lib")
 
 # Library sources
@@ -66,7 +65,6 @@ add_library(${TARGET} SHARED
 # This allows <WPEFramework/core/core.h> to resolve to ${THUNDER_INSTALL_PATH_ABS}/include/WPEFramework/core/core.h.
 target_include_directories(${TARGET}
     PUBLIC
-        "${THUNDER_INCLUDE_ROOT}"
         "${THUNDER_INCLUDE_DIR}"
     PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/AppGateway>
