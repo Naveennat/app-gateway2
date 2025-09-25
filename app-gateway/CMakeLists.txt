@@ -33,9 +33,14 @@ set(TARGET ${NAMESPACE}AppGateway)
 # which should contain:
 #   include/WPEFramework/...
 #   lib/libWPEFrameworkCore.so, libWPEFrameworkPlugins.so, etc.
+# Resolve Thunder (WPEFramework) SDK paths and normalize them to absolute paths to avoid
+# GCC issues with relative segments in include directories.
 set(THUNDER_INSTALL_PATH "${CMAKE_CURRENT_LIST_DIR}/../../dependencies/install" CACHE PATH "Path to Thunder (WPEFramework) install prefix")
-set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH}/include/${NAMESPACE}")
-set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH}/lib")
+get_filename_component(THUNDER_INSTALL_PATH_ABS "${THUNDER_INSTALL_PATH}" REALPATH)
+
+set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
+set(THUNDER_INCLUDE_ROOT "${THUNDER_INSTALL_PATH_ABS}/include")
+set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH_ABS}/lib")
 
 # Library sources
 # NOTE: Intentionally do NOT include a PermissionManager.cpp as the implementation is header-only here.
@@ -58,6 +63,7 @@ target_include_directories(${TARGET}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/AppGateway>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
         "${THUNDER_INCLUDE_DIR}"
+        "${THUNDER_INCLUDE_ROOT}"
 )
 
 # Use C++11
