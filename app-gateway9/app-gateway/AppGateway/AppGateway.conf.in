@@ -1,0 +1,15 @@
+{
+  "callsign": "AppGateway",
+  "classname": "AppGateway",
+  "locator": "libWPEFrameworkAppGateway.so",
+  "autostart": true,
+  "precondition": [],
+  "configuration": {
+    "serverPort": 3473,
+    "permissionEnforcement": true,
+    "jwtEnabled": false,
+    "resolutionPaths": [
+      "/etc/gateway/gateway.config.json"
+    ]
+  }
+}
