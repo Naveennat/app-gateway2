@@ -17,18 +17,28 @@
 
 cmake_minimum_required(VERSION 3.10)
 
-project(AppGateway)
+project(AppGateway LANGUAGES CXX)
 
 # Thunder typically defines the NAMESPACE cache variable as WPEFramework
 if (NOT NAMESPACE)
     set(NAMESPACE WPEFramework)
 endif()
 
-find_package(${NAMESPACE}Core REQUIRED)
-find_package(${NAMESPACE}Plugins REQUIRED)
-
+# Target name follows Thunder convention
 set(TARGET ${NAMESPACE}AppGateway)
 
+# Manually point to local Thunder (WPEFramework) SDK install instead of using find_package.
+# This path is relative to this CMakeLists:
+#   ../../dependencies/install
+# which should contain:
+#   include/WPEFramework/...
+#   lib/libWPEFrameworkCore.so, libWPEFrameworkPlugins.so, etc.
+set(THUNDER_INSTALL_PATH "${CMAKE_CURRENT_LIST_DIR}/../../dependencies/install" CACHE PATH "Path to Thunder (WPEFramework) install prefix")
+set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH}/include/${NAMESPACE}")
+set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH}/lib")
+
+# Library sources
+# NOTE: Intentionally do NOT include a PermissionManager.cpp as the implementation is header-only here.
 add_library(${TARGET} SHARED
     AppGateway/Module.cpp
     AppGateway/AppGateway.cpp
@@ -36,23 +46,30 @@ add_library(${TARGET} SHARED
     AppGateway/ResolutionStore.cpp
     AppGateway/RequestRouter.cpp
     AppGateway/ConnectionRegistry.cpp
-    AppGateway/PermissionManager.cpp
     AppGateway/GatewayWebSocket.cpp
     AppGateway/GatewayClient.cpp
 )
 
+# Includes:
+# - Local project includes
+# - Thunder headers from the manual SDK path
 target_include_directories(${TARGET}
     PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/AppGateway>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+        "${THUNDER_INCLUDE_DIR}"
 )
 
+# Use C++11
 target_compile_features(${TARGET} PRIVATE cxx_std_11)
+
+# Link against Thunder libs from the manual SDK path
+link_directories("${THUNDER_LIBRARY_DIR}")
 
 target_link_libraries(${TARGET}
     PRIVATE
-        ${NAMESPACE}Core::${NAMESPACE}Core
-        ${NAMESPACE}Plugins::${NAMESPACE}Plugins
+        WPEFrameworkCore
+        WPEFrameworkPlugins
 )
 
 set_target_properties(${TARGET}
