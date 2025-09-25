@@ -1,0 +1,77 @@
+# If not stated otherwise in this file or this component's license file the
+# following copyright and licenses apply:
+#
+# Copyright 2025
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cmake_minimum_required(VERSION 3.10)
+
+project(AppGateway)
+
+# Thunder typically defines the NAMESPACE cache variable as WPEFramework
+if (NOT NAMESPACE)
+    set(NAMESPACE WPEFramework)
+endif()
+
+find_package(${NAMESPACE}Core REQUIRED)
+find_package(${NAMESPACE}Plugins REQUIRED)
+
+set(TARGET ${NAMESPACE}AppGateway)
+
+add_library(${TARGET} SHARED
+    AppGateway/Module.cpp
+    AppGateway/AppGateway.cpp
+    AppGateway/Resolver.cpp
+    AppGateway/ResolutionStore.cpp
+    AppGateway/RequestRouter.cpp
+    AppGateway/ConnectionRegistry.cpp
+    AppGateway/PermissionManager.cpp
+    AppGateway/GatewayWebSocket.cpp
+    AppGateway/GatewayClient.cpp
+)
+
+target_include_directories(${TARGET}
+    PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/AppGateway>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+)
+
+target_compile_features(${TARGET} PRIVATE cxx_std_11)
+
+target_link_libraries(${TARGET}
+    PRIVATE
+        ${NAMESPACE}Core::${NAMESPACE}Core
+        ${NAMESPACE}Plugins::${NAMESPACE}Plugins
+)
+
+set_target_properties(${TARGET}
+    PROPERTIES
+        FRAMEWORK FALSE
+        CXX_STANDARD 11
+        CXX_STANDARD_REQUIRED YES
+        OUTPUT_NAME "AppGateway"
+)
+
+# Install shared object to plugins lib dir and config to etc dir (convention)
+string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
+
+install(TARGETS ${TARGET}
+    LIBRARY DESTINATION lib/${NAMESPACE_LIB}/plugins COMPONENT libs
+)
+
+install(FILES
+    AppGateway/AppGateway.conf.in
+    AppGateway/AppGateway.config
+    DESTINATION etc/${NAMESPACE_LIB}/plugins
+)
