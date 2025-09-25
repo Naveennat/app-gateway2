@@ -40,8 +40,8 @@ get_filename_component(THUNDER_INSTALL_PATH_ABS "${THUNDER_INSTALL_PATH}" REALPA
 
 set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
 set(THUNDER_INCLUDE_ROOT "${THUNDER_INSTALL_PATH_ABS}/include")
-# Explicitly include the 'com' subdirectory so that <core/core.h> resolves to .../WPEFramework/com/core/core.h
-set(THUNDER_INCLUDE_COM_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}/com")
+# Note: Headers like <core/core.h> reside under ${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}/core/core.h
+# Therefore we only need to add ${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE} (and optionally the root include).
 set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH_ABS}/lib")
 
 # Library sources
@@ -63,10 +63,10 @@ add_library(${TARGET} SHARED
 # Ensure the root include path (install/include) is first so angle includes like <core/core.h>
 # resolve correctly to ${THUNDER_INSTALL_PATH_ABS}/include/WPEFramework/core/core.h.
 target_include_directories(${TARGET}
-    PRIVATE
-        "${THUNDER_INCLUDE_COM_DIR}"
+    PUBLIC
         "${THUNDER_INCLUDE_ROOT}"
         "${THUNDER_INCLUDE_DIR}"
+    PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/AppGateway>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
 )
