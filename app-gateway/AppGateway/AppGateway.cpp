@@ -1,4 +1,5 @@
 #include "AppGateway.h"
+#include <cstdio>
 
 namespace WPEFramework {
 namespace Plugin {
@@ -24,6 +25,7 @@ AppGateway::AppGateway()
     , _permissionEnforcement(true)
     , _jwtEnabled(false)
     , _callsign("org.rdk.AppGateway") {
+    std::printf("Hello from AppGateway constructor!\n");
     RegisterMethods();
 }
 
