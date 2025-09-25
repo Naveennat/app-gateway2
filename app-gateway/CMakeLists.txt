@@ -58,16 +58,25 @@ add_library(${TARGET} SHARED
 # Includes:
 # - Local project includes
 # - Thunder headers from the manual SDK path
+# Ensure the root include path (install/include) is first so angle includes like <core/core.h>
+# resolve correctly to ${THUNDER_INSTALL_PATH_ABS}/include/WPEFramework/core/core.h.
 target_include_directories(${TARGET}
     PRIVATE
+        "${THUNDER_INCLUDE_ROOT}"
+        "${THUNDER_INCLUDE_DIR}"
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/AppGateway>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
-        "${THUNDER_INCLUDE_DIR}"
-        "${THUNDER_INCLUDE_ROOT}"
 )
 
 # Use C++11
 target_compile_features(${TARGET} PRIVATE cxx_std_11)
+
+# Define Thunder namespace macro for builds that don't inject it from the superproject.
+# Many Thunder headers reference the NAMESPACE (default: WPEFramework).
+if (NOT DEFINED NAMESPACE)
+    set(NAMESPACE WPEFramework)
+endif()
+target_compile_definitions(${TARGET} PRIVATE NAMESPACE=${NAMESPACE})
 
 # Link against Thunder libs from the manual SDK path
 link_directories("${THUNDER_LIBRARY_DIR}")
