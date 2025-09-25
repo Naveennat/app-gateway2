@@ -19,6 +19,9 @@ cmake_minimum_required(VERSION 3.10)
 
 project(AppGateway LANGUAGES CXX)
 
+# Enable CTest/ctest integration for this project
+enable_testing()
+
 # Thunder typically defines the NAMESPACE cache variable as WPEFramework
 if (NOT NAMESPACE)
     set(NAMESPACE WPEFramework)
@@ -115,3 +118,6 @@ install(FILES
     AppGateway/AppGateway.config
     DESTINATION etc/${NAMESPACE_LIB}/plugins
 )
+
+# Build unit tests
+add_subdirectory(tests)
