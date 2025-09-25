@@ -76,14 +76,18 @@ target_compile_features(${TARGET} PRIVATE cxx_std_11)
 # Define Thunder namespace macro for builds that don't inject it from a superproject.
 target_compile_definitions(${TARGET} PRIVATE NAMESPACE=${NAMESPACE})
 
-# Link against Thunder libs from the manual SDK path.
-# Requirement: Link libraries from dependencies/install/lib
-link_directories("${THUNDER_LIBRARY_DIR}")
+# Link against Thunder libs by resolving full paths explicitly
+find_library(THUNDER_CORE_LIB NAMES WPEFrameworkCore HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+find_library(THUNDER_PLUGINS_LIB NAMES WPEFrameworkPlugins HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+
+if (NOT THUNDER_CORE_LIB OR NOT THUNDER_PLUGINS_LIB)
+    message(FATAL_ERROR "WPEFramework libraries not found in ${THUNDER_LIBRARY_DIR}. Please ensure dependencies are installed.")
+endif()
 
 target_link_libraries(${TARGET}
     PRIVATE
-        WPEFrameworkCore
-        WPEFrameworkPlugins
+        ${THUNDER_CORE_LIB}
+        ${THUNDER_PLUGINS_LIB}
 )
 
 set_target_properties(${TARGET}

@@ -26,13 +26,13 @@ public:
 
     // PUBLIC_INTERFACE
     bool Unregister(const string& connectionId) {
-        Core::CriticalSection::ScopedLock lock(_adminLock);
+        Core::SafeSyncType<Core::CriticalSection> lock(_adminLock);
         return (_byId.erase(connectionId) > 0);
     }
 
     // PUBLIC_INTERFACE
     bool Get(const string& connectionId, Context& out) const {
-        Core::CriticalSection::ScopedLock lock(_adminLock);
+        Core::SafeSyncType<Core::CriticalSection> lock(_adminLock);
         auto it = _byId.find(connectionId);
         if (it == _byId.end()) {
             return false;

@@ -81,13 +81,18 @@ if (NOT DEFINED NAMESPACE)
 endif()
 target_compile_definitions(${TARGET} PRIVATE NAMESPACE=${NAMESPACE})
 
-# Link against Thunder libs from the manual SDK path
-link_directories("${THUNDER_LIBRARY_DIR}")
+# Locate Thunder (WPEFramework) libraries explicitly to ensure the linker finds them
+find_library(THUNDER_CORE_LIB NAMES WPEFrameworkCore HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+find_library(THUNDER_PLUGINS_LIB NAMES WPEFrameworkPlugins HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+
+if (NOT THUNDER_CORE_LIB OR NOT THUNDER_PLUGINS_LIB)
+    message(FATAL_ERROR "WPEFramework libraries not found in ${THUNDER_LIBRARY_DIR}. Please ensure dependencies are installed.")
+endif()
 
 target_link_libraries(${TARGET}
     PRIVATE
-        WPEFrameworkCore
-        WPEFrameworkPlugins
+        ${THUNDER_CORE_LIB}
+        ${THUNDER_PLUGINS_LIB}
 )
 
 set_target_properties(${TARGET}

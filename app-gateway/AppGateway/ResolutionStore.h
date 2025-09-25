@@ -23,7 +23,7 @@ public:
 
     // PUBLIC_INTERFACE
     void Overlay(const std::unordered_map<string, Core::JSON::Object>& addendum) {
-        Core::CriticalSection::ScopedLock lock(_lock);
+        Core::SafeSyncType<Core::CriticalSection> lock(_lock);
         for (auto& kv : addendum) {
             _store[kv.first] = kv.second;
         }
@@ -33,7 +33,7 @@ public:
     bool Get(const string& appId, const string& method, const Core::JSON::Object& params, Core::JSON::Object& out) const {
         (void)appId;
         (void)params;
-        Core::CriticalSection::ScopedLock lock(_lock);
+        Core::SafeSyncType<Core::CriticalSection> lock(_lock);
         auto it = _store.find(method);
         if (it != _store.end()) {
             out = it->second;
