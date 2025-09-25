@@ -13,8 +13,8 @@ uint32_t RequestRouter::DispatchResolved(const Core::JSON::Object& resolution,
 
     // Default "echo" behavior for now: return resolution and params.
     Core::JSON::Object out;
-    out.Set(_T("resolution"), resolution);
-    out.Set(_T("params"), callParams);
+    out[_T("resolution")] = resolution;
+    out[_T("params")] = callParams;
     response = out;
 
     return Core::ERROR_NONE;

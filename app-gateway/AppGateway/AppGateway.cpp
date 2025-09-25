@@ -25,7 +25,7 @@ AppGateway::AppGateway()
     , _permissionEnforcement(true)
     , _jwtEnabled(false)
     , _callsign("org.rdk.AppGateway") {
-    std::printf("Hello from AppGateway constructor28!\n");
+    std::printf("Hello from AppGateway constructor29!\n");
     RegisterMethods();
 }
 
@@ -46,15 +46,17 @@ void AppGateway::UnregisterMethods() {
 }
 
 bool AppGateway::ExtractSecurityToken(PluginHost::IShell* service, string& token) const {
+    // Acquire a token from the SecurityAgent using the current API (CreateToken).
     bool rc = false;
+    token.clear();
+
     if (service != nullptr) {
-        auto* authenticate = service->QueryInterfaceByCallsign<PluginHost::IAuthenticate>(_T("SecurityAgent"));
+        PluginHost::IAuthenticate* authenticate =
+            service->QueryInterfaceByCallsign<PluginHost::IAuthenticate>(_T("SecurityAgent"));
         if (authenticate != nullptr) {
-            string payload;
-            uint8_t buffer[Token::MAX_TOKEN_SIZE];
-            const uint16_t length = authenticate->Token(lengthof(buffer), buffer);
-            if (length > 0) {
-                token = string(reinterpret_cast<const char*>(buffer), length);
+            string generated;
+            if (authenticate->CreateToken(0 /* length */, nullptr /* buffer */, generated) == Core::ERROR_NONE) {
+                token = generated;
                 rc = true;
             }
             authenticate->Release();
@@ -163,17 +165,17 @@ uint32_t AppGateway::endpoint_respond(const RespondParams& params, Core::JSON::C
         return JSONRPC_INVALID_PARAMS;
     }
 
-    // Determine payload
+    // Determine payload (VariantContainer-compatible logic)
     Core::JSON::Object effectivePayload;
-    if (params.Payload.IsEmpty() == false) {
+    if (params.Payload.IsSet()) {
         effectivePayload = params.Payload;
-    } else if (params.Result.IsEmpty() == false || params.Error.IsEmpty() == false) {
-        // Wrap legacy fields into payload
-        if (params.Result.IsEmpty() == false) {
-            effectivePayload.Set(_T("result"), params.Result);
+    } else if (params.Result.IsSet() || params.Error.IsSet()) {
+        // Wrap legacy fields into payload using Variant assignment
+        if (params.Result.IsSet()) {
+            effectivePayload[_T("result")] = params.Result;
         }
-        if (params.Error.IsEmpty() == false) {
-            effectivePayload.Set(_T("error"), params.Error);
+        if (params.Error.IsSet()) {
+            effectivePayload[_T("error")] = params.Error;
         }
     } else {
         return JSONRPC_INVALID_PARAMS;
@@ -183,8 +185,13 @@ uint32_t AppGateway::endpoint_respond(const RespondParams& params, Core::JSON::C
     // If a transport is present, deliver the payload; otherwise, accept silently.
     if (_ws && _ws->Running()) {
         Core::JSON::Object envelope;
-        envelope.Set(_T("context"), params.Ctx);
-        envelope.Set(_T("payload"), effectivePayload);
+
+        // Serialize Context (a Core::JSON::Container) to string for embedding
+        string ctxSerialized;
+        params.Ctx.ToString(ctxSerialized);
+
+        envelope[_T("context")] = ctxSerialized;     // embed as string
+        envelope[_T("payload")] = effectivePayload;  // embed as object
 
         string serialized;
         envelope.ToString(serialized);
@@ -203,7 +210,7 @@ uint32_t AppGateway::endpoint_resolve(const ResolveParams& params, ResolveResult
     Core::JSON::Object reso;
     string appId;
     if (params.Ctx.HasLabel(_T("appId"))) {
-        appId = params.Ctx.Get<Core::JSON::String>(_T("appId")).Value();
+        appId = params.Ctx.Get(_T("appId")).String();
     }
 
     // Try resolver first
@@ -212,7 +219,7 @@ uint32_t AppGateway::endpoint_resolve(const ResolveParams& params, ResolveResult
     // Fallback default echo if not found
     if (!found) {
         // default resolution is echo alias
-        reso.Set(_T("alias"), Core::JSON::String(params.Method.Value()));
+        reso[_T("alias")] = params.Method.Value();
     }
 
     response.Resolution = reso;

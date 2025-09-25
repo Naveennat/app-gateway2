@@ -20,5 +20,18 @@
 #endif
 #endif
 
-// Convenience macro used by Thunder for version and module declaration.
-// Keep the declaration in Module.cpp via MODULE_NAME_DECLARATION(BUILD_REFERENCE).
+ // Convenience macro used by Thunder for version and module declaration.
+ // Keep the declaration in Module.cpp via MODULE_NAME_DECLARATION(BUILD_REFERENCE).
+
+// Backwards-compatibility alias:
+//
+// Some Thunder/WPEFramework versions do not define Core::JSON::Object.
+// They instead provide Core::JSON::VariantContainer for dynamic objects.
+// Create an alias so code using Core::JSON::Object continues to compile.
+namespace WPEFramework {
+namespace Core {
+namespace JSON {
+    using Object = VariantContainer;
+}
+}
+}

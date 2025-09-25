@@ -17,7 +17,7 @@ public:
 
     // PUBLIC_INTERFACE
     void Clear() {
-        Core::CriticalSection::ScopedLock lock(_lock);
+        Core::SafeSyncType<Core::CriticalSection> lock(_lock);
         _store.clear();
     }
 

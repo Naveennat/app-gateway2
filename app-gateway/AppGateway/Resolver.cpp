@@ -22,7 +22,7 @@ namespace {
         chunk.resize(4096);
         while (size > 0) {
             uint32_t toRead = static_cast<uint32_t>(std::min<uint64_t>(size, chunk.size()));
-            uint32_t actuallyRead = file.Read(const_cast<char*>(chunk.data()), toRead);
+            uint32_t actuallyRead = file.Read(reinterpret_cast<uint8_t*>(&chunk[0]), toRead);
             if (actuallyRead == static_cast<uint32_t>(~0)) {
                 error = "Read failed: " + path;
                 file.Close();
@@ -42,20 +42,24 @@ namespace {
 
         Core::OptionalType<Core::JSON::Error> error;
         Core::JSON::Object document;
-        if (document.IElement::FromString(jsonText, error) == false) {
+        if (document.FromString(jsonText, error) == false) {
             return results;
         }
         if (document.HasLabel(_T("resolutions")) == false) {
             return results;
         }
-        Core::JSON::Object resolutions = document.Get<Core::JSON::Object>(_T("resolutions"));
+        Core::JSON::Variant resoVar = document.Get(_T("resolutions"));
+        if (resoVar.Content() != Core::JSON::Variant::type::OBJECT) {
+            return results;
+        }
+        Core::JSON::Object resolutions = resoVar.Object();
         // Iterate labels (methods) and copy their JSON object bodies.
-        Core::JSON::Iterator it = resolutions.Elements();
+        auto it = resolutions.Variants();
         while (it.Next() == true) {
             const string key = it.Label();
-            if (resolutions.HasLabel(key)) {
-                Core::JSON::Object value = resolutions.Get<Core::JSON::Object>(key);
-                results[key] = value;
+            const Core::JSON::Variant& value = it.Current();
+            if (value.Content() == Core::JSON::Variant::type::OBJECT) {
+                results[key] = value.Object();
             }
         }
         return results;

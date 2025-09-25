@@ -35,7 +35,7 @@ set(TARGET ${NAMESPACE}AppGateway)
 #   lib/libWPEFrameworkCore.so, libWPEFrameworkPlugins.so, etc.
 # Resolve Thunder (WPEFramework) SDK paths and normalize them to absolute paths to avoid
 # GCC issues with relative segments in include directories.
-set(THUNDER_INSTALL_PATH "${CMAKE_CURRENT_LIST_DIR}/../../dependencies/install" CACHE PATH "Path to Thunder (WPEFramework) install prefix")
+set(THUNDER_INSTALL_PATH "${CMAKE_CURRENT_LIST_DIR}/../dependencies/install" CACHE PATH "Path to Thunder (WPEFramework) install prefix" FORCE)
 get_filename_component(THUNDER_INSTALL_PATH_ABS "${THUNDER_INSTALL_PATH}" REALPATH)
 
 set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")

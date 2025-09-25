@@ -19,7 +19,7 @@ public:
 
     // PUBLIC_INTERFACE
     bool Register(const Context& ctx) {
-        Core::CriticalSection::ScopedLock lock(_adminLock);
+        Core::SafeSyncType<Core::CriticalSection> lock(_adminLock);
         _byId[ctx.connectionId] = ctx;
         return true;
     }
