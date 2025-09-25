@@ -7,7 +7,7 @@
 #define MODULE_NAME AppGateway
 #endif
 
-#include <core/core.h>
+#include <WPEFramework/core/core.h>
 #include <plugins/JSONRPC.h>
 #include <plugins/IPlugin.h>
 #include <plugins/IShell.h>

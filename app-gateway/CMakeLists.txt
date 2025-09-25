@@ -60,8 +60,10 @@ add_library(${TARGET} SHARED
 # Includes:
 # - Local project includes
 # - Thunder headers from the manual SDK path
-# Ensure the root include path (install/include) is first so angle includes like <core/core.h>
-# resolve correctly to ${THUNDER_INSTALL_PATH_ABS}/include/WPEFramework/core/core.h.
+# Ensure the include paths contain the WPEFramework layout:
+# - ${THUNDER_INCLUDE_ROOT} provides: <WPEFramework/...>
+# - ${THUNDER_INCLUDE_DIR} provides: <core/...> when legacy includes are used
+# This allows <WPEFramework/core/core.h> to resolve to ${THUNDER_INSTALL_PATH_ABS}/include/WPEFramework/core/core.h.
 target_include_directories(${TARGET}
     PUBLIC
         "${THUNDER_INCLUDE_ROOT}"
