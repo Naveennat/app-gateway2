@@ -113,17 +113,21 @@ set(TARGET_A2AP ${NAMESPACE}App2AppProvider)
 add_library(${TARGET_A2AP} SHARED
     App2AppProvider/Module.cpp
     App2AppProvider/App2AppProvider.cpp
-    App2AppProvider/ProviderRegistry.cpp
-    App2AppProvider/CorrelationMap.cpp
-    App2AppProvider/GatewayClient.cpp
+    App2AppProvider/App2AppProvider.h
+    App2AppProvider/App2AppProviderImplementation.cpp
+    App2AppProvider/App2AppProviderImplementation.h
 )
 
+# Include WPEFramework SDK, plugin sources, AppGateway module header (for "Module.h" include),
+# and the repository root for IApp2AppProvider.h, IAppGateway.h, UtilsLogging.h.
 target_include_directories(${TARGET_A2AP}
     PUBLIC
         "${THUNDER_INCLUDE_DIR}"
     PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/App2AppProvider>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/AppGateway>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../..>
 )
 
 target_compile_features(${TARGET_A2AP} PRIVATE cxx_std_11)
@@ -145,12 +149,6 @@ set_target_properties(${TARGET_A2AP}
 
 install(TARGETS ${TARGET_A2AP}
     LIBRARY DESTINATION lib/${NAMESPACE_LIB}/plugins COMPONENT libs
-)
-
-install(FILES
-    App2AppProvider/App2AppProvider.conf.in
-    App2AppProvider/App2AppProvider.config
-    DESTINATION etc/${NAMESPACE_LIB}/plugins
 )
 
 # Build unit tests for gateway (existing)

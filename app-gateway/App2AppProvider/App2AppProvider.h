@@ -1,44 +1,25 @@
 #pragma once
 
+// App2AppProvider Thunder plugin: lifecycle and interface exposure.
+// This class wires the implementation and exposes Exchange::IApp2AppProvider
+// over COMRPC via QueryInterface.
+
+#include <atomic>
+#include <memory>
+#include <string>
 #include "Module.h"
-#include "ProviderRegistry.h"
-#include "CorrelationMap.h"
-#include "GatewayClient.h"
-#include "PermissionManager.h"
+
+// Public interfaces for provider and gateway
+#include "IApp2AppProvider.h"
+#include "IAppGateway.h"
+#include "UtilsLogging.h"
 
 namespace WPEFramework {
 namespace Plugin {
 
-/**
- * App2AppProvider
- * Implements provider/consumer orchestration:
- * - registerProvider
- * - invokeProvider
- * - handleProviderResponse
- * - handleProviderError
- */
-class App2AppProvider : public PluginHost::IPlugin, public PluginHost::JSONRPC {
-public:
-    class Config : public Core::JSON::Container {
-    public:
-        Config(const Config&) = delete;
-        Config& operator=(const Config&) = delete;
+class App2AppProviderImplementation; // Forward declaration
 
-        Config()
-            : Core::JSON::Container()
-            , JwtEnabled(false)
-            , GatewayCallsign("org.rdk.AppGateway")
-            , ProviderConflictPolicy("lastWins") {
-            Add(_T("jwtEnabled"), &JwtEnabled);
-            Add(_T("gatewayCallsign"), &GatewayCallsign);
-            Add(_T("providerConflictPolicy"), &ProviderConflictPolicy);
-        }
-
-        Core::JSON::Boolean JwtEnabled;
-        Core::JSON::String GatewayCallsign;
-        Core::JSON::String ProviderConflictPolicy;
-    };
-
+class App2AppProvider : public PluginHost::IPlugin {
 public:
     App2AppProvider(const App2AppProvider&) = delete;
     App2AppProvider& operator=(const App2AppProvider&) = delete;
@@ -46,94 +27,58 @@ public:
     App2AppProvider();
     ~App2AppProvider() override;
 
-    // IPlugin methods
     // PUBLIC_INTERFACE
     const string Initialize(PluginHost::IShell* service) override;
+    /**
+     * Initialize the App2AppProvider plugin.
+     * @param service IShell pointer from Thunder host used to acquire other COMRPC interfaces.
+     * @return Empty string on success, otherwise an error text.
+     */
+
     // PUBLIC_INTERFACE
     void Deinitialize(PluginHost::IShell* service) override;
+    /**
+     * Deinitialize the plugin and free resources.
+     * @param service IShell pointer from Thunder host.
+     */
+
     // PUBLIC_INTERFACE
     string Information() const override;
+    /**
+     * Return plugin meta information (empty for now).
+     * @return String with plugin information.
+     */
+
+    // IUnknown implementation
+    // PUBLIC_INTERFACE
+    uint32_t AddRef() const override;
+    /** Increase reference count for this plugin instance. */
+
+    // PUBLIC_INTERFACE
+    uint32_t Release() const override;
+    /** Decrease reference count; deletes object at zero. */
+
+    // PUBLIC_INTERFACE
+    void* QueryInterface(const uint32_t id) override;
+    /**
+     * Query for interfaces exposed by this plugin. Supported:
+     * - PluginHost::IPlugin::ID -> this
+     * - Exchange::IApp2AppProvider::ID -> implementation pointer
+     */
 
 private:
-    // JSON-RPC parameter containers
-    class Context : public Core::JSON::Container {
-    public:
-        Context() {
-            Add(_T("requestId"), &RequestId);
-            Add(_T("connectionId"), &ConnectionId);
-            Add(_T("appId"), &AppId);
-        }
-        Core::JSON::DecUInt32 RequestId;
-        Core::JSON::String ConnectionId;
-        Core::JSON::String AppId;
-    };
-
-    class RegisterProviderParams : public Core::JSON::Container {
-    public:
-        RegisterProviderParams() {
-            Add(_T("context"), &Ctx);
-            Add(_T("register"), &Register);
-            Add(_T("capability"), &Capability);
-        }
-        Context Ctx;
-        Core::JSON::Boolean Register;
-        Core::JSON::String Capability;
-    };
-
-    class InvokeProviderParams : public Core::JSON::Container {
-    public:
-        InvokeProviderParams() {
-            Add(_T("context"), &Ctx);
-            Add(_T("capability"), &Capability);
-            Add(_T("payload"), &Payload);
-        }
-        Context Ctx;
-        Core::JSON::String Capability;
-        Core::JSON::Object Payload;
-    };
-
-    class InvokeProviderResult : public Core::JSON::Container {
-    public:
-        InvokeProviderResult() {
-            Add(_T("correlationId"), &CorrelationId);
-        }
-        Core::JSON::String CorrelationId;
-    };
-
-    class ProviderResponseParams : public Core::JSON::Container {
-    public:
-        ProviderResponseParams() {
-            Add(_T("payload"), &Payload);
-            Add(_T("capability"), &Capability);
-        }
-        Core::JSON::Object Payload;  // includes correlationId + result|error
-        Core::JSON::String Capability;
-    };
+    // Acquire a pointer to AppGateway by callsign from the shell.
+    Exchange::IAppGateway* AcquireGateway_(PluginHost::IShell* service) const;
 
 private:
-    // JSON-RPC handlers
-    uint32_t endpoint_registerProvider(const RegisterProviderParams& params, Core::JSON::Container& response);
-    uint32_t endpoint_invokeProvider(const InvokeProviderParams& params, InvokeProviderResult& response);
-    uint32_t endpoint_handleProviderResponse(const ProviderResponseParams& params, Core::JSON::Container& response);
-    uint32_t endpoint_handleProviderError(const ProviderResponseParams& params, Core::JSON::Container& response);
-
-    void RegisterMethods();
-    void UnregisterMethods();
-
-    bool ExtractSecurityToken(PluginHost::IShell* service, string& token) const;
-    bool ValidateContext(const Context& ctx) const;
-
-private:
+    mutable std::atomic<uint32_t> _refCount;
     PluginHost::IShell* _service;
-    std::unique_ptr<ProviderRegistry> _providers;
-    std::unique_ptr<CorrelationMap> _correlations;
-    std::unique_ptr<GatewayClient> _gateway;
-    std::unique_ptr<PermissionManager> _perms;
 
-    string _gatewayCallsign;
-    bool _jwtEnabled;
-    string _conflictPolicy;
-    string _securityToken;
+    // Owned implementation that actually implements IApp2AppProvider.
+    std::unique_ptr<App2AppProviderImplementation> _impl;
+
+    // Cached interface pointer exposed through QueryInterface (non-owning; points to _impl)
+    Exchange::IApp2AppProvider* _iface;
 };
 
 } // namespace Plugin
