@@ -151,5 +151,12 @@ install(TARGETS ${TARGET_A2AP}
     LIBRARY DESTINATION lib/${NAMESPACE_LIB}/plugins COMPONENT libs
 )
 
+# Install App2AppProvider config files
+install(FILES
+    App2AppProvider/App2AppProvider.conf.in
+    App2AppProvider/App2AppProvider.config
+    DESTINATION etc/${NAMESPACE_LIB}/plugins
+)
+
 # Build unit tests for gateway (existing)
 add_subdirectory(tests)

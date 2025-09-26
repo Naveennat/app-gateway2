@@ -1,8 +1,29 @@
 #include "App2AppProvider.h"
 #include "App2AppProviderImplementation.h"
 
+// Ensure plugin registration & metadata are visible to Thunder
+#include <plugins/plugins.h>
+
 namespace WPEFramework {
+
+// Provide plugin metadata (versioning & lifecycle markers)
+namespace {
+    static Plugin::Metadata<Plugin::App2AppProvider> metadata(
+        /* Version (Major, Minor, Patch) */
+        1, 0, 0,
+        /* Preconditions */
+        {},
+        /* Terminations */
+        {},
+        /* Controls */
+        {}
+    );
+}
+
 namespace Plugin {
+
+// Register the service so Controller can instantiate it
+SERVICE_REGISTRATION(App2AppProvider, 1, 0, 0);
 
 App2AppProvider::App2AppProvider()
     : _refCount(1)
