@@ -6,20 +6,6 @@
 
 namespace WPEFramework {
 
-// Provide plugin metadata (versioning & lifecycle markers)
-namespace {
-    static Plugin::Metadata<Plugin::App2AppProvider> metadata(
-        /* Version (Major, Minor, Patch) */
-        1, 0, 0,
-        /* Preconditions */
-        {},
-        /* Terminations */
-        {},
-        /* Controls */
-        {}
-    );
-}
-
 namespace Plugin {
 
 // Register the service so Controller can instantiate it

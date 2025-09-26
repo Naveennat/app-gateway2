@@ -4,6 +4,8 @@
 namespace WPEFramework {
 namespace Plugin {
 
+SERVICE_REGISTRATION(AppGateway, 1, 0, 0);
+
 namespace {
     // Common JSON-RPC error codes used in the design documents.
     constexpr uint32_t JSONRPC_INVALID_PATH = 2;        // configure
@@ -14,6 +16,7 @@ namespace {
 
 AppGateway::AppGateway()
     : PluginHost::JSONRPC()
+    , _refCount(1)
     , _service(nullptr)
     , _resolver(new Resolver())
     , _router()
@@ -31,6 +34,36 @@ AppGateway::AppGateway()
 
 AppGateway::~AppGateway() {
     UnregisterMethods();
+}
+
+// PUBLIC_INTERFACE
+uint32_t AppGateway::AddRef() const {
+    return _refCount.fetch_add(1, std::memory_order_relaxed) + 1;
+}
+
+// PUBLIC_INTERFACE
+uint32_t AppGateway::Release() const {
+    uint32_t count = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
+    if (count == 0) {
+        delete this;
+    }
+    return count;
+}
+
+// PUBLIC_INTERFACE
+void* AppGateway::QueryInterface(const uint32_t id) {
+    void* result = nullptr;
+
+    if (id == PluginHost::IPlugin::ID) {
+        result = static_cast<PluginHost::IPlugin*>(this);
+    } else if (id == PluginHost::IDispatcher::ID) {
+        result = static_cast<PluginHost::IDispatcher*>(this);
+    }
+
+    if (result != nullptr) {
+        AddRef();
+    }
+    return result;
 }
 
 void AppGateway::RegisterMethods() {

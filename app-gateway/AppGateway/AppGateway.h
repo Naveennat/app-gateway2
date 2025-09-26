@@ -44,6 +44,18 @@ public:
     AppGateway();
     ~AppGateway() override;
 
+    // PUBLIC_INTERFACE
+    uint32_t AddRef() const override;
+    /** Increase the reference count for the plugin instance. */
+
+    // PUBLIC_INTERFACE
+    uint32_t Release() const override;
+    /** Decrease the reference count; deletes object when it reaches zero. */
+
+    // PUBLIC_INTERFACE
+    void* QueryInterface(const uint32_t id) override;
+    /** Query supported interfaces (IPlugin and IDispatcher). */
+
     // IPlugin methods
     const string Initialize(PluginHost::IShell* service) override;
     void Deinitialize(PluginHost::IShell* service) override;
@@ -118,6 +130,7 @@ private:
     bool ExtractSecurityToken(PluginHost::IShell* service, string& token) const;
 
 private:
+    mutable std::atomic<uint32_t> _refCount;
     PluginHost::IShell* _service;
     std::unique_ptr<Resolver> _resolver;
     std::unique_ptr<RequestRouter> _router;
