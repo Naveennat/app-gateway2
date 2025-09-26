@@ -1,0 +1,14 @@
+{
+  "jsonrpc": "2.0",
+  "callsign": "App2AppProvider",
+  "classname": "Plugin",
+  "locator": "libWPEFrameworkApp2AppProvider.so",
+  "autostart": false,
+  "version": "1",
+  "precondition": [],
+  "configuration": {
+    "gatewayCallsign": "org.rdk.AppGateway",
+    "jwtEnabled": false,
+    "providerConflictPolicy": "lastWins"
+  }
+}

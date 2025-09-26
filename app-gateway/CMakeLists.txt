@@ -27,12 +27,9 @@ if (NOT NAMESPACE)
     set(NAMESPACE WPEFramework)
 endif()
 
-# Target name follows Thunder convention
-set(TARGET ${NAMESPACE}AppGateway)
-
 # Manually point to local Thunder (WPEFramework) SDK install instead of using find_package.
 # This path is relative to this CMakeLists:
-#   ../../dependencies/install
+#   ../dependencies/install
 # which should contain:
 #   include/WPEFramework/...
 #   lib/libWPEFrameworkCore.so, libWPEFrameworkPlugins.so, etc.
@@ -42,13 +39,20 @@ set(THUNDER_INSTALL_PATH "${CMAKE_CURRENT_LIST_DIR}/../dependencies/install" CAC
 get_filename_component(THUNDER_INSTALL_PATH_ABS "${THUNDER_INSTALL_PATH}" REALPATH)
 
 set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
-# Note: Headers like <core/core.h> reside under ${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}/core/core.h
-# Therefore we only need to add ${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}.
 set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH_ABS}/lib")
 
-# Library sources
-# NOTE: Intentionally do NOT include a PermissionManager.cpp as the implementation is header-only here.
-add_library(${TARGET} SHARED
+# Locate Thunder (WPEFramework) libraries explicitly to ensure the linker finds them
+find_library(THUNDER_CORE_LIB NAMES WPEFrameworkCore HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+find_library(THUNDER_PLUGINS_LIB NAMES WPEFrameworkPlugins HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+
+if (NOT THUNDER_CORE_LIB OR NOT THUNDER_PLUGINS_LIB)
+    message(FATAL_ERROR "WPEFramework libraries not found in ${THUNDER_LIBRARY_DIR}. Please ensure dependencies are installed.")
+endif()
+
+# ========== Build AppGateway plugin ==========
+set(TARGET_GATEWAY ${NAMESPACE}AppGateway)
+
+add_library(${TARGET_GATEWAY} SHARED
     AppGateway/Module.cpp
     AppGateway/AppGateway.cpp
     AppGateway/Resolver.cpp
@@ -59,14 +63,7 @@ add_library(${TARGET} SHARED
     AppGateway/GatewayClient.cpp
 )
 
-# Includes:
-# - Local project includes
-# - Thunder headers from the manual SDK path
-# Ensure the include paths contain the WPEFramework layout:
-# - ${THUNDER_INCLUDE_ROOT} provides: <WPEFramework/...>
-# - ${THUNDER_INCLUDE_DIR} provides: <core/...> when legacy includes are used
-# This allows <WPEFramework/core/core.h> to resolve to ${THUNDER_INSTALL_PATH_ABS}/include/WPEFramework/core/core.h.
-target_include_directories(${TARGET}
+target_include_directories(${TARGET_GATEWAY}
     PUBLIC
         "${THUNDER_INCLUDE_DIR}"
     PRIVATE
@@ -75,30 +72,21 @@ target_include_directories(${TARGET}
 )
 
 # Use C++11
-target_compile_features(${TARGET} PRIVATE cxx_std_11)
+target_compile_features(${TARGET_GATEWAY} PRIVATE cxx_std_11)
 
 # Define Thunder namespace macro for builds that don't inject it from the superproject.
-# Many Thunder headers reference the NAMESPACE (default: WPEFramework).
 if (NOT DEFINED NAMESPACE)
     set(NAMESPACE WPEFramework)
 endif()
-target_compile_definitions(${TARGET} PRIVATE NAMESPACE=${NAMESPACE})
+target_compile_definitions(${TARGET_GATEWAY} PRIVATE NAMESPACE=${NAMESPACE})
 
-# Locate Thunder (WPEFramework) libraries explicitly to ensure the linker finds them
-find_library(THUNDER_CORE_LIB NAMES WPEFrameworkCore HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
-find_library(THUNDER_PLUGINS_LIB NAMES WPEFrameworkPlugins HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
-
-if (NOT THUNDER_CORE_LIB OR NOT THUNDER_PLUGINS_LIB)
-    message(FATAL_ERROR "WPEFramework libraries not found in ${THUNDER_LIBRARY_DIR}. Please ensure dependencies are installed.")
-endif()
-
-target_link_libraries(${TARGET}
+target_link_libraries(${TARGET_GATEWAY}
     PRIVATE
         ${THUNDER_CORE_LIB}
         ${THUNDER_PLUGINS_LIB}
 )
 
-set_target_properties(${TARGET}
+set_target_properties(${TARGET_GATEWAY}
     PROPERTIES
         FRAMEWORK FALSE
         CXX_STANDARD 11
@@ -106,10 +94,10 @@ set_target_properties(${TARGET}
         OUTPUT_NAME "AppGateway"
 )
 
-# Install shared object to plugins lib dir and config to etc dir (convention)
+# Install AppGateway shared object and config
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
-install(TARGETS ${TARGET}
+install(TARGETS ${TARGET_GATEWAY}
     LIBRARY DESTINATION lib/${NAMESPACE_LIB}/plugins COMPONENT libs
 )
 
@@ -119,5 +107,51 @@ install(FILES
     DESTINATION etc/${NAMESPACE_LIB}/plugins
 )
 
-# Build unit tests
+# ========== Build App2AppProvider plugin ==========
+set(TARGET_A2AP ${NAMESPACE}App2AppProvider)
+
+add_library(${TARGET_A2AP} SHARED
+    App2AppProvider/Module.cpp
+    App2AppProvider/App2AppProvider.cpp
+    App2AppProvider/ProviderRegistry.cpp
+    App2AppProvider/CorrelationMap.cpp
+    App2AppProvider/GatewayClient.cpp
+)
+
+target_include_directories(${TARGET_A2AP}
+    PUBLIC
+        "${THUNDER_INCLUDE_DIR}"
+    PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/App2AppProvider>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+)
+
+target_compile_features(${TARGET_A2AP} PRIVATE cxx_std_11)
+target_compile_definitions(${TARGET_A2AP} PRIVATE NAMESPACE=${NAMESPACE})
+
+target_link_libraries(${TARGET_A2AP}
+    PRIVATE
+        ${THUNDER_CORE_LIB}
+        ${THUNDER_PLUGINS_LIB}
+)
+
+set_target_properties(${TARGET_A2AP}
+    PROPERTIES
+        FRAMEWORK FALSE
+        CXX_STANDARD 11
+        CXX_STANDARD_REQUIRED YES
+        OUTPUT_NAME "App2AppProvider"
+)
+
+install(TARGETS ${TARGET_A2AP}
+    LIBRARY DESTINATION lib/${NAMESPACE_LIB}/plugins COMPONENT libs
+)
+
+install(FILES
+    App2AppProvider/App2AppProvider.conf.in
+    App2AppProvider/App2AppProvider.config
+    DESTINATION etc/${NAMESPACE_LIB}/plugins
+)
+
+# Build unit tests for gateway (existing)
 add_subdirectory(tests)
