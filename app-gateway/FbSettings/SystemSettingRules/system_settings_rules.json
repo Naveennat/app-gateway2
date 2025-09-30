@@ -1,0 +1,88 @@
+{
+  "rules": {
+    "device.make": {
+      "alias": "org.rdk.System.getDeviceInfo",
+      "transform": {
+        "response": "$function.return_or_else(.result.make, \"unknown\")"
+      }
+    },
+    "device.name": {
+      "alias": "org.rdk.System.getFriendlyName",
+      "transform": {
+        "response": "$function.return_or_else(if .result.friendlyName | length == 0 then \"Living Room\" else .result.friendlyName end, \"Living Room\")"
+      }
+    },
+    "device.setName": {
+      "alias": "org.rdk.System.setFriendlyName",
+      "transform": {
+        "request": "{ friendlyName: .value}",
+        "response": "$function.return_or_error(null, \"couldn't set name\")"
+      }
+    },
+    "device.sku": {
+      "alias": "org.rdk.System.getSystemVersions",
+      "transform": {
+        "response": "$function.return_or_error(.result.stbVersion | split(\"_\")[0], \"Failed to get SKU\")"
+      }
+    },
+    "localization.countryCode": {
+      "alias": "org.rdk.System.getTerritory",
+      "transform": {
+        "response": "$function.return_or_else($function.territory_thunder2firebolt(.result.territory, \"US\"), \"US\")"
+      }
+    },
+    "localization.setCountryCode": {
+      "alias": "org.rdk.System.setTerritory",
+      "transform": {
+        "request": "$function.territory_firebolt2thunder(.value, \"USA\")",
+        "response": "$function.return_or_error(null, \"couldn't set countrycode\")"
+      }
+    },
+    "localization.onCountryCodeChanged": {
+      "alias": "org.rdk.System.onTerritoryChanged",
+      "transform": {
+        "event": "if .newTerritory == \"CAN\" then \"CA\" else \"US\" end",
+        "rpcv2_event": "{ \"countryCode\": $event }"
+      }
+    },
+    "localization.timeZone": {
+      "alias": "org.rdk.System.getTimeZoneDST",
+      "transform": {
+        "response": "if .result and .result.success then .result.timeZone else { error: { code: -32100, message: \"couldn't get timezone\" }} end"
+      }
+    },
+    "localization.setTimeZone": {
+      "alias": "org.rdk.System.setTimeZoneDST",
+      "transform": {
+        "request": "{ timeZone: .value }",
+        "response": "$function.return_or_error(null, \"couldn't set timezone\")"
+      }
+    },
+    "localization.onTimeZoneChanged": {
+      "alias": "org.rdk.System.onTimeZoneDSTChanged",
+      "transform": {
+        "event": "if .newTimeZone | length == 0 then null else .newTimeZone end"
+      }
+    },
+    "secondscreen.friendlyName": {
+      "alias": "org.rdk.System.getFriendlyName",
+      "transform": {
+        "response": "$function.return_or_else(if .result.friendlyName | length == 0 then \"Living Room\" else .result.friendlyName end, \"Living Room\")"
+      }
+    },
+    "secondscreen.onFriendlyNameChanged": {
+      "alias": "org.rdk.System.onFriendlyNameChanged",
+      "transform": {
+        "event": "if .friendlyName | length == 0 then \"Living Room\" else .friendlyName end",
+        "rpcv2_event": "{ \"friendlyName\": $event }"
+      }
+    },
+    "device.onNameChanged": {
+      "alias": "org.rdk.System.onFriendlyNameChanged",
+      "transform": {
+        "event": "if .friendlyName | length == 0 then \"Living Room\" else .friendlyName end",
+        "rpcv2_event": "{ \"friendlyName\": $event }"
+      }
+    }
+  }
+}
