@@ -228,7 +228,7 @@ OttPermissionCache& OttPermissionCache::Instance() {
 }
 
 // PUBLIC_INTERFACE
-std::vector<string> OttPermissionCache::GetPermissions(const string& appId) const {
+std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
     // First, quick in-memory check without holding the lock longer than needed
     {
         std::lock_guard<std::mutex> lock(_admin);

@@ -32,7 +32,7 @@ namespace Plugin {
          */
 
         // PUBLIC_INTERFACE
-        std::vector<string> GetPermissions(const string& appId) const;
+        std::vector<string> GetPermissions(const string& appId);
         /** Get permissions for the specified appId.
          * Thread-safe. Returns a copy of the stored permissions vector.
          * @param appId Application identifier string.
@@ -82,8 +82,8 @@ namespace Plugin {
     private:
         // mutable to allow locking in const methods
         mutable std::mutex _admin;
-        // mutable cache to allow updates (warming/merging) inside const getters after acquiring lock
-        mutable std::map<string, std::vector<string>> _cache;
+        // In-memory cache; updates are performed only from non-const methods after acquiring the lock
+        std::map<string, std::vector<string>> _cache;
     };
 
 } // namespace Plugin
