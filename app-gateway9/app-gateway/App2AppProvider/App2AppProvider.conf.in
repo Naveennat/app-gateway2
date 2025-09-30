@@ -1,0 +1,12 @@
+{
+  "callsign": "App2AppProvider",
+  "classname": "App2AppProvider",
+  "locator": "libWPEFrameworkApp2AppProvider.so",
+  "autostart": true,
+  "precondition": [],
+  "configuration": {
+    "gatewayCallsign": "AppGateway",
+    "jwtEnabled": false,
+    "providerConflictPolicy": "lastWins"
+  }
+}

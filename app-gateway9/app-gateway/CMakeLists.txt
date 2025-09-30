@@ -51,3 +51,6 @@ install(FILES
     DESTINATION share/WPEFramework/AppGateway
 )
 
+# Also build the App2AppProvider plugin
+add_subdirectory(App2AppProvider)
+
