@@ -40,6 +40,9 @@ namespace Plugin {
             _permsUseTls = cfg.UseTls.IsSet() ? static_cast<bool>(cfg.UseTls.Value()) : true;
         }
 
+        LOGINFO("OttServices: Initialize implementation (endpoint=%s, tls=%s)",
+                _permsEndpoint.c_str(), _permsUseTls ? "true" : "false");
+
         // Create permissions client (works even if gRPC disabled; will return ERROR_UNAVAILABLE on use)
         _perms.reset(new PermissionsClient(_permsEndpoint, _permsUseTls));
 
@@ -54,6 +57,7 @@ namespace Plugin {
         _perms.reset();
         _state = _T("deinitialized");
         _service = nullptr;
+        LOGINFO("OttServices: Deinitialize implementation");
     }
 
     // IUnknown implementation
@@ -85,13 +89,14 @@ namespace Plugin {
     // Exchange::IOttServices implementation and local variants
 
     Core::hresult OttServicesImplementation::Ping(const string& message, string& reply) {
-        // Simple echo behavior; actual behavior should follow spec if different.
         reply = (message.empty() ? string(_T("pong")) : (string(_T("pong: ")) + message));
+        LOGINFO("OttServices: Ping called (message='%s', reply='%s')", message.c_str(), reply.c_str());
         return Core::ERROR_NONE;
     }
 
     Core::hresult OttServicesImplementation::GetPermissions(const string& appId, std::vector<string>& permissionsOut) {
         permissionsOut = OttPermissionCache::Instance().GetPermissions(appId);
+        LOGINFO("OttServices: GetPermissions (vector) appId='%s', count=%zu", appId.c_str(), permissionsOut.size());
         return Core::ERROR_NONE;
     }
 
@@ -99,6 +104,7 @@ namespace Plugin {
         std::vector<string> permissions;
         Core::hresult rc = GetPermissions(appId, permissions);
         if (rc != Core::ERROR_NONE) {
+            LOGWARN("OttServices: GetPermissions (json) failed early (appId='%s', rc=%u)", appId.c_str(), rc);
             return rc;
         }
 
@@ -110,11 +116,13 @@ namespace Plugin {
         }
         permissionsJson.clear();
         array.ToString(permissionsJson);
+        LOGINFO("OttServices: GetPermissions (json) appId='%s', json='%s'", appId.c_str(), permissionsJson.c_str());
         return Core::ERROR_NONE;
     }
 
     Core::hresult OttServicesImplementation::InvalidatePermissions(const string& appId) {
         OttPermissionCache::Instance().Invalidate(appId);
+        LOGINFO("OttServices: InvalidatePermissions appId='%s'", appId.c_str());
         return Core::ERROR_NONE;
     }
 
@@ -183,17 +191,21 @@ namespace Plugin {
         updatedCount = 0;
 
         if (appId.empty()) {
+            LOGERR("OttServices: UpdatePermissionsCache bad request (empty appId)");
             return Core::ERROR_BAD_REQUEST;
         }
         if (!_perms) {
             _perms.reset(new PermissionsClient(_permsEndpoint.empty() ? kDefaultPermsEndpoint : _permsEndpoint, _permsUseTls));
         }
 
+        LOGINFO("OttServices: UpdatePermissionsCache start (appId='%s', endpoint=%s)", appId.c_str(), _perms->Endpoint().c_str());
+
         std::string token;
         std::string deviceId;
         std::string accountId;
         std::string partnerId;
         if (!CollectAuthMetadata(token, deviceId, accountId, partnerId)) {
+            LOGERR("OttServices: UpdatePermissionsCache auth metadata collection failed (appId='%s')", appId.c_str());
             return Core::ERROR_UNAVAILABLE;
         }
 
@@ -201,11 +213,13 @@ namespace Plugin {
         std::vector<std::string> fetched;
         const uint32_t rc = _perms->EnumeratePermissions(appId, partnerId, token, deviceId, accountId, filters, fetched);
         if (rc != Core::ERROR_NONE) {
+            LOGWARN("OttServices: UpdatePermissionsCache fetch failed (appId='%s', rc=%u)", appId.c_str(), rc);
             return rc;
         }
 
         OttPermissionCache::Instance().UpdateCache(appId, fetched);
         updatedCount = static_cast<uint32_t>(fetched.size());
+        LOGINFO("OttServices: UpdatePermissionsCache updated (appId='%s', count=%u)", appId.c_str(), updatedCount);
         return Core::ERROR_NONE;
     }
 
