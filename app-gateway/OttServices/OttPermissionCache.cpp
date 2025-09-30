@@ -243,14 +243,17 @@ std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
     if (LoadLatestFromFile(onDisk)) {
         auto found = onDisk.find(appId);
         if (found != onDisk.end()) {
-            // Merge just the requested appId to in-memory cache for future access
+            // Merge just the requested appId to in-memory cache for future access.
+            // Use a local copy and avoid accessing _cache outside of the lock.
+            std::vector<std::string> result = found->second;
+            const size_t count = result.size();
             {
                 std::lock_guard<std::mutex> lock(_admin);
-                _cache[appId] = found->second;
+                _cache[appId] = result;
             }
             LOGINFO("OttPermissionCache: cache miss recovered from %s for appId='%s' (count=%zu)",
-                    kPermsFile, appId.c_str(), _cache[appId].size());
-            return _cache[appId];
+                    kPermsFile, appId.c_str(), count);
+            return result;
         }
         // Optionally, merge all onDisk to _cache for broader warmup
         {
