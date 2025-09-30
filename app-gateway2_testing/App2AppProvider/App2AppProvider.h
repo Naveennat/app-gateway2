@@ -24,7 +24,7 @@
 #include <core/Sync.h>
 #include <core/Time.h>
 #include <interfaces/IAuthenticate.h> // For SecurityAgent token
-#include <plugins/Module.h>           // Thunder plugin module defs
+#include "Module.h"                   // Thunder plugin module defs for this plugin
 
 #include "App2AppProviderImplementation.h"
 
