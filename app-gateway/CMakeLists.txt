@@ -38,10 +38,12 @@ set(OTTSERVICES_HEADERS
     ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.h
 )
 
+# Always compile with at least C++11 for this target
 add_library(OttServices SHARED
     ${OTTSERVICES_SOURCES}
     ${OTTSERVICES_HEADERS}
 )
+target_compile_features(OttServices PRIVATE cxx_std_11)
 
 target_compile_definitions(OttServices
     PRIVATE
@@ -55,7 +57,7 @@ if (ENABLE_PERMISSION_PROTO_GRPC)
     find_package(gRPC REQUIRED)
     find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 
-    # Paths to proto
+    # Paths to proto (repo-level Supporting_Files directory)
     set(PERMISSION_PROTO_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../../Supporting_Files)
     set(PERMISSION_PROTO_FILE ${PERMISSION_PROTO_DIR}/permission_service.proto)
 
@@ -80,13 +82,24 @@ if (ENABLE_PERMISSION_PROTO_GRPC)
         VERBATIM
     )
 
-    # Add generated sources to the OttServices library
-    set(PERMISSION_PROTO_SRCS
-        permission_service.pb.cc
-        permission_service.grpc.pb.cc
+    # Add PermissionsClient implementation (gRPC) and generated sources
+    list(APPEND OTTSERVICES_SOURCES
+        ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.cpp
     )
-    target_sources(OttServices PRIVATE ${PERMISSION_PROTO_SRCS})
-    set_property(SOURCE ${PERMISSION_PROTO_SRCS} PROPERTY GENERATED 1)
+    list(APPEND OTTSERVICES_HEADERS
+        ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.h
+    )
+    target_sources(OttServices PRIVATE
+        ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.cpp
+        ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.h
+        ${CMAKE_CURRENT_BINARY_DIR}/permission_service.pb.cc
+        ${CMAKE_CURRENT_BINARY_DIR}/permission_service.grpc.pb.cc
+    )
+    set_property(SOURCE
+        ${CMAKE_CURRENT_BINARY_DIR}/permission_service.pb.cc
+        ${CMAKE_CURRENT_BINARY_DIR}/permission_service.grpc.pb.cc
+        PROPERTY GENERATED 1
+    )
 
     # Ensure generation happens before building OttServices
     add_dependencies(OttServices permission_service_protoc permission_service_protoc_grpc)
@@ -96,6 +109,9 @@ if (ENABLE_PERMISSION_PROTO_GRPC)
         PRIVATE
             ${CMAKE_CURRENT_BINARY_DIR}
     )
+
+    # Enable code path in PermissionsClient for gRPC usage
+    target_compile_definitions(OttServices PRIVATE OTTSERVICES_ENABLE_PERMS_GRPC)
 
     # Link Protobuf and gRPC::grpc++ as requested
     target_link_libraries(OttServices
