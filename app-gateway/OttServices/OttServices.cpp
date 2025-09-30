@@ -30,6 +30,7 @@ namespace Plugin {
         : PluginHost::JSONRPC()
         , _service(nullptr)
         , _implementation(nullptr)
+        , _interface(nullptr)
         , _version(kOttServicesVersion)
         , _refCount(1)
         , _adminLock()
@@ -75,6 +76,9 @@ namespace Plugin {
             return initError;
         }
 
+        // Expose COMRPC interface
+        _interface = static_cast<Exchange::IOttServices*>(_implementation);
+
         return string(); // Empty string indicates success in Thunder plugins
     }
 
@@ -84,6 +88,7 @@ namespace Plugin {
             _implementation->Deinitialize(service);
             delete _implementation;
             _implementation = nullptr;
+            _interface = nullptr;
         }
         _service = nullptr;
     }
@@ -114,6 +119,9 @@ namespace Plugin {
             result = static_cast<PluginHost::IPlugin*>(this);
         } else if (id == PluginHost::IDispatcher::ID) {
             result = static_cast<PluginHost::IDispatcher*>(this);
+        } else if ((id == Exchange::IOttServices::ID) && (_interface != nullptr)) {
+            _interface->AddRef();
+            result = _interface;
         }
 
         if (result != nullptr) {
@@ -144,7 +152,7 @@ namespace Plugin {
             return Core::ERROR_BAD_REQUEST;
         }
         std::vector<string> perms;
-        const uint32_t status = _implementation->GetPermissions(params.AppId.Value(), perms);
+        const Core::hresult status = _implementation->GetPermissions(params.AppId.Value(), perms);
         if (status == Core::ERROR_NONE) {
             for (const auto& p : perms) {
                 Core::JSON::String v; v = p;
@@ -172,7 +180,7 @@ namespace Plugin {
             return Core::ERROR_BAD_REQUEST;
         }
         uint32_t count = 0;
-        const uint32_t status = _implementation->UpdatePermissionsCache(params.AppId.Value(), count);
+        const Core::hresult status = _implementation->UpdatePermissionsCache(params.AppId.Value(), count);
         if (status == Core::ERROR_NONE) {
             result.Updated = true;
             result.Count = count;

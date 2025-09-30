@@ -31,12 +31,15 @@ option(ENABLE_PERMISSION_PROTO_GRPC "Generate and link Protobuf/gRPC stubs for p
 
 # OttServices plugin target
 set(OTTSERVICES_SOURCES
+    ${CMAKE_SOURCE_DIR}/OttServices/Module.cpp
     ${CMAKE_SOURCE_DIR}/OttServices/OttServices.cpp
     ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.cpp
     ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.cpp
 )
 
 set(OTTSERVICES_HEADERS
+    ${CMAKE_SOURCE_DIR}/OttServices/Module.h
+    ${CMAKE_SOURCE_DIR}/OttServices/IOttServices.h
     ${CMAKE_SOURCE_DIR}/OttServices/OttServices.h
     ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.h
     ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.h

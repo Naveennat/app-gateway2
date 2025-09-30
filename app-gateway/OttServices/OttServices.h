@@ -10,6 +10,8 @@
 #include <plugins/JSONRPC.h>
 #include <atomic>
 
+#include "IOttServices.h"
+
 namespace WPEFramework {
 namespace Plugin {
 
@@ -17,6 +19,7 @@ namespace Plugin {
     class OttServicesImplementation;
 
     // The main plugin class exposed to Thunder. Uses JSON-RPC to expose required methods.
+    // Also exposes a COMRPC interface (Exchange::IOttServices) through QueryInterface.
     class OttServices : public PluginHost::IPlugin, public PluginHost::JSONRPC {
     public:
         OttServices(const OttServices&) = delete;
@@ -142,6 +145,7 @@ namespace Plugin {
     private:
         PluginHost::IShell* _service;
         OttServicesImplementation* _implementation;
+        Exchange::IOttServices* _interface; // COMRPC interface pointer exposed via QueryInterface
         string _version;
 
         // Reference counter for lifetime management
