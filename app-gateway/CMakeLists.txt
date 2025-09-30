@@ -13,6 +13,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/OttServices
+    ${CMAKE_SOURCE_DIR}/../../Supporting_Files
 )
 
 link_directories(
@@ -31,11 +32,13 @@ option(ENABLE_PERMISSION_PROTO_GRPC "Generate and link Protobuf/gRPC stubs for p
 set(OTTSERVICES_SOURCES
     ${CMAKE_SOURCE_DIR}/OttServices/OttServices.cpp
     ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.cpp
+    ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.cpp
 )
 
 set(OTTSERVICES_HEADERS
     ${CMAKE_SOURCE_DIR}/OttServices/OttServices.h
     ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.h
+    ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.h
 )
 
 # Always compile with at least C++11 for this target
@@ -82,16 +85,8 @@ if (ENABLE_PERMISSION_PROTO_GRPC)
         VERBATIM
     )
 
-    # Add PermissionsClient implementation (gRPC) and generated sources
-    list(APPEND OTTSERVICES_SOURCES
-        ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.cpp
-    )
-    list(APPEND OTTSERVICES_HEADERS
-        ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.h
-    )
+    # Add generated protobuf/grpc sources to target
     target_sources(OttServices PRIVATE
-        ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.cpp
-        ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.h
         ${CMAKE_CURRENT_BINARY_DIR}/permission_service.pb.cc
         ${CMAKE_CURRENT_BINARY_DIR}/permission_service.grpc.pb.cc
     )

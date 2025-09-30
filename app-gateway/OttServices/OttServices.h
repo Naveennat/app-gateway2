@@ -82,6 +82,55 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         uint32_t endpoint_ping(const PingParams& params, PingResult& result);
 
+        // IOttPermission-aligned JSON-RPC: getpermissions
+        class GetPermissionsParams : public Core::JSON::Container {
+        public:
+            GetPermissionsParams() {
+                Add(_T("appId"), &AppId);
+            }
+            Core::JSON::String AppId;
+        };
+        class GetPermissionsResult : public Core::JSON::Container {
+        public:
+            GetPermissionsResult() {
+                Add(_T("permissions"), &Permissions);
+            }
+            Core::JSON::ArrayType<Core::JSON::String> Permissions;
+        };
+        // PUBLIC_INTERFACE
+        uint32_t endpoint_getpermissions(const GetPermissionsParams& params, GetPermissionsResult& result);
+
+        // IOttPermission-aligned JSON-RPC: invalidatepermissions
+        class InvalidatePermissionsParams : public Core::JSON::Container {
+        public:
+            InvalidatePermissionsParams() {
+                Add(_T("appId"), &AppId);
+            }
+            Core::JSON::String AppId;
+        };
+        // PUBLIC_INTERFACE
+        uint32_t endpoint_invalidatepermissions(const InvalidatePermissionsParams& params, Core::JSON::Container& response);
+
+        // IOttPermission-aligned JSON-RPC: updatepermissionscache
+        class UpdatePermissionsCacheParams : public Core::JSON::Container {
+        public:
+            UpdatePermissionsCacheParams() {
+                Add(_T("appId"), &AppId);
+            }
+            Core::JSON::String AppId;
+        };
+        class UpdatePermissionsCacheResult : public Core::JSON::Container {
+        public:
+            UpdatePermissionsCacheResult() {
+                Add(_T("updated"), &Updated);
+                Add(_T("count"), &Count);
+            }
+            Core::JSON::Boolean Updated;
+            Core::JSON::DecUInt32 Count;
+        };
+        // PUBLIC_INTERFACE
+        uint32_t endpoint_updatepermissionscache(const UpdatePermissionsCacheParams& params, UpdatePermissionsCacheResult& result);
+
         // Required event: statechanged (typical for service plugins to signal state)
         // PUBLIC_INTERFACE
         void EventStateChanged(const string& state);

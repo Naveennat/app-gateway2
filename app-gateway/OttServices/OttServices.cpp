@@ -15,6 +15,9 @@ namespace Plugin {
 
         // JSON-RPC method names
         static constexpr const TCHAR* kMethodPing = _T("ping");
+        static constexpr const TCHAR* kMethodGetPermissions = _T("getpermissions");
+        static constexpr const TCHAR* kMethodInvalidatePermissions = _T("invalidatepermissions");
+        static constexpr const TCHAR* kMethodUpdatePermissionsCache = _T("updatepermissionscache");
 
         // JSON-RPC event names
         static constexpr const TCHAR* kEventStateChanged = _T("statechanged");
@@ -41,10 +44,16 @@ namespace Plugin {
 
     void OttServices::RegisterAll() {
         Register<OttServices::PingParams, OttServices::PingResult>(kMethodPing, &OttServices::endpoint_ping, this);
+        Register<OttServices::GetPermissionsParams, OttServices::GetPermissionsResult>(kMethodGetPermissions, &OttServices::endpoint_getpermissions, this);
+        Register<OttServices::InvalidatePermissionsParams, Core::JSON::Container>(kMethodInvalidatePermissions, &OttServices::endpoint_invalidatepermissions, this);
+        Register<OttServices::UpdatePermissionsCacheParams, OttServices::UpdatePermissionsCacheResult>(kMethodUpdatePermissionsCache, &OttServices::endpoint_updatepermissionscache, this);
     }
 
     void OttServices::UnregisterAll() {
         Unregister(kMethodPing);
+        Unregister(kMethodGetPermissions);
+        Unregister(kMethodInvalidatePermissions);
+        Unregister(kMethodUpdatePermissionsCache);
     }
 
     const string OttServices::Initialize(PluginHost::IShell* service) {
@@ -123,6 +132,53 @@ namespace Plugin {
 
         if (status == Core::ERROR_NONE) {
             result.Reply = reply;
+        }
+        return status;
+    }
+
+    uint32_t OttServices::endpoint_getpermissions(const GetPermissionsParams& params, GetPermissionsResult& result) {
+        if (_implementation == nullptr) {
+            return Core::ERROR_UNAVAILABLE;
+        }
+        if (!params.AppId.IsSet() || params.AppId.Value().empty()) {
+            return Core::ERROR_BAD_REQUEST;
+        }
+        std::vector<string> perms;
+        const uint32_t status = _implementation->GetPermissions(params.AppId.Value(), perms);
+        if (status == Core::ERROR_NONE) {
+            for (const auto& p : perms) {
+                Core::JSON::String v; v = p;
+                result.Permissions.Add(v);
+            }
+        }
+        return status;
+    }
+
+    uint32_t OttServices::endpoint_invalidatepermissions(const InvalidatePermissionsParams& params, Core::JSON::Container& /*response*/) {
+        if (_implementation == nullptr) {
+            return Core::ERROR_UNAVAILABLE;
+        }
+        if (!params.AppId.IsSet() || params.AppId.Value().empty()) {
+            return Core::ERROR_BAD_REQUEST;
+        }
+        return _implementation->InvalidatePermissions(params.AppId.Value());
+    }
+
+    uint32_t OttServices::endpoint_updatepermissionscache(const UpdatePermissionsCacheParams& params, UpdatePermissionsCacheResult& result) {
+        if (_implementation == nullptr) {
+            return Core::ERROR_UNAVAILABLE;
+        }
+        if (!params.AppId.IsSet() || params.AppId.Value().empty()) {
+            return Core::ERROR_BAD_REQUEST;
+        }
+        uint32_t count = 0;
+        const uint32_t status = _implementation->UpdatePermissionsCache(params.AppId.Value(), count);
+        if (status == Core::ERROR_NONE) {
+            result.Updated = true;
+            result.Count = count;
+        } else {
+            result.Updated = false;
+            result.Count = static_cast<uint32_t>(0);
         }
         return status;
     }
