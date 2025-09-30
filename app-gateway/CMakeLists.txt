@@ -19,6 +19,14 @@ link_directories(
     ${THUNDER_LIB_DIR}
 )
 
+# -----------------------------------------------------------------------------
+# Protobuf/gRPC integration for permission_service.proto
+# Pattern follows entservices-infra-712/CloudStore/CMakeLists.txt
+# NOTE: Disabled by default to allow builds in environments without system-wide
+# Protobuf/gRPC. Enable with -DENABLE_PERMISSION_PROTO_GRPC=ON to generate and link.
+# -----------------------------------------------------------------------------
+option(ENABLE_PERMISSION_PROTO_GRPC "Generate and link Protobuf/gRPC stubs for permission_service.proto" OFF)
+
 # OttServices plugin target
 set(OTTSERVICES_SOURCES
     ${CMAKE_SOURCE_DIR}/OttServices/OttServices.cpp
@@ -41,9 +49,64 @@ target_compile_definitions(OttServices
         PLUGIN_OttServices=1
 )
 
+if (ENABLE_PERMISSION_PROTO_GRPC)
+    # Find Protobuf and gRPC packages and the grpc C++ plugin for protoc
+    find_package(Protobuf REQUIRED)
+    find_package(gRPC REQUIRED)
+    find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
+
+    # Paths to proto
+    set(PERMISSION_PROTO_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../../Supporting_Files)
+    set(PERMISSION_PROTO_FILE ${PERMISSION_PROTO_DIR}/permission_service.proto)
+
+    # Generate protobuf C++ sources into the build directory
+    add_custom_target(permission_service_protoc
+        ${Protobuf_PROTOC_EXECUTABLE}
+            --cpp_out ${CMAKE_CURRENT_BINARY_DIR}
+            -I ${PERMISSION_PROTO_DIR}
+            ${PERMISSION_PROTO_FILE}
+        COMMENT "Generating C++ Protobuf sources for permission_service.proto"
+        VERBATIM
+    )
+
+    # Generate gRPC C++ sources into the build directory
+    add_custom_target(permission_service_protoc_grpc
+        ${Protobuf_PROTOC_EXECUTABLE}
+            --grpc_out ${CMAKE_CURRENT_BINARY_DIR}
+            --plugin=protoc-gen-grpc=${GRPC_CPP_PLUGIN}
+            -I ${PERMISSION_PROTO_DIR}
+            ${PERMISSION_PROTO_FILE}
+        COMMENT "Generating C++ gRPC sources for permission_service.proto"
+        VERBATIM
+    )
+
+    # Add generated sources to the OttServices library
+    set(PERMISSION_PROTO_SRCS
+        permission_service.pb.cc
+        permission_service.grpc.pb.cc
+    )
+    target_sources(OttServices PRIVATE ${PERMISSION_PROTO_SRCS})
+    set_property(SOURCE ${PERMISSION_PROTO_SRCS} PROPERTY GENERATED 1)
+
+    # Ensure generation happens before building OttServices
+    add_dependencies(OttServices permission_service_protoc permission_service_protoc_grpc)
+
+    # Include the build directory so generated headers are found
+    target_include_directories(OttServices
+        PRIVATE
+            ${CMAKE_CURRENT_BINARY_DIR}
+    )
+
+    # Link Protobuf and gRPC::grpc++ as requested
+    target_link_libraries(OttServices
+        PRIVATE
+            ${Protobuf_LIBRARIES}
+            gRPC::grpc++
+    )
+endif()
+
 # Link against Thunder core and plugins JSONRPC libraries directly
-# The exact library filenames may vary per build; commonly they are ThunderCore, ThunderPlugins, and ThunderInterfaces.
-# We keep it conservative and add common ones that exist in dependencies/install/lib.
+# The exact library filenames may vary per build; commonly they are WPEFrameworkCore and WPEFrameworkPlugins.
 target_link_libraries(OttServices
     PRIVATE
         WPEFrameworkCore
