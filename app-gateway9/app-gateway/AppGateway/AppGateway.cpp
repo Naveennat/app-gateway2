@@ -113,7 +113,7 @@ AppGateway::AppGateway()
     , _jwtEnabled(false) {
 
     // Print constructor message as requested
-    printf("Hello from AppGateway constructor77!\n");
+    printf("Hello from AppGateway constructor79!\n");
 
     // Register JSON-RPC methods: configure, resolve, respond
     Register<Core::JSON::Object, Core::JSON::Object>(_T("configure"),
