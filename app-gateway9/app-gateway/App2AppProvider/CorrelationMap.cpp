@@ -1,3 +1,4 @@
+#include "Module.h"
 #include "CorrelationMap.h"
 
 namespace WPEFramework {
@@ -6,8 +7,9 @@ namespace Plugin {
 string CorrelationMap::GenerateCorrelationId() const {
     // Generate 16 random bytes and stringify as a 32-hex string grouped as UUID-like
     uint8_t bytes[16] = {0};
-    Cryptalgo::Random random;
-    random.Generate(sizeof(bytes), bytes);
+    for (size_t i = 0; i < sizeof(bytes); ++i) {
+        WPEFramework::Crypto::Random(bytes[i]);
+    }
 
     static constexpr char hexchars[] = "0123456789abcdef";
     string s;

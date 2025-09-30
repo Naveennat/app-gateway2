@@ -1,6 +1,7 @@
 #pragma once
 
 #include <core/core.h>
+#include <core/JSON.h>
 #include <plugins/IShell.h>
 #include <websocket/JSONRPCLink.h>
 
@@ -23,7 +24,7 @@ public:
 
     // Respond to the consumer via AppGateway.respond.
     // Returns Core::ERROR_NONE on success, or a framework error code.
-    uint32_t Respond(const ConsumerContext& ctx, const Core::JSON::Object& payload) const;
+    uint32_t Respond(const ConsumerContext& ctx, const Core::JSON::VariantContainer& payload) const;
 
 private:
     PluginHost::IShell* _service;

@@ -1,3 +1,4 @@
+#include "Module.h"
 #include "ProviderRegistry.h"
 
 namespace WPEFramework {

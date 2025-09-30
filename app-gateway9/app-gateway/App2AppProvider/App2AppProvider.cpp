@@ -2,7 +2,7 @@
 
 #include <plugins/IShell.h>
 #include <core/JSON.h>
-#include <tracing/Tracing.h>
+#include <tracing/tracing.h>
 #include <cstdio>
 
 namespace WPEFramework {
@@ -34,7 +34,7 @@ App2AppProvider::App2AppProvider()
     , _jwtEnabled(false)
     , _policy(_T("lastWins")) {
 
-    printf("Hello from App2AppProvider constructor1!\n");
+    printf("Hello from App2AppProvider constructor2!\n");
 
     // Register version info for documentation
     RegisterVersion(_T("App2AppProvider"), APP2APPPROVIDER_VERSION_MAJOR, APP2APPPROVIDER_VERSION_MINOR, APP2APPPROVIDER_VERSION_PATCH);

@@ -3,7 +3,11 @@ cmake_minimum_required(VERSION 3.10)
 project(AppGatewayPlugin)
 
 # Expect Thunder (WPEFramework) to be present as dependency in the workspace.
-find_package(WPEFramework REQUIRED)
+# Add a fallback prefix path to the container-local dependencies install directory
+# so that CI invoking CMake from the repository root can still resolve WPEFramework.
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/../../dependencies/install")
+find_package(WPEFramework REQUIRED CONFIG)
+find_package(WPEFrameworkPlugins REQUIRED CONFIG)
 
 set(TARGET AppGateway)
 

@@ -1,49 +1,36 @@
+#include "Module.h"
 #include "GatewayClient.h"
 
 namespace WPEFramework {
 namespace Plugin {
 
-uint32_t GatewayClient::Respond(const ConsumerContext& ctx, const Core::JSON::Object& payload) const {
+uint32_t GatewayClient::Respond(const ConsumerContext& ctx, const Core::JSON::VariantContainer& payload) const {
     // Build params: { "context": {requestId, connectionId, appId}, "payload": { ... } }
-    Core::JSON::Object params;
-    Core::JSON::Object jsonContext;
+    Core::JSON::VariantContainer params;
+    Core::JSON::VariantContainer jsonContext;
 
-    Core::JSON::DecUInt32 requestId;
-    requestId = ctx.requestId;
-    Core::JSON::String connectionId;
-    connectionId = ctx.connectionId;
-    Core::JSON::String appId;
-    appId = ctx.appId;
+    Core::JSON::Variant requestId(static_cast<int64_t>(ctx.requestId));
+    Core::JSON::Variant connectionId(ctx.connectionId.c_str());
+    Core::JSON::Variant appId(ctx.appId.c_str());
 
     jsonContext.Set(_T("requestId"), requestId);
     jsonContext.Set(_T("connectionId"), connectionId);
     jsonContext.Set(_T("appId"), appId);
 
-    params.Set(_T("context"), jsonContext);
-    params.Set(_T("payload"), payload);
+    Core::JSON::Variant vCtx(jsonContext);
+    Core::JSON::Variant vPayload(payload);
 
-    // Serialize
-    string serialized;
-    params.ToString(serialized);
+    params.Set(_T("context"), vCtx);
+    params.Set(_T("payload"), vPayload);
 
-    // Use SmartLinkType to communicate with the controller to the gateway plugin.
-    // Pass the callsign, and let the link append the version ".1" if included in callsign string.
+    // Use SmartLinkType to communicate with the gateway plugin.
     WPEFramework::JSONRPC::SmartLinkType<Core::JSON::IElement> link(_gatewayCallsign, _T("A2AP_GatewayClient"));
 
-    Core::ProxyType<Core::JSONRPC::Message> response;
-    // Invoke method "respond" with serialized string
-    uint32_t result = link.Invoke(WPEFramework::JSONRPC::SmartLinkType<Core::JSON::IElement>::Connection::DefaultWaitTime,
-                                  _T("respond"),
-                                  serialized,
-                                  response);
-    if (result != Core::ERROR_NONE) {
-        return result;
-    }
-    if (response.IsValid() == true && response->Error.IsSet() == true) {
-        // Return framework error code
-        return static_cast<uint32_t>(response->Error.Code.Value());
-    }
-    return Core::ERROR_NONE;
+    // Use overload that takes VariantContainer directly (uses default wait time internally)
+    Core::JSON::VariantContainer response;
+    uint32_t result = link.Invoke(_T("respond"), params, response);
+
+    return result;
 }
 
 } // namespace Plugin

@@ -3,7 +3,7 @@
 #include <plugins/IShell.h>
 #include <plugins/IStateControl.h>
 #include <core/JSON.h>
-#include <tracing/Tracing.h>
+#include <tracing/tracing.h>
 
 namespace WPEFramework {
 namespace Plugin {
@@ -19,10 +19,9 @@ public:
         return true;
     }
     // Query resolution: for now, echo a trivial resolution object
-    bool Get(const string& /*appId*/, const string& method, const Core::JSON::Object& /*params*/, Core::JSON::Object& out) const {
+    bool Get(const string& /*appId*/, const string& method, const Core::JSON::VariantContainer& /*params*/, Core::JSON::VariantContainer& out) const {
         // Minimal placeholder: alias to the same method for demonstration
-        Core::JSON::String alias;
-        alias = method;
+        Core::JSON::Variant alias(method.c_str());
         out.Set(_T("alias"), alias);
         return true;
     }
@@ -34,10 +33,9 @@ public:
         : _service(service)
         , _securityToken(token) {}
     // Dispatch based on resolution (placeholder)
-    uint32_t DispatchResolved(const Core::JSON::Object& /*resolution*/, const Core::JSON::Object& /*callParams*/, Core::JSON::Object& response) {
+    uint32_t DispatchResolved(const Core::JSON::VariantContainer& /*resolution*/, const Core::JSON::VariantContainer& /*callParams*/, Core::JSON::VariantContainer& response) {
         // Return a trivial success for placeholder behavior
-        Core::JSON::Boolean ok;
-        ok = true;
+        Core::JSON::Variant ok(true);
         response.Set(_T("ok"), ok);
         return Core::ERROR_NONE;
     }
@@ -116,8 +114,8 @@ AppGateway::AppGateway()
     printf("Hello from AppGateway constructor79!\n");
 
     // Register JSON-RPC methods: configure, resolve, respond
-    Register<Core::JSON::Object, Core::JSON::Object>(_T("configure"),
-        [this](const Core::JSON::Object& params, Core::JSON::Object& /*unused*/) -> uint32_t {
+    Register<Core::JSON::VariantContainer, Core::JSON::VariantContainer>(_T("configure"),
+        [this](const Core::JSON::VariantContainer& params, Core::JSON::VariantContainer& /*unused*/) -> uint32_t {
             Core::JSON::ArrayType<Core::JSON::String> paths;
             auto code = ParseConfigureParams(params, paths);
             if (code != Core::ERROR_NONE) {
@@ -137,34 +135,35 @@ AppGateway::AppGateway()
             return Core::ERROR_NONE;
         });
 
-    Register<Core::JSON::Object, Core::JSON::Object>(_T("resolve"),
-        [this](const Core::JSON::Object& params, Core::JSON::Object& result) -> uint32_t {
-            Core::JSON::Object ctx;
-            Core::JSON::Object callParams;
+    Register<Core::JSON::VariantContainer, Core::JSON::VariantContainer>(_T("resolve"),
+        [this](const Core::JSON::VariantContainer& params, Core::JSON::VariantContainer& result) -> uint32_t {
+            Core::JSON::VariantContainer ctx;
+            Core::JSON::VariantContainer callParams;
             string method;
             const auto parse = ParseResolveParams(params, ctx, method, callParams);
             if (parse != Core::ERROR_NONE) {
                 return parse;
             }
-            Core::JSON::Object resolution;
-            const string appId = ctx.Get(kAppId).Value();
+            Core::JSON::VariantContainer resolution;
+            const string appId = ctx.HasLabel(kAppId) ? ctx[kAppId].String() : string();
             if (!_resolver->Get(appId, method, callParams, resolution)) {
                 // For now: return empty resolution as success
             }
             // result: { "resolution": {...} }
-            result.Set(_T("resolution"), resolution);
+            Core::JSON::Variant v(resolution);
+            result.Set(_T("resolution"), v);
             return Core::ERROR_NONE;
         });
 
-    Register<Core::JSON::Object, Core::JSON::Object>(_T("respond"),
-        [this](const Core::JSON::Object& params, Core::JSON::Object& /*unused*/) -> uint32_t {
-            Core::JSON::Object ctx;
-            Core::JSON::Object payload;
+    Register<Core::JSON::VariantContainer, Core::JSON::VariantContainer>(_T("respond"),
+        [this](const Core::JSON::VariantContainer& params, Core::JSON::VariantContainer& /*unused*/) -> uint32_t {
+            Core::JSON::VariantContainer ctx;
+            Core::JSON::VariantContainer payload;
             const auto parse = ParseRespondParams(params, ctx, payload);
             if (parse != Core::ERROR_NONE) {
                 return parse;
             }
-            const string connectionId = ctx.Get(kConnectionId).Value();
+            const string connectionId = ctx[kConnectionId].String();
             string serialized;
             payload.ToString(serialized);
             if (!_connections->SendTo(connectionId, serialized)) {
@@ -240,28 +239,29 @@ string AppGateway::Information() const {
     return string(_T("AppGateway: Resolves Firebolt methods to Thunder aliases and provides respond/resolve/configure APIs."));
 }
 
-uint32_t AppGateway::ParseConfigureParams(const Core::JSON::Object& paramsObject,
+uint32_t AppGateway::ParseConfigureParams(const Core::JSON::VariantContainer& paramsObject,
                                           Core::JSON::ArrayType<Core::JSON::String>& outPaths) const {
     if (paramsObject.HasLabel(kPaths) == false) {
         return static_cast<uint32_t>(~0); // INVALID_REQUEST equivalent
     }
-    const Core::JSON::ArrayType<Core::JSON::String>& paths = paramsObject.Get<Core::JSON::ArrayType<Core::JSON::String>>(kPaths);
-    outPaths = paths;
+    // Deserialize array from Variant
+    Core::JSON::ArrayType<Core::JSON::String> parsed;
+    parsed.FromString(paramsObject[kPaths].String());
+    outPaths = parsed;
     return Core::ERROR_NONE;
 }
 
-uint32_t AppGateway::ParseResolveParams(const Core::JSON::Object& paramsObject,
-                                        Core::JSON::Object& outContext,
+uint32_t AppGateway::ParseResolveParams(const Core::JSON::VariantContainer& paramsObject,
+                                        Core::JSON::VariantContainer& outContext,
                                         string& outMethod,
-                                        Core::JSON::Object& outParams) const {
+                                        Core::JSON::VariantContainer& outParams) const {
     if ((paramsObject.HasLabel(kContext) == false) || (paramsObject.HasLabel(kMethod) == false)) {
         return Core::ERROR_BAD_REQUEST; // INVALID_PARAMS
     }
-    outContext = paramsObject.Get<Core::JSON::Object>(kContext);
-    Core::JSON::String method = paramsObject.Get<Core::JSON::String>(kMethod);
-    outMethod = method.Value();
+    outContext = paramsObject[kContext].Object();
+    outMethod = paramsObject[kMethod].String();
     if (paramsObject.HasLabel(kParams) == true) {
-        outParams = paramsObject.Get<Core::JSON::Object>(kParams);
+        outParams = paramsObject[kParams].Object();
     } else {
         outParams.Clear();
     }
@@ -272,27 +272,29 @@ uint32_t AppGateway::ParseResolveParams(const Core::JSON::Object& paramsObject,
     return Core::ERROR_NONE;
 }
 
-uint32_t AppGateway::ParseRespondParams(const Core::JSON::Object& paramsObject,
-                                        Core::JSON::Object& outContext,
-                                        Core::JSON::Object& outPayload) const {
+uint32_t AppGateway::ParseRespondParams(const Core::JSON::VariantContainer& paramsObject,
+                                        Core::JSON::VariantContainer& outContext,
+                                        Core::JSON::VariantContainer& outPayload) const {
     if (paramsObject.HasLabel(kContext) == false) {
         return Core::ERROR_BAD_REQUEST;
     }
-    outContext = paramsObject.Get<Core::JSON::Object>(kContext);
+    outContext = paramsObject[kContext].Object();
 
     // payload can be "payload", or legacy "result"/"error" at top-level within params
     if (paramsObject.HasLabel(kPayload) == true) {
-        outPayload = paramsObject.Get<Core::JSON::Object>(kPayload);
+        outPayload = paramsObject[kPayload].Object();
     } else {
         // Build payload wrapper if legacy fields exist
-        Core::JSON::Object wrapper;
+        Core::JSON::VariantContainer wrapper;
         if (paramsObject.HasLabel(kResult) == true) {
-            wrapper.Set(kResult, paramsObject.Get<Core::JSON::Object>(kResult));
+            Core::JSON::Variant v(paramsObject[kResult].Object());
+            wrapper.Set(kResult, v);
         }
         if (paramsObject.HasLabel(kError) == true) {
-            wrapper.Set(kError, paramsObject.Get<Core::JSON::Object>(kError));
+            Core::JSON::Variant v(paramsObject[kError].Object());
+            wrapper.Set(kError, v);
         }
-        if (wrapper.Length() == 0) {
+        if (wrapper.IsValid() == false) {
             return Core::ERROR_INCOMPLETE_CONFIG; // Use as generic invalid params
         }
         outPayload = wrapper;

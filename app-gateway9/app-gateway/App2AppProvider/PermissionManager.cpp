@@ -1,3 +1,4 @@
+#include "Module.h"
 #include "PermissionManager.h"
 
 namespace WPEFramework {

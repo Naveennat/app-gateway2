@@ -23,8 +23,10 @@ class GatewayWebSocket;
 // PUBLIC_INTERFACE
 class AppGateway : public PluginHost::IPlugin, public PluginHost::JSONRPC {
 public:
-    /**
-     * This plugin exposes JSON-RPC methods to configure resolution overlays,
+    /*
+     * AppGateway Plugin
+     *
+     * Exposes JSON-RPC methods to configure resolution overlays,
      * resolve Firebolt-style methods into Thunder aliases, and respond to
      * specific application contexts over WebSocket (via GatewayWebSocket).
      *
@@ -37,7 +39,13 @@ public:
     AppGateway(const AppGateway&) = delete;
     AppGateway& operator=(const AppGateway&) = delete;
 
-    virtual ~AppGateway() override;
+    ~AppGateway() override;
+
+    // Provide QueryInterface mapping for WPEFramework services
+    BEGIN_INTERFACE_MAP(AppGateway)
+        INTERFACE_ENTRY(PluginHost::IPlugin)
+        INTERFACE_ENTRY(PluginHost::IDispatcher)
+    END_INTERFACE_MAP
 
     // IPlugin
     const string Initialize(PluginHost::IShell* service) override;
@@ -50,24 +58,24 @@ public:
     uint32_t configure(const Core::JSON::ArrayType<Core::JSON::String>& paths);
 
     // PUBLIC_INTERFACE
-    uint32_t resolve(const Core::JSON::Object& params, Core::JSON::Object& result);
+    uint32_t resolve(const Core::JSON::VariantContainer& params, Core::JSON::VariantContainer& result);
 
     // PUBLIC_INTERFACE
-    uint32_t respond(const Core::JSON::Object& params);
+    uint32_t respond(const Core::JSON::VariantContainer& params);
 
 private:
     // Internal helpers to parse params safely
-    uint32_t ParseConfigureParams(const Core::JSON::Object& paramsObject,
+    uint32_t ParseConfigureParams(const Core::JSON::VariantContainer& paramsObject,
                                   Core::JSON::ArrayType<Core::JSON::String>& outPaths) const;
 
-    uint32_t ParseResolveParams(const Core::JSON::Object& paramsObject,
-                                Core::JSON::Object& outContext,
+    uint32_t ParseResolveParams(const Core::JSON::VariantContainer& paramsObject,
+                                Core::JSON::VariantContainer& outContext,
                                 string& outMethod,
-                                Core::JSON::Object& outParams) const;
+                                Core::JSON::VariantContainer& outParams) const;
 
-    uint32_t ParseRespondParams(const Core::JSON::Object& paramsObject,
-                                Core::JSON::Object& outContext,
-                                Core::JSON::Object& outPayload) const;
+    uint32_t ParseRespondParams(const Core::JSON::VariantContainer& paramsObject,
+                                Core::JSON::VariantContainer& outContext,
+                                Core::JSON::VariantContainer& outPayload) const;
 
 private:
     PluginHost::IShell* _service;
