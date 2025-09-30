@@ -10,6 +10,8 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <type_traits>
+#include <utility>
 
 #include "Module.h"
 #include "IOttServices.h"
@@ -37,7 +39,7 @@ namespace Plugin {
 
         // IUnknown implementation
         // PUBLIC_INTERFACE
-        uint32_t AddRef() const override;
+        auto AddRef() const -> decltype(std::declval<const Core::IReferenceCounted&>().AddRef()) override;
         // PUBLIC_INTERFACE
         uint32_t Release() const override;
         // PUBLIC_INTERFACE

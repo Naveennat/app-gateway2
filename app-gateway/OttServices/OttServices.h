@@ -9,6 +9,8 @@
 #include <plugins/IPlugin.h>
 #include <plugins/JSONRPC.h>
 #include <atomic>
+#include <type_traits>
+#include <utility>
 
 #include "IOttServices.h"
 
@@ -40,7 +42,7 @@ namespace Plugin {
 
         // IUnknown implementation
         // PUBLIC_INTERFACE
-        uint32_t AddRef() const override;
+        auto AddRef() const -> decltype(std::declval<const Core::IReferenceCounted&>().AddRef()) override;
         // PUBLIC_INTERFACE
         uint32_t Release() const override;
         // PUBLIC_INTERFACE
