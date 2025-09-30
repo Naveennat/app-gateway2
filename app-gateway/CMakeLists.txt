@@ -35,6 +35,7 @@ set(OTTSERVICES_SOURCES
     ${CMAKE_SOURCE_DIR}/OttServices/OttServices.cpp
     ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.cpp
     ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.cpp
+    ${CMAKE_SOURCE_DIR}/OttServices/OttPermissionCache.cpp
 )
 
 set(OTTSERVICES_HEADERS
@@ -43,6 +44,7 @@ set(OTTSERVICES_HEADERS
     ${CMAKE_SOURCE_DIR}/OttServices/OttServices.h
     ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.h
     ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.h
+    ${CMAKE_SOURCE_DIR}/OttServices/OttPermissionCache.h
 )
 
 # Always compile with at least C++11 for this target

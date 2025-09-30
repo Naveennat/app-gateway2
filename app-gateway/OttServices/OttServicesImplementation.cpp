@@ -3,8 +3,8 @@
 #include <core/Enumerate.h>
 #include "UtilsLogging.h"
 
-// Use shared permission cache and JSONRPC direct link utils from Supporting_Files
-#include "OttPermissionsCache.h"
+ // Use in-module permission cache and JSONRPC direct link utils
+#include "OttPermissionCache.h"
 #include "UtilsJsonrpcDirectLink.h"
 
 namespace WPEFramework {
