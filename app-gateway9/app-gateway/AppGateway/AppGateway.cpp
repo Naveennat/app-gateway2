@@ -123,7 +123,7 @@ AppGateway::AppGateway()
             }
             // Convert to std::vector<string>
             std::vector<string> p;
-            Core::JSON::ArrayType<Core::JSON::String>::ConstIterator index = paths.Elements();
+            Core::JSON::ArrayType<Core::JSON::String>::Iterator index = paths.Elements();
             while (index.Next() == true) {
                 p.emplace_back(index.Current().Value());
             }

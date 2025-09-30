@@ -34,19 +34,20 @@ App2AppProvider::App2AppProvider()
     , _jwtEnabled(false)
     , _policy(_T("lastWins")) {
 
+    // Debug print (consider replacing with Thunder tracing macros)
     printf("Hello from App2AppProvider constructor2!\n");
 
     // Register version info for documentation
     RegisterVersion(_T("App2AppProvider"), APP2APPPROVIDER_VERSION_MAJOR, APP2APPPROVIDER_VERSION_MINOR, APP2APPPROVIDER_VERSION_PATCH);
 
     // Register JSON-RPC methods
-    Register<Core::JSON::Object, Core::JSON::Object>(_T("registerProvider"),
+    Register<Core::JSON::VariantContainer, Core::JSON::VariantContainer>(_T("registerProvider"),
         &App2AppProvider::registerProvider, this);
-    Register<Core::JSON::Object, Core::JSON::Object>(_T("invokeProvider"),
+    Register<Core::JSON::VariantContainer, Core::JSON::VariantContainer>(_T("invokeProvider"),
         &App2AppProvider::invokeProvider, this);
-    Register<Core::JSON::Object, Core::JSON::Object>(_T("handleProviderResponse"),
+    Register<Core::JSON::VariantContainer, Core::JSON::VariantContainer>(_T("handleProviderResponse"),
         &App2AppProvider::handleProviderResponse, this);
-    Register<Core::JSON::Object, Core::JSON::Object>(_T("handleProviderError"),
+    Register<Core::JSON::VariantContainer, Core::JSON::VariantContainer>(_T("handleProviderError"),
         &App2AppProvider::handleProviderError, this);
 }
 
@@ -97,15 +98,16 @@ string App2AppProvider::Information() const {
     return string(_T("App2AppProvider: Registers application providers and brokers consumer-provider responses via AppGateway.respond.")); 
 }
 
-bool App2AppProvider::ParseContext(const Core::JSON::Object& obj, ConsumerContext& outCtx, string& error) const {
+bool App2AppProvider::ParseContext(const Core::JSON::VariantContainer& obj, ConsumerContext& outCtx, string& error) const {
     error.clear();
     if (!obj.HasLabel(kRequestId) || !obj.HasLabel(kConnectionId) || !obj.HasLabel(kAppId)) {
         error = _T("INVALID_CONTEXT");
         return false;
     }
-    outCtx.requestId = obj.Get<Core::JSON::DecUInt32>(kRequestId).Value();
-    outCtx.connectionId = obj.Get<Core::JSON::String>(kConnectionId).Value();
-    outCtx.appId = obj.Get<Core::JSON::String>(kAppId).Value();
+    // Extract required fields
+    outCtx.requestId = static_cast<uint32_t>(obj[kRequestId].Number());
+    outCtx.connectionId = obj[kConnectionId].String();
+    outCtx.appId = obj[kAppId].String();
     if (outCtx.connectionId.empty() || outCtx.appId.empty()) {
         error = _T("INVALID_CONTEXT");
         return false;
@@ -113,14 +115,14 @@ bool App2AppProvider::ParseContext(const Core::JSON::Object& obj, ConsumerContex
     return true;
 }
 
-bool App2AppProvider::ParseProviderContext(const Core::JSON::Object& obj, ProviderContext& outCtx, string& error) const {
+bool App2AppProvider::ParseProviderContext(const Core::JSON::VariantContainer& obj, ProviderContext& outCtx, string& error) const {
     error.clear();
     if (!obj.HasLabel(kConnectionId) || !obj.HasLabel(kAppId)) {
         error = _T("INVALID_CONTEXT");
         return false;
     }
-    outCtx.connectionId = obj.Get<Core::JSON::String>(kConnectionId).Value();
-    outCtx.appId = obj.Get<Core::JSON::String>(kAppId).Value();
+    outCtx.connectionId = obj[kConnectionId].String();
+    outCtx.appId = obj[kAppId].String();
     if (outCtx.connectionId.empty() || outCtx.appId.empty()) {
         error = _T("INVALID_CONTEXT");
         return false;
@@ -129,7 +131,7 @@ bool App2AppProvider::ParseProviderContext(const Core::JSON::Object& obj, Provid
 }
 
 // PUBLIC_INTERFACE
-uint32_t App2AppProvider::registerProvider(const Core::JSON::Object& params, Core::JSON::Object& /*response*/) {
+uint32_t App2AppProvider::registerProvider(const Core::JSON::VariantContainer& params, Core::JSON::VariantContainer& /*response*/) {
     // Expected params:
     // { "context": {requestId, connectionId, appId}, "register": boolean, "capability": string }
     if (!params.HasLabel(kContext) || !params.HasLabel(kRegister) || !params.HasLabel(kCapability)) {
@@ -138,12 +140,12 @@ uint32_t App2AppProvider::registerProvider(const Core::JSON::Object& params, Cor
 
     ProviderContext providerCtx;
     string parseError;
-    if (!ParseProviderContext(params.Get<Core::JSON::Object>(kContext), providerCtx, parseError)) {
+    if (!ParseProviderContext(params[kContext].Object(), providerCtx, parseError)) {
         return Core::ERROR_BAD_REQUEST;
     }
 
-    bool doRegister = params.Get<Core::JSON::Boolean>(kRegister).Value();
-    string capability = params.Get<Core::JSON::String>(kCapability).Value();
+    bool doRegister = params[kRegister].Boolean();
+    string capability = params[kCapability].String();
 
     if (capability.empty()) {
         return Core::ERROR_BAD_REQUEST;
@@ -161,7 +163,7 @@ uint32_t App2AppProvider::registerProvider(const Core::JSON::Object& params, Cor
 }
 
 // PUBLIC_INTERFACE
-uint32_t App2AppProvider::invokeProvider(const Core::JSON::Object& params, Core::JSON::Object& response) {
+uint32_t App2AppProvider::invokeProvider(const Core::JSON::VariantContainer& params, Core::JSON::VariantContainer& response) {
     // Expected params:
     // { "context": {requestId, connectionId, appId}, "capability": string, "payload"?: object }
     if (!params.HasLabel(kContext) || !params.HasLabel(kCapability)) {
@@ -170,11 +172,11 @@ uint32_t App2AppProvider::invokeProvider(const Core::JSON::Object& params, Core:
 
     ConsumerContext consumerCtx;
     string parseError;
-    if (!ParseContext(params.Get<Core::JSON::Object>(kContext), consumerCtx, parseError)) {
+    if (!ParseContext(params[kContext].Object(), consumerCtx, parseError)) {
         return Core::ERROR_BAD_REQUEST;
     }
 
-    string capability = params.Get<Core::JSON::String>(kCapability).Value();
+    string capability = params[kCapability].String();
     if (capability.empty()) {
         return Core::ERROR_BAD_REQUEST;
     }
@@ -188,12 +190,13 @@ uint32_t App2AppProvider::invokeProvider(const Core::JSON::Object& params, Core:
     // Track correlation for provider's upcoming response
     const string correlationId = _correlations->Create(consumerCtx);
 
-    // Return the correlationId to caller (AppGateway will forward this to the consumer)
-    Core::JSON::String cid;
-    cid = correlationId;
-    Core::JSON::Object resultObject;
+    // Return the correlationId to caller
+    Core::JSON::VariantContainer resultObject;
+    Core::JSON::Variant cid(correlationId.c_str());
     resultObject.Set(kCorrelation, cid);
-    response.Set(_T("result"), resultObject); // For completeness, though JSONRPC handler might wrap 'response' object
+
+    Core::JSON::Variant vResult(resultObject);
+    response.Set(_T("result"), vResult);
 
     // By design, provider invocation is triggered externally (e.g. via AppGateway resolver patterns).
     // App2AppProvider responsibility here is to create correlation and return correlationId.
@@ -201,17 +204,17 @@ uint32_t App2AppProvider::invokeProvider(const Core::JSON::Object& params, Core:
 }
 
 // PUBLIC_INTERFACE
-uint32_t App2AppProvider::handleProviderResponse(const Core::JSON::Object& params, Core::JSON::Object& /*response*/) {
+uint32_t App2AppProvider::handleProviderResponse(const Core::JSON::VariantContainer& params, Core::JSON::VariantContainer& /*response*/) {
     // Expected params: { "payload": { "correlationId": string, "result": object }, "capability": string }
     if (!params.HasLabel(kPayload) || !params.HasLabel(kCapability)) {
         return Core::ERROR_BAD_REQUEST;
     }
-    const Core::JSON::Object payload = params.Get<Core::JSON::Object>(kPayload);
+    Core::JSON::VariantContainer payload = params[kPayload].Object();
     if (!payload.HasLabel(kCorrelation) || !payload.HasLabel(kResult)) {
         return Core::ERROR_BAD_REQUEST;
     }
 
-    const string correlationId = payload.Get<Core::JSON::String>(kCorrelation).Value();
+    const string correlationId = payload[kCorrelation].String();
 
     ConsumerContext consumerCtx;
     if (!_correlations->Take(correlationId, consumerCtx)) {
@@ -220,25 +223,26 @@ uint32_t App2AppProvider::handleProviderResponse(const Core::JSON::Object& param
     }
 
     // Build payload to forward via AppGateway.respond: wrap incoming 'result' into payload
-    Core::JSON::Object forwardPayload;
-    forwardPayload.Set(kResult, payload.Get<Core::JSON::Object>(kResult));
+    Core::JSON::VariantContainer forwardPayload;
+    Core::JSON::Variant vResult(payload[kResult].Object());
+    forwardPayload.Set(kResult, vResult);
 
     const uint32_t rc = _gateway->Respond(consumerCtx, forwardPayload);
     return rc;
 }
 
 // PUBLIC_INTERFACE
-uint32_t App2AppProvider::handleProviderError(const Core::JSON::Object& params, Core::JSON::Object& /*response*/) {
+uint32_t App2AppProvider::handleProviderError(const Core::JSON::VariantContainer& params, Core::JSON::VariantContainer& /*response*/) {
     // Expected params: { "payload": { "correlationId": string, "error": { code:number, message:string } }, "capability": string }
     if (!params.HasLabel(kPayload) || !params.HasLabel(kCapability)) {
         return Core::ERROR_BAD_REQUEST;
     }
-    const Core::JSON::Object payload = params.Get<Core::JSON::Object>(kPayload);
+    Core::JSON::VariantContainer payload = params[kPayload].Object();
     if (!payload.HasLabel(kCorrelation) || !payload.HasLabel(kError)) {
         return Core::ERROR_BAD_REQUEST;
     }
 
-    const string correlationId = payload.Get<Core::JSON::String>(kCorrelation).Value();
+    const string correlationId = payload[kCorrelation].String();
 
     ConsumerContext consumerCtx;
     if (!_correlations->Take(correlationId, consumerCtx)) {
@@ -247,8 +251,9 @@ uint32_t App2AppProvider::handleProviderError(const Core::JSON::Object& params, 
     }
 
     // Build payload to forward via AppGateway.respond: wrap incoming 'error' into payload
-    Core::JSON::Object forwardPayload;
-    forwardPayload.Set(kError, payload.Get<Core::JSON::Object>(kError));
+    Core::JSON::VariantContainer forwardPayload;
+    Core::JSON::Variant vError(payload[kError].Object());
+    forwardPayload.Set(kError, vError);
 
     const uint32_t rc = _gateway->Respond(consumerCtx, forwardPayload);
     return rc;

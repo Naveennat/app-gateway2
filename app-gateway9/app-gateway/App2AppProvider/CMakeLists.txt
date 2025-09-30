@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.10)
 
 project(App2AppProviderPlugin)
 
+# Ensure CMake can discover WPEFramework packages from the container-local install
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../dependencies/install")
+
+find_package(WPEFramework REQUIRED CONFIG)
+find_package(WPEFrameworkPlugins REQUIRED CONFIG)
+
 set(TARGET App2AppProvider)
 
 # Source files
@@ -14,28 +20,23 @@ add_library(${TARGET} SHARED
     PermissionManager.cpp
 )
 
-# Include directories (explicit paths, no find_package)
-include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/..
-    ${CMAKE_CURRENT_SOURCE_DIR}/../AppGateway
-    ../../../dependencies/install/include/WPEFramework
+# Local includes for this submodule
+target_include_directories(${TARGET}
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/..
+        ${CMAKE_CURRENT_SOURCE_DIR}/../AppGateway
 )
 
-# Link directories (explicit)
-link_directories(
-    ../../../dependencies/install/lib
-)
-
-# Link with Thunder libraries directly
+# Link with imported Thunder (WPEFramework) targets to get proper include/link dirs
 target_link_libraries(${TARGET}
     PRIVATE
-        WPEFrameworkPlugins
-        WPEFrameworkCore
-        WPEFrameworkCOM
-        WPEFrameworkMessaging
-        WPEFrameworkWebSocket
-        WPEFrameworkCryptalgo
+        WPEFrameworkPlugins::WPEFrameworkPlugins
+        WPEFrameworkCore::WPEFrameworkCore
+        WPEFrameworkCOM::WPEFrameworkCOM
+        WPEFrameworkMessaging::WPEFrameworkMessaging
+        WPEFrameworkWebSocket::WPEFrameworkWebSocket
+        WPEFrameworkCryptalgo::WPEFrameworkCryptalgo
 )
 
 set_target_properties(${TARGET} PROPERTIES
