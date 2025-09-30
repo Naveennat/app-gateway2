@@ -1,0 +1,9 @@
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/OttServices.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/permission_service_protoc.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/permission_service_protoc_grpc.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/edit_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/rebuild_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/list_install_components.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/install.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/install/local.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles/install/strip.dir

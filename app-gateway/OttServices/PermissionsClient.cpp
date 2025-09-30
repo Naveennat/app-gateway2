@@ -106,7 +106,7 @@ namespace Plugin {
             switch (status.error_code()) {
                 case grpc::StatusCode::UNAUTHENTICATED:
                 case grpc::StatusCode::PERMISSION_DENIED:
-                    rc = Core::ERROR_PRIVILEGED_REQUEST;
+                    rc = Core::ERROR_PRIVILIGED_REQUEST;
                     break;
                 case grpc::StatusCode::UNAVAILABLE:
                     rc = Core::ERROR_UNAVAILABLE;
