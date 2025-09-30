@@ -4,6 +4,17 @@ project(app-gateway2-plugins)
 
 # Root paths for Thunder includes/libs (no find_package as per instruction)
 set(THUNDER_INSTALL_DIR ${CMAKE_SOURCE_DIR}/../dependencies/install)
+
+# Fallback to top-level install if dependencies/install is missing Thunder headers/libs
+if(NOT EXISTS "${THUNDER_INSTALL_DIR}/include" OR NOT EXISTS "${THUNDER_INSTALL_DIR}/lib")
+    if(EXISTS "${CMAKE_SOURCE_DIR}/../../install")
+        set(THUNDER_INSTALL_DIR "${CMAKE_SOURCE_DIR}/../../install")
+    elseif(EXISTS "${CMAKE_SOURCE_DIR}/../install")
+        set(THUNDER_INSTALL_DIR "${CMAKE_SOURCE_DIR}/../install")
+    endif()
+endif()
+message(STATUS "Thunder install dir: ${THUNDER_INSTALL_DIR}")
+
 set(THUNDER_INCLUDE_DIR ${THUNDER_INSTALL_DIR}/include)
 set(THUNDER_LIB_DIR ${THUNDER_INSTALL_DIR}/lib)
 
