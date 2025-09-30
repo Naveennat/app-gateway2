@@ -60,8 +60,8 @@ if (ENABLE_PERMISSION_PROTO_GRPC)
     find_package(gRPC REQUIRED)
     find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 
-    # Paths to proto (repo-level Supporting_Files directory)
-    set(PERMISSION_PROTO_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../../Supporting_Files)
+    # Paths to proto (now located within the OttServices directory)
+    set(PERMISSION_PROTO_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/OttServices)
     set(PERMISSION_PROTO_FILE ${PERMISSION_PROTO_DIR}/permission_service.proto)
 
     # Generate protobuf C++ sources into the build directory

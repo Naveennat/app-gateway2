@@ -1,7 +1,7 @@
 #pragma once
 
 // PermissionsClient.h
-// Thin wrapper around gRPC stubs generated from Supporting_Files/permission_service.proto
+// Thin wrapper around gRPC stubs generated from OttServices/permission_service.proto
 // Provides a convenient API for OttServicesImplementation to enumerate permissions for an app.
 //
 // The build must define OTTSERVICES_ENABLE_PERMS_GRPC to enable the real gRPC client.
