@@ -227,25 +227,28 @@ OttPermissionCache& OttPermissionCache::Instance() {
     return g_instance;
 }
 
-// PUBLIC_INTERFACE
+ // PUBLIC_INTERFACE
 std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
-    // First, quick in-memory check without holding the lock longer than needed
+    // Copy under lock into a local result to prevent reading shared state without protection
+    std::vector<string> result;
     {
         std::lock_guard<std::mutex> lock(_admin);
         auto it = _cache.find(appId);
         if (it != _cache.end()) {
-            return it->second;
+            result = it->second; // copy while holding the lock
         }
     }
+    if (!result.empty()) {
+        return result;
+    }
 
-    // If not found, try to refresh from disk
+    // If not found, try to refresh from disk (no lock held while doing I/O)
     std::map<std::string, std::vector<std::string>> onDisk;
     if (LoadLatestFromFile(onDisk)) {
         auto found = onDisk.find(appId);
         if (found != onDisk.end()) {
-            // Merge just the requested appId to in-memory cache for future access.
-            // Use a local copy and avoid accessing _cache outside of the lock.
-            std::vector<std::string> result = found->second;
+            // Store into cache under lock and return a local copy
+            result = found->second;
             const size_t count = result.size();
             {
                 std::lock_guard<std::mutex> lock(_admin);
@@ -255,7 +258,7 @@ std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
                     kPermsFile, appId.c_str(), count);
             return result;
         }
-        // Optionally, merge all onDisk to _cache for broader warmup
+        // Optionally, merge all onDisk to _cache for broader warmup under lock
         {
             std::lock_guard<std::mutex> lock(_admin);
             for (auto& kv : onDisk) {
@@ -267,7 +270,7 @@ std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
         LOGWARN("OttPermissionCache: unable to load cache from %s (file missing or empty)", kPermsFile);
     }
 
-    return std::vector<string>();
+    return result; // empty when not found
 }
 
 // PUBLIC_INTERFACE
