@@ -82,7 +82,8 @@ namespace Plugin {
     private:
         // mutable to allow locking in const methods
         mutable std::mutex _admin;
-        std::map<string, std::vector<string>> _cache;
+        // mutable cache to allow updates (warming/merging) inside const getters after acquiring lock
+        mutable std::map<string, std::vector<string>> _cache;
     };
 
 } // namespace Plugin
