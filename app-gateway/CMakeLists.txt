@@ -1,161 +1,40 @@
+# If not stated otherwise in this file or this component's license file the
+# following copyright and licenses apply:
+#
+# Copyright 2025
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 cmake_minimum_required(VERSION 3.10)
 
-project(app-gateway2-plugins)
+# Top-level project for the AppGateway component
+project(AppGatewayProject LANGUAGES CXX)
 
-# Root paths for Thunder includes/libs (no find_package as per instruction)
-set(THUNDER_INSTALL_DIR ${CMAKE_SOURCE_DIR}/../dependencies/install)
-
-# Fallback to top-level install if dependencies/install is missing Thunder headers/libs
-if(NOT EXISTS "${THUNDER_INSTALL_DIR}/include" OR NOT EXISTS "${THUNDER_INSTALL_DIR}/lib")
-    if(EXISTS "${CMAKE_SOURCE_DIR}/../../install")
-        set(THUNDER_INSTALL_DIR "${CMAKE_SOURCE_DIR}/../../install")
-    elseif(EXISTS "${CMAKE_SOURCE_DIR}/../install")
-        set(THUNDER_INSTALL_DIR "${CMAKE_SOURCE_DIR}/../install")
-    endif()
-endif()
-message(STATUS "Thunder install dir: ${THUNDER_INSTALL_DIR}")
-
-set(THUNDER_INCLUDE_DIR ${THUNDER_INSTALL_DIR}/include)
-set(THUNDER_LIB_DIR ${THUNDER_INSTALL_DIR}/lib)
-
-include_directories(
-    ${THUNDER_INCLUDE_DIR}
-    ${THUNDER_INCLUDE_DIR}/WPEFramework
-    ${CMAKE_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}/OttServices
-    ${CMAKE_SOURCE_DIR}/../Supporting_Files
-    ${CMAKE_SOURCE_DIR}/../../Supporting_Files
-)
-
-link_directories(
-    ${THUNDER_LIB_DIR}
-)
-
-# -----------------------------------------------------------------------------
-# Protobuf/gRPC integration for permission_service.proto
-# Pattern follows entservices-infra-712/CloudStore/CMakeLists.txt
-# NOTE: Disabled by default to allow builds in environments without system-wide
-# Protobuf/gRPC. Enable with -DENABLE_PERMISSION_PROTO_GRPC=ON to generate and link.
-# -----------------------------------------------------------------------------
-option(ENABLE_PERMISSION_PROTO_GRPC "Generate and link Protobuf/gRPC stubs for permission_service.proto" OFF)
-
-# OttServices plugin target
-set(OTTSERVICES_SOURCES
-    ${CMAKE_SOURCE_DIR}/OttServices/Module.cpp
-    ${CMAKE_SOURCE_DIR}/OttServices/OttServices.cpp
-    ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.cpp
-    ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.cpp
-    ${CMAKE_SOURCE_DIR}/OttServices/OttPermissionCache.cpp
-)
-
-set(OTTSERVICES_HEADERS
-    ${CMAKE_SOURCE_DIR}/OttServices/Module.h
-    ${CMAKE_SOURCE_DIR}/OttServices/IOttServices.h
-    ${CMAKE_SOURCE_DIR}/OttServices/OttServices.h
-    ${CMAKE_SOURCE_DIR}/OttServices/OttServicesImplementation.h
-    ${CMAKE_SOURCE_DIR}/OttServices/PermissionsClient.h
-    ${CMAKE_SOURCE_DIR}/OttServices/OttPermissionCache.h
-)
-
-# Always compile with at least C++11 for this target
-add_library(OttServices SHARED
-    ${OTTSERVICES_SOURCES}
-    ${OTTSERVICES_HEADERS}
-)
-target_compile_features(OttServices PRIVATE cxx_std_11)
-
-target_compile_definitions(OttServices
-    PRIVATE
-        MODULE_NAME=OttServices
-        PLUGIN_OttServices=1
-)
-
-if (ENABLE_PERMISSION_PROTO_GRPC)
-    # Find Protobuf and gRPC packages and the grpc C++ plugin for protoc
-    find_package(Protobuf REQUIRED)
-    find_package(gRPC REQUIRED)
-    find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
-
-    # Paths to proto (now located within the OttServices directory)
-    set(PERMISSION_PROTO_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/OttServices)
-    set(PERMISSION_PROTO_FILE ${PERMISSION_PROTO_DIR}/permission_service.proto)
-
-    # Generate protobuf C++ sources into the build directory
-    add_custom_target(permission_service_protoc
-        ${Protobuf_PROTOC_EXECUTABLE}
-            --cpp_out ${CMAKE_CURRENT_BINARY_DIR}
-            -I ${PERMISSION_PROTO_DIR}
-            ${PERMISSION_PROTO_FILE}
-        COMMENT "Generating C++ Protobuf sources for permission_service.proto"
-        VERBATIM
-    )
-
-    # Generate gRPC C++ sources into the build directory
-    add_custom_target(permission_service_protoc_grpc
-        ${Protobuf_PROTOC_EXECUTABLE}
-            --grpc_out ${CMAKE_CURRENT_BINARY_DIR}
-            --plugin=protoc-gen-grpc=${GRPC_CPP_PLUGIN}
-            -I ${PERMISSION_PROTO_DIR}
-            ${PERMISSION_PROTO_FILE}
-        COMMENT "Generating C++ gRPC sources for permission_service.proto"
-        VERBATIM
-    )
-
-    # Add generated protobuf/grpc sources to target
-    target_sources(OttServices PRIVATE
-        ${CMAKE_CURRENT_BINARY_DIR}/permission_service.pb.cc
-        ${CMAKE_CURRENT_BINARY_DIR}/permission_service.grpc.pb.cc
-    )
-    set_property(SOURCE
-        ${CMAKE_CURRENT_BINARY_DIR}/permission_service.pb.cc
-        ${CMAKE_CURRENT_BINARY_DIR}/permission_service.grpc.pb.cc
-        PROPERTY GENERATED 1
-    )
-
-    # Ensure generation happens before building OttServices
-    add_dependencies(OttServices permission_service_protoc permission_service_protoc_grpc)
-
-    # Include the build directory so generated headers are found
-    target_include_directories(OttServices
-        PRIVATE
-            ${CMAKE_CURRENT_BINARY_DIR}
-    )
-
-    # Enable code path in PermissionsClient for gRPC usage
-    target_compile_definitions(OttServices PRIVATE OTTSERVICES_ENABLE_PERMS_GRPC)
-
-    # Link Protobuf and gRPC::grpc++ as requested
-    target_link_libraries(OttServices
-        PRIVATE
-            ${Protobuf_LIBRARIES}
-            gRPC::grpc++
-    )
+# Thunder typically uses namespace WPEFramework; allow override from command line
+if (NOT DEFINED NAMESPACE OR "${NAMESPACE}" STREQUAL "")
+    set(NAMESPACE WPEFramework)
 endif()
 
-# Link against Thunder core and plugins JSONRPC libraries directly
-# The exact library filenames may vary per build; commonly they are WPEFrameworkCore and WPEFrameworkPlugins.
-target_link_libraries(OttServices
-    PRIVATE
-        WPEFrameworkCore
-        WPEFrameworkPlugins
-)
+# Provide Thunder (WPEFramework) SDK install path hints so subdirectories can reuse them.
+# This path resolves to: <repo-root>/dependencies/install
+set(THUNDER_INSTALL_PATH "${CMAKE_SOURCE_DIR}/../dependencies/install" CACHE PATH "Path to Thunder (WPEFramework) install prefix" FORCE)
+get_filename_component(THUNDER_INSTALL_PATH_ABS "${THUNDER_INSTALL_PATH}" REALPATH)
+set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
+set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH_ABS}/lib")
 
-# Set output name/prefix consistent with Thunder plugins (libOttServices.so)
-set_target_properties(OttServices PROPERTIES
-    OUTPUT_NAME "OttServices"
-    PREFIX "lib"
-)
+# Enable CTest for the tests/ subdirectory
+enable_testing()
 
-# Install rules (optional in some repos; add if used by superbuild)
-install(TARGETS OttServices
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    RUNTIME DESTINATION bin
-)
-
-# If other plugins/subdirs exist, you may add_subdirectory() for them here.
-
-# Integrate the external FbSettings plugin so it is built as part of this build.
-# Use an explicit binary directory to avoid polluting the source tree.
-add_subdirectory(/home/kavia/workspace/code-generation/FbSettings ${CMAKE_BINARY_DIR}/FbSettings)
+# Build the AppGateway plugin and the unit tests
+add_subdirectory(AppGateway)
+add_subdirectory(tests)

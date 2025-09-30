@@ -31,16 +31,17 @@ endif()
 # Target name follows Thunder/Plugin convention: WPEFramework + <PluginName>
 set(TARGET ${NAMESPACE}AppGateway)
 
-# Resolve Thunder (WPEFramework) SDK paths relative to this file:
-#   ../../dependencies/install
-#     include/WPEFramework/...
-#     lib/libWPEFrameworkCore.so, libWPEFrameworkPlugins.so, etc.
-set(THUNDER_INSTALL_PATH "${CMAKE_CURRENT_LIST_DIR}/../../dependencies/install" CACHE PATH "Path to Thunder (WPEFramework) install prefix")
-
-# Normalize to absolute
-get_filename_component(THUNDER_INSTALL_PATH_ABS "${THUNDER_INSTALL_PATH}" REALPATH)
-set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
-set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH_ABS}/lib")
+# Resolve Thunder (WPEFramework) SDK paths, prefer values propagated from the top-level
+# If not provided, fallback to repo-relative path: <repo-root>/app-gateway2/dependencies/install
+if (DEFINED THUNDER_INSTALL_PATH_ABS)
+    set(_THUNDER_SDK_ROOT "${THUNDER_INSTALL_PATH_ABS}")
+elseif (DEFINED THUNDER_INSTALL_PATH)
+    get_filename_component(_THUNDER_SDK_ROOT "${THUNDER_INSTALL_PATH}" REALPATH)
+else()
+    get_filename_component(_THUNDER_SDK_ROOT "${CMAKE_SOURCE_DIR}/../dependencies/install" REALPATH)
+endif()
+set(THUNDER_INCLUDE_DIR "${_THUNDER_SDK_ROOT}/include/${NAMESPACE}")
+set(THUNDER_LIBRARY_DIR "${_THUNDER_SDK_ROOT}/lib")
 
 if (NOT EXISTS "${THUNDER_INSTALL_PATH_ABS}")
     message(WARNING "Thunder (WPEFramework) SDK not found at ${THUNDER_INSTALL_PATH_ABS}. Adjust THUNDER_INSTALL_PATH if needed.")
