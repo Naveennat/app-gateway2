@@ -155,3 +155,7 @@ install(TARGETS OttServices
 )
 
 # If other plugins/subdirs exist, you may add_subdirectory() for them here.
+
+# Integrate the external FbSettings plugin so it is built as part of this build.
+# Use an explicit binary directory to avoid polluting the source tree.
+add_subdirectory(/home/kavia/workspace/code-generation/FbSettings ${CMAKE_BINARY_DIR}/FbSettings)
