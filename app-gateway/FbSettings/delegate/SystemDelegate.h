@@ -1,11 +1,11 @@
 #pragma once
 
 /*
- * SystemDelegate encapsulates all org.rdk.system JSON-RPC calls and event subscriptions
+ * SystemDelegate encapsulates all org.rdk.System JSON-RPC calls and event subscriptions
  * required by the FbSettings plugin to fulfill the system settings alias functions.
  *
  * It uses a direct JSON-RPC link to the Thunder plugin via Utils::GetThunderControllerClient,
- * modeled after Supporting_Files/DeviceInfo.cpp.
+ * following the same pattern as the AUTHSERVICE_CALLSIGN-style setup (using helpers from Supporting_Files).
  */
 
 #include <memory>
@@ -15,6 +15,11 @@
 #include <plugins/plugins.h>
 #include "UtilsLogging.h"
 #include "UtilsJsonrpcDirectLink.h"
+
+// Define a callsign constant to match the AUTHSERVICE_CALLSIGN-style pattern.
+#ifndef SYSTEM_CALLSIGN
+#define SYSTEM_CALLSIGN "org.rdk.System"
+#endif
 
 namespace WPEFramework {
 namespace Plugin {
@@ -28,12 +33,28 @@ namespace Plugin {
 
         ~SystemDelegate() = default;
 
+        // PUBLIC_INTERFACE
         void setShell(PluginHost::IShell* shell) {
+            /**
+             * Set the Thunder IShell pointer used to acquire a direct JSON-RPC link
+             * to the org.rdk.System plugin.
+             *
+             * @param shell Pointer to the PluginHost::IShell provided by the framework.
+             */
             _shell = shell;
         }
 
-        // Handle event registration requests; returns true if this delegate recognized the event.
+        // PUBLIC_INTERFACE
         bool HandleEvent(const std::string& event, const bool listen, bool& registrationError) {
+            /**
+             * Handle event registration requests; returns true if this delegate recognized the event.
+             * This follows the same event naming as the System plugin.
+             *
+             * @param event Event name (case-insensitive), e.g. "Localization.onCountryCodeChanged"
+             * @param listen True to subscribe, false to unsubscribe
+             * @param registrationError Set to true on registration error
+             * @return true if the event was handled by this delegate
+             */
             registrationError = false;
 
             const std::string evLower = ToLower(event);
@@ -64,6 +85,7 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult GetDeviceMake(std::string& make) {
+            /** Retrieve the device make using org.rdk.System.getDeviceInfo */
             make.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -89,6 +111,7 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult GetDeviceName(std::string& name) {
+            /** Retrieve the friendly name using org.rdk.System.getFriendlyName */
             name.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -112,6 +135,7 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult SetDeviceName(const std::string& name) {
+            /** Set the friendly name using org.rdk.System.setFriendlyName */
             auto link = AcquireLink();
             if (!link) {
                 return Core::ERROR_UNAVAILABLE;
@@ -130,6 +154,7 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult GetDeviceSku(std::string& skuOut) {
+            /** Retrieve the device SKU from org.rdk.System.getSystemVersions.stbVersion */
             skuOut.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -161,6 +186,7 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult GetCountryCode(std::string& code) {
+            /** Retrieve Firebolt country code derived from org.rdk.System.getTerritory */
             code.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -183,6 +209,7 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult SetCountryCode(const std::string& code) {
+            /** Set territory using org.rdk.System.setTerritory mapped from Firebolt country code */
             auto link = AcquireLink();
             if (!link) {
                 return Core::ERROR_UNAVAILABLE;
@@ -203,21 +230,24 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnCountryCodeChanged(const bool listen, bool& status) {
-            // NOTE: Event subscription via JSON-RPC LinkType is not implemented in this environment.
-            // We record intentions to subscribe/unsubscribe and return success for now.
+            /**
+             * Stubbed subscription to org.rdk.System.onTerritoryChanged.
+             * Records intent and returns success in this environment.
+             */
             status = true;
             if (listen) {
                 _subscriptions.insert("onTerritoryChanged");
-                LOGINFO("SystemDelegate: requested subscribe to org.rdk.system.onTerritoryChanged (not implemented)");
+                LOGINFO("SystemDelegate: requested subscribe to org.rdk.System.onTerritoryChanged (not implemented)");
             } else {
                 _subscriptions.erase("onTerritoryChanged");
-                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.system.onTerritoryChanged (not implemented)");
+                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.System.onTerritoryChanged (not implemented)");
             }
             return Core::ERROR_NONE;
         }
 
         // PUBLIC_INTERFACE
         Core::hresult GetTimeZone(std::string& tz) {
+            /** Retrieve timezone using org.rdk.System.getTimeZoneDST */
             tz.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -239,6 +269,7 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult SetTimeZone(const std::string& tz) {
+            /** Set timezone using org.rdk.System.setTimeZoneDST */
             auto link = AcquireLink();
             if (!link) {
                 return Core::ERROR_UNAVAILABLE;
@@ -257,44 +288,46 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnTimeZoneChanged(const bool listen, bool& status) {
+            /** Stubbed subscription to org.rdk.System.onTimeZoneDSTChanged */
             status = true;
             if (listen) {
                 _subscriptions.insert("onTimeZoneDSTChanged");
-                LOGINFO("SystemDelegate: requested subscribe to org.rdk.system.onTimeZoneDSTChanged (not implemented)");
+                LOGINFO("SystemDelegate: requested subscribe to org.rdk.System.onTimeZoneDSTChanged (not implemented)");
             } else {
                 _subscriptions.erase("onTimeZoneDSTChanged");
-                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.system.onTimeZoneDSTChanged (not implemented)");
+                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.System.onTimeZoneDSTChanged (not implemented)");
             }
             return Core::ERROR_NONE;
         }
 
         // PUBLIC_INTERFACE
         Core::hresult GetSecondScreenFriendlyName(std::string& name) {
-            // Same as getFriendlyName per rules
+            /** Alias to GetDeviceName using org.rdk.System.getFriendlyName */
             return GetDeviceName(name);
         }
 
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnFriendlyNameChanged(const bool listen, bool& status) {
+            /** Stubbed subscription to org.rdk.System.onFriendlyNameChanged */
             status = true;
             if (listen) {
                 _subscriptions.insert("onFriendlyNameChanged");
-                LOGINFO("SystemDelegate: requested subscribe to org.rdk.system.onFriendlyNameChanged (not implemented)");
+                LOGINFO("SystemDelegate: requested subscribe to org.rdk.System.onFriendlyNameChanged (not implemented)");
             } else {
                 _subscriptions.erase("onFriendlyNameChanged");
-                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.system.onFriendlyNameChanged (not implemented)");
+                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.System.onFriendlyNameChanged (not implemented)");
             }
             return Core::ERROR_NONE;
         }
 
     private:
-        inline std::shared_ptr<Utils::JSONRPCDirectLink> AcquireLink() const {
+        inline std::unique_ptr<WPEFramework::Utils::JsonRpcDirectLink> AcquireLink() const {
+            // Create a direct JSON-RPC link to the Thunder System plugin using the Supporting_Files helper.
             if (_shell == nullptr) {
                 LOGERR("SystemDelegate: shell is null");
                 return nullptr;
             }
-            // Requirement: use callsign org.rdk.system (lowercase)
-            return Utils::GetThunderControllerClient(_shell, "org.rdk.system");
+            return WPEFramework::Utils::GetThunderControllerClient(_shell, SYSTEM_CALLSIGN);
         }
 
         static std::string ToLower(const std::string& in) {
