@@ -18,6 +18,7 @@
 #include "FbSettingsImplementation.h"
 #include "UtilsLogging.h"
 #include "delegate/SettingsDelegate.h"
+#include "delegate/SystemDelegate.h"
 
 namespace WPEFramework
 {
@@ -30,6 +31,7 @@ namespace WPEFramework
         mShell(nullptr)   
         {
             mDelegate = std::make_shared<SettingsDelegate>();
+            mSystemDelegate = std::make_shared<SystemDelegate>();
         }
 
         FbSettingsImplementation::~FbSettingsImplementation()
@@ -52,6 +54,74 @@ namespace WPEFramework
             return Core::ERROR_NONE;
         }
 
+        // Delegated alias methods
+
+        Core::hresult FbSettingsImplementation::GetDeviceMake(string& make) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->GetDeviceMake(make);
+        }
+
+        Core::hresult FbSettingsImplementation::GetDeviceName(string& name) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->GetDeviceName(name);
+        }
+
+        Core::hresult FbSettingsImplementation::SetDeviceName(const string& name) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->SetDeviceName(name);
+        }
+
+        Core::hresult FbSettingsImplementation::GetDeviceSku(string& sku) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->GetDeviceSku(sku);
+        }
+
+        Core::hresult FbSettingsImplementation::GetCountryCode(string& countryCode) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->GetCountryCode(countryCode);
+        }
+
+        Core::hresult FbSettingsImplementation::SetCountryCode(const string& countryCode) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->SetCountryCode(countryCode);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnCountryCodeChanged(const bool listen, bool& status) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->SubscribeOnCountryCodeChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetTimeZone(string& timeZone) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->GetTimeZone(timeZone);
+        }
+
+        Core::hresult FbSettingsImplementation::SetTimeZone(const string& timeZone) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->SetTimeZone(timeZone);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnTimeZoneChanged(const bool listen, bool& status) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->SubscribeOnTimeZoneChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetSecondScreenFriendlyName(string& name) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->GetSecondScreenFriendlyName(name);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnFriendlyNameChanged(const bool listen, bool& status) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            return mSystemDelegate->SubscribeOnFriendlyNameChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnDeviceNameChanged(const bool listen, bool& status) {
+            if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
+            // Same underlying event as friendlyName changed
+            return mSystemDelegate->SubscribeOnFriendlyNameChanged(listen, status);
+        }
+
         uint32_t FbSettingsImplementation::Configure(PluginHost::IShell *shell)
         {
             LOGINFO("Configuring FbSettings");
@@ -60,6 +130,9 @@ namespace WPEFramework
             mShell = shell;
             mShell->AddRef();
             mDelegate->setShell(mShell);
+            if (mSystemDelegate) {
+                mSystemDelegate->setShell(mShell);
+            }
             return result;
         }
     }

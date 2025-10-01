@@ -25,6 +25,8 @@
 #include "UtilsLogging.h"
 #include "ThunderUtils.h"
 #include "delegate/SettingsDelegate.h"
+#include "delegate/SystemDelegate.h"
+
 namespace WPEFramework {
 namespace Plugin {
     class FbSettingsImplementation : public Exchange::IFbSettings, public Exchange::IConfiguration {
@@ -56,7 +58,16 @@ namespace Plugin {
                 }
                 virtual void Dispatch()
                 {
-                    mParent.mDelegate->HandleAppEventNotifier(mEvent, mListen);;
+                    // Existing delegates (TTS/UserSettings)
+                    mParent.mDelegate->HandleAppEventNotifier(mEvent, mListen);
+                    // Also handle org.rdk.system related events through SystemDelegate
+                    bool regError = false;
+                    if (mParent.mSystemDelegate) {
+                        mParent.mSystemDelegate->HandleEvent(mEvent, mListen, regError);
+                        if (regError) {
+                            LOGWARN("FbSettingsImplementation: SystemDelegate event registration had errors for '%s'", mEvent.c_str());
+                        }
+                    }
                 }
 
             private:
@@ -80,9 +91,51 @@ namespace Plugin {
         // IConfiguration interface
         uint32_t Configure(PluginHost::IShell* shell);
 
+        // The following public interfaces provide the 13 org.rdk.System alias implementations via SystemDelegate.
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetDeviceMake(string& make /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetDeviceName(string& name /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetDeviceName(const string& name /* @in */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetDeviceSku(string& sku /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetCountryCode(string& countryCode /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetCountryCode(const string& countryCode /* @in */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnCountryCodeChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetTimeZone(string& timeZone /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetTimeZone(const string& timeZone /* @in */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnTimeZoneChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetSecondScreenFriendlyName(string& name /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnFriendlyNameChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnDeviceNameChanged(const bool listen /* @in */, bool& status /* @out */);
+
     private:
         PluginHost::IShell* mShell;
         std::shared_ptr<SettingsDelegate> mDelegate;
+        std::shared_ptr<SystemDelegate> mSystemDelegate;
     };
 }
 }

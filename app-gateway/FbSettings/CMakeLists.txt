@@ -40,10 +40,15 @@ find_package(CompileSettingsDebug CONFIG REQUIRED)
 add_library(${MODULE_NAME} SHARED
         FbSettingsImplementation.cpp
         FbSettings.cpp
-        Module.cpp)
+        Module.cpp
+        delegate/SystemDelegate.cpp)
 
-
-target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
+# Add include paths for shared helper headers and parent directory (for UtilsLogging.h etc.)
+target_include_directories(${MODULE_NAME}
+        PRIVATE
+        ../helpers
+        ..
+        ${CMAKE_SOURCE_DIR}/../Supporting_Files)
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
