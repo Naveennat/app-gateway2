@@ -4,20 +4,18 @@
 // Thin wrapper around gRPC stubs generated from OttServices/permission_service.proto
 // Provides a convenient API for OttServicesImplementation to enumerate permissions for an app.
 //
-// The build must define OTTSERVICES_ENABLE_PERMS_GRPC to enable the real gRPC client.
-// When not defined, the client compiles into a no-op stub returning Core::ERROR_UNAVAILABLE.
+// Note: gRPC support is enabled by default.
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include <core/core.h>
 
-#if defined(OTTSERVICES_ENABLE_PERMS_GRPC)
 #include <grpcpp/grpcpp.h>
 // Generated headers from permission_service.proto (generated into ${CMAKE_CURRENT_BINARY_DIR})
 #include "permission_service.pb.h"
 #include "permission_service.grpc.pb.h"
-#endif
 
 namespace WPEFramework {
 namespace Plugin {
@@ -36,12 +34,11 @@ namespace Plugin {
          * Note:
          * - It is recommended to pass the endpoint from configuration rather than hardcoding.
          * - TLS credentials use default system roots when useTls=true. Provide custom roots via grpc::SslCredentialsOptions
-         *   by using the overloaded constructor below only when OTTSERVICES_ENABLE_PERMS_GRPC is defined.
+         *   by using the overloaded constructor below.
          */
         // PUBLIC_INTERFACE
         explicit PermissionsClient(const std::string& endpoint, bool useTls = true);
 
-#if defined(OTTSERVICES_ENABLE_PERMS_GRPC)
         /**
          * PUBLIC_INTERFACE
          * Advanced constructor allowing explicit channel credentials.
@@ -52,7 +49,6 @@ namespace Plugin {
          */
         // PUBLIC_INTERFACE
         PermissionsClient(const std::string& endpoint, std::shared_ptr<grpc::ChannelCredentials> creds);
-#endif
 
         // PUBLIC_INTERFACE
         ~PermissionsClient();
@@ -74,7 +70,6 @@ namespace Plugin {
          *
          * Returns:
          * - Core::ERROR_NONE on success and outPermissions populated.
-         * - Core::ERROR_UNAVAILABLE if client is not enabled/built with gRPC support.
          * - Core::ERROR_GENERAL or other Core error codes on failures.
          */
         // PUBLIC_INTERFACE
@@ -96,14 +91,12 @@ namespace Plugin {
     private:
         std::string _endpoint;
 
-#if defined(OTTSERVICES_ENABLE_PERMS_GRPC)
         std::shared_ptr<grpc::Channel> _channel;
         std::unique_ptr<ottx::permission::AppPermissionsService::Stub> _stub;
 
         static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint, bool useTls);
         static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint,
                                                             const std::shared_ptr<grpc::ChannelCredentials>& creds);
-#endif
     };
 
 } // namespace Plugin

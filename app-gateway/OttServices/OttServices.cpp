@@ -3,9 +3,13 @@
 
 #include <core/Enumerate.h>
 #include <plugins/plugins.h>
-#include "../UtilsLogging.h"
+#include "UtilsLogging.h"
 
 namespace WPEFramework {
+
+// Register the service so Controller can instantiate it
+SERVICE_REGISTRATION(App2AppProvider, 1, 0, 0);
+
 namespace Plugin {
 
     namespace {

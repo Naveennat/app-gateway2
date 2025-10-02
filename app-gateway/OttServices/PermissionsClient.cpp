@@ -2,43 +2,34 @@
 
 #include <algorithm>
 #include <utility>
-
-#if defined(OTTSERVICES_ENABLE_PERMS_GRPC)
 #include <grpcpp/security/credentials.h>
-#endif
 
 // Lightweight logging; avoid leaking secrets
-#include "../UtilsLogging.h"
+#include "UtilsLogging.h"
 
 namespace WPEFramework {
 namespace Plugin {
 
     PermissionsClient::PermissionsClient(const std::string& endpoint, bool useTls)
         : _endpoint(endpoint)
-#if defined(OTTSERVICES_ENABLE_PERMS_GRPC)
         , _channel(CreateChannel(endpoint, useTls))
         , _stub(ottx::permission::AppPermissionsService::NewStub(_channel))
-#endif
     {
         (void)useTls;
     }
 
-#if defined(OTTSERVICES_ENABLE_PERMS_GRPC)
     PermissionsClient::PermissionsClient(const std::string& endpoint, std::shared_ptr<grpc::ChannelCredentials> creds)
         : _endpoint(endpoint)
         , _channel(CreateChannel(endpoint, creds))
         , _stub(ottx::permission::AppPermissionsService::NewStub(_channel))
     {
     }
-#endif
 
     PermissionsClient::~PermissionsClient() = default;
 
     std::string PermissionsClient::Endpoint() const {
         return _endpoint;
     }
-
-#if defined(OTTSERVICES_ENABLE_PERMS_GRPC)
 
     std::shared_ptr<grpc::Channel> PermissionsClient::CreateChannel(const std::string& endpoint, bool useTls) {
         if (useTls) {
@@ -139,23 +130,6 @@ namespace Plugin {
 
         return Core::ERROR_NONE;
     }
-
-#else // !OTTSERVICES_ENABLE_PERMS_GRPC
-
-    uint32_t PermissionsClient::EnumeratePermissions(const std::string& /*appId*/,
-                                                     const std::string& /*partnerId*/,
-                                                     const std::string& /*bearerToken*/,
-                                                     const std::string& /*deviceId*/,
-                                                     const std::string& /*accountId*/,
-                                                     const std::vector<std::string>& /*filters*/,
-                                                     std::vector<std::string>& outPermissions) const
-    {
-        outPermissions.clear();
-        LOGWARN("PermissionsClient: gRPC support is disabled at build-time. Define ENABLE_PERMISSION_PROTO_GRPC=ON.");
-        return Core::ERROR_UNAVAILABLE;
-    }
-
-#endif // OTTSERVICES_ENABLE_PERMS_GRPC
 
 } // namespace Plugin
 } // namespace WPEFramework
