@@ -8,6 +8,7 @@
 #include <core/JSON.h>
 #include <plugins/IPlugin.h>
 #include <plugins/JSONRPC.h>
+#include <plugins/IShell.h>
 #include <atomic>
 #include <type_traits>
 #include <utility>
@@ -21,8 +22,37 @@ namespace Plugin {
     class OttServicesImplementation;
 
     // The main plugin class exposed to Thunder. Uses JSON-RPC to expose required methods.
-    // Also exposes a COMRPC interface (Exchange::IOttServices) through QueryInterface.
+    // Also exposes a COMRPC interface (Exchange::IOttServices) through interface aggregation.
     class OttServices : public PluginHost::IPlugin, public PluginHost::JSONRPC {
+    private:
+        // Remote connection deactivation listener (for parity with AppNotifications/SharedStorage patterns).
+        class RemoteConnectionNotification : public RPC::IRemoteConnection::INotification {
+        private:
+            RemoteConnectionNotification() = delete;
+            RemoteConnectionNotification(const RemoteConnectionNotification&) = delete;
+            RemoteConnectionNotification& operator=(const RemoteConnectionNotification&) = delete;
+
+        public:
+            explicit RemoteConnectionNotification(OttServices& parent)
+                : _parent(parent) {
+            }
+            ~RemoteConnectionNotification() override = default;
+
+            BEGIN_INTERFACE_MAP(RemoteConnectionNotification)
+                INTERFACE_ENTRY(RPC::IRemoteConnection::INotification)
+            END_INTERFACE_MAP
+
+            void Activated(RPC::IRemoteConnection*) override {
+                // Not used
+            }
+            void Deactivated(RPC::IRemoteConnection* connection) override {
+                _parent.Deactivated(connection);
+            }
+
+        private:
+            OttServices& _parent;
+        };
+
     public:
         OttServices(const OttServices&) = delete;
         OttServices& operator=(const OttServices&) = delete;
@@ -35,25 +65,31 @@ namespace Plugin {
         // IPlugin methods
         // PUBLIC_INTERFACE
         const string Initialize(PluginHost::IShell* service) override;
+        /** Initialize the plugin, set up JSON-RPC, create the implementation and aggregate COM interface.
+         * @param service Plugin host shell provided by Thunder
+         * @return Empty string on success, otherwise a human readable error.
+         */
+
         // PUBLIC_INTERFACE
         void Deinitialize(PluginHost::IShell* service) override;
+        /** Deinitialize the plugin, unregister notifications and free resources. */
+
         // PUBLIC_INTERFACE
         string Information() const override;
+        /** Return plugin information string (name/version/category). */
 
-        // IUnknown implementation
-        // PUBLIC_INTERFACE
-        auto AddRef() const -> decltype(std::declval<const Core::IReferenceCounted&>().AddRef()) override;
-        // PUBLIC_INTERFACE
-        uint32_t Release() const override;
-        // PUBLIC_INTERFACE
-        void* QueryInterface(const uint32_t id) override;
+        // Declare support for IPlugin, JSONRPC/IDispatcher and the aggregated COM interface.
+        BEGIN_INTERFACE_MAP(OttServices)
+            INTERFACE_ENTRY(PluginHost::IPlugin)
+            INTERFACE_ENTRY(PluginHost::IDispatcher)
+            INTERFACE_AGGREGATE(Exchange::IOttServices, _interface)
+        END_INTERFACE_MAP
 
     public:
         // JSON-RPC API structures. Only required features per OTTServices-Complete-Design.md should be present.
-        // Since we do not have the exact spec content here, we provide a minimal, conservative set of required
-        // JSON-RPC endpoints with placeholders. Replace/extend only if the spec mandates additional methods.
+        // Minimal, conservative set of JSON-RPC endpoints with placeholders.
 
-        // Example: Ping method to verify plugin is responsive (commonly required in designs).
+        // Example: Ping method to verify plugin is responsive.
         class PingParams : public Core::JSON::Container {
         public:
             PingParams(const PingParams&) = delete;
@@ -86,6 +122,11 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         uint32_t endpoint_ping(const PingParams& params, PingResult& result);
+        /** JSON-RPC: ping
+         * @param params JSON input with optional "message"
+         * @param result JSON output with "reply"
+         * @return Core::ERROR_NONE on success
+         */
 
         // IOttPermission-aligned JSON-RPC: getpermissions
         class GetPermissionsParams : public Core::JSON::Container {
@@ -104,6 +145,7 @@ namespace Plugin {
         };
         // PUBLIC_INTERFACE
         uint32_t endpoint_getpermissions(const GetPermissionsParams& params, GetPermissionsResult& result);
+        /** JSON-RPC: getpermissions (returns a list of permissions for given appId). */
 
         // IOttPermission-aligned JSON-RPC: invalidatepermissions
         class InvalidatePermissionsParams : public Core::JSON::Container {
@@ -115,6 +157,7 @@ namespace Plugin {
         };
         // PUBLIC_INTERFACE
         uint32_t endpoint_invalidatepermissions(const InvalidatePermissionsParams& params, Core::JSON::Container& response);
+        /** JSON-RPC: invalidatepermissions (invalidates cache for given appId). */
 
         // IOttPermission-aligned JSON-RPC: updatepermissionscache
         class UpdatePermissionsCacheParams : public Core::JSON::Container {
@@ -135,25 +178,31 @@ namespace Plugin {
         };
         // PUBLIC_INTERFACE
         uint32_t endpoint_updatepermissionscache(const UpdatePermissionsCacheParams& params, UpdatePermissionsCacheResult& result);
+        /** JSON-RPC: updatepermissionscache (fetch and update permissions cache for given appId). */
 
         // Required event: statechanged (typical for service plugins to signal state)
         // PUBLIC_INTERFACE
         void EventStateChanged(const string& state);
+        /** Notify all JSON-RPC subscribers that the state changed. */
 
     private:
         void RegisterAll();
         void UnregisterAll();
 
+        void Deactivated(RPC::IRemoteConnection* connection);
+
     private:
-        PluginHost::IShell* _service;
+        PluginHost::IShell* mService;
         OttServicesImplementation* _implementation;
-        Exchange::IOttServices* _interface; // COMRPC interface pointer exposed via QueryInterface
+        Exchange::IOttServices* _interface; // COMRPC interface pointer exposed via aggregation
         string _version;
 
-        // Reference counter for lifetime management
-        mutable std::atomic<uint32_t> _refCount;
+        // Store remote connection id (if using out-of-process implementation); 0 if in-process.
+        uint32_t mConnectionId;
 
-    private:
+        // Remote connection notification sink (registered with IShell)
+        Core::Sink<RemoteConnectionNotification> _notification;
+
         // Non-copyable utility to guard thread-safety if needed in future extensions.
         mutable Core::CriticalSection _adminLock;
     };

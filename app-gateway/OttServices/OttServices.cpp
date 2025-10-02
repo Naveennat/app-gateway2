@@ -7,9 +7,6 @@
 
 namespace WPEFramework {
 
-// Register the service so Controller can instantiate it
-SERVICE_REGISTRATION(App2AppProvider, 1, 0, 0);
-
 namespace Plugin {
 
     namespace {
@@ -33,11 +30,12 @@ namespace Plugin {
 
     OttServices::OttServices()
         : PluginHost::JSONRPC()
-        , _service(nullptr)
+        , mService(nullptr)
         , _implementation(nullptr)
         , _interface(nullptr)
         , _version(kOttServicesVersion)
-        , _refCount(1)
+        , mConnectionId(0)
+        , _notification(*this)
         , _adminLock()
     {
         RegisterAll();
@@ -66,10 +64,17 @@ namespace Plugin {
         LOGINFO("OttServices: JSON-RPC methods unregistered");
     }
 
+    // PUBLIC_INTERFACE
     const string OttServices::Initialize(PluginHost::IShell* service) {
         ASSERT(service != nullptr);
-        _service = service;
+        ASSERT(mService == nullptr);
         LOGINFO("OttServices: Initialize called");
+
+        mService = service;
+
+        // Register for remote connection notifications (parity with AppNotifications/Analytics/SharedStorage)
+        mService->Register(&_notification);
+        mConnectionId = 0; // Will stay 0 as we use in-process implementation
 
         // Instantiate implementation
         Core::SafeSyncType<Core::CriticalSection> guard(_adminLock);
@@ -80,7 +85,7 @@ namespace Plugin {
         }
 
         // Perform any implementation-level initialization
-        const string initError = _implementation->Initialize(_service);
+        const string initError = _implementation->Initialize(mService);
         if (initError.empty() == false) {
             LOGERR("OttServices: implementation initialization failed: %s", initError.c_str());
             delete _implementation;
@@ -88,15 +93,23 @@ namespace Plugin {
             return initError;
         }
 
-        // Expose COMRPC interface
+        // Expose COMRPC interface via aggregation
         _interface = static_cast<Exchange::IOttServices*>(_implementation);
         LOGINFO("OttServices: initialized successfully");
 
         return string(); // Empty string indicates success in Thunder plugins
     }
 
+    // PUBLIC_INTERFACE
     void OttServices::Deinitialize(PluginHost::IShell* service) {
         LOGINFO("OttServices: Deinitialize called");
+        ASSERT(mService == service);
+
+        // Unregister remote connection notifications
+        if (mService != nullptr) {
+            mService->Unregister(&_notification);
+        }
+
         Core::SafeSyncType<Core::CriticalSection> guard(_adminLock);
         if (_implementation != nullptr) {
             _implementation->Deinitialize(service);
@@ -104,10 +117,13 @@ namespace Plugin {
             _implementation = nullptr;
             _interface = nullptr;
         }
-        _service = nullptr;
+
+        mConnectionId = 0;
+        mService = nullptr;
         LOGINFO("OttServices: deinitialized");
     }
 
+    // PUBLIC_INTERFACE
     string OttServices::Information() const {
         // Provide plugin descriptive information
         const string info = string(kOttServicesPluginName) + _T(" plugin v") + _version + _T(" (") + kOttServicesCategory + _T(")");
@@ -115,43 +131,14 @@ namespace Plugin {
         return info;
     }
 
-    // IUnknown implementation
-
-    auto OttServices::AddRef() const -> decltype(std::declval<const Core::IReferenceCounted&>().AddRef()) {
-        const auto prev = _refCount.fetch_add(1, std::memory_order_relaxed);
-        if constexpr (std::is_same<void, decltype(std::declval<const Core::IReferenceCounted&>().AddRef())>::value) {
-            // New Thunder signature: no return value
-            (void)prev;
-        } else {
-            // Legacy Thunder signature: return new ref count
-            return prev + 1;
+    void OttServices::Deactivated(RPC::IRemoteConnection* connection) {
+        if ((connection != nullptr) && (connection->Id() == mConnectionId)) {
+            ASSERT(mService != nullptr);
+            Core::IWorkerPool::Instance().Schedule(
+                Core::Time::Now(),
+                PluginHost::IShell::Job::Create(
+                    mService, PluginHost::IShell::DEACTIVATED, PluginHost::IShell::FAILURE));
         }
-    }
-
-    uint32_t OttServices::Release() const {
-        const uint32_t count = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
-        if (count == 0) {
-            delete this;
-        }
-        return count;
-    }
-
-    void* OttServices::QueryInterface(const uint32_t id) {
-        void* result = nullptr;
-
-        if (id == PluginHost::IPlugin::ID) {
-            result = static_cast<PluginHost::IPlugin*>(this);
-        } else if (id == PluginHost::IDispatcher::ID) {
-            result = static_cast<PluginHost::IDispatcher*>(this);
-        } else if ((id == Exchange::IOttServices::ID) && (_interface != nullptr)) {
-            _interface->AddRef();
-            result = _interface;
-        }
-
-        if (result != nullptr) {
-            AddRef();
-        }
-        return result;
     }
 
     // JSON-RPC method implementation
