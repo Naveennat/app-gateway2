@@ -321,7 +321,7 @@ namespace Plugin {
         }
 
     private:
-        inline std::unique_ptr<WPEFramework::Utils::JSONRPCDirectLink> AcquireLink() const {
+        inline std::shared_ptr<WPEFramework::Utils::JSONRPCDirectLink> AcquireLink() const {
             // Create a direct JSON-RPC link to the Thunder System plugin using the Supporting_Files helper.
             if (_shell == nullptr) {
                 LOGERR("SystemDelegate: shell is null");

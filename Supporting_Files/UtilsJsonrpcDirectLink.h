@@ -31,7 +31,7 @@ namespace Utils {
     using JsonRpcDirectLink = JSONRPCDirectLink;
 
     // PUBLIC_INTERFACE
-    inline std::unique_ptr<JSONRPCDirectLink> GetThunderControllerClient(PluginHost::IShell* /*service*/, const string& /*callsign*/)
+    inline std::shared_ptr<JSONRPCDirectLink> GetThunderControllerClient(PluginHost::IShell* /*service*/, const string& /*callsign*/)
     {
         // Return nullptr to indicate that a direct link is not available in this build context.
         return nullptr;
