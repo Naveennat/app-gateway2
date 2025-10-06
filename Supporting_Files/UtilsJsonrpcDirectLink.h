@@ -3,7 +3,7 @@
 // UtilsJsonrpcDirectLink.h
 // Minimal stub utility to provide a JSON-RPC direct link handle for Thunder.
 // This implementation intentionally returns nullptr so callers can gracefully
-// handle unavailability. The JsonRpcDirectLink class offers an Invoke method
+// handle unavailability. The JSONRPCDirectLink class offers an Invoke method
 // signature to satisfy compilation if needed.
 
 #include <core/core.h>
@@ -13,10 +13,12 @@
 namespace WPEFramework {
 namespace Utils {
 
-    class JsonRpcDirectLink {
+    // PUBLIC_INTERFACE
+    class JSONRPCDirectLink {
     public:
-        JsonRpcDirectLink() = default;
-        ~JsonRpcDirectLink() = default;
+        /** Minimal stub that exposes an Invoke method compatible with expected usage. */
+        JSONRPCDirectLink() = default;
+        ~JSONRPCDirectLink() = default;
 
         template <typename IN, typename OUT>
         uint32_t Invoke(const string& /*method*/, const IN& /*params*/, OUT& /*response*/)
@@ -25,8 +27,11 @@ namespace Utils {
         }
     };
 
+    // Backwards compatibility alias if any code still references JsonRpcDirectLink
+    using JsonRpcDirectLink = JSONRPCDirectLink;
+
     // PUBLIC_INTERFACE
-    inline std::unique_ptr<JsonRpcDirectLink> GetThunderControllerClient(PluginHost::IShell* /*service*/, const string& /*callsign*/)
+    inline std::unique_ptr<JSONRPCDirectLink> GetThunderControllerClient(PluginHost::IShell* /*service*/, const string& /*callsign*/)
     {
         // Return nullptr to indicate that a direct link is not available in this build context.
         return nullptr;
