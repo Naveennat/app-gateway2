@@ -102,14 +102,29 @@ string App2AppProvider::Information() const {
     return string("{\"service\":\"org.rdk.App2AppProvider\"}");
 }
 
-bool App2AppProvider::ValidateContext(const Core::JSON::JsonObject& context, std::string& appId, std::string& connectionId, uint32_t& requestId) const {
+bool App2AppProvider::ValidateContext(const Core::JSON::JsonObject& context, std::string& appId, uint32_t& connectionId, uint32_t& requestId) const {
     if (!context.HasLabel("appId") || !context.HasLabel("connectionId") || !context.HasLabel("requestId")) {
         return false;
     }
     appId = context.Get("appId").String();
-    connectionId = context.Get("connectionId").String();
+
+    // Prefer numeric connectionId; if provided as string, attempt to parse
+    if (context.Get("connectionId").IsSet() && context.Get("connectionId").Content() == Core::JSON::Variant::type::NUMBER) {
+        connectionId = static_cast<uint32_t>(context.Get("connectionId").Number());
+    } else {
+        const string connStr = context.Get("connectionId").String();
+        if (connStr.empty()) {
+            return false;
+        }
+        try {
+            connectionId = static_cast<uint32_t>(std::stoul(connStr.c_str()));
+        } catch (...) {
+            return false;
+        }
+    }
+
     requestId = static_cast<uint32_t>(context.Get("requestId").Number());
-    return !(appId.empty() || connectionId.empty());
+    return !(appId.empty());
 }
 
 bool App2AppProvider::ValidateStringField(const Core::JSON::JsonObject& object, const std::string& field, std::string& out) const {
@@ -135,7 +150,8 @@ uint32_t App2AppProvider::RegisterProviderWrapper(const Core::JSON::JsonObject& 
         }
 
         const auto& context = parameters.Get("context").Object();
-        std::string appId, connectionId, capability;
+        std::string appId, capability;
+        uint32_t connectionId = 0;
         uint32_t requestId = 0;
 
         if (!ValidateContext(context, appId, connectionId, requestId)) {
@@ -154,6 +170,7 @@ uint32_t App2AppProvider::RegisterProviderWrapper(const Core::JSON::JsonObject& 
             App2App::ProviderContext pctx;
             pctx.appId = appId;
             pctx.connectionId = connectionId;
+            pctx.providerId = appId; // default providerId to appId if not specified
 
             success = _providers->Register(capability, pctx);
             if (!success) {
@@ -186,7 +203,8 @@ uint32_t App2AppProvider::InvokeProviderWrapper(const Core::JSON::JsonObject& pa
         }
 
         const auto& context = parameters.Get("context").Object();
-        std::string consumerAppId, consumerConnectionId, capability;
+        std::string consumerAppId, capability;
+        uint32_t consumerConnectionId = 0;
         uint32_t consumerRequestId = 0;
         if (!ValidateContext(context, consumerAppId, consumerConnectionId, consumerRequestId)) {
             response["message"] = "Invalid context";

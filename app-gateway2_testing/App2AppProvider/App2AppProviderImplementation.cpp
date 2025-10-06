@@ -243,9 +243,11 @@ std::string CorrelationMap::GenerateCorrelationId() const {
 std::string CorrelationMap::Create(const ConsumerContext& ctx) {
     CriticalSection::Lock guard(_lock);
     std::string id = GenerateCorrelationId();
-    _pending.emplace(id, ctx);
-    LOGINFO("CorrelationMap::Create id=%s appId=%s conn=%s req=%u",
-            id.c_str(), ctx.appId.c_str(), ctx.connectionId.c_str(), ctx.requestId);
+    ConsumerContext stored = ctx;
+    stored.createdAt = std::chrono::steady_clock::now();
+    _pending.emplace(id, stored);
+    LOGINFO("CorrelationMap::Create id=%s appId=%s conn=%u req=%u",
+            id.c_str(), ctx.appId.c_str(), ctx.connectionId, ctx.requestId);
     return id;
 }
 
@@ -290,14 +292,14 @@ void GatewayClient::UpdateToken(const std::string& token) {
 }
 
 uint32_t GatewayClient::Respond(const ConsumerContext& ctx, const Core::JSON::JsonObject& payload) {
-    LOGINFO("GatewayClient::Respond to consumer appId=%s conn=%s reqId=%u",
-            ctx.appId.c_str(), ctx.connectionId.c_str(), ctx.requestId);
+    LOGINFO("GatewayClient::Respond to consumer appId=%s conn=%u reqId=%u",
+            ctx.appId.c_str(), ctx.connectionId, ctx.requestId);
 
     Core::JSON::JsonObject params;
     Core::JSON::JsonObject context;
 
     context.Set("appId", Core::JSON::String(ctx.appId));
-    context.Set("connectionId", Core::JSON::String(ctx.connectionId));
+    context.Set("connectionId", Core::JSON::DecUInt32(ctx.connectionId));
     context.Set("requestId", Core::JSON::DecUInt32(ctx.requestId));
 
     params.Set("context", context);

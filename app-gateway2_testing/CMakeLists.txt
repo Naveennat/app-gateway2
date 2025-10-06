@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(App2AppProviderPlugin LANGUAGES CXX)
+project(App2AppProvider LANGUAGES CXX)
 
 # C++ standard and PIC for shared library
 set(CMAKE_CXX_STANDARD 17)
@@ -19,11 +19,8 @@ set(ENTSERVICES_HELPERS_DIR  "${PROJECT_ROOT_DIR}/dependencies/entservices-infra
 set(APP2APP_SRC_DIR "${CMAKE_CURRENT_LIST_DIR}/App2AppProvider")
 set(APP2APP_SOURCES
     "${APP2APP_SRC_DIR}/App2AppProvider.cpp"
-    "${APP2APP_SRC_DIR}/App2AppProvider.h"
     "${APP2APP_SRC_DIR}/App2AppProviderImplementation.cpp"
-    "${APP2APP_SRC_DIR}/App2AppProviderImplementation.h"
     "${APP2APP_SRC_DIR}/Module.cpp"
-    "${APP2APP_SRC_DIR}/Module.h"
 )
 
 # Target
@@ -35,12 +32,15 @@ target_include_directories(App2AppProvider
         "${WPEFRAMEWORK_INCLUDE_DIR}"
         "${ENTSERVICES_HELPERS_DIR}"
         "${APP2APP_SRC_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../.."                # container root (app-gateway2)
+        "/home/kavia/workspace/code-generation"            # workspace root for optional custom headers
 )
 
 # Link directories (manual)
 target_link_directories(App2AppProvider
     PRIVATE
         "${WPEFRAMEWORK_LIB_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../.."             # workspace root for any local libs
 )
 
 # Link against core Thunder libraries directly
@@ -56,9 +56,10 @@ target_link_libraries(App2AppProvider
         rt
 )
 
-# Output name is the plugin's shared object name
+# Output name and SONAME
 set_target_properties(App2AppProvider PROPERTIES
     OUTPUT_NAME "App2AppProvider"
+    SOVERSION 1
 )
 
 # Optional: Provide an install hint (kept local to the repo directories if needed later)

@@ -48,6 +48,12 @@ public:
     ~App2AppProvider() override;
 
 public:
+    BEGIN_INTERFACE_MAP(App2AppProvider)
+        INTERFACE_ENTRY(PluginHost::IPlugin)
+        INTERFACE_ENTRY(PluginHost::IDispatcher)
+    END_INTERFACE_MAP
+
+public:
     // PUBLIC_INTERFACE
     /**
      * Initialize the plugin.
@@ -84,7 +90,7 @@ public:
      * Register or unregister a provider for a given capability.
      *
      * Params:
-     *  - context: { requestId:number, connectionId:string, appId:string }
+     *  - context: { requestId:number, connectionId:number, appId:string }
      *  - register: boolean
      *  - capability: string
      *
@@ -100,7 +106,7 @@ public:
      * Returns a correlationId used by the provider to send async response.
      *
      * Params:
-     *  - context: { requestId:number, connectionId:string, appId:string }
+     *  - context: { requestId:number, connectionId:number, appId:string }
      *  - capability: string
      *  - payload: object (optional, opaque)
      *
@@ -139,7 +145,7 @@ public:
 
 private:
     // Internal helpers
-    bool ValidateContext(const Core::JSON::JsonObject& context, std::string& appId, std::string& connectionId, uint32_t& requestId) const;
+    bool ValidateContext(const Core::JSON::JsonObject& context, std::string& appId, uint32_t& connectionId, uint32_t& requestId) const;
     bool ValidateStringField(const Core::JSON::JsonObject& object, const std::string& field, std::string& out) const;
 
 private:

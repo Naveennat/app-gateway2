@@ -11,6 +11,8 @@
 #include <unordered_map>
 #include <string>
 #include <random>
+#include <map>
+#include <chrono>
 
 #include <core/JSON.h>
 #include <core/Sync.h>
@@ -29,15 +31,30 @@ class App2AppProvider;
 
 namespace App2App {
 
+// PUBLIC_INTERFACE
+/**
+ * ProviderContext
+ * Holds provider registration context and metadata.
+ */
 struct ProviderContext {
+    uint32_t connectionId {0};
     std::string appId;
-    std::string connectionId;
+    std::string providerId;
+    std::map<std::string, std::string> metadata;
 };
 
+// PUBLIC_INTERFACE
+/**
+ * ConsumerContext
+ * Holds consumer request context and request correlation details.
+ */
 struct ConsumerContext {
+    uint32_t connectionId {0};
     std::string appId;
-    std::string connectionId;
     uint32_t requestId {0};
+    std::string method;
+    std::string paramsJson;
+    std::chrono::steady_clock::time_point createdAt{};
 };
 
 class ProviderRegistry {
