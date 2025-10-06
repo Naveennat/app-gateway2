@@ -35,6 +35,7 @@ set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH_ABS}/lib")
 # Enable CTest for the tests/ subdirectory
 enable_testing()
 
-# Build the AppGateway plugin and the unit tests
+# Build the AppGateway plugin, FbSettings plugin, and the unit tests
 add_subdirectory(AppGateway)
+add_subdirectory(FbSettings)
 add_subdirectory(tests)

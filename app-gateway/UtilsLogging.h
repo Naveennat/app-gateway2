@@ -17,6 +17,10 @@
 #define LOGWARN(fmt, ...)  std::printf("[WARN ] " fmt "\n", ##__VA_ARGS__)
 #endif
 
+#ifndef LOGDBG
+#define LOGDBG(fmt, ...)   LOGTRACE(fmt, ##__VA_ARGS__)
+#endif
+
 #ifndef LOGERR
 #define LOGERR(fmt, ...)   std::fprintf(stderr, "[ERROR] " fmt "\n", ##__VA_ARGS__)
 #endif
