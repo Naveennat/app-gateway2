@@ -61,10 +61,10 @@ namespace Plugin {
     }
 
     // IUnknown implementation
-    uint32_t OttServicesImplementation::AddRef() const {
-        const uint32_t prev = _refCount.fetch_add(1, std::memory_order_relaxed);
-        // Return the updated reference count as per current IReferenceCounted contract
-        return prev + 1;
+    void OttServicesImplementation::AddRef() const {
+        // Align with WPEFramework::Core::IReferenceCounted::AddRef() const returning void
+        // Just increment the ref count; caller does not expect a return value.
+        _refCount.fetch_add(1, std::memory_order_relaxed);
     }
 
     uint32_t OttServicesImplementation::Release() const {

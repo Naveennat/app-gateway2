@@ -39,7 +39,7 @@ namespace Plugin {
 
         // IUnknown implementation
         // PUBLIC_INTERFACE
-        uint32_t AddRef() const override;
+        void AddRef() const override;
         // PUBLIC_INTERFACE
         uint32_t Release() const override;
         // PUBLIC_INTERFACE
