@@ -61,15 +61,10 @@ namespace Plugin {
     }
 
     // IUnknown implementation
-    auto OttServicesImplementation::AddRef() const -> decltype(std::declval<const Core::IReferenceCounted&>().AddRef()) {
-        const auto prev = _refCount.fetch_add(1, std::memory_order_relaxed);
-        if constexpr (std::is_same<void, decltype(std::declval<const Core::IReferenceCounted&>().AddRef())>::value) {
-            // New Thunder signature: no return value
-            (void)prev;
-        } else {
-            // Legacy Thunder signature: return new ref count
-            return prev + 1;
-        }
+    uint32_t OttServicesImplementation::AddRef() const {
+        const uint32_t prev = _refCount.fetch_add(1, std::memory_order_relaxed);
+        // Return the updated reference count as per current IReferenceCounted contract
+        return prev + 1;
     }
 
     uint32_t OttServicesImplementation::Release() const {

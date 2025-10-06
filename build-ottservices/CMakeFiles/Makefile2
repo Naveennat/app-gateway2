@@ -63,97 +63,101 @@ CMAKE_BINARY_DIR = /home/kavia/workspace/code-generation/app-gateway2/build-otts
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/OttServices.dir/all
+all: AppGateway/all
+all: tests/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: AppGateway/preinstall
+preinstall: tests/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/OttServices.dir/clean
-clean: CMakeFiles/permission_service_protoc.dir/clean
-clean: CMakeFiles/permission_service_protoc_grpc.dir/clean
+clean: AppGateway/clean
+clean: tests/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/OttServices.dir
+# Directory level rules for directory AppGateway
 
-# All Build rule for target.
-CMakeFiles/OttServices.dir/all: CMakeFiles/permission_service_protoc.dir/all
-CMakeFiles/OttServices.dir/all: CMakeFiles/permission_service_protoc_grpc.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target OttServices"
-.PHONY : CMakeFiles/OttServices.dir/all
+# Recursive "all" directory target.
+AppGateway/all: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/all
+.PHONY : AppGateway/all
 
-# Build rule for subdir invocation for target.
-CMakeFiles/OttServices.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 8
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/OttServices.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 0
-.PHONY : CMakeFiles/OttServices.dir/rule
+# Recursive "preinstall" directory target.
+AppGateway/preinstall:
+.PHONY : AppGateway/preinstall
 
-# Convenience name for target.
-OttServices: CMakeFiles/OttServices.dir/rule
-.PHONY : OttServices
-
-# clean rule for target.
-CMakeFiles/OttServices.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/clean
-.PHONY : CMakeFiles/OttServices.dir/clean
+# Recursive "clean" directory target.
+AppGateway/clean: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/clean
+.PHONY : AppGateway/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/permission_service_protoc.dir
+# Directory level rules for directory tests
 
-# All Build rule for target.
-CMakeFiles/permission_service_protoc.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/permission_service_protoc.dir/build.make CMakeFiles/permission_service_protoc.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/permission_service_protoc.dir/build.make CMakeFiles/permission_service_protoc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=7 "Built target permission_service_protoc"
-.PHONY : CMakeFiles/permission_service_protoc.dir/all
+# Recursive "all" directory target.
+tests/all: tests/CMakeFiles/test_appgateway.dir/all
+.PHONY : tests/all
 
-# Build rule for subdir invocation for target.
-CMakeFiles/permission_service_protoc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/permission_service_protoc.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 0
-.PHONY : CMakeFiles/permission_service_protoc.dir/rule
+# Recursive "preinstall" directory target.
+tests/preinstall:
+.PHONY : tests/preinstall
 
-# Convenience name for target.
-permission_service_protoc: CMakeFiles/permission_service_protoc.dir/rule
-.PHONY : permission_service_protoc
-
-# clean rule for target.
-CMakeFiles/permission_service_protoc.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/permission_service_protoc.dir/build.make CMakeFiles/permission_service_protoc.dir/clean
-.PHONY : CMakeFiles/permission_service_protoc.dir/clean
+# Recursive "clean" directory target.
+tests/clean: tests/CMakeFiles/test_appgateway.dir/clean
+.PHONY : tests/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/permission_service_protoc_grpc.dir
+# Target rules for target AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir
 
 # All Build rule for target.
-CMakeFiles/permission_service_protoc_grpc.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/permission_service_protoc_grpc.dir/build.make CMakeFiles/permission_service_protoc_grpc.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/permission_service_protoc_grpc.dir/build.make CMakeFiles/permission_service_protoc_grpc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=8 "Built target permission_service_protoc_grpc"
-.PHONY : CMakeFiles/permission_service_protoc_grpc.dir/all
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/all:
+	$(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/depend
+	$(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target WPEFrameworkAppGateway"
+.PHONY : AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/permission_service_protoc_grpc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/permission_service_protoc_grpc.dir/all
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 0
-.PHONY : CMakeFiles/permission_service_protoc_grpc.dir/rule
+.PHONY : AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/rule
 
 # Convenience name for target.
-permission_service_protoc_grpc: CMakeFiles/permission_service_protoc_grpc.dir/rule
-.PHONY : permission_service_protoc_grpc
+WPEFrameworkAppGateway: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/rule
+.PHONY : WPEFrameworkAppGateway
 
 # clean rule for target.
-CMakeFiles/permission_service_protoc_grpc.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/permission_service_protoc_grpc.dir/build.make CMakeFiles/permission_service_protoc_grpc.dir/clean
-.PHONY : CMakeFiles/permission_service_protoc_grpc.dir/clean
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/clean:
+	$(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/clean
+.PHONY : AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/test_appgateway.dir
+
+# All Build rule for target.
+tests/CMakeFiles/test_appgateway.dir/all: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_appgateway.dir/build.make tests/CMakeFiles/test_appgateway.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_appgateway.dir/build.make tests/CMakeFiles/test_appgateway.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=10,11 "Built target test_appgateway"
+.PHONY : tests/CMakeFiles/test_appgateway.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/test_appgateway.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_appgateway.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles 0
+.PHONY : tests/CMakeFiles/test_appgateway.dir/rule
+
+# Convenience name for target.
+test_appgateway: tests/CMakeFiles/test_appgateway.dir/rule
+.PHONY : test_appgateway
+
+# clean rule for target.
+tests/CMakeFiles/test_appgateway.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_appgateway.dir/build.make tests/CMakeFiles/test_appgateway.dir/clean
+.PHONY : tests/CMakeFiles/test_appgateway.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

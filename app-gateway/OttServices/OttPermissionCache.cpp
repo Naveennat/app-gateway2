@@ -4,7 +4,7 @@
 #include <sstream>
 #include <cstdio>
 
-#include "../UtilsLogging.h"
+#include "UtilsLogging.h"
 
 namespace WPEFramework {
 namespace Plugin {

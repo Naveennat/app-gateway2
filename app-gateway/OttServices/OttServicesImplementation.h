@@ -39,7 +39,7 @@ namespace Plugin {
 
         // IUnknown implementation
         // PUBLIC_INTERFACE
-        auto AddRef() const -> decltype(std::declval<const Core::IReferenceCounted&>().AddRef()) override;
+        uint32_t AddRef() const override;
         // PUBLIC_INTERFACE
         uint32_t Release() const override;
         // PUBLIC_INTERFACE

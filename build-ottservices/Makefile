@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /home/kavia/workspace/code-generation/app-gateway2/build-otts
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
@@ -87,7 +97,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"libs\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -162,163 +172,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named OttServices
+# Target rules for targets named WPEFrameworkAppGateway
 
 # Build rule for target.
-OttServices: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 OttServices
-.PHONY : OttServices
+WPEFrameworkAppGateway: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WPEFrameworkAppGateway
+.PHONY : WPEFrameworkAppGateway
 
 # fast build rule for target.
-OttServices/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/build
-.PHONY : OttServices/fast
+WPEFrameworkAppGateway/fast:
+	$(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build
+.PHONY : WPEFrameworkAppGateway/fast
 
 #=============================================================================
-# Target rules for targets named permission_service_protoc
+# Target rules for targets named test_appgateway
 
 # Build rule for target.
-permission_service_protoc: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 permission_service_protoc
-.PHONY : permission_service_protoc
+test_appgateway: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_appgateway
+.PHONY : test_appgateway
 
 # fast build rule for target.
-permission_service_protoc/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/permission_service_protoc.dir/build.make CMakeFiles/permission_service_protoc.dir/build
-.PHONY : permission_service_protoc/fast
-
-#=============================================================================
-# Target rules for targets named permission_service_protoc_grpc
-
-# Build rule for target.
-permission_service_protoc_grpc: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 permission_service_protoc_grpc
-.PHONY : permission_service_protoc_grpc
-
-# fast build rule for target.
-permission_service_protoc_grpc/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/permission_service_protoc_grpc.dir/build.make CMakeFiles/permission_service_protoc_grpc.dir/build
-.PHONY : permission_service_protoc_grpc/fast
-
-OttServices/OttServices.o: OttServices/OttServices.cpp.o
-.PHONY : OttServices/OttServices.o
-
-# target to build an object file
-OttServices/OttServices.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/OttServices.cpp.o
-.PHONY : OttServices/OttServices.cpp.o
-
-OttServices/OttServices.i: OttServices/OttServices.cpp.i
-.PHONY : OttServices/OttServices.i
-
-# target to preprocess a source file
-OttServices/OttServices.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/OttServices.cpp.i
-.PHONY : OttServices/OttServices.cpp.i
-
-OttServices/OttServices.s: OttServices/OttServices.cpp.s
-.PHONY : OttServices/OttServices.s
-
-# target to generate assembly for a file
-OttServices/OttServices.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/OttServices.cpp.s
-.PHONY : OttServices/OttServices.cpp.s
-
-OttServices/OttServicesImplementation.o: OttServices/OttServicesImplementation.cpp.o
-.PHONY : OttServices/OttServicesImplementation.o
-
-# target to build an object file
-OttServices/OttServicesImplementation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/OttServicesImplementation.cpp.o
-.PHONY : OttServices/OttServicesImplementation.cpp.o
-
-OttServices/OttServicesImplementation.i: OttServices/OttServicesImplementation.cpp.i
-.PHONY : OttServices/OttServicesImplementation.i
-
-# target to preprocess a source file
-OttServices/OttServicesImplementation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/OttServicesImplementation.cpp.i
-.PHONY : OttServices/OttServicesImplementation.cpp.i
-
-OttServices/OttServicesImplementation.s: OttServices/OttServicesImplementation.cpp.s
-.PHONY : OttServices/OttServicesImplementation.s
-
-# target to generate assembly for a file
-OttServices/OttServicesImplementation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/OttServicesImplementation.cpp.s
-.PHONY : OttServices/OttServicesImplementation.cpp.s
-
-OttServices/PermissionsClient.o: OttServices/PermissionsClient.cpp.o
-.PHONY : OttServices/PermissionsClient.o
-
-# target to build an object file
-OttServices/PermissionsClient.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/PermissionsClient.cpp.o
-.PHONY : OttServices/PermissionsClient.cpp.o
-
-OttServices/PermissionsClient.i: OttServices/PermissionsClient.cpp.i
-.PHONY : OttServices/PermissionsClient.i
-
-# target to preprocess a source file
-OttServices/PermissionsClient.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/PermissionsClient.cpp.i
-.PHONY : OttServices/PermissionsClient.cpp.i
-
-OttServices/PermissionsClient.s: OttServices/PermissionsClient.cpp.s
-.PHONY : OttServices/PermissionsClient.s
-
-# target to generate assembly for a file
-OttServices/PermissionsClient.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/OttServices/PermissionsClient.cpp.s
-.PHONY : OttServices/PermissionsClient.cpp.s
-
-permission_service.grpc.pb.o: permission_service.grpc.pb.cc.o
-.PHONY : permission_service.grpc.pb.o
-
-# target to build an object file
-permission_service.grpc.pb.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/permission_service.grpc.pb.cc.o
-.PHONY : permission_service.grpc.pb.cc.o
-
-permission_service.grpc.pb.i: permission_service.grpc.pb.cc.i
-.PHONY : permission_service.grpc.pb.i
-
-# target to preprocess a source file
-permission_service.grpc.pb.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/permission_service.grpc.pb.cc.i
-.PHONY : permission_service.grpc.pb.cc.i
-
-permission_service.grpc.pb.s: permission_service.grpc.pb.cc.s
-.PHONY : permission_service.grpc.pb.s
-
-# target to generate assembly for a file
-permission_service.grpc.pb.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/permission_service.grpc.pb.cc.s
-.PHONY : permission_service.grpc.pb.cc.s
-
-permission_service.pb.o: permission_service.pb.cc.o
-.PHONY : permission_service.pb.o
-
-# target to build an object file
-permission_service.pb.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/permission_service.pb.cc.o
-.PHONY : permission_service.pb.cc.o
-
-permission_service.pb.i: permission_service.pb.cc.i
-.PHONY : permission_service.pb.i
-
-# target to preprocess a source file
-permission_service.pb.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/permission_service.pb.cc.i
-.PHONY : permission_service.pb.cc.i
-
-permission_service.pb.s: permission_service.pb.cc.s
-.PHONY : permission_service.pb.s
-
-# target to generate assembly for a file
-permission_service.pb.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OttServices.dir/build.make CMakeFiles/OttServices.dir/permission_service.pb.cc.s
-.PHONY : permission_service.pb.cc.s
+test_appgateway/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_appgateway.dir/build.make tests/CMakeFiles/test_appgateway.dir/build
+.PHONY : test_appgateway/fast
 
 # Help Target
 help:
@@ -332,24 +209,9 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... permission_service_protoc"
-	@echo "... permission_service_protoc_grpc"
-	@echo "... OttServices"
-	@echo "... OttServices/OttServices.o"
-	@echo "... OttServices/OttServices.i"
-	@echo "... OttServices/OttServices.s"
-	@echo "... OttServices/OttServicesImplementation.o"
-	@echo "... OttServices/OttServicesImplementation.i"
-	@echo "... OttServices/OttServicesImplementation.s"
-	@echo "... OttServices/PermissionsClient.o"
-	@echo "... OttServices/PermissionsClient.i"
-	@echo "... OttServices/PermissionsClient.s"
-	@echo "... permission_service.grpc.pb.o"
-	@echo "... permission_service.grpc.pb.i"
-	@echo "... permission_service.grpc.pb.s"
-	@echo "... permission_service.pb.o"
-	@echo "... permission_service.pb.i"
-	@echo "... permission_service.pb.s"
+	@echo "... test"
+	@echo "... WPEFrameworkAppGateway"
+	@echo "... test_appgateway"
 .PHONY : help
 
 
