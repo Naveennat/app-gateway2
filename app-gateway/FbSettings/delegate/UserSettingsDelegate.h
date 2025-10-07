@@ -1,4 +1,4 @@
-/**
+ /**
 * If not stated otherwise in this file or this component's LICENSE
 * file the following copyright and licenses apply:
 *
@@ -24,10 +24,11 @@
 #include "UtilsLogging.h"
 #include "ObjectUtils.h"
 #include <set>
+#include <string>
 using namespace WPEFramework;
 #define USERSETTINGS_CALLSIGN "org.rdk.UserSettings"
 
-static const std::set<string> VALID_USER_SETTINGS_EVENT = {
+static const std::set<std::string> VALID_USER_SETTINGS_EVENT = {
     "localization.onlanguagechanged",
     "localization.onlocalechanged",
     "localization.onpreferredaudiolanguageschanged",
@@ -50,7 +51,7 @@ class UserSettingsDelegate : public BaseEventDelegate{
             }
         }
 
-        bool HandleSubscription(const string event, const bool listen) {
+        bool HandleSubscription(const std::string& event, const bool listen) {
             if (listen) {
                 if (mShell != nullptr) {
                     mUserSettings = mShell->QueryInterfaceByCallsign<Exchange::IUserSettings>(USERSETTINGS_CALLSIGN);
@@ -86,7 +87,7 @@ class UserSettingsDelegate : public BaseEventDelegate{
             return false;
         }
 
-        bool HandleEvent(const string event, const bool listen, bool &registrationError) {
+        bool HandleEvent(const std::string& event, const bool listen, bool& registrationError) override {
             LOGDBG("Checking for handle event");
             // Check if event is present in VALID_USER_SETTINGS_EVENT make check case insensitive
             if (VALID_USER_SETTINGS_EVENT.find(StringUtils::toLower(event)) != VALID_USER_SETTINGS_EVENT.end()) {
@@ -106,18 +107,18 @@ class UserSettingsDelegate : public BaseEventDelegate{
             mParent.Dispatch( "accessibility.onaudiodescriptionsettingschanged", ObjectUtils::CreateBooleanJsonString("enabled", enabled));
         }
 
-        void OnPreferredAudioLanguagesChanged(const string& preferredLanguages) {
+        void OnPreferredAudioLanguagesChanged(const std::string& preferredLanguages) {
             mParent.Dispatch( "localization.onpreferredaudiolanguageschanged", preferredLanguages);
         }
 
-        void OnPresentationLanguageChanged(const string& presentationLanguage) {
+        void OnPresentationLanguageChanged(const std::string& presentationLanguage) {
             
             mParent.Dispatch( "localization.onlocalechanged", presentationLanguage);
 
             // check presentationLanguage is a delimitted string like "en-US"
             // add logic to get the "en" if the value is "en-US"
-            if (presentationLanguage.find('-') != string::npos) {
-                string language = presentationLanguage.substr(0, presentationLanguage.find('-'));
+            if (presentationLanguage.find('-') != std::string::npos) {
+                std::string language = presentationLanguage.substr(0, presentationLanguage.find('-'));
                 mParent.Dispatch( "localization.onlanguagechanged", language);
             } else {
                 LOGWARN("invalid value=%s set it must be a delimited string like en-US", presentationLanguage.c_str());
@@ -128,15 +129,15 @@ class UserSettingsDelegate : public BaseEventDelegate{
             mParent.Dispatch( "accessibility.onclosedcaptionssettingschanged", ObjectUtils::CreateBooleanJsonString("enabled", enabled));
         }
 
-        void OnPreferredCaptionsLanguagesChanged(const string& preferredLanguages) {
+        void OnPreferredCaptionsLanguagesChanged(const std::string& preferredLanguages) {
             mParent.Dispatch( "closedcaptions.onpreferredlanguageschanged", preferredLanguages);
         }
 
-        void OnPreferredClosedCaptionServiceChanged(const string& service) {
+        void OnPreferredClosedCaptionServiceChanged(const std::string& service) {
             mParent.Dispatch( "OnPreferredClosedCaptionServiceChanged", service);
         }
 
-        void OnPrivacyModeChanged(const string& privacyMode) {
+        void OnPrivacyModeChanged(const std::string& privacyMode) {
             mParent.Dispatch( "OnPrivacyModeChanged", privacyMode);
         }
 
@@ -144,11 +145,11 @@ class UserSettingsDelegate : public BaseEventDelegate{
             mParent.Dispatch( "OnPinControlChanged", ObjectUtils::BoolToJsonString(pinControl));
         }
 
-        void OnViewingRestrictionsChanged(const string& viewingRestrictions) {
+        void OnViewingRestrictionsChanged(const std::string& viewingRestrictions) {
             mParent.Dispatch( "OnViewingRestrictionsChanged", viewingRestrictions);
         }
 
-        void OnViewingRestrictionsWindowChanged(const string& viewingRestrictionsWindow) {
+        void OnViewingRestrictionsWindowChanged(const std::string& viewingRestrictionsWindow) {
             mParent.Dispatch( "OnViewingRestrictionsWindowChanged", viewingRestrictionsWindow);
         }
 
@@ -184,7 +185,7 @@ class UserSettingsDelegate : public BaseEventDelegate{
             mParent.Dispatch( "OnVoiceGuidanceHintsChanged", std::to_string(hints));
         }
 
-        void OnContentPinChanged(const string& contentPin) {
+        void OnContentPinChanged(const std::string& contentPin) {
             mParent.Dispatch( "OnContentPinChanged", contentPin);
         }
                 
