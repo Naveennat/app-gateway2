@@ -89,48 +89,48 @@ namespace Plugin {
         Core::hresult HandleAppEventNotifier(const string event, const bool listen, bool& status /* @out */) override;
 
         // IConfiguration interface
-        uint32_t Configure(PluginHost::IShell* shell);
+        uint32_t Configure(PluginHost::IShell* shell) override;
 
         // The following public interfaces provide the 13 org.rdk.System alias implementations via SystemDelegate.
 
         // PUBLIC_INTERFACE
-        Core::hresult GetDeviceMake(string& make /* @out */);
+        Core::hresult GetDeviceMake(string& make /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult GetDeviceName(string& name /* @out */);
+        Core::hresult GetDeviceName(string& name /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult SetDeviceName(const string name /* @in */);
+        Core::hresult SetDeviceName(const string name /* @in */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult GetDeviceSku(string& sku /* @out */);
+        Core::hresult GetDeviceSku(string& sku /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult GetCountryCode(string& countryCode /* @out */);
+        Core::hresult GetCountryCode(string& countryCode /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult SetCountryCode(const string countryCode /* @in */);
+        Core::hresult SetCountryCode(const string countryCode /* @in */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult SubscribeOnCountryCodeChanged(const bool listen /* @in */, bool& status /* @out */);
+        Core::hresult SubscribeOnCountryCodeChanged(const bool listen /* @in */, bool& status /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult GetTimeZone(string& timeZone /* @out */);
+        Core::hresult GetTimeZone(string& timeZone /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult SetTimeZone(const string timeZone /* @in */);
+        Core::hresult SetTimeZone(const string timeZone /* @in */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult SubscribeOnTimeZoneChanged(const bool listen /* @in */, bool& status /* @out */);
+        Core::hresult SubscribeOnTimeZoneChanged(const bool listen /* @in */, bool& status /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult GetSecondScreenFriendlyName(string& name /* @out */);
+        Core::hresult GetSecondScreenFriendlyName(string& name /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult SubscribeOnFriendlyNameChanged(const bool listen /* @in */, bool& status /* @out */);
+        Core::hresult SubscribeOnFriendlyNameChanged(const bool listen /* @in */, bool& status /* @out */) override;
 
         // PUBLIC_INTERFACE
-        Core::hresult SubscribeOnDeviceNameChanged(const bool listen /* @in */, bool& status /* @out */);
+        Core::hresult SubscribeOnDeviceNameChanged(const bool listen /* @in */, bool& status /* @out */) override;
 
     private:
         PluginHost::IShell* mShell;

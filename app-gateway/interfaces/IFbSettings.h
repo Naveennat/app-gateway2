@@ -32,7 +32,7 @@ namespace Exchange {
         /** Retrieve device friendly name. */
 
         // PUBLIC_INTERFACE
-        virtual Core::hresult SetDeviceName(const string& name /* @in */) = 0;
+        virtual Core::hresult SetDeviceName(const string name /* @in */) = 0;
         /** Set device friendly name. */
 
         // PUBLIC_INTERFACE
@@ -44,7 +44,7 @@ namespace Exchange {
         /** Retrieve device country code. */
 
         // PUBLIC_INTERFACE
-        virtual Core::hresult SetCountryCode(const string& countryCode /* @in */) = 0;
+        virtual Core::hresult SetCountryCode(const string countryCode /* @in */) = 0;
         /** Set device country code. */
 
         // PUBLIC_INTERFACE
@@ -57,7 +57,7 @@ namespace Exchange {
         /** Retrieve device time zone. */
 
         // PUBLIC_INTERFACE
-        virtual Core::hresult SetTimeZone(const string& timeZone /* @in */) = 0;
+        virtual Core::hresult SetTimeZone(const string timeZone /* @in */) = 0;
         /** Set device time zone. */
 
         // PUBLIC_INTERFACE
