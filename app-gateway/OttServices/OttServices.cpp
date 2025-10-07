@@ -18,6 +18,7 @@ namespace Plugin {
         // JSON-RPC method names
         static constexpr const TCHAR* kMethodPing = _T("ping");
         static constexpr const TCHAR* kMethodGetPermissions = _T("getpermissions");
+        static constexpr const TCHAR* kMethodGetPermissionsAlias = _T("getPermissions"); // camelCase alias
         static constexpr const TCHAR* kMethodInvalidatePermissions = _T("invalidatepermissions");
         static constexpr const TCHAR* kMethodUpdatePermissionsCache = _T("updatepermissionscache");
 
@@ -38,6 +39,9 @@ namespace Plugin {
         , _notification(*this)
         , _adminLock()
     {
+        // Expose version metadata to JSON-RPC clients explicitly (major.minor.patch)
+        RegisterVersion(kOttServicesPluginName, 1, 0, 0);
+
         RegisterAll();
         LOGINFO("OttServices: constructed");
     }
@@ -51,6 +55,8 @@ namespace Plugin {
     void OttServices::RegisterAll() {
         Register<OttServices::PingParams, OttServices::PingResult>(kMethodPing, &OttServices::endpoint_ping, this);
         Register<OttServices::GetPermissionsParams, OttServices::GetPermissionsResult>(kMethodGetPermissions, &OttServices::endpoint_getpermissions, this);
+        // Backwards-compatible alias with camelCase naming
+        Register<OttServices::GetPermissionsParams, OttServices::GetPermissionsResult>(kMethodGetPermissionsAlias, &OttServices::endpoint_getpermissions, this);
         Register<OttServices::InvalidatePermissionsParams, Core::JSON::Container>(kMethodInvalidatePermissions, &OttServices::endpoint_invalidatepermissions, this);
         Register<OttServices::UpdatePermissionsCacheParams, OttServices::UpdatePermissionsCacheResult>(kMethodUpdatePermissionsCache, &OttServices::endpoint_updatepermissionscache, this);
         LOGINFO("OttServices: JSON-RPC methods registered");
@@ -59,6 +65,7 @@ namespace Plugin {
     void OttServices::UnregisterAll() {
         Unregister(kMethodPing);
         Unregister(kMethodGetPermissions);
+        Unregister(kMethodGetPermissionsAlias);
         Unregister(kMethodInvalidatePermissions);
         Unregister(kMethodUpdatePermissionsCache);
         LOGINFO("OttServices: JSON-RPC methods unregistered");
