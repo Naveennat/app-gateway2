@@ -86,8 +86,8 @@ class UserSettingsDelegate : public BaseEventDelegate{
             return false;
         }
 
-        bool HandleEvent(const string& event, const bool listen, bool& registrationError) override {
-            LOGTRACE("Checking for handle event");
+        bool HandleEvent(const string event, const bool listen, bool &registrationError) {
+            LOGDBG("Checking for handle event");
             // Check if event is present in VALID_USER_SETTINGS_EVENT make check case insensitive
             if (VALID_USER_SETTINGS_EVENT.find(StringUtils::toLower(event)) != VALID_USER_SETTINGS_EVENT.end()) {
                 // Handle TextToSpeech event

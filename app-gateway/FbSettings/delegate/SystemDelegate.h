@@ -29,6 +29,7 @@ namespace Plugin {
         SystemDelegate()
             : _shell(nullptr)
         {
+            LOGINFO("SystemDelegate::SystemDelegate() called");
         }
 
         ~SystemDelegate() = default;
@@ -41,6 +42,7 @@ namespace Plugin {
              *
              * @param shell Pointer to the PluginHost::IShell provided by the framework.
              */
+            LOGINFO("SystemDelegate::setShell(shell) called");
             _shell = shell;
         }
 
@@ -55,6 +57,7 @@ namespace Plugin {
              * @param registrationError Set to true on registration error
              * @return true if the event was handled by this delegate
              */
+            LOGINFO("SystemDelegate::HandleEvent(event, listen, registrationError) called");
             registrationError = false;
 
             const std::string evLower = ToLower(event);
@@ -86,6 +89,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult GetDeviceMake(std::string& make) {
             /** Retrieve the device make using org.rdk.System.getDeviceInfo */
+            LOGINFO("SystemDelegate::GetDeviceMake(make) called");
             make.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -112,6 +116,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult GetDeviceName(std::string& name) {
             /** Retrieve the friendly name using org.rdk.System.getFriendlyName */
+            LOGINFO("SystemDelegate::GetDeviceName(name) called");
             name.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -136,6 +141,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult SetDeviceName(const std::string& name) {
             /** Set the friendly name using org.rdk.System.setFriendlyName */
+            LOGINFO("SystemDelegate::SetDeviceName(name) called");
             auto link = AcquireLink();
             if (!link) {
                 return Core::ERROR_UNAVAILABLE;
@@ -155,6 +161,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult GetDeviceSku(std::string& skuOut) {
             /** Retrieve the device SKU from org.rdk.System.getSystemVersions.stbVersion */
+            LOGINFO("SystemDelegate::GetDeviceSku(skuOut) called");
             skuOut.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -187,6 +194,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult GetCountryCode(std::string& code) {
             /** Retrieve Firebolt country code derived from org.rdk.System.getTerritory */
+            LOGINFO("SystemDelegate::GetCountryCode(code) called");
             code.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -210,6 +218,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult SetCountryCode(const std::string& code) {
             /** Set territory using org.rdk.System.setTerritory mapped from Firebolt country code */
+            LOGINFO("SystemDelegate::SetCountryCode(code) called");
             auto link = AcquireLink();
             if (!link) {
                 return Core::ERROR_UNAVAILABLE;
@@ -234,6 +243,7 @@ namespace Plugin {
              * Stubbed subscription to org.rdk.System.onTerritoryChanged.
              * Records intent and returns success in this environment.
              */
+            LOGINFO("SystemDelegate::SubscribeOnCountryCodeChanged(listen, status) called");
             status = true;
             if (listen) {
                 _subscriptions.insert("onTerritoryChanged");
@@ -248,6 +258,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult GetTimeZone(std::string& tz) {
             /** Retrieve timezone using org.rdk.System.getTimeZoneDST */
+            LOGINFO("SystemDelegate::GetTimeZone(tz) called");
             tz.clear();
             auto link = AcquireLink();
             if (!link) {
@@ -270,6 +281,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult SetTimeZone(const std::string& tz) {
             /** Set timezone using org.rdk.System.setTimeZoneDST */
+            LOGINFO("SystemDelegate::SetTimeZone(tz) called");
             auto link = AcquireLink();
             if (!link) {
                 return Core::ERROR_UNAVAILABLE;
@@ -289,6 +301,7 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnTimeZoneChanged(const bool listen, bool& status) {
             /** Stubbed subscription to org.rdk.System.onTimeZoneDSTChanged */
+            LOGINFO("SystemDelegate::SubscribeOnTimeZoneChanged(listen, status) called");
             status = true;
             if (listen) {
                 _subscriptions.insert("onTimeZoneDSTChanged");
@@ -303,12 +316,14 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult GetSecondScreenFriendlyName(std::string& name) {
             /** Alias to GetDeviceName using org.rdk.System.getFriendlyName */
+            LOGINFO("SystemDelegate::GetSecondScreenFriendlyName(name) called");
             return GetDeviceName(name);
         }
 
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnFriendlyNameChanged(const bool listen, bool& status) {
             /** Stubbed subscription to org.rdk.System.onFriendlyNameChanged */
+            LOGINFO("SystemDelegate::SubscribeOnFriendlyNameChanged(listen, status) called");
             status = true;
             if (listen) {
                 _subscriptions.insert("onFriendlyNameChanged");
@@ -323,6 +338,7 @@ namespace Plugin {
     private:
         inline std::shared_ptr<WPEFramework::Utils::JSONRPCDirectLink> AcquireLink() const {
             // Create a direct JSON-RPC link to the Thunder System plugin using the Supporting_Files helper.
+            LOGINFO("SystemDelegate::AcquireLink() called");
             if (_shell == nullptr) {
                 LOGERR("SystemDelegate: shell is null");
                 return nullptr;
@@ -331,6 +347,7 @@ namespace Plugin {
         }
 
         static std::string ToLower(const std::string& in) {
+            LOGINFO("SystemDelegate::ToLower(in) called");
             std::string out;
             out.reserve(in.size());
             for (char c : in) {
@@ -340,18 +357,21 @@ namespace Plugin {
         }
 
         static std::string TerritoryThunderToFirebolt(const std::string& terr, const std::string& deflt) {
+            LOGINFO("SystemDelegate::TerritoryThunderToFirebolt(terr, deflt) called");
             if (EqualsIgnoreCase(terr, "USA")) return "US";
             if (EqualsIgnoreCase(terr, "CAN")) return "CA";
             return deflt;
         }
 
         static std::string TerritoryFireboltToThunder(const std::string& code, const std::string& deflt) {
+            LOGINFO("SystemDelegate::TerritoryFireboltToThunder(code, deflt) called");
             if (EqualsIgnoreCase(code, "US")) return "USA";
             if (EqualsIgnoreCase(code, "CA")) return "CAN";
             return deflt;
         }
 
         static bool EqualsIgnoreCase(const std::string& a, const std::string& b) {
+            LOGINFO("SystemDelegate::EqualsIgnoreCase(a, b) called");
             if (a.size() != b.size()) return false;
             for (size_t i = 0; i < a.size(); ++i) {
                 if (::tolower(static_cast<unsigned char>(a[i])) != ::tolower(static_cast<unsigned char>(b[i]))) {

@@ -19,10 +19,10 @@
 
 #ifndef __SETTINGSDELEGATE_H__
 #define __SETTINGSDELEGATE_H__
-#include "UtilsLogging.h"
 #include "StringUtils.h"
 #include "TTSDelegate.h"
 #include "UserSettingsDelegate.h"
+#include "UtilsLogging.h"
 #include <interfaces/IAppNotifications.h>
 
 #define APP_NOTIFICATIONS_CALLSIGN "org.rdk.AppNotifications"
@@ -43,7 +43,7 @@ class SettingsDelegate {
 
         void HandleAppEventNotifier(const string event,
                                     const bool listen) {
-            LOGTRACE("Passing on HandleAppEventNotifier");
+            LOGDBG("Passing on HandleAppEventNotifier");
             bool registrationError;
             if (tts == nullptr || userSettings==nullptr) {
                 LOGERR("Services not available");
@@ -75,7 +75,7 @@ class SettingsDelegate {
         void setShell(PluginHost::IShell* shell) {
 
             ASSERT(shell != nullptr);
-            LOGTRACE("SettingsDelegate::setShell");
+            LOGDBG("SettingsDelegate::setShell");
 
             mAppNotifications = shell->QueryInterfaceByCallsign<Exchange::IAppNotifications>(APP_NOTIFICATIONS_CALLSIGN);
             

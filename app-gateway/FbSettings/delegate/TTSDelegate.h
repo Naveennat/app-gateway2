@@ -1,4 +1,4 @@
- /** 
+/**
 * If not stated otherwise in this file or this component's LICENSE
 * file the following copyright and licenses apply:
 *
@@ -23,7 +23,6 @@
 #include <interfaces/ITextToSpeech.h>
 #include "UtilsLogging.h"
 using namespace WPEFramework;
-using std::to_string;
 #define TTS_CALLSIGN "org.rdk.TextToSpeech"
 #define APP_API_METHOD_PREFIX "TextToSpeech."
 class TTSDelegate : public BaseEventDelegate{
@@ -70,8 +69,8 @@ class TTSDelegate : public BaseEventDelegate{
             return false;
         }
 
-        bool HandleEvent(const string& event, const bool listen, bool& registrationError) override {
-            LOGTRACE("Checking for handle event");
+        bool HandleEvent(const string event, const bool listen, bool &registrationError) {
+            LOGDBG("Checking for handle event");
             // Check if event starts with "TextToSpeech" make check case insensitive
             if (StringUtils::rfindInsensitive(event, APP_API_METHOD_PREFIX)) {
                 // Handle TextToSpeech event
@@ -93,28 +92,28 @@ class TTSDelegate : public BaseEventDelegate{
                     mParent.Dispatch( "TextToSpeech.onVoiceChanged", voice);
                 }
                 void WillSpeak(const uint32_t speechid) {
-                    mParent.Dispatch( "TextToSpeech.onWillSpeak", std::to_string(speechid));
+                    mParent.Dispatch( "TextToSpeech.onWillSpeak", to_string(speechid));
                 }
                 void SpeechStart(const uint32_t speechid) {
-                    mParent.Dispatch( "TextToSpeech.onSpeechStart", std::to_string(speechid));
+                    mParent.Dispatch( "TextToSpeech.onSpeechStart", to_string(speechid));
                 }
                 void SpeechPause(const uint32_t speechid) {
-                    mParent.Dispatch( "TextToSpeech.onSpeechPause", std::to_string(speechid));
+                    mParent.Dispatch( "TextToSpeech.onSpeechPause", to_string(speechid));
                 }
                 void SpeechResume(const uint32_t speechid) {
-                    mParent.Dispatch( "TextToSpeech.onSpeechResume", std::to_string(speechid));
+                    mParent.Dispatch( "TextToSpeech.onSpeechResume", to_string(speechid));
                 }
                 void SpeechInterrupted(const uint32_t speechid) {
-                    mParent.Dispatch( "TextToSpeech.onSpeechInterrupted", std::to_string(speechid));
+                    mParent.Dispatch( "TextToSpeech.onSpeechInterrupted", to_string(speechid));
                 }
                 void NetworkError(const uint32_t speechid) {
-                    mParent.Dispatch( "TextToSpeech.onNetworkError", std::to_string(speechid));
+                    mParent.Dispatch( "TextToSpeech.onNetworkError", to_string(speechid));
                 }
                 void PlaybackError(const uint32_t speechid) {
-                    mParent.Dispatch( "TextToSpeech.onPlaybackError", std::to_string(speechid));
+                    mParent.Dispatch( "TextToSpeech.onPlaybackError", to_string(speechid));
                 }
                 void SpeechComplete(const uint32_t speechid) {
-                    mParent.Dispatch( "TextToSpeech.onSpeechComplete", std::to_string(speechid));
+                    mParent.Dispatch( "TextToSpeech.onSpeechComplete", to_string(speechid));
                 }
 
                 // New Method for Set registered

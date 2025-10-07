@@ -21,7 +21,6 @@
 #include <interfaces/IConfiguration.h>
 #include <interfaces/json/JsonData_FbSettings.h>
 #include <interfaces/json/JFbSettings.h>
-#include <unistd.h>
 
 
 #define API_VERSION_NUMBER_MAJOR    FBSETTINGS_MAJOR_VERSION

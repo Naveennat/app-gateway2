@@ -30,12 +30,14 @@ namespace WPEFramework
         FbSettingsImplementation::FbSettingsImplementation() : 
         mShell(nullptr)   
         {
+            LOGINFO("FbSettingsImplementation::FbSettingsImplementation() called");
             mDelegate = std::make_shared<SettingsDelegate>();
             mSystemDelegate = std::make_shared<SystemDelegate>();
         }
 
         FbSettingsImplementation::~FbSettingsImplementation()
         {
+            LOGINFO("FbSettingsImplementation::~FbSettingsImplementation() called");
             // Cleanup resources if needed
             if (mShell != nullptr)
             {
@@ -57,66 +59,79 @@ namespace WPEFramework
         // Delegated alias methods
 
         Core::hresult FbSettingsImplementation::GetDeviceMake(string& make) {
+            LOGINFO("FbSettingsImplementation::GetDeviceMake(make) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->GetDeviceMake(make);
         }
 
         Core::hresult FbSettingsImplementation::GetDeviceName(string& name) {
+            LOGINFO("FbSettingsImplementation::GetDeviceName(name) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->GetDeviceName(name);
         }
 
         Core::hresult FbSettingsImplementation::SetDeviceName(const string& name) {
+            LOGINFO("FbSettingsImplementation::SetDeviceName(name) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SetDeviceName(name);
         }
 
         Core::hresult FbSettingsImplementation::GetDeviceSku(string& sku) {
+            LOGINFO("FbSettingsImplementation::GetDeviceSku(sku) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->GetDeviceSku(sku);
         }
 
         Core::hresult FbSettingsImplementation::GetCountryCode(string& countryCode) {
+            LOGINFO("FbSettingsImplementation::GetCountryCode(countryCode) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->GetCountryCode(countryCode);
         }
 
         Core::hresult FbSettingsImplementation::SetCountryCode(const string& countryCode) {
+            LOGINFO("FbSettingsImplementation::SetCountryCode(countryCode) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SetCountryCode(countryCode);
         }
 
         Core::hresult FbSettingsImplementation::SubscribeOnCountryCodeChanged(const bool listen, bool& status) {
+            LOGINFO("FbSettingsImplementation::SubscribeOnCountryCodeChanged(listen, status) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SubscribeOnCountryCodeChanged(listen, status);
         }
 
         Core::hresult FbSettingsImplementation::GetTimeZone(string& timeZone) {
+            LOGINFO("FbSettingsImplementation::GetTimeZone(timeZone) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->GetTimeZone(timeZone);
         }
 
         Core::hresult FbSettingsImplementation::SetTimeZone(const string& timeZone) {
+            LOGINFO("FbSettingsImplementation::SetTimeZone(timeZone) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SetTimeZone(timeZone);
         }
 
         Core::hresult FbSettingsImplementation::SubscribeOnTimeZoneChanged(const bool listen, bool& status) {
+            LOGINFO("FbSettingsImplementation::SubscribeOnTimeZoneChanged(listen, status) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SubscribeOnTimeZoneChanged(listen, status);
         }
 
         Core::hresult FbSettingsImplementation::GetSecondScreenFriendlyName(string& name) {
+            LOGINFO("FbSettingsImplementation::GetSecondScreenFriendlyName(name) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->GetSecondScreenFriendlyName(name);
         }
 
         Core::hresult FbSettingsImplementation::SubscribeOnFriendlyNameChanged(const bool listen, bool& status) {
+            LOGINFO("FbSettingsImplementation::SubscribeOnFriendlyNameChanged(listen, status) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SubscribeOnFriendlyNameChanged(listen, status);
         }
 
         Core::hresult FbSettingsImplementation::SubscribeOnDeviceNameChanged(const bool listen, bool& status) {
+            LOGINFO("FbSettingsImplementation::SubscribeOnDeviceNameChanged(listen, status) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             // Same underlying event as friendlyName changed
             return mSystemDelegate->SubscribeOnFriendlyNameChanged(listen, status);

@@ -1,22 +1,28 @@
 #pragma once
 
-#include <plugins/JSONRPC.h>
-#include "../IFbSettings.h"
+/*
+ * Lightweight local stub for JFbSettings JSON-RPC registration helpers.
+ * This project does not ship the generated Thunder headers for FbSettings,
+ * so we provide minimal no-op implementations to satisfy compilation.
+ */
 
 namespace WPEFramework {
+namespace PluginHost {
+    class JSONRPC;
+}
 namespace Exchange {
 
-    // Local stub for the generated JSON adapter. The real generator is not present in this
-    // environment; using no-op implementations allows the plugin to compile and run.
+    struct IFbSettings;
+
     struct JFbSettings {
-        // Register JSON-RPC endpoints against the given JSONRPC dispatcher for IFbSettings.
-        static void Register(PluginHost::JSONRPC& /*server*/, IFbSettings* /*impl*/) {
-            // No-op stub: in a full environment this would expose IFbSettings methods as JSONRPC.
+        // PUBLIC_INTERFACE
+        static void Register(PluginHost::JSONRPC& /*parent*/, IFbSettings* /*api*/) {
+            /** Register JSON-RPC methods for IFbSettings on the given dispatcher (no-op stub). */
         }
 
-        // Unregister JSON-RPC endpoints previously registered.
-        static void Unregister(PluginHost::JSONRPC& /*server*/) {
-            // No-op stub.
+        // PUBLIC_INTERFACE
+        static void Unregister(PluginHost::JSONRPC& /*parent*/) {
+            /** Unregister JSON-RPC methods for IFbSettings from the given dispatcher (no-op stub). */
         }
     };
 
