@@ -17,11 +17,13 @@ namespace Exchange {
 
         virtual ~IFbSettings() = default;
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult HandleAppEventNotifier(const string event /* @in */,
-                                                     const bool listen /* @in */,
-                                                     bool& status /* @out */) = 0;
-        /** Handle registration/unregistration for an app event. */
+        // @text handleAppEventNotifier
+        // @brief Handle AppEvent Notfier expectations for a given event
+        // @param event: the event for registration
+        // @param listen: whether to listen
+        // @param status: status to be filled in
+        // @returns Core::hresult
+        virtual Core::hresult HandleAppEventNotifier(const string event, const bool listen, bool& status /* @out */) = 0;
 
         // PUBLIC_INTERFACE
         virtual Core::hresult GetDeviceMake(string& make /* @out */) = 0;
