@@ -70,7 +70,7 @@ namespace WPEFramework
             return mSystemDelegate->GetDeviceName(name);
         }
 
-        Core::hresult FbSettingsImplementation::SetDeviceName(const string& name) {
+        Core::hresult FbSettingsImplementation::SetDeviceName(const string name) {
             LOGINFO("FbSettingsImplementation::SetDeviceName(name) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SetDeviceName(name);
@@ -88,7 +88,7 @@ namespace WPEFramework
             return mSystemDelegate->GetCountryCode(countryCode);
         }
 
-        Core::hresult FbSettingsImplementation::SetCountryCode(const string& countryCode) {
+        Core::hresult FbSettingsImplementation::SetCountryCode(const string countryCode) {
             LOGINFO("FbSettingsImplementation::SetCountryCode(countryCode) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SetCountryCode(countryCode);
@@ -106,7 +106,7 @@ namespace WPEFramework
             return mSystemDelegate->GetTimeZone(timeZone);
         }
 
-        Core::hresult FbSettingsImplementation::SetTimeZone(const string& timeZone) {
+        Core::hresult FbSettingsImplementation::SetTimeZone(const string timeZone) {
             LOGINFO("FbSettingsImplementation::SetTimeZone(timeZone) called");
             if (!mSystemDelegate) return Core::ERROR_UNAVAILABLE;
             return mSystemDelegate->SetTimeZone(timeZone);

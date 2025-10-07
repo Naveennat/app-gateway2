@@ -100,7 +100,7 @@ namespace Plugin {
         Core::hresult GetDeviceName(string& name /* @out */);
 
         // PUBLIC_INTERFACE
-        Core::hresult SetDeviceName(const string& name /* @in */);
+        Core::hresult SetDeviceName(const string name /* @in */);
 
         // PUBLIC_INTERFACE
         Core::hresult GetDeviceSku(string& sku /* @out */);
@@ -109,7 +109,7 @@ namespace Plugin {
         Core::hresult GetCountryCode(string& countryCode /* @out */);
 
         // PUBLIC_INTERFACE
-        Core::hresult SetCountryCode(const string& countryCode /* @in */);
+        Core::hresult SetCountryCode(const string countryCode /* @in */);
 
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnCountryCodeChanged(const bool listen /* @in */, bool& status /* @out */);
@@ -118,7 +118,7 @@ namespace Plugin {
         Core::hresult GetTimeZone(string& timeZone /* @out */);
 
         // PUBLIC_INTERFACE
-        Core::hresult SetTimeZone(const string& timeZone /* @in */);
+        Core::hresult SetTimeZone(const string timeZone /* @in */);
 
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnTimeZoneChanged(const bool listen /* @in */, bool& status /* @out */);

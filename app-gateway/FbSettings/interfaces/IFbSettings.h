@@ -6,6 +6,16 @@
  * Note: The ID value is a placeholder for compilation purposes only.
  */
 
+// NOTE: Method declaration conventions for this interface:
+// - Return type: Core::hresult
+// - Input scalars/strings are passed by const value (e.g., const string, const bool)
+// - Output parameters are passed by non-const reference and annotated with /* @out */
+// - Precede each method declaration with structured documentation tags:
+//     // @text <lowerCamelCase method name>
+//     // @brief <one-line description>
+//     // @param <name>: <description>
+//     // @returns Core::hresult
+
 #include "Module.h"
 
 namespace WPEFramework {
@@ -18,68 +28,94 @@ namespace Exchange {
         virtual ~IFbSettings() = default;
 
         // @text handleAppEventNotifier
-        // @brief Handle AppEvent Notfier expectations for a given event
-        // @param event: the event for registration
-        // @param listen: whether to listen
-        // @param status: status to be filled in
+        // @brief Register or unregister interest for the given application event.
+        // @param event: Name of the application event to register or unregister.
+        // @param listen: True to subscribe (register), false to unsubscribe.
+        // @param status: Operation result indicating whether the action was applied.
         // @returns Core::hresult
         virtual Core::hresult HandleAppEventNotifier(const string event, const bool listen, bool& status /* @out */) = 0;
 
-        // PUBLIC_INTERFACE
+        // @text getDeviceMake
+        // @brief Retrieve the device manufacturer or make.
+        // @param make: Output string receiving the device make.
+        // @returns Core::hresult
         virtual Core::hresult GetDeviceMake(string& make /* @out */) = 0;
-        /** Retrieve device make. */
 
-        // PUBLIC_INTERFACE
+        // @text getDeviceName
+        // @brief Retrieve the device friendly name.
+        // @param name: Output string receiving the device friendly name.
+        // @returns Core::hresult
         virtual Core::hresult GetDeviceName(string& name /* @out */) = 0;
-        /** Retrieve device friendly name. */
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult SetDeviceName(const string& name /* @in */) = 0;
-        /** Set device friendly name. */
+        // @text setDeviceName
+        // @brief Set the device friendly name.
+        // @param name: New device friendly name.
+        // @returns Core::hresult
+        virtual Core::hresult SetDeviceName(const string name) = 0;
 
-        // PUBLIC_INTERFACE
+        // @text getDeviceSku
+        // @brief Retrieve the device SKU.
+        // @param sku: Output string receiving the device SKU.
+        // @returns Core::hresult
         virtual Core::hresult GetDeviceSku(string& sku /* @out */) = 0;
-        /** Retrieve device SKU. */
 
-        // PUBLIC_INTERFACE
+        // @text getCountryCode
+        // @brief Retrieve the device country code.
+        // @param countryCode: Output string receiving the country code.
+        // @returns Core::hresult
         virtual Core::hresult GetCountryCode(string& countryCode /* @out */) = 0;
-        /** Retrieve device country code. */
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult SetCountryCode(const string& countryCode /* @in */) = 0;
-        /** Set device country code. */
+        // @text setCountryCode
+        // @brief Set the device country code.
+        // @param countryCode: New device country code.
+        // @returns Core::hresult
+        virtual Core::hresult SetCountryCode(const string countryCode) = 0;
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult SubscribeOnCountryCodeChanged(const bool listen /* @in */,
-                                                            bool& status /* @out */) = 0;
-        /** Subscribe/unsubscribe to country code change notifications. */
+        // @text subscribeOnCountryCodeChanged
+        // @brief Subscribe or unsubscribe to country code change notifications.
+        // @param listen: True to subscribe, false to unsubscribe.
+        // @param status: Operation result indicating whether the subscription state was applied.
+        // @returns Core::hresult
+        virtual Core::hresult SubscribeOnCountryCodeChanged(const bool listen, bool& status /* @out */) = 0;
 
-        // PUBLIC_INTERFACE
+        // @text getTimeZone
+        // @brief Retrieve the device time zone identifier.
+        // @param timeZone: Output string receiving the time zone.
+        // @returns Core::hresult
         virtual Core::hresult GetTimeZone(string& timeZone /* @out */) = 0;
-        /** Retrieve device time zone. */
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult SetTimeZone(const string& timeZone /* @in */) = 0;
-        /** Set device time zone. */
+        // @text setTimeZone
+        // @brief Set the device time zone identifier.
+        // @param timeZone: New device time zone.
+        // @returns Core::hresult
+        virtual Core::hresult SetTimeZone(const string timeZone) = 0;
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult SubscribeOnTimeZoneChanged(const bool listen /* @in */,
-                                                         bool& status /* @out */) = 0;
-        /** Subscribe/unsubscribe to time zone change notifications. */
+        // @text subscribeOnTimeZoneChanged
+        // @brief Subscribe or unsubscribe to time zone change notifications.
+        // @param listen: True to subscribe, false to unsubscribe.
+        // @param status: Operation result indicating whether the subscription state was applied.
+        // @returns Core::hresult
+        virtual Core::hresult SubscribeOnTimeZoneChanged(const bool listen, bool& status /* @out */) = 0;
 
-        // PUBLIC_INTERFACE
+        // @text getSecondScreenFriendlyName
+        // @brief Retrieve the second screen friendly name.
+        // @param name: Output string receiving the second screen friendly name.
+        // @returns Core::hresult
         virtual Core::hresult GetSecondScreenFriendlyName(string& name /* @out */) = 0;
-        /** Retrieve second screen friendly name. */
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult SubscribeOnFriendlyNameChanged(const bool listen /* @in */,
-                                                             bool& status /* @out */) = 0;
-        /** Subscribe/unsubscribe to friendly name change notifications. */
+        // @text subscribeOnFriendlyNameChanged
+        // @brief Subscribe or unsubscribe to friendly name change notifications.
+        // @param listen: True to subscribe, false to unsubscribe.
+        // @param status: Operation result indicating whether the subscription state was applied.
+        // @returns Core::hresult
+        virtual Core::hresult SubscribeOnFriendlyNameChanged(const bool listen, bool& status /* @out */) = 0;
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult SubscribeOnDeviceNameChanged(const bool listen /* @in */,
-                                                           bool& status /* @out */) = 0;
-        /** Subscribe/unsubscribe to device name change notifications. */
+        // @text subscribeOnDeviceNameChanged
+        // @brief Subscribe or unsubscribe to device name change notifications.
+        // @param listen: True to subscribe, false to unsubscribe.
+        // @param status: Operation result indicating whether the subscription state was applied.
+        // @returns Core::hresult
+        virtual Core::hresult SubscribeOnDeviceNameChanged(const bool listen, bool& status /* @out */) = 0;
     };
 
 } // namespace Exchange
