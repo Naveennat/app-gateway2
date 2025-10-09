@@ -16,7 +16,13 @@ namespace Exchange {
         enum { ID = 0xFA000002 };
 
         virtual ~IAppNotifications() = default;
-        // No additional methods are required by current code paths.
+
+        // PUBLIC_INTERFACE
+        virtual void Notify(const string& event /* @in */, const string& payload /* @in */) = 0;
+        /** Dispatch an application-level event notification to listeners.
+         *  @param event Event name (e.g., "TextToSpeech.onEnabled").
+         *  @param payload Serialized payload (JSON or plain string) associated with the event.
+         */
     };
 
 } // namespace Exchange

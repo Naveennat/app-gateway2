@@ -4,18 +4,11 @@
 #include <string>
 #include <mutex>
 
-// The delegates include and depend on Exchange::IAppNotifications. It may not
-// be present in the installed Thunder SDK, so we forward-declare it here.
-// A local stub for this interface is supplied under FbSettings/interfaces to avoid
-// changing the delegates' include statements or logic.
-namespace WPEFramework {
-namespace Exchange {
-    struct IAppNotifications;
-}
-}
+// Use the local stubbed IAppNotifications interface to enable compile-time dispatch calls.
+#include <interfaces/IAppNotifications.h>
 
 // Base class for event delegates. Provides a small notification registry
-// and a stub Dispatch method. Derived delegates must implement HandleEvent.
+// and a Dispatch method that forwards events to the AppNotifications service.
 class BaseEventDelegate {
 public:
     explicit BaseEventDelegate(WPEFramework::Exchange::IAppNotifications* appNotifications)
@@ -43,13 +36,12 @@ public:
         }
     }
 
-    // Sends a notification via AppNotifications if available. In this environment,
-    // this is a stub and does nothing. Keeping the signature to preserve call sites.
+    // PUBLIC_INTERFACE
     inline void Dispatch(const std::string& event, const std::string& payload) {
-        (void)event;
-        (void)payload;
-        // If a concrete AppNotifications interface is available in the deployment,
-        // one could call into it here (e.g., mAppNotifications->Notify(...)).
+        // Forward the event to the AppNotifications service if it is available.
+        if (mAppNotifications != nullptr) {
+            mAppNotifications->Notify(event, payload);
+        }
     }
 
 protected:

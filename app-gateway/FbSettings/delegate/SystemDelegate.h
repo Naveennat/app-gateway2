@@ -1,18 +1,20 @@
 #pragma once
 
 /*
- * SystemDelegate encapsulates all org.rdk.System JSON-RPC calls and event subscriptions
+ * SystemDelegate encapsulates all org.rdk.System JSON-RPC calls and event handling
  * required by the FbSettings plugin to fulfill the system settings alias functions.
  *
- * It uses a direct JSON-RPC link to the Thunder plugin via Utils::GetThunderControllerClient,
- * following the same pattern as the AUTHSERVICE_CALLSIGN-style setup (using helpers from Supporting_Files).
+ * This version inherits from BaseEventDelegate to leverage centralized event dispatch
+ * through AppNotifications. Subscription bookkeeping is intentionally removed; subscribe
+ * calls are no-ops that always return success in this environment.
  */
 
 #include <memory>
 #include <string>
-#include <unordered_set>
+#include <cctype>
 
 #include <plugins/plugins.h>
+#include "BaseEventDelegate.h"
 #include "UtilsLogging.h"
 #include "UtilsJsonrpcDirectLink.h"
 
@@ -24,15 +26,15 @@
 namespace WPEFramework {
 namespace Plugin {
 
-    class SystemDelegate {
+    class SystemDelegate : public BaseEventDelegate {
     public:
-        SystemDelegate()
-            : _shell(nullptr)
-        {
-            LOGINFO("SystemDelegate::SystemDelegate() called");
+        SystemDelegate(PluginHost::IShell* shell, Exchange::IAppNotifications* appNotifications)
+            : BaseEventDelegate(appNotifications)
+            , _shell(shell) {
+            LOGINFO("SystemDelegate::SystemDelegate(shell, appNotifications) called");
         }
 
-        ~SystemDelegate() = default;
+        ~SystemDelegate() override = default;
 
         // PUBLIC_INTERFACE
         void setShell(PluginHost::IShell* shell) {
@@ -47,7 +49,7 @@ namespace Plugin {
         }
 
         // PUBLIC_INTERFACE
-        bool HandleEvent(const std::string& event, const bool listen, bool& registrationError) {
+        bool HandleEvent(const std::string& event, const bool listen, bool& registrationError) override {
             /**
              * Handle event registration requests; returns true if this delegate recognized the event.
              * This follows the same event naming as the System plugin.
@@ -57,7 +59,7 @@ namespace Plugin {
              * @param registrationError Set to true on registration error
              * @return true if the event was handled by this delegate
              */
-            LOGINFO("SystemDelegate::HandleEvent(event, listen, registrationError) called");
+            LOGINFO("SystemDelegate::HandleEvent(event=%s, listen=%s)", event.c_str(), listen ? "true" : "false");
             registrationError = false;
 
             const std::string evLower = ToLower(event);
@@ -240,18 +242,11 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnCountryCodeChanged(const bool listen, bool& status) {
             /**
-             * Stubbed subscription to org.rdk.System.onTerritoryChanged.
-             * Records intent and returns success in this environment.
+             * Subscription no-op for org.rdk.System.onTerritoryChanged.
+             * Always returns success; event dispatch will be driven by platform notifications.
              */
-            LOGINFO("SystemDelegate::SubscribeOnCountryCodeChanged(listen, status) called");
+            LOGINFO("SystemDelegate::SubscribeOnCountryCodeChanged(listen=%s)", listen ? "true" : "false");
             status = true;
-            if (listen) {
-                _subscriptions.insert("onTerritoryChanged");
-                LOGINFO("SystemDelegate: requested subscribe to org.rdk.System.onTerritoryChanged (not implemented)");
-            } else {
-                _subscriptions.erase("onTerritoryChanged");
-                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.System.onTerritoryChanged (not implemented)");
-            }
             return Core::ERROR_NONE;
         }
 
@@ -300,16 +295,9 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnTimeZoneChanged(const bool listen, bool& status) {
-            /** Stubbed subscription to org.rdk.System.onTimeZoneDSTChanged */
-            LOGINFO("SystemDelegate::SubscribeOnTimeZoneChanged(listen, status) called");
+            /** Subscription no-op for org.rdk.System.onTimeZoneDSTChanged */
+            LOGINFO("SystemDelegate::SubscribeOnTimeZoneChanged(listen=%s)", listen ? "true" : "false");
             status = true;
-            if (listen) {
-                _subscriptions.insert("onTimeZoneDSTChanged");
-                LOGINFO("SystemDelegate: requested subscribe to org.rdk.System.onTimeZoneDSTChanged (not implemented)");
-            } else {
-                _subscriptions.erase("onTimeZoneDSTChanged");
-                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.System.onTimeZoneDSTChanged (not implemented)");
-            }
             return Core::ERROR_NONE;
         }
 
@@ -322,16 +310,9 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnFriendlyNameChanged(const bool listen, bool& status) {
-            /** Stubbed subscription to org.rdk.System.onFriendlyNameChanged */
-            LOGINFO("SystemDelegate::SubscribeOnFriendlyNameChanged(listen, status) called");
+            /** Subscription no-op for org.rdk.System.onFriendlyNameChanged */
+            LOGINFO("SystemDelegate::SubscribeOnFriendlyNameChanged(listen=%s)", listen ? "true" : "false");
             status = true;
-            if (listen) {
-                _subscriptions.insert("onFriendlyNameChanged");
-                LOGINFO("SystemDelegate: requested subscribe to org.rdk.System.onFriendlyNameChanged (not implemented)");
-            } else {
-                _subscriptions.erase("onFriendlyNameChanged");
-                LOGINFO("SystemDelegate: requested unsubscribe from org.rdk.System.onFriendlyNameChanged (not implemented)");
-            }
             return Core::ERROR_NONE;
         }
 
@@ -347,7 +328,6 @@ namespace Plugin {
         }
 
         static std::string ToLower(const std::string& in) {
-            LOGINFO("SystemDelegate::ToLower(in) called");
             std::string out;
             out.reserve(in.size());
             for (char c : in) {
@@ -357,21 +337,18 @@ namespace Plugin {
         }
 
         static std::string TerritoryThunderToFirebolt(const std::string& terr, const std::string& deflt) {
-            LOGINFO("SystemDelegate::TerritoryThunderToFirebolt(terr, deflt) called");
             if (EqualsIgnoreCase(terr, "USA")) return "US";
             if (EqualsIgnoreCase(terr, "CAN")) return "CA";
             return deflt;
         }
 
         static std::string TerritoryFireboltToThunder(const std::string& code, const std::string& deflt) {
-            LOGINFO("SystemDelegate::TerritoryFireboltToThunder(code, deflt) called");
             if (EqualsIgnoreCase(code, "US")) return "USA";
             if (EqualsIgnoreCase(code, "CA")) return "CAN";
             return deflt;
         }
 
         static bool EqualsIgnoreCase(const std::string& a, const std::string& b) {
-            LOGINFO("SystemDelegate::EqualsIgnoreCase(a, b) called");
             if (a.size() != b.size()) return false;
             for (size_t i = 0; i < a.size(); ++i) {
                 if (::tolower(static_cast<unsigned char>(a[i])) != ::tolower(static_cast<unsigned char>(b[i]))) {
@@ -382,8 +359,7 @@ namespace Plugin {
         }
 
     private:
-        PluginHost::IShell* _shell;
-        std::unordered_set<std::string> _subscriptions;
+        PluginHost::IShell* _shell { nullptr };
     };
 
 } // namespace Plugin
