@@ -25,6 +25,10 @@
 #define ID_OTT_SERVICES 0x0000F812
 #endif
 
+#ifndef ID_OTT_PERMISSION_CACHE
+#define ID_OTT_PERMISSION_CACHE 0x0000F813
+#endif
+
 // Compatibility alias: some Thunder/WPEFramework versions use VariantContainer as the dynamic JSON object.
 // Provide an alias so Object is always available in code that uses it.
 namespace WPEFramework {
