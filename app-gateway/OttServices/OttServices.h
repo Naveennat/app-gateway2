@@ -13,7 +13,7 @@
 #include <type_traits>
 #include <utility>
 
-#include "IOttServices.h"
+#include <OttServices/interfaces/IOttServices.h>
 
 namespace WPEFramework {
 namespace Plugin {
