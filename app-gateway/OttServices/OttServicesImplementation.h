@@ -14,7 +14,7 @@
 #include <utility>
 
 #include "Module.h"
-#include <OttServices/interfaces/IOttServices.h>
+#include <interfaces/IOttServices.h>
 
 // Permissions client and cache utils
 #include "PermissionsClient.h"

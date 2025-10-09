@@ -10,6 +10,8 @@
 namespace WPEFramework {
 namespace Plugin {
 
+    SERVICE_REGISTRATION(OttServicesImplementation, 1, 0);
+
     namespace {
         static constexpr const char* kDefaultPermsEndpoint = "thor-permission.svc.thor.comcast.com:443";
         static constexpr const char* kAuthServiceCallsign = "org.rdk.AuthService";
