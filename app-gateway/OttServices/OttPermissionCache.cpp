@@ -208,20 +208,6 @@ namespace {
     }
 } // anonymous
 
-// IUnknown reference counting
-// PUBLIC_INTERFACE
-uint32_t OttPermissionCache::AddRef() const {
-    // For a Meyers singleton do not ever delete this instance.
-    // Still track references for diagnostics/accounts if needed.
-    return (_refCount.fetch_add(1, std::memory_order_relaxed) + 1);
-}
-
-// PUBLIC_INTERFACE
-uint32_t OttPermissionCache::Release() const {
-    // Do not delete the singleton instance; just return the decremented count.
-    return (_refCount.fetch_sub(1, std::memory_order_acq_rel) - 1);
-}
-
 // PUBLIC_INTERFACE
 OttPermissionCache& OttPermissionCache::Instance() {
     static OttPermissionCache g_instance;
@@ -241,7 +227,7 @@ OttPermissionCache& OttPermissionCache::Instance() {
     return g_instance;
 }
 
- // PUBLIC_INTERFACE
+// PUBLIC_INTERFACE
 std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
     // Copy under lock into a local result to prevent reading shared state without protection
     std::vector<string> result;

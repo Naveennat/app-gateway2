@@ -3,7 +3,7 @@
 #include <core/Enumerate.h>
 #include "UtilsLogging.h"
 
- // Use in-module permission cache and JSONRPC direct link utils
+// Use in-module permission cache and JSONRPC direct link utils
 #include "OttPermissionCache.h"
 #include "UtilsJsonrpcDirectLink.h"
 
@@ -22,11 +22,16 @@ namespace Plugin {
         , _state(_T("uninitialized"))
         , _perms(nullptr)
         , _permsEndpoint(kDefaultPermsEndpoint)
-        , _permsUseTls(true)
-        , _refCount(1) {
+        , _permsUseTls(true) {
     }
 
     OttServicesImplementation::~OttServicesImplementation() = default;
+
+    uint32_t OttServicesImplementation::Configure(PluginHost::IShell* shell) {
+        // Configure using the provided shell (mirrors Initialize logic; return Core::ERROR_NONE on success)
+        Initialize(shell);
+        return Core::ERROR_NONE;
+    }
 
     string OttServicesImplementation::Initialize(PluginHost::IShell* service) {
         _service = service;
@@ -60,34 +65,6 @@ namespace Plugin {
         _state = _T("deinitialized");
         _service = nullptr;
         LOGINFO("OttServices: Deinitialize implementation");
-    }
-
-    // IUnknown implementation
-    void OttServicesImplementation::AddRef() const {
-        // Align with WPEFramework::Core::IReferenceCounted::AddRef() const returning void
-        // Just increment the ref count; caller does not expect a return value.
-        _refCount.fetch_add(1, std::memory_order_relaxed);
-    }
-
-    uint32_t OttServicesImplementation::Release() const {
-        const uint32_t count = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
-        if (count == 0) {
-            delete this;
-        }
-        return count;
-    }
-
-    void* OttServicesImplementation::QueryInterface(const uint32_t id) {
-        void* result = nullptr;
-        if (id == Exchange::IOttServices::ID) {
-            result = static_cast<Exchange::IOttServices*>(this);
-        } else if (id == Core::IUnknown::ID) {
-            result = static_cast<Core::IUnknown*>(this);
-        }
-        if (result != nullptr) {
-            AddRef();
-        }
-        return result;
     }
 
     // Exchange::IOttServices implementation and local variants

@@ -3,18 +3,16 @@
 // Internal implementation for the OttServices plugin.
 // Contains business logic and state, separated from the Thunder plugin facade.
 
-#include <atomic>
 #include <core/core.h>
 #include <core/JSON.h>
 #include <plugins/IShell.h>
 #include <memory>
 #include <vector>
 #include <string>
-#include <type_traits>
-#include <utility>
 
 #include "Module.h"
 #include <interfaces/IOttServices.h>
+#include <interfaces/IConfiguration.h>
 
 // Permissions client and cache utils
 #include "PermissionsClient.h"
@@ -22,7 +20,7 @@
 namespace WPEFramework {
 namespace Plugin {
 
-    class OttServicesImplementation : public Exchange::IOttServices {
+    class OttServicesImplementation : public Exchange::IOttServices, public Exchange::IConfiguration {
     public:
         OttServicesImplementation(const OttServicesImplementation&) = delete;
         OttServicesImplementation& operator=(const OttServicesImplementation&) = delete;
@@ -37,13 +35,14 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         void Deinitialize(PluginHost::IShell* service);
 
-        // IUnknown implementation
+        // IConfiguration
         // PUBLIC_INTERFACE
-        void AddRef() const override;
-        // PUBLIC_INTERFACE
-        uint32_t Release() const override;
-        // PUBLIC_INTERFACE
-        void* QueryInterface(const uint32_t id) override;
+        uint32_t Configure(PluginHost::IShell* shell) override;
+
+        BEGIN_INTERFACE_MAP(OttServicesImplementation)
+            INTERFACE_ENTRY(Exchange::IOttServices)
+            INTERFACE_ENTRY(Exchange::IConfiguration)
+        END_INTERFACE_MAP
 
         // Exchange::IOttServices implementation
         // PUBLIC_INTERFACE
@@ -83,9 +82,6 @@ namespace Plugin {
         std::unique_ptr<PermissionsClient> _perms;
         std::string _permsEndpoint;
         bool _permsUseTls;
-
-        // Reference counter for COM-style lifetime management.
-        mutable std::atomic<uint32_t> _refCount {1};
     };
 
 } // namespace Plugin

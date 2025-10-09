@@ -12,18 +12,17 @@
 
 #include "Module.h"
 #include <core/core.h>
-#include <interfaces/IOttPermissionCache.h>
 
 #include <map>
 #include <mutex>
 #include <string>
 #include <vector>
-#include <atomic>
 
 namespace WPEFramework {
 namespace Plugin {
 
-    class OttPermissionCache : public Exchange::IOttPermissionCache {
+    // PUBLIC_INTERFACE
+    class OttPermissionCache {
     public:
         OttPermissionCache(const OttPermissionCache&) = delete;
         OttPermissionCache& operator=(const OttPermissionCache&) = delete;
@@ -34,23 +33,8 @@ namespace Plugin {
          * @return Reference to the global OttPermissionCache instance.
          */
 
-        // IUnknown reference counting (singleton-safe: never deletes the static instance)
         // PUBLIC_INTERFACE
-        uint32_t AddRef() const override;
-        /** Increase the reference count (no-op for lifetime as singleton). */
-
-        // PUBLIC_INTERFACE
-        uint32_t Release() const override;
-        /** Decrease the reference count (no delete; singleton stays alive). */
-
-        // BEGIN_INTERFACE_MAP provides QueryInterface; expose IOttPermissionCache and IUnknown
-        BEGIN_INTERFACE_MAP(OttPermissionCache)
-            INTERFACE_ENTRY(Exchange::IOttPermissionCache)
-        END_INTERFACE_MAP
-
-        // Exchange::IOttPermissionCache methods
-        // PUBLIC_INTERFACE
-        std::vector<string> GetPermissions(const string& appId) override;
+        std::vector<string> GetPermissions(const string& appId);
         /** Get permissions for the specified appId.
          * Thread-safe. Returns a copy of the stored permissions vector.
          * @param appId Application identifier string.
@@ -58,7 +42,7 @@ namespace Plugin {
          */
 
         // PUBLIC_INTERFACE
-        void UpdateCache(const string& appId, const std::vector<string>& permissions) override;
+        void UpdateCache(const string& appId, const std::vector<string>& permissions);
         /** Replace the cached permissions for appId with the provided list.
          * Thread-safe. Overwrites any existing entry.
          * @param appId Application identifier string.
@@ -66,20 +50,20 @@ namespace Plugin {
          */
 
         // PUBLIC_INTERFACE
-        void Invalidate(const string& appId) override;
+        void Invalidate(const string& appId);
         /** Remove any cached permissions for appId.
          * Thread-safe. No-op if appId is not present.
          * @param appId Application identifier string.
          */
 
         // PUBLIC_INTERFACE
-        void Clear() override;
+        void Clear();
         /** Clear the entire cache (maintenance utility).
          * Thread-safe. Removes all entries.
          */
 
         // PUBLIC_INTERFACE
-        bool Has(const string& appId) const override;
+        bool Has(const string& appId) const;
         /** Check if cache contains an entry for appId.
          * Thread-safe.
          * @param appId Application identifier string.
@@ -87,7 +71,7 @@ namespace Plugin {
          */
 
         // PUBLIC_INTERFACE
-        size_t Size() const override;
+        size_t Size() const;
         /** Get current number of distinct appId entries cached.
          * Thread-safe.
          * @return Number of entries in cache.
@@ -95,13 +79,9 @@ namespace Plugin {
 
     private:
         OttPermissionCache() = default;
-        ~OttPermissionCache() override = default;
+        ~OttPermissionCache() = default;
 
     private:
-        // Reference counter for COM-style lifetime management.
-        // This class is a Meyers singleton; Release() will not delete the instance.
-        mutable std::atomic<uint32_t> _refCount {1};
-
         // mutable to allow locking in const methods
         mutable std::mutex _admin;
         // In-memory cache; updates are performed only from non-const methods after acquiring the lock
