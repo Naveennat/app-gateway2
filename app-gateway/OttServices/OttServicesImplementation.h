@@ -20,6 +20,9 @@
 namespace WPEFramework {
 namespace Plugin {
 
+    // Implements both Exchange::IOttServices and Exchange::IConfiguration.
+    // IConfiguration exposure is required as the OttServices (facade) attempts to QueryInterface<IConfiguration>()
+    // on the remote implementation to pass its shell for configuration.
     class OttServicesImplementation : public Exchange::IOttServices, public Exchange::IConfiguration {
     public:
         OttServicesImplementation(const OttServicesImplementation&) = delete;
@@ -39,6 +42,8 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         uint32_t Configure(PluginHost::IShell* shell) override;
 
+        // Interface map advertises both IOttServices and IConfiguration.
+        // Note: INTERFACE_ENTRY(Exchange::IConfiguration) requires public inheritance from IConfiguration.
         BEGIN_INTERFACE_MAP(OttServicesImplementation)
             INTERFACE_ENTRY(Exchange::IOttServices)
             INTERFACE_ENTRY(Exchange::IConfiguration)

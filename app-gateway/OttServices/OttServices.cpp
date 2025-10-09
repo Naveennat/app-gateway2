@@ -80,7 +80,7 @@ namespace Plugin {
             _degraded = true;
 
             // Provide actionable diagnostics to operators - keep plugin active in degraded mode.
-            SYSLOG(Logging::Startup, (_T("OttServices::Initialize: IOttServices retrieval failed; starting in DEGRADATED mode"))));
+            SYSLOG(Logging::Startup, (_T("OttServices::Initialize: IOttServices retrieval failed; starting in DEGRADED mode")));
 
             SYSLOG(Logging::Startup, (_T("OttServices::Initialize: Action required:")));
             SYSLOG(Logging::Startup, (_T("  1) Ensure a plugin entry exists for class 'OttServicesImplementation' (callsign can vary)")));
