@@ -1,252 +1,126 @@
-#include "OttServices.h"
-#include "OttServicesImplementation.h"
+ /*
+  * SPDX-License-Identifier: Apache-2.0
+  *
+  * Thin JSON-RPC adapter for IOttServices, modeled after FbSettings.cpp.
+  * Delegates to an out-of-process implementation named "OttServicesImplementation".
+  */
 
-#include <core/Enumerate.h>
-#include <plugins/plugins.h>
-#include "UtilsLogging.h"
+#include "OttServices.h"
+#include "Version.h"
+
+#include <interfaces/IConfiguration.h>
+#include <interfaces/json/JsonData_OttServices.h>
+#include <interfaces/json/JOttServices.h>
+
+#define API_VERSION_NUMBER_MAJOR    OTTSERVICES_MAJOR_VERSION
+#define API_VERSION_NUMBER_MINOR    OTTSERVICES_MINOR_VERSION
+#define API_VERSION_NUMBER_PATCH    OTTSERVICES_PATCH_VERSION
 
 namespace WPEFramework {
 
+namespace {
+    static Plugin::Metadata<Plugin::OttServices> metadata(
+        // Version (Major, Minor, Patch)
+        API_VERSION_NUMBER_MAJOR, API_VERSION_NUMBER_MINOR, API_VERSION_NUMBER_PATCH,
+        // Preconditions
+        {},
+        // Terminations
+        {},
+        // Controls
+        {}
+    );
+}
+
 namespace Plugin {
 
-    namespace {
-        // Plugin metadata constants
-        static constexpr const TCHAR* kOttServicesPluginName = _T("OttServices");
-        static constexpr const TCHAR* kOttServicesCategory = _T("app-gateway");
-        static constexpr const TCHAR* kOttServicesVersion = _T("1.0.0"); // Adjust if mandated by spec.
-
-        // JSON-RPC method names
-        static constexpr const TCHAR* kMethodPing = _T("ping");
-        static constexpr const TCHAR* kMethodGetPermissions = _T("getpermissions");
-        static constexpr const TCHAR* kMethodGetPermissionsAlias = _T("getPermissions"); // camelCase alias
-        static constexpr const TCHAR* kMethodInvalidatePermissions = _T("invalidatepermissions");
-        static constexpr const TCHAR* kMethodUpdatePermissionsCache = _T("updatepermissionscache");
-
-        // JSON-RPC event names
-        static constexpr const TCHAR* kEventStateChanged = _T("statechanged");
-    }
-
-    // Register the service so Controller can instantiate it
-    SERVICE_REGISTRATION(OttServices, 1, 0, 0);
+    SERVICE_REGISTRATION(OttServices, API_VERSION_NUMBER_MAJOR, API_VERSION_NUMBER_MINOR, API_VERSION_NUMBER_PATCH);
 
     OttServices::OttServices()
-        : PluginHost::JSONRPC()
-        , mService(nullptr)
-        , _implementation(nullptr)
-        , _interface(nullptr)
-        , _version(kOttServicesVersion)
-        , mConnectionId(0)
-        , _notification(*this)
-        , _adminLock()
+        : _service(nullptr)
+        , _ottServices(nullptr)
+        , _connectionId(0)
     {
-        // Expose version metadata to JSON-RPC clients explicitly (major.minor.patch)
-        RegisterVersion(kOttServicesPluginName, 1, 0, 0);
-
-        RegisterAll();
-        LOGINFO("OttServices: constructed");
+        SYSLOG(Logging::Startup, (_T("OttServices Constructor")));
     }
 
-    OttServices::~OttServices() {
-        UnregisterAll();
-        LOGINFO("OttServices: destructed");
-        // _implementation is owned by Initialize/Deinitialize lifecycle.
+    OttServices::~OttServices()
+    {
+        SYSLOG(Logging::Shutdown, (string(_T("OttServices Destructor"))));
     }
 
-    void OttServices::RegisterAll() {
-        Register<OttServices::PingParams, OttServices::PingResult>(kMethodPing, &OttServices::endpoint_ping, this);
-        Register<OttServices::GetPermissionsParams, OttServices::GetPermissionsResult>(kMethodGetPermissions, &OttServices::endpoint_getpermissions, this);
-        // Backwards-compatible alias with camelCase naming
-        Register<OttServices::GetPermissionsParams, OttServices::GetPermissionsResult>(kMethodGetPermissionsAlias, &OttServices::endpoint_getpermissions, this);
-        Register<OttServices::InvalidatePermissionsParams, Core::JSON::Container>(kMethodInvalidatePermissions, &OttServices::endpoint_invalidatepermissions, this);
-        Register<OttServices::UpdatePermissionsCacheParams, OttServices::UpdatePermissionsCacheResult>(kMethodUpdatePermissionsCache, &OttServices::endpoint_updatepermissionscache, this);
-        LOGINFO("OttServices: JSON-RPC methods registered");
-    }
-
-    void OttServices::UnregisterAll() {
-        Unregister(kMethodPing);
-        Unregister(kMethodGetPermissions);
-        Unregister(kMethodGetPermissionsAlias);
-        Unregister(kMethodInvalidatePermissions);
-        Unregister(kMethodUpdatePermissionsCache);
-        LOGINFO("OttServices: JSON-RPC methods unregistered");
-    }
-
-    // PUBLIC_INTERFACE
-    const string OttServices::Initialize(PluginHost::IShell* service) {
+    /* virtual */ const string OttServices::Initialize(PluginHost::IShell* service)
+    {
         ASSERT(service != nullptr);
-        ASSERT(mService == nullptr);
-        LOGINFO("OttServices: Initialize called");
+        ASSERT(_ottServices == nullptr);
 
-        mService = service;
+        SYSLOG(Logging::Startup, (_T("OttServices::Initialize: PID=%u"), getpid()));
 
-        // Register for remote connection notifications (parity with AppNotifications/Analytics/SharedStorage)
-        mService->Register(&_notification);
-        mConnectionId = 0; // Will stay 0 as we use in-process implementation
+        _service = service;
+        _service->AddRef();
 
-        // Instantiate implementation
-        Core::SafeSyncType<Core::CriticalSection> guard(_adminLock);
-        _implementation = new (std::nothrow) OttServicesImplementation();
-        if (_implementation == nullptr) {
-            LOGERR("OttServices: failed to allocate implementation");
-            return string(_T("OttServices: failed to allocate implementation"));
-        }
+        // Acquire the remote IOttServices implementation
+        _ottServices = service->Root<Exchange::IOttServices>(_connectionId, 2000, _T("OttServicesImplementation"));
 
-        // Perform any implementation-level initialization
-        const string initError = _implementation->Initialize(mService);
-        if (initError.empty() == false) {
-            LOGERR("OttServices: implementation initialization failed: %s", initError.c_str());
-            delete _implementation;
-            _implementation = nullptr;
-            return initError;
-        }
-
-        // Expose COMRPC interface via aggregation
-        _interface = static_cast<Exchange::IOttServices*>(_implementation);
-        LOGINFO("OttServices: initialized successfully");
-
-        return string(); // Empty string indicates success in Thunder plugins
-    }
-
-    // PUBLIC_INTERFACE
-    void OttServices::Deinitialize(PluginHost::IShell* service) {
-        LOGINFO("OttServices: Deinitialize called");
-        ASSERT(mService == service);
-
-        // Unregister remote connection notifications
-        if (mService != nullptr) {
-            mService->Unregister(&_notification);
-        }
-
-        Core::SafeSyncType<Core::CriticalSection> guard(_adminLock);
-        if (_implementation != nullptr) {
-            _implementation->Deinitialize(service);
-            delete _implementation;
-            _implementation = nullptr;
-            _interface = nullptr;
-        }
-
-        mConnectionId = 0;
-        mService = nullptr;
-        LOGINFO("OttServices: deinitialized");
-    }
-
-    // PUBLIC_INTERFACE
-    string OttServices::Information() const {
-        // Provide plugin descriptive information
-        const string info = string(kOttServicesPluginName) + _T(" plugin v") + _version + _T(" (") + kOttServicesCategory + _T(")");
-        LOGINFO("OttServices: Information requested: %s", info.c_str());
-        return info;
-    }
-
-    void OttServices::Deactivated(RPC::IRemoteConnection* connection) {
-        if ((connection != nullptr) && (connection->Id() == mConnectionId)) {
-            ASSERT(mService != nullptr);
-            Core::IWorkerPool::Instance().Schedule(
-                Core::Time::Now(),
-                PluginHost::IShell::Job::Create(
-                    mService, PluginHost::IShell::DEACTIVATED, PluginHost::IShell::FAILURE));
-        }
-    }
-
-    // JSON-RPC method implementation
-    uint32_t OttServices::endpoint_ping(const PingParams& params, PingResult& result) {
-        // Delegate to implementation
-        const string message = (params.Message.IsSet() ? params.Message.Value() : string());
-        LOGINFO("OttServices: endpoint_ping received (message='%s')", message.c_str());
-
-        string reply;
-        const uint32_t status = (_implementation != nullptr)
-            ? _implementation->Ping(message, reply)
-            : Core::ERROR_UNAVAILABLE;
-
-        if (status == Core::ERROR_NONE) {
-            result.Reply = reply;
-            LOGINFO("OttServices: endpoint_ping ok (reply='%s')", reply.c_str());
-        } else {
-            LOGWARN("OttServices: endpoint_ping failed (rc=%u)", status);
-        }
-        return status;
-    }
-
-    uint32_t OttServices::endpoint_getpermissions(const GetPermissionsParams& params, GetPermissionsResult& result) {
-        if (_implementation == nullptr) {
-            LOGERR("OttServices: endpoint_getpermissions unavailable (implementation missing)");
-            return Core::ERROR_UNAVAILABLE;
-        }
-        if (!params.AppId.IsSet() || params.AppId.Value().empty()) {
-            LOGERR("OttServices: endpoint_getpermissions bad request (missing appId)");
-            return Core::ERROR_BAD_REQUEST;
-        }
-        const string appId = params.AppId.Value();
-        LOGINFO("OttServices: endpoint_getpermissions called (appId='%s')", appId.c_str());
-
-        std::vector<string> perms;
-        const Core::hresult status = _implementation->GetPermissions(appId, perms);
-        if (status == Core::ERROR_NONE) {
-            for (const auto& p : perms) {
-                Core::JSON::String v; v = p;
-                result.Permissions.Add(v);
+        if (_ottServices != nullptr) {
+            // If the remote supports IConfiguration, let it configure with our shell.
+            auto configConnection = _ottServices->QueryInterface<Exchange::IConfiguration>();
+            if (configConnection != nullptr) {
+                configConnection->Configure(service);
+                configConnection->Release();
             }
-            LOGINFO("OttServices: endpoint_getpermissions ok (appId='%s', count=%zu)", appId.c_str(), perms.size());
+
+            // Register JSON-RPC methods/events for IOttServices
+            Exchange::JOttServices::Register(*this, _ottServices);
         } else {
-            LOGWARN("OttServices: endpoint_getpermissions failed (appId='%s', rc=%u)", appId.c_str(), status);
+            SYSLOG(Logging::Startup, (_T("OttServices::Initialize: Failed to initialise OttServices plugin")));
         }
-        return status;
+
+        // On success return empty, to indicate there is no error text.
+        return ((_ottServices != nullptr))
+            ? EMPTY_STRING
+            : _T("Could not retrieve the OttServices interface.");
     }
 
-    uint32_t OttServices::endpoint_invalidatepermissions(const InvalidatePermissionsParams& params, Core::JSON::Container& /*response*/) {
-        if (_implementation == nullptr) {
-            LOGERR("OttServices: endpoint_invalidatepermissions unavailable (implementation missing)");
-            return Core::ERROR_UNAVAILABLE;
-        }
-        if (!params.AppId.IsSet() || params.AppId.Value().empty()) {
-            LOGERR("OttServices: endpoint_invalidatepermissions bad request (missing appId)");
-            return Core::ERROR_BAD_REQUEST;
-        }
-        const string appId = params.AppId.Value();
-        LOGINFO("OttServices: endpoint_invalidatepermissions called (appId='%s')", appId.c_str());
+    /* virtual */ void OttServices::Deinitialize(PluginHost::IShell* service)
+    {
+        SYSLOG(Logging::Shutdown, (string(_T("OttServices::Deinitialize"))));
+        ASSERT(service == _service);
 
-        const uint32_t rc = _implementation->InvalidatePermissions(appId);
-        if (rc == Core::ERROR_NONE) {
-            LOGINFO("OttServices: endpoint_invalidatepermissions ok (appId='%s')", appId.c_str());
-        } else {
-            LOGWARN("OttServices: endpoint_invalidatepermissions failed (appId='%s', rc=%u)", appId.c_str(), rc);
+        if (_ottServices != nullptr) {
+            Exchange::JOttServices::Unregister(*this);
+
+            RPC::IRemoteConnection* connection(service->RemoteConnection(_connectionId));
+            VARIABLE_IS_NOT_USED uint32_t result = _ottServices->Release();
+            _ottServices = nullptr;
+
+            // It should have been the last reference we are releasing, so it should end up in a
+            // DESTRUCTION_SUCCEEDED, if not we are leaking...
+            ASSERT(result == Core::ERROR_DESTRUCTION_SUCCEEDED);
+
+            // If this was running in a (container) process...
+            if (connection != nullptr) {
+                // Trigger a cleanup sequence for out-of-process code.
+                connection->Terminate();
+                connection->Release();
+            }
         }
-        return rc;
+
+        _connectionId = 0;
+        _service->Release();
+        _service = nullptr;
+
+        SYSLOG(Logging::Shutdown, (string(_T("OttServices de-initialised"))));
     }
 
-    uint32_t OttServices::endpoint_updatepermissionscache(const UpdatePermissionsCacheParams& params, UpdatePermissionsCacheResult& result) {
-        if (_implementation == nullptr) {
-            LOGERR("OttServices: endpoint_updatepermissionscache unavailable (implementation missing)");
-            return Core::ERROR_UNAVAILABLE;
-        }
-        if (!params.AppId.IsSet() || params.AppId.Value().empty()) {
-            LOGERR("OttServices: endpoint_updatepermissionscache bad request (missing appId)");
-            return Core::ERROR_BAD_REQUEST;
-        }
-        const string appId = params.AppId.Value();
-        LOGINFO("OttServices: endpoint_updatepermissionscache called (appId='%s')", appId.c_str());
+    void OttServices::Deactivated(RPC::IRemoteConnection* connection)
+    {
+        if (connection->Id() == _connectionId) {
 
-        uint32_t count = 0;
-        const Core::hresult status = _implementation->UpdatePermissionsCache(appId, count);
-        if (status == Core::ERROR_NONE) {
-            result.Updated = true;
-            result.Count = count;
-            LOGINFO("OttServices: endpoint_updatepermissionscache ok (appId='%s', count=%u)", appId.c_str(), count);
-        } else {
-            result.Updated = false;
-            result.Count = static_cast<uint32_t>(0);
-            LOGWARN("OttServices: endpoint_updatepermissionscache failed (appId='%s', rc=%u)", appId.c_str(), status);
-        }
-        return status;
-    }
+            ASSERT(_service != nullptr);
 
-    void OttServices::EventStateChanged(const string& state) {
-        // Send a JSON-RPC event to clients
-        Core::JSON::String payload;
-        payload = state;
-        Notify(kEventStateChanged, payload);
-        LOGINFO("OttServices: EventStateChanged '%s' notified", state.c_str());
+            Core::IWorkerPool::Instance().Submit(
+                PluginHost::IShell::Job::Create(_service, PluginHost::IShell::DEACTIVATED, PluginHost::IShell::FAILURE));
+        }
     }
 
 } // namespace Plugin
