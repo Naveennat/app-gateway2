@@ -5,6 +5,11 @@
  *
  * Thin JSON-RPC adapter plugin for delegating calls to an out-of-process
  * IOttServices implementation. Pattern mirrors FbSettings.
+ *
+ * If the remote IOttServices can not be retrieved during Initialize
+ * (e.g. missing plugin config, missing Proxy/Stub, wrong class name),
+ * the plugin now starts in a degraded mode and logs actionable
+ * guidance, instead of failing the activation.
  */
 
 #include "Module.h"
@@ -27,7 +32,10 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         const string Initialize(PluginHost::IShell* shell) override;
-        /** Initialize the plugin and acquire the out-of-process IOttServices interface. */
+        /** Initialize the plugin and acquire the out-of-process IOttServices interface.
+         *  If remote acquisition fails, the plugin logs actionable diagnostics and
+         *  remains active in a degraded mode (no IOttServices bound).
+         */
 
         // PUBLIC_INTERFACE
         void Deinitialize(PluginHost::IShell* service) override;
@@ -50,6 +58,7 @@ namespace Plugin {
         PluginHost::IShell* _service;
         Exchange::IOttServices* _ottServices;
         uint32_t _connectionId;
+        bool _degraded { false }; // true if running without a bound IOttServices
     };
 
 } // namespace Plugin

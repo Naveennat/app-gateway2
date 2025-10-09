@@ -12,6 +12,8 @@
 #include <interfaces/json/JsonData_OttServices.h>
 #include <interfaces/json/JOttServices.h>
 
+#include <unistd.h> // getpid
+
 #define API_VERSION_NUMBER_MAJOR    OTTSERVICES_MAJOR_VERSION
 #define API_VERSION_NUMBER_MINOR    OTTSERVICES_MINOR_VERSION
 #define API_VERSION_NUMBER_PATCH    OTTSERVICES_PATCH_VERSION
@@ -57,8 +59,9 @@ namespace Plugin {
 
         _service = service;
         _service->AddRef();
+        _degraded = false;
 
-        // Acquire the remote IOttServices implementation
+        // Attempt to acquire the out-of-process IOttServices implementation
         _ottServices = service->Root<Exchange::IOttServices>(_connectionId, 2000, _T("OttServicesImplementation"));
 
         if (_ottServices != nullptr) {
@@ -71,14 +74,29 @@ namespace Plugin {
 
             // Register JSON-RPC methods/events for IOttServices
             Exchange::JOttServices::Register(*this, _ottServices);
+
+            SYSLOG(Logging::Startup, (_T("OttServices::Initialize: IOttServices bound via Root() [connId=%u]"), _connectionId));
         } else {
-            SYSLOG(Logging::Startup, (_T("OttServices::Initialize: Failed to initialise OttServices plugin")));
+            _degraded = true;
+
+            // Provide actionable diagnostics to operators - keep plugin active in degraded mode.
+            SYSLOG(Logging::Startup, (_T("OttServices::Initialize: IOttServices retrieval failed; starting in DEGRADATED mode"))));
+
+            SYSLOG(Logging::Startup, (_T("OttServices::Initialize: Action required:")));
+            SYSLOG(Logging::Startup, (_T("  1) Ensure a plugin entry exists for class 'OttServicesImplementation' (callsign can vary)")));
+            SYSLOG(Logging::Startup, (_T("     Example (plugins/OttServicesImplementation.json):")));
+            SYSLOG(Logging::Startup, (_T("       { \"callsign\": \"OttServicesImplementation\", \"locator\": \"libOttServicesImplementation.so\",")));
+            SYSLOG(Logging::Startup, (_T("         \"classname\": \"OttServicesImplementation\", \"autostart\": true }")));
+            SYSLOG(Logging::Startup, (_T("  2) Ensure COM-RPC Proxy/Stub for Exchange::IOttServices is built and discoverable")));
+            SYSLOG(Logging::Startup, (_T("     - ID must match ID_OTT_SERVICES (0x0000F812) on both sides")));
+            SYSLOG(Logging::Startup, (_T("     - The Proxy/Stub library must be under the configured proxystub path")));
+            SYSLOG(Logging::Startup, (_T("  3) If using a different class/callsign, update the Root() className or plugin config accordingly")));
+            SYSLOG(Logging::Startup, (_T("  4) Optionally activate the implementation via Controller.LifeTime.Activate")));
+            SYSLOG(Logging::Startup, (_T("OttServices will remain active but without a bound IOttServices interface until the above is corrected.")));
         }
 
-        // On success return empty, to indicate there is no error text.
-        return ((_ottServices != nullptr))
-            ? EMPTY_STRING
-            : _T("Could not retrieve the OttServices interface.");
+        // Always return EMPTY_STRING to avoid failing activation; degraded mode is signaled via logs.
+        return EMPTY_STRING;
     }
 
     /* virtual */ void OttServices::Deinitialize(PluginHost::IShell* service)
@@ -108,6 +126,7 @@ namespace Plugin {
         _connectionId = 0;
         _service->Release();
         _service = nullptr;
+        _degraded = false;
 
         SYSLOG(Logging::Shutdown, (string(_T("OttServices de-initialised"))));
     }
