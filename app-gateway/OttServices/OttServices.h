@@ -1,19 +1,19 @@
 #pragma once
 
-/*
- * SPDX-License-Identifier: Apache-2.0
- *
- * Thin JSON-RPC adapter plugin for delegating calls to an out-of-process
- * IOttServices implementation. Pattern mirrors FbSettings.
- *
- * If the remote IOttServices can not be retrieved during Initialize
- * (e.g. missing plugin config, missing Proxy/Stub, wrong class name),
- * the plugin now starts in a degraded mode and logs actionable
- * guidance, instead of failing the activation.
- */
+// Module: OttServices
+// This header declares the OttServices Thunder plugin public interface and JSON-RPC API.
+// Follows naming and structural conventions similar to AppNotifications plugin in this codebase.
 
-#include "Module.h"
-#include <interfaces/IOttServices.h>
+#include <core/core.h>
+#include <core/JSON.h>
+#include <plugins/IPlugin.h>
+#include <plugins/JSONRPC.h>
+#include <plugins/IShell.h>
+#include <atomic>
+#include <type_traits>
+#include <utility>
+
+#include  <interfaces/IOttServices.h>
 
 namespace WPEFramework {
 
@@ -32,10 +32,7 @@ namespace Plugin {
 
         // PUBLIC_INTERFACE
         const string Initialize(PluginHost::IShell* shell) override;
-        /** Initialize the plugin and acquire the out-of-process IOttServices interface.
-         *  If remote acquisition fails, the plugin logs actionable diagnostics and
-         *  remains active in a degraded mode (no IOttServices bound).
-         */
+        /** Initialize the plugin and acquire the out-of-process IOttServices interface. */
 
         // PUBLIC_INTERFACE
         void Deinitialize(PluginHost::IShell* service) override;
@@ -58,8 +55,8 @@ namespace Plugin {
         PluginHost::IShell* _service;
         Exchange::IOttServices* _ottServices;
         uint32_t _connectionId;
-        bool _degraded { false }; // true if running without a bound IOttServices
     };
 
 } // namespace Plugin
 } // namespace WPEFramework
+

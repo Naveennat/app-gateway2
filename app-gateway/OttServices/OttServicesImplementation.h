@@ -3,12 +3,15 @@
 // Internal implementation for the OttServices plugin.
 // Contains business logic and state, separated from the Thunder plugin facade.
 
+#include <atomic>
 #include <core/core.h>
 #include <core/JSON.h>
 #include <plugins/IShell.h>
 #include <memory>
 #include <vector>
 #include <string>
+#include <type_traits>
+#include <utility>
 
 #include "Module.h"
 #include <interfaces/IOttServices.h>
@@ -20,35 +23,31 @@
 namespace WPEFramework {
 namespace Plugin {
 
-    // Implements both Exchange::IOttServices and Exchange::IConfiguration.
-    // IConfiguration exposure is required as the OttServices (facade) attempts to QueryInterface<IConfiguration>()
-    // on the remote implementation to pass its shell for configuration.
-    class OttServicesImplementation : public Exchange::IOttServices, public Exchange::IConfiguration {
+    class OttServicesImplementation : public Exchange::IOttServices , public Exchange::IConfiguration{
     public:
         OttServicesImplementation(const OttServicesImplementation&) = delete;
         OttServicesImplementation& operator=(const OttServicesImplementation&) = delete;
 
+        
         // PUBLIC_INTERFACE
         OttServicesImplementation();
         // PUBLIC_INTERFACE
         ~OttServicesImplementation() override;
+
+        
+        BEGIN_INTERFACE_MAP(OttServicesImplementation)
+        INTERFACE_ENTRY(Exchange::IOttServices)
+        INTERFACE_ENTRY(Exchange::IConfiguration)
+        END_INTERFACE_MAP
 
         // PUBLIC_INTERFACE
         string Initialize(PluginHost::IShell* service);
         // PUBLIC_INTERFACE
         void Deinitialize(PluginHost::IShell* service);
 
-        // IConfiguration
-        // PUBLIC_INTERFACE
-        uint32_t Configure(PluginHost::IShell* shell) override;
-
-        // Interface map advertises both IOttServices and IConfiguration.
-        // Note: INTERFACE_ENTRY(Exchange::IConfiguration) requires public inheritance from IConfiguration.
-        BEGIN_INTERFACE_MAP(OttServicesImplementation)
-            INTERFACE_ENTRY(Exchange::IOttServices)
-            INTERFACE_ENTRY(Exchange::IConfiguration)
-        END_INTERFACE_MAP
-
+        // IConfiguration interface
+        uint32_t Configure(PluginHost::IShell* shell);
+    
         // Exchange::IOttServices implementation
         // PUBLIC_INTERFACE
         Core::hresult Ping(const string& message, string& reply) override;
@@ -87,6 +86,9 @@ namespace Plugin {
         std::unique_ptr<PermissionsClient> _perms;
         std::string _permsEndpoint;
         bool _permsUseTls;
+
+        // Reference counter for COM-style lifetime management.
+        mutable std::atomic<uint32_t> _refCount {1};
     };
 
 } // namespace Plugin

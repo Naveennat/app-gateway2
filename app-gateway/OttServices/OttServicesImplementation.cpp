@@ -3,7 +3,7 @@
 #include <core/Enumerate.h>
 #include "UtilsLogging.h"
 
-// Use in-module permission cache and JSONRPC direct link utils
+ // Use in-module permission cache and JSONRPC direct link utils
 #include "OttPermissionCache.h"
 #include "UtilsJsonrpcDirectLink.h"
 
@@ -22,12 +22,17 @@ namespace Plugin {
         , _state(_T("uninitialized"))
         , _perms(nullptr)
         , _permsEndpoint(kDefaultPermsEndpoint)
-        , _permsUseTls(true) {
+        , _permsUseTls(true)
+        , _refCount(1) {
     }
 
     OttServicesImplementation::~OttServicesImplementation() = default;
 
     uint32_t OttServicesImplementation::Configure(PluginHost::IShell* shell) {
+
+        LOGINFO("Configuring OttServices");
+        ASSERT(shell != nullptr);
+        shell->AddRef();
         // Configure using the provided shell (mirrors Initialize logic; return Core::ERROR_NONE on success)
         Initialize(shell);
         return Core::ERROR_NONE;
@@ -67,21 +72,25 @@ namespace Plugin {
         LOGINFO("OttServices: Deinitialize implementation");
     }
 
+ 
     // Exchange::IOttServices implementation and local variants
 
     Core::hresult OttServicesImplementation::Ping(const string& message, string& reply) {
+        LOGINFO("OttServices: Ping called");
         reply = (message.empty() ? string(_T("pong")) : (string(_T("pong: ")) + message));
         LOGINFO("OttServices: Ping called (message='%s', reply='%s')", message.c_str(), reply.c_str());
         return Core::ERROR_NONE;
     }
 
     Core::hresult OttServicesImplementation::GetPermissions(const string& appId, std::vector<string>& permissionsOut) {
+        LOGINFO("OttServices: GetPermissions called");
         permissionsOut = OttPermissionCache::Instance().GetPermissions(appId);
         LOGINFO("OttServices: GetPermissions (vector) appId='%s', count=%zu", appId.c_str(), permissionsOut.size());
         return Core::ERROR_NONE;
     }
 
     Core::hresult OttServicesImplementation::GetPermissions(const string& appId, string& permissionsJson) {
+        LOGINFO("OttServices GetPermissions 2 called");
         std::vector<string> permissions;
         Core::hresult rc = GetPermissions(appId, permissions);
         if (rc != Core::ERROR_NONE) {
@@ -111,54 +120,78 @@ namespace Plugin {
                                                         std::string& deviceId,
                                                         std::string& accountId,
                                                         std::string& partnerId) const {
+        // Parity note: This implementation mirrors Supporting_Files/DeviceInfo.cpp patterns:
+        // - Uses Utils::GetThunderControllerClient to directly invoke AuthService methods.
+        // - Validates presence of expected labels and non-empty values.
+        // - Requires "expires" when fetching service access token (as in DeviceInfo::GetServiceAccessToken).
+        // - Returns false on failure, allowing callers to map to Core::ERROR_UNAVAILABLE consistently.
         if (_service == nullptr) {
+            LOGERR("OttServices: CollectAuthMetadata called with null service");
             return false;
         }
+
         auto link = Utils::GetThunderControllerClient(_service, kAuthServiceCallsign);
-        if (!link) {
+        if (link == nullptr) {
             LOGERR("OttServices: failed to acquire AuthService direct link");
             return false;
         }
 
-        WPEFramework::Core::JSON::VariantContainer params;
-        WPEFramework::Core::JSON::VariantContainer response;
+        // Use JsonObject for request/response parity with DeviceInfo.cpp
+        JsonObject params;
+        JsonObject response;
 
-        // Service Access Token
-        uint32_t rc = link->Invoke<WPEFramework::Core::JSON::VariantContainer, WPEFramework::Core::JSON::VariantContainer>("getServiceAccessToken", params, response);
-        if ((rc != Core::ERROR_NONE) || (response.HasLabel(_T("token")) == false)) {
-            LOGERR("OttServices: getServiceAccessToken failed rc=%u", rc);
+        // Service Access Token (require token and expires)
+        uint32_t result = link->Invoke<JsonObject, JsonObject>("getServiceAccessToken", params, response);
+        if ((result == Core::ERROR_NONE) && response.HasLabel("token") && response.HasLabel("expires")) {
+            bearerToken = response["token"].String();
+        } else {
+            LOGERR("OttServices: getServiceAccessToken failed rc=%u", result);
             return false;
         }
-        bearerToken = response[_T("token")].String();
         response.Clear();
 
         // XDeviceId
-        rc = link->Invoke<WPEFramework::Core::JSON::VariantContainer, WPEFramework::Core::JSON::VariantContainer>("getXDeviceId", params, response);
-        if ((rc != Core::ERROR_NONE) || (response.HasLabel(_T("xDeviceId")) == false)) {
-            LOGERR("OttServices: getXDeviceId failed rc=%u", rc);
+        result = link->Invoke<JsonObject, JsonObject>("getXDeviceId", params, response);
+        if ((result == Core::ERROR_NONE) && response.HasLabel("xDeviceId")) {
+            deviceId = response["xDeviceId"].String();
+            if (deviceId.empty()) {
+                LOGERR("OttServices: getXDeviceId returned empty xDeviceId");
+                return false;
+            }
+        } else {
+            LOGERR("OttServices: getXDeviceId failed rc=%u", result);
             return false;
         }
-        deviceId = response[_T("xDeviceId")].String();
         response.Clear();
 
         // ServiceAccountId
-        rc = link->Invoke<WPEFramework::Core::JSON::VariantContainer, WPEFramework::Core::JSON::VariantContainer>("getServiceAccountId", params, response);
-        if ((rc != Core::ERROR_NONE) || (response.HasLabel(_T("serviceAccountId")) == false)) {
-            LOGERR("OttServices: getServiceAccountId failed rc=%u", rc);
+        result = link->Invoke<JsonObject, JsonObject>("getServiceAccountId", params, response);
+        if ((result == Core::ERROR_NONE) && response.HasLabel("serviceAccountId")) {
+            accountId = response["serviceAccountId"].String();
+            if (accountId.empty()) {
+                LOGERR("OttServices: getServiceAccountId returned empty serviceAccountId");
+                return false;
+            }
+        } else {
+            LOGERR("OttServices: getServiceAccountId failed rc=%u", result);
             return false;
         }
-        accountId = response[_T("serviceAccountId")].String();
         response.Clear();
 
         // PartnerId (from getDeviceId payload)
-        rc = link->Invoke<WPEFramework::Core::JSON::VariantContainer, WPEFramework::Core::JSON::VariantContainer>("getDeviceId", params, response);
-        if ((rc != Core::ERROR_NONE) || (response.HasLabel(_T("partnerId")) == false)) {
-            LOGERR("OttServices: getDeviceId failed rc=%u", rc);
+        result = link->Invoke<JsonObject, JsonObject>("getDeviceId", params, response);
+        if ((result == Core::ERROR_NONE) && response.HasLabel("partnerId")) {
+            partnerId = response["partnerId"].String();
+            if (partnerId.empty()) {
+                LOGERR("OttServices: getDeviceId returned empty partnerId");
+                return false;
+            }
+        } else {
+            LOGERR("OttServices: getDeviceId failed rc=%u", result);
             return false;
         }
-        partnerId = response[_T("partnerId")].String();
 
-        // Minimal validation
+        // Final sanity check
         if (bearerToken.empty() || deviceId.empty() || accountId.empty() || partnerId.empty()) {
             LOGERR("OttServices: one or more required AuthService values are empty (token=[REDACTED], device=%s, account=%s, partner=%s)",
                    deviceId.c_str(), accountId.c_str(), partnerId.c_str());

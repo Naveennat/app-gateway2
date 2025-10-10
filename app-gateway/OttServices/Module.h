@@ -20,12 +20,6 @@
 #endif
 #endif
 
-// Assign a unique interface ID for IOttServices. Keep stable across builds.
-#ifndef ID_OTT_SERVICES
-#define ID_OTT_SERVICES 0x0000F812
-#endif
-
-
 
 // Compatibility alias: some Thunder/WPEFramework versions use VariantContainer as the dynamic JSON object.
 // Provide an alias so Object is always available in code that uses it.

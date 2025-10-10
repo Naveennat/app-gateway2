@@ -10,7 +10,6 @@
 // - Invalidate(appId) to drop cached entry for an app.
 // - Clear() to drop all cached entries (maintenance utility).
 
-#include "Module.h"
 #include <core/core.h>
 
 #include <map>
@@ -21,7 +20,6 @@
 namespace WPEFramework {
 namespace Plugin {
 
-    // PUBLIC_INTERFACE
     class OttPermissionCache {
     public:
         OttPermissionCache(const OttPermissionCache&) = delete;

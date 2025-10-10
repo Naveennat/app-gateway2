@@ -227,7 +227,7 @@ OttPermissionCache& OttPermissionCache::Instance() {
     return g_instance;
 }
 
-// PUBLIC_INTERFACE
+ // PUBLIC_INTERFACE
 std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
     // Copy under lock into a local result to prevent reading shared state without protection
     std::vector<string> result;
