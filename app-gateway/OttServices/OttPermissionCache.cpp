@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdio>
+#include <cerrno>
 
 #include "UtilsLogging.h"
 
@@ -10,7 +11,7 @@ namespace WPEFramework {
 namespace Plugin {
 
 namespace {
-    // Path to the on-disk permissions cache (line-delimited JSON, one record per app update)
+    // Path to the on-disk permissions cache (line-delimited JSON, one record per app)
     static constexpr const char* kPermsFile = "/opt/app_perms.json";
 
     // Minimal escaping for JSON string values: escape backslashes and quotes
@@ -44,14 +45,8 @@ namespace {
         return out;
     }
 
-    // Append a single JSON line: {"appId":"...","permissions":["p1","p2",...]}
-    inline bool AppendPermsLine(const std::string& appId, const std::vector<std::string>& perms) {
-        std::ofstream ofs(kPermsFile, std::ios::out | std::ios::app);
-        if (!ofs.is_open()) {
-            LOGERR("OttPermissionCache: failed to open %s for append", kPermsFile);
-            return false;
-        }
-
+    // Compose a single JSON line: {"appId":"...","permissions":["p1","p2",...]}
+    inline std::string ComposePermsJsonLine(const std::string& appId, const std::vector<std::string>& perms) {
         std::ostringstream oss;
         oss << "{\"appId\":\"" << EscapeJSONString(appId) << "\",\"permissions\":[";
         for (size_t i = 0; i < perms.size(); ++i) {
@@ -61,13 +56,22 @@ namespace {
             oss << "\"" << EscapeJSONString(perms[i]) << "\"";
         }
         oss << "]}";
+        return oss.str();
+    }
 
-        ofs << oss.str() << '\n';
+    // Append a single JSON line to the cache file
+    inline bool AppendPermsLine(const std::string& appId, const std::vector<std::string>& perms) {
+        std::ofstream ofs(kPermsFile, std::ios::out | std::ios::app);
+        if (!ofs.is_open()) {
+            LOGERR("OttPermissionCache: failed to open %s for append", kPermsFile);
+            return false;
+        }
+        const std::string line = ComposePermsJsonLine(appId, perms);
+        ofs << line << '\n';
         if (!ofs.good()) {
             LOGERR("OttPermissionCache: write to %s failed", kPermsFile);
             return false;
         }
-
         return true;
     }
 
@@ -82,12 +86,12 @@ namespace {
         if (pos == std::string::npos) {
             return false;
         }
-        pos = line.find('"', pos + keyAppId.size());
+        pos = line.find('\"', pos + keyAppId.size());
         if (pos == std::string::npos) {
             return false;
         }
         // Next quote starts the value
-        pos = line.find('"', pos + 1);
+        pos = line.find('\"', pos + 1);
         if (pos == std::string::npos) {
             return false;
         }
@@ -102,7 +106,7 @@ namespace {
                 escape = false;
             } else if (c == '\\') {
                 escape = true;
-            } else if (c == '"') {
+            } else if (c == '\"') {
                 break;
             }
         }
@@ -135,7 +139,7 @@ namespace {
                 ++cur;
             }
             if (cur >= rbrack) break;
-            if (line[cur] != '"') {
+            if (line[cur] != '\"') {
                 // Not a string entry, skip until next comma or end
                 size_t next = line.find(',', cur);
                 if (next == std::string::npos || next > rbrack) {
@@ -154,7 +158,7 @@ namespace {
                     esc = false;
                 } else if (c == '\\') {
                     esc = true;
-                } else if (c == '"') {
+                } else if (c == '\"') {
                     break;
                 }
             }
@@ -205,6 +209,40 @@ namespace {
         }
 
         return (loaded > 0);
+    }
+
+    // Atomically rewrite the entire cache file with provided entries:
+    // - Writes to a temporary file first, then renames to target path.
+    // - Ensures only one entry per appId exists.
+    inline bool SaveAllAtomic(const std::map<std::string, std::vector<std::string>>& entries) {
+        const std::string tmpPath = std::string(kPermsFile) + ".tmp";
+        {
+            std::ofstream ofs(tmpPath, std::ios::out | std::ios::trunc);
+            if (!ofs.is_open()) {
+                LOGERR("OttPermissionCache: failed to open %s for write", tmpPath.c_str());
+                return false;
+            }
+            for (const auto& kv : entries) {
+                ofs << ComposePermsJsonLine(kv.first, kv.second) << '\n';
+                if (!ofs.good()) {
+                    LOGERR("OttPermissionCache: failed writing to %s", tmpPath.c_str());
+                    return false;
+                }
+            }
+            ofs.flush();
+            if (!ofs.good()) {
+                LOGERR("OttPermissionCache: flush failed for %s", tmpPath.c_str());
+                return false;
+            }
+        }
+
+        if (std::rename(tmpPath.c_str(), kPermsFile) != 0) {
+            LOGERR("OttPermissionCache: rename(%s -> %s) failed (errno=%d)", tmpPath.c_str(), kPermsFile, errno);
+            std::remove(tmpPath.c_str());
+            return false;
+        }
+        LOGINFO("OttPermissionCache: atomically wrote %zu entries to %s", entries.size(), kPermsFile);
+        return true;
     }
 } // anonymous
 
@@ -275,18 +313,36 @@ std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
 
 // PUBLIC_INTERFACE
 void OttPermissionCache::UpdateCache(const string& appId, const std::vector<string>& permissions) {
+    // 1) Update in-memory cache under lock.
     {
         std::lock_guard<std::mutex> lock(_admin);
         _cache[appId] = permissions;
     }
 
-    // Append this update to the on-disk log for persistence
-    if (AppendPermsLine(appId, permissions)) {
-        LOGINFO("OttPermissionCache: updated in-memory and appended %zu permissions for appId='%s' to %s",
-                permissions.size(), appId.c_str(), kPermsFile);
+    // 2) Build an updated on-disk map (latest occurrence wins) and write atomically.
+    std::map<std::string, std::vector<std::string>> all;
+    // Load what's already there; even if this returns false, 'all' will contain any valid lines parsed.
+    (void)LoadLatestFromFile(all);
+
+    // Convert input types if needed and replace the app's entry (idempotent).
+    const std::string appIdStd(appId.c_str());
+    std::vector<std::string> permsStd;
+    permsStd.reserve(permissions.size());
+    for (const auto& p : permissions) {
+        permsStd.emplace_back(p);
+    }
+    all[appIdStd] = std::move(permsStd);
+
+    // Atomically rewrite the cache file to avoid duplicates and preserve integrity on crash/interrupt.
+    if (SaveAllAtomic(all)) {
+        LOGINFO("OttPermissionCache: updated cache for appId='%s' (entries=%zu)", appId.c_str(), all.size());
     } else {
-        LOGERR("OttPermissionCache: failed to append permissions for appId='%s' to %s",
-               appId.c_str(), kPermsFile);
+        // Fallback: try to at least append so data is not lost (best-effort).
+        if (AppendPermsLine(appIdStd, all[appIdStd])) {
+            LOGWARN("OttPermissionCache: atomic save failed; appended entry for appId='%s' as fallback", appId.c_str());
+        } else {
+            LOGERR("OttPermissionCache: failed to persist permissions for appId='%s'", appId.c_str());
+        }
     }
 }
 

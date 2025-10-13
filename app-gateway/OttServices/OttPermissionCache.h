@@ -42,7 +42,11 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         void UpdateCache(const string& appId, const std::vector<string>& permissions);
         /** Replace the cached permissions for appId with the provided list.
-         * Thread-safe. Overwrites any existing entry.
+         * Thread-safe. Overwrites any existing entry in memory and performs an idempotent,
+         * atomic on-disk update:
+         *  - Reads existing file entries (if any), updates/replaces the target app's record,
+         *  - Rewrites the file with a single entry per app (no duplicates),
+         *  - Uses a temp file + rename for integrity.
          * @param appId Application identifier string.
          * @param permissions Vector of permission strings.
          */
