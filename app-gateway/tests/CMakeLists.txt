@@ -70,3 +70,25 @@ endif()
 
 # Register the test with CTest
 add_test(NAME AppGateway.Basic COMMAND test_appgateway)
+
+# Additional test: OttPermissionCache behavior and file format/idempotency
+add_executable(test_ottpermissioncache
+    test_ottpermissioncache.cpp
+    ../OttServices/OttPermissionCache.cpp
+)
+target_include_directories(test_ottpermissioncache
+    PUBLIC
+        "${THUNDER_INCLUDE_DIR}"
+    PRIVATE
+        "${PROJECT_SOURCE_DIR}"
+        "${PROJECT_SOURCE_DIR}/OttServices"
+        "${PROJECT_SOURCE_DIR}/../Supporting_Files"
+)
+target_compile_features(test_ottpermissioncache PRIVATE cxx_std_11)
+target_compile_definitions(test_ottpermissioncache PRIVATE NAMESPACE=${NAMESPACE} MODULE_NAME=Test_OttPermissionCache)
+target_link_libraries(test_ottpermissioncache
+    PRIVATE
+        ${THUNDER_CORE_LIB}
+        ${THUNDER_PLUGINS_LIB}
+)
+add_test(NAME OttPermissionCache.Idempotent COMMAND test_ottpermissioncache)
