@@ -25,6 +25,7 @@
 #include "UtilsLogging.h"
 #include "ThunderUtils.h"
 #include "delegate/SettingsDelegate.h"
+#include "delegate/UserSettingsDelegate.h"
 
 namespace WPEFramework {
 namespace Plugin {
@@ -123,9 +124,154 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult SubscribeOnDeviceNameChanged(const bool listen /* @in */, bool& status /* @out */) override;
 
+        // -------------------------
+        // org.rdk.UserSettings aliases (35) - PUBLIC_INTERFACE methods
+        // -------------------------
+
+        // localization.language
+        // PUBLIC_INTERFACE
+        Core::hresult GetLanguage(string& language /* @out */);
+
+        // localization.onLanguageChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnLanguageChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // localization.locale
+        // PUBLIC_INTERFACE
+        Core::hresult GetLocale(string& locale /* @out */);
+
+        // localization.setLocale
+        // PUBLIC_INTERFACE
+        Core::hresult SetLocale(const string locale /* @in */);
+
+        // localization.onLocaleChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnLocaleChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // localization.preferredAudioLanguages
+        // PUBLIC_INTERFACE
+        Core::hresult GetPreferredAudioLanguages(string& languages /* @out */);
+
+        // localization.setPreferredAudioLanguages
+        // PUBLIC_INTERFACE
+        Core::hresult SetPreferredAudioLanguages(const string languages /* @in */);
+
+        // localization.onPreferredAudioLanguagesChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnPreferredAudioLanguagesChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // voiceguidance.setEnabled
+        // PUBLIC_INTERFACE
+        Core::hresult SetVoiceGuidanceEnabled(const bool enabled /* @in */);
+
+        // voiceguidance.setSpeed
+        // PUBLIC_INTERFACE
+        Core::hresult SetVoiceGuidanceSpeed(const int speed /* @in */);
+
+        // accessibility.onAudioDescriptionSettingsChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnAudioDescriptionSettingsChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // accessibility.audioDescriptionSettings
+        // PUBLIC_INTERFACE
+        Core::hresult GetAudioDescriptionSettings(string& settingsJson /* @out */);
+
+        // audiodescriptions.enabled
+        // PUBLIC_INTERFACE
+        Core::hresult GetAudioDescriptionsEnabled(bool& enabled /* @out */);
+
+        // audiodescriptions.setEnabled
+        // PUBLIC_INTERFACE
+        Core::hresult SetAudioDescriptionsEnabled(const bool enabled /* @in */);
+
+        // audiodescriptions.onEnabledChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnAudioDescriptionsEnabledChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // accessibility.highContrastUI
+        // PUBLIC_INTERFACE
+        Core::hresult GetHighContrastUI(bool& enabled /* @out */);
+
+        // accessibility.onHighContrastUIChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnHighContrastUIChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // closedcaptions.enabled
+        // PUBLIC_INTERFACE
+        Core::hresult GetClosedCaptionsEnabled(bool& enabled /* @out */);
+
+        // closedcaptions.setEnabled
+        // PUBLIC_INTERFACE
+        Core::hresult SetClosedCaptionsEnabled(const bool enabled /* @in */);
+
+        // closedcaptions.onEnabledChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnClosedCaptionsEnabledChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // closedcaptions.preferredLanguages
+        // PUBLIC_INTERFACE
+        Core::hresult GetClosedCaptionsPreferredLanguages(string& languages /* @out */);
+
+        // closedcaptions.setPreferredLanguages
+        // PUBLIC_INTERFACE
+        Core::hresult SetClosedCaptionsPreferredLanguages(const string languages /* @in */);
+
+        // closedaptions.onPreferredLanguagesChanged (intentional typo)
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnClosedaptionsPreferredLanguagesChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // accessibility.onClosedCaptionsSettingsChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnClosedCaptionsSettingsChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // voiceguidance.navigationHints
+        // PUBLIC_INTERFACE
+        Core::hresult GetVoiceGuidanceNavigationHints(bool& enabled /* @out */);
+
+        // voiceguidance.setNavigationHints
+        // PUBLIC_INTERFACE
+        Core::hresult SetVoiceGuidanceNavigationHints(const bool enabled /* @in */);
+
+        // voiceguidance.onNavigationHintsChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceNavigationHintsChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // voiceguidance.rate
+        // PUBLIC_INTERFACE
+        Core::hresult GetVoiceGuidanceRate(double& rate /* @out */);
+
+        // voiceguidance.setRate
+        // PUBLIC_INTERFACE
+        Core::hresult SetVoiceGuidanceRate(const double rate /* @in */);
+
+        // voiceguidance.onRateChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceRateChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // voiceguidance.enabled
+        // PUBLIC_INTERFACE
+        Core::hresult GetVoiceGuidanceEnabled(bool& enabled /* @out */);
+
+        // voiceguidance.onEnabledChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceEnabledChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // voiceguidance.speed
+        // PUBLIC_INTERFACE
+        Core::hresult GetVoiceGuidanceSpeed(int& speed /* @out */);
+
+        // voiceguidance.onSpeedChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceSpeedChanged(const bool listen /* @in */, bool& status /* @out */);
+
+        // accessibility.onVoiceGuidanceSettingsChanged
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceSettingsChanged(const bool listen /* @in */, bool& status /* @out */);
+
     private:
         PluginHost::IShell* mShell;
         std::shared_ptr<SettingsDelegate> mDelegate;
+        std::shared_ptr<UserSettingsDelegate> mUserSettingsDelegate;
     };
 }
 }

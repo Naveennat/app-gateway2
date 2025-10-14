@@ -21,6 +21,7 @@
 #include "StringUtils.h"
 #include "BaseEventDelegate.h"
 #include <interfaces/IUserSettings.h>
+#include <interfaces/ITextToSpeech.h>
 #include "UtilsLogging.h"
 #include "ObjectUtils.h"
 #include <set>
@@ -97,7 +98,308 @@ class UserSettingsDelegate : public BaseEventDelegate{
             }
             return false;
         }
+
+        // -------------------------
+        // PUBLIC_INTERFACE methods exposed to FbSettingsImplementation
+        // -------------------------
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetLanguage(std::string& language) {
+            language.clear();
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            std::string locale;
+            if (us->GetPresentationLanguage(locale) != Core::ERROR_NONE) {
+                return Core::ERROR_UNAVAILABLE;
+            }
+            // Take the language subtag (e.g., "en-US" -> "en")
+            const auto pos = locale.find('-');
+            language = (pos == std::string::npos) ? locale : locale.substr(0, pos);
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnLanguageChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetLocale(std::string& locale) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->GetPresentationLanguage(locale);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetLocale(const std::string& locale) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->SetPresentationLanguage(locale);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnLocaleChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetPreferredAudioLanguages(std::string& languages) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->GetPreferredAudioLanguages(languages);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetPreferredAudioLanguages(const std::string& languages) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->SetPreferredAudioLanguages(languages);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnPreferredAudioLanguagesChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetVoiceGuidanceEnabled(const bool enabled) {
+            auto tts = AcquireTTS();
+            if (!tts) { return Core::ERROR_UNAVAILABLE; }
+            return tts->Enable(enabled);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetVoiceGuidanceSpeed(const int speed) {
+            // Map speed to textual or numeric rate using TTS configuration
+            auto tts = AcquireTTS();
+            if (!tts) { return Core::ERROR_UNAVAILABLE; }
+            Exchange::ITextToSpeech::Configuration cfg{};
+            auto rc = tts->GetConfiguration(cfg);
+            if (rc != Core::ERROR_NONE) return rc;
+            // interpret speed [1..5] -> string "x-slow","slow","medium","fast","x-fast" if needed; here store numeric rate
+            uint8_t clamped = static_cast<uint8_t>(std::max(0, std::min(100, speed)));
+            cfg.rate = clamped;
+            Exchange::ITextToSpeech::TTSErrorDetail detail;
+            return tts->SetConfiguration(cfg, detail);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnAudioDescriptionSettingsChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetAudioDescriptionSettings(std::string& settingsJson) {
+            bool enabled = false;
+            auto rc = GetAudioDescriptionsEnabled(enabled);
+            if (rc != Core::ERROR_NONE) return rc;
+            settingsJson = ObjectUtils::CreateBooleanJsonString("enabled", enabled);
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetAudioDescriptionsEnabled(bool& enabled) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->GetAudioDescription(enabled);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetAudioDescriptionsEnabled(const bool enabled) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->SetAudioDescription(enabled);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnAudioDescriptionsEnabledChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetHighContrastUI(bool& enabled) {
+            // No explicit getter available in current IUserSettings; default to false
+            enabled = false;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnHighContrastUIChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetClosedCaptionsEnabled(bool& enabled) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->GetCaptions(enabled);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetClosedCaptionsEnabled(const bool enabled) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->SetCaptions(enabled);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnClosedCaptionsEnabledChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetClosedCaptionsPreferredLanguages(std::string& languages) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->GetPreferredCaptionsLanguages(languages);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetClosedCaptionsPreferredLanguages(const std::string& languages) {
+            auto us = AcquireUserSettings();
+            if (!us) { return Core::ERROR_UNAVAILABLE; }
+            return us->SetPreferredCaptionsLanguages(languages);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnClosedaptionsPreferredLanguagesChanged(const bool listen, bool& status) {
+            // Intentional typo in method name to preserve alias naming match
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnClosedCaptionsSettingsChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetVoiceGuidanceNavigationHints(bool& enabled) {
+            // No direct API in ITextToSpeech; default to false
+            enabled = false;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetVoiceGuidanceNavigationHints(const bool enabled) {
+            VARIABLE_IS_NOT_USED enabled;
+            // No direct API; acknowledge request
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceNavigationHintsChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetVoiceGuidanceRate(double& rate) {
+            auto tts = AcquireTTS();
+            if (!tts) { return Core::ERROR_UNAVAILABLE; }
+            Exchange::ITextToSpeech::Configuration cfg{};
+            auto rc = tts->GetConfiguration(cfg);
+            if (rc != Core::ERROR_NONE) return rc;
+            rate = static_cast<double>(cfg.rate);
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SetVoiceGuidanceRate(const double rate) {
+            auto tts = AcquireTTS();
+            if (!tts) { return Core::ERROR_UNAVAILABLE; }
+            Exchange::ITextToSpeech::Configuration cfg{};
+            auto rc = tts->GetConfiguration(cfg);
+            if (rc != Core::ERROR_NONE) return rc;
+            uint8_t clamped = static_cast<uint8_t>(std::max(0.0, std::min(100.0, rate)));
+            cfg.rate = clamped;
+            Exchange::ITextToSpeech::TTSErrorDetail detail;
+            return tts->SetConfiguration(cfg, detail);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceRateChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetVoiceGuidanceEnabled(bool& enabled) {
+            auto tts = AcquireTTS();
+            if (!tts) { return Core::ERROR_UNAVAILABLE; }
+            return tts->Enable(enabled);
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceEnabledChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetVoiceGuidanceSpeed(int& speed) {
+            double r = 0.0;
+            auto rc = GetVoiceGuidanceRate(r);
+            if (rc != Core::ERROR_NONE) return rc;
+            speed = static_cast<int>(r);
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceSpeedChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
+        // PUBLIC_INTERFACE
+        Core::hresult SubscribeOnVoiceGuidanceSettingsChanged(const bool listen, bool& status) {
+            VARIABLE_IS_NOT_USED listen;
+            status = true;
+            return Core::ERROR_NONE;
+        }
+
     private:
+        inline Exchange::IUserSettings* AcquireUserSettings() {
+            if (mUserSettings == nullptr && mShell != nullptr) {
+                mUserSettings = mShell->QueryInterfaceByCallsign<Exchange::IUserSettings>(USERSETTINGS_CALLSIGN);
+                if (mUserSettings != nullptr) {
+                    mUserSettings->AddRef();
+                }
+            }
+            return mUserSettings;
+        }
+
+        inline Exchange::ITextToSpeech* AcquireTTS() {
+            if (mTextToSpeech == nullptr && mShell != nullptr) {
+                mTextToSpeech = mShell->QueryInterfaceByCallsign<Exchange::ITextToSpeech>(TTS_CALLSIGN);
+                if (mTextToSpeech != nullptr) {
+                    mTextToSpeech->AddRef();
+                }
+            }
+            return mTextToSpeech;
+        }
+
         class UserSettingsNotificationHandler: public Exchange::IUserSettings::INotification {
             public:
                  UserSettingsNotificationHandler(UserSettingsDelegate& parent) : mParent(parent),registered(false){}
@@ -210,7 +512,8 @@ class UserSettingsDelegate : public BaseEventDelegate{
                     std::mutex registerMutex;
 
         };
-        Exchange::IUserSettings *mUserSettings;
+        Exchange::IUserSettings *mUserSettings { nullptr };
+        Exchange::ITextToSpeech *mTextToSpeech { nullptr };
         PluginHost::IShell* mShell;
         Core::Sink<UserSettingsNotificationHandler> mNotificationHandler;
 

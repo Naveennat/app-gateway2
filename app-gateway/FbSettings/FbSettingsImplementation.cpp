@@ -149,6 +149,218 @@ namespace WPEFramework
             return sys->SubscribeOnFriendlyNameChanged(listen, status);
         }
 
+        // ------------- UserSettings forwarders -------------
+
+        Core::hresult FbSettingsImplementation::GetLanguage(string& language) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetLanguage(language);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnLanguageChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnLanguageChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetLocale(string& locale) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetLocale(locale);
+        }
+
+        Core::hresult FbSettingsImplementation::SetLocale(const string locale) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetLocale(locale);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnLocaleChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnLocaleChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetPreferredAudioLanguages(string& languages) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetPreferredAudioLanguages(languages);
+        }
+
+        Core::hresult FbSettingsImplementation::SetPreferredAudioLanguages(const string languages) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetPreferredAudioLanguages(languages);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnPreferredAudioLanguagesChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnPreferredAudioLanguagesChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::SetVoiceGuidanceEnabled(const bool enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetVoiceGuidanceEnabled(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SetVoiceGuidanceSpeed(const int speed) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetVoiceGuidanceSpeed(speed);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnAudioDescriptionSettingsChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnAudioDescriptionSettingsChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetAudioDescriptionSettings(string& settingsJson) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetAudioDescriptionSettings(settingsJson);
+        }
+
+        Core::hresult FbSettingsImplementation::GetAudioDescriptionsEnabled(bool& enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetAudioDescriptionsEnabled(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SetAudioDescriptionsEnabled(const bool enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetAudioDescriptionsEnabled(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnAudioDescriptionsEnabledChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnAudioDescriptionsEnabledChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetHighContrastUI(bool& enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetHighContrastUI(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnHighContrastUIChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnHighContrastUIChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetClosedCaptionsEnabled(bool& enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetClosedCaptionsEnabled(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SetClosedCaptionsEnabled(const bool enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetClosedCaptionsEnabled(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnClosedCaptionsEnabledChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnClosedCaptionsEnabledChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetClosedCaptionsPreferredLanguages(string& languages) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetClosedCaptionsPreferredLanguages(languages);
+        }
+
+        Core::hresult FbSettingsImplementation::SetClosedCaptionsPreferredLanguages(const string languages) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetClosedCaptionsPreferredLanguages(languages);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnClosedaptionsPreferredLanguagesChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnClosedaptionsPreferredLanguagesChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnClosedCaptionsSettingsChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnClosedCaptionsSettingsChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetVoiceGuidanceNavigationHints(bool& enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetVoiceGuidanceNavigationHints(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SetVoiceGuidanceNavigationHints(const bool enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetVoiceGuidanceNavigationHints(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceNavigationHintsChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnVoiceGuidanceNavigationHintsChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetVoiceGuidanceRate(double& rate) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetVoiceGuidanceRate(rate);
+        }
+
+        Core::hresult FbSettingsImplementation::SetVoiceGuidanceRate(const double rate) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SetVoiceGuidanceRate(rate);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceRateChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnVoiceGuidanceRateChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetVoiceGuidanceEnabled(bool& enabled) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetVoiceGuidanceEnabled(enabled);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceEnabledChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnVoiceGuidanceEnabledChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::GetVoiceGuidanceSpeed(int& speed) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->GetVoiceGuidanceSpeed(speed);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceSpeedChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnVoiceGuidanceSpeedChanged(listen, status);
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceSettingsChanged(const bool listen, bool& status) {
+            auto d = mUserSettingsDelegate;
+            if (!d) return Core::ERROR_UNAVAILABLE;
+            return d->SubscribeOnVoiceGuidanceSettingsChanged(listen, status);
+        }
+
         uint32_t FbSettingsImplementation::Configure(PluginHost::IShell *shell)
         {
             LOGINFO("Configuring FbSettings");
@@ -157,6 +369,11 @@ namespace WPEFramework
             mShell = shell;
             mShell->AddRef();
             mDelegate->setShell(mShell);
+            // Also initialize a direct UserSettings delegate for call forwarding
+            if (!mUserSettingsDelegate) {
+                // Pass nullptr for AppNotifications, registration still handled via central SettingsDelegate
+                mUserSettingsDelegate = std::make_shared<UserSettingsDelegate>(mShell, nullptr);
+            }
             return result;
         }
     }
