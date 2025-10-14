@@ -2,9 +2,11 @@
 
 // PermissionsClient.h
 // Thin wrapper around gRPC stubs generated from OttServices/permission_service.proto
-// Provides a convenient API for OttServicesImplementation to enumerate permissions for an app.
-//
-// Note: gRPC support is enabled by default.
+// Provides a convenient API for OttServicesImplementation to enumerate permissions for an app and
+// to call all AppPermissionsService RPCs.
+// 
+// NOTE: Follows the same style as EnumeratePermissions: request building, metadata, error mapping,
+//       logging redaction, and Core::hresult return codes.
 
 #include <string>
 #include <vector>
@@ -13,7 +15,7 @@
 #include <core/core.h>
 
 #include <grpcpp/grpcpp.h>
-// Generated headers from permission_service.proto (generated into ${CMAKE_CURRENT_BINARY_DIR})
+// Generated headers from permission_service.proto (generated via CMake custom commands)
 #include "permission_service.pb.h"
 #include "permission_service.grpc.pb.h"
 
@@ -30,11 +32,6 @@ namespace Plugin {
          * Parameters:
          * - endpoint: "host:port" of the remote gRPC permission service. Example: "thor-permission.svc.thor.comcast.com:443".
          * - useTls: If true, use TLS channel credentials. If false, use insecure channel credentials.
-         *
-         * Note:
-         * - It is recommended to pass the endpoint from configuration rather than hardcoding.
-         * - TLS credentials use default system roots when useTls=true. Provide custom roots via grpc::SslCredentialsOptions
-         *   by using the overloaded constructor below.
          */
         // PUBLIC_INTERFACE
         explicit PermissionsClient(const std::string& endpoint, bool useTls = true);
@@ -56,21 +53,6 @@ namespace Plugin {
         /**
          * PUBLIC_INTERFACE
          * Enumerate permissions for an app using the remote AppPermissionsService.
-         *
-         * This wraps the EnumeratePermissions RPC with proper metadata population.
-         *
-         * Parameters:
-         * - appId: Application identifier (AppKey.app).
-         * - partnerId: Syndication partner identifier (AppKey.syndication_partner_id).
-         * - bearerToken: Access token (WITHOUT "Bearer " prefix); the method will prepend "Bearer ".
-         * - deviceId: Device identifier to be placed into "deviceid" metadata.
-         * - accountId: Service account identifier to be placed into "accountid" metadata.
-         * - filters: Optional permission filter strings; may be empty.
-         * - outPermissions: Output vector populated on success.
-         *
-         * Returns:
-         * - Core::ERROR_NONE on success and outPermissions populated.
-         * - Core::ERROR_GENERAL or other Core error codes on failures.
          */
         // PUBLIC_INTERFACE
         uint32_t EnumeratePermissions(const std::string& appId,
@@ -80,6 +62,175 @@ namespace Plugin {
                                       const std::string& accountId,
                                       const std::vector<std::string>& filters,
                                       std::vector<std::string>& outPermissions) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Get permissions object for an app (Get RPC).
+         *
+         * Output:
+         * - outAppPermissions: Populated on success.
+         */
+        // PUBLIC_INTERFACE
+        uint32_t Get(const std::string& appId,
+                     const std::string& partnerId,
+                     const std::string& bearerToken,
+                     const std::string& deviceId,
+                     const std::string& accountId,
+                     ottx::permission::ApplicationPermissions& outAppPermissions) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Grant permissions/bundles to an app (Grant RPC).
+         *
+         * Inputs:
+         * - bundles, permissions: lists to be granted (either may be empty).
+         * Output: outAppPermissions reflects resulting permissions.
+         */
+        // PUBLIC_INTERFACE
+        uint32_t Grant(const std::string& appId,
+                       const std::string& partnerId,
+                       const std::vector<std::string>& bundles,
+                       const std::vector<std::string>& permissions,
+                       const std::string& bearerToken,
+                       const std::string& deviceId,
+                       const std::string& accountId,
+                       ottx::permission::ApplicationPermissions& outAppPermissions) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Set the permissions object for an app (Set RPC).
+         *
+         * Inputs:
+         * - bundles, includes, excludes: full replacement of the app permissions vectors.
+         */
+        // PUBLIC_INTERFACE
+        uint32_t Set(const std::string& appId,
+                     const std::string& partnerId,
+                     const std::vector<std::string>& bundles,
+                     const std::vector<std::string>& includes,
+                     const std::vector<std::string>& excludes,
+                     const std::string& bearerToken,
+                     const std::string& deviceId,
+                     const std::string& accountId,
+                     ottx::permission::ApplicationPermissions& outAppPermissions) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Revoke permissions/bundles from an app (Revoke RPC).
+         */
+        // PUBLIC_INTERFACE
+        uint32_t Revoke(const std::string& appId,
+                        const std::string& partnerId,
+                        const std::vector<std::string>& bundles,
+                        const std::vector<std::string>& permissions,
+                        const std::string& bearerToken,
+                        const std::string& deviceId,
+                        const std::string& accountId,
+                        ottx::permission::ApplicationPermissions& outAppPermissions) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Delete an app's permission record (Delete RPC).
+         */
+        // PUBLIC_INTERFACE
+        uint32_t Delete(const std::string& appId,
+                        const std::string& partnerId,
+                        const std::string& bearerToken,
+                        const std::string& deviceId,
+                        const std::string& accountId) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Authorize a session token against filters (Authorize RPC).
+         *
+         * Input:
+         * - sessionToken: Token to evaluate.
+         * - filters: permission filter strings to check.
+         * Output:
+         * - outPermissions: resulting permission strings granted by authorization.
+         */
+        // PUBLIC_INTERFACE
+        uint32_t Authorize(const std::string& sessionToken,
+                           const std::vector<std::string>& filters,
+                           const std::string& bearerToken,
+                           const std::string& deviceId,
+                           const std::string& accountId,
+                           const std::string& partnerId,
+                           std::vector<std::string>& outPermissions) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Get all permission entries for an app (GetAllForApp RPC).
+         */
+        // PUBLIC_INTERFACE
+        uint32_t GetAllForApp(const std::string& app,
+                              const std::string& bearerToken,
+                              const std::string& deviceId,
+                              const std::string& accountId,
+                              const std::string& partnerId,
+                              std::vector<ottx::permission::ApplicationPermissions>& outList) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Get all app keys known to the service (GetAllAppKeys RPC).
+         */
+        // PUBLIC_INTERFACE
+        uint32_t GetAllAppKeys(const std::string& bearerToken,
+                               const std::string& deviceId,
+                               const std::string& accountId,
+                               const std::string& partnerId,
+                               std::vector<ottx::permission::AppKeys>& outKeys) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Acquire a Thor token (GetThorToken RPC).
+         */
+        // PUBLIC_INTERFACE
+        uint32_t GetThorToken(const std::string& app,
+                              const std::string& contentProvider,
+                              const std::string& deviceSessionId,
+                              const std::string& appSessionId,
+                              const std::string& tokenMode,
+                              int32_t ttl,
+                              const std::string& bearerToken,
+                              const std::string& deviceId,
+                              const std::string& accountId,
+                              const std::string& partnerId,
+                              std::string& outToken) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Get registered permission catalog (GetRegisteredPermissions RPC).
+         */
+        // PUBLIC_INTERFACE
+        uint32_t GetRegisteredPermissions(const std::string& bearerToken,
+                                          const std::string& deviceId,
+                                          const std::string& accountId,
+                                          const std::string& partnerId,
+                                          std::vector<ottx::permission::Permission>& outPermissions) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Register permissions in catalog (RegisterPermissions RPC).
+         */
+        // PUBLIC_INTERFACE
+        uint32_t RegisterPermissions(const std::vector<ottx::permission::Permission>& permissions,
+                                     bool replaceAll,
+                                     const std::string& bearerToken,
+                                     const std::string& deviceId,
+                                     const std::string& accountId,
+                                     const std::string& partnerId) const;
+
+        /**
+         * PUBLIC_INTERFACE
+         * Delete a registered permission from catalog (DeleteRegisteredPermission RPC).
+         */
+        // PUBLIC_INTERFACE
+        uint32_t DeleteRegisteredPermission(const ottx::permission::Permission& permission,
+                                            const std::string& bearerToken,
+                                            const std::string& deviceId,
+                                            const std::string& accountId,
+                                            const std::string& partnerId) const;
 
         /**
          * PUBLIC_INTERFACE

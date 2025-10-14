@@ -1,38 +1,160 @@
 syntax = "proto3";
 
-// Permissions service definitions used by OttServices.
-// This file was moved to app-gateway2/app-gateway/OttServices to keep
-// service definitions co-located with the plugin that consumes them.
-
 package ottx.permission;
 
-// AppKey identifies the application and partner.
-message AppKey {
-  // Application identifier (e.g., AppKey.app).
-  string app = 1;
+option java_package = "com.comcast.ottx.permission";
+option java_multiple_files = true;
 
-  // Syndication partner identifier (e.g., AppKey.syndication_partner_id).
+option go_package = "github.com/comcast-ottx-racers/ottx-protobuf/api/permissions;permissions";
+
+message Permission {
+  string id = 1;
+  string description = 2;
+  string display_name = 3;
+}
+
+message AppKey {
+  string app = 1;
   string syndication_partner_id = 2;
 }
 
-// Request for enumerating permissions for an app.
-message EnumeratePermissionsRequest {
-  // The application key (app ID + partner).
+message ApplicationPermissions {
   AppKey app_key = 1;
-
-  // Optional filters restricting which permissions are returned.
-  repeated string permission_filters = 2;
+  repeated string bundles = 2;
+  repeated string includes = 3;
+  repeated string excludes = 4;
 }
 
-// Response containing a list of permissions.
-message EnumeratePermissionsResponse {
-  // A collection of permission strings applicable to the app.
+message Authorization {
   repeated string permissions = 1;
 }
 
-// gRPC service for enumerating application permissions.
+message AppKeys {
+  string app = 1;
+  repeated string syndication_partner_id = 2;
+}
+
+message GetRequest {
+  AppKey app_key = 1;
+}
+
+message GetResponse {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message GrantRequest {
+  AppKey app_key = 1;
+  repeated string bundles = 2;
+  repeated string permissions = 3;
+}
+
+message GrantResponse {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message SetRequest {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message SetResponse {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message RevokeRequest {
+  AppKey app_key = 1;
+  repeated string bundles = 2;
+  repeated string permissions = 3;
+}
+
+message RevokeResponse {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message DeleteRequest {
+  AppKey app_key = 1;
+}
+
+message DeleteResponse {}
+
+message AuthorizeRequest {
+  // thor token
+  string session_token = 1;
+  repeated string permission_filters = 2;
+}
+
+message EnumeratePermissionsRequest {
+  AppKey app_key = 1;
+  repeated string permission_filters = 2;
+}
+
+message AuthorizeResponse {
+  Authorization authorization = 1;
+}
+
+message EnumeratePermissionsResponse {
+  repeated string permissions = 1;
+}
+
+message GetAllForAppRequest {
+  string app = 1;
+}
+
+message GetAllForAppResponse {
+  repeated ApplicationPermissions app_permissions = 1;
+}
+
+message GetAllAppKeysRequest {
+}
+
+message GetAllAppKeysResponse {
+  repeated AppKeys app_keys = 1;
+}
+
+message GetThorTokenRequest {
+  string app = 1;
+  string content_provider = 2;
+  string device_session_id = 3;
+  string app_session_id = 4;
+  string token_mode = 5;
+  int32 ttl = 6;
+}
+
+message GetThorTokenResponse {
+  string token = 1;
+}
+
+message GetRegisteredPermissionsRequest {}
+
+message GetRegisteredPermissionsResponse {
+  repeated Permission permissions = 1;
+}
+
+message RegisterPermissionsRequest {
+  repeated Permission permissions = 1;
+  bool replace_all = 2;
+}
+
+message RegisterPermissionsResponse {}
+
+message DeleteRegisteredPermissionRequest {
+  Permission permission = 1;
+}
+
+message DeleteRegisteredPermissionResponse {}
+
 service AppPermissionsService {
-  // Returns the list of permissions for the specified application.
-  rpc EnumeratePermissions(EnumeratePermissionsRequest)
-      returns (EnumeratePermissionsResponse);
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Grant (GrantRequest) returns (GrantResponse);
+  rpc Set (SetRequest) returns (SetResponse);
+  rpc Revoke (RevokeRequest) returns (RevokeResponse);
+  rpc Delete (DeleteRequest) returns (DeleteResponse);
+  rpc Authorize (AuthorizeRequest) returns (AuthorizeResponse);
+  rpc EnumeratePermissions (EnumeratePermissionsRequest) returns (EnumeratePermissionsResponse);
+  rpc GetAllForApp (GetAllForAppRequest) returns (GetAllForAppResponse);
+  rpc GetAllAppKeys (GetAllAppKeysRequest) returns (GetAllAppKeysResponse);
+  rpc GetThorToken (GetThorTokenRequest) returns (GetThorTokenResponse);
+  rpc GetRegisteredPermissions (GetRegisteredPermissionsRequest) returns (GetRegisteredPermissionsResponse);
+  rpc RegisterPermissions (RegisterPermissionsRequest) returns (RegisterPermissionsResponse);
+  rpc DeleteRegisteredPermission (DeleteRegisteredPermissionRequest) returns (DeleteRegisteredPermissionResponse);
+
 }

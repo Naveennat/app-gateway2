@@ -52,10 +52,11 @@ find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 add_custom_command(
     OUTPUT
         ${CMAKE_CURRENT_SOURCE_DIR}/permission_service.pb.cc
+        ${CMAKE_CURRENT_SOURCE_DIR}/permission_service.pb.h
     COMMAND
         ${Protobuf_PROTOC_EXECUTABLE} --cpp_out ${CMAKE_CURRENT_SOURCE_DIR} -I ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/permission_service.proto
     COMMENT
-        "Generating proto buffer file"
+        "Generating proto buffer files (.pb.cc/.pb.h)"
     DEPENDS
         ${CMAKE_CURRENT_SOURCE_DIR}/permission_service.proto
 )
@@ -64,20 +65,25 @@ add_custom_command(
 add_custom_command(
     OUTPUT
         ${CMAKE_CURRENT_SOURCE_DIR}/permission_service.grpc.pb.cc
+        ${CMAKE_CURRENT_SOURCE_DIR}/permission_service.grpc.pb.h
     COMMAND
         ${Protobuf_PROTOC_EXECUTABLE} --grpc_out ${CMAKE_CURRENT_SOURCE_DIR} --plugin=protoc-gen-grpc=${GRPC_CPP_PLUGIN} -I ${CMAKE_CURRENT_SOURCE_DIR}/ ${CMAKE_CURRENT_SOURCE_DIR}/permission_service.proto
     COMMENT
-        "Generating grpc file"
+        "Generating grpc files (.grpc.pb.cc/.grpc.pb.h)"
      DEPENDS
         ${CMAKE_CURRENT_SOURCE_DIR}/permission_service.proto
 )
 
 add_custom_target(force_regenerate ALL
-    DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/permission_service.pb.cc"
+    DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/permission_service.pb.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/permission_service.pb.h"
 )
 
 add_custom_target(force_regenerate2 ALL
-    DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/permission_service.grpc.pb.cc"
+    DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/permission_service.grpc.pb.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/permission_service.grpc.pb.h"
 )
 
 #add_custom_target(protoc ALL
