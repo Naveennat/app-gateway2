@@ -2,7 +2,7 @@
 
 // Exchange interface for AppGateway used by App2AppProvider to route responses back to consumers.
 
-#include "Module.h"
+#include <plugins/Module.h>
 
 namespace WPEFramework {
 namespace Exchange {

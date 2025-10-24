@@ -3,7 +3,7 @@
 // Exchange interface for App2AppProvider.
 // This interface is implemented by the App2AppProviderImplementation class.
 
-#include "Module.h"
+#include <plugins/Module.h>
 
 namespace WPEFramework {
 namespace Exchange {
@@ -18,34 +18,33 @@ namespace Exchange {
             string appId;               // Consumer app identifier
         };
 
-        // Error structure returned by methods on failure.
-        struct Error {
-            int code {0};
-            string message;
-        };
-
         virtual ~IApp2AppProvider() = default;
 
         // Register or unregister a provider offering a capability.
+        // Matches AppGatewayImplementation usage: (context, listen, capability)
+        // PUBLIC_INTERFACE
         virtual Core::hresult RegisterProvider(const Context& context,
                                                bool reg,
-                                               const string& capability,
-                                               Error& error) = 0;
+                                               const string& capability) = 0;
 
         // Invoke a provider by capability for the given consumer context.
+        // Matches usage: (context, capability, params)
+        // PUBLIC_INTERFACE
         virtual Core::hresult InvokeProvider(const Context& context,
                                              const string& capability,
-                                             Error& error) = 0;
+                                             const string& params) = 0;
 
         // Handle a provider's successful response payload routed back to the consumer.
-        virtual Core::hresult HandleProviderResponse(const string& payload,
-                                                     const string& capability,
-                                                     Error& error) = 0;
+        // Matches usage: (capability, params)
+        // PUBLIC_INTERFACE
+        virtual Core::hresult HandleProviderResponse(const string& capability,
+                                                     const string& params) = 0;
 
         // Handle a provider's error payload routed back to the consumer.
-        virtual Core::hresult HandleProviderError(const string& payload,
-                                                  const string& capability,
-                                                  Error& error) = 0;
+        // Matches usage: (capability, params)
+        // PUBLIC_INTERFACE
+        virtual Core::hresult HandleProviderError(const string& capability,
+                                                  const string& params) = 0;
     };
 
 } // namespace Exchange

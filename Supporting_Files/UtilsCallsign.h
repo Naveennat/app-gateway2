@@ -28,4 +28,7 @@
 #define FB_PRIVACY_CALLSIGN "org.rdk.FbPrivacy"
 #define FB_METRICS_CALLSIGN "org.rdk.FbMetrics"
 #define ANALYTICS_PLUGIN_CALLSIGN "org.rdk.Analytics"
+// Additional callsigns used by AppGatewayImplementation for COM-RPC endpoints
+#define INTERNAL_GATEWAY_CALLSIGN "org.rdk.InternalGateway"
+#define GATEWAY_AUTHENTICATOR_CALLSIGN "org.rdk.AppGatewayAuthenticator"
 #endif

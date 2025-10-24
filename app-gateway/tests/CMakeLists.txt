@@ -71,6 +71,26 @@ endif()
 # Register the test with CTest
 add_test(NAME AppGateway.Basic COMMAND test_appgateway)
 
+# FbCommon resolution tests
+add_executable(test_fbcommon
+    test_fbcommon.cpp
+)
+target_include_directories(test_fbcommon
+    PUBLIC
+        "${THUNDER_INCLUDE_DIR}"
+    PRIVATE
+        "${PROJECT_SOURCE_DIR}"
+        "${PROJECT_SOURCE_DIR}/AppGateway"
+)
+target_compile_features(test_fbcommon PRIVATE cxx_std_11)
+target_compile_definitions(test_fbcommon PRIVATE NAMESPACE=${NAMESPACE})
+target_link_libraries(test_fbcommon
+    PRIVATE
+        ${THUNDER_CORE_LIB}
+        ${THUNDER_PLUGINS_LIB}
+)
+add_test(NAME FbCommon.Resolutions COMMAND test_fbcommon)
+
 # Additional test: OttPermissionCache behavior and file format/idempotency
 add_executable(test_ottpermissioncache
     test_ottpermissioncache.cpp

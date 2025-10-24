@@ -45,6 +45,10 @@ add_library(${MODULE_NAME} SHARED
 
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
+# Allow includes like <interfaces/...> from the project root
+target_include_directories(${MODULE_NAME} PRIVATE ..)
+# Access common headers under Supporting_Files (WsManager.h, UtilsJsonrpcDirectLink.h, StringUtils.h)
+target_include_directories(${MODULE_NAME} PRIVATE ../../Supporting_Files)
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
@@ -78,5 +82,5 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/
         DESTINATION "/etc/app-gateway/"
         FILES_MATCHING PATTERN "resolution*.json")
 
-write_config(${PLUGIN_NAME})
+write_config(PLUGINS ${PLUGIN_NAME})
 

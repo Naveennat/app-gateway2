@@ -6,7 +6,7 @@
  * Note: The ID value is a placeholder for compilation purposes only.
  */
 
-#include "Module.h"
+#include <plugins/Module.h>
 
 namespace WPEFramework {
 namespace Exchange {

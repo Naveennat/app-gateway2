@@ -11,7 +11,7 @@
  * - Public methods are marked with the PUBLIC_INTERFACE comment before declaration.
  */
 
-#include "Module.h"
+#include <plugins/Module.h>
 
 namespace WPEFramework {
 namespace Exchange {

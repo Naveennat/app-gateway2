@@ -31,6 +31,17 @@ set(THUNDER_INSTALL_PATH "${CMAKE_SOURCE_DIR}/../dependencies/install" CACHE PAT
 get_filename_component(THUNDER_INSTALL_PATH_ABS "${THUNDER_INSTALL_PATH}" REALPATH)
 set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
 set(THUNDER_LIBRARY_DIR "${THUNDER_INSTALL_PATH_ABS}/lib")
+# Ensure Thunder packages can be found even if CMAKE_PREFIX_PATH is not set by the invoker
+list(PREPEND CMAKE_PREFIX_PATH "${THUNDER_INSTALL_PATH_ABS}")
+list(PREPEND CMAKE_MODULE_PATH "${THUNDER_INSTALL_PATH_ABS}/lib/cmake")
+# Thunder's CMake find-modules (e.g. FindConfigGenerator.cmake) are shipped under include/<NAMESPACE>/Modules
+list(PREPEND CMAKE_MODULE_PATH "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}/Modules")
+message(STATUS "Using Thunder install at: ${THUNDER_INSTALL_PATH_ABS}")
+
+# Default location for product config files if not provided by the toolchain/platform
+if (NOT DEFINED PRODUCT_CONFIG_DIR OR "${PRODUCT_CONFIG_DIR}" STREQUAL "")
+    set(PRODUCT_CONFIG_DIR "/etc/app-gateway")
+endif()
 
 # Enable CTest for the tests/ subdirectory
 enable_testing()
@@ -38,4 +49,5 @@ enable_testing()
 # Build the AppGateway plugin, FbSettings plugin, and the unit tests
 add_subdirectory(AppGateway)
 add_subdirectory(FbSettings)
+add_subdirectory(FbCommon)
 add_subdirectory(tests)
