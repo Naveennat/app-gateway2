@@ -80,6 +80,9 @@ namespace Plugin {
         END_INTERFACE_MAP
 
         Core::hresult HandleAppEventNotifier(const string& event, const bool& listen, bool& status /* @out */) override;
+
+        // PUBLIC_INTERFACE
+        Core::hresult HandleAppEventNotifier(const string& event /* @in */, const bool listen /* @in */) override;
         Core::hresult SetName(const string& value  /* @in */, string& result) override;
         Core::hresult AddAdditionalInfo(const string& value  /* @in @opaque */, string& result) override;
 

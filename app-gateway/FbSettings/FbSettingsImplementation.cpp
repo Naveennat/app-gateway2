@@ -56,6 +56,19 @@ namespace WPEFramework
             return Core::ERROR_NONE;
         }
 
+        Core::hresult FbSettingsImplementation::HandleAppEventNotifier(const string& event /* @in */,
+                                                                       const bool listen /* @in */)
+        {
+            LOGINFO("IAppNotificationHandlerInternal::HandleAppEventNotifier [event=%s listen=%s]",
+                    event.c_str(), listen ? "true" : "false");
+            if (!mDelegate) {
+                LOGERR("Settings delegate not initialized");
+                return Core::ERROR_UNAVAILABLE;
+            }
+            mDelegate->HandleAppEventNotifier(event, listen);
+            return Core::ERROR_NONE;
+        }
+
         Core::hresult FbSettingsImplementation::SetName(const string &value /* @in */, string &result)
         {
             result = "null"; // TBA

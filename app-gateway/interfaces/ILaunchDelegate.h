@@ -2,7 +2,7 @@
 
 /*
  * Local stub for internal LaunchDelegate-related interfaces used by AppGateway.
- * Provides IAppGatewayResponderInternal and IAppGatewayAuthenticatorInternal.
+ * Provides ILaunchDelegate (with Context), IAppGatewayResponderInternal and IAppGatewayAuthenticatorInternal.
  */
 
 #include <plugins/Module.h>
@@ -12,6 +12,20 @@ namespace WPEFramework {
 namespace Exchange {
 
     // PUBLIC_INTERFACE
+    struct EXTERNAL ILaunchDelegate : virtual public Core::IUnknown {
+        // Placeholder interface ID for COM-RPC; sufficient for compilation.
+        enum { ID = 0xFA000009 };
+        virtual ~ILaunchDelegate() = default;
+
+        // Execution context passed between components.
+        struct Context {
+            int requestId {0};
+            uint32_t connectionId {0};
+            string appId;
+        };
+    };
+
+    // PUBLIC_INTERFACE
     struct EXTERNAL IAppGatewayResponderInternal : virtual public Core::IUnknown {
         // Placeholder interface ID for COM-RPC; sufficient for compilation.
         enum { ID = 0xFA000004 };
@@ -19,7 +33,7 @@ namespace Exchange {
 
         /** Respond to a request by sending the payload to the appropriate destination. */
         // PUBLIC_INTERFACE
-        virtual Core::hresult Respond(const Context& context /* @in */, const string& payload /* @in */) = 0;
+        virtual Core::hresult Respond(const IAppGateway::Context& context /* @in */, const string& payload /* @in */) = 0;
     };
 
     // PUBLIC_INTERFACE

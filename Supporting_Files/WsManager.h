@@ -154,6 +154,8 @@ public:
             {
                 LOGINFO("Closed - %s", this->IsSuspended() ? _T("SUSPENDED") : _T("OK"));
                 LOGDBG("Connection cleared");
+                // Notify disconnect and clear context
+                _parent.Interface().NotifyDisconnect(_id);
             }
         }
         
@@ -362,6 +364,9 @@ public:
 
     void SetAuthHandler(AuthHandler handler) { _authHandler = handler; }
 
+    using DisconnectHandler = std::function<void(const uint32_t connectionId)>;
+    void SetDisconnectHandler(DisconnectHandler handler) { _disconnectHandler = handler; }
+
     // Create a new method which can send message to a given connection id using the connection registry
     // Use the SendJSONRPCResponse in Websocket Server to send the message
     bool SendMessageToConnection(const uint32_t connectionId, const std::string &result, const int requestId)
@@ -420,11 +425,22 @@ public:
         client->Close(0);
     }
 
+public:
+    // Notify registered disconnect handler and clear context
+    void NotifyDisconnect(const uint32_t connectionId)
+    {
+        if (_disconnectHandler) {
+            _disconnectHandler(connectionId);
+        }
+        ClearContext(connectionId);
+    }
+
 private:
     std::unordered_map<uint32_t, Context> _contexts;
     std::mutex _contextMutex;
     MessageHandler _messageHandler;
     AuthHandler _authHandler;
+    DisconnectHandler _disconnectHandler;
     WebSocketChannel *mChannel = nullptr;
 };
 

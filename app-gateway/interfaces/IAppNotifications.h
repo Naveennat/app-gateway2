@@ -20,6 +20,7 @@ namespace Exchange {
         struct Context {
             int requestId {0};
             uint32_t connectionId {0};
+            string appId;   // Added to support conversions in ContextUtils
             string origin;
         };
 

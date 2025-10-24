@@ -22,8 +22,8 @@
 #include <plugins/IShell.h>
 #include "AppGatewayImplementation.h"
 #include "UtilsLogging.h"
-#include "ContextUtils.h"
-#include "ObjectUtils.h"
+#include "../../Supporting_Files/ContextUtils.h"
+#include "../helpers/ObjectUtils.h"
 #include <fstream>
 #include <streambuf>
 #include "UtilsConnections.h"
@@ -555,10 +555,10 @@ namespace WPEFramework
 
             if (mAppIdRegistry.Get(connectionId, appId)) {
                 // App Id is available
-                Context context = {
-                requestId,
-                connectionId,
-                std::move(appId)};
+                Context context;
+                context.requestId = requestId;
+                context.connectionId = connectionId;
+                context.appId = std::move(appId);
                 InternalResolve(context, method, params, APP_GATEWAY_CALLSIGN);
 
             } else {

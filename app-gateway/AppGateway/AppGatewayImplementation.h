@@ -134,11 +134,10 @@ namespace Plugin {
                 if(ContextUtils::IsOriginGateway(mDestination)) {
                     mParent.ReturnMessageInSocket(mConnectionId, mRequestId, mPayload);
                 } else {
-                    Context gatewayContext = {
-                        mRequestId,
-                        mConnectionId,
-                        ""
-                     };
+                    Context gatewayContext;
+                    gatewayContext.requestId = mRequestId;
+                    gatewayContext.connectionId = mConnectionId;
+                    gatewayContext.appId = "";
                     mParent.SendToLaunchDelegate(gatewayContext, mPayload);
                 }
                 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Module.h"
+#include "../Module.h"
 #include "UtilsLogging.h"
 #include "UtilsJsonrpcDirectLink.h"
 #include <core/JSON.h>
@@ -38,7 +38,7 @@ public:
         }
 
         // Try to parse {"result":{"w":..., "h":...}} and render as [w,h]
-        Core::JSON::Object obj;
+        Core::JSON::VariantContainer obj;
         Core::OptionalType<Core::JSON::Error> error;
         if (obj.FromString(response, error)) {
             auto r = obj.Get(_T("result"));
@@ -73,7 +73,7 @@ public:
         // Parse version/reason
         bool hdcp14 = false;
         bool hdcp22 = false;
-        Core::JSON::Object obj;
+        Core::JSON::VariantContainer obj;
         Core::OptionalType<Core::JSON::Error> error;
         if (obj.FromString(response, error)) {
             auto r = obj.Get(_T("result"));
@@ -111,7 +111,7 @@ public:
         if (link->Invoke<std::string, std::string>("getFriendlyName", "{}", response) != Core::ERROR_NONE) {
             return Core::ERROR_GENERAL;
         }
-        Core::JSON::Object obj;
+        Core::JSON::VariantContainer obj;
         Core::OptionalType<Core::JSON::Error> error;
         if (obj.FromString(response, error)) {
             auto r = obj.Get(_T("result"));
@@ -133,7 +133,7 @@ public:
         auto link = Utils::GetThunderControllerClient(_shell, "org.rdk.System");
         if (!link) return Core::ERROR_UNAVAILABLE;
 
-        Core::JSON::Object p;
+        Core::JSON::VariantContainer p;
         p[_T("friendlyName")] = Core::JSON::String(name);
         string params;
         p.ToString(params);
@@ -155,7 +155,7 @@ public:
         if (link->Invoke<std::string, std::string>("getDeviceInfo", "{}", response) != Core::ERROR_NONE) {
             return Core::ERROR_GENERAL;
         }
-        Core::JSON::Object obj;
+        Core::JSON::VariantContainer obj;
         Core::OptionalType<Core::JSON::Error> error;
         if (obj.FromString(response, error)) {
             auto r = obj.Get(_T("result"));
@@ -182,7 +182,7 @@ public:
         if (link->Invoke<std::string, std::string>("getSystemVersions", "{}", response) != Core::ERROR_NONE) {
             return Core::ERROR_GENERAL;
         }
-        Core::JSON::Object obj;
+        Core::JSON::VariantContainer obj;
         Core::OptionalType<Core::JSON::Error> error;
         if (obj.FromString(response, error)) {
             auto r = obj.Get(_T("result"));

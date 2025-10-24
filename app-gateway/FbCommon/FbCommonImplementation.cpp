@@ -103,7 +103,7 @@ Core::hresult FbCommonImplementation::HandleAppGatewayRequest(
 
     // Device.setName
     if (m == "device.setname") {
-        Core::JSON::Object params;
+        Core::JSON::VariantContainer params;
         Core::OptionalType<Core::JSON::Error> error;
         string nameValue;
         if (params.FromString(payload, error)) {
