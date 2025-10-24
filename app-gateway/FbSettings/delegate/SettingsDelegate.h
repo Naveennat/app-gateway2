@@ -19,7 +19,7 @@
 
 #ifndef __SETTINGSDELEGATE_H__
 #define __SETTINGSDELEGATE_H__
-#include "StringUtils.h"
+#include "helpers/StringUtils.h"
 #include "TTSDelegate.h"
 #include "UserSettingsDelegate.h"
 #include "SystemDelegate.h"

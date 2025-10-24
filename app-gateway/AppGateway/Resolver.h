@@ -21,7 +21,7 @@
 
 #include "Module.h"
 #include "UtilsLogging.h"
-#include "StringUtils.h"
+#include "helpers/StringUtils.h"
 #include <unordered_map>
 #include <mutex>
 #include <core/Enumerate.h>

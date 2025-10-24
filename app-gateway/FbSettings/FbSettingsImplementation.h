@@ -79,12 +79,18 @@ namespace Plugin {
         INTERFACE_ENTRY(Exchange::IAppGatewayRequestHandler)
         END_INTERFACE_MAP
 
-        Core::hresult HandleAppEventNotifier(const string& event, const bool& listen, bool& status /* @out */) override;
+        Core::hresult HandleAppEventNotifier(const string event, const bool listen, bool& status /* @out */) override;
 
         // PUBLIC_INTERFACE
         Core::hresult HandleAppEventNotifier(const string& event /* @in */, const bool listen /* @in */) override;
-        Core::hresult SetName(const string& value  /* @in */, string& result) override;
-        Core::hresult AddAdditionalInfo(const string& value  /* @in @opaque */, string& result) override;
+        Core::hresult SetName(const string value  /* @in */, string& result) override;
+        Core::hresult AddAdditionalInfo(const string value  /* @in @opaque */, string& result) override;
+
+        // PUBLIC_INTERFACE (IFbSettings subscription helpers)
+        Core::hresult SubscribeOnCountryCodeChanged(const bool listen /* @in */, bool& status /* @out */) override;
+        Core::hresult SubscribeOnTimeZoneChanged(const bool listen /* @in */, bool& status /* @out */) override;
+        Core::hresult SubscribeOnFriendlyNameChanged(const bool listen /* @in */, bool& status /* @out */) override;
+        Core::hresult SubscribeOnDeviceNameChanged(const bool listen /* @in */, bool& status /* @out */) override;
 
         // IAppGatewayRequestHandler interface
         Core::hresult HandleAppGatewayRequest(const Exchange::Context& context /* @in */,

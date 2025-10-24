@@ -21,7 +21,7 @@
 #include <fstream>
 #include <iostream>
 #include "UtilsLogging.h"
-#include "StringUtils.h"
+#include "helpers/StringUtils.h"
 #include "UtilsJsonrpcDirectLink.h"
 #include <core/JSON.h>
 

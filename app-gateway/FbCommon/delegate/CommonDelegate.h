@@ -133,10 +133,13 @@ public:
         auto link = Utils::GetThunderControllerClient(_shell, "org.rdk.System");
         if (!link) return Core::ERROR_UNAVAILABLE;
 
-        Core::JSON::VariantContainer p;
-        p[_T("friendlyName")] = Core::JSON::String(name);
-        string params;
-        p.ToString(params);
+        // Build params safely without assigning JSON::String into a Variant (which may trigger NumberType templates).
+        // Serialize the Core::JSON::String and embed it directly in the JSON object text.
+        Core::JSON::String jn;
+        jn = name;
+        string jsonName, params;
+        jn.ToString(jsonName); // jsonName contains proper JSON-escaped string with quotes
+        params = string("{\"friendlyName\":") + jsonName + "}";
 
         std::string response;
         return link->Invoke<std::string, std::string>("setFriendlyName", params, response);

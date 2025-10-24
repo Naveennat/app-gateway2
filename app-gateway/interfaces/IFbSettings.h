@@ -78,6 +78,14 @@ namespace Exchange {
         virtual Core::hresult SubscribeOnDeviceNameChanged(const bool listen /* @in */,
                                                            bool& status /* @out */) = 0;
         /** Subscribe/unsubscribe to device name change notifications. */
+
+        // PUBLIC_INTERFACE
+        virtual Core::hresult SetName(const string value /* @in */, string& result /* @out */) = 0;
+        /** Set a generic name value (legacy helper used by some integrations). */
+
+        // PUBLIC_INTERFACE
+        virtual Core::hresult AddAdditionalInfo(const string value /* @in @opaque */, string& result /* @out */) = 0;
+        /** Add additional info blob mapped from Localization.addAdditionalInfo. */
     };
 
 } // namespace Exchange

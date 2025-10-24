@@ -22,7 +22,7 @@
 #ifndef __NETWORKDELEGATE_H__
 #define __NETWORKDELEGATE_H__
 
-#include "StringUtils.h"
+#include "helpers/StringUtils.h"
 #include "BaseEventDelegate.h"
 #include <interfaces/INetworkManager.h>
 #include "UtilsLogging.h"
@@ -275,7 +275,7 @@ private:
             return registered;
         }
 
-        BEGIN_INTERFACE_MAP(NotificationHandler)
+        BEGIN_INTERFACE_MAP(NetworkNotificationHandler)
         INTERFACE_ENTRY(Exchange::INetworkManager::INotification)
         END_INTERFACE_MAP
 

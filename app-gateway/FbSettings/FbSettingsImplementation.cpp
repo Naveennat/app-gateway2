@@ -45,8 +45,8 @@ namespace WPEFramework
             }
         }
 
-        Core::hresult FbSettingsImplementation::HandleAppEventNotifier(const string &event /* @in */,
-                                                                       const bool &listen /* @in */,
+        Core::hresult FbSettingsImplementation::HandleAppEventNotifier(const string event /* @in */,
+                                                                       const bool listen /* @in */,
                                                                        bool &status /* @out */)
         {
             LOGINFO("HandleFireboltNotifier [event=%s listen=%s]",
@@ -69,15 +69,53 @@ namespace WPEFramework
             return Core::ERROR_NONE;
         }
 
-        Core::hresult FbSettingsImplementation::SetName(const string &value /* @in */, string &result)
+        Core::hresult FbSettingsImplementation::SetName(const string value /* @in */, string &result)
         {
-            result = "null"; // TBA
+            result = "null"; // Stub: accept and return null
             return Core::ERROR_NONE;
         }
 
-        Core::hresult FbSettingsImplementation::AddAdditionalInfo(const string &value /* @in @opaque */, string &result)
+        Core::hresult FbSettingsImplementation::AddAdditionalInfo(const string value /* @in @opaque */, string &result)
         {
-            result = "null"; // TBA
+            result = "null"; // Stub: accept and return null
+            return Core::ERROR_NONE;
+        }
+
+        // Implement IFbSettings subscription helpers as simple pass-through stubs.
+        Core::hresult FbSettingsImplementation::SubscribeOnCountryCodeChanged(const bool listen /* @in */, bool& status /* @out */)
+        {
+            status = true;
+            if (mDelegate) {
+                // Forward to delegate using the common notifier path
+                Core::IWorkerPool::Instance().Submit(EventRegistrationJob::Create(this, "localization.onCountryCodeChanged", listen));
+            }
+            return Core::ERROR_NONE;
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnTimeZoneChanged(const bool listen /* @in */, bool& status /* @out */)
+        {
+            status = true;
+            if (mDelegate) {
+                Core::IWorkerPool::Instance().Submit(EventRegistrationJob::Create(this, "localization.onTimeZoneChanged", listen));
+            }
+            return Core::ERROR_NONE;
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnFriendlyNameChanged(const bool listen /* @in */, bool& status /* @out */)
+        {
+            status = true;
+            if (mDelegate) {
+                Core::IWorkerPool::Instance().Submit(EventRegistrationJob::Create(this, "subscribeOnFriendlyNameChanged", listen));
+            }
+            return Core::ERROR_NONE;
+        }
+
+        Core::hresult FbSettingsImplementation::SubscribeOnDeviceNameChanged(const bool listen /* @in */, bool& status /* @out */)
+        {
+            status = true;
+            if (mDelegate) {
+                Core::IWorkerPool::Instance().Submit(EventRegistrationJob::Create(this, "subscribeOnDeviceNameChanged", listen));
+            }
             return Core::ERROR_NONE;
         }
         // Delegated alias methods
