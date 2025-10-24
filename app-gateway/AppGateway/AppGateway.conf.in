@@ -1,13 +1,4 @@
-{
-  "autostart": true,
-  "precondition": [],
-  "configuration": {
-    "serverPort": 3473,
-    "permissionEnforcement": true,
-    "jwtEnabled": false,
-    "gatewayCallsign": "org.rdk.AppGateway",
-    "resolutionPaths": [
-      "/etc/gateway/gateway.config.json"
-    ]
-  }
-}
+precondition = ["Platform"]
+callsign = "org.rdk.AppGateway"
+autostart = "@PLUGIN_APPGATEWAY_AUTOSTART@"
+startuporder = "@PLUGIN_APPGATEWAY_STARTUPORDER@"

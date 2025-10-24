@@ -1,263 +1,138 @@
+/*
+ * If not stated otherwise in this file or this component's LICENSE file the
+ * following copyright and licenses apply:
+ *
+ * Copyright 2020 RDK Management
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #include "AppGateway.h"
-#include <cstdio>
+#include <interfaces/IConfiguration.h>
+#include <interfaces/json/JsonData_AppGateway.h>
+#include <interfaces/json/JAppGateway.h>
+#include "UtilsLogging.h"
+
+
+#define API_VERSION_NUMBER_MAJOR    APPGATEWAY_MAJOR_VERSION
+#define API_VERSION_NUMBER_MINOR    APPGATEWAY_MINOR_VERSION
+#define API_VERSION_NUMBER_PATCH    APPGATEWAY_PATCH_VERSION
+
 
 namespace WPEFramework {
-namespace Plugin {
-
-SERVICE_REGISTRATION(AppGateway, 1, 0, 0);
 
 namespace {
-    // Common JSON-RPC error codes used in the design documents.
-    constexpr uint32_t JSONRPC_INVALID_PATH = 2;        // configure
-    constexpr uint32_t JSONRPC_PARSE_ERROR = static_cast<uint32_t>(-32700);
-    constexpr uint32_t JSONRPC_INVALID_PARAMS = static_cast<uint32_t>(-32602);
-    constexpr uint32_t JSONRPC_INVALID_REQUEST = static_cast<uint32_t>(-32699);
+    static Plugin::Metadata<Plugin::AppGateway> metadata(
+        // Version (Major, Minor, Patch)
+        API_VERSION_NUMBER_MAJOR, API_VERSION_NUMBER_MINOR, API_VERSION_NUMBER_PATCH,
+        // Preconditions
+        {},
+        // Terminations
+        {},
+        // Controls
+        {}
+    );
 }
 
-AppGateway::AppGateway()
-    : PluginHost::JSONRPC()
-    , _refCount(1)
-    , _service(nullptr)
-    , _resolver(new Resolver())
-    , _router()
-    , _connections(new ConnectionRegistry())
-    , _perms(new PermissionManager())
-    , _ws(new GatewayWebSocket())
-    , _securityToken()
-    , _wsPort(3473)
-    , _permissionEnforcement(true)
-    , _jwtEnabled(false)
-    , _callsign("org.rdk.AppGateway") {
-    std::printf("Hello from AppGateway constructor30!\n");
-    RegisterMethods();
-}
+namespace Plugin {
+    SERVICE_REGISTRATION(AppGateway, API_VERSION_NUMBER_MAJOR, API_VERSION_NUMBER_MINOR, API_VERSION_NUMBER_PATCH);
 
-AppGateway::~AppGateway() {
-    UnregisterMethods();
-}
+    AppGateway::AppGateway()
+            : PluginHost::JSONRPC(), mService(nullptr), mAppGateway(nullptr), mConnectionId(0)
+        {
 
-// PUBLIC_INTERFACE
-uint32_t AppGateway::AddRef() const {
-    return _refCount.fetch_add(1, std::memory_order_relaxed) + 1;
-}
-
-// PUBLIC_INTERFACE
-uint32_t AppGateway::Release() const {
-    uint32_t count = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
-    if (count == 0) {
-        delete this;
-    }
-    return count;
-}
-
-// PUBLIC_INTERFACE
-void* AppGateway::QueryInterface(const uint32_t id) {
-    void* result = nullptr;
-
-    if (id == PluginHost::IPlugin::ID) {
-        result = static_cast<PluginHost::IPlugin*>(this);
-    } else if (id == PluginHost::IDispatcher::ID) {
-        result = static_cast<PluginHost::IDispatcher*>(this);
+        LOGINFO("AppGateway Constructor");
     }
 
-    if (result != nullptr) {
-        AddRef();
-    }
-    return result;
-}
-
-void AppGateway::RegisterMethods() {
-    Register<ConfigureParams, Core::JSON::Container>(_T("configure"), &AppGateway::endpoint_configure, this);
-    Register<RespondParams, Core::JSON::Container>(_T("respond"), &AppGateway::endpoint_respond, this);
-    Register<ResolveParams, ResolveResult>(_T("resolve"), &AppGateway::endpoint_resolve, this);
-}
-
-void AppGateway::UnregisterMethods() {
-    Unregister(_T("configure"));
-    Unregister(_T("respond"));
-    Unregister(_T("resolve"));
-}
-
-bool AppGateway::ExtractSecurityToken(PluginHost::IShell* service, string& token) const {
-    // Acquire a token from the SecurityAgent using the current API (CreateToken).
-    bool rc = false;
-    token.clear();
-
-    if (service != nullptr) {
-        PluginHost::IAuthenticate* authenticate =
-            service->QueryInterfaceByCallsign<PluginHost::IAuthenticate>(_T("SecurityAgent"));
-        if (authenticate != nullptr) {
-            string generated;
-            if (authenticate->CreateToken(0 /* length */, nullptr /* buffer */, generated) == Core::ERROR_NONE) {
-                token = generated;
-                rc = true;
-            }
-            authenticate->Release();
-        }
-    }
-    return rc;
-}
-
-const string AppGateway::Initialize(PluginHost::IShell* service) {
-    ASSERT(service != nullptr);
-    _service = service;
-
-    // Load configuration
-    Config config;
-    config.FromString(service->ConfigLine());
-    _wsPort = config.ServerPort.Value();
-    _permissionEnforcement = config.PermissionEnforcement.Value();
-    _jwtEnabled = config.JwtEnabled.Value();
-    _callsign = (config.GatewayCallsign.IsSet() ? config.GatewayCallsign.Value() : string("org.rdk.AppGateway"));
-    _perms->JwtEnabled(_jwtEnabled);
-
-    // Gather security token for local JSON-RPC usage
-    ExtractSecurityToken(service, _securityToken);
-
-    // Router uses token for local dispatch
-    _router.reset(new RequestRouter(service, _securityToken));
-
-    // Start WS if configured
-    if (_wsPort > 0) {
-        string err;
-        if (!_ws->Start(_wsPort, err)) {
-            SYSLOG(Logging::Startup, (_T("AppGateway: WS start failed on port %u: %s"), _wsPort, err.c_str()));
-        }
-    }
-
-    // Load resolution overlays if provided
-    if (config.ResolutionPaths.Length() > 0) {
-        std::vector<string> paths;
-        Core::JSON::ArrayType<Core::JSON::String>::Iterator it(config.ResolutionPaths.Elements());
-        while (it.Next()) {
-            paths.emplace_back(it.Current().Value());
-        }
-        string err;
-        if (!_resolver->LoadPaths(paths, err)) {
-            SYSLOG(Logging::Startup, (_T("AppGateway: resolution load failed: %s"), err.c_str()));
-        }
-    }
-
-    return string();
-}
-
-void AppGateway::Deinitialize(PluginHost::IShell* service) {
-    if (_ws && _ws->Running()) {
-        _ws->Stop();
-    }
-
-    _router.reset();
-    _resolver.reset();
-    _connections.reset();
-    _perms.reset();
-    _ws.reset();
-
-    _securityToken.clear();
-    _service = nullptr;
-    (void)service;
-}
-
-string AppGateway::Information() const {
-    // Return empty string (typical placeholder)
-    return string();
-}
-
-// JSON-RPC: configure
-uint32_t AppGateway::endpoint_configure(const ConfigureParams& params, Core::JSON::Container& /*response*/) {
-    if (params.Paths.Length() == 0) {
-        return JSONRPC_INVALID_PARAMS;
-    }
-
-    std::vector<string> paths;
+    AppGateway::~AppGateway()
     {
-        Core::JSON::ArrayType<Core::JSON::String>::ConstIterator it(params.Paths.Elements());
-        while (it.Next()) {
-            if (it.Current().Value().empty() == false) {
-                paths.emplace_back(it.Current().Value());
+    }
+
+    /* virtual */ const string AppGateway::Initialize(PluginHost::IShell* service)
+    {
+        ASSERT(service != nullptr);
+        ASSERT(mAppGateway == nullptr);
+
+        LOGINFO("AppGateway::Initialize: PID=%u", getpid());
+
+        mService = service;
+        mService->AddRef();
+        mAppGateway = service->Root<Exchange::IAppGateway>(mConnectionId, 2000, _T("AppGatewayImplementation"));
+
+        if (mAppGateway != nullptr) {
+            auto configConnection = mAppGateway->QueryInterface<Exchange::IConfiguration>();
+            if (configConnection != nullptr) {
+                configConnection->Configure(service);
+                configConnection->Release();
+            }
+
+            //Invoking Plugin API register to wpeframework
+            Exchange::JAppGateway::Register(*this, mAppGateway);
+        }
+        else
+        {
+            LOGERR("Failed to initialise AppGateway plugin!");
+        }
+   
+            
+        // On success return empty, to indicate there is no error text.
+        return ((mAppGateway != nullptr))
+            ? EMPTY_STRING
+            : _T("Could not retrieve the AppGateway interface.");
+    }
+
+    /* virtual */ void AppGateway::Deinitialize(PluginHost::IShell* service)
+    {
+        ASSERT(service == mService);
+
+        if (mAppGateway != nullptr) {
+            Exchange::JAppGateway::Unregister(*this);
+            RPC::IRemoteConnection *connection(service->RemoteConnection(mConnectionId));
+            VARIABLE_IS_NOT_USED uint32_t result = mAppGateway->Release();
+            mAppGateway = nullptr;
+
+            // It should have been the last reference we are releasing,
+            // so it should end up in a DESCRUCTION_SUCCEEDED, if not we
+            // are leaking...
+            ASSERT(result == Core::ERROR_DESTRUCTION_SUCCEEDED);
+
+            // If this was running in a (container) process...
+            if (connection != nullptr)
+            {
+                // Lets trigger a cleanup sequence for
+                // out-of-process code. Which will guard
+                // that unwilling processes, get shot if
+                // not stopped friendly :~)
+                connection->Terminate();
+                connection->Release();
             }
         }
+
+        mConnectionId = 0;
+        mService->Release();
+        mService = nullptr;
     }
 
-    if (paths.empty()) {
-        return JSONRPC_INVALID_PARAMS;
-    }
+    void AppGateway::Deactivated(RPC::IRemoteConnection* connection)
+    {
+        if (connection->Id() == mConnectionId) {
 
-    string err;
-    if (!_resolver->LoadPaths(paths, err)) {
-        SYSLOG(Logging::Notification, (_T("AppGateway.configure: invalid path(s): %s"), err.c_str()));
-        return JSONRPC_INVALID_PATH;
-    }
+            ASSERT(mService != nullptr);
 
-    return Core::ERROR_NONE;
-}
-
-// JSON-RPC: respond
-uint32_t AppGateway::endpoint_respond(const RespondParams& params, Core::JSON::Container& /*response*/) {
-    // Validate context
-    if (!params.Ctx.RequestId.IsSet() || !params.Ctx.ConnectionId.IsSet() || !params.Ctx.AppId.IsSet()) {
-        return JSONRPC_INVALID_PARAMS;
-    }
-
-    // Determine payload (VariantContainer-compatible logic)
-    Core::JSON::Object effectivePayload;
-    if (params.Payload.IsSet()) {
-        effectivePayload = params.Payload;
-    } else if (params.Result.IsSet() || params.Error.IsSet()) {
-        // Wrap legacy fields into payload using Variant assignment
-        if (params.Result.IsSet()) {
-            effectivePayload[_T("result")] = params.Result;
+            Core::IWorkerPool::Instance().Submit(PluginHost::IShell::Job::Create(mService, PluginHost::IShell::DEACTIVATED, PluginHost::IShell::FAILURE));
         }
-        if (params.Error.IsSet()) {
-            effectivePayload[_T("error")] = params.Error;
-        }
-    } else {
-        return JSONRPC_INVALID_PARAMS;
     }
-
-    // For Phase 1, this is a no-op stub (integration with a WS endpoint is product-specific).
-    // If a transport is present, deliver the payload; otherwise, accept silently.
-    if (_ws && _ws->Running()) {
-        Core::JSON::Object envelope;
-
-        // Serialize Context (a Core::JSON::Container) to string for embedding
-        string ctxSerialized;
-        params.Ctx.ToString(ctxSerialized);
-
-        envelope[_T("context")] = ctxSerialized;     // embed as string
-        envelope[_T("payload")] = effectivePayload;  // embed as object
-
-        string serialized;
-        envelope.ToString(serialized);
-        _ws->SendTo(params.Ctx.ConnectionId.Value(), serialized);
-    }
-
-    return Core::ERROR_NONE;
-}
-
-// JSON-RPC: resolve
-uint32_t AppGateway::endpoint_resolve(const ResolveParams& params, ResolveResult& response) {
-    if (!params.Method.IsSet() || params.Method.Value().empty()) {
-        return JSONRPC_INVALID_PARAMS;
-    }
-
-    Core::JSON::Object reso;
-    string appId;
-    if (params.Ctx.HasLabel(_T("appId"))) {
-        appId = params.Ctx.Get(_T("appId")).String();
-    }
-
-    // Try resolver first
-    bool found = _resolver->Get(appId, params.Method.Value(), params.Params, reso);
-
-    // Fallback default echo if not found
-    if (!found) {
-        // default resolution is echo alias
-        reso[_T("alias")] = params.Method.Value();
-    }
-
-    response.Resolution = reso;
-    return Core::ERROR_NONE;
-}
 
 } // namespace Plugin
 } // namespace WPEFramework
+

@@ -1,37 +1,29 @@
+/*
+* If not stated otherwise in this file or this component's LICENSE file the
+* following copyright and licenses apply:
+*
+* Copyright 2024 RDK Management
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 #pragma once
-
-// Module foundation header for this plugin.
-// This mirrors the pattern used by Metrological/Thunder plugins.
-
 #ifndef MODULE_NAME
-#define MODULE_NAME AppGateway
+#define MODULE_NAME Plugin_AppGateway
 #endif
 
-#include <core/core.h>
-#include <plugins/JSONRPC.h>
-#include <plugins/IPlugin.h>
-#include <plugins/IShell.h>
+#include <plugins/plugins.h>
+#include <tracing/tracing.h>
 
-#ifndef EXTERNAL
-#ifdef __WINDOWS__
-#define EXTERNAL EXTERNAL_EXPORT
-#else
+#undef EXTERNAL
 #define EXTERNAL
-#endif
-#endif
-
- // Convenience macro used by Thunder for version and module declaration.
- // Keep the declaration in Module.cpp via MODULE_NAME_DECLARATION(BUILD_REFERENCE).
-
-// Backwards-compatibility alias:
-//
-// Some Thunder/WPEFramework versions do not define Core::JSON::Object.
-// They instead provide Core::JSON::VariantContainer for dynamic objects.
-// Create an alias so code using Core::JSON::Object continues to compile.
-namespace WPEFramework {
-namespace Core {
-namespace JSON {
-    using Object = VariantContainer;
-}
-}
-}

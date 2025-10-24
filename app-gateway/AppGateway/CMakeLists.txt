@@ -1,7 +1,7 @@
 # If not stated otherwise in this file or this component's license file the
 # following copyright and licenses apply:
 #
-# Copyright 2025
+# Copyright 2020 RDK Management
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,99 +15,68 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.10)
+set(PLUGIN_NAME AppGateway)
+set(MODULE_NAME ${NAMESPACE}${PLUGIN_NAME})
 
-# This subdirectory CMake builds the AppGateway plugin as a shared library.
-# It does not use find_package; includes and libraries are referenced directly
-# from ../../dependencies/install.
+set(VERSION_MAJOR 1)
+set(VERSION_MINOR 0)
+set(VERSION_PATCH 0)
 
-project(AppGateway LANGUAGES CXX)
+add_compile_definitions(APPGATEWAY_MAJOR_VERSION=${VERSION_MAJOR})
+add_compile_definitions(APPGATEWAY_MINOR_VERSION=${VERSION_MINOR})
+add_compile_definitions(APPGATEWAY_PATCH_VERSION=${VERSION_PATCH})
 
-# Thunder typically defines the NAMESPACE cache variable as WPEFramework.
-if (NOT DEFINED NAMESPACE OR "${NAMESPACE}" STREQUAL "")
-    set(NAMESPACE WPEFramework)
-endif()
+set(MODULE_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 
-# Target name follows Thunder/Plugin convention: WPEFramework + <PluginName>
-set(TARGET ${NAMESPACE}AppGateway)
+set(PLUGIN_APPGATEWAY_STARTUPORDER "" CACHE STRING "To configure startup order of AppGateway plugin")
+set(PLUGIN_APPGATEWAY_AUTOSTART "false" CACHE STRING "Automatically start AppGateway plugin")
 
-# Resolve Thunder (WPEFramework) SDK paths, prefer values propagated from the top-level
-# If not provided, fallback to repo-relative path: <repo-root>/app-gateway2/dependencies/install
-if (DEFINED THUNDER_INSTALL_PATH_ABS)
-    set(_THUNDER_SDK_ROOT "${THUNDER_INSTALL_PATH_ABS}")
-elseif (DEFINED THUNDER_INSTALL_PATH)
-    get_filename_component(_THUNDER_SDK_ROOT "${THUNDER_INSTALL_PATH}" REALPATH)
-else()
-    get_filename_component(_THUNDER_SDK_ROOT "${CMAKE_SOURCE_DIR}/../dependencies/install" REALPATH)
-endif()
-set(THUNDER_INCLUDE_DIR "${_THUNDER_SDK_ROOT}/include/${NAMESPACE}")
-set(THUNDER_LIBRARY_DIR "${_THUNDER_SDK_ROOT}/lib")
+message("Setup ${MODULE_NAME} v${MODULE_VERSION}")
 
-if (NOT EXISTS "${THUNDER_INSTALL_PATH_ABS}")
-    message(WARNING "Thunder (WPEFramework) SDK not found at ${THUNDER_INSTALL_PATH_ABS}. Adjust THUNDER_INSTALL_PATH if needed.")
-endif()
+find_package(${NAMESPACE}Plugins REQUIRED)
+find_package(${NAMESPACE}Definitions REQUIRED)
+find_package(CompileSettingsDebug CONFIG REQUIRED)
 
-# Requirement: Add include_directories(dependencies/install/include/WPEFramework)
-# We satisfy this with the normalized absolute path. Also add as target include.
-include_directories("${THUNDER_INCLUDE_DIR}")
+add_library(${MODULE_NAME} SHARED
+        AppGateway.cpp
+        AppGatewayImplementation.cpp
+        Resolver.cpp
+	Module.cpp)
 
-# Sources local to this plugin directory
-add_library(${TARGET} SHARED
-    Module.cpp
-    AppGateway.cpp
-    Resolver.cpp
-    ResolutionStore.cpp
-    RequestRouter.cpp
-    ConnectionRegistry.cpp
-    GatewayWebSocket.cpp
-    GatewayClient.cpp
-)
+target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
+target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
 
-# Local and SDK includes
-target_include_directories(${TARGET}
-    PUBLIC
-        "${THUNDER_INCLUDE_DIR}"
-    PRIVATE
-        "${CMAKE_CURRENT_LIST_DIR}"
-)
-
-# Use C++11
-target_compile_features(${TARGET} PRIVATE cxx_std_11)
-
-# Define Thunder namespace macro for builds that don't inject it from a superproject.
-target_compile_definitions(${TARGET} PRIVATE NAMESPACE=${NAMESPACE})
-
-# Link against Thunder libs by resolving full paths explicitly
-find_library(THUNDER_CORE_LIB NAMES WPEFrameworkCore HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
-find_library(THUNDER_PLUGINS_LIB NAMES WPEFrameworkPlugins HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
-
-if (NOT THUNDER_CORE_LIB OR NOT THUNDER_PLUGINS_LIB)
-    message(FATAL_ERROR "WPEFramework libraries not found in ${THUNDER_LIBRARY_DIR}. Please ensure dependencies are installed.")
-endif()
-
-target_link_libraries(${TARGET}
-    PRIVATE
-        ${THUNDER_CORE_LIB}
-        ${THUNDER_PLUGINS_LIB}
-)
-
-set_target_properties(${TARGET}
-    PROPERTIES
+set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
-        CXX_STANDARD_REQUIRED YES
-        FRAMEWORK FALSE
-        OUTPUT_NAME "AppGateway"
-)
+        CXX_STANDARD_REQUIRED YES)
 
-# Installation paths (conventional Thunder layout)
-string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
+target_compile_definitions(${MODULE_NAME} PRIVATE MODULE_NAME=Plugin_${PLUGIN_NAME})
 
-install(TARGETS ${TARGET}
-    LIBRARY DESTINATION lib/${NAMESPACE_LIB}/plugins COMPONENT libs
-)
+target_link_libraries(${MODULE_NAME} 
+        PRIVATE
+        CompileSettingsDebug::CompileSettingsDebug
+        ${NAMESPACE}Plugins::${NAMESPACE}Plugins
+        ${NAMESPACE}Definitions::${NAMESPACE}Definitions)
 
-install(FILES
-    AppGateway.conf.in
-    AppGateway.config
-    DESTINATION etc/${NAMESPACE_LIB}/plugins
-)
+
+# To error any missing links
+target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
+
+install(TARGETS ${MODULE_NAME}
+        DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
+
+# define PLUGIN_PRODUCT_CFG
+target_compile_definitions(${MODULE_NAME} PRIVATE
+	PLUGIN_PRODUCT_CFG="${PRODUCT_CONFIG_DIR}/appGatewayConfig.json")
+
+# TODO: temporary install gateway.config.json - should be added by Platform
+install(FILES appGatewayConfig.json
+        DESTINATION "${PRODUCT_CONFIG_DIR}")
+
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/
+        DESTINATION "/etc/app-gateway/"
+        FILES_MATCHING PATTERN "resolution*.json")
+
+write_config(${PLUGIN_NAME})
+

@@ -1,24 +1,27 @@
- /*
-  * Copyright 2023 Comcast Cable Communications Management, LLC
-  *
-  * Licensed under the Apache License, Version 2.0 (the "License");
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  * http://www.apache.org/licenses/LICENSE-2.0
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  *
-  * SPDX-License-Identifier: Apache-2.0
-  */
+/*
+ * Copyright 2023 Comcast Cable Communications Management, LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
 #include "FbSettingsImplementation.h"
 #include "UtilsLogging.h"
 #include "delegate/SettingsDelegate.h"
-#include "delegate/SystemDelegate.h"
+#include <sstream>
+#include <core/JSON.h>
+
+using namespace WPEFramework::Core::JSON;
 
 namespace WPEFramework
 {
@@ -27,16 +30,13 @@ namespace WPEFramework
 
         SERVICE_REGISTRATION(FbSettingsImplementation, 1, 0);
 
-        FbSettingsImplementation::FbSettingsImplementation() : 
-        mShell(nullptr)   
+        FbSettingsImplementation::FbSettingsImplementation() : mShell(nullptr)
         {
-            LOGINFO("FbSettingsImplementation::FbSettingsImplementation() called");
             mDelegate = std::make_shared<SettingsDelegate>();
         }
 
         FbSettingsImplementation::~FbSettingsImplementation()
         {
-            LOGINFO("FbSettingsImplementation::~FbSettingsImplementation() called");
             // Cleanup resources if needed
             if (mShell != nullptr)
             {
@@ -45,9 +45,10 @@ namespace WPEFramework
             }
         }
 
-        Core::hresult FbSettingsImplementation::HandleAppEventNotifier(const string event /* @in */,
-                                    const bool listen /* @in */,
-                                    bool &status /* @out */) {
+        Core::hresult FbSettingsImplementation::HandleAppEventNotifier(const string &event /* @in */,
+                                                                       const bool &listen /* @in */,
+                                                                       bool &status /* @out */)
+        {
             LOGINFO("HandleFireboltNotifier [event=%s listen=%s]",
                     event.c_str(), listen ? "true" : "false");
             status = true;
@@ -55,310 +56,743 @@ namespace WPEFramework
             return Core::ERROR_NONE;
         }
 
+        Core::hresult FbSettingsImplementation::SetName(const string &value /* @in */, string &result)
+        {
+            result = "null"; // TBA
+            return Core::ERROR_NONE;
+        }
+
+        Core::hresult FbSettingsImplementation::AddAdditionalInfo(const string &value /* @in @opaque */, string &result)
+        {
+            result = "null"; // TBA
+            return Core::ERROR_NONE;
+        }
         // Delegated alias methods
 
-        Core::hresult FbSettingsImplementation::GetDeviceMake(string& make) {
-            LOGINFO("FbSettingsImplementation::GetDeviceMake(make) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->GetDeviceMake(make);
+        Core::hresult FbSettingsImplementation::GetDeviceMake(string &make)
+        {
+            LOGINFO("GetDeviceMake FbSettings");
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->GetDeviceMake(make);
         }
 
-        Core::hresult FbSettingsImplementation::GetDeviceName(string& name) {
-            LOGINFO("FbSettingsImplementation::GetDeviceName(name) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->GetDeviceName(name);
+        Core::hresult FbSettingsImplementation::GetDeviceName(string &name)
+        {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->GetDeviceName(name);
         }
 
-        Core::hresult FbSettingsImplementation::SetDeviceName(const string name) {
-            LOGINFO("FbSettingsImplementation::SetDeviceName(name) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->SetDeviceName(name);
+        Core::hresult FbSettingsImplementation::SetDeviceName(const string name)
+        {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->SetDeviceName(name);
         }
 
-        Core::hresult FbSettingsImplementation::GetDeviceSku(string& sku) {
-            LOGINFO("FbSettingsImplementation::GetDeviceSku(sku) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->GetDeviceSku(sku);
+        Core::hresult FbSettingsImplementation::GetDeviceSku(string &sku)
+        {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->GetDeviceSku(sku);
         }
 
-        Core::hresult FbSettingsImplementation::GetCountryCode(string& countryCode) {
-            LOGINFO("FbSettingsImplementation::GetCountryCode(countryCode) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->GetCountryCode(countryCode);
+        Core::hresult FbSettingsImplementation::GetCountryCode(string &countryCode)
+        {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->GetCountryCode(countryCode);
         }
 
-        Core::hresult FbSettingsImplementation::SetCountryCode(const string countryCode) {
-            LOGINFO("FbSettingsImplementation::SetCountryCode(countryCode) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->SetCountryCode(countryCode);
+        Core::hresult FbSettingsImplementation::SetCountryCode(const string countryCode)
+        {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->SetCountryCode(countryCode);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnCountryCodeChanged(const bool listen, bool& status) {
-            LOGINFO("FbSettingsImplementation::SubscribeOnCountryCodeChanged(listen, status) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->SubscribeOnCountryCodeChanged(listen, status);
+        Core::hresult FbSettingsImplementation::GetTimeZone(string &timeZone)
+        {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->GetTimeZone(timeZone);
         }
 
-        Core::hresult FbSettingsImplementation::GetTimeZone(string& timeZone) {
-            LOGINFO("FbSettingsImplementation::GetTimeZone(timeZone) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->GetTimeZone(timeZone);
+        Core::hresult FbSettingsImplementation::SetTimeZone(const string timeZone)
+        {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->SetTimeZone(timeZone);
         }
 
-        Core::hresult FbSettingsImplementation::SetTimeZone(const string timeZone) {
-            LOGINFO("FbSettingsImplementation::SetTimeZone(timeZone) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->SetTimeZone(timeZone);
+        Core::hresult FbSettingsImplementation::GetSecondScreenFriendlyName(string &name)
+        {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            return systemDelegate->GetSecondScreenFriendlyName(name);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnTimeZoneChanged(const bool listen, bool& status) {
-            LOGINFO("FbSettingsImplementation::SubscribeOnTimeZoneChanged(listen, status) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->SubscribeOnTimeZoneChanged(listen, status);
+        // UserSettings APIs
+        Core::hresult FbSettingsImplementation::GetVoiceGuidance(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldnt get voiceguidance state\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldnt get voiceguidance state\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetVoiceGuidance(result);
         }
 
-        Core::hresult FbSettingsImplementation::GetSecondScreenFriendlyName(string& name) {
-            LOGINFO("FbSettingsImplementation::GetSecondScreenFriendlyName(name) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->GetSecondScreenFriendlyName(name);
+        Core::hresult FbSettingsImplementation::GetAudioDescription(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldnt get audio description settings\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldnt get audio description settings\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetAudioDescription(result);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnFriendlyNameChanged(const bool listen, bool& status) {
-            LOGINFO("FbSettingsImplementation::SubscribeOnFriendlyNameChanged(listen, status) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            return sys->SubscribeOnFriendlyNameChanged(listen, status);
+        Core::hresult FbSettingsImplementation::GetAudioDescriptionsEnabled(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldnt get audio descriptions enabled\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldnt get audio descriptions enabled\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetAudioDescriptionsEnabled(result);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnDeviceNameChanged(const bool listen, bool& status) {
-            LOGINFO("FbSettingsImplementation::SubscribeOnDeviceNameChanged(listen, status) called");
-            auto sys = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
-            if (!sys) return Core::ERROR_UNAVAILABLE;
-            // Same underlying event as friendlyName changed
-            return sys->SubscribeOnFriendlyNameChanged(listen, status);
+        Core::hresult FbSettingsImplementation::GetHighContrast(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldnt get high contrast state\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldnt get high contrast state\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetHighContrast(result);
         }
 
-        // ------------- UserSettings forwarders -------------
+        Core::hresult FbSettingsImplementation::GetCaptions(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldnt get captions state\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
 
-        Core::hresult FbSettingsImplementation::GetLanguage(string& language) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetLanguage(language);
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldnt get captions state\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetCaptions(result);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnLanguageChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnLanguageChanged(listen, status);
+        Core::hresult FbSettingsImplementation::GetPresentationLanguage(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldn't get language\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldn't get language\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetPresentationLanguage(result);
         }
 
-        Core::hresult FbSettingsImplementation::GetLocale(string& locale) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetLocale(locale);
+        Core::hresult FbSettingsImplementation::GetLocale(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldn't get locale\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldn't get locale\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetLocale(result);
         }
 
-        Core::hresult FbSettingsImplementation::SetLocale(const string locale) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetLocale(locale);
+        Core::hresult FbSettingsImplementation::SetLocale(const string &locale)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->SetLocale(locale);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnLocaleChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnLocaleChanged(listen, status);
+        Core::hresult FbSettingsImplementation::GetPreferredAudioLanguages(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "[]";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "[]";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetPreferredAudioLanguages(result);
         }
 
-        Core::hresult FbSettingsImplementation::GetPreferredAudioLanguages(string& languages) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetPreferredAudioLanguages(languages);
+        Core::hresult FbSettingsImplementation::GetPreferredCaptionsLanguages(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "[\"eng\"]";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "[\"eng\"]";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetPreferredCaptionsLanguages(result);
         }
 
-        Core::hresult FbSettingsImplementation::SetPreferredAudioLanguages(const string languages) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetPreferredAudioLanguages(languages);
+        Core::hresult FbSettingsImplementation::SetPreferredAudioLanguages(const string &languages)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->SetPreferredAudioLanguages(languages);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnPreferredAudioLanguagesChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnPreferredAudioLanguagesChanged(listen, status);
+        Core::hresult FbSettingsImplementation::SetPreferredCaptionsLanguages(const string &preferredLanguages)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->SetPreferredCaptionsLanguages(preferredLanguages);
         }
 
-        Core::hresult FbSettingsImplementation::SetVoiceGuidanceEnabled(const bool enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetVoiceGuidanceEnabled(enabled);
+        Core::hresult FbSettingsImplementation::SetVoiceGuidance(const bool enabled)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->SetVoiceGuidance(enabled);
         }
 
-        Core::hresult FbSettingsImplementation::SetVoiceGuidanceSpeed(const int speed) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetVoiceGuidanceSpeed(speed);
+        Core::hresult FbSettingsImplementation::SetAudioDescriptionsEnabled(const bool enabled)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->SetAudioDescriptionsEnabled(enabled);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnAudioDescriptionSettingsChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnAudioDescriptionSettingsChanged(listen, status);
+        Core::hresult FbSettingsImplementation::SetCaptions(const bool enabled)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->SetCaptions(enabled);
         }
 
-        Core::hresult FbSettingsImplementation::GetAudioDescriptionSettings(string& settingsJson) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetAudioDescriptionSettings(settingsJson);
+        Core::hresult FbSettingsImplementation::SetSpeed(const double speed)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            // Transform the speed using vg_speed_firebolt2thunder function logic:
+            // (if $speed == 2 then 10 elif $speed >= 1.67 then 1.38 elif $speed >= 1.33 then 1.19 elif $speed >= 1 then 1 else 0.1 end)
+            double transformedRate;
+            if (speed == 2.0)
+            {
+                transformedRate = 10.0;
+            }
+            else if (speed >= 1.67)
+            {
+                transformedRate = 1.38;
+            }
+            else if (speed >= 1.33)
+            {
+                transformedRate = 1.19;
+            }
+            else if (speed >= 1.0)
+            {
+                transformedRate = 1.0;
+            }
+            else
+            {
+                transformedRate = 0.1;
+            }
+
+            LOGINFO("SetSpeed: transforming speed %f to rate %f", speed, transformedRate);
+
+            return userSettingsDelegate->SetVoiceGuidanceRate(transformedRate);
         }
 
-        Core::hresult FbSettingsImplementation::GetAudioDescriptionsEnabled(bool& enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetAudioDescriptionsEnabled(enabled);
+        Core::hresult FbSettingsImplementation::GetSpeed(double &speed)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            double rate;
+            Core::hresult result = userSettingsDelegate->GetVoiceGuidanceRate(rate);
+
+            if (result != Core::ERROR_NONE)
+            {
+                LOGERR("Failed to get voice guidance rate");
+                return result;
+            }
+
+            // Transform the rate using vg_speed_thunder2firebolt function logic:
+            // (if $speed >= 1.56 then 2 elif $speed >= 1.38 then 1.67 elif $speed >= 1.19 then 1.33 elif $speed >= 1 then 1 else 0.5 end)
+            if (rate >= 1.56)
+            {
+                speed = 2.0;
+            }
+            else if (rate >= 1.38)
+            {
+                speed = 1.67;
+            }
+            else if (rate >= 1.19)
+            {
+                speed = 1.33;
+            }
+            else if (rate >= 1.0)
+            {
+                speed = 1.0;
+            }
+            else
+            {
+                speed = 0.5;
+            }
+
+            LOGINFO("GetSpeed: transforming rate %f to speed %f", rate, speed);
+
+            return Core::ERROR_NONE;
         }
 
-        Core::hresult FbSettingsImplementation::SetAudioDescriptionsEnabled(const bool enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetAudioDescriptionsEnabled(enabled);
+        Core::hresult FbSettingsImplementation::GetVoiceGuidanceHints(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldnt get navigationHints\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldnt get navigationHints\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->GetVoiceGuidanceHints(result);
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnAudioDescriptionsEnabledChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnAudioDescriptionsEnabledChanged(listen, status);
+        Core::hresult FbSettingsImplementation::SetVoiceGuidanceHints(const bool enabled)
+        {
+            if (!mDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return userSettingsDelegate->SetVoiceGuidanceHints(enabled);
         }
 
-        Core::hresult FbSettingsImplementation::GetHighContrastUI(bool& enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetHighContrastUI(enabled);
+        Core::hresult FbSettingsImplementation::GetVoiceGuidanceSettings(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldn't get voice guidance settings\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto userSettingsDelegate = mDelegate->getUserSettings();
+            if (!userSettingsDelegate)
+            {
+                result = "{\"error\":\"couldn't get voice guidance settings\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            // Get voice guidance enabled state
+            string enabledResult;
+            Core::hresult enabledStatus = userSettingsDelegate->GetVoiceGuidance(enabledResult);
+            if (enabledStatus != Core::ERROR_NONE)
+            {
+                result = "{\"error\":\"couldn't get voiceguidance enabled state\"}";
+                return enabledStatus;
+            }
+
+            // Get voice guidance rate (speed)
+            double rate;
+            Core::hresult rateStatus = userSettingsDelegate->GetVoiceGuidanceRate(rate);
+            if (rateStatus != Core::ERROR_NONE)
+            {
+                result = "{\"error\":\"couldn't get voiceguidance rate\"}";
+                return rateStatus;
+            }
+
+            // Get navigation hints
+            string hintsResult;
+            Core::hresult hintsStatus = userSettingsDelegate->GetVoiceGuidanceHints(hintsResult);
+            if (hintsStatus != Core::ERROR_NONE)
+            {
+                result = "{\"error\":\"couldn't get voiceguidance hints\"}";
+                return hintsStatus;
+            }
+
+            // Construct the combined JSON response
+            // Format: {"enabled": <bool>, "speed": <rate>, "rate": <rate>, "navigationHints": <bool>}
+            std::ostringstream jsonStream;
+            jsonStream << "{\"enabled\": " << enabledResult
+                       << ", \"speed\": " << rate
+                       << ", \"rate\": " << rate
+                       << ", \"navigationHints\": " << hintsResult << "}";
+
+            result = jsonStream.str();
+            LOGINFO("GetVoiceGuidanceSettings: %s", result.c_str());
+
+            return Core::ERROR_NONE;
         }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnHighContrastUIChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnHighContrastUIChanged(listen, status);
+        Core::hresult FbSettingsImplementation::GetInternetConnectionStatus(string &result)
+        {
+            if (!mDelegate)
+            {
+                result = "{\"error\":\"couldn't get internet connection status\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            auto networkDelegate = mDelegate->getNetworkDelegate();
+            if (!networkDelegate)
+            {
+                result = "{\"error\":\"couldn't get internet connection status\"}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            return networkDelegate->GetInternetConnectionStatus(result);
         }
 
-        Core::hresult FbSettingsImplementation::GetClosedCaptionsEnabled(bool& enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetClosedCaptionsEnabled(enabled);
-        }
+        Core::hresult FbSettingsImplementation::HandleAppGatewayRequest(
+            const Exchange::Context &context,
+            const string &method,
+            const string &payload,
+            string &result)
+        {
+            LOGINFO("HandleAppGatewayRequest: method=%s, payload=%s, appId=%s",
+                    method.c_str(), payload.c_str(), context.appId.c_str());
 
-        Core::hresult FbSettingsImplementation::SetClosedCaptionsEnabled(const bool enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetClosedCaptionsEnabled(enabled);
-        }
+            // Route network-related methods
+            if (method == "device.network")
+            {
+                return GetInternetConnectionStatus(result);
+            }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnClosedCaptionsEnabledChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnClosedCaptionsEnabledChanged(listen, status);
-        }
+            // Route voice guidance methods
+            else if (method == "voiceguidance.enabled")
+            {
+                return GetVoiceGuidance(result);
+            }
+            else if (method == "voiceguidance.setEnabled")
+            {
+                // Parse payload for boolean value
+                JsonObject params;
+                if (params.FromString(payload))
+                {
+                    bool enabled = params.Get("value").Boolean();
+                    return SetVoiceGuidance(enabled);
+                }
+                result = "{\"error\":\"Invalid payload\"}";
+                return Core::ERROR_BAD_REQUEST;
+            }
+            else if (method == "voiceguidance.speed" || method == "voiceguidance.rate")
+            {
+                double speed;
+                Core::hresult status = GetSpeed(speed);
+                if (status == Core::ERROR_NONE)
+                {
+                    std::ostringstream jsonStream;
+                    jsonStream << speed;
+                    result = jsonStream.str();
+                }
+                return status;
+            }
+            else if (method == "voiceguidance.setSpeed" || method == "voiceguidance.setRate")
+            {
+                JsonObject params;
+                if (params.FromString(payload))
+                {
+                    double speed = params.Get("value").Number();
+                    return SetSpeed(speed);
+                }
+                result = "{\"error\":\"Invalid payload\"}";
+                return Core::ERROR_BAD_REQUEST;
+            }
+            else if (method == "voiceguidance.navigationHints")
+            {
+                return GetVoiceGuidanceHints(result);
+            }
+            else if (method == "voiceguidance.setNavigationHints")
+            {
+                JsonObject params;
+                if (params.FromString(payload))
+                {
+                    bool enabled = params.Get("value").Boolean();
+                    return SetVoiceGuidanceHints(enabled);
+                }
+                result = "{\"error\":\"Invalid payload\"}";
+                return Core::ERROR_BAD_REQUEST;
+            }
+            else if (method == "accessibility.voiceGuidanceSettings")
+            {
+                return GetVoiceGuidanceSettings(result);
+            }
 
-        Core::hresult FbSettingsImplementation::GetClosedCaptionsPreferredLanguages(string& languages) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetClosedCaptionsPreferredLanguages(languages);
-        }
+            // Route audio description methods
+            else if (method == "accessibility.audioDescriptionSettings")
+            {
+                return GetAudioDescription(result);
+            }
+            else if (method == "audiodescriptions.enabled")
+            {
+                return GetAudioDescriptionsEnabled(result);
+            }
+            else if (method == "audiodescriptions.setEnabled")
+            {
+                JsonObject params;
+                if (params.FromString(payload))
+                {
+                    bool enabled = params.Get("value").Boolean();
+                    return SetAudioDescriptionsEnabled(enabled);
+                }
+                result = "{\"error\":\"Invalid payload\"}";
+                return Core::ERROR_BAD_REQUEST;
+            }
 
-        Core::hresult FbSettingsImplementation::SetClosedCaptionsPreferredLanguages(const string languages) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetClosedCaptionsPreferredLanguages(languages);
-        }
+            // Route accessibility methods
+            else if (method == "accessibility.highContrastUI")
+            {
+                return GetHighContrast(result);
+            }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnClosedaptionsPreferredLanguagesChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnClosedaptionsPreferredLanguagesChanged(listen, status);
-        }
+            // Route closed captions methods
+            else if (method == "closedcaptions.enabled")
+            {
+                return GetCaptions(result);
+            }
+            else if (method == "closedcaptions.setEnabled")
+            {
+                JsonObject params;
+                if (params.FromString(payload))
+                {
+                    bool enabled = params.Get("value").Boolean();
+                    return SetCaptions(enabled);
+                }
+                result = "{\"error\":\"Invalid payload\"}";
+                return Core::ERROR_BAD_REQUEST;
+            }
+            else if (method == "closedcaptions.preferredLanguages")
+            {
+                return GetPreferredCaptionsLanguages(result);
+            }
+            else if (method == "closedcaptions.setPreferredLanguages")
+            {
+                JsonObject params;
+                if (params.FromString(payload))
+                {
+                    string languages = params.Get("value").String();
+                    return SetPreferredCaptionsLanguages(languages);
+                }
+                result = "{\"error\":\"Invalid payload\"}";
+                return Core::ERROR_BAD_REQUEST;
+            }
 
-        Core::hresult FbSettingsImplementation::SubscribeOnClosedCaptionsSettingsChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnClosedCaptionsSettingsChanged(listen, status);
-        }
+            // Route localization methods
+            else if (method == "localization.language")
+            {
+                return GetPresentationLanguage(result);
+            }
+            else if (method == "localization.locale")
+            {
+                return GetLocale(result);
+            }
+            else if (method == "localization.setLocale")
+            {
+                JsonObject params;
+                if (params.FromString(payload))
+                {
+                    string locale = params.Get("value").String();
+                    return SetLocale(locale);
+                }
+                result = "{\"error\":\"Invalid payload\"}";
+                return Core::ERROR_BAD_REQUEST;
+            }
+            else if (method == "localization.preferredAudioLanguages")
+            {
+                return GetPreferredAudioLanguages(result);
+            }
+            else if (method == "localization.setPreferredAudioLanguages")
+            {
+                JsonObject params;
+                if (params.FromString(payload))
+                {
+                    string languages = params.Get("value").String();
+                    return SetPreferredAudioLanguages(languages);
+                }
+                result = "{\"error\":\"Invalid payload\"}";
+                return Core::ERROR_BAD_REQUEST;
+            }
 
-        Core::hresult FbSettingsImplementation::GetVoiceGuidanceNavigationHints(bool& enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetVoiceGuidanceNavigationHints(enabled);
-        }
-
-        Core::hresult FbSettingsImplementation::SetVoiceGuidanceNavigationHints(const bool enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetVoiceGuidanceNavigationHints(enabled);
-        }
-
-        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceNavigationHintsChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnVoiceGuidanceNavigationHintsChanged(listen, status);
-        }
-
-        Core::hresult FbSettingsImplementation::GetVoiceGuidanceRate(double& rate) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetVoiceGuidanceRate(rate);
-        }
-
-        Core::hresult FbSettingsImplementation::SetVoiceGuidanceRate(const double rate) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SetVoiceGuidanceRate(rate);
-        }
-
-        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceRateChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnVoiceGuidanceRateChanged(listen, status);
-        }
-
-        Core::hresult FbSettingsImplementation::GetVoiceGuidanceEnabled(bool& enabled) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetVoiceGuidanceEnabled(enabled);
-        }
-
-        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceEnabledChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnVoiceGuidanceEnabledChanged(listen, status);
-        }
-
-        Core::hresult FbSettingsImplementation::GetVoiceGuidanceSpeed(int& speed) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->GetVoiceGuidanceSpeed(speed);
-        }
-
-        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceSpeedChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnVoiceGuidanceSpeedChanged(listen, status);
-        }
-
-        Core::hresult FbSettingsImplementation::SubscribeOnVoiceGuidanceSettingsChanged(const bool listen, bool& status) {
-            auto d = mUserSettingsDelegate;
-            if (!d) return Core::ERROR_UNAVAILABLE;
-            return d->SubscribeOnVoiceGuidanceSettingsChanged(listen, status);
+            // If method not found, return error
+            result = "{\"error\":\"Method not found\"}";
+            LOGERR("Unsupported method: %s", method.c_str());
+            return Core::ERROR_UNKNOWN_KEY;
         }
 
         uint32_t FbSettingsImplementation::Configure(PluginHost::IShell *shell)
@@ -369,12 +803,8 @@ namespace WPEFramework
             mShell = shell;
             mShell->AddRef();
             mDelegate->setShell(mShell);
-            // Also initialize a direct UserSettings delegate for call forwarding
-            if (!mUserSettingsDelegate) {
-                // Pass nullptr for AppNotifications, registration still handled via central SettingsDelegate
-                mUserSettingsDelegate = std::make_shared<UserSettingsDelegate>(mShell, nullptr);
-            }
             return result;
         }
     }
 }
+

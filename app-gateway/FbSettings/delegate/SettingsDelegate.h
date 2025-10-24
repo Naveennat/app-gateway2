@@ -16,105 +16,115 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
+
 #ifndef __SETTINGSDELEGATE_H__
 #define __SETTINGSDELEGATE_H__
-
 #include "StringUtils.h"
-#include "BaseEventDelegate.h"
 #include "TTSDelegate.h"
 #include "UserSettingsDelegate.h"
 #include "SystemDelegate.h"
+#include "NetworkDelegate.h"
 #include "UtilsLogging.h"
 #include <interfaces/IAppNotifications.h>
-#include <memory>
-#include <vector>
-#include <string>
 
 #define APP_NOTIFICATIONS_CALLSIGN "org.rdk.AppNotifications"
 using namespace WPEFramework;
-using WPEFramework::Plugin::SystemDelegate;
 
 class SettingsDelegate {
-public:
-    SettingsDelegate() = default;
+    public:
+        SettingsDelegate(): tts(nullptr), userSettings(nullptr), systemDelegate(nullptr), networkDelegate(nullptr), mAppNotifications(nullptr) {}
 
-    ~SettingsDelegate() {
-        tts = nullptr;
-        userSettings = nullptr;
-        system = nullptr;
-        if (mAppNotifications != nullptr) {
-            mAppNotifications->Release();
-            mAppNotifications = nullptr;
-        }
-    }
-
-    void HandleAppEventNotifier(const string event, const bool listen) {
-        LOGDBG("Passing on HandleAppEventNotifier");
-        bool registrationError = false;
-        if (tts == nullptr || userSettings == nullptr || system == nullptr) {
-            LOGERR("Services not available");
-            return;
-        }
-
-        std::vector<std::shared_ptr<BaseEventDelegate>> delegates = { tts, userSettings, system };
-        bool handled = false;
-
-        for (const auto& delegate : delegates) {
-            if (delegate == nullptr) {
-                continue;
-            }
-            if (delegate->HandleEvent(event, listen, registrationError)) {
-                handled = true;
-                break;
+        ~SettingsDelegate() {
+            tts = nullptr;
+            userSettings = nullptr;
+            systemDelegate = nullptr;
+            networkDelegate = nullptr;
+            if (mAppNotifications != nullptr) {
+                mAppNotifications->Release();
+                mAppNotifications = nullptr;
             }
         }
 
-        if (!handled) {
-            LOGERR("No Matching registrations");
+        void HandleAppEventNotifier(const string event,
+                                    const bool listen) {
+            LOGDBG("Passing on HandleAppEventNotifier");
+            bool registrationError;
+            if (tts == nullptr || userSettings==nullptr || networkDelegate==nullptr) {
+                LOGERR("Services not available");
+                return;
+            }
+
+            std::vector<std::shared_ptr<BaseEventDelegate>> delegates = {tts, userSettings, networkDelegate};
+            bool handled = false;
+
+            for (const auto& delegate : delegates) {
+                if (delegate==nullptr) {
+                    continue;
+                }
+                if (delegate->HandleEvent(event, listen, registrationError)) {
+                    handled = true;
+                    break;
+                }
+            }
+
+            if (!handled) {
+                LOGERR("No Matching registrations");
+            }
+
+            if (registrationError) {
+                LOGERR("Error in registering/unregistering for event %s", event.c_str());
+            }
         }
 
-        if (registrationError) {
-            LOGERR("Error in registering/unregistering for event %s", event.c_str());
+        void setShell(PluginHost::IShell* shell) {
+
+            ASSERT(shell != nullptr);
+            LOGDBG("SettingsDelegate::setShell");
+
+            mAppNotifications = shell->QueryInterfaceByCallsign<Exchange::IAppNotifications>(APP_NOTIFICATIONS_CALLSIGN);
+            
+            if (mAppNotifications==nullptr) {
+                LOGERR("No App Notifications plugin available");
+                return;
+            }
+
+
+
+            if (tts == nullptr) {
+                tts = std::make_shared<TTSDelegate>(shell, mAppNotifications);
+            }
+
+            if (userSettings == nullptr) {
+                userSettings = std::make_shared<UserSettingsDelegate>(shell, mAppNotifications);
+            }
+
+            if (systemDelegate == nullptr) {
+                systemDelegate = std::make_shared<SystemDelegate>(shell);
+            }
+
+            if (networkDelegate == nullptr) {
+                networkDelegate = std::make_shared<NetworkDelegate>(shell, mAppNotifications);
+            }
         }
-    }
 
-    void setShell(PluginHost::IShell* shell) {
-        ASSERT(shell != nullptr);
-        LOGDBG("SettingsDelegate::setShell");
-
-        mAppNotifications = shell->QueryInterfaceByCallsign<Exchange::IAppNotifications>(APP_NOTIFICATIONS_CALLSIGN);
-
-        if (mAppNotifications == nullptr) {
-            LOGERR("No App Notifications plugin available");
-            return;
+	std::shared_ptr<SystemDelegate> getSystemDelegate() const {
+            return systemDelegate;
         }
 
-        mAppNotifications->AddRef();
-
-        if (tts == nullptr) {
-            tts = std::make_shared<TTSDelegate>(shell, mAppNotifications);
+	std::shared_ptr<UserSettingsDelegate> getUserSettings() {
+            return userSettings;
         }
 
-        if (userSettings == nullptr) {
-            userSettings = std::make_shared<UserSettingsDelegate>(shell, mAppNotifications);
+        std::shared_ptr<NetworkDelegate> getNetworkDelegate() const {
+            return networkDelegate;
         }
-
-        if (system == nullptr) {
-            system = std::make_shared<SystemDelegate>(shell, mAppNotifications);
-        }
-    }
-
-    // PUBLIC_INTERFACE
-    std::shared_ptr<SystemDelegate> getSystemDelegate() const {
-        /** Expose the SystemDelegate instance for system-level alias methods. */
-        return system;
-    }
-
-private:
-    std::shared_ptr<TTSDelegate> tts;
-    std::shared_ptr<UserSettingsDelegate> userSettings;
-    std::shared_ptr<SystemDelegate> system;
-    Exchange::IAppNotifications* mAppNotifications { nullptr };
+    private:
+        std::shared_ptr<TTSDelegate> tts;
+        std::shared_ptr<UserSettingsDelegate> userSettings;
+        std::shared_ptr<SystemDelegate> systemDelegate;
+        std::shared_ptr<NetworkDelegate> networkDelegate;
+	Exchange::IAppNotifications *mAppNotifications;
 };
 
 #endif
+
