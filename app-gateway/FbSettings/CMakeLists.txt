@@ -36,17 +36,14 @@ message("Setup ${MODULE_NAME} v${MODULE_VERSION}")
 find_package(${NAMESPACE}Plugins REQUIRED)
 find_package(${NAMESPACE}Definitions REQUIRED)
 find_package(CompileSettingsDebug CONFIG REQUIRED)
+find_library(NMPROXY_LIB NAMES ${NAMESPACE}NetworkManagerProxy PATHS ${CMAKE_SYSROOT}/usr/lib/wpeframework/proxystubs)
 
 add_library(${MODULE_NAME} SHARED
-        FbSettingsImplementation.cpp
         FbSettings.cpp
         Module.cpp)
 
 
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
-# Allow includes like <interfaces/...> from the project root and common helpers
-target_include_directories(${MODULE_NAME} PRIVATE ..)
-target_include_directories(${MODULE_NAME} PRIVATE ../../Supporting_Files)
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
@@ -68,4 +65,4 @@ add_compile_options(-Wall -Werror)
 install(TARGETS ${MODULE_NAME}
         DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
 
-write_config(PLUGINS ${PLUGIN_NAME})
+write_config(${PLUGIN_NAME})

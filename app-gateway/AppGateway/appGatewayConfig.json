@@ -1,6 +1,4 @@
 {
     "paths": [
-        "/etc/app-gateway/resolution.integratedplayer.json",
-        "/etc/app-gateway/resolution.fbcommon.json"
     ]
 }

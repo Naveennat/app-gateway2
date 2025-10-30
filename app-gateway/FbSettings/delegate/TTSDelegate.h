@@ -18,7 +18,7 @@
 **/
 #ifndef __TTSDELEGATE_H__
 #define __TTSDELEGATE_H__
-#include "helpers/StringUtils.h"
+#include "StringUtils.h"
 #include "BaseEventDelegate.h"
 #include <interfaces/ITextToSpeech.h>
 #include "UtilsLogging.h"

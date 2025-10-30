@@ -22,7 +22,7 @@
 #ifndef __NETWORKDELEGATE_H__
 #define __NETWORKDELEGATE_H__
 
-#include "helpers/StringUtils.h"
+#include "StringUtils.h"
 #include "BaseEventDelegate.h"
 #include <interfaces/INetworkManager.h>
 #include "UtilsLogging.h"
@@ -225,10 +225,10 @@ private:
             LOGDBG("onIPAddressChange: interface=%s, ip=%s, status=%d", interface.c_str(), ipaddress.c_str(), status);
         }
 
-        void onInternetStatusChange(const Exchange::INetworkManager::InternetStatus prevState, const Exchange::INetworkManager::InternetStatus currState)
+        void onInternetStatusChange(const Exchange::INetworkManager::InternetStatus prevState, const Exchange::INetworkManager::InternetStatus currState, const string interface)
         {
-            LOGINFO("onInternetStatusChange: prevState=%d, currState=%d", prevState, currState);
-            
+            LOGINFO("onInternetStatusChange: prevState=%d, currState=%d, interface=%s", prevState, currState, interface.c_str());
+
             // Map internet status to readable strings
             auto statusToString = [](Exchange::INetworkManager::InternetStatus status) -> string {
                 switch (status) {
@@ -275,7 +275,7 @@ private:
             return registered;
         }
 
-        BEGIN_INTERFACE_MAP(NetworkNotificationHandler)
+        BEGIN_INTERFACE_MAP(NotificationHandler)
         INTERFACE_ENTRY(Exchange::INetworkManager::INotification)
         END_INTERFACE_MAP
 

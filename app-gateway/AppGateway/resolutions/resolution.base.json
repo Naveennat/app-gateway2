@@ -9,7 +9,8 @@
             "event": "Discovery.onNavigateTo"
         },
         "Localization.addAdditionalInfo": {
-            "alias": "org.rdk.FbSettings.addAdditionalInfo"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "PinChallenge.onRequestChallenge": {
             "alias": "org.rdk.App2AppProvider.registerProvider",
@@ -72,31 +73,40 @@
             "event": "Lifecycle.onUnloading"
         },
         "device.make": {
-            "alias": "org.rdk.FbSettings.getDeviceMake"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "device.name": {
-            "alias": "org.rdk.FbSettings.getDeviceName"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "device.setName": {
-            "alias": "org.rdk.FbSettings.setDeviceName"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "device.sku": {
-            "alias": "org.rdk.FbSettings.getDeviceSku"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "localization.countryCode": {
-            "alias": "org.rdk.FbSettings.getCountryCode"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "localization.setCountryCode": {
-            "alias": "org.rdk.FbSettings.setCountryCode"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "localization.timeZone": {
-            "alias": "org.rdk.FbSettings.getTimeZone"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "localization.setTimeZone": {
-            "alias": "org.rdk.FbSettings.setTimeZone"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "secondscreen.friendlyName": {
-            "alias": "org.rdk.FbSettings.getSecondScreenFriendlyName"
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         },
         "localization.language": {
             "alias": "org.rdk.FbSettings",
@@ -249,50 +259,6 @@
         "device.onNetworkChanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.onInternetStatusChange"
-        },
-
-        // FbCommon: Device getters routed via COM-RPC to org.rdk.FbCommon
-        "device.audio": {
-            "alias": "org.rdk.FbCommon",
-            "useComRpc": true
-        },
-        "device.hdcp": {
-            "alias": "org.rdk.FbCommon",
-            "useComRpc": true
-        },
-        "device.hdr": {
-            "alias": "org.rdk.FbCommon",
-            "useComRpc": true
-        },
-        "device.screenResolution": {
-            "alias": "org.rdk.FbCommon",
-            "useComRpc": true
-        },
-        "device.videoResolution": {
-            "alias": "org.rdk.FbCommon",
-            "useComRpc": true
-        },
-
-        // FbCommon: Device-related events mapped to underlying plugins
-        "device.onScreenResolutionChanged": {
-            "alias": "org.rdk.DisplaySettings",
-            "event": "org.rdk.DisplaySettings.resolutionChanged"
-        },
-        "device.onVideoResolutionChanged": {
-            "alias": "org.rdk.DisplaySettings",
-            "event": "org.rdk.DisplaySettings.resolutionChanged"
-        },
-        "device.onAudioChanged": {
-            "alias": "org.rdk.DisplaySettings",
-            "event": "org.rdk.DisplaySettings.audioFormatChanged"
-        },
-        "device.onHdrChanged": {
-            "alias": "org.rdk.HdcpProfile",
-            "event": "org.rdk.HdcpProfile.onDisplayConnectionChanged"
-        },
-        "device.onHdcpChanged": {
-            "alias": "org.rdk.HdcpProfile",
-            "event": "org.rdk.HdcpProfile.onDisplayConnectionChanged"
         }
     }
 }

@@ -15,21 +15,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set(PLUGIN_NAME AppGateway)
+set(PLUGIN_NAME LaunchDelegate)
 set(MODULE_NAME ${NAMESPACE}${PLUGIN_NAME})
 
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 0)
 set(VERSION_PATCH 0)
 
-add_compile_definitions(APPGATEWAY_MAJOR_VERSION=${VERSION_MAJOR})
-add_compile_definitions(APPGATEWAY_MINOR_VERSION=${VERSION_MINOR})
-add_compile_definitions(APPGATEWAY_PATCH_VERSION=${VERSION_PATCH})
+add_compile_definitions(LAUNCHDELEGATE_MAJOR_VERSION=${VERSION_MAJOR})
+add_compile_definitions(LAUNCHDELEGATE_MINOR_VERSION=${VERSION_MINOR})
+add_compile_definitions(LAUNCHDELEGATE_PATCH_VERSION=${VERSION_PATCH})
 
 set(MODULE_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 
-set(PLUGIN_APPGATEWAY_STARTUPORDER "" CACHE STRING "To configure startup order of AppGateway plugin")
-set(PLUGIN_APPGATEWAY_AUTOSTART "false" CACHE STRING "Automatically start AppGateway plugin")
+set(PLUGIN_LAUNCHDELEGATE_STARTUPORDER "" CACHE STRING "To configure startup order of LaunchDelegate plugin")
+set(PLUGIN_LAUNCHDELEGATE_AUTOSTART "false" CACHE STRING "Automatically start LaunchDelegate plugin")
 
 message("Setup ${MODULE_NAME} v${MODULE_VERSION}")
 
@@ -38,14 +38,13 @@ find_package(${NAMESPACE}Definitions REQUIRED)
 find_package(CompileSettingsDebug CONFIG REQUIRED)
 
 add_library(${MODULE_NAME} SHARED
-        AppGateway.cpp
-        AppGatewayImplementation.cpp
-        AppGatewayResponderImplementation.cpp
-        Resolver.cpp
-	Module.cpp)
+        LaunchDelegate.cpp
+        LifecycleManagement.cpp
+        ProviderDelegate.cpp
+        Module.cpp)
+
 
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
-target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
@@ -53,27 +52,19 @@ set_target_properties(${MODULE_NAME} PROPERTIES
 
 target_compile_definitions(${MODULE_NAME} PRIVATE MODULE_NAME=Plugin_${PLUGIN_NAME})
 
-target_link_libraries(${MODULE_NAME} 
+target_link_libraries(${MODULE_NAME}
         PRIVATE
         CompileSettingsDebug::CompileSettingsDebug
         ${NAMESPACE}Plugins::${NAMESPACE}Plugins
-        ${NAMESPACE}Definitions::${NAMESPACE}Definitions)
-
+        ${NAMESPACE}Definitions::${NAMESPACE}Definitions
+        uuid)
 
 # To error any missing links
 target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
+# To error any warnings
 
 install(TARGETS ${MODULE_NAME}
         DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
-
-# define PLUGIN_PRODUCT_CFG
-target_compile_definitions(${MODULE_NAME} PRIVATE
-	PLUGIN_PRODUCT_CFG="${PRODUCT_CONFIG_DIR}/appGatewayConfig.json")
-
-# TODO: temporary install gateway.config.json - should be added by Platform
-install(FILES appGatewayConfig.json
-        DESTINATION "${PRODUCT_CONFIG_DIR}")
-
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/
         DESTINATION "/etc/app-gateway/"

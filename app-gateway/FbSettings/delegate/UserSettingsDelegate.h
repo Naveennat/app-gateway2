@@ -18,7 +18,7 @@
 **/
 #ifndef __USERSETTINGSDELEGATE_H__
 #define __USERSETTINGSDELEGATE_H__
-#include "helpers/StringUtils.h"
+#include "StringUtils.h"
 #include "BaseEventDelegate.h"
 #include <interfaces/IUserSettings.h>
 #include "UtilsLogging.h"

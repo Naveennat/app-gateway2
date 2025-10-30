@@ -1,64 +1,101 @@
-#pragma once
-
 /*
- * Expanded stub for the Exchange::IAppNotifications interface to satisfy build-time includes.
- * Provides minimal methods used by AppGateway and FbSettings to register for events and cleanup.
+ * If not stated otherwise in this file or this component's LICENSE file the
+ * following copyright and licenses apply:
+ *
+ * Copyright 2024 RDK Management
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
-#include <plugins/Module.h>
+#pragma once
 
-namespace WPEFramework {
-namespace Exchange {
+#include "Module.h"
 
-    struct EXTERNAL IAppNotifications : virtual public Core::IUnknown {
-        // Placeholder interface ID; in a full Thunder environment, this would be defined in Ids.h
-        enum { ID = 0xFA000002 };
+namespace WPEFramework
+{
+    namespace Exchange
+    {
+        // @text:keep
+        struct EXTERNAL IAppNotifications : virtual public Core::IUnknown
+        {
+            enum
+            {
+                ID = ID_APP_NOTIFICATIONS
+            };
 
-        virtual ~IAppNotifications() = default;
+            struct AppNotificationContext
+            {
+                uint32_t requestId;       // @brief Unique identifier for the request.
+                uint32_t connectionId; // @brief Unique identifier for the execution/session context.
+                string appId;        // @brief Application identifier (Firebolt appId).
+                string origin;      // @brief Origin of the request (e.g., org.rdk.AppGateway).
 
-        // Basic context used by Subscribe/Cleanup in AppGateway
-        struct Context {
-            int requestId {0};
-            uint32_t connectionId {0};
-            string appId;   // Added to support conversions in ContextUtils
-            string origin;
+                bool operator==(const AppNotificationContext& other) const {
+                    return this->requestId == other.requestId && this->connectionId == other.connectionId && this->appId == other.appId;
+                }
+            };
+
+            // @json:omit
+            // @text subscribe
+            // @brief Thunder register/unregister for Firebolt subsciption requests
+            // @param context: Execution context containing requestId, connectionId, appId
+            // @param register: boolean
+            // @param module: the thunder plugin to subscribe
+            // @param event: the event to subscribe
+            // @returns Core::hresult 
+            virtual Core::hresult Subscribe(const AppNotificationContext& context /* @in */,
+                                            bool listen /* @in */,
+                                            const string& module /* @in */,
+                                            const string& event /* @in */) = 0;
+
+            // @json:omit
+            // @text emit
+            // @brief Dispatch event for a given registration, if appId is provided the dispatch happens for a given App.
+            // @param event: the event to emit
+            // @param payload: the payload to emit
+            // @param appId (optional): the appId to emit the event for, if empty the event is emitted for all Apps
+            // @returns Core::hresult
+            virtual Core::hresult Emit(const string& event /* @in */,
+                                       const string& payload /* @in @opaque */,
+                                       const string& appId /* @in */) = 0;
+
+            // @json:omit
+            // @text Cleanup
+            // @brief Cleanup any context which has a given connectionId for a given origin
+            // @param connectionId: connection id for a given context
+            // @param origin: origin of the context
+            // @returns Core::hresult
+            virtual Core::hresult Cleanup(const uint32_t connectionId /* @in */, const string& origin /* @in */) = 0;
+
         };
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult Subscribe(const Context& context /* @in */,
-                                        const bool listen /* @in */,
-                                        const string& alias /* @in */,
-                                        const string& event /* @in */) = 0;
-        /** Register/unregister for an event on a specific alias.
-         *  @param context Gateway context identifying connection and origin.
-         *  @param listen True to subscribe, false to unsubscribe.
-         *  @param alias Callsign alias (e.g., "org.rdk.DisplaySettings").
-         *  @param event Fully qualified event name.
-         */
+        // @text:keep
+        struct EXTERNAL IAppNotificationHandler : virtual public Core::IUnknown
+        {
+            enum
+            {
+                ID = ID_APP_NOTIFICATIONS_HANDLER_INTERNAL
+            };
 
-        // PUBLIC_INTERFACE
-        virtual Core::hresult Cleanup(const uint32_t connectionId /* @in */,
-                                      const string& callsign /* @in */) = 0;
-        /** Cleanup any notifications associated with a connection and callsign. */
+            // @json:omit
+            // @text handleAppEventNotifier
+            // @brief Handle AppEvent Notfier expectations for a given event
+            // @param event: the event for registration
+            // @param listen: whether to listen
+            // @param status: status to be filled in
+            // @returns Core::hresult
+            virtual Core::hresult HandleAppEventNotifier(const string& event /* @in */, const bool& listen /* @in */, bool& status /* @out */) = 0;
 
-        // PUBLIC_INTERFACE
-        virtual void Notify(const string& event /* @in */, const string& payload /* @in */) = 0;
-        /** Dispatch an application-level event notification to listeners.
-         *  @param event Event name (e.g., "TextToSpeech.onEnabled").
-         *  @param payload Serialized payload (JSON or plain string) associated with the event.
-         */
-    };
-
-    // PUBLIC_INTERFACE
-    struct EXTERNAL IAppNotificationHandlerInternal : virtual public Core::IUnknown {
-        // Placeholder interface ID
-        enum { ID = 0xFA000006 };
-        virtual ~IAppNotificationHandlerInternal() = default;
-
-        // PUBLIC_INTERFACE
-        virtual Core::hresult HandleAppEventNotifier(const string& event /* @in */, const bool listen /* @in */) = 0;
-        /** Internal event notifier interface used by FbSettings to forward app event registrations. */
-    };
-
-} // namespace Exchange
+        };
+    } // namespace Exchange
 } // namespace WPEFramework
