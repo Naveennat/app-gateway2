@@ -21,6 +21,13 @@
 
 #include <plugins/Module.h>
 
+#ifndef ID_APP_NOTIFICATIONS
+#define ID_APP_NOTIFICATIONS 0xFA100200
+#endif
+#ifndef ID_APP_NOTIFICATIONS_HANDLER_INTERNAL
+#define ID_APP_NOTIFICATIONS_HANDLER_INTERNAL 0xFA100201
+#endif
+
 namespace WPEFramework
 {
     namespace Exchange

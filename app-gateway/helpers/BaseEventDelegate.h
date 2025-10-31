@@ -40,7 +40,8 @@ public:
     inline void Dispatch(const std::string& event, const std::string& payload) {
         // Forward the event to the AppNotifications service if it is available.
         if (mAppNotifications != nullptr) {
-            mAppNotifications->Notify(event, payload);
+            // Align with IAppNotifications interface (Emit(event, payload, appId))
+            mAppNotifications->Emit(event, payload, "");
         }
     }
 

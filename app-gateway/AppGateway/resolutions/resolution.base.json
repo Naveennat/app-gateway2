@@ -259,6 +259,43 @@
         "device.onNetworkChanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.onInternetStatusChange"
+        },
+        "device.videoresolution": {
+            "alias": "org.rdk.DisplaySettings.getCurrentResolution",
+            "useComRpc": false
+        },
+        "device.onvideoresolutionchanged": {
+            "alias": "org.rdk.DisplaySettings",
+            "event": "org.rdk.DisplaySettings.resolutionChanged",
+            "useComRpc": false
+        },
+        "device.screenresolution": {
+            "alias": "org.rdk.DisplaySettings.getCurrentResolution",
+            "useComRpc": false
+        },
+        "device.onscreenresolutionchanged": {
+            "alias": "org.rdk.DisplaySettings",
+            "event": "org.rdk.DisplaySettings.resolutionChanged",
+            "useComRpc": false
+        },
+        "device.hdcp": {
+            "alias": "org.rdk.HdcpProfile.getHDCPStatus",
+            "useComRpc": false
+        },
+        "device.onhdcpchanged": {
+            "alias": "org.rdk.HdcpProfile",
+            "event": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
+            "useComRpc": false
+        },
+        "device.hdr": {
+            "alias": "/system/hdmi",
+            "useComRpc": false,
+            "includeContext": false
+        },
+        "device.onhdrchanged": {
+            "alias": "org.rdk.HdcpProfile",
+            "event": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
+            "useComRpc": false
         }
     }
 }
