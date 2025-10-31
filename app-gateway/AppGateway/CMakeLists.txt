@@ -46,6 +46,9 @@ add_library(${MODULE_NAME} SHARED
 
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
+# Add Supporting_Files and project root to locate headers like WsManager.h, UtilsLogging.h and <interfaces/...>
+target_include_directories(${MODULE_NAME} PRIVATE ../../Supporting_Files)
+target_include_directories(${MODULE_NAME} PRIVATE ..)
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11

@@ -31,7 +31,7 @@ uint32_t FbCommonImplementation::Configure(PluginHost::IShell* shell)
 }
 
 Core::hresult FbCommonImplementation::HandleAppGatewayRequest(
-    const Exchange::Context& /*context*/,
+    const Exchange::GatewayContext& /*context*/,
     const string& method,
     const string& payload,
     string& result)

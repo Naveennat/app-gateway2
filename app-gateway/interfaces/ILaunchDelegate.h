@@ -1,5 +1,5 @@
 #pragma once
-#include "Module.h"
+#include <plugins/Module.h>
 
 // @stubgen:include <com/IIteratorType.h>
 namespace WPEFramework {

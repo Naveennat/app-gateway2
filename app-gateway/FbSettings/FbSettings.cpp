@@ -172,6 +172,23 @@ namespace Plugin {
             {
                 return GetInternetConnectionStatus(result);
             }
+            // New device methods: resolution, hdcp, hdr
+            else if (lowerMethod == "device.screenresolution")
+            {
+                return GetScreenResolution(result);
+            }
+            else if (lowerMethod == "device.videoresolution")
+            {
+                return GetVideoResolution(result);
+            }
+            else if (lowerMethod == "device.hdcp")
+            {
+                return GetHdcp(result);
+            }
+            else if (lowerMethod == "device.hdr")
+            {
+                return GetHdr(result);
+            }
 
             // Route voice guidance methods
             else if (lowerMethod == "voiceguidance.enabled")
@@ -895,6 +912,63 @@ namespace Plugin {
             }
 
             return networkDelegate->GetInternetConnectionStatus(result);
+        }
+
+        // ---- New helpers: Video/Screen Resolution, HDCP, HDR ----
+        Core::hresult FbSettings::GetScreenResolution(string &result)
+        {
+            if (!mDelegate) {
+                result = "[1920,1080]";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate) {
+                result = "[1920,1080]";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            return systemDelegate->GetScreenResolution(result);
+        }
+
+        Core::hresult FbSettings::GetVideoResolution(string &result)
+        {
+            if (!mDelegate) {
+                result = "[1920,1080]";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate) {
+                result = "[1920,1080]";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            return systemDelegate->GetVideoResolution(result);
+        }
+
+        Core::hresult FbSettings::GetHdcp(string &result)
+        {
+            if (!mDelegate) {
+                result = "{\"hdcp1.4\":false,\"hdcp2.2\":false}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate) {
+                result = "{\"hdcp1.4\":false,\"hdcp2.2\":false}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            return systemDelegate->GetHdcp(result);
+        }
+
+        Core::hresult FbSettings::GetHdr(string &result)
+        {
+            if (!mDelegate) {
+                result = "{\"hdr10\":false,\"dolbyVision\":false,\"hlg\":false,\"hdr10Plus\":false}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate) {
+                result = "{\"hdr10\":false,\"dolbyVision\":false,\"hlg\":false,\"hdr10Plus\":false}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            return systemDelegate->GetHdr(result);
         }
 
 } // namespace Plugin

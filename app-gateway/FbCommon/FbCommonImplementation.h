@@ -25,7 +25,7 @@ public:
     END_INTERFACE_MAP
 
     // PUBLIC_INTERFACE
-    Core::hresult HandleAppGatewayRequest(const Exchange::Context& context /* @in */,
+    Core::hresult HandleAppGatewayRequest(const Exchange::GatewayContext& context /* @in */,
                                           const string& method /* @in */,
                                           const string& payload /* @in */,
                                           string& result /* @out */) override;

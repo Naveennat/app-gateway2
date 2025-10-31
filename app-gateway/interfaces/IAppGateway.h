@@ -19,7 +19,24 @@
 
 #pragma once
 
-#include "Module.h"
+#include <plugins/Module.h>
+
+// Fallback interface ID definitions if not supplied by platform headers.
+#ifndef ID_APP_GATEWAY
+#define ID_APP_GATEWAY 0xFA200001
+#endif
+#ifndef ID_APP_GATEWAY_AUTHENTICATOR
+#define ID_APP_GATEWAY_AUTHENTICATOR 0xFA200002
+#endif
+#ifndef ID_APP_GATEWAY_RESPONDER
+#define ID_APP_GATEWAY_RESPONDER 0xFA200003
+#endif
+#ifndef ID_APP_GATEWAY_CONNECTION_NOTIFICATION
+#define ID_APP_GATEWAY_CONNECTION_NOTIFICATION 0xFA200004
+#endif
+#ifndef ID_APP_GATEWAY_REQUEST_HANDLER
+#define ID_APP_GATEWAY_REQUEST_HANDLER 0xFA200005
+#endif
 
 // @stubgen:include <com/IIteratorType.h>
 

@@ -110,6 +110,12 @@ namespace WPEFramework {
             Core::hresult SetName(const string &value /* @in */, string &result /* @out */);
             Core::hresult AddAdditionalInfo(const string &value /* @in */, string &result /* @out */);
 
+            // Added: Video/Screen Resolution, HDCP, HDR
+            Core::hresult GetScreenResolution(string &result /* @out */);
+            Core::hresult GetVideoResolution(string &result /* @out */);
+            Core::hresult GetHdcp(string &result /* @out */);
+            Core::hresult GetHdr(string &result /* @out */);
+
             // Helper methods for network status - called by HandleAppGatewayRequest
             Core::hresult GetInternetConnectionStatus(string &result /* @out */);
 
