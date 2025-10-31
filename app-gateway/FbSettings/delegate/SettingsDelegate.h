@@ -54,7 +54,7 @@ class SettingsDelegate {
                 return;
             }
 
-            std::vector<std::shared_ptr<BaseEventDelegate>> delegates = {tts, userSettings, networkDelegate};
+            std::vector<std::shared_ptr<BaseEventDelegate>> delegates = {tts, userSettings, networkDelegate, systemDelegate};
             bool handled = false;
 
             for (const auto& delegate : delegates) {
@@ -99,7 +99,7 @@ class SettingsDelegate {
             }
 
             if (systemDelegate == nullptr) {
-                systemDelegate = std::make_shared<SystemDelegate>(shell);
+                systemDelegate = std::make_shared<SystemDelegate>(shell, mAppNotifications);
             }
 
             if (networkDelegate == nullptr) {
