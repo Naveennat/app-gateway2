@@ -27,6 +27,7 @@
 #include <vector>
 #include <core/Enumerate.h>
 #include <core/JSON.h>
+#include "../helpers/JsonCompat.h"
 
 namespace WPEFramework
 {

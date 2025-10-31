@@ -38,9 +38,10 @@ list(PREPEND CMAKE_MODULE_PATH "${THUNDER_INSTALL_PATH_ABS}/lib/cmake")
 list(PREPEND CMAKE_MODULE_PATH "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}/Modules")
 message(STATUS "Using Thunder install at: ${THUNDER_INSTALL_PATH_ABS}")
 
-# Default location for product config files if not provided by the toolchain/platform
+# Default location for product config files if not provided by the toolchain/platform.
+# Use CMAKE_INSTALL_PREFIX to avoid requiring administrative privileges.
 if (NOT DEFINED PRODUCT_CONFIG_DIR OR "${PRODUCT_CONFIG_DIR}" STREQUAL "")
-    set(PRODUCT_CONFIG_DIR "/etc/app-gateway")
+    set(PRODUCT_CONFIG_DIR "${CMAKE_INSTALL_PREFIX}/etc/app-gateway")
 endif()
 
 # Enable CTest for the tests/ subdirectory

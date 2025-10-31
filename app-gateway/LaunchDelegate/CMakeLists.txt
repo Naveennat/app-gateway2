@@ -67,8 +67,8 @@ install(TARGETS ${MODULE_NAME}
         DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/
-        DESTINATION "/etc/app-gateway/"
+        DESTINATION "${PRODUCT_CONFIG_DIR}"
         FILES_MATCHING PATTERN "resolution*.json")
 
-write_config(${PLUGIN_NAME})
+write_config(PLUGINS ${PLUGIN_NAME})
 

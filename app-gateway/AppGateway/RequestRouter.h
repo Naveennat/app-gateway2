@@ -6,7 +6,9 @@
  */
 
 #include <plugins/Module.h>
+#include <plugins/IShell.h>
 #include <core/JSON.h>
+#include "../helpers/JsonCompat.h"
 #include <string>
 
 namespace WPEFramework {
@@ -15,7 +17,7 @@ namespace Plugin {
 class RequestRouter {
 public:
     // PUBLIC_INTERFACE
-    RequestRouter(WPEFramework::PluginHost::IShell* service, const std::string& callsign)
+    RequestRouter(PluginHost::IShell* service, const std::string& callsign)
         : _service(service), _callsign(callsign) {}
 
     // PUBLIC_INTERFACE
@@ -24,7 +26,7 @@ public:
                               Core::JSON::Object& response);
 
 private:
-    WPEFramework::PluginHost::IShell* _service { nullptr };
+    PluginHost::IShell* _service { nullptr };
     std::string _callsign;
 };
 

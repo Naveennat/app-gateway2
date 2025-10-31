@@ -8,6 +8,7 @@
 #include "AppGateway/Resolver.h"
 #include "AppGateway/ResolutionStore.h"
 #include "AppGateway/RequestRouter.h"
+#include "../helpers/JsonCompat.h"
 
 using namespace WPEFramework;
 using namespace WPEFramework::Plugin;

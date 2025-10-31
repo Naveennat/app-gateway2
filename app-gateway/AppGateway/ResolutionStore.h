@@ -6,6 +6,7 @@
  */
 
 #include <core/JSON.h>
+#include "../helpers/JsonCompat.h"
 #include <unordered_map>
 #include <string>
 

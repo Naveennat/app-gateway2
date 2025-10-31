@@ -80,8 +80,9 @@ install(FILES appGatewayConfig.json
 
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/
-        DESTINATION "/etc/app-gateway/"
+        DESTINATION "${PRODUCT_CONFIG_DIR}"
         FILES_MATCHING PATTERN "resolution*.json")
 
-write_config(${PLUGIN_NAME})
+# Address deprecation in FindConfigGenerator: use PLUGINS keyword
+write_config(PLUGINS ${PLUGIN_NAME})
 
