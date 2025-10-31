@@ -21,6 +21,7 @@
 #include <plugins/JSONRPC.h>
 #include <plugins/IShell.h>
 #include "AppGatewayResponderImplementation.h"
+#include <algorithm>
 #include "UtilsLogging.h"
 #include "UtilsConnections.h"
 #include "UtilsCallsign.h"
@@ -147,27 +148,43 @@ namespace WPEFramework
             return Core::ERROR_NONE;
         }
 
-        Core::hresult AppGatewayResponderImplementation::Respond(const Context &context, const string &payload)
+        Core::hresult AppGatewayResponderImplementation::Respond(const Context& context, const string& payload)
         {
             Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context.connectionId, context.requestId, payload));
             return Core::ERROR_NONE;
         }
 
-        Core::hresult AppGatewayResponderImplementation::Emit(const Context &context /* @in */, 
-                const string &method /* @in */, const string payload /* @in @opaque */) {
+        Core::hresult AppGatewayResponderImplementation::Emit(const Context& context,
+                const string& method, const string& payload) {
             Core::IWorkerPool::Instance().Submit(EmitJob::Create(this, context.connectionId, method, payload));
             return Core::ERROR_NONE;
         }
 
-        Core::hresult AppGatewayResponderImplementation::Request(const uint32_t connectionId /* @in */, 
-                const uint32_t id /* @in */, const string method /* @in */, const string params /* @in @opaque */) {
+        Core::hresult AppGatewayResponderImplementation::Request(const uint32_t connectionId,
+                const uint32_t id, const string& method, const string& params) {
             Core::IWorkerPool::Instance().Submit(RequestJob::Create(this, connectionId, id, method, params));
             return Core::ERROR_NONE;
         }
 
-        Core::hresult AppGatewayResponderImplementation::GetGatewayConnectionContext(const uint32_t connectionId /* @in */,
-                const string& contextKey /* @in */, 
-                 string &contextValue /* @out */) {
+        Core::hresult AppGatewayResponderImplementation::GetGatewayConnectionContext(const uint32_t connectionId,
+                const string& contextKey, string& contextValue) {
+            return Core::ERROR_NONE;
+        }
+
+        Core::hresult AppGatewayResponderImplementation::Register(Exchange::IAppGatewayResponder::INotification* notification) {
+            if (notification == nullptr) {
+                return Core::ERROR_BAD_REQUEST;
+            }
+            mNotificationSinks.push_back(notification);
+            return Core::ERROR_NONE;
+        }
+
+        Core::hresult AppGatewayResponderImplementation::Unregister(Exchange::IAppGatewayResponder::INotification* notification) {
+            if (notification == nullptr) {
+                return Core::ERROR_BAD_REQUEST;
+            }
+            auto it = std::remove(mNotificationSinks.begin(), mNotificationSinks.end(), notification);
+            mNotificationSinks.erase(it, mNotificationSinks.end());
             return Core::ERROR_NONE;
         }
 

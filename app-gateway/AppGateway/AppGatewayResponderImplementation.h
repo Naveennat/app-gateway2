@@ -27,6 +27,7 @@
 #include <com/com.h>
 #include <core/core.h>
 #include <map>
+#include <vector>
 
 
 namespace WPEFramework {
@@ -49,14 +50,12 @@ namespace Plugin {
         END_INTERFACE_MAP
 
     public:
-        Core::hresult Respond(const Context &context, const string &payload) override;
-         Core::hresult Emit(const Context &context /* @in */, 
-                const string &method /* @in */, const string payload /* @in @opaque */) override;
-        Core::hresult Request(const uint32_t connectionId /* @in */, 
-                const uint32_t id /* @in */, const string method /* @in */, const string params /* @in @opaque */) override;
-        Core::hresult GetGatewayConnectionContext(const uint32_t connectionId /* @in */,
-                const string& contextKey /* @in */, 
-                 string &contextValue /* @out */) override;
+        Core::hresult Respond(const Context& context, const string& payload) override;
+        Core::hresult Emit(const Context& context, const string& method, const string& payload) override;
+        Core::hresult Request(const uint32_t connectionId, const uint32_t id, const string& method, const string& params) override;
+        Core::hresult GetGatewayConnectionContext(const uint32_t connectionId, const string& contextKey, string& contextValue) override;
+        Core::hresult Register(Exchange::IAppGatewayResponder::INotification* notification) override;
+        Core::hresult Unregister(Exchange::IAppGatewayResponder::INotification* notification) override;
         // IConfiguration interface
         uint32_t Configure(PluginHost::IShell* service) override;
 
@@ -167,7 +166,8 @@ namespace Plugin {
             }
             virtual void Dispatch()
             {
-                mParent.mWsManager.DispatchNotificationToConnection(mConnectionId, mPayload, mDesignator);
+                // No dedicated notification sender available, reuse SendMessageToConnection with requestId=0
+                mParent.mWsManager.SendMessageToConnection(mConnectionId, mPayload, 0);
             }
 
         private:
@@ -206,7 +206,8 @@ namespace Plugin {
             }
             virtual void Dispatch()
             {
-                mParent.mWsManager.SendRequestToConnection(mConnectionId, mDesignator, mRequestId, mPayload);
+                // Use existing message sender to deliver request payload; include requestId
+                mParent.mWsManager.SendMessageToConnection(mConnectionId, mPayload, static_cast<int>(mRequestId));
             }
 
         private:
@@ -261,6 +262,7 @@ namespace Plugin {
         Exchange::IAppGatewayAuthenticator *mAuthenticator; // Shared pointer to Authenticator
         Exchange::IAppGatewayResolver *mResolver; // Shared pointer to InternalGatewayResolver
         AppIdRegistry mAppIdRegistry;
+        std::vector<Exchange::IAppGatewayResponder::INotification*> mNotificationSinks;
         uint32_t InitializeWebsocket();
     };
 } // namespace Plugin

@@ -1,6 +1,10 @@
 #pragma once
 #include <plugins/Module.h>
 
+#ifndef ID_LAUNCHDELEGATE
+#define ID_LAUNCHDELEGATE 0xFA100400
+#endif
+
 // @stubgen:include <com/IIteratorType.h>
 namespace WPEFramework {
 namespace Exchange {

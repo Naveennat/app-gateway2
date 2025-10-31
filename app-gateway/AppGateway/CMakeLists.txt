@@ -42,6 +42,7 @@ add_library(${MODULE_NAME} SHARED
         AppGatewayImplementation.cpp
         AppGatewayResponderImplementation.cpp
         Resolver.cpp
+        RequestRouter.cpp
 	Module.cpp)
 
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)

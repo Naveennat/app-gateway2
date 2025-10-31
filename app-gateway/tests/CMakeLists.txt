@@ -84,11 +84,22 @@ target_include_directories(test_fbcommon
 )
 target_compile_features(test_fbcommon PRIVATE cxx_std_11)
 target_compile_definitions(test_fbcommon PRIVATE NAMESPACE=${NAMESPACE})
-target_link_libraries(test_fbcommon
-    PRIVATE
-        ${THUNDER_CORE_LIB}
-        ${THUNDER_PLUGINS_LIB}
-)
+# Link Resolver implementation via AppGateway plugin target if available
+set(FB_PLUGIN_TARGET_NAME "${NAMESPACE}AppGateway")
+if (TARGET ${FB_PLUGIN_TARGET_NAME})
+    target_link_libraries(test_fbcommon
+        PRIVATE
+            ${FB_PLUGIN_TARGET_NAME}
+            ${THUNDER_CORE_LIB}
+            ${THUNDER_PLUGINS_LIB}
+    )
+else()
+    target_link_libraries(test_fbcommon
+        PRIVATE
+            ${THUNDER_CORE_LIB}
+            ${THUNDER_PLUGINS_LIB}
+    )
+endif()
 add_test(NAME FbCommon.Resolutions COMMAND test_fbcommon)
 
 # Additional test: OttPermissionCache behavior and file format/idempotency

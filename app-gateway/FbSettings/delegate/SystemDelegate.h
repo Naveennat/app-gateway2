@@ -383,49 +383,50 @@
           * Returns "[1920,1080]" as fallback when unavailable.
           */
          jsonArray = "[1920,1080]";
-         auto link = AcquireLink(DISPLAYSETTINGS_CALLSIGN);
+         auto link = AcquireLink();
          if (!link) {
              return Core::ERROR_UNAVAILABLE;
          }
 
-         std::string response;
-         Core::hresult rc = link->Invoke<std::string, std::string>("getCurrentResolution", "{}", response);
-         if (rc != Core::ERROR_NONE || response.empty()) {
+         WPEFramework::Core::JSON::VariantContainer params;
+         WPEFramework::Core::JSON::VariantContainer response;
+         const uint32_t rc = link->Invoke<decltype(params), decltype(response)>("getCurrentResolution", params, response);
+         if (rc != Core::ERROR_NONE) {
              return Core::ERROR_GENERAL;
          }
 
          int w = 1920, h = 1080;
-         WPEFramework::Core::JSON::VariantContainer obj;
-         WPEFramework::Core::OptionalType<WPEFramework::Core::JSON::Error> error;
-         if (obj.FromString(response, error)) {
-             // Try top-level first
-             auto wv = obj.Get(_T("w"));
-             auto hv = obj.Get(_T("h"));
+
+         // Try top-level first
+         if (response.HasLabel(_T("w")) && response.HasLabel(_T("h"))) {
+             auto wv = response.Get(_T("w"));
+             auto hv = response.Get(_T("h"));
              if (wv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER &&
                  hv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER) {
                  w = static_cast<int>(wv.Number());
                  h = static_cast<int>(hv.Number());
-             } else {
-                 // Try nested result
-                 auto r = obj.Get(_T("result"));
-                 if (r.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT) {
-                     auto wnv = r.Object().Get(_T("w"));
-                     auto hnv = r.Object().Get(_T("h"));
-                     auto wdv = r.Object().Get(_T("width"));
-                     auto hdv = r.Object().Get(_T("height"));
+             }
+         } else if (response.HasLabel(_T("result"))) {
+             // Try nested "result"
+             auto r = response.Get(_T("result"));
+             if (r.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT) {
+                 auto wnv = r.Object().Get(_T("w"));
+                 auto hnv = r.Object().Get(_T("h"));
+                 auto wdv = r.Object().Get(_T("width"));
+                 auto hdv = r.Object().Get(_T("height"));
 
-                     if (wnv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER &&
-                         hnv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER) {
-                         w = static_cast<int>(wnv.Number());
-                         h = static_cast<int>(hnv.Number());
-                     } else if (wdv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER &&
-                                hdv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER) {
-                         w = static_cast<int>(wdv.Number());
-                         h = static_cast<int>(hdv.Number());
-                     }
+                 if (wnv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER &&
+                     hnv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER) {
+                     w = static_cast<int>(wnv.Number());
+                     h = static_cast<int>(hnv.Number());
+                 } else if (wdv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER &&
+                            hdv.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER) {
+                     w = static_cast<int>(wdv.Number());
+                     h = static_cast<int>(hdv.Number());
                  }
              }
          }
+
          jsonArray = "[" + std::to_string(w) + "," + std::to_string(h) + "]";
          return Core::ERROR_NONE;
      }
@@ -471,24 +472,24 @@
           * Return {"hdcp1.4":bool,"hdcp2.2":bool} with sensible defaults.
           */
          jsonObject = "{\"hdcp1.4\":false,\"hdcp2.2\":false}";
-         auto link = AcquireLink(HDCPPROFILE_CALLSIGN);
+         auto link = AcquireLink();
          if (!link) {
              return Core::ERROR_UNAVAILABLE;
          }
 
-         std::string response;
-         Core::hresult rc = link->Invoke<std::string, std::string>("getHDCPStatus", "{}", response);
-         if (rc != Core::ERROR_NONE || response.empty()) {
+         WPEFramework::Core::JSON::VariantContainer params;
+         WPEFramework::Core::JSON::VariantContainer response;
+         const uint32_t rc = link->Invoke<decltype(params), decltype(response)>("getHDCPStatus", params, response);
+         if (rc != Core::ERROR_NONE) {
              return Core::ERROR_GENERAL;
          }
 
          bool hdcp14 = false;
          bool hdcp22 = false;
 
-         WPEFramework::Core::JSON::VariantContainer obj;
-         WPEFramework::Core::OptionalType<WPEFramework::Core::JSON::Error> error;
-         if (obj.FromString(response, error)) {
-             auto r = obj.Get(_T("result"));
+         // Prefer nested "result" if available
+         if (response.HasLabel(_T("result"))) {
+             auto r = response.Get(_T("result"));
              if (r.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT) {
                  auto succ = r.Object().Get(_T("success"));
                  auto status = r.Object().Get(_T("HDCPStatus"));
@@ -503,6 +504,20 @@
                          if (v == "1.4") { hdcp14 = true; }
                          else { hdcp22 = true; }
                      }
+                 }
+             }
+         } else {
+             // Fallback: try top-level fields if present
+             auto status = response.Get(_T("HDCPStatus"));
+             if (status.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT) {
+                 auto reason = status.Object().Get(_T("hdcpReason"));
+                 auto version = status.Object().Get(_T("currentHDCPVersion"));
+                 if (reason.Content() == WPEFramework::Core::JSON::Variant::type::NUMBER &&
+                     static_cast<int>(reason.Number()) == 2 &&
+                     version.Content() == WPEFramework::Core::JSON::Variant::type::STRING) {
+                     const std::string v = version.String();
+                     if (v == "1.4") { hdcp14 = true; }
+                     else { hdcp22 = true; }
                  }
              }
          }

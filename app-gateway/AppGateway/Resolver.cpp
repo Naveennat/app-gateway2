@@ -21,7 +21,7 @@
 #include <fstream>
 #include <iostream>
 #include "UtilsLogging.h"
-#include "StringUtils.h"
+#include "../../Supporting_Files/StringUtils.h"
 #include "UtilsJsonrpcDirectLink.h"
 #include <core/JSON.h>
 
@@ -38,6 +38,12 @@ namespace WPEFramework
             {
                 LOGERR("[Resolver] Failed to load config from %s", configPath.c_str());
             }
+        }
+
+        // Default constructor for unit tests
+        Resolver::Resolver()
+            : mService(nullptr), mResolutions(), mMutex()
+        {
         }
 
         Resolver::~Resolver()
@@ -142,6 +148,34 @@ namespace WPEFramework
         {
             std::lock_guard<std::mutex> lock(mMutex);
             return !mResolutions.empty();
+        }
+
+        bool Resolver::LoadPaths(const std::vector<std::string>& paths, std::string& error)
+        {
+            bool anyLoaded = false;
+            error.clear();
+            for (const auto& p : paths) {
+                if (LoadConfig(p) == true) {
+                    anyLoaded = true;
+                } else {
+                    if (!error.empty()) {
+                        error += "; ";
+                    }
+                    error += "Failed to load: " + p;
+                }
+            }
+            return anyLoaded;
+        }
+
+        bool Resolver::Get(const std::string& /*appId*/, const std::string& key, const Core::JSON::Object& /*params*/, Core::JSON::Object& out)
+        {
+            const std::string alias = ResolveAlias(key);
+            if (alias.empty()) {
+                return false;
+            }
+            out.Clear();
+            out[_T("alias")] = Core::JSON::Variant(alias);
+            return true;
         }
 
         std::string Resolver::ResolveAlias(const std::string &key)

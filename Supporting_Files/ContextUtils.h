@@ -31,8 +31,8 @@ class ContextUtils {
     public:
         // Implement a static method which accepts a Exchange::IAppNotifications::Context object and
         // converts it into Exchange::IAppGateway::Context object
-        static Exchange::IAppGateway::Context ConvertNotificationToAppGatewayContext(const Exchange::IAppNotifications::Context& notificationsContext){
-            Exchange::IAppGateway::Context appGatewayContext;
+        static Exchange::GatewayContext ConvertNotificationToAppGatewayContext(const Exchange::IAppNotifications::AppNotificationContext& notificationsContext){
+            Exchange::GatewayContext appGatewayContext;
             // Perform the conversion logic here
             appGatewayContext.requestId = notificationsContext.requestId;
             appGatewayContext.connectionId = notificationsContext.connectionId;
@@ -42,8 +42,8 @@ class ContextUtils {
 
         // Implement a static method which accepts a Exchange::IAppNotifications::Context object and
         // converts it into Exchange::ILaunchDelegate::Context object
-        static Exchange::ILaunchDelegate::Context ConvertNotificationToLaunchDelegateContext(const Exchange::IAppNotifications::Context& notificationsContext){
-            Exchange::ILaunchDelegate::Context launchDelegateContext;
+        static Exchange::GatewayContext ConvertNotificationToLaunchDelegateContext(const Exchange::IAppNotifications::AppNotificationContext& notificationsContext){
+            Exchange::GatewayContext launchDelegateContext;
             // Perform the conversion logic here
             launchDelegateContext.requestId = notificationsContext.requestId;
             launchDelegateContext.connectionId = notificationsContext.connectionId;
@@ -53,8 +53,8 @@ class ContextUtils {
 
         // Implement a static method which accepts a Exchange::IAppGateway::Context object and
         // converts it into Exchange::IAppNotifications::Context object
-        static Exchange::IAppNotifications::Context ConvertAppGatewayToNotificationContext(const Exchange::IAppGateway::Context& appGatewayContext, const string& origin){
-            Exchange::IAppNotifications::Context notificationsContext;
+        static Exchange::IAppNotifications::AppNotificationContext ConvertAppGatewayToNotificationContext(const Exchange::GatewayContext& appGatewayContext, const string& origin){
+            Exchange::IAppNotifications::AppNotificationContext notificationsContext;
             // Perform the conversion logic here
             notificationsContext.requestId = appGatewayContext.requestId;
             notificationsContext.connectionId = appGatewayContext.connectionId;
@@ -65,7 +65,7 @@ class ContextUtils {
 
         // Implement a static method which accepts a Exchange::IAppGateway::Context object and
         // converts it into Exchange::IApp2AppProvider::Context object
-        static Exchange::IApp2AppProvider::Context ConvertAppGatewayToProviderContext(const Exchange::IAppGateway::Context& appGatewayContext, const string& origin){
+        static Exchange::IApp2AppProvider::Context ConvertAppGatewayToProviderContext(const Exchange::GatewayContext& appGatewayContext, const string& origin){
             Exchange::IApp2AppProvider::Context providerContext;
             // Perform the conversion logic here
             providerContext.requestId = appGatewayContext.requestId;
@@ -75,8 +75,8 @@ class ContextUtils {
             return providerContext;
         }
 
-        static Exchange::IAppGateway::Context ConvertProviderToAppGatewayContext(const Exchange::IApp2AppProvider::Context& context){
-            Exchange::IAppGateway::Context appGatewayContext;
+        static Exchange::GatewayContext ConvertProviderToAppGatewayContext(const Exchange::IApp2AppProvider::Context& context){
+            Exchange::GatewayContext appGatewayContext;
             // Perform the conversion logic here
             appGatewayContext.requestId = context.requestId;
             appGatewayContext.connectionId = context.connectionId;
@@ -84,8 +84,8 @@ class ContextUtils {
             return appGatewayContext;
         }
 
-        static Exchange::ILaunchDelegate::Context ConvertProviderToLaunchDelegateContext(const Exchange::IApp2AppProvider::Context& context){
-            Exchange::ILaunchDelegate::Context launchDelegateContext;
+        static Exchange::GatewayContext ConvertProviderToLaunchDelegateContext(const Exchange::IApp2AppProvider::Context& context){
+            Exchange::GatewayContext launchDelegateContext;
             // Perform the conversion logic here
             launchDelegateContext.requestId = context.requestId;
             launchDelegateContext.connectionId = context.connectionId;
@@ -93,8 +93,8 @@ class ContextUtils {
             return launchDelegateContext;
         }
 
-        static Exchange::ILaunchDelegate::Context ConvertGatewayToLaunchDelegateContext(const Exchange::IAppGateway::Context& context){
-            Exchange::ILaunchDelegate::Context launchDelegateContext;
+        static Exchange::GatewayContext ConvertGatewayToLaunchDelegateContext(const Exchange::GatewayContext& context){
+            Exchange::GatewayContext launchDelegateContext;
             // Perform the conversion logic here
             launchDelegateContext.requestId = context.requestId;
             launchDelegateContext.connectionId = context.connectionId;
