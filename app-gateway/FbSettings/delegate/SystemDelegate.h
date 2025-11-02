@@ -25,8 +25,6 @@
 #include <unordered_map>
 #include <mutex>
 #include <chrono>
-#include <cstdlib>
-#include <cerrno>
 #include <cstdint>
 
 #include <plugins/plugins.h>
@@ -35,6 +33,24 @@
 #include "UtilsJsonrpcDirectLink.h"
 #include "ThunderUtils.h"
 #include "BaseEventDelegate.h"
+
+/**
+ * Debounce feature (compile-time toggle)
+ * --------------------------------------
+ * This header supports optional debouncing of duplicate events via a compile-time
+ * macro. When ENABLE_DEBOUNCE is defined, identical event payloads received within
+ * a small window are dropped.
+ *
+ * How to enable:
+ *   - Add -DENABLE_DEBOUNCE to your compiler flags, or
+ *   - In CMake: target_compile_definitions(<target> PRIVATE ENABLE_DEBOUNCE)
+ *
+ * When ENABLE_DEBOUNCE is NOT defined, all debounce-related code is compiled out
+ * and events are always emitted (no-op debounce path).
+ *
+ * Note: The previous runtime configuration via APP_DEBOUNCE_MS environment
+ * variable has been removed. When enabled, the debounce window is a fixed value.
+ */
 
 // Define callsign constants
 #ifndef SYSTEM_CALLSIGN
@@ -58,37 +74,16 @@ public:
     static constexpr const char* EVENT_ON_HDR_CHANGED         = "device.onHdrChanged";
     static constexpr const char* EVENT_ON_HDCP_CHANGED        = "device.onHdcpChanged";
 
-    // Debounce configuration for duplicate events.
-    // kDefaultDebounceMs defines the default debounce window in milliseconds.
-    // To override at runtime, set environment variable APP_DEBOUNCE_MS to a positive integer value.
-    // Invalid or out-of-range values fall back to the default.
+#ifdef ENABLE_DEBOUNCE
+    // Debounce configuration (compile-time only).
+    // Fixed window of 150ms when enabled.
     static constexpr uint32_t kDefaultDebounceMs = 150;
 
     // PUBLIC_INTERFACE
     static inline std::chrono::milliseconds DebounceWindow() {
-        // Resolve once per process; subsequent calls return cached value.
-        static const std::chrono::milliseconds cached = []() -> std::chrono::milliseconds {
-            uint32_t ms = kDefaultDebounceMs;
-            const char* env = std::getenv("APP_DEBOUNCE_MS");
-            if (env && *env) {
-                char* end = nullptr;
-                errno = 0;
-                unsigned long v = std::strtoul(env, &end, 10);
-                if (errno == 0 && end != nullptr && *end == '\0') {
-                    // Clamp to a sane upper bound (e.g., 1 hour) to avoid overflow.
-                    if (v > 3600000UL) {
-                        v = 3600000UL;
-                    }
-                    ms = static_cast<uint32_t>(v);
-                } else {
-                    LOGINFO("SystemDelegate: invalid APP_DEBOUNCE_MS='%s', using default=%u", env, ms);
-                }
-            }
-            LOGDBG("SystemDelegate: debounce window set to %ums", ms);
-            return std::chrono::milliseconds(ms);
-        }();
-        return cached;
+        return std::chrono::milliseconds(kDefaultDebounceMs);
     }
+#endif
 
 public:
     // PUBLIC_INTERFACE
@@ -945,6 +940,7 @@ private:
 
     bool ShouldEmitDebounced(const std::string& eventKey, const std::string& payload)
     {
+#ifdef ENABLE_DEBOUNCE
         std::lock_guard<std::mutex> lock(_debounceMutex);
         auto& entry = _debounce[eventKey]; // default-constructed if not present
         auto now = std::chrono::steady_clock::now();
@@ -961,13 +957,12 @@ private:
         entry.lastTime = now;
         LOGDBG("SystemDelegate: debounced acceptance for event %s (payloadLen=%zu)", eventKey.c_str(), payload.size());
         return true;
+#else
+        (void)eventKey;
+        (void)payload;
+        return true; // Debounce disabled: always emit
+#endif
     }
-
-private:
-    struct DebounceEntry {
-        std::chrono::steady_clock::time_point lastTime{};
-        std::string lastPayload{};
-    };
 
 private:
     PluginHost::IShell *_shell;
@@ -979,7 +974,14 @@ private:
     bool _displaySubscribed;
     bool _hdcpSubscribed;
 
-    // Debounce tracking
+#ifdef ENABLE_DEBOUNCE
+    // Debounce tracking (only when enabled)
+    struct DebounceEntry {
+        std::chrono::steady_clock::time_point lastTime{};
+        std::string lastPayload{};
+    };
+
     std::mutex _debounceMutex;
     std::unordered_map<std::string, DebounceEntry> _debounce;
+#endif
 };
