@@ -83,6 +83,34 @@
         "event": "if .friendlyName | length == 0 then \"Living Room\" else .friendlyName end",
         "rpcv2_event": "{ \"friendlyName\": $event }"
       }
+    },
+    "device.onVideoResolutionChanged": {
+      "alias": "org.rdk.DisplaySettings.resolutionChanged",
+      "event_handler": {
+        "method": "device.videoResolution"
+      },
+      "transform": {
+        "rpcv2_event": "{ \"videoResolution\": $event_handler_response }"
+      }
+    },
+    "device.onScreenResolutionChanged": {
+      "alias": "org.rdk.DisplaySettings.resolutionChanged",
+      "transform": {
+        "event": "[.width, .height]",
+        "rpcv2_event": "{ \"screenResolution\": $event }"
+      }
+    },
+    "device.onHdrChanged": {
+      "alias": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
+      "event_handler": {
+        "method": "device.hdr"
+      }
+    },
+    "device.onHdcpChanged": {
+      "alias": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
+      "event_handler": {
+        "method": "device.hdcp"
+      }
     }
   }
 }

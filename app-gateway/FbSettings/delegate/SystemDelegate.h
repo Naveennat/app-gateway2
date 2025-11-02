@@ -646,8 +646,10 @@ public:
         if (GetVideoResolution(payload) != Core::ERROR_NONE) {
             return false;
         }
-        if (ShouldEmitDebounced(EVENT_ON_VIDEO_RES_CHANGED, payload)) {
-            Dispatch(EVENT_ON_VIDEO_RES_CHANGED, payload);
+        // Transform to rpcv2_event wrapper: { "videoResolution": $event_handler_response }
+        const std::string wrapped = std::string("{\"videoResolution\":") + payload + "}";
+        if (ShouldEmitDebounced(EVENT_ON_VIDEO_RES_CHANGED, wrapped)) {
+            Dispatch(EVENT_ON_VIDEO_RES_CHANGED, wrapped);
             return true;
         }
         return false;
@@ -660,8 +662,10 @@ public:
         if (GetScreenResolution(payload) != Core::ERROR_NONE) {
             return false;
         }
-        if (ShouldEmitDebounced(EVENT_ON_SCREEN_RES_CHANGED, payload)) {
-            Dispatch(EVENT_ON_SCREEN_RES_CHANGED, payload);
+        // Transform to rpcv2_event wrapper: { "screenResolution": $event }
+        const std::string wrapped = std::string("{\"screenResolution\":") + payload + "}";
+        if (ShouldEmitDebounced(EVENT_ON_SCREEN_RES_CHANGED, wrapped)) {
+            Dispatch(EVENT_ON_SCREEN_RES_CHANGED, wrapped);
             return true;
         }
         return false;
