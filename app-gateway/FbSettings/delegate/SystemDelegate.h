@@ -65,9 +65,28 @@ public:
         : BaseEventDelegate(appNotifications)
         , _shell(shell)
     {
+        // Initialize underlying subscriptions for DisplaySettings and HdcpProfile
+        SetupDisplaySettingsSubscription();
+        SetupHdcpProfileSubscription();
     }
 
-    ~SystemDelegate() = default;
+    // Overload: construct without AppNotifications (no-op dispatch if nullptr)
+    SystemDelegate(PluginHost::IShell *shell)
+        : BaseEventDelegate(nullptr)
+        , _shell(shell)
+    {
+        // Initialize underlying subscriptions for DisplaySettings and HdcpProfile
+        SetupDisplaySettingsSubscription();
+        SetupHdcpProfileSubscription();
+    }
+
+    ~SystemDelegate()
+    {
+        // Unsubscribe and cleanup any resources associated with subscriptions
+        TeardownDisplaySettingsSubscription();
+        TeardownHdcpProfileSubscription();
+        _subscriptions.clear();
+    }
 
     // PUBLIC_INTERFACE
     Core::hresult GetDeviceMake(std::string &make)
@@ -744,6 +763,16 @@ private:
     void SetupHdcpProfileSubscription() {
         // TODO: Attach to HdcpProfile notifications if needed. No-op for build stability.
         LOGDBG("SystemDelegate: SetupHdcpProfileSubscription (noop)");
+    }
+
+    void TeardownDisplaySettingsSubscription() {
+        // TODO: Detach from DisplaySettings notifications if registered. No-op for build stability.
+        LOGDBG("SystemDelegate: TeardownDisplaySettingsSubscription (noop)");
+    }
+
+    void TeardownHdcpProfileSubscription() {
+        // TODO: Detach from HdcpProfile notifications if registered. No-op for build stability.
+        LOGDBG("SystemDelegate: TeardownHdcpProfileSubscription (noop)");
     }
 
 private:
