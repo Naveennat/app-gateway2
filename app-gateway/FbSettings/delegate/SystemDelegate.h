@@ -25,6 +25,9 @@
 #include <unordered_map>
 #include <mutex>
 #include <chrono>
+#include <cstdlib>
+#include <cerrno>
+#include <cstdint>
 
 #include <plugins/plugins.h>
 #include <core/JSON.h>
@@ -55,8 +58,37 @@ public:
     static constexpr const char* EVENT_ON_HDR_CHANGED         = "device.onHdrChanged";
     static constexpr const char* EVENT_ON_HDCP_CHANGED        = "device.onHdcpChanged";
 
-    // Debounce window for duplicate events
-    static constexpr std::chrono::milliseconds kDebounceWindow{150};
+    // Debounce configuration for duplicate events.
+    // kDefaultDebounceMs defines the default debounce window in milliseconds.
+    // To override at runtime, set environment variable APP_DEBOUNCE_MS to a positive integer value.
+    // Invalid or out-of-range values fall back to the default.
+    static constexpr uint32_t kDefaultDebounceMs = 150;
+
+    // PUBLIC_INTERFACE
+    static inline std::chrono::milliseconds DebounceWindow() {
+        // Resolve once per process; subsequent calls return cached value.
+        static const std::chrono::milliseconds cached = []() -> std::chrono::milliseconds {
+            uint32_t ms = kDefaultDebounceMs;
+            const char* env = std::getenv("APP_DEBOUNCE_MS");
+            if (env && *env) {
+                char* end = nullptr;
+                errno = 0;
+                unsigned long v = std::strtoul(env, &end, 10);
+                if (errno == 0 && end != nullptr && *end == '\0') {
+                    // Clamp to a sane upper bound (e.g., 1 hour) to avoid overflow.
+                    if (v > 3600000UL) {
+                        v = 3600000UL;
+                    }
+                    ms = static_cast<uint32_t>(v);
+                } else {
+                    LOGINFO("SystemDelegate: invalid APP_DEBOUNCE_MS='%s', using default=%u", env, ms);
+                }
+            }
+            LOGDBG("SystemDelegate: debounce window set to %ums", ms);
+            return std::chrono::milliseconds(ms);
+        }();
+        return cached;
+    }
 
 public:
     // PUBLIC_INTERFACE
@@ -918,9 +950,10 @@ private:
         auto now = std::chrono::steady_clock::now();
         if (payload == entry.lastPayload) {
             auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - entry.lastTime);
-            if (delta < kDebounceWindow) {
+            const auto window = DebounceWindow();
+            if (delta < window) {
                 // Drop identical payload emitted within debounce window
-                LOGDBG("SystemDelegate: dropping duplicate event %s within %lldms", eventKey.c_str(), (long long)delta.count());
+                LOGDBG("SystemDelegate: dropping duplicate event %s within %lldms (window=%lldms)", eventKey.c_str(), (long long)delta.count(), (long long)window.count());
                 return false;
             }
         }
