@@ -26,6 +26,7 @@
 #include "ObjectUtils.h"
 #include <fstream>
 #include <streambuf>
+#include "UtilsConnections.h"
 #include "UtilsCallsign.h"
 #include "UtilsFirebolt.h"
 #define APPGATEWAY_SOCKET_ADDRESS "0.0.0.0:3473"
@@ -69,9 +70,11 @@ namespace WPEFramework
         AppGatewayImplementation::AppGatewayImplementation()
             : mService(nullptr),
             mResolverPtr(nullptr), 
-            mAppNotifications(nullptr),
-            mAppGatewayResponder(nullptr),
-            mInternalGatewayResponder(nullptr)
+            mWsManager(), 
+            mAppNotifications(nullptr), 
+            mInternalGatewayResponder(nullptr), 
+            mApp2AppProvider(nullptr),
+            mAuthenticator(nullptr)
         {
             LOGINFO("AppGatewayImplementation constructor");
         }
@@ -97,12 +100,17 @@ namespace WPEFramework
                 mInternalGatewayResponder = nullptr;
             }
 
-            if (nullptr != mAppGatewayResponder)
+            if (nullptr != mApp2AppProvider)
             {
-                mAppGatewayResponder->Release();
-                mAppGatewayResponder = nullptr;
+                mApp2AppProvider->Release();
+                mApp2AppProvider = nullptr;
             }
-            
+
+            if (nullptr != mAuthenticator)
+            {
+                mAuthenticator->Release();
+                mAuthenticator = nullptr;
+            }
 
             // Shared pointer will automatically clean up
             mResolverPtr.reset();
@@ -120,6 +128,9 @@ namespace WPEFramework
             if (Core::ERROR_NONE != result) {
                 return result;
             }
+
+            result = InitializeWebsocket();
+
             return result;
         }
         
@@ -166,7 +177,78 @@ namespace WPEFramework
             return Core::ERROR_NONE;
         }
 
-        Core::hresult AppGatewayImplementation::Configure(Exchange::IAppGatewayResolver::IStringIterator *const &paths)
+        uint32_t AppGatewayImplementation::InitializeWebsocket(){
+            // Initialize WebSocket server
+            WebSocketConnectionManager::Config config(APPGATEWAY_SOCKET_ADDRESS);
+            std::string configLine = mService->ConfigLine();
+            Core::OptionalType<Core::JSON::Error> error;
+            if (config.FromString(configLine, error) == false)
+            {
+                LOGERR("Failed to parse config line, error: '%s', config line: '%s'.",
+                       (error.IsSet() ? error.Value().Message().c_str() : "Unknown"),
+                       configLine.c_str());
+            }
+
+            LOGINFO("Connector: %s", config.Connector.Value().c_str());
+            Core::NodeId source(config.Connector.Value().c_str());
+            LOGINFO("Parsed port: %d", source.PortNumber());
+            mWsManager.SetMessageHandler(
+                [this](const std::string &method, const std::string &params, const int requestId, const uint32_t connectionId)
+                {
+                    Core::IWorkerPool::Instance().Submit(WsMsgJob::Create(this, method, params, requestId, connectionId));
+                });
+
+            mWsManager.SetAuthHandler(
+                [this](const uint32_t connectionId, const std::string &token) -> bool
+                {
+                    string sessionId = Utils::ResolveQuery(token, "session");
+                    if (sessionId.empty())
+                    {
+                        LOGERR("No session token provided");
+                        return false;
+                    }
+
+                    if ( mAuthenticator==nullptr ) {
+                        mAuthenticator = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayAuthenticatorInternal>(GATEWAY_AUTHENTICATOR_CALLSIGN);
+                        if (mAuthenticator == nullptr) {
+                            LOGERR("Authenticator Not available");
+                            return false;
+                        }
+                    }
+
+                    string appId;
+                    if (Core::ERROR_NONE == mAuthenticator->Authenticate(sessionId,appId)) {
+                        LOGINFO("APP ID %s", appId.c_str());
+                        mAppIdRegistry.Add(connectionId, std::move(appId));
+                        return true;
+                    }
+
+                    return false;
+                });
+
+            mWsManager.SetDisconnectHandler(
+                [this](const uint32_t connectionId)
+                {
+                    LOGINFO("Connection disconnected: %d", connectionId);
+                    mAppIdRegistry.Remove(connectionId);
+                    if (mAppNotifications != nullptr) {
+                        if (Core::ERROR_NONE != mAppNotifications->Cleanup(connectionId, APP_GATEWAY_CALLSIGN)) {
+                            LOGERR("AppNotifications Cleanup failed for connectionId: %d", connectionId);
+                        }
+                    }
+                    
+                    if (mApp2AppProvider != nullptr) {
+                        if (Core::ERROR_NONE != mApp2AppProvider->Cleanup(connectionId, APP_GATEWAY_CALLSIGN)) {
+                            LOGERR("App2AppProvider Cleanup failed for connectionId: %d", connectionId);
+                        }
+                    }
+                }
+            );
+            mWsManager.Start(source);
+            return Core::ERROR_NONE;
+        }
+
+        Core::hresult AppGatewayImplementation::Configure(Exchange::IAppGateway::IStringIterator *const &paths)
         {
             LOGINFO("Call AppGatewayImplementation::Configure");
 
@@ -237,19 +319,29 @@ namespace WPEFramework
 
         }
 
-        Core::hresult AppGatewayImplementation::Resolve(const Context &context, const string &origin, const string &method, const string &params, string& resolution)
+
+
+        Core::hresult AppGatewayImplementation::Respond(const Context &context, const string &payload)
         {
-            LOGINFO("method=%s params=%s", method.c_str(), params.c_str());
-            return InternalResolve(context, method, params, origin, resolution);
+            LOGINFO("Call AppGatewayImplementation::Respond");
+            Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context.connectionId, context.requestId, payload, APP_GATEWAY_CALLSIGN));
+
+            return Core::ERROR_NONE;
         }
 
-        Core::hresult AppGatewayImplementation::InternalResolve(const Context &context, const string &method, const string &params, const string &origin, string& resolution)
+        Core::hresult AppGatewayImplementation::Resolve(const Context &context, const string &method, const string &params)
         {
+            LOGINFO("method=%s params=%s", method.c_str(), params.c_str());
+            return InternalResolve(context, method, params, INTERNAL_GATEWAY_CALLSIGN);
+        }
+
+        Core::hresult AppGatewayImplementation::InternalResolve(const Context &context, const string &method, const string &params, const string &origin)
+        {
+            string resolution;
             Core::hresult result = FetchResolvedData(context, method, params, origin, resolution);
-            if (!resolution.empty()) {
+
             LOGINFO("Final resolution: %s", resolution.c_str());
-                Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context, resolution, origin));
-            }
+            Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context.connectionId, context.requestId, resolution, origin));
             return result;
         }
 
@@ -279,10 +371,15 @@ namespace WPEFramework
                 ErrorUtils::NotSupported(resolution);
                 return Core::ERROR_GENERAL;
             }
-            LOGDBG("Resolved method '%s' to alias '%s'", method.c_str(), alias.c_str());            
+            LOGDBG("Resolved method '%s' to alias '%s'", method.c_str(), alias.c_str());
+            string providerCapability;
+            ProviderMethodType methodType;
+            
             // Check if the given method is an event
             if (mResolverPtr->HasEvent(method)) {
                 result = PreProcessEvent(context, alias, method, origin, params, resolution);
+            } else if(mResolverPtr->HasProviderCapability(method, providerCapability, methodType)) {
+                result = PreProcessProvider(context, method, params, providerCapability, methodType, origin, resolution);
             } else if(mResolverPtr->HasComRpcRequestSupport(method)) {
                 result = ProcessComRpcRequest(context, alias, method, params, resolution);
             } else {
@@ -291,7 +388,7 @@ namespace WPEFramework
                 LOGDBG("Final Request params alias=%s Params = %s", alias.c_str(), finalParams.c_str());
 
                 result = mResolverPtr->CallThunderPlugin(alias, finalParams, resolution);
-                if (result != Core::ERROR_NONE) {
+                if (result!=-1 && result != Core::ERROR_NONE) {
                     LOGERR("Failed to retrieve resolution from Thunder method %s", alias.c_str());
                     ErrorUtils::CustomInternal("Failed with internal error", resolution);
                 } else {
@@ -330,7 +427,23 @@ namespace WPEFramework
 
         uint32_t AppGatewayImplementation::ProcessComRpcRequest(const Context &context, const string& alias, const string& method, const string& params, string &resolution) {
             uint32_t result = Core::ERROR_GENERAL;
-            Exchange::IAppGatewayRequestHandler *requestHandler = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(alias);
+
+            // First attempt: try the alias as-is (e.g. "org.rdk.FbSettings")
+            Exchange::IAppGatewayRequestHandler* requestHandler =
+                mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(alias);
+
+            // If not found, try a normalized callsign without a known prefix ("org.rdk.")
+            if (requestHandler == nullptr) {
+                const string prefix = "org.rdk.";
+                if (alias.compare(0, prefix.size(), prefix) == 0 && alias.size() > prefix.size()) {
+                    string normalized = alias.substr(prefix.size()); // e.g. "FbSettings"
+                    LOGWARN("COM-RPC: %s not found. Retrying with normalized callsign: %s",
+                            alias.c_str(), normalized.c_str());
+                    requestHandler =
+                        mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(normalized);
+                }
+            }
+
             if (requestHandler != nullptr) {
                 if (Core::ERROR_NONE != requestHandler->HandleAppGatewayRequest(context, method, params, resolution)) {
                     LOGERR("HandleAppGatewayRequest failed for callsign: %s", alias.c_str());
@@ -357,10 +470,12 @@ namespace WPEFramework
                     if (ObjectUtils::HasBooleanEntry(params_obj, "listen", resultValue)) {
                         LOGDBG("Event method '%s' with listen: %s", method.c_str(), resultValue ? "true" : "false");
                         auto ret_value = HandleEvent(context, alias, method, origin, resultValue);
+                        JsonObject returnData;
                         JsonObject returnResult;
                         returnResult["listening"] = resultValue;
                         returnResult["event"] = method;
-                        returnResult.ToString(resolution);
+                        returnData["result"] = returnResult;
+                        returnData.ToString(resolution);
                         return ret_value;
                     } else {
                         LOGERR("Event method '%s' missing required boolean 'listen' parameter", method.c_str());
@@ -372,6 +487,62 @@ namespace WPEFramework
                     ErrorUtils::CustomBadRequest("Event methods require parameters", resolution);
                     return Core::ERROR_BAD_REQUEST;
             }
+        }
+
+        uint32_t AppGatewayImplementation::PreProcessProvider(const Context &context, const string& method, const string& params, 
+            const string& providerCapability, const ProviderMethodType &methodType, 
+            const string &origin, string &resolution){
+            LOGDBG("params=%s providerCapability=%s ", params.c_str(), providerCapability.c_str());
+            JsonObject params_obj;
+            if (mApp2AppProvider == nullptr) {
+                mApp2AppProvider = mService->QueryInterfaceByCallsign<Exchange::IApp2AppProvider>(APP_TO_APP_PROVIDER_CALLSIGN);
+                if (mApp2AppProvider == nullptr) {
+                    LOGERR("IApp2AppProvider interface not available");
+                    return Core::ERROR_GENERAL;
+                }
+            }
+            Exchange::IApp2AppProvider::Context providerContext = ContextUtils::ConvertAppGatewayToProviderContext(context, origin);
+            switch (methodType) {
+                case ProviderMethodType::REGISTER:
+                    LOGDBG("Register %s ", providerCapability.c_str());
+                    bool resultValue;
+                    if (params_obj.FromString(params)) {
+                        if (ObjectUtils::HasBooleanEntry(params_obj, "listen", resultValue)) {
+                            LOGDBG("Invoking RegisterProvider for capability '%s'", providerCapability.c_str());
+                            JsonObject returnData;
+                            JsonObject returnResult;
+                            returnResult["listening"] = resultValue;
+                            returnResult["event"] = method;
+                            returnData["result"] = returnResult;
+                            returnData.ToString(resolution);
+                            return mApp2AppProvider->RegisterProvider(providerContext, resultValue, providerCapability);
+                        } else {
+                            ErrorUtils::CustomBadRequest("Event methods require parameters", resolution);
+                        }
+                    }
+                    else {
+                        LOGERR("Failed to parse params as JSON: %s", params.c_str());
+                        ErrorUtils::CustomBadRequest("Invalid JSON format", resolution);
+                    }
+                    break;
+                case ProviderMethodType::INVOKE:
+                    LOGDBG("Invoking InvokeProvider for capability '%s' with params: %s", providerCapability.c_str(), params.c_str());
+                    return mApp2AppProvider->InvokeProvider(providerContext, providerCapability, params);
+                
+                case ProviderMethodType::RESULT:
+                    LOGDBG("Invoking ResultProvider for capability '%s' with params: %s", providerCapability.c_str(), params.c_str());
+                    return mApp2AppProvider->HandleProviderResponse(providerCapability, params);
+                case ProviderMethodType::ERROR:
+                    LOGDBG("Invoking ResultProvider for capability '%s' with params: %s", providerCapability.c_str(), params.c_str());
+                    return mApp2AppProvider->HandleProviderError(providerCapability, params);
+                default:
+                    LOGERR("Unknown ProviderMethodType for method '%s'", providerCapability.c_str());
+                    
+                    ErrorUtils::CustomBadRequest("Unknown ProviderMethodType", resolution);
+                    return Core::ERROR_BAD_REQUEST;
+            }
+
+            return Core::ERROR_GENERAL;
         }
 
         Core::hresult AppGatewayImplementation::HandleEvent(const Context &context, const string &alias,  const string &event, const string &origin, const bool listen) {
@@ -386,6 +557,32 @@ namespace WPEFramework
             return mAppNotifications->Subscribe(ContextUtils::ConvertAppGatewayToNotificationContext(context,origin), listen, alias, event);
         }
 
+        void AppGatewayImplementation::DispatchWsMsg(const std::string &method,
+                                                     const std::string &params,
+                                                     const int requestId,
+                                                     const uint32_t connectionId)
+        {
+
+            LOGINFO("Received message: method=%s, params=%s, requestId=%d, connectionId=%d",
+                    method.c_str(), params.c_str(), requestId, connectionId);
+
+            std::string resolution;
+            string appId;
+
+            if (mAppIdRegistry.Get(connectionId, appId)) {
+                // App Id is available
+                Context context = {
+                requestId,
+                connectionId,
+                std::move(appId)};
+                InternalResolve(context, method, params, APP_GATEWAY_CALLSIGN);
+
+            } else {
+                LOGERR("No App ID found for connection %d. Terminate connection", connectionId);
+                mWsManager.Close(connectionId);
+            }
+        }
+
         void AppGatewayImplementation::SendToLaunchDelegate(const Context& context, const string& payload)
         {
             if ( mInternalGatewayResponder==nullptr ) {
@@ -396,7 +593,8 @@ namespace WPEFramework
                 }
             }
 
-            mInternalGatewayResponder->Respond(context, payload);
+            // Convert local Context to GatewayContext for responder call
+            mInternalGatewayResponder->Respond(ContextUtils::ToGatewayContext(context), payload);
 
         }
 

@@ -40,16 +40,14 @@ find_package(CompileSettingsDebug CONFIG REQUIRED)
 add_library(${MODULE_NAME} SHARED
         AppGateway.cpp
         AppGatewayImplementation.cpp
-        AppGatewayResponderImplementation.cpp
         Resolver.cpp
-        RequestRouter.cpp
 	Module.cpp)
 
+# Include helper headers, resolution configs, top-level interfaces, and shared Supporting_Files
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
-# Add Supporting_Files and project root to locate headers like WsManager.h, UtilsLogging.h and <interfaces/...>
-target_include_directories(${MODULE_NAME} PRIVATE ../../Supporting_Files)
-target_include_directories(${MODULE_NAME} PRIVATE ..)
+target_include_directories(${MODULE_NAME} PRIVATE "${PROJECT_SOURCE_DIR}")
+target_include_directories(${MODULE_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/../Supporting_Files")
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
@@ -80,9 +78,8 @@ install(FILES appGatewayConfig.json
 
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/
-        DESTINATION "${PRODUCT_CONFIG_DIR}"
+        DESTINATION "/etc/app-gateway/"
         FILES_MATCHING PATTERN "resolution*.json")
 
-# Address deprecation in FindConfigGenerator: use PLUGINS keyword
 write_config(PLUGINS ${PLUGIN_NAME})
 

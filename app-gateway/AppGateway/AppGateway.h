@@ -19,7 +19,7 @@
 #pragma once
 
 #include "Module.h"
-#include <interfaces/IAppGateway.h>
+#include "IAppGateway.h"
 
 namespace WPEFramework {
 
@@ -54,8 +54,7 @@ namespace WPEFramework {
             BEGIN_INTERFACE_MAP(AppGateway)
             INTERFACE_ENTRY(PluginHost::IPlugin)
             INTERFACE_ENTRY(PluginHost::IDispatcher)
-            INTERFACE_AGGREGATE(Exchange::IAppGatewayResolver, mAppGateway)
-            INTERFACE_AGGREGATE(Exchange::IAppGatewayResponder, mResponder)
+            INTERFACE_AGGREGATE(Exchange::IAppGateway, mAppGateway)
             END_INTERFACE_MAP
 
         private:
@@ -63,8 +62,7 @@ namespace WPEFramework {
 
         private:
             PluginHost::IShell* mService;
-            Exchange::IAppGatewayResolver* mAppGateway;
-            Exchange::IAppGatewayResponder* mResponder;
+            Exchange::IAppGateway* mAppGateway;
             uint32_t mConnectionId;
         };
 	} // namespace Plugin

@@ -105,5 +105,37 @@ class ContextUtils {
         static bool IsOriginGateway(const string& origin) {
             return origin == APP_GATEWAY_CALLSIGN;
         }
+
+        // Convert from the local IAppGateway::Context (used by AppGatewayImplementation)
+        // to the common Exchange::GatewayContext used by other interfaces.
+        static Exchange::GatewayContext ToGatewayContext(const Exchange::IAppGateway::Context& appGatewayContext) {
+            Exchange::GatewayContext gatewayContext;
+            gatewayContext.requestId = appGatewayContext.requestId;
+            gatewayContext.connectionId = appGatewayContext.connectionId;
+            gatewayContext.appId = appGatewayContext.appId;
+            return gatewayContext;
+        }
+
+        // Overload: Convert AppGateway context (local type) to AppNotifications context
+        static Exchange::IAppNotifications::AppNotificationContext ConvertAppGatewayToNotificationContext(
+            const Exchange::IAppGateway::Context& appGatewayContext, const string& origin) {
+            Exchange::IAppNotifications::AppNotificationContext notificationsContext;
+            notificationsContext.requestId = appGatewayContext.requestId;
+            notificationsContext.connectionId = appGatewayContext.connectionId;
+            notificationsContext.appId = appGatewayContext.appId;
+            notificationsContext.origin = origin;
+            return notificationsContext;
+        }
+
+        // Overload: Convert AppGateway context (local type) to App2AppProvider context
+        static Exchange::IApp2AppProvider::Context ConvertAppGatewayToProviderContext(
+            const Exchange::IAppGateway::Context& appGatewayContext, const string& origin) {
+            Exchange::IApp2AppProvider::Context providerContext;
+            providerContext.requestId = appGatewayContext.requestId;
+            providerContext.connectionId = appGatewayContext.connectionId;
+            providerContext.appId = appGatewayContext.appId;
+            providerContext.origin = origin;
+            return providerContext;
+        }
 };
 #endif

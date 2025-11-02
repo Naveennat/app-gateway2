@@ -9,8 +9,7 @@
             "event": "Discovery.onNavigateTo"
         },
         "Localization.addAdditionalInfo": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.addAdditionalInfo"
         },
         "PinChallenge.onRequestChallenge": {
             "alias": "org.rdk.App2AppProvider.registerProvider",
@@ -73,40 +72,31 @@
             "event": "Lifecycle.onUnloading"
         },
         "device.make": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getDeviceMake"
         },
         "device.name": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getDeviceName"
         },
         "device.setName": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.setDeviceName"
         },
         "device.sku": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getDeviceSku"
         },
         "localization.countryCode": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getCountryCode"
         },
         "localization.setCountryCode": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.setCountryCode"
         },
         "localization.timeZone": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getTimeZone"
         },
         "localization.setTimeZone": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.setTimeZone"
         },
         "secondscreen.friendlyName": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getSecondScreenFriendlyName"
         },
         "localization.language": {
             "alias": "org.rdk.FbSettings",
@@ -200,6 +190,22 @@
             "alias": "org.rdk.FbSettings",
             "useComRpc": true
         },
+        "device.videoresolution": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
+        },
+        "device.screenresolution": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
+        },
+        "device.hdr": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
+        },
+        "device.hdcp": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
+        },
         "localization.onLanguageChanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.onPresentationLanguageChanged"
@@ -259,43 +265,22 @@
         "device.onNetworkChanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.onInternetStatusChange"
-        },
-        "device.videoresolution": {
-            "alias": "org.rdk.DisplaySettings.getCurrentResolution",
-            "useComRpc": false
-        },
-        "device.onvideoresolutionchanged": {
-            "alias": "org.rdk.DisplaySettings",
-            "event": "org.rdk.DisplaySettings.resolutionChanged",
-            "useComRpc": false
-        },
-        "device.screenresolution": {
-            "alias": "org.rdk.DisplaySettings.getCurrentResolution",
-            "useComRpc": false
-        },
-        "device.onscreenresolutionchanged": {
-            "alias": "org.rdk.DisplaySettings",
-            "event": "org.rdk.DisplaySettings.resolutionChanged",
-            "useComRpc": false
-        },
-        "device.hdcp": {
-            "alias": "org.rdk.HdcpProfile.getHDCPStatus",
-            "useComRpc": false
+        },        
+        "device.onhdrchanged": {
+            "alias": "org.rdk.FbSettings",
+            "event": "org.rdk.FbSettings.onDisplayConnectionChanged"
         },
         "device.onhdcpchanged": {
-            "alias": "org.rdk.HdcpProfile",
-            "event": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
-            "useComRpc": false
+            "alias": "org.rdk.FbSettings",
+            "event": "org.rdk.FbSettings.onDisplayConnectionChanged"
         },
-        "device.hdr": {
-            "alias": "/system/hdmi",
-            "useComRpc": false,
-            "includeContext": false
+        "device.onvideoresolutionchanged": {
+            "alias": "org.rdk.FbSettings",
+            "event": "org.rdk.FbSettings.onScreenResolutionChanged"
         },
-        "device.onhdrchanged": {
-            "alias": "org.rdk.HdcpProfile",
-            "event": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
-            "useComRpc": false
+        "device.onscreenresolutionchanged": {
+            "alias": "org.rdk.FbSettings",
+            "event": "org.rdk.FbSettings.resolutionChanged"
         }
     }
 }

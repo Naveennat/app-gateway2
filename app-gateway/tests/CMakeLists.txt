@@ -43,6 +43,7 @@ target_include_directories(test_appgateway
     PRIVATE
         "${PROJECT_SOURCE_DIR}"
         "${PROJECT_SOURCE_DIR}/AppGateway"
+        "${PROJECT_SOURCE_DIR}/../Supporting_Files"
 )
 
 # Build/test with C++11 and ensure NAMESPACE macro is defined (used by Thunder headers)
@@ -81,6 +82,7 @@ target_include_directories(test_fbcommon
     PRIVATE
         "${PROJECT_SOURCE_DIR}"
         "${PROJECT_SOURCE_DIR}/AppGateway"
+        "${PROJECT_SOURCE_DIR}/../Supporting_Files"
 )
 target_compile_features(test_fbcommon PRIVATE cxx_std_11)
 target_compile_definitions(test_fbcommon PRIVATE NAMESPACE=${NAMESPACE})
