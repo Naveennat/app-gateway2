@@ -486,6 +486,7 @@ public:
         }
 
         jsonArray = "[" + std::to_string(w) + "," + std::to_string(h) + "]";
+        LOGDBG("[FbSettings|ScreenResolutionChanged] Computed screenResolution: w=%d h=%d -> %s", w, h, jsonArray.c_str());
         return Core::ERROR_NONE;
     }
 
@@ -513,9 +514,11 @@ public:
                     } else {
                         w = 1920; h = 1080;
                     }
+                    LOGDBG("[FbSettings|VideoResolutionChanged] Transform screen(%d x %d) -> video(%d x %d)", sw, sh, w, h);
                 }
             } catch (...) {
                 // keep defaults
+                LOGDBG("[FbSettings|VideoResolutionChanged] Transform parse error for %s -> using defaults (%d x %d)", sr.c_str(), w, h);
             }
         }
         jsonArray = "[" + std::to_string(w) + "," + std::to_string(h) + "]";
@@ -582,6 +585,8 @@ public:
 
         jsonObject = std::string("{\"hdcp1.4\":") + (hdcp14 ? "true" : "false")
                    + ",\"hdcp2.2\":" + (hdcp22 ? "true" : "false") + "}";
+        LOGDBG("[FbSettings|HdcpChanged] Computed HDCP flags: hdcp1.4=%s hdcp2.2=%s -> %s",
+               hdcp14 ? "true" : "false", hdcp22 ? "true" : "false", jsonObject.c_str());
         return Core::ERROR_NONE;
     }
 
@@ -634,6 +639,12 @@ public:
                    + ",\"dolbyVision\":" + (dv ? "true" : "false")
                    + ",\"hlg\":" + (hlg ? "true" : "false")
                    + ",\"hdr10Plus\":" + (hdr10plus ? "true" : "false") + "}";
+        LOGDBG("[FbSettings|HdrChanged] Computed HDR flags: hdr10=%s dolbyVision=%s hlg=%s hdr10Plus=%s -> %s",
+               hdr10 ? "true" : "false",
+               dv ? "true" : "false",
+               hlg ? "true" : "false",
+               hdr10plus ? "true" : "false",
+               jsonObject.c_str());
         return Core::ERROR_NONE;
     }
 
@@ -644,14 +655,18 @@ public:
     {
         std::string payload;
         if (GetVideoResolution(payload) != Core::ERROR_NONE) {
+            LOGERR("[FbSettings|VideoResolutionChanged] handler=GetVideoResolution failed to compute payload");
             return false;
         }
         // Transform to rpcv2_event wrapper: { "videoResolution": $event_handler_response }
         const std::string wrapped = std::string("{\"videoResolution\":") + payload + "}";
+        LOGINFO("[FbSettings|VideoResolutionChanged] Final rpcv2_event payload=%s", wrapped.c_str());
         if (ShouldEmitDebounced(EVENT_ON_VIDEO_RES_CHANGED, wrapped)) {
+            LOGDBG("[FbSettings|VideoResolutionChanged] Emitting event: %s", EVENT_ON_VIDEO_RES_CHANGED);
             Dispatch(EVENT_ON_VIDEO_RES_CHANGED, wrapped);
             return true;
         }
+        LOGDBG("[FbSettings|VideoResolutionChanged] Debounced/dropped");
         return false;
     }
 
@@ -660,14 +675,18 @@ public:
     {
         std::string payload;
         if (GetScreenResolution(payload) != Core::ERROR_NONE) {
+            LOGERR("[FbSettings|ScreenResolutionChanged] handler=GetScreenResolution failed to compute payload");
             return false;
         }
         // Transform to rpcv2_event wrapper: { "screenResolution": $event }
         const std::string wrapped = std::string("{\"screenResolution\":") + payload + "}";
+        LOGINFO("[FbSettings|ScreenResolutionChanged] Final rpcv2_event payload=%s", wrapped.c_str());
         if (ShouldEmitDebounced(EVENT_ON_SCREEN_RES_CHANGED, wrapped)) {
+            LOGDBG("[FbSettings|ScreenResolutionChanged] Emitting event: %s", EVENT_ON_SCREEN_RES_CHANGED);
             Dispatch(EVENT_ON_SCREEN_RES_CHANGED, wrapped);
             return true;
         }
+        LOGDBG("[FbSettings|ScreenResolutionChanged] Debounced/dropped");
         return false;
     }
 
@@ -676,12 +695,16 @@ public:
     {
         std::string payload;
         if (GetHdcp(payload) != Core::ERROR_NONE) {
+            LOGERR("[FbSettings|HdcpChanged] handler=GetHdcp failed to compute payload");
             return false;
         }
+        LOGINFO("[FbSettings|HdcpChanged] Final rpcv2_event payload=%s", payload.c_str());
         if (ShouldEmitDebounced(EVENT_ON_HDCP_CHANGED, payload)) {
+            LOGDBG("[FbSettings|HdcpChanged] Emitting event: %s", EVENT_ON_HDCP_CHANGED);
             Dispatch(EVENT_ON_HDCP_CHANGED, payload);
             return true;
         }
+        LOGDBG("[FbSettings|HdcpChanged] Debounced/dropped");
         return false;
     }
 
@@ -690,12 +713,16 @@ public:
     {
         std::string payload;
         if (GetHdr(payload) != Core::ERROR_NONE) {
+            LOGERR("[FbSettings|HdrChanged] handler=GetHdr failed to compute payload");
             return false;
         }
+        LOGINFO("[FbSettings|HdrChanged] Final rpcv2_event payload=%s", payload.c_str());
         if (ShouldEmitDebounced(EVENT_ON_HDR_CHANGED, payload)) {
+            LOGDBG("[FbSettings|HdrChanged] Emitting event: %s", EVENT_ON_HDR_CHANGED);
             Dispatch(EVENT_ON_HDR_CHANGED, payload);
             return true;
         }
+        LOGDBG("[FbSettings|HdrChanged] Debounced/dropped");
         return false;
     }
 
@@ -713,6 +740,7 @@ public:
             || evLower == "device.onhdcpchanged"
             || evLower == "device.onhdrchanged")
         {
+            LOGINFO("[FbSettings|EventRegistration] event=%s listen=%s", event.c_str(), listen ? "true" : "false");
             if (listen) {
                 AddNotification(event);
                 // Ensure underlying Thunder subscriptions are active
@@ -859,18 +887,28 @@ private:
     }
 
     // Event handlers invoked by Thunder JSON-RPC subscription
-    void OnDisplaySettingsResolutionChanged(const WPEFramework::Core::JSON::VariantContainer& /*params*/)
+    void OnDisplaySettingsResolutionChanged(const WPEFramework::Core::JSON::VariantContainer& params)
     {
+        (void)params;
+        LOGINFO("[FbSettings|DisplaySettings.resolutionChanged] Incoming alias=%s.%s, invoking handlers...",
+                DISPLAYSETTINGS_CALLSIGN, "resolutionChanged");
         // Re-query state and dispatch debounced events
-        EmitOnScreenResolutionChanged();
-        EmitOnVideoResolutionChanged();
+        const bool screenEmitted = EmitOnScreenResolutionChanged();
+        const bool videoEmitted = EmitOnVideoResolutionChanged();
+        LOGINFO("[FbSettings|DisplaySettings.resolutionChanged] Handler responses: onScreenResolutionChanged=%s onVideoResolutionChanged=%s",
+                screenEmitted ? "emitted" : "skipped", videoEmitted ? "emitted" : "skipped");
     }
 
-    void OnHdcpProfileDisplayConnectionChanged(const WPEFramework::Core::JSON::VariantContainer& /*params*/)
+    void OnHdcpProfileDisplayConnectionChanged(const WPEFramework::Core::JSON::VariantContainer& params)
     {
+        (void)params;
+        LOGINFO("[FbSettings|HdcpProfile.onDisplayConnectionChanged] Incoming alias=%s.%s, invoking handlers...",
+                HDCPPROFILE_CALLSIGN, "onDisplayConnectionChanged");
         // Re-query state and dispatch debounced events
-        EmitOnHdcpChanged();
-        EmitOnHdrChanged();
+        const bool hdcpEmitted = EmitOnHdcpChanged();
+        const bool hdrEmitted = EmitOnHdrChanged();
+        LOGINFO("[FbSettings|HdcpProfile.onDisplayConnectionChanged] Handler responses: onHdcpChanged=%s onHdrChanged=%s",
+                hdcpEmitted ? "emitted" : "skipped", hdrEmitted ? "emitted" : "skipped");
     }
 
     bool ShouldEmitDebounced(const std::string& eventKey, const std::string& payload)
@@ -888,6 +926,7 @@ private:
         }
         entry.lastPayload = payload;
         entry.lastTime = now;
+        LOGDBG("SystemDelegate: debounced acceptance for event %s (payloadLen=%zu)", eventKey.c_str(), payload.size());
         return true;
     }
 
