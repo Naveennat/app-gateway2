@@ -31,6 +31,12 @@ namespace WPEFramework
     namespace Plugin
     {
 
+        // Default constructor used in tests
+        Resolver::Resolver()
+            : mService(nullptr), mResolutions(), mMutex()
+        {
+        }
+
         Resolver::Resolver(PluginHost::IShell *shell, const std::string &configPath)
             : mService(shell), mResolutions(), mMutex()
         {
@@ -48,6 +54,23 @@ namespace WPEFramework
                 mService->Release();
                 mService = nullptr;
             }
+        }
+
+        bool Resolver::LoadPaths(const std::vector<std::string>& paths, std::string& err)
+        {
+            err.clear();
+            bool anyLoaded = false;
+            for (const auto& p : paths) {
+                if (LoadConfig(p)) {
+                    anyLoaded = true;
+                } else {
+                    if (!err.empty()) {
+                        err += "; ";
+                    }
+                    err += std::string("Failed to load configuration from: ") + p;
+                }
+            }
+            return anyLoaded;
         }
 
         bool Resolver::LoadConfig(const std::string &path)
@@ -154,6 +177,21 @@ namespace WPEFramework
                 return it->second.alias;
             }
             return {}; // return empty if not found
+        }
+
+        bool Resolver::Get(const std::string& /*appId*/, const std::string& key,
+                           const Core::JSON::Object& /*hints*/,
+                           Core::JSON::Object& out)
+        {
+            std::lock_guard<std::mutex> lock(mMutex);
+            const std::string lowerKey = StringUtils::toLower(key);
+            auto it = mResolutions.find(lowerKey);
+            if (it == mResolutions.end()) {
+                return false;
+            }
+            // Populate minimal object with alias as expected by tests
+            out[_T("alias")] = Core::JSON::Variant(it->second.alias);
+            return true;
         }
 
         void Resolver::ParseAlias(const std::string &alias, std::string &callsign, std::string &pluginMethod)

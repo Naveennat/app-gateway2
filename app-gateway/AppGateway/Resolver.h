@@ -24,7 +24,9 @@
 #include "StringUtils.h"
 #include <unordered_map>
 #include <mutex>
+#include <vector>
 #include <core/Enumerate.h>
+#include "../helpers/JsonCompat.h"
 
 namespace WPEFramework
 {
@@ -81,6 +83,8 @@ namespace WPEFramework
         class Resolver
         {
         public:
+            // Default constructor used by unit tests
+            Resolver();
             Resolver(PluginHost::IShell *shell, const std::string &configPath);
             ~Resolver();
 
@@ -92,6 +96,12 @@ namespace WPEFramework
 
             // Check if resolver has been properly configured
             bool IsConfigured();
+
+            // Compatibility methods for existing unit tests
+            bool LoadPaths(const std::vector<std::string>& paths, std::string& err);
+            bool Get(const std::string& appId, const std::string& key,
+                     const Core::JSON::Object& /*hints*/,
+                     Core::JSON::Object& out);
 
             std::string ResolveAlias(const std::string &request);
             Core::hresult CallThunderPlugin(const std::string &alias, const std::string &params, std::string &response);

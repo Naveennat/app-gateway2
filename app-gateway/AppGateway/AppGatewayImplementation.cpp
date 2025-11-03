@@ -209,7 +209,7 @@ namespace WPEFramework
                     }
 
                     if ( mAuthenticator==nullptr ) {
-                        mAuthenticator = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayAuthenticatorInternal>(GATEWAY_AUTHENTICATOR_CALLSIGN);
+                        mAuthenticator = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayAuthenticator>(GATEWAY_AUTHENTICATOR_CALLSIGN);
                         if (mAuthenticator == nullptr) {
                             LOGERR("Authenticator Not available");
                             return false;
@@ -445,7 +445,7 @@ namespace WPEFramework
             }
 
             if (requestHandler != nullptr) {
-                if (Core::ERROR_NONE != requestHandler->HandleAppGatewayRequest(context, method, params, resolution)) {
+                if (Core::ERROR_NONE != requestHandler->HandleAppGatewayRequest(ContextUtils::ToGatewayContext(context), method, params, resolution)) {
                     LOGERR("HandleAppGatewayRequest failed for callsign: %s", alias.c_str());
                     ErrorUtils::CustomInternal("HandleAppGatewayRequest failed", resolution);
                 } else {
@@ -571,10 +571,10 @@ namespace WPEFramework
 
             if (mAppIdRegistry.Get(connectionId, appId)) {
                 // App Id is available
-                Context context = {
-                requestId,
-                connectionId,
-                std::move(appId)};
+                Context context;
+                context.requestId = requestId;
+                context.connectionId = connectionId;
+                context.appId = std::move(appId);
                 InternalResolve(context, method, params, APP_GATEWAY_CALLSIGN);
 
             } else {
@@ -593,7 +593,7 @@ namespace WPEFramework
                 }
             }
 
-            // Convert local Context to GatewayContext for responder call
+            // Convert IAppGateway::Context to common GatewayContext for responder call
             mInternalGatewayResponder->Respond(ContextUtils::ToGatewayContext(context), payload);
 
         }

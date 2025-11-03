@@ -41,7 +41,8 @@ add_library(${MODULE_NAME} SHARED
         AppGateway.cpp
         AppGatewayImplementation.cpp
         Resolver.cpp
-	Module.cpp)
+        RequestRouter.cpp
+        Module.cpp)
 
 # Include helper headers, resolution configs, top-level interfaces, and shared Supporting_Files
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
@@ -78,8 +79,7 @@ install(FILES appGatewayConfig.json
 
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/
-        DESTINATION "/etc/app-gateway/"
+        DESTINATION "${PRODUCT_CONFIG_DIR}/app-gateway"
         FILES_MATCHING PATTERN "resolution*.json")
 
 write_config(PLUGINS ${PLUGIN_NAME})
-
