@@ -1,0 +1,7 @@
+{
+  "autostart": false,
+  "precondition": [],
+  "configuration": {
+    "gatewayCallsign": "org.rdk.AppGateway"
+  }
+}

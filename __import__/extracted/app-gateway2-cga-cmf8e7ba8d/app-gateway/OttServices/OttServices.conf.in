@@ -1,0 +1,5 @@
+autostart = "@PLUGIN_OTTSERVICES_AUTOSTART@"
+precondition = ["Platform"]
+callsign = "org.rdk.OttServices"
+startuporder = "@PLUGIN_OTTSERVICES_STARTUPORDER@"
+
