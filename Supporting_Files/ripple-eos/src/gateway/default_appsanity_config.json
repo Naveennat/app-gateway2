@@ -1,0 +1,140 @@
+{
+  "permission_service": {
+    "url": "thor-permission.svc-qa.thor.comcast.com"
+  },
+  "ott_token_service": {
+    "url": "ott-token-service.svc-qa.thor.comcast.com"
+  },
+  "session_service": {
+    "url": "res-api.svc-qa.thor.comcast.com"
+  },
+  "ad_platform_service": {
+    "url": "ad-platform-service.svc-qa.thor.comcast.com"
+  },
+  "xvp_xifa_service": {
+    "url": "https://xifa.exp.xvp.na-1.xcal.tv/v2"
+  },
+  "xvp_playback_service": {
+    "url": "https://playback.exp.xvp.na-1.xcal.tv/v1"
+  },
+  "xvp_video_service": {
+    "url": "https://ess.exp.xvp.na-1.xcal.tv/v1"
+  },
+  "xvp_session_service": {
+    "url": "https://session.exp.xvp.na-1.xcal.tv/v1"
+  },
+  "xvp_data_scopes": {
+    "content_access": "account",
+    "sign_in_state": "account"
+  },
+  "linchpin_config": {
+    "url": "wss://linchpin.lp.xcal.tv:18082/",
+    "initial_reconnect_delay_ms": 1000,
+    "max_reconnect_delay_ms": 32000,
+    "heartbeat_timeout_secs": 300
+  },
+  "app_authorization_rules": {
+    "app_ignore_rules": {
+      "foo-insecure": [
+        "*"
+      ],
+      "refui": [
+        "*"
+      ],
+      "root": [
+        "*"
+      ],
+      "foo": [
+        "*"
+      ]
+    }
+  },
+  "method_ignore_rules": [
+    "some.nonexistent.method"
+  ],
+  "behavioral_metrics": {
+    "plugin": false,
+    "sift": {
+      "endpoint": "https://collector-dev.sift.comcast.com/events/entos",
+      "ontology": false,
+      "authenticated": true,
+      "api_key": "deprecated",
+      "batch_size": 3,
+      "max_queue_size": 20,
+      "send_interval_seconds": 30,
+      "metrics_schemas": {
+        "default_metrics_namespace": "entos",
+        "default_metrics_schema_version": "4",
+        "default_common_schema": "entos/common/5",
+        "metrics_schemas": [
+          {
+            "event_name": "app_lc_state_change",
+            "namespace": "entos",
+            "version": "3",
+            "alias": "app_lc_state_change"
+          },
+          {
+            "event_name": "custom",
+            "namespace": "entos",
+            "version": "3",
+            "alias": "custom"
+          },
+          {
+            "event_name": "inapp_content_start",
+            "namespace": "entos",
+            "version": "3",
+            "alias": "inapp_content_start"
+          },
+          {
+            "event_name": "inapp_content_stop",
+            "namespace": "entos",
+            "version": "3",
+            "alias": "inapp_content_stop"
+          }
+        ]
+      }
+    }
+  },
+  "privacy_service": {
+    "url": "https://ess-stg.exp.xvp.na-1.xcal.tv/"
+  },
+  "sync_monitor_service": {
+    "services": [
+      {
+        "service_name": "privacy_service",
+        "listen_topic": "p:{partnerId}:a:{accountId}:t:xvp-client",
+        "ttl": 43200
+      },
+      {
+        "service_name": "xvp_session_service",
+        "listen_topic": "p:{partnerId}:a:{accountId}:t:xvp-client",
+        "ttl": 43200
+      }
+    ]
+  },
+  "cloud_firebolt_mapping": {
+    "user_grants": {
+      "xcal:appDataCollection": {
+        "cap": "xrn:firebolt:capability:data:app-usage",
+        "role": "Use"
+      },
+      "xcal:appEntitlementCollection": {
+        "cap": "xrn:firebolt:capability:discovery:entitlements",
+        "role": "Use"
+      }
+    }
+  },
+  "_comment_age_policy": "AgePolicyConfig struct defined in src/gateway/appsanity_gateway.rs, default values from age_policy_default() function",
+  "age_policy": {
+    "category_tag_mappings": {
+      "app:child": ["child"]
+    },
+    "cet_mappings": {
+      "app:child": [
+        "dataPlatform:cet:xvp:personalization:recommendation",
+        "dataPlatform:cet:xvp:advertising:targeted",
+        "dataPlatform:cet:xvp:advertising:segmentation"
+      ]
+    }
+  }
+}
