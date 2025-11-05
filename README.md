@@ -11,6 +11,15 @@ How to start
 2) Run:
    bash scripts/start.sh
 
+Preview system start command
+- The repository includes conventional entrypoints that preview systems auto-detect:
+  - Procfile: web: ./scripts/start.sh
+  - Root wrapper: ./run.sh (executes ./scripts/start.sh)
+- Either of these may be used by the environment; both invoke scripts/start.sh which:
+  - Configures CMake into build-local/
+  - Builds targets
+  - Runs a stable foreground process if available (tests/test_appgateway) or tails the build log
+
 What the script does
 - Configures CMake in app-gateway/ into build-local/
 - Builds all targets
