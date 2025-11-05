@@ -62,6 +62,7 @@ namespace WPEFramework {
             BEGIN_INTERFACE_MAP(Badger)
             INTERFACE_ENTRY(PluginHost::IPlugin)
             INTERFACE_ENTRY(PluginHost::IDispatcher)
+            INTERFACE_ENTRY(Exchange::IAppGatewayRequestHandler)
             END_INTERFACE_MAP
 
           private:

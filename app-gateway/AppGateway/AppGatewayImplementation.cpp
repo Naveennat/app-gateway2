@@ -432,6 +432,17 @@ namespace WPEFramework
             Exchange::IAppGatewayRequestHandler* requestHandler =
                 mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(alias);
 
+            // Special-case: metricsHandler alias is intended to resolve to Badger's handler
+            if (requestHandler == nullptr && alias == "metricsHandler") {
+                LOGDBG("COM-RPC: 'metricsHandler' alias detected; routing to Badger plugin");
+                requestHandler =
+                    mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>("org.rdk.Badger");
+                if (requestHandler == nullptr) {
+                    requestHandler =
+                        mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>("Badger");
+                }
+            }
+
             // If not found, try a normalized callsign without a known prefix ("org.rdk.")
             if (requestHandler == nullptr) {
                 const string prefix = "org.rdk.";

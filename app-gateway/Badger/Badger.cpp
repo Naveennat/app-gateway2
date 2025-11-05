@@ -827,6 +827,113 @@ namespace WPEFramework {
                 return it->second(appId, result);
             }
 
+            // badger.metricsHandler - accepts multiple shapes and returns true
+            if (lower == "badger.metricshandler") {
+                Core::JSON::VariantContainer params;
+                Core::OptionalType<Core::JSON::Error> parseError;
+                if (!params.FromString(payload, parseError)) {
+                    LOGERR("badger.metricsHandler: invalid JSON params: %s", payload.c_str());
+                    return Core::ERROR_BAD_REQUEST; // structural parse error -> let gateway send error
+                }
+
+                // Debug dump of keys present
+                LOGDBG("badger.metricsHandler: received params: %s", payload.c_str());
+
+                auto has = [&](const char* key) -> bool {
+                    Core::JSON::Variant v = params[key];
+                    return v.IsSet() && !v.IsNull();
+                };
+                auto getStr = [&](const char* key) -> std::string {
+                    Core::JSON::Variant v = params[key];
+                    return (v.IsSet() && v.Content() == Core::JSON::Variant::type::STRING) ? v.String() : std::string();
+                };
+                auto getBool = [&](const char* key, bool& outVal) -> bool {
+                    Core::JSON::Variant v = params[key];
+                    if (v.IsSet() && v.Content() == Core::JSON::Variant::type::BOOLEAN) {
+                        outVal = v.Boolean();
+                        return true;
+                    }
+                    return false;
+                };
+
+                bool accepted = false;
+
+                // Case 1: Segment events: segment: "USER_VALIDATED" | "LAUNCH_COMPLETED"
+                if (has("segment")) {
+                    const std::string segment = getStr("segment");
+                    if (segment.empty()) {
+                        LOGWARN("badger.metricsHandler: 'segment' provided but empty");
+                    } else {
+                        if (segment == "LAUNCH_COMPLETED" || segment == "USER_VALIDATED") {
+                            LOGDBG("badger.metricsHandler: segment event '%s' accepted", segment.c_str());
+                        } else {
+                            LOGWARN("badger.metricsHandler: unrecognized segment '%s'", segment.c_str());
+                        }
+                    }
+                    // evt is optional and may contain arbitrary keys; we ignore extras by design
+                    accepted = true;
+                }
+
+                // Case 2: eventType-based events
+                if (!accepted && has("eventType")) {
+                    std::string eventType = getStr("eventType");
+                    const std::string eventTypeLower = StringUtils::toLower(eventType);
+
+                    if (eventTypeLower == "useraction") {
+                        // required: action
+                        const std::string action = getStr("action");
+                        if (action.empty()) {
+                            LOGWARN("badger.metricsHandler.userAction: missing 'action'");
+                        }
+                        accepted = true;
+                    } else if (eventTypeLower == "appaction") {
+                        // required: action
+                        const std::string action = getStr("action");
+                        if (action.empty()) {
+                            LOGWARN("badger.metricsHandler.appAction: missing 'action'");
+                        }
+                        accepted = true;
+                    } else if (eventTypeLower == "pageview") {
+                        // required: page
+                        const std::string page = getStr("page");
+                        if (page.empty()) {
+                            LOGWARN("badger.metricsHandler.pageView: missing 'page'");
+                        }
+                        accepted = true;
+                    } else if (eventTypeLower == "usererror" || eventTypeLower == "error") {
+                        // required: errMsg, errVisible, errCode
+                        const std::string errMsg = getStr("errMsg");
+                        bool errVisible = false;
+                        const bool hasVisible = getBool("errVisible", errVisible);
+                        const std::string errCode = getStr("errCode");
+                        if (errMsg.empty()) {
+                            LOGWARN("badger.metricsHandler.%s: missing 'errMsg'", eventTypeLower.c_str());
+                        }
+                        if (!hasVisible) {
+                            LOGWARN("badger.metricsHandler.%s: missing or invalid 'errVisible'", eventTypeLower.c_str());
+                        }
+                        if (errCode.empty()) {
+                            LOGWARN("badger.metricsHandler.%s: missing 'errCode'", eventTypeLower.c_str());
+                        }
+                        // evt may include httpStatusCode (string | number) and others; ignore extras
+                        accepted = true;
+                    } else {
+                        LOGWARN("badger.metricsHandler: unknown eventType '%s'", eventType.c_str());
+                        // Still accept per requirement
+                        accepted = true;
+                    }
+                }
+
+                // Default: if neither 'segment' nor 'eventType' provided, still respond true but log warning
+                if (!accepted) {
+                    LOGWARN("badger.metricsHandler: no 'segment' or 'eventType' provided; responding success per spec");
+                }
+
+                // Return boolean true to satisfy JSON-RPC result expectations
+                result = "true";
+                return Core::ERROR_NONE;
+            }
+
             // Unknown method
             ErrorUtils::NotSupported(result);
             LOGERR("Unsupported method: %s", method.c_str());
