@@ -19,6 +19,8 @@
 
 #include "Badger.h"
 #include "UtilsLogging.h"
+#include "Badger/Delegate/MetricsHandlerDelegate.h"
+#include <vector>
 
 #define API_VERSION_NUMBER_MAJOR BADGER_MAJOR_VERSION
 #define API_VERSION_NUMBER_MINOR BADGER_MINOR_VERSION
@@ -927,6 +929,64 @@ namespace WPEFramework {
                 // Default: if neither 'segment' nor 'eventType' provided, still respond true but log warning
                 if (!accepted) {
                     LOGWARN("badger.metricsHandler: no 'segment' or 'eventType' provided; responding success per spec");
+                }
+
+                // Dispatch to MetricsHandlerDelegate (header-only)
+                Core::hresult mhResult = Core::ERROR_NONE;
+                if (mDelegate) {
+                    auto metricsDelegate = mDelegate->getMetricsDelegate();
+                    if (metricsDelegate) {
+                        // Prepare empty args vector for now; can be extended to flatten evt payload if needed
+                        std::vector<MetricsHandler::ParamKV> emptyArgs;
+
+                        if (has("segment")) {
+                            const std::string segmentVal = getStr("segment");
+                            if (segmentVal == "LAUNCH_COMPLETED") {
+                                mhResult = metricsDelegate->LaunchCompleted(emptyArgs);
+                            } else {
+                                Core::OptionalType<std::string> seg(segmentVal);
+                                mhResult = metricsDelegate->MetricsHandler(seg, emptyArgs);
+                            }
+                        } else if (has("eventType")) {
+                            const std::string eventType = getStr("eventType");
+                            const std::string eventTypeLower = StringUtils::toLower(eventType);
+
+                            if (eventTypeLower == "useraction") {
+                                const std::string action = getStr("action");
+                                mhResult = metricsDelegate->UserAction(action, emptyArgs);
+                            } else if (eventTypeLower == "appaction") {
+                                const std::string action = getStr("action");
+                                mhResult = metricsDelegate->AppAction(action, emptyArgs);
+                            } else if (eventTypeLower == "pageview") {
+                                const std::string page = getStr("page");
+                                mhResult = metricsDelegate->PageView(page, emptyArgs);
+                            } else if (eventTypeLower == "usererror" || eventTypeLower == "error") {
+                                const std::string errMsg = getStr("errMsg");
+                                bool errVisible = false;
+                                (void)getBool("errVisible", errVisible);
+                                const std::string errCode = getStr("errCode");
+                                if (eventTypeLower == "usererror") {
+                                    mhResult = metricsDelegate->UserError(errMsg, errVisible, errCode, emptyArgs);
+                                } else {
+                                    mhResult = metricsDelegate->Error(errMsg, errVisible, errCode, emptyArgs);
+                                }
+                            } else {
+                                // Unknown eventType: still send a generic handler so the event is not dropped
+                                Core::OptionalType<std::string> seg(eventType);
+                                mhResult = metricsDelegate->MetricsHandler(seg, emptyArgs);
+                            }
+                        }
+                    } else {
+                        LOGERR("badger.metricsHandler: MetricsHandlerDelegate unavailable");
+                        mhResult = Core::ERROR_UNAVAILABLE;
+                    }
+                } else {
+                    LOGERR("badger.metricsHandler: delegate handler is null");
+                    mhResult = Core::ERROR_UNAVAILABLE;
+                }
+
+                if (mhResult != Core::ERROR_NONE) {
+                    LOGWARN("badger.metricsHandler: Metrics dispatch returned rc=%d", mhResult);
                 }
 
                 // Return boolean true to satisfy JSON-RPC result expectations
