@@ -838,155 +838,22 @@ namespace WPEFramework {
                     return Core::ERROR_BAD_REQUEST; // structural parse error -> let gateway send error
                 }
 
-                // Debug dump of keys present
                 LOGDBG("badger.metricsHandler: received params: %s", payload.c_str());
 
-                auto has = [&](const char* key) -> bool {
-                    Core::JSON::Variant v = params[key];
-                    return v.IsSet() && !v.IsNull();
-                };
-                auto getStr = [&](const char* key) -> std::string {
-                    Core::JSON::Variant v = params[key];
-                    return (v.IsSet() && v.Content() == Core::JSON::Variant::type::STRING) ? v.String() : std::string();
-                };
-                auto getBool = [&](const char* key, bool& outVal) -> bool {
-                    Core::JSON::Variant v = params[key];
-                    if (v.IsSet() && v.Content() == Core::JSON::Variant::type::BOOLEAN) {
-                        outVal = v.Boolean();
-                        return true;
-                    }
-                    return false;
-                };
-
-                bool accepted = false;
-
-                // Case 1: Segment events: segment: "USER_VALIDATED" | "LAUNCH_COMPLETED"
-                if (has("segment")) {
-                    const std::string segment = getStr("segment");
-                    if (segment.empty()) {
-                        LOGWARN("badger.metricsHandler: 'segment' provided but empty");
-                    } else {
-                        if (segment == "LAUNCH_COMPLETED" || segment == "USER_VALIDATED") {
-                            LOGDBG("badger.metricsHandler: segment event '%s' accepted", segment.c_str());
-                        } else {
-                            LOGWARN("badger.metricsHandler: unrecognized segment '%s'", segment.c_str());
-                        }
-                    }
-                    // evt is optional and may contain arbitrary keys; we ignore extras by design
-                    accepted = true;
-                }
-
-                // Case 2: eventType-based events
-                if (!accepted && has("eventType")) {
-                    std::string eventType = getStr("eventType");
-                    const std::string eventTypeLower = StringUtils::toLower(eventType);
-
-                    if (eventTypeLower == "useraction") {
-                        // required: action
-                        const std::string action = getStr("action");
-                        if (action.empty()) {
-                            LOGWARN("badger.metricsHandler.userAction: missing 'action'");
-                        }
-                        accepted = true;
-                    } else if (eventTypeLower == "appaction") {
-                        // required: action
-                        const std::string action = getStr("action");
-                        if (action.empty()) {
-                            LOGWARN("badger.metricsHandler.appAction: missing 'action'");
-                        }
-                        accepted = true;
-                    } else if (eventTypeLower == "pageview") {
-                        // required: page
-                        const std::string page = getStr("page");
-                        if (page.empty()) {
-                            LOGWARN("badger.metricsHandler.pageView: missing 'page'");
-                        }
-                        accepted = true;
-                    } else if (eventTypeLower == "usererror" || eventTypeLower == "error") {
-                        // required: errMsg, errVisible, errCode
-                        const std::string errMsg = getStr("errMsg");
-                        bool errVisible = false;
-                        const bool hasVisible = getBool("errVisible", errVisible);
-                        const std::string errCode = getStr("errCode");
-                        if (errMsg.empty()) {
-                            LOGWARN("badger.metricsHandler.%s: missing 'errMsg'", eventTypeLower.c_str());
-                        }
-                        if (!hasVisible) {
-                            LOGWARN("badger.metricsHandler.%s: missing or invalid 'errVisible'", eventTypeLower.c_str());
-                        }
-                        if (errCode.empty()) {
-                            LOGWARN("badger.metricsHandler.%s: missing 'errCode'", eventTypeLower.c_str());
-                        }
-                        // evt may include httpStatusCode (string | number) and others; ignore extras
-                        accepted = true;
-                    } else {
-                        LOGWARN("badger.metricsHandler: unknown eventType '%s'", eventType.c_str());
-                        // Still accept per requirement
-                        accepted = true;
-                    }
-                }
-
-                // Default: if neither 'segment' nor 'eventType' provided, still respond true but log warning
-                if (!accepted) {
-                    LOGWARN("badger.metricsHandler: no 'segment' or 'eventType' provided; responding success per spec");
-                }
-
-                // Dispatch to MetricsHandlerDelegate (header-only)
-                Core::hresult mhResult = Core::ERROR_NONE;
+                Core::hresult mhResult = Core::ERROR_UNAVAILABLE;
                 if (mDelegate) {
                     auto metricsDelegate = mDelegate->getMetricsDelegate();
                     if (metricsDelegate) {
-                        // Prepare empty args vector for now; can be extended to flatten evt payload if needed
-                        std::vector<MetricsHandler::ParamKV> emptyArgs;
-
-                        if (has("segment")) {
-                            const std::string segmentVal = getStr("segment");
-                            if (segmentVal == "LAUNCH_COMPLETED") {
-                                mhResult = metricsDelegate->LaunchCompleted(emptyArgs);
-                            } else {
-                                Core::OptionalType<std::string> seg(segmentVal);
-                                mhResult = metricsDelegate->MetricsHandler(seg, emptyArgs);
-                            }
-                        } else if (has("eventType")) {
-                            const std::string eventType = getStr("eventType");
-                            const std::string eventTypeLower = StringUtils::toLower(eventType);
-
-                            if (eventTypeLower == "useraction") {
-                                const std::string action = getStr("action");
-                                mhResult = metricsDelegate->UserAction(action, emptyArgs);
-                            } else if (eventTypeLower == "appaction") {
-                                const std::string action = getStr("action");
-                                mhResult = metricsDelegate->AppAction(action, emptyArgs);
-                            } else if (eventTypeLower == "pageview") {
-                                const std::string page = getStr("page");
-                                mhResult = metricsDelegate->PageView(page, emptyArgs);
-                            } else if (eventTypeLower == "usererror" || eventTypeLower == "error") {
-                                const std::string errMsg = getStr("errMsg");
-                                bool errVisible = false;
-                                (void)getBool("errVisible", errVisible);
-                                const std::string errCode = getStr("errCode");
-                                if (eventTypeLower == "usererror") {
-                                    mhResult = metricsDelegate->UserError(errMsg, errVisible, errCode, emptyArgs);
-                                } else {
-                                    mhResult = metricsDelegate->Error(errMsg, errVisible, errCode, emptyArgs);
-                                }
-                            } else {
-                                // Unknown eventType: still send a generic handler so the event is not dropped
-                                Core::OptionalType<std::string> seg(eventType);
-                                mhResult = metricsDelegate->MetricsHandler(seg, emptyArgs);
-                            }
-                        }
+                        mhResult = metricsDelegate->HandleBadgerMetrics(context.appId, params);
                     } else {
-                        LOGERR("badger.metricsHandler: MetricsHandlerDelegate unavailable");
-                        mhResult = Core::ERROR_UNAVAILABLE;
+                        LOGWARN("badger.metricsHandler: metrics delegate unavailable");
                     }
                 } else {
-                    LOGERR("badger.metricsHandler: delegate handler is null");
-                    mhResult = Core::ERROR_UNAVAILABLE;
+                    LOGWARN("badger.metricsHandler: delegate handler not initialized");
                 }
 
                 if (mhResult != Core::ERROR_NONE) {
-                    LOGWARN("badger.metricsHandler: Metrics dispatch returned rc=%d", mhResult);
+                    LOGWARN("badger.metricsHandler: delegate returned rc=%d (fire-and-forget semantics)", mhResult);
                 }
 
                 // Return boolean true to satisfy JSON-RPC result expectations
