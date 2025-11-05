@@ -2,6 +2,26 @@
 
 OttServices Thunder JSON-RPC plugin
 
+Quick start (local preview)
+- This repository is a C++/CMake-based Thunder (WPEFramework) plugins project. It does not use Node/Vite.
+- A start script is provided to configure and build the project, and if available, run a basic binary to keep the preview process active.
+
+How to start
+1) Ensure build tools are available (cmake, gcc/g++).
+2) Run:
+   bash scripts/start.sh
+
+What the script does
+- Configures CMake in app-gateway/ into build-local/
+- Builds all targets
+- If a test binary exists (tests/test_appgateway), it will be executed in the foreground.
+- If no runnable binary is available, it tails the build log to keep the process alive and provide diagnostics.
+
+Integrating with Thunder (WPEFramework)
+- The produced artifacts are Thunder plugins designed to be loaded by a running Thunder instance.
+- Example plugin configuration is available at configs/plugins/OttServices.json.example
+- See the “Quick verification and activation steps” below for interacting with a Thunder instance at port 9998.
+
 Summary
 - JSON-RPC method OttServices.1.getpermissions previously returned ERROR_UNAVAILABLE if the plugin was not active. This is the Thunder controller’s generic response when a plugin callsign exists but is not in the ACTIVATED state.
 - Fixes added:
