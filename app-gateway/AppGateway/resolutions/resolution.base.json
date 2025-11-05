@@ -281,6 +281,10 @@
         "device.onscreenresolutionchanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.resolutionChanged"
+        },
+        "badger.metricsHandler": {
+            "alias": "metricsHandler",
+            "useComRpc": true
         }
     }
 }
