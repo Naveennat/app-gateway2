@@ -55,7 +55,7 @@
 #endif
 
 #ifndef FBPRIVACY_CALLSIGN
-#define FBPRIVACY_CALLSIGN "org.rdk.FbPrivacy"
+#define FBPRIVACY_CALLSIGN "org.rdk.Privacy"
 #endif
 
 class SettingsDelegate {
