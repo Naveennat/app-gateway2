@@ -1,0 +1,15 @@
+{
+  "name": "app-gateway2",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal static server to preview the app-gateway2 repository in the Kavia preview system.",
+  "scripts": {
+    "start": "node scripts/server.js",
+    "dev": "node scripts/server.js",
+    "build": "echo \"No build step for app-gateway2\""
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "UNLICENSED"
+}

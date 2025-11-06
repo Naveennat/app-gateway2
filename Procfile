@@ -1,1 +1,1 @@
-web: bash scripts/start.sh
+web: node scripts/server.js
