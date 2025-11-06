@@ -15,7 +15,7 @@ How to start (preview)
   - or ./run.sh
 
 Port
-- The server listens on the PORT environment variable (default: 3000).
+- The server listens on the PORT environment variable (default: 3001).
 - Example:
   - PORT=3001 npm start
 
@@ -43,8 +43,8 @@ Building native (C++/CMake) components (optional)
   - Optionally runs a known local test binary once if available
   - Streams build/test logs to .init/ for inspection
 - After running the above, you can access:
-  - http://localhost:3000/logs/build
-  - http://localhost:3000/logs/tests
+  - http://localhost:3001/logs/build
+  - http://localhost:3001/logs/tests
 
 Thunder (WPEFramework) integration notes
 - Produced artifacts are Thunder plugins designed to be loaded by a running Thunder instance.

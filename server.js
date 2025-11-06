@@ -3,7 +3,7 @@
 /**
  * Minimal HTTP server for app-gateway2 preview.
  * Provides a reliable long-running process the preview system can launch.
- * Listens on process.env.PORT (default 3000) and serves basic health/info and log tails if present.
+ * Listens on process.env.PORT (default 3001) and serves basic health/info and log tails if present.
  */
 
 const http = require('http');
@@ -81,7 +81,7 @@ function requestHandler(req, res) {
   const pathName = url.pathname;
 
   if (pathName === '/' || pathName === '/index.html') {
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 3001;
     const html = renderIndex(port);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(html);
@@ -140,7 +140,7 @@ function createServer() {
 }
 
 if (require.main === module) {
-  const port = parseInt(process.env.PORT || '3000', 10);
+  const port = parseInt(process.env.PORT || '3001', 10);
   const host = '0.0.0.0';
 
   // Ensure log dir exists if logs will be tailed
