@@ -281,6 +281,14 @@
         "device.onscreenresolutionchanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.resolutionChanged"
+        },
+        "device.audio": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
+        },
+        "device.onAudioChanged": {
+            "alias": "org.rdk.DisplaySettings",
+            "event": "org.rdk.DisplaySettings.audioFormatChanged"
         }
     }
 }

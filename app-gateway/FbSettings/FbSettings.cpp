@@ -189,6 +189,10 @@ namespace Plugin {
             {
                 return GetHdr(result);
             }
+            else if (lowerMethod == "device.audio")
+            {
+                return GetAudio(result);
+            }
 
             // Route voice guidance methods
             else if (lowerMethod == "voiceguidance.enabled")
@@ -969,6 +973,20 @@ namespace Plugin {
                 return Core::ERROR_UNAVAILABLE;
             }
             return systemDelegate->GetHdr(result);
+        }
+
+        Core::hresult FbSettings::GetAudio(string &result)
+        {
+            if (!mDelegate) {
+                result = "{\"stereo\":true,\"dolbyAtmos\":false,\"dolbyDigital5.1\":false,\"dolbyDigital5.1+\":false}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate) {
+                result = "{\"stereo\":true,\"dolbyAtmos\":false,\"dolbyDigital5.1\":false,\"dolbyDigital5.1+\":false}";
+                return Core::ERROR_UNAVAILABLE;
+            }
+            return systemDelegate->GetAudio(result);
         }
 
 } // namespace Plugin

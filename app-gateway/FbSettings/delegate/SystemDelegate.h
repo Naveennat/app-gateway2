@@ -32,6 +32,7 @@
  #include "UtilsJsonrpcDirectLink.h"
  #include "ThunderUtils.h"
  #include "BaseEventDelegate.h"
+ #include "helpers/AudioUtils.h"
 
  // Define a callsign constant to match the AUTHSERVICE_CALLSIGN-style pattern.
  #ifndef SYSTEM_CALLSIGN
@@ -55,6 +56,7 @@
      static constexpr const char* EVENT_ON_SCREEN_RES_CHANGED  = "device.onScreenResolutionChanged";
      static constexpr const char* EVENT_ON_HDR_CHANGED         = "device.onHdrChanged";
      static constexpr const char* EVENT_ON_HDCP_CHANGED        = "device.onHdcpChanged";
+     static constexpr const char* EVENT_ON_AUDIO_CHANGED       = "device.onAudioChanged";
 
      SystemDelegate(PluginHost::IShell *shell, WPEFramework::Exchange::IAppNotifications* appNotifications)
          : BaseEventDelegate(appNotifications)
@@ -63,11 +65,13 @@
          , _displayRpc(nullptr)
          , _hdcpRpc(nullptr)
          , _displaySubscribed(false)
+         , _displayAudioSubscribed(false)
          , _hdcpSubscribed(false)
      {
          // Proactively subscribe to underlying Thunder events so we can react quickly.
          // Actual dispatch to apps only happens if registrations exist (BaseEventDelegate check).
          SetupDisplaySettingsSubscription();
+         SetupDisplaySettingsAudioSubscription();
          SetupHdcpProfileSubscription();
      }
 
@@ -77,6 +81,9 @@
          try {
              if (_displayRpc && _displaySubscribed) {
                  _displayRpc->Unsubscribe(2000, _T("resolutionChanged"));
+             }
+             if (_displayRpc && _displayAudioSubscribed) {
+                 _displayRpc->Unsubscribe(2000, _T("audioFormatChanged"));
              }
              if (_hdcpRpc && _hdcpSubscribed) {
                  _hdcpRpc->Unsubscribe(2000, _T("onDisplayConnectionChanged"));
@@ -619,6 +626,66 @@
          return Core::ERROR_NONE;
      }
 
+     // PUBLIC_INTERFACE
+     Core::hresult GetAudio(std::string &jsonObject)
+     {
+         /**
+          * Retrieve HDMI audio format via DisplaySettings.getAudioFormat(audioPort: "HDMI0")
+          * Normalize plugin values and produce capability flags:
+          * { "stereo":bool, "dolbyAtmos":bool, "dolbyDigital5.1":bool, "dolbyDigital5.1+":bool }
+          */
+         jsonObject = "{\"stereo\":true,\"dolbyAtmos\":false,\"dolbyDigital5.1\":false,\"dolbyDigital5.1+\":false}";
+
+         auto link = AcquireDisplayLink();
+         if (!link) {
+             return Core::ERROR_UNAVAILABLE;
+         }
+
+         // Use simple JSON params string
+         const std::string paramsStr = "{\"audioPort\":\"HDMI0\"}";
+
+         std::string response;
+         const Core::hresult rc = link->Invoke<std::string, std::string>("getAudioFormat", paramsStr, response);
+         if (rc != Core::ERROR_NONE) {
+             return Core::ERROR_GENERAL;
+         }
+
+         // Parse and extract HDMIAudioFormat or currentAudioFormat (support different plugin payloads)
+         WPEFramework::Core::JSON::VariantContainer obj;
+         WPEFramework::Core::OptionalType<WPEFramework::Core::JSON::Error> error;
+         std::string rawFormat;
+
+         auto extractFormat = [&](const WPEFramework::Core::JSON::Variant& v) {
+             if (v.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT) {
+                 auto k1 = v.Object().Get(_T("HDMIAudioFormat"));
+                 auto k2 = v.Object().Get(_T("currentAudioFormat"));
+                 auto k3 = v.Object().Get(_T("audioFormat"));
+                 if (k1.Content() == WPEFramework::Core::JSON::Variant::type::STRING) {
+                     rawFormat = k1.String();
+                 } else if (k2.Content() == WPEFramework::Core::JSON::Variant::type::STRING) {
+                     rawFormat = k2.String();
+                 } else if (k3.Content() == WPEFramework::Core::JSON::Variant::type::STRING) {
+                     rawFormat = k3.String();
+                 }
+             }
+         };
+
+         if (obj.FromString(response, error)) {
+             if (obj.HasLabel(_T("result"))) {
+                 auto r = obj.Get(_T("result"));
+                 extractFormat(r);
+             } else {
+                 extractFormat(obj);
+             }
+         }
+
+         const std::string normalized = WPEFramework::Plugin::NormalizeHdmiAudioFormat(rawFormat);
+         jsonObject = WPEFramework::Plugin::BuildAudioCapabilityJsonFromFormat(normalized);
+         LOGDBG("[FbSettings|Audio] rawFormat='%s' normalized='%s' -> %s",
+                rawFormat.c_str(), normalized.c_str(), jsonObject.c_str());
+         return Core::ERROR_NONE;
+     }
+
      // ---- Event exposure (Emit helpers) ----
 
      // PUBLIC_INTERFACE
@@ -697,6 +764,24 @@
          return false;
      }
 
+     // PUBLIC_INTERFACE
+     bool EmitOnAudioChanged()
+     {
+         std::string payload;
+         if (GetAudio(payload) != Core::ERROR_NONE) {
+             LOGERR("[FbSettings|AudioChanged] handler=GetAudio failed to compute payload");
+             return false;
+         }
+         LOGINFO("[FbSettings|AudioChanged] Final rpcv2_event payload=%s", payload.c_str());
+         if (this->ShouldEmitDebounced(EVENT_ON_AUDIO_CHANGED, payload)) {
+             LOGDBG("[FbSettings|AudioChanged] Emitting event: %s", EVENT_ON_AUDIO_CHANGED);
+             this->Dispatch(EVENT_ON_AUDIO_CHANGED, payload);
+             return true;
+         }
+         LOGDBG("[FbSettings|AudioChanged] Debounced/dropped");
+         return false;
+     }
+
      // ---- AppNotifications registration hook ----
      // Called by SettingsDelegate when app subscribes/unsubscribes to events.
      bool HandleEvent(const std::string &event, const bool listen, bool &registrationError) override
@@ -709,13 +794,17 @@
          if (evLower == "device.onvideoresolutionchanged"
              || evLower == "device.onscreenresolutionchanged"
              || evLower == "device.onhdcpchanged"
-             || evLower == "device.onhdrchanged")
+             || evLower == "device.onhdrchanged"
+             || evLower == "device.onaudiochanged"
+             || evLower == "device.onaudiochange" // tolerance for typos
+             || evLower == "device.onaudio")      // tolerance for variants
          {
              LOGINFO("[FbSettings|EventRegistration] event=%s listen=%s", event.c_str(), listen ? "true" : "false");
              if (listen) {
                  this->AddNotification(event);
                  // Ensure underlying Thunder subscriptions are active
                  SetupDisplaySettingsSubscription();
+                 SetupDisplaySettingsAudioSubscription();
                  SetupHdcpProfileSubscription();
                  registrationError = true; // indicate handled without error
                  return true;
@@ -739,6 +828,17 @@
              return nullptr;
          }
          return WPEFramework::Utils::GetThunderControllerClient(_shell, SYSTEM_CALLSIGN);
+     }
+
+     inline std::shared_ptr<WPEFramework::Utils::JSONRPCDirectLink> AcquireDisplayLink() const
+     {
+         // Create a direct JSON-RPC link to the Thunder DisplaySettings plugin.
+         if (_shell == nullptr)
+         {
+             LOGERR("SystemDelegate: shell is null");
+             return nullptr;
+         }
+         return WPEFramework::Utils::GetThunderControllerClient(_shell, DISPLAYSETTINGS_CALLSIGN);
      }
 
      // Minimal, scoped debounce helper to suppress duplicate emissions within a short interval.
@@ -838,12 +938,12 @@
      // Setup subscriptions to underlying Thunder plugin events
      void SetupDisplaySettingsSubscription()
      {
-         if (_displaySubscribed) return;
+         if (_displaySubscribed && _displayAudioSubscribed) return;
          try {
              if (!_displayRpc) {
                  _displayRpc = ThunderUtils::getThunderControllerClient(DISPLAYSETTINGS_CALLSIGN);
              }
-             if (_displayRpc) {
+             if (_displayRpc && !_displaySubscribed) {
                  const uint32_t status = _displayRpc->Subscribe<WPEFramework::Core::JSON::VariantContainer>(
                      2000, _T("resolutionChanged"), &SystemDelegate::OnDisplaySettingsResolutionChanged, this);
                  if (status == Core::ERROR_NONE) {
@@ -853,8 +953,42 @@
                      LOGERR("SystemDelegate: Failed to subscribe to %s.resolutionChanged rc=%u", DISPLAYSETTINGS_CALLSIGN, status);
                  }
              }
+             // Also ensure audio subscription if not already set
+             if (_displayRpc && !_displayAudioSubscribed) {
+                 const uint32_t status2 = _displayRpc->Subscribe<WPEFramework::Core::JSON::VariantContainer>(
+                     2000, _T("audioFormatChanged"), &SystemDelegate::OnDisplaySettingsAudioFormatChanged, this);
+                 if (status2 == Core::ERROR_NONE) {
+                     LOGINFO("SystemDelegate: Subscribed to %s.audioFormatChanged", DISPLAYSETTINGS_CALLSIGN);
+                     _displayAudioSubscribed = true;
+                 } else {
+                     LOGERR("SystemDelegate: Failed to subscribe to %s.audioFormatChanged rc=%u", DISPLAYSETTINGS_CALLSIGN, status2);
+                 }
+             }
          } catch (...) {
              LOGERR("SystemDelegate: exception during DisplaySettings subscription");
+         }
+     }
+
+     void SetupDisplaySettingsAudioSubscription()
+     {
+         // Convenience wrapper to ensure just audio subscription is established.
+         if (_displayAudioSubscribed) return;
+         try {
+             if (!_displayRpc) {
+                 _displayRpc = ThunderUtils::getThunderControllerClient(DISPLAYSETTINGS_CALLSIGN);
+             }
+             if (_displayRpc) {
+                 const uint32_t status2 = _displayRpc->Subscribe<WPEFramework::Core::JSON::VariantContainer>(
+                     2000, _T("audioFormatChanged"), &SystemDelegate::OnDisplaySettingsAudioFormatChanged, this);
+                 if (status2 == Core::ERROR_NONE) {
+                     LOGINFO("SystemDelegate: Subscribed to %s.audioFormatChanged", DISPLAYSETTINGS_CALLSIGN);
+                     _displayAudioSubscribed = true;
+                 } else {
+                     LOGERR("SystemDelegate: Failed to subscribe to %s.audioFormatChanged rc=%u", DISPLAYSETTINGS_CALLSIGN, status2);
+                 }
+             }
+         } catch (...) {
+             LOGERR("SystemDelegate: exception during DisplaySettings (audio) subscription");
          }
      }
 
@@ -905,6 +1039,16 @@
                  hdcpEmitted ? "emitted" : "skipped", hdrEmitted ? "emitted" : "skipped");
      }
 
+     void OnDisplaySettingsAudioFormatChanged(const WPEFramework::Core::JSON::VariantContainer& params)
+     {
+         (void)params;
+         LOGINFO("[FbSettings|DisplaySettings.audioFormatChanged] Incoming alias=%s.%s, invoking handlers...",
+                 DISPLAYSETTINGS_CALLSIGN, "audioFormatChanged");
+         const bool audioEmitted = EmitOnAudioChanged();
+         LOGINFO("[FbSettings|DisplaySettings.audioFormatChanged] Handler responses: onAudioChanged=%s",
+                 audioEmitted ? "emitted" : "skipped");
+     }
+
  private:
      PluginHost::IShell *_shell;
      std::unordered_set<std::string> _subscriptions;
@@ -915,5 +1059,6 @@
      std::shared_ptr<WPEFramework::JSONRPC::LinkType<WPEFramework::Core::JSON::IElement>> _displayRpc;
      std::shared_ptr<WPEFramework::JSONRPC::LinkType<WPEFramework::Core::JSON::IElement>> _hdcpRpc;
      bool _displaySubscribed;
+     bool _displayAudioSubscribed;
      bool _hdcpSubscribed;
  };

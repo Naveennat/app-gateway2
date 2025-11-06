@@ -115,6 +115,8 @@ namespace WPEFramework {
             Core::hresult GetVideoResolution(string &result /* @out */);
             Core::hresult GetHdcp(string &result /* @out */);
             Core::hresult GetHdr(string &result /* @out */);
+            // PUBLIC_INTERFACE
+            Core::hresult GetAudio(string &result /* @out */);
 
             // Helper methods for network status - called by HandleAppGatewayRequest
             Core::hresult GetInternetConnectionStatus(string &result /* @out */);
