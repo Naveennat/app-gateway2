@@ -17,6 +17,7 @@
 
 #include <string>
 #include <algorithm>
+#include <core/JSON.h>
 
 namespace WPEFramework {
 namespace Plugin {
@@ -86,14 +87,15 @@ namespace Plugin {
             stereo = true;
         }
 
-        std::string json = std::string("{")
-            + "\"stereo\":" + (stereo ? "true" : "false") + ","
-            + "\"dolbyAtmos\":" + (atmos ? "true" : "false") + ","
-            + "\"dolbyDigital5.1\":" + (dd51 ? "true" : "false") + ","
-            + "\"dolbyDigital5.1+\":"
-            + (dd51p ? "true" : "false")
-            + "}";
+        // Use VariantContainer to construct JSON object consistently with Thunder APIs.
+        WPEFramework::Core::JSON::VariantContainer obj;
+        obj["stereo"] = stereo;
+        obj["dolbyAtmos"] = atmos;
+        obj["dolbyDigital5.1"] = dd51;
+        obj["dolbyDigital5.1+"] = dd51p;
 
+        std::string json;
+        obj.ToString(json);
         return json;
     }
 

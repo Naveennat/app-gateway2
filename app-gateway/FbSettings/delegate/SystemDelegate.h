@@ -418,7 +418,17 @@
           * Get [w, h] screen resolution using DisplaySettings.getCurrentResolution.
           * Returns "[1920,1080]" as fallback when unavailable.
           */
-         jsonArray = "[1920,1080]";
+         // Default payload using Thunder JSON Array
+         {
+             WPEFramework::Core::JSON::ArrayType<WPEFramework::Core::JSON::DecUInt16> arr;
+             WPEFramework::Core::JSON::DecUInt16 dw, dh;
+             dw = static_cast<uint16_t>(1920);
+             dh = static_cast<uint16_t>(1080);
+             arr.Add(dw);
+             arr.Add(dh);
+             arr.ToString(jsonArray);
+         }
+
          auto link = AcquireLink();
          if (!link) {
              return Core::ERROR_UNAVAILABLE;
@@ -463,7 +473,16 @@
              }
          }
 
-         jsonArray = "[" + std::to_string(w) + "," + std::to_string(h) + "]";
+         // Serialize using Thunder JSON
+         {
+             WPEFramework::Core::JSON::ArrayType<WPEFramework::Core::JSON::DecUInt16> arr;
+             WPEFramework::Core::JSON::DecUInt16 dw, dh;
+             dw = static_cast<uint16_t>(w);
+             dh = static_cast<uint16_t>(h);
+             arr.Add(dw);
+             arr.Add(dh);
+             arr.ToString(jsonArray);
+         }
          LOGDBG("[FbSettings|ScreenResolutionChanged] Computed screenResolution: w=%d h=%d -> %s", w, h, jsonArray.c_str());
          return Core::ERROR_NONE;
      }
@@ -499,7 +518,17 @@
                  LOGDBG("[FbSettings|VideoResolutionChanged] Transform parse error for %s -> using defaults (%d x %d)", sr.c_str(), w, h);
              }
          }
-         jsonArray = "[" + std::to_string(w) + "," + std::to_string(h) + "]";
+
+         // Serialize using Thunder JSON
+         {
+             WPEFramework::Core::JSON::ArrayType<WPEFramework::Core::JSON::DecUInt16> arr;
+             WPEFramework::Core::JSON::DecUInt16 dw, dh;
+             dw = static_cast<uint16_t>(w);
+             dh = static_cast<uint16_t>(h);
+             arr.Add(dw);
+             arr.Add(dh);
+             arr.ToString(jsonArray);
+         }
          return Core::ERROR_NONE;
      }
 
@@ -510,7 +539,14 @@
           * Get HDCP status via HdcpProfile.getHDCPStatus.
           * Return {"hdcp1.4":bool,"hdcp2.2":bool} with sensible defaults.
           */
-         jsonObject = "{\"hdcp1.4\":false,\"hdcp2.2\":false}";
+         // Default payload
+         {
+             JsonObject obj;
+             obj["hdcp1.4"] = false;
+             obj["hdcp2.2"] = false;
+             obj.ToString(jsonObject);
+         }
+
          auto link = AcquireLink();
          if (!link) {
              return Core::ERROR_UNAVAILABLE;
@@ -561,8 +597,13 @@
              }
          }
 
-         jsonObject = std::string("{\"hdcp1.4\":") + (hdcp14 ? "true" : "false")
-                    + ",\"hdcp2.2\":" + (hdcp22 ? "true" : "false") + "}";
+         // Serialize using Thunder JSON
+         {
+             JsonObject obj;
+             obj["hdcp1.4"] = hdcp14;
+             obj["hdcp2.2"] = hdcp22;
+             obj.ToString(jsonObject);
+         }
          LOGDBG("[FbSettings|HdcpChanged] Computed HDCP flags: hdcp1.4=%s hdcp2.2=%s -> %s",
                 hdcp14 ? "true" : "false", hdcp22 ? "true" : "false", jsonObject.c_str());
          return Core::ERROR_NONE;
@@ -575,7 +616,16 @@
           * Retrieve HDR capability/state via DisplaySettings.getTVHDRCapabilities.
           * Returns object with hdr10, dolbyVision, hlg, hdr10Plus flags (defaults false).
           */
-         jsonObject = "{\"hdr10\":false,\"dolbyVision\":false,\"hlg\":false,\"hdr10Plus\":false}";
+         // Default payload
+         {
+             JsonObject obj;
+             obj["hdr10"] = false;
+             obj["dolbyVision"] = false;
+             obj["hlg"] = false;
+             obj["hdr10Plus"] = false;
+             obj.ToString(jsonObject);
+         }
+
          auto link = AcquireLink();
          if (!link) {
              return Core::ERROR_UNAVAILABLE;
@@ -613,10 +663,15 @@
              parseCaps(response);
          }
 
-         jsonObject = std::string("{\"hdr10\":") + (hdr10 ? "true" : "false")
-                    + ",\"dolbyVision\":" + (dv ? "true" : "false")
-                    + ",\"hlg\":" + (hlg ? "true" : "false")
-                    + ",\"hdr10Plus\":" + (hdr10plus ? "true" : "false") + "}";
+         // Serialize using Thunder JSON
+         {
+             JsonObject obj;
+             obj["hdr10"] = hdr10;
+             obj["dolbyVision"] = dv;
+             obj["hlg"] = hlg;
+             obj["hdr10Plus"] = hdr10plus;
+             obj.ToString(jsonObject);
+         }
          LOGDBG("[FbSettings|HdrChanged] Computed HDR flags: hdr10=%s dolbyVision=%s hlg=%s hdr10Plus=%s -> %s",
                 hdr10 ? "true" : "false",
                 dv ? "true" : "false",
@@ -634,7 +689,15 @@
           * Normalize plugin values and produce capability flags:
           * { "stereo":bool, "dolbyAtmos":bool, "dolbyDigital5.1":bool, "dolbyDigital5.1+":bool }
           */
-         jsonObject = "{\"stereo\":true,\"dolbyAtmos\":false,\"dolbyDigital5.1\":false,\"dolbyDigital5.1+\":false}";
+         // Default payload
+         {
+             JsonObject obj;
+             obj["stereo"] = true;
+             obj["dolbyAtmos"] = false;
+             obj["dolbyDigital5.1"] = false;
+             obj["dolbyDigital5.1+"] = false;
+             obj.ToString(jsonObject);
+         }
 
          auto link = AcquireDisplayLink();
          if (!link) {
@@ -696,8 +759,22 @@
              LOGERR("[FbSettings|VideoResolutionChanged] handler=GetVideoResolution failed to compute payload");
              return false;
          }
-         // Transform to rpcv2_event wrapper: { "videoResolution": $event_handler_response }
-         const std::string wrapped = std::string("{\"videoResolution\":") + payload + "}";
+
+         // Wrap with Thunder JSON object: { "videoResolution": [w,h] }
+         std::string wrapped;
+         {
+             WPEFramework::Core::JSON::VariantContainer arrVar;
+             WPEFramework::Core::OptionalType<WPEFramework::Core::JSON::Error> error;
+             if (arrVar.FromString(payload, error)) {
+                 JsonObject obj;
+                 obj["videoResolution"] = arrVar;
+                 obj.ToString(wrapped);
+             } else {
+                 // Fallback to string concatenation if array parsing fails (should not happen)
+                 wrapped = std::string("{\"videoResolution\":") + payload + "}";
+             }
+         }
+
          LOGINFO("[FbSettings|VideoResolutionChanged] Final rpcv2_event payload=%s", wrapped.c_str());
          if (this->ShouldEmitDebounced(EVENT_ON_VIDEO_RES_CHANGED, wrapped)) {
              LOGDBG("[FbSettings|VideoResolutionChanged] Emitting event: %s", EVENT_ON_VIDEO_RES_CHANGED);
@@ -716,8 +793,22 @@
              LOGERR("[FbSettings|ScreenResolutionChanged] handler=GetScreenResolution failed to compute payload");
              return false;
          }
-         // Transform to rpcv2_event wrapper: { "screenResolution": $event }
-         const std::string wrapped = std::string("{\"screenResolution\":") + payload + "}";
+
+         // Wrap with Thunder JSON object: { "screenResolution": [w,h] }
+         std::string wrapped;
+         {
+             WPEFramework::Core::JSON::VariantContainer arrVar;
+             WPEFramework::Core::OptionalType<WPEFramework::Core::JSON::Error> error;
+             if (arrVar.FromString(payload, error)) {
+                 JsonObject obj;
+                 obj["screenResolution"] = arrVar;
+                 obj.ToString(wrapped);
+             } else {
+                 // Fallback to string concatenation if array parsing fails (should not happen)
+                 wrapped = std::string("{\"screenResolution\":") + payload + "}";
+             }
+         }
+
          LOGINFO("[FbSettings|ScreenResolutionChanged] Final rpcv2_event payload=%s", wrapped.c_str());
          if (this->ShouldEmitDebounced(EVENT_ON_SCREEN_RES_CHANGED, wrapped)) {
              LOGDBG("[FbSettings|ScreenResolutionChanged] Emitting event: %s", EVENT_ON_SCREEN_RES_CHANGED);
