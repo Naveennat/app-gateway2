@@ -24,12 +24,13 @@
 #include "NetworkDelegate.h"
 #include "SystemDelegate.h"
 #include "MetricsHandlerDelegate.h"
+#include "SettingsDelegate.h"
 
 using namespace WPEFramework;
 
 class DelegateHandler {
   public:
-    DelegateHandler() : displaySettingsDelegate(nullptr), hdcpProfileDelegate(nullptr), networkDelegate(nullptr), systemDelegate(nullptr), metricsDelegate(nullptr) {}
+    DelegateHandler() : displaySettingsDelegate(nullptr), hdcpProfileDelegate(nullptr), networkDelegate(nullptr), systemDelegate(nullptr), metricsDelegate(nullptr), settingsDelegate(nullptr) {}
 
     ~DelegateHandler() {
         displaySettingsDelegate = nullptr;
@@ -37,6 +38,7 @@ class DelegateHandler {
         networkDelegate = nullptr;
         systemDelegate = nullptr;
         metricsDelegate = nullptr;
+        settingsDelegate = nullptr;
     }
 
     void setShell(PluginHost::IShell* shell) {
@@ -58,6 +60,9 @@ class DelegateHandler {
         if (metricsDelegate == nullptr) {
             metricsDelegate = std::make_shared<MetricsHandler::MetricsHandlerDelegate>(shell);
         }
+        if (settingsDelegate == nullptr) {
+            settingsDelegate = std::make_shared<SettingsDelegate>(shell);
+        }
     }
 
     void Cleanup() { displaySettingsDelegate.reset(); }
@@ -72,10 +77,14 @@ class DelegateHandler {
     // PUBLIC_INTERFACE
     std::shared_ptr<MetricsHandler::MetricsHandlerDelegate> getMetricsDelegate() const { return metricsDelegate; }
 
+    // PUBLIC_INTERFACE
+    std::shared_ptr<SettingsDelegate> getSettingsDelegate() const { return settingsDelegate; }
+
   private:
     std::shared_ptr<DisplaySettingsDelegate> displaySettingsDelegate;
     std::shared_ptr<HdcpProfileDelegate> hdcpProfileDelegate;
     std::shared_ptr<NetworkDelegate> networkDelegate;
     std::shared_ptr<SystemDelegate> systemDelegate;
     std::shared_ptr<MetricsHandler::MetricsHandlerDelegate> metricsDelegate;
+    std::shared_ptr<SettingsDelegate> settingsDelegate;
 };
