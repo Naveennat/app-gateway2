@@ -67,7 +67,7 @@
 
      // PUBLIC_INTERFACE
      inline std::string BuildAudioCapabilityJsonFromFormat(const std::string& normalizedFormat) {
-         /** Minimal capability JSON builder fallback. */
+         /** Minimal capability JSON builder fallback using Thunder JSON serialization. */
          bool stereo = false, atmos = false, dd51 = false, dd51p = false;
          if (normalizedFormat == "Dolby Atmos") { atmos = true; }
          else if (normalizedFormat == "Dolby Digital Plus") { dd51p = true; }
@@ -75,11 +75,15 @@
          else if (normalizedFormat == "Stereo") { stereo = true; }
          else { stereo = true; } // fallback
 
-         std::string json = std::string("{\"stereo\":") + (stereo ? "true" : "false")
-                          + ",\"dolbyAtmos\":" + (atmos ? "true" : "false")
-                          + ",\"dolbyDigital5.1\":" + (dd51 ? "true" : "false")
-                          + ",\"dolbyDigital5.1+\":" + (dd51p ? "true" : "false") + "}";
-         return json;
+         JsonObject obj;
+         obj["stereo"] = stereo;
+         obj["dolbyAtmos"] = atmos;
+         obj["dolbyDigital5.1"] = dd51;
+         obj["dolbyDigital5.1+"] = dd51p;
+
+         std::string out;
+         obj.ToString(out);
+         return out;
      }
 
    } } // namespace WPEFramework::Plugin
@@ -176,8 +180,12 @@
              // Per transform: return_or_else(.result.make, "unknown")
              make = "unknown";
          }
-         // Wrap in quotes to make it a valid JSON string
-         make = "\"" + make + "\"";
+         // Serialize as JSON string using Thunder JSON
+         {
+             WPEFramework::Core::JSON::String out;
+             out = make;
+             out.ToString(make);
+         }
          return Core::ERROR_NONE;
      }
 
@@ -206,8 +214,12 @@
          {
              name = "Living Room";
          }
-         // Wrap in quotes to make it a valid JSON string
-         name = "\"" + name + "\"";
+         // Serialize as JSON string using Thunder JSON
+         {
+             WPEFramework::Core::JSON::String out;
+             out = name;
+             out.ToString(name);
+         }
          return Core::ERROR_NONE;
      }
 
@@ -267,8 +279,12 @@
              LOGERR("SystemDelegate: Failed to get SKU");
              return Core::ERROR_UNAVAILABLE;
          }
-         // Wrap in quotes to make it a valid JSON string
-         skuOut = "\"" + skuOut + "\"";
+         // Serialize as JSON string using Thunder JSON
+         {
+             WPEFramework::Core::JSON::String out;
+             out = skuOut;
+             out.ToString(skuOut);
+         }
          return Core::ERROR_NONE;
      }
 
@@ -376,8 +392,12 @@
          {
              code = "US";
          }
-         // Wrap in quotes to make it a valid JSON string
-         code = "\"" + code + "\"";
+         // Serialize as JSON string using Thunder JSON
+         {
+             WPEFramework::Core::JSON::String out;
+             out = code;
+             out.ToString(code);
+         }
          return Core::ERROR_NONE;
      }
 
@@ -424,8 +444,12 @@
              if (response.HasLabel(_T("timeZone")))
              {
                  tz = response[_T("timeZone")].String();
-                 // Wrap in quotes to make it a valid JSON string
-                 tz = "\"" + tz + "\"";
+                 // Serialize as JSON string using Thunder JSON
+                 {
+                     WPEFramework::Core::JSON::String out;
+                     out = tz;
+                     out.ToString(tz);
+                 }
                  return Core::ERROR_NONE;
              }
          }
@@ -755,18 +779,17 @@
              return Core::ERROR_UNAVAILABLE;
          }
 
-         // Use simple JSON params string
-         const std::string paramsStr = "{\"audioPort\":\"HDMI0\"}";
-
-         std::string response;
-         const Core::hresult rc = link->Invoke<std::string, std::string>("getAudioFormat", paramsStr, response);
+         // Build params using Thunder JSON serialization
+         WPEFramework::Core::JSON::VariantContainer params;
+         params[_T("audioPort")] = "HDMI0";
+         // Invoke and capture response as Thunder JSON
+         WPEFramework::Core::JSON::VariantContainer obj;
+         const uint32_t rc = link->Invoke("getAudioFormat", params, obj);
          if (rc != Core::ERROR_NONE) {
              return Core::ERROR_GENERAL;
          }
 
          // Parse and extract HDMIAudioFormat or currentAudioFormat (support different plugin payloads)
-         WPEFramework::Core::JSON::VariantContainer obj;
-         WPEFramework::Core::OptionalType<WPEFramework::Core::JSON::Error> error;
          std::string rawFormat;
 
          auto extractFormat = [&](const WPEFramework::Core::JSON::Variant& v) {
@@ -784,13 +807,11 @@
              }
          };
 
-         if (obj.FromString(response, error)) {
-             if (obj.HasLabel(_T("result"))) {
-                 auto r = obj.Get(_T("result"));
-                 extractFormat(r);
-             } else {
-                 extractFormat(obj);
-             }
+         if (obj.HasLabel(_T("result"))) {
+             auto r = obj.Get(_T("result"));
+             extractFormat(r);
+         } else {
+             extractFormat(obj);
          }
 
          const std::string normalized = WPEFramework::Plugin::NormalizeHdmiAudioFormat(rawFormat);
@@ -821,8 +842,10 @@
                  obj["videoResolution"] = arrVar;
                  obj.ToString(wrapped);
              } else {
-                 // Fallback to string concatenation if array parsing fails (should not happen)
-                 wrapped = std::string("{\"videoResolution\":") + payload + "}";
+                 // Fallback: wrap as string value to preserve a valid JSON payload
+                 JsonObject obj;
+                 obj["videoResolution"] = payload;
+                 obj.ToString(wrapped);
              }
          }
 
@@ -855,8 +878,10 @@
                  obj["screenResolution"] = arrVar;
                  obj.ToString(wrapped);
              } else {
-                 // Fallback to string concatenation if array parsing fails (should not happen)
-                 wrapped = std::string("{\"screenResolution\":") + payload + "}";
+                 // Fallback: wrap as string value to preserve a valid JSON payload
+                 JsonObject obj;
+                 obj["screenResolution"] = payload;
+                 obj.ToString(wrapped);
              }
          }
 
