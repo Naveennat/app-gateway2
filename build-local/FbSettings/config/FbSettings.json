@@ -1,0 +1,9 @@
+{
+ "locator":"libWPEFrameworkFbSettings.so",
+ "classname":"AppGatewayProject",
+ "autostart":false,
+ "precondition":[
+  "Platform"
+ ],
+ "callsign":"org.rdk.FbSettings"
+}
