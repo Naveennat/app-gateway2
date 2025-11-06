@@ -30,7 +30,7 @@ Preview system integration
 - package.json includes a valid start script:
   - "start": "node server.js"
 - Procfile is provided for platforms that use it:
-  - web: node server.js
+  - web: npm start
 - run.sh is a simple wrapper that also executes server.js
 
 Building native (C++/CMake) components (optional)
