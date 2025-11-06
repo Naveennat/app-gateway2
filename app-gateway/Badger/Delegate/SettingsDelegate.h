@@ -12,11 +12,11 @@
  *  - VOICE_GUIDANCE_STATE -> org.rdk.UserSettings.getVoiceGuidance => {"VOICE_GUIDANCE_STATE":{"enabled":<bool>}}
  *  - ShowClosedCapture -> same as CC_STATE                         => {"ShowClosedCapture":{"enabled":<bool>}}
  *  - TextToSpeechEnabled2 -> same as VOICE_GUIDANCE_STATE          => {"TextToSpeechEnabled2":{"enabled":<bool>}}
- *  - DisplayPersonalizedRecommendations -> FbPrivacy.AllowPersonalization
+ *  - DisplayPersonalizedRecommendations -> IPrivacy.GetPersonalization
  *          => {"DisplayPersonalizedRecommendations":{"enabled":<bool>}}
- *  - RememberWatchedPrograms -> FbPrivacy.AllowWatchHistory
+ *  - RememberWatchedPrograms -> IPrivacy.GetWatchHistory
  *          => {"RememberWatchedPrograms":{"enabled":<bool>}}
- *  - ShareWatchHistoryStatus -> FbPrivacy (best effort: ShareWatchHistory; fallback -> AllowWatchHistory)
+ *  - ShareWatchHistoryStatus -> IPrivacy.GetWatchHistory
  *          => {"ShareWatchHistoryStatus":{"enabled":<bool>}}
  *  - friendly_name -> org.rdk.System.getFriendlyName
  *          => {"friendly_name":{"value":"\"<Name>\""}}
@@ -43,7 +43,7 @@
 
 // COM interfaces
 #include <interfaces/IUserSettings.h>
-#include <interfaces/IFbPrivacy.h>
+#include <interfaces/IPrivacy.h>
 
 // Callsigns
 #ifndef USERSETTINGS_CALLSIGN
@@ -54,8 +54,8 @@
 #define SYSTEM_CALLSIGN "org.rdk.System"
 #endif
 
-#ifndef FBPRIVACY_CALLSIGN
-#define FBPRIVACY_CALLSIGN "org.rdk.Privacy"
+#ifndef PRIVACY_CALLSIGN
+#define PRIVACY_CALLSIGN "org.rdk.Privacy"
 #endif
 
 class SettingsDelegate {
@@ -91,7 +91,7 @@ public:
 
         // Acquire COM interfaces if needed
         Exchange::IUserSettings* userSettings = nullptr;
-        Exchange::IFbPrivacy* fbPrivacy = nullptr;
+        Exchange::IPrivacy* privacy = nullptr;
 
         auto ensureUserSettings = [&]() -> Exchange::IUserSettings* {
             if (!userSettings) {
@@ -103,14 +103,14 @@ public:
             return userSettings;
         };
 
-        auto ensureFbPrivacy = [&]() -> Exchange::IFbPrivacy* {
-            if (!fbPrivacy) {
-                fbPrivacy = _shell->QueryInterfaceByCallsign<Exchange::IFbPrivacy>(FBPRIVACY_CALLSIGN);
-                if (fbPrivacy == nullptr) {
-                    LOGWARN("[badger.settings] IFbPrivacy (%s) not available", FBPRIVACY_CALLSIGN);
+        auto ensurePrivacy = [&]() -> Exchange::IPrivacy* {
+            if (!privacy) {
+                privacy = _shell->QueryInterfaceByCallsign<Exchange::IPrivacy>(PRIVACY_CALLSIGN);
+                if (privacy == nullptr) {
+                    LOGWARN("[badger.settings] IPrivacy (%s) not available", PRIVACY_CALLSIGN);
                 }
             }
-            return fbPrivacy;
+            return privacy;
         };
 
         // CC_STATE / ShowClosedCapture -> UserSettings.getCaptions
@@ -159,61 +159,51 @@ public:
             addVoiceGuidance("TextToSpeechEnabled2");
         }
 
-        // DisplayPersonalizedRecommendations -> FbPrivacy.AllowPersonalization
+        // DisplayPersonalizedRecommendations -> Privacy.GetPersonalization
         if (wanted.find("DisplayPersonalizedRecommendations") != wanted.end()) {
-            auto* fp = ensureFbPrivacy();
-            if (fp) {
-                bool allowed = false;
-                Core::hresult rc = fp->AllowPersonalization(allowed);
+            auto* p = ensurePrivacy();
+            if (p) {
+                Exchange::IPrivacy::PrivacySettingOutData data;
+                Core::hresult rc = p->GetPersonalization(data);
                 if (rc == Core::ERROR_NONE) {
                     Core::JSON::VariantContainer obj;
-                    obj["enabled"] = allowed;
+                    obj["enabled"] = data.allowed;
                     out["DisplayPersonalizedRecommendations"] = obj;
                 } else {
-                    LOGWARN("[badger.settings] AllowPersonalization failed rc=%d", rc);
+                    LOGWARN("[badger.settings] GetPersonalization failed rc=%d", rc);
                 }
             }
         }
 
-        // RememberWatchedPrograms -> FbPrivacy.AllowWatchHistory
+        // RememberWatchedPrograms -> Privacy.GetWatchHistory
         if (wanted.find("RememberWatchedPrograms") != wanted.end()) {
-            auto* fp = ensureFbPrivacy();
-            if (fp) {
-                bool allowed = false;
-                Core::hresult rc = fp->AllowWatchHistory(allowed);
+            auto* p = ensurePrivacy();
+            if (p) {
+                Exchange::IPrivacy::PrivacySettingOutData data;
+                Core::hresult rc = p->GetWatchHistory(data);
                 if (rc == Core::ERROR_NONE) {
                     Core::JSON::VariantContainer obj;
-                    obj["enabled"] = allowed;
+                    obj["enabled"] = data.allowed;
                     out["RememberWatchedPrograms"] = obj;
                 } else {
-                    LOGWARN("[badger.settings] AllowWatchHistory failed rc=%d", rc);
+                    LOGWARN("[badger.settings] GetWatchHistory failed rc=%d", rc);
                 }
             }
         }
 
-        // ShareWatchHistoryStatus -> FbPrivacy ShareWatchHistory (fallback: AllowWatchHistory)
+        // ShareWatchHistoryStatus -> Privacy.GetWatchHistory (same underlying setting)
         if (wanted.find("ShareWatchHistoryStatus") != wanted.end()) {
-            bool haveValue = false;
-            bool shareAllowed = false;
-
-            // Best-effort: try to deduce from Settings() if available; otherwise fallback to AllowWatchHistory.
-            auto* fp = ensureFbPrivacy();
-            if (fp) {
-                // Fallback path
-                bool allowed = false;
-                Core::hresult rc2 = fp->AllowWatchHistory(allowed);
-                if (rc2 == Core::ERROR_NONE) {
-                    shareAllowed = allowed;
-                    haveValue = true;
+            auto* p = ensurePrivacy();
+            if (p) {
+                Exchange::IPrivacy::PrivacySettingOutData data;
+                Core::hresult rc = p->GetWatchHistory(data);
+                if (rc == Core::ERROR_NONE) {
+                    Core::JSON::VariantContainer obj;
+                    obj["enabled"] = data.allowed;
+                    out["ShareWatchHistoryStatus"] = obj;
                 } else {
-                    LOGWARN("[badger.settings] Fallback AllowWatchHistory failed rc=%d", rc2);
+                    LOGWARN("[badger.settings] GetWatchHistory failed rc=%d", rc);
                 }
-            }
-
-            if (haveValue) {
-                Core::JSON::VariantContainer obj;
-                obj["enabled"] = shareAllowed;
-                out["ShareWatchHistoryStatus"] = obj;
             }
         }
 
@@ -260,9 +250,9 @@ public:
             userSettings->Release();
             userSettings = nullptr;
         }
-        if (fbPrivacy) {
-            fbPrivacy->Release();
-            fbPrivacy = nullptr;
+        if (privacy) {
+            privacy->Release();
+            privacy = nullptr;
         }
 
         return Core::ERROR_NONE;
