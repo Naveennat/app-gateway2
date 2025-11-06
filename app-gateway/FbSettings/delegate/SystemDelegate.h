@@ -32,7 +32,58 @@
  #include "UtilsJsonrpcDirectLink.h"
  #include "ThunderUtils.h"
  #include "BaseEventDelegate.h"
- #include "helpers/AudioUtils.h"
+
+ // Ensure __has_include is available for portable include checks
+ #ifndef __has_include
+   #define __has_include(x) 0
+ #endif
+
+ // Try to include AudioUtils from known locations, else provide a local shim.
+ #if __has_include("helpers/AudioUtils.h")
+   #include "helpers/AudioUtils.h"
+ #elif __has_include("../../helpers/AudioUtils.h")
+   #include "../../helpers/AudioUtils.h"
+ #else
+   #include <algorithm>
+   namespace WPEFramework { namespace Plugin {
+
+     // PUBLIC_INTERFACE
+     inline std::string NormalizeHdmiAudioFormat(const std::string& pluginValue) {
+         /** Minimal normalization fallback:
+          *  AC3/DD/DOLBY DIGITAL     -> "Dolby Digital"
+          *  EAC3/DD+/DOLBY DIGITAL PLUS -> "Dolby Digital Plus"
+          *  ATMOS                    -> "Dolby Atmos"
+          *  PCM/STEREO              -> "Stereo"
+          *  otherwise               -> "Unknown"
+          */
+         std::string u(pluginValue);
+         std::transform(u.begin(), u.end(), u.begin(), [](unsigned char c){ return static_cast<char>(::toupper(c)); });
+         if (u.find("ATMOS") != std::string::npos) { return "Dolby Atmos"; }
+         if (u.find("EAC3") != std::string::npos || u.find("DD+") != std::string::npos || u.find("DOLBY DIGITAL PLUS") != std::string::npos) { return "Dolby Digital Plus"; }
+         if (u.find("AC3")  != std::string::npos || u.find("DD")  != std::string::npos || u.find("DOLBY DIGITAL") != std::string::npos) { return "Dolby Digital"; }
+         if (u.find("PCM")  != std::string::npos || u.find("STEREO") != std::string::npos) { return "Stereo"; }
+         return "Unknown";
+     }
+
+     // PUBLIC_INTERFACE
+     inline std::string BuildAudioCapabilityJsonFromFormat(const std::string& normalizedFormat) {
+         /** Minimal capability JSON builder fallback. */
+         bool stereo = false, atmos = false, dd51 = false, dd51p = false;
+         if (normalizedFormat == "Dolby Atmos") { atmos = true; }
+         else if (normalizedFormat == "Dolby Digital Plus") { dd51p = true; }
+         else if (normalizedFormat == "Dolby Digital") { dd51 = true; }
+         else if (normalizedFormat == "Stereo") { stereo = true; }
+         else { stereo = true; } // fallback
+
+         std::string json = std::string("{\"stereo\":") + (stereo ? "true" : "false")
+                          + ",\"dolbyAtmos\":" + (atmos ? "true" : "false")
+                          + ",\"dolbyDigital5.1\":" + (dd51 ? "true" : "false")
+                          + ",\"dolbyDigital5.1+\":" + (dd51p ? "true" : "false") + "}";
+         return json;
+     }
+
+   } } // namespace WPEFramework::Plugin
+ #endif
 
  // Define a callsign constant to match the AUTHSERVICE_CALLSIGN-style pattern.
  #ifndef SYSTEM_CALLSIGN
