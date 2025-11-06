@@ -2,6 +2,6 @@
 set -euo pipefail
 
 # Wrapper entrypoint expected by certain preview systems.
-# Delegates to the canonical scripts/start.sh
+# Delegates to the Node-based preview HTTP server.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-exec "${SCRIPT_DIR}/scripts/start.sh"
+exec node "${SCRIPT_DIR}/server.js"

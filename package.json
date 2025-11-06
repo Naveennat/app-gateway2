@@ -4,6 +4,8 @@
   "private": true,
   "description": "Thunder (WPEFramework) plugins project – preview start wrapper.",
   "scripts": {
-    "start": "bash scripts/start.sh"
+    "start": "node server.js",
+    "start:build": "bash scripts/start.sh",
+    "build:local": "bash scripts/start.sh"
   }
 }
