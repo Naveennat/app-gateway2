@@ -1,142 +1,72 @@
 # app-gateway2
 
-OttServices Thunder JSON-RPC plugin
+app-gateway2 provides Thunder (WPEFramework) plugin sources along with a lightweight Node.js preview server so the preview system can start and display a running page.
 
-Quick start (local preview)
-- This repository is a C++/CMake-based Thunder (WPEFramework) plugins project. It does not use Node/Vite.
-- A start script is provided to configure and build the project, and if available, run a basic binary to keep the preview process active.
+What this repo contains
+- C++/CMake sources for Thunder plugins and related components.
+- A Node.js HTTP server (server.js) that the preview system uses to start the container reliably.
+- A build helper script (scripts/start.sh) to configure and build native components locally if desired.
 
-How to start
-1) Ensure build tools are available (cmake, gcc/g++).
-2) Run:
-   bash scripts/start.sh
+How to start (preview)
+- Using npm (recommended):
+  - npm start
+- Equivalent direct invocation:
+  - node server.js
+  - or ./run.sh
 
-Preview system start command
-- The repository includes conventional entrypoints that preview systems auto-detect:
-  - Procfile: web: ./scripts/start.sh
-  - Root wrapper: ./run.sh (executes ./scripts/start.sh)
-- Either of these may be used by the environment; both invoke scripts/start.sh which:
+Port
+- The server listens on the PORT environment variable (default: 3000).
+- Example:
+  - PORT=3001 npm start
+
+Endpoints
+- /           -> Simple HTML page with basic info and useful links
+- /healthz    -> JSON health response
+- /info       -> Runtime info (Node version, platform, etc.)
+- /logs/build -> Tails .init/build.log if present
+- /logs/tests -> Tails .init/tests.log if present
+
+Preview system integration
+- package.json includes a valid start script:
+  - "start": "node server.js"
+- Procfile is provided for platforms that use it:
+  - web: node server.js
+- run.sh is a simple wrapper that also executes server.js
+
+Building native (C++/CMake) components (optional)
+- To configure and build locally, run:
+  - npm run start:build
+    - (Equivalent: bash scripts/start.sh)
+- What scripts/start.sh does:
   - Configures CMake into build-local/
-  - Builds targets
-  - Runs a stable foreground process if available (tests/test_appgateway) or tails the build log
+  - Builds targets with parallel jobs
+  - Optionally runs a known local test binary once if available
+  - Streams build/test logs to .init/ for inspection
+- After running the above, you can access:
+  - http://localhost:3000/logs/build
+  - http://localhost:3000/logs/tests
 
-What the script does
-- Configures CMake in app-gateway/ into build-local/
-- Builds all targets
-- If a test binary exists (tests/test_appgateway), it will be executed in the foreground.
-- If no runnable binary is available, it tails the build log to keep the process alive and provide diagnostics.
+Thunder (WPEFramework) integration notes
+- Produced artifacts are Thunder plugins designed to be loaded by a running Thunder instance.
+- Example plugin configuration: configs/plugins/OttServices.json.example
+- Typical Thunder JSON-RPC endpoint: http://127.0.0.1:9998/jsonrpc
+- Ensure plugins are present and ACTIVATED in the Controller for JSON-RPC calls to succeed.
 
-Integrating with Thunder (WPEFramework)
-- The produced artifacts are Thunder plugins designed to be loaded by a running Thunder instance.
-- Example plugin configuration is available at configs/plugins/OttServices.json.example
-- See the “Quick verification and activation steps” below for interacting with a Thunder instance at port 9998.
+Troubleshooting the plugin runtime (Thunder)
+- If a JSON-RPC call returns ERROR_UNAVAILABLE, verify:
+  - The plugin exists in Controller and is ACTIVATED.
+  - The Thunder instance is reachable on the configured port (default 9998) and path (/jsonrpc by default).
+- Example checks:
+  - Plugin status:
+    curl -s -H "Content-Type: application/json" \
+      -d '{"jsonrpc":"2.0","id":1,"method":"Controller.1.status@OttServices"}' \
+      http://127.0.0.1:9998/jsonrpc
+  - Activate plugin:
+    curl -s -H "Content-Type: application/json" \
+      -d '{"jsonrpc":"2.0","id":2,"method":"Controller.1.activate","params":{"callsign":"OttServices"}}' \
+      http://127.0.0.1:9998/jsonrpc
 
 Summary
-- JSON-RPC method OttServices.1.getpermissions previously returned ERROR_UNAVAILABLE if the plugin was not active. This is the Thunder controller’s generic response when a plugin callsign exists but is not in the ACTIVATED state.
-- Fixes added:
-  - Explicit JSON-RPC version registration (1.0.0) for the OttServices handler to improve discoverability in docs and tools.
-  - Added a camelCase alias OttServices.1.getPermissions for better client compatibility.
-- Root cause most often: OttServices plugin not configured/activated on the Thunder instance serving port 9998.
-
-Why ERROR_UNAVAILABLE happened
-- Thunder routes JSON-RPC requests to the plugin by callsign and version. If the plugin exists but is not activated, Controller::Invoke returns ERROR_UNAVAILABLE with a message like “Service is not active”.
-- Calling OttServices.1.getpermissions against a Thunder instance that does not have the plugin activated will thus return error code ERROR_UNAVAILABLE (typically code 2).
-
-Quick verification and activation steps
-1) Ensure Thunder listens on port 9998 and exposes /jsonrpc
-- In /etc/WPEFramework/config.json set:
-  {
-    "port": 9998,
-    "jsonrpc": "jsonrpc",
-    "binding": "0.0.0.0"    // if curling externally; use 127.0.0.1 for local-only
-  }
-- Restart Thunder (WPEFramework) after configuration changes.
-
-2) Check if OttServices plugin is present and its state
-- Query plugin summary:
-  curl -s http://127.0.0.1:9998/Service/Controller
-- Query specific plugin status via JSON-RPC:
-  curl -s -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","id":1,"method":"Controller.1.status@OttServices"}' \
-    http://127.0.0.1:9998/jsonrpc
-
-3) If the plugin is not active, activate it
-- Via REST:
-  curl -X PUT http://127.0.0.1:9998/Service/Controller/Activate/OttServices
-- Or via JSON-RPC:
-  curl -s -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","id":2,"method":"Controller.1.activate","params":{"callsign":"OttServices"}}' \
-    http://127.0.0.1:9998/jsonrpc
-
-4) Test JSON-RPC methods
-- Ping (basic readiness):
-  curl -s -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","id":3,"method":"OttServices.1.ping","params":{"message":"hi"}}' \
-    http://127.0.0.1:9998/jsonrpc
-- getpermissions (lowercase):
-  curl -s -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","id":4,"method":"OttServices.1.getpermissions","params":{"appId":"com.example.app"}}' \
-    http://127.0.0.1:9998/jsonrpc
-- getPermissions (camelCase alias also supported):
-  curl -s -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","id":5,"method":"OttServices.1.getPermissions","params":{"appId":"com.example.app"}}' \
-    http://127.0.0.1:9998/jsonrpc
-
-If you still receive ERROR_UNAVAILABLE
-- Confirm the plugin is ACTIVATED in Controller:
-  curl -s -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","id":6,"method":"Controller.1.status@OttServices"}' \
-    http://127.0.0.1:9998/jsonrpc
-- If the plugin is DEACTIVATED, re-activate it. If the plugin is not listed, you need to register the plugin (see next section).
-- Check Thunder logs and plugin logs for messages:
-  - Look for “OttServices: constructed” and “OttServices: initialized successfully”.
-  - Each JSON-RPC call logs the method and result code.
-
-Registering the plugin (plugin configuration)
-Place a plugin configuration JSON file for OttServices in the Thunder plugins config directory. By default this is /etc/WPEFramework/plugins. A working example is provided in this repo at:
-  app-gateway2/configs/plugins/OttServices.json.example
-
-Typical contents:
-{
-  "callsign": "OttServices",
-  "locator": "libOttServices.so",
-  "classname": "OttServices",
-  "startmode": "Activated",
-  "startuporder": 10,
-  "configuration": {
-    "PermissionsEndpoint": "thor-permission.svc.thor.comcast.com:443",
-    "UseTls": true,
-    "root": { "mode": "Off" }
-  }
-}
-
-Notes:
-- startmode: "Activated" ensures the plugin is started at Thunder boot.
-- If your build produces a different plugin .so name or uses a shared monolithic plugin library, adjust locator accordingly.
-- The configuration fields PermissionsEndpoint and UseTls are read by the implementation at startup.
-
-Error reference
-- ERROR_UNAVAILABLE: The plugin is configured but is not in the ACTIVATED state, or a dependent resource could not be reached at call time (e.g., auth metadata for updatepermissionscache). Use the Controller to activate the plugin and re-try.
-- ERROR_BAD_REQUEST: Missing/invalid parameters (e.g., getpermissions without an appId).
-- ERROR_NONE: Success.
-
-Readiness and logging
-- OttServices registers JSON-RPC methods at construction and logs “OttServices: JSON-RPC methods registered”.
-- Ping endpoint is provided for a lightweight readiness check.
-- All endpoints log inputs and results. Use Thunder/WPE logs to diagnose environment issues (e.g., permissions service reachability or auth service linkage).
-
-Security tokens
-- If your Thunder instance enforces tokens, ensure to pass a valid token header or disable security in the Controller configuration for local testing.
-
-Port and routing
-- If your environment uses a different port (e.g., 80), adjust curl URLs accordingly.
-- /jsonrpc is the default JSON-RPC endpoint path and is configurable via the jsonrpc field in /etc/WPEFramework/config.json.
-
-Troubleshooting checklist
-- [ ] Thunder is listening on the expected port and /jsonrpc is reachable.
-- [ ] OttServices plugin is present in the Controller plugin list.
-- [ ] The plugin is ACTIVATED (not DEACTIVATED/UNAVAILABLE/HIBERNATED).
-- [ ] The endpoint method and casing are correct: getpermissions or getPermissions.
-- [ ] Required params are provided (e.g., appId).
-- [ ] Check logs for any implementation-specific errors (auth service, gRPC permissions service, etc.).
-
+- The container now has a clear, platform-friendly start command (npm start) and a Procfile that points to the same server entry.
+- The Node.js server provides readiness endpoints and log tailing to aid diagnostics.
+- Use scripts/start.sh if you also want to build and inspect the native components locally.
