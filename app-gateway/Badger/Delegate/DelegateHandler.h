@@ -23,7 +23,7 @@
 #include "HdcpProfileDelegate.h"
 #include "NetworkDelegate.h"
 #include "SystemDelegate.h"
-#include "MetricsHandlerDelegate.h"
+#include "MetricsDelegate.h"
 #include "SettingsDelegate.h"
 
 using namespace WPEFramework;
@@ -58,7 +58,7 @@ class DelegateHandler {
             systemDelegate = std::make_shared<SystemDelegate>(shell);
         }
         if (metricsDelegate == nullptr) {
-            metricsDelegate = std::make_shared<MetricsHandler::MetricsHandlerDelegate>(shell);
+            metricsDelegate = std::make_shared<MetricsDelegate>(shell);
         }
         if (settingsDelegate == nullptr) {
             settingsDelegate = std::make_shared<SettingsDelegate>(shell);
@@ -75,7 +75,7 @@ class DelegateHandler {
     std::shared_ptr<SystemDelegate> getSystemDelegate() const { return systemDelegate; }
 
     // PUBLIC_INTERFACE
-    std::shared_ptr<MetricsHandler::MetricsHandlerDelegate> getMetricsDelegate() const { return metricsDelegate; }
+    std::shared_ptr<MetricsDelegate> getMetricsDelegate() const { return metricsDelegate; }
 
     // PUBLIC_INTERFACE
     std::shared_ptr<SettingsDelegate> getSettingsDelegate() const { return settingsDelegate; }
@@ -85,6 +85,6 @@ class DelegateHandler {
     std::shared_ptr<HdcpProfileDelegate> hdcpProfileDelegate;
     std::shared_ptr<NetworkDelegate> networkDelegate;
     std::shared_ptr<SystemDelegate> systemDelegate;
-    std::shared_ptr<MetricsHandler::MetricsHandlerDelegate> metricsDelegate;
+    std::shared_ptr<MetricsDelegate> metricsDelegate;
     std::shared_ptr<SettingsDelegate> settingsDelegate;
 };
