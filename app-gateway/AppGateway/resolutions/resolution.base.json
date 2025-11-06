@@ -285,6 +285,10 @@
         "badger.metricsHandler": {
             "alias": "metricsHandler",
             "useComRpc": true
+        },
+        "badger.settings": {
+            "alias": "org.rdk.Badger",
+            "useComRpc": true
         }
     }
 }

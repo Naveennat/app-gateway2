@@ -20,6 +20,7 @@
 #include "Badger.h"
 #include "UtilsLogging.h"
 #include "Badger/Delegate/MetricsHandlerDelegate.h"
+#include "Badger/Delegate/SettingsDelegate.h"
 #include <vector>
 
 #define API_VERSION_NUMBER_MAJOR BADGER_MAJOR_VERSION
@@ -858,6 +859,53 @@ namespace WPEFramework {
 
                 // Return boolean true to satisfy JSON-RPC result expectations
                 result = "true";
+                return Core::ERROR_NONE;
+            }
+
+            // badger.settings - gather settings for requested keys into a combined result object
+            if (lower == "badger.settings") {
+                LOGDBG("[badger.settings] payload: %s", payload.c_str());
+
+                // Parse params to extract keys array
+                JsonObject paramsObj;
+                if (!paramsObj.FromString(payload)) {
+                    LOGERR("[badger.settings] invalid JSON params");
+                    return Core::ERROR_BAD_REQUEST;
+                }
+
+                std::vector<std::string> keys;
+                if (paramsObj.HasLabel("keys")) {
+                    const JsonArray& arr = paramsObj["keys"].Array();
+                    for (uint32_t i = 0; i < arr.Length(); ++i) {
+                        keys.push_back(arr[i].String());
+                    }
+                } else {
+                    LOGWARN("[badger.settings] 'keys' not provided, returning empty object");
+                }
+
+                WPEFramework::Core::JSON::VariantContainer outObj;
+                Core::hresult sdResult = Core::ERROR_UNAVAILABLE;
+
+                if (mDelegate) {
+                    auto settingsDelegate = mDelegate->getSettingsDelegate();
+                    if (settingsDelegate) {
+                        sdResult = settingsDelegate->BuildSettings(keys, outObj);
+                    } else {
+                        LOGWARN("[badger.settings] settings delegate unavailable");
+                    }
+                } else {
+                    LOGWARN("[badger.settings] delegate handler not initialized");
+                }
+
+                // Always respond with an object (possibly empty) and do not fail the whole request
+                DelegateUtils::SerializeToJsonString(outObj, result);
+
+                if (sdResult != Core::ERROR_NONE) {
+                    LOGWARN("[badger.settings] BuildSettings returned rc=%d", sdResult);
+                } else {
+                    LOGDBG("[badger.settings] result: %s", result.c_str());
+                }
+
                 return Core::ERROR_NONE;
             }
 
