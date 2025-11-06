@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright 2023 Comcast Cable Communications Management, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -90,6 +90,10 @@ namespace WPEFramework {
             uint32_t ShowPinOverlay(const std::string& appId, std::string& result);
             uint32_t Settings(const std::string& appId, std::string& result);
             uint32_t SubscribeToSettings(const std::string& appId, std::string& result);
+
+            // Helper that processes metrics payloads (moved from MetricsHandlerDelegate)
+            Core::hresult HandleMetricsProcessing(const std::string& appId,
+                                                  const Core::JSON::VariantContainer& params);
 
           private:
             PluginHost::IShell* mService;

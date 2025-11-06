@@ -1,4 +1,4 @@
-/*
+ /*
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
@@ -19,7 +19,8 @@
 
 #include "Badger.h"
 #include "UtilsLogging.h"
-#include "Badger/Delegate/MetricsHandlerDelegate.h"
+#include "StringUtils.h"
+#include "Badger/Delegate/MetricsDelegate.h"
 #include "Badger/Delegate/SettingsDelegate.h"
 #include <vector>
 
@@ -70,8 +71,8 @@ namespace WPEFramework {
                 LOGERR("OttPermissions not available");
             }
 
-            mDelegate = std::make_shared<DelegateHandler>();
-            mDelegate->setShell(mService);
+            mDelegateHandler = std::make_shared<DelegateHandler>();
+            mDelegateHandler->setShell(mService);
 
             return EMPTY_STRING;
         }
@@ -89,8 +90,10 @@ namespace WPEFramework {
                 mOttPermissions = nullptr;
             }
 
-            mDelegate->Cleanup();
-            mDelegate.reset();
+            if (mDelegateHandler) {
+                mDelegateHandler->Cleanup();
+                mDelegateHandler.reset();
+            }
 
             mConnectionId = 0;
             mService->Release();
@@ -148,9 +151,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto hdcpDelegate = mDelegate->getHdcpProfileDelegate();
+            auto hdcpDelegate = mDelegateHandler->getHdcpProfileDelegate();
             if (!hdcpDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -180,9 +183,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto displayDelegate = mDelegate->getDisplaySettingsDelegate();
+            auto displayDelegate = mDelegateHandler->getDisplaySettingsDelegate();
             if (!displayDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -219,9 +222,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegate->getSystemDelegate();
+            auto systemDelegate = mDelegateHandler->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -320,9 +323,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegate->getSystemDelegate();
+            auto systemDelegate = mDelegateHandler->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -345,9 +348,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegate->getSystemDelegate();
+            auto systemDelegate = mDelegateHandler->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -382,9 +385,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegate->getSystemDelegate();
+            auto systemDelegate = mDelegateHandler->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -476,9 +479,9 @@ namespace WPEFramework {
             audioObj.FromString(audioModesJson);
             capabilities["audio_modes"] = audioObj;
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegate->getSystemDelegate();
+            auto systemDelegate = mDelegateHandler->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -592,9 +595,9 @@ namespace WPEFramework {
             }
 
             // ---- Device Model / Type / supports_true_sd ----
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegate->getSystemDelegate();
+            auto systemDelegate = mDelegateHandler->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -632,9 +635,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
-            auto networkDelegate = mDelegate->getNetworkDelegate();
+            auto networkDelegate = mDelegateHandler->getNetworkDelegate();
             if (!networkDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -682,10 +685,10 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
 
-            auto systemDelegate = mDelegate->getSystemDelegate();
+            auto systemDelegate = mDelegateHandler->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -708,10 +711,10 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegate)
+            if (!mDelegateHandler)
                 return Core::ERROR_UNAVAILABLE;
 
-            auto systemDelegate = mDelegate->getSystemDelegate();
+            auto systemDelegate = mDelegateHandler->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -798,6 +801,93 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
+        // Helper that encapsulates the logic previously in MetricsHandlerDelegate::HandleBadgerMetrics
+        Core::hresult Badger::HandleMetricsProcessing(const std::string& appId,
+                                                      const Core::JSON::VariantContainer& params)
+        {
+            auto metricsDelegate = (mDelegateHandler ? mDelegateHandler->getMetricsDelegate() : nullptr);
+            if (!metricsDelegate) {
+                LOGWARN("badger.metricsHandler: metrics delegate unavailable");
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            using ParamKV = MetricsDelegate::ParamKV;
+
+            // Flatten evt -> args
+            std::vector<ParamKV> args;
+            const Core::JSON::Variant evtVar = params["evt"];
+            if (evtVar.IsSet() && !evtVar.IsNull() && evtVar.Content() == Core::JSON::Variant::type::OBJECT) {
+                Core::JSON::VariantContainer evtObj = evtVar.Object();
+                auto it = evtObj.Variants();
+                while (it.Next()) {
+                    ParamKV kv;
+                    kv.name = it.Label();
+                    kv.value = it.Current();
+                    args.emplace_back(std::move(kv));
+                }
+            }
+
+            auto ReadString = [](const Core::JSON::VariantContainer& obj, const char* key) -> std::string {
+                const Core::JSON::Variant v = obj[key];
+                if (v.IsSet() && !v.IsNull() && v.Content() == Core::JSON::Variant::type::STRING) {
+                    return v.String();
+                }
+                return std::string();
+            };
+
+            auto ReadBool = [](const Core::JSON::VariantContainer& obj, const char* key, bool defVal) -> bool {
+                const Core::JSON::Variant v = obj[key];
+                if (v.IsSet() && !v.IsNull() && v.Content() == Core::JSON::Variant::type::BOOLEAN) {
+                    return v.Boolean();
+                }
+                return defVal;
+            };
+
+            const Core::JSON::Variant segVar = params["segment"];
+            if (segVar.IsSet() && !segVar.IsNull() && segVar.Content() == Core::JSON::Variant::type::STRING) {
+                const std::string segment = segVar.String();
+                if (segment == "LAUNCH_COMPLETED") {
+                    return metricsDelegate->LaunchCompleted(args, appId);
+                }
+                Core::OptionalType<std::string> seg(segment);
+                return metricsDelegate->MetricsHandler(seg, args, appId);
+            }
+
+            const Core::JSON::Variant evtTypeVar = params["eventType"];
+            if (evtTypeVar.IsSet() && !evtTypeVar.IsNull() && evtTypeVar.Content() == Core::JSON::Variant::type::STRING) {
+                const std::string eventType = evtTypeVar.String();
+                const std::string eventTypeLower = StringUtils::toLower(eventType);
+
+                if (eventTypeLower == "useraction") {
+                    const std::string action = ReadString(params, "action");
+                    return metricsDelegate->UserAction(action, args, appId);
+                } else if (eventTypeLower == "appaction") {
+                    const std::string action = ReadString(params, "action");
+                    return metricsDelegate->AppAction(action, args, appId);
+                } else if (eventTypeLower == "pageview") {
+                    const std::string page = ReadString(params, "page");
+                    return metricsDelegate->PageView(page, args, appId);
+                } else if (eventTypeLower == "usererror" || eventTypeLower == "error") {
+                    const std::string errMsg  = ReadString(params, "errMsg");
+                    const std::string errCode = ReadString(params, "errCode");
+                    const bool errVisible     = ReadBool(params, "errVisible", false);
+                    if (eventTypeLower == "usererror") {
+                        return metricsDelegate->UserError(errMsg, errVisible, errCode, args, appId);
+                    } else {
+                        return metricsDelegate->Error(errMsg, errVisible, errCode, args, appId);
+                    }
+                } else {
+                    // Unknown eventType: route as generic app action with type=eventType
+                    Core::OptionalType<std::string> seg(eventType);
+                    return metricsDelegate->MetricsHandler(seg, args, appId);
+                }
+            }
+
+            // Neither 'segment' nor 'eventType' provided, still send generic metrics to avoid drop
+            Core::OptionalType<std::string> empty;
+            return metricsDelegate->MetricsHandler(empty, args, appId);
+        }
+
         Core::hresult Badger::HandleAppGatewayRequest(const Exchange::GatewayContext& context, const std::string& method, const std::string& payload, std::string& result) {
             LOGTRACE("HandleAppGatewayRequest: method=%s, payload=%s, appId=%s", method.c_str(), payload.c_str(), context.appId.c_str());
 
@@ -841,20 +931,10 @@ namespace WPEFramework {
 
                 LOGDBG("badger.metricsHandler: received params: %s", payload.c_str());
 
-                Core::hresult mhResult = Core::ERROR_UNAVAILABLE;
-                if (mDelegate) {
-                    auto metricsDelegate = mDelegate->getMetricsDelegate();
-                    if (metricsDelegate) {
-                        mhResult = metricsDelegate->HandleBadgerMetrics(context.appId, params);
-                    } else {
-                        LOGWARN("badger.metricsHandler: metrics delegate unavailable");
-                    }
-                } else {
-                    LOGWARN("badger.metricsHandler: delegate handler not initialized");
-                }
+                Core::hresult mhResult = HandleMetricsProcessing(context.appId, params);
 
                 if (mhResult != Core::ERROR_NONE) {
-                    LOGWARN("badger.metricsHandler: delegate returned rc=%d (fire-and-forget semantics)", mhResult);
+                    LOGWARN("badger.metricsHandler: helper returned rc=%d (fire-and-forget semantics)", mhResult);
                 }
 
                 // Return boolean true to satisfy JSON-RPC result expectations
@@ -886,8 +966,8 @@ namespace WPEFramework {
                 WPEFramework::Core::JSON::VariantContainer outObj;
                 Core::hresult sdResult = Core::ERROR_UNAVAILABLE;
 
-                if (mDelegate) {
-                    auto settingsDelegate = mDelegate->getSettingsDelegate();
+                if (mDelegateHandler) {
+                    auto settingsDelegate = mDelegateHandler->getSettingsDelegate();
                     if (settingsDelegate) {
                         sdResult = settingsDelegate->BuildSettings(keys, outObj);
                     } else {
