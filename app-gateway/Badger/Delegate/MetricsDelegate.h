@@ -34,10 +34,10 @@ public:
     struct ParamKV {
         /** Name-value pair for additional parameters. */
         std::string name;
-        Core::JSON::Variant value;
+        WPEFramework::Core::JSON::Variant value;
 
         ParamKV() = default;
-        ParamKV(const std::string& n, const Core::JSON::Variant& v) : name(n), value(v) {}
+        ParamKV(const std::string& n, const WPEFramework::Core::JSON::Variant& v) : name(n), value(v) {}
     };
 
 public:
@@ -82,7 +82,7 @@ public:
 
         JsonObject parameters;
         ArgsToParametersObject(args, parameters);
-        if (parameters.Length() > 0) {
+        if (parameters.IsSet()) {
             eventPayload["parameters"] = parameters;
         }
 
@@ -111,7 +111,7 @@ public:
 
         JsonObject parameters;
         ArgsToParametersObject(args, parameters);
-        if (parameters.Length() > 0) {
+        if (parameters.IsSet()) {
             eventPayload["parameters"] = parameters;
         }
 
@@ -144,7 +144,7 @@ public:
 
         JsonObject parameters;
         ArgsToParametersObject(args, parameters);
-        if (parameters.Length() > 0) {
+        if (parameters.IsSet()) {
             eventPayload["parameters"] = parameters;
         }
 
@@ -177,7 +177,7 @@ public:
 
         JsonObject parameters;
         ArgsToParametersObject(args, parameters);
-        if (parameters.Length() > 0) {
+        if (parameters.IsSet()) {
             eventPayload["parameters"] = parameters;
         }
 
@@ -209,7 +209,7 @@ public:
         // Optional parameters
         JsonObject parameters;
         ArgsToParametersObject(args, parameters);
-        if (parameters.Length() > 0) {
+        if (parameters.IsSet()) {
             eventPayload["parameters"] = parameters;
         }
 
@@ -247,7 +247,7 @@ public:
 
         JsonObject parameters;
         ArgsToParametersObject(args, parameters);
-        if (parameters.Length() > 0) {
+        if (parameters.IsSet()) {
             eventPayload["parameters"] = parameters;
         }
 
@@ -288,7 +288,7 @@ public:
 
         JsonObject parameters;
         ArgsToParametersObject(args, parameters);
-        if (parameters.Length() > 0) {
+        if (parameters.IsSet()) {
             eventPayload["parameters"] = parameters;
         }
 
@@ -303,41 +303,20 @@ private:
         return s.size() >= 1 && s.size() <= 256;
     }
 
+    // Convert Core::JSON::Variant to JsonValue (alias is the same type in this codebase)
+    static inline JsonValue VariantToJsonValue(const WPEFramework::Core::JSON::Variant& v) {
+        // In the current WPEFramework Core, JsonValue is an alias for Core::JSON::Variant.
+        // Returning the variant directly preserves correct typing (object/array/string/number/bool/null).
+        return v;
+    }
+
+    // Helper to build parameters object: adds keys via Set()
     static inline void ArgsToParametersObject(const std::vector<ParamKV>& src, JsonObject& out) {
         out.Clear();
         for (const auto& kv : src) {
-            out[kv.name] = VariantToJsonValue(kv.value);
+            // Use Set() with explicit c_str() to avoid operator[] implicit string conversion issues
+            out.Set(kv.name.c_str(), VariantToJsonValue(kv.value));
         }
-    }
-
-    // Convert Core::JSON::Variant to JsonValue for embedding in JsonObject
-    static inline JsonValue VariantToJsonValue(const Core::JSON::Variant& v) {
-        JsonValue out;
-        if (v.IsString()) {
-            out = v.String();
-        } else if (v.IsNumber()) {
-            out = v.Number();
-        } else if (v.IsBoolean()) {
-            out = v.Boolean();
-        } else if (v.IsNull()) {
-            out = JsonValue(); // null
-        } else if (v.IsObject()) {
-            Core::JSON::String tmp;
-            v.Object().ToString(tmp);
-            JsonObject obj;
-            obj.FromString(tmp.Value());
-            out = obj;
-        } else if (v.IsArray()) {
-            Core::JSON::String tmp;
-            v.Array().ToString(tmp);
-            JsonArray arr;
-            arr.FromString(tmp.Value());
-            out = arr;
-        } else {
-            // Fallback: serialize to string
-            out = v.Serialize();
-        }
-        return out;
     }
 
     /**
