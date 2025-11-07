@@ -24,7 +24,6 @@
 #include "NetworkDelegate.h"
 #include "SystemDelegate.h"
 #include "MetricsDelegate.h"
-#include "SettingsDelegate.h"
 #include "UserSettingsDelegate.h"
 #include "PrivacyDelegate.h"
 
@@ -38,7 +37,6 @@ class DelegateHandler {
         , networkDelegate(nullptr)
         , systemDelegate(nullptr)
         , metricsDelegate(nullptr)
-        , settingsDelegate(nullptr)
         , userSettingsDelegate(nullptr)
         , privacyDelegate(nullptr) {}
 
@@ -48,7 +46,6 @@ class DelegateHandler {
         networkDelegate = nullptr;
         systemDelegate = nullptr;
         metricsDelegate = nullptr;
-        settingsDelegate = nullptr;
         userSettingsDelegate = nullptr;
         privacyDelegate = nullptr;
     }
@@ -73,10 +70,6 @@ class DelegateHandler {
         if (metricsDelegate == nullptr) {
             metricsDelegate = std::make_shared<MetricsDelegate>(shell);
         }
-        if (settingsDelegate == nullptr) {
-            // SettingsDelegate is now system-focused (friendly_name, etc.)
-            settingsDelegate = std::make_shared<SettingsDelegate>(shell);
-        }
         if (userSettingsDelegate == nullptr) {
             userSettingsDelegate = std::make_shared<UserSettingsDelegate>(shell);
         }
@@ -96,9 +89,6 @@ class DelegateHandler {
     std::shared_ptr<MetricsDelegate> getMetricsDelegate() const { return metricsDelegate; }
 
     // PUBLIC_INTERFACE
-    std::shared_ptr<SettingsDelegate> getSettingsDelegate() const { return settingsDelegate; }
-
-    // PUBLIC_INTERFACE
     std::shared_ptr<UserSettingsDelegate> getUserSettingsDelegate() const { return userSettingsDelegate; }
 
     // PUBLIC_INTERFACE
@@ -110,7 +100,6 @@ class DelegateHandler {
     std::shared_ptr<NetworkDelegate> networkDelegate;
     std::shared_ptr<SystemDelegate> systemDelegate;
     std::shared_ptr<MetricsDelegate> metricsDelegate;
-    std::shared_ptr<SettingsDelegate> settingsDelegate;
     std::shared_ptr<UserSettingsDelegate> userSettingsDelegate;
     std::shared_ptr<PrivacyDelegate> privacyDelegate;
 };
