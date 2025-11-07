@@ -849,7 +849,47 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
         uint32_t Badger::Settings(const std::string& appId, std::string& result) {
-            result = R"({"settings":"sample_settings_data"})";
+            result.clear();
+
+            // Follow the same call pattern as other getters:
+            //  - obtain delegate from handler
+            //  - call methods on delegate
+            //  - assign to response/JSON
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            std::string legacyJson;
+            std::string powerJson;
+
+            if (systemDelegate->GetLegacyMiniGuide(legacyJson) != Core::ERROR_NONE) {
+                LOGWARN("SystemDelegate::GetLegacyMiniGuide failed; using default {}");
+                legacyJson = "{}";
+            }
+            if (systemDelegate->GetPowerSaveStatus(powerJson) != Core::ERROR_NONE) {
+                LOGWARN("SystemDelegate::GetPowerSaveStatus failed; using default {}");
+                powerJson = "{}";
+            }
+
+            Core::JSON::VariantContainer legacyObj;
+            Core::JSON::VariantContainer powerObj;
+
+            // Parse returned JSON; on parse failure keep empty object
+            Core::OptionalType<Core::JSON::Error> parseErr;
+            (void)parseErr;
+
+            legacyObj.FromString(legacyJson);
+            powerObj.FromString(powerJson);
+
+            Core::JSON::VariantContainer response;
+            response["legacyMiniGuide"] = legacyObj;
+            response["power_save_status"] = powerObj;
+
+            response.ToString(result);
+            LOGINFO("Settings JSON: %s", result.c_str());
             return Core::ERROR_NONE;
         }
         uint32_t Badger::SubscribeToSettings(const std::string& appId, std::string& result) {

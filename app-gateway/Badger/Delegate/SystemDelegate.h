@@ -46,7 +46,7 @@ class SystemDelegate {
      * Calls org.rdk.System.getFriendlyName and returns a JSON string:
      *   {"friendly_name":"<Name>"}
      */
-    uint32_t GetFriendlyName(std::string& friendlyNameJson) {
+    uint32_t GetFriendlyName(std::string& friendlyNameJson) const {
         friendlyNameJson.clear();
 
         auto link = DelegateUtils::AcquireLink(_shell, SYSTEM_CALLSIGN);
@@ -231,11 +231,55 @@ class SystemDelegate {
 
     // PUBLIC_INTERFACE
     /**
+     * GetCountryCode
+     * Minimal implementation to satisfy usage in Badger.cpp.
+     * Returns:
+     *   {"country_code":"UNKNOWN"}
+     */
+    uint32_t GetCountryCode(std::string& countryCodeJson) const {
+        // Future: integrate with proper org.rdk.System method if available.
+        countryCodeJson = R"({"country_code":"UNKNOWN"})";
+        return Core::ERROR_NONE;
+    }
+
+    // PUBLIC_INTERFACE
+    /**
+     * GetLegacyMiniGuide
+     * Exposes legacy mini guide settings payload for use by Badger.cpp.
+     * The shape is intentionally minimal and may be extended later:
+     *   {}
+     */
+    uint32_t GetLegacyMiniGuide(std::string& legacyMiniGuideJson) const {
+        // Placeholder/minimal object, compute when real API becomes available.
+        legacyMiniGuideJson = "{}";
+        return Core::ERROR_NONE;
+    }
+
+    // PUBLIC_INTERFACE
+    /**
+     * GetPowerSaveStatus
+     * Exposes power save status for use by Badger.cpp.
+     * The shape is intentionally minimal and may be extended later:
+     *   {}
+     */
+    uint32_t GetPowerSaveStatus(std::string& powerSaveStatusJson) const {
+        // Placeholder/minimal object, compute when real API becomes available.
+        powerSaveStatusJson = "{}";
+        return Core::ERROR_NONE;
+    }
+
+    // PUBLIC_INTERFACE
+    /**
      * BuildSettings
-     * Aggregates system-scoped settings for the requested keys. Supported keys:
-     *  - friendly_name     -> calls getFriendlyName and wraps as {"friendly_name":{"value":"\"<Name>\""}}
-     *  - legacyMiniGuide   -> {}
-     *  - power_save_status -> {}
+     * Aggregates system-scoped settings for the requested keys.
+     * Currently supports:
+     *  - friendly_name -> calls GetFriendlyName() and wraps into:
+     *         {"friendly_name":{"value":"\"<Name>\""}}
+     *
+     * NOTE:
+     *  legacyMiniGuide and power_save_status are intentionally NOT embedded here.
+     *  They are provided via dedicated getters and should be invoked directly
+     *  from Badger.cpp to conform with the consistent call pattern.
      */
     Core::hresult BuildSettings(const std::vector<std::string>& keys,
                                 WPEFramework::Core::JSON::VariantContainer& out) const
@@ -253,42 +297,25 @@ class SystemDelegate {
             wanted.insert(k);
         }
 
-        // friendly_name -> org.rdk.System.getFriendlyName => {"friendly_name":{"value":"\"<Name>\""}}
+        // friendly_name -> delegate to GetFriendlyName() and shape:
+        // {"friendly_name": {"value":"\"<Name>\""}}
         if (wanted.find("friendly_name") != wanted.end()) {
-            auto link = DelegateUtils::AcquireLink(_shell, SYSTEM_CALLSIGN);
-            if (link) {
-                JsonObject params;
-                JsonObject response;
-                uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getFriendlyName"), params, response);
-                if (rc == Core::ERROR_NONE) {
-                    if (response.HasLabel("friendlyName")) {
-                        std::string friendly = response["friendlyName"].String();
-                        Core::JSON::VariantContainer obj;
-                        // Wrap in quotes so JSON string contains escaped quotes, matching required shape
-                        std::string wrapped = std::string("\"") + friendly + std::string("\"");
-                        obj["value"] = wrapped;
-                        out["friendly_name"] = obj;
-                    } else {
-                        LOGWARN("[badger.system] getFriendlyName missing 'friendlyName' field");
-                    }
-                } else {
-                    LOGWARN("[badger.system] getFriendlyName failed rc=%u", rc);
-                }
+            std::string friendlyJson;
+            uint32_t rc = GetFriendlyName(friendlyJson);
+            if (rc == Core::ERROR_NONE) {
+                Core::JSON::VariantContainer friendlyObj;
+                friendlyObj.FromString(friendlyJson);
+
+                const std::string name = DelegateUtils::GetStringSafe(friendlyObj, "friendly_name");
+                // Wrap in quotes so JSON string contains escaped quotes, matching required shape
+                std::string wrapped = std::string("\"") + name + std::string("\"");
+
+                Core::JSON::VariantContainer obj;
+                obj["value"] = wrapped;
+                out["friendly_name"] = obj;
             } else {
-                LOGWARN("[badger.system] No JSONRPC link for %s", SYSTEM_CALLSIGN);
+                LOGWARN("[badger.system] GetFriendlyName failed rc=%u", rc);
             }
-        }
-
-        // legacyMiniGuide -> {}
-        if (wanted.find("legacyMiniGuide") != wanted.end()) {
-            Core::JSON::VariantContainer emptyObj;
-            out["legacyMiniGuide"] = emptyObj;
-        }
-
-        // power_save_status -> {}
-        if (wanted.find("power_save_status") != wanted.end()) {
-            Core::JSON::VariantContainer emptyObj;
-            out["power_save_status"] = emptyObj;
         }
 
         return Core::ERROR_NONE;
