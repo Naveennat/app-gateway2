@@ -1,4 +1,4 @@
- /*
+/*
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
@@ -18,15 +18,15 @@
  */
 
 #include "Badger.h"
-#include "UtilsLogging.h"
 #include "StringUtils.h"
-#include "Badger/Delegate/MetricsDelegate.h"
-#include "Badger/Delegate/SettingsDelegate.h"
-#include <vector>
+#include "UtilsLogging.h"
 
 #define API_VERSION_NUMBER_MAJOR BADGER_MAJOR_VERSION
 #define API_VERSION_NUMBER_MINOR BADGER_MINOR_VERSION
 #define API_VERSION_NUMBER_PATCH BADGER_PATCH_VERSION
+
+#define LAUNCHDELEGATE_CALLSIGN "org.rdk.LaunchDelegate"
+#define OTT_SERVICES_CALLSIGN "org.rdk.OttServices"
 
 namespace WPEFramework {
 
@@ -47,7 +47,7 @@ namespace WPEFramework {
     namespace Plugin {
         SERVICE_REGISTRATION(Badger, API_VERSION_NUMBER_MAJOR, API_VERSION_NUMBER_MINOR, API_VERSION_NUMBER_PATCH);
 
-        Badger::Badger() : PluginHost::JSONRPC(), mService(nullptr), mConnectionId(0), mLaunchDelegate(nullptr) {
+        Badger::Badger() : mService(nullptr), mConnectionId(0), mLaunchDelegate(nullptr) {
         }
 
         Badger::~Badger() {
@@ -71,8 +71,8 @@ namespace WPEFramework {
                 LOGERR("OttPermissions not available");
             }
 
-            mDelegateHandler = std::make_shared<DelegateHandler>();
-            mDelegateHandler->setShell(mService);
+            mDelegate = std::make_shared<DelegateHandler>();
+            mDelegate->setShell(mService);
 
             return EMPTY_STRING;
         }
@@ -90,10 +90,8 @@ namespace WPEFramework {
                 mOttPermissions = nullptr;
             }
 
-            if (mDelegateHandler) {
-                mDelegateHandler->Cleanup();
-                mDelegateHandler.reset();
-            }
+            mDelegate->Cleanup();
+            mDelegate.reset();
 
             mConnectionId = 0;
             mService->Release();
@@ -151,9 +149,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto hdcpDelegate = mDelegateHandler->getHdcpProfileDelegate();
+            auto hdcpDelegate = mDelegate->getHdcpProfileDelegate();
             if (!hdcpDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -175,7 +173,7 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetHDRStatus(std::string appId, std::string& hdrJson) {
+        uint32_t Badger::GetHDRStatus(const std::string& appId, std::string& hdrJson) {
             hdrJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_deviceCapabilities.hdr");
@@ -183,9 +181,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto displayDelegate = mDelegateHandler->getDisplaySettingsDelegate();
+            auto displayDelegate = mDelegate->getDisplaySettingsDelegate();
             if (!displayDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -200,21 +198,33 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetAudioModeStatus(std::string appId, JBadgerAudioModes& audioModeStatus) {
+        uint32_t Badger::GetAudioModeStatus(const std::string& appId, std::string& audioModeStatus) {
+            audioModeStatus.clear();
+
+            // If permission check is required later, uncomment:
             // uint32_t result = ValidateCachedPermission(appId, "API_UserData_audioMode");
             // if (result != Core::ERROR_NONE) {
             //     return result;
             // }
 
-            if (BadgerTypes::GetAudioFormat(mdisplaySettingsLink, audioModeStatus) != Core::ERROR_NONE) {
-                LOGERR("GetAudioModeStatus failed");
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto displayDelegate = mDelegate->getDisplaySettingsDelegate();
+            if (!displayDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            uint32_t result = displayDelegate->GetAudioFormat(audioModeStatus);
+            if (result != Core::ERROR_NONE) {
+                LOGERR("DisplaySettingsDelegate::GetAudioFormat failed");
                 return Core::ERROR_UNAVAILABLE;
             }
 
+            LOGINFO("AudioMode JSON: %s", audioModeStatus.c_str());
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetWebBrowserStatus(std::string appId, std::string& webBrowserStatusJson) {
+        uint32_t Badger::GetWebBrowserStatus(const std::string& appId, std::string& webBrowserStatusJson) {
             webBrowserStatusJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_deviceCapabilities.webBrowser");
@@ -222,9 +232,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegateHandler->getSystemDelegate();
+            auto systemDelegate = mDelegate->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -247,13 +257,13 @@ namespace WPEFramework {
 
             browserJson["user_agent"] = platformConfig["browser_user_agent"].String().empty() ? "UNKNOWN" : platformConfig["browser_user_agent"].String();
 
-            DelegateUtils::SerializeToJsonString(browserJson, webBrowserStatusJson);
+            browserJson.ToString(webBrowserStatusJson);
 
             LOGINFO("WebBrowserStatus JSON: %s", webBrowserStatusJson.c_str());
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetWiFiStatus(std::string appId, Core::JSON::Boolean& isWifiDeviceStatus) {
+        uint32_t Badger::GetWiFiStatus(const std::string& appId, std::string& isWifiDeviceStatus) {
             uint32_t result = ValidateCachedPermission(appId, "DATA_deviceCapabilities.isWifiDevice");
             if (result != Core::ERROR_NONE) {
                 return result;
@@ -264,12 +274,12 @@ namespace WPEFramework {
             //   LOGERR("GetWiFiStatus failed");
             //   return Core::ERROR_UNAVAILABLE;
             // }
-            isWifiDeviceStatus = true;
+            isWifiDeviceStatus = "true";
 
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetNativeDimensions(std::string appId, std::string& nativeDimensionsJson) {
+        uint32_t Badger::GetNativeDimensions(const std::string& appId, std::string& nativeDimensionsJson) {
             nativeDimensionsJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_deviceCapabilities.nativeDimensions");
@@ -283,18 +293,18 @@ namespace WPEFramework {
             WPEFramework::Core::JSON::VariantContainer json;
             WPEFramework::Core::JSON::VariantContainer dims;
 
-            dims[0] = width;
-            dims[1] = height;
+            dims["0"] = Core::JSON::DecUInt32(width);
+            dims["1"] = Core::JSON::DecUInt32(height);
 
             json["native_dimensions"] = dims;
 
-            DelegateUtils::SerializeToJsonString(json, nativeDimensionsJson);
+            json.ToString(nativeDimensionsJson);
 
             LOGINFO("NativeDimensions JSON: %s", nativeDimensionsJson.c_str());
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetVideoDimensions(std::string appId, std::string& videoDimensionsJson) {
+        uint32_t Badger::GetVideoDimensions(const std::string& appId, std::string& videoDimensionsJson) {
             videoDimensionsJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_deviceCapabilities.videoDimensions");
@@ -306,16 +316,17 @@ namespace WPEFramework {
             uint32_t height = 1080;
 
             WPEFramework::Core::JSON::VariantContainer dims;
-            dims[0] = width;
-            dims[1] = height;
 
-            DelegateUtils::SerializeToJsonString(dims, videoDimensionsJson);
+            dims["0"] = Core::JSON::DecUInt32(width);
+            dims["1"] = Core::JSON::DecUInt32(height);
+
+            dims.ToString(videoDimensionsJson);
 
             LOGINFO("VideoDimensions JSON: %s", videoDimensionsJson.c_str());
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetTimeZone(std::string appId, std::string& timeZoneJson) {
+        uint32_t Badger::GetTimeZone(const std::string& appId, std::string& timeZoneJson) {
             timeZoneJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_timeZone");
@@ -323,9 +334,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegateHandler->getSystemDelegate();
+            auto systemDelegate = mDelegate->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -340,7 +351,7 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetDeviceType(std::string appId, std::string& deviceTypeJson) {
+        uint32_t Badger::GetDeviceType(const std::string& appId, std::string& deviceTypeJson) {
             deviceTypeJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_deviceCapabilities.deviceType");
@@ -348,9 +359,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegateHandler->getSystemDelegate();
+            auto systemDelegate = mDelegate->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -358,7 +369,6 @@ namespace WPEFramework {
             result = systemDelegate->GetSystemPlatformConfiguration(platformConfigJson);
             if (result != Core::ERROR_NONE) {
                 LOGERR("GetSystemPlatformConfiguration failed in GetDeviceType");
-
                 deviceTypeJson = R"({"device_type":"UNKNOWN"})";
                 return Core::ERROR_NONE;
             }
@@ -366,18 +376,18 @@ namespace WPEFramework {
             WPEFramework::Core::JSON::VariantContainer platformConfig;
             platformConfig.FromString(platformConfigJson);
 
-            std::string type = platformConfig["device_type"].IsString() ? platformConfig["device_type"].String() : "UNKNOWN";
+            std::string type = DelegateUtils::GetStringSafe(platformConfig, "device_type");
 
             WPEFramework::Core::JSON::VariantContainer resultJson;
-            resultJson["device_type"] = type.empty() ? "UNKNOWN" : type;
+            resultJson["device_type"] = type;
 
-            DelegateUtils::SerializeToJsonString(resultJson, deviceTypeJson);
+            resultJson.ToString(deviceTypeJson);
 
             LOGINFO("DeviceType JSON: %s", deviceTypeJson.c_str());
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetDeviceModel(std::string appId, std::string& deviceModelJson) {
+        uint32_t Badger::GetDeviceModel(const std::string& appId, std::string& deviceModelJson) {
             deviceModelJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_deviceCapabilities.model");
@@ -385,9 +395,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegateHandler->getSystemDelegate();
+            auto systemDelegate = mDelegate->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -403,21 +413,18 @@ namespace WPEFramework {
             WPEFramework::Core::JSON::VariantContainer platformConfig;
             platformConfig.FromString(platformConfigJson);
 
-            std::string model = platformConfig["model"].IsString() ? platformConfig["model"].String() : "UNKNOWN";
-            if (model.empty()) {
-                model = "UNKNOWN";
-            }
+            std::string model = DelegateUtils::GetStringSafe(platformConfig, "model");
 
             WPEFramework::Core::JSON::VariantContainer resultJson;
             resultJson["device_model"] = model;
 
-            DelegateUtils::SerializeToJsonString(resultJson, deviceModelJson);
+            resultJson.ToString(deviceModelJson);
 
             LOGINFO("DeviceModel JSON: %s", deviceModelJson.c_str());
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::DeviceInfo(const std::string appId, std::string& deviceInfoJson) {
+        uint32_t Badger::DeviceInfo(const std::string& appId, std::string& deviceInfoJson) {
             deviceInfoJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "API_UserData_deviceinfo");
@@ -479,9 +486,9 @@ namespace WPEFramework {
             audioObj.FromString(audioModesJson);
             capabilities["audio_modes"] = audioObj;
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegateHandler->getSystemDelegate();
+            auto systemDelegate = mDelegate->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -508,20 +515,20 @@ namespace WPEFramework {
             response["receiver_id"] = "UNKNOWN";
             response["device_hash"] = "UNKNOWN";
             response["household_id"] = "UNKNOWN";
-            response["privacy_settings"]["trackingAllowed"] = false;
+            WPEFramework::Core::JSON::VariantContainer privacyVC;
+            privacyVC["trackingAllowed"] = Core::JSON::Boolean(false);
+            response["privacy_settings"] = privacyVC;
+
             response["partner_id"] = "UNKNOWN";
             response["user_experience"] = "UNKNOWN";
 
             response["device_capabilities"] = capabilities;
 
-            Core::JSON::String serialized;
-            response.ToString(serialized);
-            deviceInfoJson = serialized.Value();
-
+            response.ToString(deviceInfoJson);
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::DeviceCapabilities(std::string appId, std::string& deviceCapabilitiesJson) {
+        uint32_t Badger::DeviceCapabilities(const std::string& appId, std::string& deviceCapabilitiesJson) {
             deviceCapabilitiesJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "API_DeviceCapabilities_deviceCapabilities");
@@ -595,9 +602,9 @@ namespace WPEFramework {
             }
 
             // ---- Device Model / Type / supports_true_sd ----
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto systemDelegate = mDelegateHandler->getSystemDelegate();
+            auto systemDelegate = mDelegate->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -611,23 +618,20 @@ namespace WPEFramework {
             Core::JSON::VariantContainer platform;
             platform.FromString(platformJson);
 
-            capabilities["device_type"] = platform["device_type"].IsString() ? platform["device_type"].String() : "UNKNOWN";
-            capabilities["model"] = platform["model"].IsString() ? platform["model"].String() : "UNKNOWN";
+            capabilities["device_type"] = DelegateUtils::GetStringSafe(platform, "device_type");
+            capabilities["model"] = DelegateUtils::GetStringSafe(platform, "model");
             capabilities["supports_true_sd"] = platform["supports_true_sd"].Boolean();
 
             capabilities["receiver_platform"] = "RDK";
             capabilities["receiver_version"] = "1.0.0";
 
-            // ---- Serialize Output ----
-            Core::JSON::String serialized;
-            capabilities.ToString(serialized);
-            deviceCapabilitiesJson = serialized.Value();
+            capabilities.ToString(deviceCapabilitiesJson);
 
             LOGINFO("DeviceCapabilities JSON: %s", deviceCapabilitiesJson.c_str());
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::NetworkConnectivity(std::string appId, std::string& connectivityJson) {
+        uint32_t Badger::NetworkConnectivity(const std::string& appId, std::string& connectivityJson) {
             connectivityJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "API_Network_networkConnectivity");
@@ -635,9 +639,9 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
-            auto networkDelegate = mDelegateHandler->getNetworkDelegate();
+            auto networkDelegate = mDelegate->getNetworkDelegate();
             if (!networkDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -677,7 +681,7 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetDeviceId(std::string appId, std::string& deviceIdJson) {
+        uint32_t Badger::GetDeviceId(const std::string& appId, std::string& deviceIdJson) {
             deviceIdJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_deviceId");
@@ -685,16 +689,16 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
-            auto systemDelegate = mDelegateHandler->getSystemDelegate();
-            if (!systemDelegate)
+            auto authServiceDelegate = mDelegate->getAuthServiceDelegate();
+            if (!authServiceDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
-            result = systemDelegate->GetDeviceId(deviceIdJson);
+            result = authServiceDelegate->GetXDeviceId(deviceIdJson);
             if (result != Core::ERROR_NONE) {
-                LOGERR("SystemDelegate::GetDeviceId failed in Badger::GetDeviceId");
+                LOGERR("AuthServiceDelegate::GetDeviceId failed in Badger::GetDeviceId");
                 deviceIdJson = R"({"device_id":"UNKNOWN"})";
                 return Core::ERROR_NONE;
             }
@@ -703,7 +707,7 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetDeviceName(std::string appId, std::string& deviceNameJson) {
+        uint32_t Badger::GetDeviceName(const std::string& appId, std::string& deviceNameJson) {
             deviceNameJson.clear();
 
             uint32_t result = ValidateCachedPermission(appId, "DATA_friendly_name");
@@ -711,10 +715,10 @@ namespace WPEFramework {
                 return result;
             }
 
-            if (!mDelegateHandler)
+            if (!mDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
-            auto systemDelegate = mDelegateHandler->getSystemDelegate();
+            auto systemDelegate = mDelegate->getSystemDelegate();
             if (!systemDelegate)
                 return Core::ERROR_UNAVAILABLE;
 
@@ -755,21 +759,73 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        // implement remaining methods from simpleHandlers map ... dummy
+        uint32_t Badger::GetLocalizationPostalCode(const std::string& appId, std::string& postalCodeJson) {
+            postalCodeJson.clear();
+
+            uint32_t result = ValidateCachedPermission(appId, "DATA_localization.postalCode");
+            if (result != Core::ERROR_NONE) {
+                return result;
+            }
+
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto systemDelegate = mDelegate->getSystemDelegate();
+            if (!systemDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            std::string countryCodeJson;
+            result = systemDelegate->GetCountryCode(countryCodeJson);
+            if (result != Core::ERROR_NONE) {
+                LOGWARN("GetCountryCode failed, using fallback postal code");
+                postalCodeJson = R"({"postal_code":"12345"})";
+                return Core::ERROR_NONE;
+            }
+
+            WPEFramework::Core::JSON::VariantContainer countryVC;
+            countryVC.FromString(countryCodeJson);
+
+            std::string postal = DelegateUtils::GetStringSafe(countryVC, "country_code");
+
+            WPEFramework::Core::JSON::VariantContainer resultJson;
+            resultJson["postal_code"] = postal;
+
+            resultJson.ToString(postalCodeJson);
+
+            LOGINFO("Localization PostalCode JSON: %s", postalCodeJson.c_str());
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::ShowToaster(const std::string& appId, std::string& result) {
+            uint32_t rc = ValidateCachedPermission(appId, "API_Notification_showToaster");
+            if (rc != Core::ERROR_NONE) {
+                return rc;
+            }
+
+            if (!mLaunchDelegate) {
+                LOGERR("LaunchDelegate not available");
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            Exchange::Context launchDelegateCtx;
+            launchDelegateCtx.appId = appId;
+
+            if (mLaunchDelegate->State(launchDelegateCtx, result) != Core::ERROR_NONE) {
+                LOGERR("LaunchDelegate State failed");
+                return Core::ERROR_GENERAL;
+            }
+
+            LOGINFO("ShowToaster processed for appId=%s", launchDelegateCtx.appId.c_str());
+
+            return Core::ERROR_NONE;
+        }
+
         uint32_t Badger::GetDeviceUid(const std::string& appId, std::string& deviceUidJson) {
             deviceUidJson = R"({"device_uid":"1234567890"})";
             return Core::ERROR_NONE;
         }
         uint32_t Badger::GetAccountUid(const std::string& appId, std::string& accountUidJson) {
             accountUidJson = R"({"account_uid":"0987654321"})";
-            return Core::ERROR_NONE;
-        }
-        uint32_t Badger::GetLocalizationPostalCode(const std::string& appId, std::string& postalCodeJson) {
-            postalCodeJson = R"({"postal_code":"12345"})";
-            return Core::ERROR_NONE;
-        }
-        uint32_t Badger::ShowToaster(const std::string& appId, std::string& result) {
-            result = R"({"status":"toaster_shown"})";
             return Core::ERROR_NONE;
         }
         uint32_t Badger::GetPayload(const std::string& appId, std::string& payloadJson) {
@@ -800,12 +856,78 @@ namespace WPEFramework {
             result = R"({"status":"subscribed_to_settings"})";
             return Core::ERROR_NONE;
         }
+        uint32_t Badger::EntitlementsAccountLink(const std::string& appId, std::string& result) {
+            result = R"({"status":"entitlements_account_linked"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::MediaEventAccountLink(const std::string& appId, std::string& result) {
+            result = R"({"status":"media_event_account_linked"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::LaunchpadAccountLink(const std::string& appId, std::string& result) {
+            result = R"({"status":"launchpad_account_linked"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::XIFA(const std::string& appId, std::string& result) {
+            result = R"({"xifa_data":"sample_xifa_data"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::AppStoreId(const std::string& appId, std::string& result) {
+            result = R"({"app_store_id":"com.example.app"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::LimitAdTracking(const std::string& appId, std::string& result) {
+            result = R"({"limit_ad_tracking":false})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::DeviceAdAttributes(const std::string& appId, std::string& result) {
+            result = R"({"ad_attributes":{"attribute1":"value1","attribute2":"value2"}})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::InitObject(const std::string& appId, std::string& result) {
+            result = R"({"init_object":"sample_init_object"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::AppAuth(const std::string& appId, std::string& result) {
+            result = R"({"app_auth_token":"sample_app_auth_token"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::OAuthBearerToken(const std::string& appId, std::string& result) {
+            result = R"({"oauth_bearer_token":"sample_oauth_bearer_token"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::RefreshPlatformAuthToken(const std::string& appId, std::string& result) {
+            result = R"({"status":"platform_auth_token_refreshed"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::GetXact(const std::string& appId, std::string& result) {
+            result = R"({"xact_token":"sample_xact_token"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::NavigateToEntityPage(const std::string& appId, std::string& result) {
+            result = R"({"status":"navigated_to_entity_page"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::NavigateToFullScreenVideo(const std::string& appId, std::string& result) {
+            result = R"({"status":"navigated_to_full_screen_video"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::LogMoneyBadgerLoaded(const std::string& appId, std::string& result) {
+            result = R"({"status":"money_badger_loaded_logged"})";
+            return Core::ERROR_NONE;
+        }
+
 
         // Helper that encapsulates the logic previously in MetricsHandlerDelegate::HandleBadgerMetrics
         Core::hresult Badger::HandleMetricsProcessing(const std::string& appId,
                                                       const Core::JSON::VariantContainer& params)
         {
-            auto metricsDelegate = (mDelegateHandler ? mDelegateHandler->getMetricsDelegate() : nullptr);
+            auto metricsDelegate = (mDelegate ? mDelegate->getMetricsDelegate() : nullptr);
             if (!metricsDelegate) {
                 LOGWARN("badger.metricsHandler: metrics delegate unavailable");
                 return Core::ERROR_UNAVAILABLE;
@@ -888,7 +1010,37 @@ namespace WPEFramework {
             return metricsDelegate->MetricsHandler(empty, args, appId);
         }
 
-        Core::hresult Badger::HandleAppGatewayRequest(const Exchange::GatewayContext& context, const std::string& method, const std::string& payload, std::string& result) {
+        uint32_t Badger::CompareAppSettings(const std::string& appId, std::string& result) {
+            result = R"({"status":"tag: endOfLife - No longer supported"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::ResizeVideo(const std::string& appId, std::string& result) {
+            result = R"({"status":"tag: endOfLife - No longer supported"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::XSCD(const std::string& appId, std::string& result) {
+            result = R"({"xscd_token":"tag: endOfLife - No longer supported"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::GetOat(const std::string& appId, std::string& result) {
+            result = R"({"oat_token":"tag: endOfLife - No longer supported"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::Deeplink(const std::string& appId, std::string& result) {
+            result = R"({"status":"tag: endOfLife - No longer supported"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::GetSystemInfo(const std::string& appId, std::string& result) {
+            result = R"({"system_info":"tag: endOfLife - No longer supported"})";
+            return Core::ERROR_NONE;
+        }
+
+        Core::hresult Badger::HandleAppGatewayRequest(const Exchange::Context& context, const std::string& method, const std::string& payload, std::string& result) {
             LOGTRACE("HandleAppGatewayRequest: method=%s, payload=%s, appId=%s", method.c_str(), payload.c_str(), context.appId.c_str());
 
             const std::string lower = StringUtils::toLower(method);
@@ -897,12 +1049,8 @@ namespace WPEFramework {
                     {"info", [this](const std::string& appId, std::string& r) { return DeviceInfo(appId, r); }},
                     {"deviceCapabilities", [this](const std::string& appId, std::string& r) { return DeviceCapabilities(appId, r); }},
                     {"networkConnectivity", [this](const std::string& appId, std::string& r) { return NetworkConnectivity(appId, r); }},
-                    {"shutdown", [this](const std::string& appId, std::string& r) { return Shutdown(appId, r); }},
                     {"getDeviceId", [this](const std::string& appId, std::string& r) { return GetDeviceId(appId, r); }},
                     {"getDeviceName", [this](const std::string& appId, std::string& r) { return GetDeviceName(appId, r); }},
-                    {"dismissLoadingScreen", [this](const std::string& appId, std::string& r) { return DismissLoadingScreen(appId, r); }},
-                    {"deviceUid", [this](const std::string& appId, std::string& r) { return GetDeviceUid(appId, r); }},
-                    {"accountUid", [this](const std::string& appId, std::string& r) { return GetAccountUid(appId, r); }},
                     {"localizationPostalCode", [this](const std::string& appId, std::string& r) { return GetLocalizationPostalCode(appId, r); }},
                     {"showToaster", [this](const std::string& appId, std::string& r) { return ShowToaster(appId, r); }},
                     {"getPayload", [this](const std::string& appId, std::string& r) { return GetPayload(appId, r); }},
@@ -912,15 +1060,49 @@ namespace WPEFramework {
                     {"showPinOverlay", [this](const std::string& appId, std::string& r) { return ShowPinOverlay(appId, r); }},
                     {"settings", [this](const std::string& appId, std::string& r) { return Settings(appId, r); }},
                     {"subscribeToSettings", [this](const std::string& appId, std::string& r) { return SubscribeToSettings(appId, r); }},
+                    {"deviceUid", [this](const std::string& appId, std::string& r) { return GetDeviceUid(appId, r); }},
+                    {"accountUid", [this](const std::string& appId, std::string& r) { return GetAccountUid(appId, r); }},
+                    {"entitlementsAccountLink", [this](const std::string& appId, std::string& r) { return EntitlementsAccountLink(appId, r); }},
+                    {"mediaEventAccountLink", [this](const std::string& appId, std::string& r) { return MediaEventAccountLink(appId, r); }},
+                    {"launchpadAccountLink", [this](const std::string& appId, std::string& r) { return LaunchpadAccountLink(appId, r); }},
+                    {"compareAppSettings", [this](const std::string& appId, std::string& r) { return CompareAppSettings(appId, r); }},
+                    {"xifa", [this](const std::string& appId, std::string& r) { return XIFA(appId, r); }},
+                    {"appStoreId", [this](const std::string& appId, std::string& r) { return AppStoreId(appId, r); }},
+                    {"limitAdTracking", [this](const std::string& appId, std::string& r) { return LimitAdTracking(appId, r); }},
+                    {"deviceAdAttributes", [this](const std::string& appId, std::string& r) { return DeviceAdAttributes(appId, r); }},
+                    {"initObject", [this](const std::string& appId, std::string& r) { return InitObject(appId, r); }},
+                    {"appAuth", [this](const std::string& appId, std::string& r) { return AppAuth(appId, r); }},
+                    {"oauthBearerToken", [this](const std::string& appId, std::string& r) { return OAuthBearerToken(appId, r); }},
+                    {"xscd", [this](const std::string& appId, std::string& r) { return XSCD(appId, r); }},
+                    {"refreshPlatformAuthToken", [this](const std::string& appId, std::string& r) { return RefreshPlatformAuthToken(appId, r); }},
+                    {"getOat", [this](const std::string& appId, std::string& r) { return GetOat(appId, r); }},
+                    {"getXact", [this](const std::string& appId, std::string& r) { return GetXact(appId, r); }},
+                    {"deeplink", [this](const std::string& appId, std::string& r) { return Deeplink(appId, r); }},
+                    {"navigateToEntityPage", [this](const std::string& appId, std::string& r) { return NavigateToEntityPage(appId, r); }},
+                    {"navigateToFullScreenVideo", [this](const std::string& appId, std::string& r) { return NavigateToFullScreenVideo(appId, r); }},
+                    {"resizeVideo", [this](const std::string& appId, std::string& r) { return ResizeVideo(appId, r); }},
+                    {"logMoneyBadgerLoaded", [this](const std::string& appId, std::string& r) { return LogMoneyBadgerLoaded(appId, r); }},
+                    {"getSystemInfo", [this](const std::string& appId, std::string& r) { return GetSystemInfo(appId, r); }},
+                    {"metricsHandler", [this](const std::string& appId, std::string& r) { return MetricsHandler(appId, r); }},
+                    {"shutdown",
+                            [this](const std::string& appId, std::string& r) {
+                                (void) r;
+                                return Shutdown(appId);
+                            }},
+                    {"dismissLoadingScreen",
+                            [this](const std::string& appId, std::string& r) {
+                                (void) r;
+                                return DismissLoadingScreen(appId);
+                            }},
             };
 
             // Run setter handler
             if (auto it = simpleHandlers.find(lower); it != simpleHandlers.end()) {
-                std::string appId = context.appId.c_str();
+                std::string appId = context.appId;
                 return it->second(appId, result);
             }
 
-            // badger.metricsHandler - accepts multiple shapes and returns true
+                        // badger.metricsHandler - accepts multiple shapes and returns true
             if (lower == "badger.metricshandler") {
                 Core::JSON::VariantContainer params;
                 Core::OptionalType<Core::JSON::Error> parseError;
@@ -941,57 +1123,10 @@ namespace WPEFramework {
                 result = "true";
                 return Core::ERROR_NONE;
             }
-
-            // badger.settings - gather settings for requested keys into a combined result object
-            if (lower == "badger.settings") {
-                LOGDBG("[badger.settings] payload: %s", payload.c_str());
-
-                // Parse params to extract keys array
-                JsonObject paramsObj;
-                if (!paramsObj.FromString(payload)) {
-                    LOGERR("[badger.settings] invalid JSON params");
-                    return Core::ERROR_BAD_REQUEST;
-                }
-
-                std::vector<std::string> keys;
-                if (paramsObj.HasLabel("keys")) {
-                    const JsonArray& arr = paramsObj["keys"].Array();
-                    for (uint32_t i = 0; i < arr.Length(); ++i) {
-                        keys.push_back(arr[i].String());
-                    }
-                } else {
-                    LOGWARN("[badger.settings] 'keys' not provided, returning empty object");
-                }
-
-                WPEFramework::Core::JSON::VariantContainer outObj;
-                Core::hresult sdResult = Core::ERROR_UNAVAILABLE;
-
-                if (mDelegateHandler) {
-                    auto settingsDelegate = mDelegateHandler->getSettingsDelegate();
-                    if (settingsDelegate) {
-                        sdResult = settingsDelegate->BuildSettings(keys, outObj);
-                    } else {
-                        LOGWARN("[badger.settings] settings delegate unavailable");
-                    }
-                } else {
-                    LOGWARN("[badger.settings] delegate handler not initialized");
-                }
-
-                // Always respond with an object (possibly empty) and do not fail the whole request
-                DelegateUtils::SerializeToJsonString(outObj, result);
-
-                if (sdResult != Core::ERROR_NONE) {
-                    LOGWARN("[badger.settings] BuildSettings returned rc=%d", sdResult);
-                } else {
-                    LOGDBG("[badger.settings] result: %s", result.c_str());
-                }
-
-                return Core::ERROR_NONE;
-            }
-
-            // Unknown method
-            ErrorUtils::NotSupported(result);
-            LOGERR("Unsupported method: %s", method.c_str());
+            
+            // TODO: uncomment below 2 lines in RDKE
+            // ErrorUtils::NotSupported(result);
+            // LOGERR("Unsupported method: %s", method.c_str());
             return Core::ERROR_UNKNOWN_KEY;
         }
 
