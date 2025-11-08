@@ -73,8 +73,6 @@ namespace WPEFramework {
             uint32_t GetNativeDimensions(const std::string& appId, std::string& nativeDimensionsJson);
             uint32_t GetVideoDimensions(const std::string& appId, std::string& videoDimensionsJson);
             uint32_t GetDeviceModel(const std::string& appId, std::string& deviceModelJson);
-            uint32_t GetDeviceUid(const std::string& appId, std::string& deviceUidJson);
-            uint32_t GetAccountUid(const std::string& appId, std::string& accountUidJson);
             uint32_t GetLocalizationPostalCode(const std::string& appId, std::string& postalCodeJson);
             uint32_t ShowToaster(const std::string& appId, std::string& result);
             uint32_t GetPayload(const std::string& appId, std::string& payloadJson);
@@ -84,15 +82,15 @@ namespace WPEFramework {
             uint32_t ShowPinOverlay(const std::string& appId, std::string& result);
             uint32_t Settings(const std::string& appId, std::string& result);
             uint32_t SubscribeToSettings(const std::string& appId, std::string& result);
-            uint32_t EntitlementsAccountLink(const std::string& appId, std::string& result);
-            uint32_t MediaEventAccountLink(const std::string& appId, std::string& result);
+            uint32_t EntitlementsAccountLink(const std::string& appId, const std::string& payload, std::string& result);
+            uint32_t MediaEventAccountLink(const std::string& appId, const std::string& payload, std::string& result);
             uint32_t LaunchpadAccountLink(const std::string& appId, std::string& result);
             uint32_t CompareAppSettings(const std::string& appId, std::string& result);
-            uint32_t XIFA(const std::string& appId, std::string& result);
+            uint32_t XIFA(const std::string& appId, std::string& advertisingId);
             uint32_t AppStoreId(const std::string& appId, std::string& result);
-            uint32_t LimitAdTracking(const std::string& appId, std::string& result);
+            uint32_t LimitAdTracking(const std::string& appId, bool& limitAdTracking);
             uint32_t DeviceAdAttributes(const std::string& appId, std::string& result);
-            uint32_t InitObject(const std::string& appId, std::string& result);
+            uint32_t InitObject(const std::string& appId, const std::string& options, std::string& result);
             uint32_t AppAuth(const std::string& appId, std::string& result);
             uint32_t OAuthBearerToken(const std::string& appId, std::string& result);
             uint32_t XSCD(const std::string& appId, std::string& result);
@@ -105,14 +103,12 @@ namespace WPEFramework {
             uint32_t ResizeVideo(const std::string& appId, std::string& result);
             uint32_t LogMoneyBadgerLoaded(const std::string& appId, std::string& result);
             uint32_t GetSystemInfo(const std::string& appId, std::string& result);
-
+            uint32_t MetricsHandler(const std::string& appId, std::string& result);
 
             uint32_t Shutdown(const std::string& appId);
             uint32_t DismissLoadingScreen(const std::string& appId);
 
-            // Helper that processes metrics payloads (moved from MetricsHandlerDelegate)
-            Core::hresult HandleMetricsProcessing(const std::string& appId,
-                                                  const Core::JSON::VariantContainer& params);
+
 
           private:
             PluginHost::IShell* mService;

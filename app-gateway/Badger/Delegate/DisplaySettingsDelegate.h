@@ -26,116 +26,115 @@
 #define DISPLAY_SETTINGS_CALLSIGN "org.rdk.DisplaySettings"
 #endif
 
-class DisplaySettingsDelegate {
-  public:
-    DisplaySettingsDelegate(PluginHost::IShell* shell) : _shell(shell) {}
+namespace WPEFramework {
+    class DisplaySettingsDelegate {
+      public:
+        DisplaySettingsDelegate(PluginHost::IShell* shell) : _shell(shell) {}
 
-    ~DisplaySettingsDelegate() = default;
+        ~DisplaySettingsDelegate() = default;
 
-  public:
-    uint32_t GetAudioFormat(std::string& audioModesJson) {
-        audioModesJson.clear();
-        auto link = DelegateUtils::AcquireLink(_shell, DISPLAY_SETTINGS_CALLSIGN);
-        if (!link) {
-            return Core::ERROR_UNAVAILABLE;
-        }
-
-        JsonObject params;
-        JsonObject response;
-
-        uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getAudioFormat"), params, response);
-        if (rc != Core::ERROR_NONE) {
-            LOGERR("getAudioFormat failed, rc=%u", rc);
-            return rc;
-        }
-
-        WPEFramework::Core::JSON::VariantContainer result;
-        WPEFramework::Core::JSON::VariantContainer supportedList;
-
-        // currentAudioFormat
-        if (response.HasLabel("currentAudioFormat")) {
-            result["current_audio_mode"] = response["currentAudioFormat"].String();
-        } else {
-            result["current_audio_mode"] = "UNKNOWN";
-        }
-
-        // supportedAudioFormat[]
-        if (response.HasLabel("supportedAudioFormat")) {
-            const JsonArray& arr = response["supportedAudioFormat"].Array();
-            for (uint32_t i = 0; i < arr.Length(); ++i) {
-                supportedList[i] = arr[i].String();
+      public:
+        uint32_t GetAudioFormat(std::string& audioModesJson) {
+            audioModesJson.clear();
+            auto link = DelegateUtils::AcquireLink(_shell, DISPLAY_SETTINGS_CALLSIGN);
+            if (!link) {
+                return Core::ERROR_UNAVAILABLE;
             }
-        }
 
-        result["supported_audio_modes"] = supportedList;
+            JsonObject params;
+            JsonObject response;
 
-        DelegateUtils::SerializeToJsonString(result, audioModesJson);
+            uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getAudioFormat"), params, response);
+            if (rc != Core::ERROR_NONE) {
+                LOGERR("getAudioFormat failed, rc=%u", rc);
+                return rc;
+            }
 
-        LOGINFO("AudioFormat JSON: %s", audioModesJson.c_str());
+            Core::JSON::VariantContainer result;
+            Core::JSON::VariantContainer supportedList;
 
-        return Core::ERROR_NONE;
-    }
+            // currentAudioFormat
+            if (response.HasLabel("currentAudioFormat")) {
+                result["current_audio_mode"] = response["currentAudioFormat"].String();
+            } else {
+                result["current_audio_mode"] = "UNKNOWN";
+            }
 
-    uint32_t GetHDRSupport(std::string& hdrJson) {
-        hdrJson.clear();
-        auto link = DelegateUtils::AcquireLink();
-        if (!link) {
-            LOGERR("displaySettingsLink is null in GetHDRSupport()");
-            return Core::ERROR_UNAVAILABLE;
-        }
-
-        JsonObject params;
-        JsonObject response;
-
-        WPEFramework::Core::JSON::VariantContainer result;
-        WPEFramework::Core::JSON::VariantContainer settopProfile;
-        WPEFramework::Core::JSON::VariantContainer tvProfile;
-
-        auto fillProfile = [&](const JsonObject& resp, WPEFramework::Core::JSON::VariantContainer& profileVC) {
-            Core::JSON::VariantContainer temp;
-            temp["supportsHDR"] = resp.HasLabel("supportsHDR") ? resp["supportsHDR"].Boolean() : false;
-
-            if (resp.HasLabel("standards")) {
-                WPEFramework::Core::JSON::VariantContainer standardsList;
-                const JsonArray& arr = resp["standards"].Array();
+            // supportedAudioFormat[]
+            if (response.HasLabel("supportedAudioFormat")) {
+                const JsonArray& arr = response["supportedAudioFormat"].Array();
                 for (uint32_t i = 0; i < arr.Length(); ++i) {
-                    standardsList[i] = arr[i].String();
+                    std::string indexKey = std::to_string(i);
+                    supportedList[indexKey.c_str()] = arr[i].String();
                 }
-                temp["standards"] = standardsList;
             }
 
-            profileVC = temp;
-        };
+            result["supported_audio_modes"] = supportedList;
+            result.ToString(audioModesJson);
 
-        // ---- Settop HDR Support ----
-        response.Clear();
-        uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getSettopHDRSupport"), params, response);
-        if (rc == Core::ERROR_NONE) {
-            fillProfile(response, settopProfile);
-        } else {
-            LOGERR("getSettopHDRSupport failed, rc=%u", rc);
+            LOGINFO("AudioFormat JSON: %s", audioModesJson.c_str());
+            return Core::ERROR_NONE;
         }
 
-        // ---- TV HDR Support ----
-        response.Clear();
-        rc = link->Invoke<JsonObject, JsonObject>(_T("getTvHDRSupport"), params, response);
-        if (rc == Core::ERROR_NONE) {
-            fillProfile(response, tvProfile);
-        } else {
-            LOGERR("getTvHDRSupport failed, rc=%u", rc);
+        uint32_t GetHDRSupport(std::string& hdrJson) {
+            hdrJson.clear();
+            auto link = DelegateUtils::AcquireLink(_shell, DISPLAY_SETTINGS_CALLSIGN);
+            if (!link) {
+                LOGERR("displaySettingsLink is null in GetHDRSupport()");
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            JsonObject params;
+            JsonObject response;
+
+            Core::JSON::VariantContainer result;
+            Core::JSON::VariantContainer settopProfile;
+            Core::JSON::VariantContainer tvProfile;
+
+            auto fillProfile = [&](const JsonObject& resp, Core::JSON::VariantContainer& profileVC) {
+                Core::JSON::VariantContainer temp;
+                temp["supportsHDR"] = resp.HasLabel("supportsHDR") ? resp["supportsHDR"].Boolean() : false;
+
+                if (resp.HasLabel("standards")) {
+                    Core::JSON::VariantContainer standardsList;
+                    const JsonArray& arr = resp["standards"].Array();
+                    for (uint32_t i = 0; i < arr.Length(); ++i) {
+                        std::string indexKey = std::to_string(i);
+                        standardsList[indexKey.c_str()] = arr[i].String();
+                    }
+                    temp["standards"] = standardsList;
+                }
+
+                profileVC = temp;
+            };
+
+            // ---- Settop HDR Support ----
+            response.Clear();
+            uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getSettopHDRSupport"), params, response);
+            if (rc == Core::ERROR_NONE) {
+                fillProfile(response, settopProfile);
+            } else {
+                LOGERR("getSettopHDRSupport failed, rc=%u", rc);
+            }
+
+            // ---- TV HDR Support ----
+            response.Clear();
+            rc = link->Invoke<JsonObject, JsonObject>(_T("getTvHDRSupport"), params, response);
+            if (rc == Core::ERROR_NONE) {
+                fillProfile(response, tvProfile);
+            } else {
+                LOGERR("getTvHDRSupport failed, rc=%u", rc);
+            }
+
+            result["settop_hdr_support"] = settopProfile;
+            result["tv_hdr_support"] = tvProfile;
+            result.ToString(hdrJson);
+
+            LOGINFO("HDR JSON: %s", hdrJson.c_str());
+            return Core::ERROR_NONE;
         }
 
-        result["settop_hdr_support"] = settopProfile;
-        result["tv_hdr_support"] = tvProfile;
-
-        DelegateUtils::SerializeToJsonString(result, hdrJson);
-
-        LOGINFO("HDR JSON: %s", hdrJson.c_str());
-
-        return Core::ERROR_NONE;
-    }
-
-  private:
-    PluginHost::IShell* _shell;
-    mutable Core::CriticalSection mAdminLock;
-};
+      private:
+        PluginHost::IShell* _shell;
+    };
+}  // namespace WPEFramework

@@ -26,19 +26,20 @@
 #define HDCP_PROFILE_CALLSIGN "org.rdk.HdcpProfile"
 #endif
 
-class HdcpProfileDelegate {
-  public:
-    HdcpProfileDelegate(PluginHost::IShell* shell) : _shell(shell) {}
+namespace WPEFramework {
+    class HdcpProfileDelegate {
+      public:
+        HdcpProfileDelegate(PluginHost::IShell* shell) : _shell(shell) {}
 
-    ~HdcpProfileDelegate() = default;
+        ~HdcpProfileDelegate() = default;
 
-  public:
-    uint32_t GetHDCPStatus(std::string& hdcpJson) {
-        hdcpJson.clear();
+      public:
+        uint32_t GetHDCPStatus(std::string& hdcpJson) {
+            hdcpJson.clear();
 
-        auto link = DelegateUtils::AcquireLink();
-        if (!link) {
-            hdcpJson = R"({
+            auto link = DelegateUtils::AcquireLink(_shell, HDCP_PROFILE_CALLSIGN);
+            if (!link) {
+                hdcpJson = R"({
             "connected": false,
             "hdcp_compliant": false,
             "hdcp_enabled": false,
@@ -46,18 +47,18 @@ class HdcpProfileDelegate {
             "receiver_hdcp_version": "UNKNOWN",
             "current_hdcp_version": "UNKNOWN"
         })";
-            LOGWARN("GetHDCPStatus(): link unavailable, returning default HDCP values");
-            return Core::ERROR_UNAVAILABLE;
-        }
+                LOGWARN("GetHDCPStatus(): link unavailable, returning default HDCP values");
+                return Core::ERROR_UNAVAILABLE;
+            }
 
-        JsonObject params;
-        JsonObject response;
+            JsonObject params;
+            JsonObject response;
 
-        uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getHDCPStatus"), params, response);
-        if (rc != Core::ERROR_NONE || !response.HasLabel("HDCPStatus")) {
-            LOGWARN("getHDCPStatus failed or missing HDCPStatus, rc=%u", rc);
+            uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getHDCPStatus"), params, response);
+            if (rc != Core::ERROR_NONE || !response.HasLabel("HDCPStatus")) {
+                LOGWARN("getHDCPStatus failed or missing HDCPStatus, rc=%u", rc);
 
-            hdcpJson = R"({
+                hdcpJson = R"({
             "connected": false,
             "hdcp_compliant": false,
             "hdcp_enabled": false,
@@ -65,29 +66,29 @@ class HdcpProfileDelegate {
             "receiver_hdcp_version": "UNKNOWN",
             "current_hdcp_version": "UNKNOWN"
         })";
-            return rc;
+                return rc;
+            }
+
+            const string hdcpRaw = response["HDCPStatus"].String();
+            WPEFramework::Core::JSON::VariantContainer source;
+            source.FromString(hdcpRaw);
+
+            WPEFramework::Core::JSON::VariantContainer result;
+
+            result["connected"] = source["connected"];
+            result["hdcp_compliant"] = source["hdcp_compliant"];
+            result["hdcp_enabled"] = source["hdcp_enabled"];
+            result["supported_hdcp_version"] = source["supported_hdcp_version"];
+            result["receiver_hdcp_version"] = source["receiver_hdcp_version"];
+            result["current_hdcp_version"] = source["current_hdcp_version"];
+
+            result.ToString(hdcpJson);
+
+            LOGINFO("HDCP JSON: %s", hdcpJson.c_str());
+            return Core::ERROR_NONE;
         }
 
-        const string hdcpRaw = response["HDCPStatus"].String();
-        WPEFramework::Core::JSON::VariantContainer source;
-        source.FromString(hdcpRaw);
-
-        WPEFramework::Core::JSON::VariantContainer result;
-
-        result["connected"] = source["connected"];
-        result["hdcp_compliant"] = source["hdcp_compliant"];
-        result["hdcp_enabled"] = source["hdcp_enabled"];
-        result["supported_hdcp_version"] = source["supported_hdcp_version"];
-        result["receiver_hdcp_version"] = source["receiver_hdcp_version"];
-        result["current_hdcp_version"] = source["current_hdcp_version"];
-
-        DelegateUtils::SerializeToJsonString(result, hdcpJson);
-
-        LOGINFO("HDCP JSON: %s", hdcpJson.c_str());
-        return Core::ERROR_NONE;
-    }
-
-  private:
-    PluginHost::IShell* _shell;
-    mutable Core::CriticalSection mAdminLock;
-};
+      private:
+        PluginHost::IShell* _shell;
+    };
+}  // namespace WPEFramework
