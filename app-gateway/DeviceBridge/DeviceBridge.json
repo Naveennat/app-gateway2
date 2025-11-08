@@ -1,0 +1,588 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/Thunder/master/Tools/JsonGenerator/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "DeviceBridge API", 
+        "class": "DeviceBridge", 
+        "description": "The `DeviceBridge` plugin allows you to interact with an accessory that is connected to an RDK device over a bi-directional communication channel."
+    },
+    "definitions": {
+        "appVersion": {
+            "summary": "The application version",
+            "type": "string",
+            "example": "1.0.0.61"
+        },
+        "packageName": {
+            "summary": "The application package name",
+            "type": "string",
+            "example": "us.zoom.videomeetings"
+        },
+        "appId": {
+            "$ref": "#/definitions/packageName"
+        },
+        "property": {
+            "summary": "The property name",
+            "type": "string",
+            "example": "deviceSerial"
+        },
+        "ipAddress": {
+            "summary": "The IP address of the accessory",
+            "type": "string",
+            "example": "192.168.0.84"
+        },
+        "port": {
+            "summary": "The port of the accessory",
+            "type": "string",
+            "example": "45678"
+        },
+        "connected": {
+            "summary": "`true` if the accessory is currently connected, otherwise `false`",
+            "type": "boolean",
+            "example": true
+        },
+        "usbInterface": {
+            "summary": "`true` if the USB interface is detected, otherwise `false`",
+            "type": "boolean",
+            "example": true
+        },
+        "reason": {
+            "summary": "the connection status",
+            "enum": [
+                "BOOTING",
+                "AUTHENTICATING",
+                "INVALID_CERTIFICATE",
+                "CONNECTED",
+                "DISCONNECTED"
+            ],
+            "type": "string",
+            "example": "CONNECTED"
+        },
+        "result": {
+            "type":"object",
+            "properties": {
+                "success": {
+                    "$ref": "#/definitions/success"
+                }
+            },
+            "required": [
+                "success"
+            ]
+        },
+        "success": {
+            "summary": "Whether the request succeeded",
+            "type": "boolean",
+            "example": true
+        }
+    },
+    "methods": {
+        "changeView": {
+            "summary": "Changes the configured view layout on the connected accessory or informs the accessory about a layout change on the display",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appId": {
+                        "$ref": "#/definitions/appId"
+                    },
+                    "viewType": {
+                        "summary": "The view layout",
+                        "enum": [
+                            "FULLSCREEN",
+                            "PIP",
+                            "SIDEBAR_HORIZONTAL",
+                            "SIDEBAR_VERTICAL"
+                        ],
+                        "type": "string",
+                        "example": "FULLSCREEN"
+                    }
+                },
+                "required": [
+                    "appId",
+                    "viewType"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "checkAppState": {
+            "summary": "Returns the state of the specified application.\n \n**States** \n| State | Description | \n| :----------- | :----------- | \n| `READY` | The application is installed but not launched | \n| `LAUNCHING` | The application is created but not yet in the Foreground | \n| `FOREGROUND` | The application is in the foreground | \n| `BACKGROUND` | The application is in the background | \n| `CLOSING` | The application is no longer visible to the user | \n| `TERMINATED` | The application is destroyed by the system | \n| `UNKNOWN` | The application is not installed on the device |",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "packageName": {
+                        "$ref": "#/definitions/packageName"
+                    }
+                },
+                "required": [
+                    "packageName"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "packageName": {
+                        "$ref": "#/definitions/packageName"
+                    },
+                    "state": {
+                        "summary": "The current state of the application",
+                        "type": "string",
+                        "example": "FOREGROUND"
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "packageName",
+                    "state",
+                    "success"
+                ]
+            }
+        },
+        "closeApp": {
+            "summary": "Closes an application or moves the application to the background on a connected accessory. The call is considered successful if the application reaches the desired state even if no action was completed. When an application goes to the background, the launcher comes to the foreground.  \n \n**Outcomes** \n| Precondition | forceClose value | Description |  \n| :----------- | :----------- | :----------- | \n| Application in foreground | false | Application moves to background | \n| Application in foreground | true | Application closes | \n| Application in background | false | Nothing happens | \n| Application in background | true | Application closes | \n| Application not started/installed | false | Nothing happens | \n| Application not started/installed | true | Nothing happens |",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "packageName": {
+                        "$ref": "#/definitions/packageName"
+                    },
+                    "forceClose": {
+                        "summary": "Whether to close the application (`true`) or move the application to the background (`false`)",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [
+                    "packageName",
+                    "forceClose"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "deviceStandby": {
+            "summary": "Puts the connected accessory into standby",
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "factoryResetDevice": {
+            "summary": "Performs a factory reset of the connected accessory (wipes the user data and reboots)",
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "getAppMuteState": {
+            "summary": "Gets the current application mute state for the microphone and camera",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appId": {
+                        "$ref": "#/definitions/appId"
+                    }
+                },
+                "required": [
+                    "appId"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "camera": {
+                        "summary": "Whether the camera is muted",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "mic": {
+                        "summary": "Whether the mic is muted",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "camera",
+                    "mic",
+                    "success"
+                ]
+            }      
+        },
+        "getConnectionStatus": {
+            "summary": "Returns the connection status of an accessory",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "ipAddress": {
+                        "$ref": "#/definitions/ipAddress"
+                    },
+                    "port": {
+                        "$ref": "#/definitions/port"
+                    },
+                    "connected": {
+                        "$ref": "#/definitions/connected"
+                    },
+                    "usbInterface": {
+                        "$ref": "#/definitions/usbInterface"
+                    },
+                    "reason": {
+                        "$ref": "#/definitions/reason"
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "ipAddress",
+                    "port",
+                    "connected",
+                    "usbInterface",
+                    "reason",
+                    "success"
+                ]
+            }
+        },
+        "getFirmwareUpdateState": {
+            "summary": "Returns the firmware update state from the connected accessory",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "summary": "The firmware update state",
+                        "type": "string",
+                        "example": "NO_UPDATE"
+                    },
+                    "compulsory": {
+                        "summary": "`true` if the firmware update is compulsory, otherwise `false`",
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "progress": {
+                        "summary": "The percent progress of the entire flow",
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "state",
+                    "compulsory",
+                    "progress",
+                    "success"
+                ]
+            }
+        },
+        "getInstalledAppList": {
+            "summary": "Lists the applications installed on a connected accessory. If a package name is included as part of the request, then only information about the specific application is returned. If no package name is included, then information about all installed applications is returned. \n \n### Events\n \n No Events.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "packageName": {
+                        "$ref": "#/definitions/packageName"
+                    }
+                },
+                "required": [
+                    ""
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "installedApps": {
+                        "summary": "Information about installed application(s)",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "packageName": {
+                                    "$ref": "#/definitions/packageName"
+                                },
+                                "version": {
+                                    "$ref": "#/definitions/appVersion"
+                                }
+                            },
+                            "required": [
+                                "packageName",
+                                "version"
+                            ]
+                        }
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "installedApps",
+                    "success"
+                ]
+            }
+        },
+        "getMuteControl": {
+            "summary": "Gets the current accessory mute state for the microphone and camera",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "muted": {
+                        "summary": "Whether the microphone and camera are muted",
+                        "type":"boolean",
+                        "example": true
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "muted",
+                    "success"
+                ]
+            }
+        },
+        "getProperty": {
+            "summary": "Gets a property on the connected accessory",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "property": {
+                        "$ref": "#/definitions/property"
+                    }
+                },
+                "required": [
+                    "property"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "deviceSerial": {
+                        "summary": "The property name and value",
+                        "type": "string",
+                        "example": "VC02SK0213100056N"
+
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "success"
+                ]
+            }
+        },
+        "getSoftwareLicense": {
+            "summary": "Retrieves a license string from the connected accessory",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "licenseText": {
+                        "summary": "The license",
+                        "type": "string",
+                        "example": "" 
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "licenseText",
+                    "success"
+                ]
+            }
+        },
+        "launchApp": {
+            "summary": "Launches an application on a connected accessory",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "$ref": "#/definitions/packageName"
+                    },
+                    "dataUri": {
+                        "summary": "A data URI that is passed to the application",
+                        "type": "string",
+                        "example": "zoomus://zoom.us/join?confno=<room number>&pwd=<room password>&zc=0&uname=Betty"
+                    },
+                    "componentName": {
+                        "summary": "The exact application component that should receive the dat URI when `dataUri` is defined. The value can be omitted even when a data URI is defined",
+                        "type": "string",
+                        "example": "us.zoom.videomeetings/com.zipow.videobox.JoinByURLActivity"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "notifyHostPowerState": {
+            "summary": "Notifies the connected accessory about the power state of the device",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "mode": {
+                        "summary": "The power state",
+                        "type": "string",
+                        "enum": [
+                            "ACTIVE",
+                            "ACTIVE STANDBY",
+                            "NETWORKED STANDBY",
+                            "STANDBY"
+                        ],
+                        "example": "STANDBY"
+                    }
+                },
+                "required": [
+                    "mode"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },        
+        "rebootDevice": {
+            "summary": "Reboots the connected accessory",
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "sendKeyEvent": {
+            "summary": "Sends a remote control key press to a connected accessory",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "keyCode": {
+                        "summary": "An RDK-native RCU key code",
+                        "type": "string",
+                        "example": "39"
+                    },
+                    "keyState": {
+                        "summary": "The key state. Either down (`0`) or up (`1`).",
+                        "enum": [
+                            "0",
+                            "1"
+                        ],
+                        "type": "string",
+                        "example": "0"
+                    }
+                },
+                "required": [
+                    "keyCode",
+                    "keyState"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "setAppMuteState": {
+            "summary": "Sets the application mute state for the camera or microphone on the connected accessory",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appId": {
+                        "$ref": "#/definitions/appId"
+                    },
+                    "type": {
+                        "summary": "The camera or the microphone component",
+                        "type": "string",
+                        "enum": [
+                            "Camera",
+                            "Mic"
+                        ],
+                        "example": "Mic"
+                    },
+                    "value": {
+                        "summary": "The mute state. `true` for muted or `false` for unmuted",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [
+                    "appId",
+                    "type",
+                    "value"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "setProperty": {
+            "summary": "Sets a property on the connected accessory.  \n\n **Supported Properties** \n* `btMAC`  \n* `deviceSerial` \n* `deviceModelName` \n* `deviceMAC` \n* `firmwareVersion` \n* `altFirmwareVersion` \n* `ro.vendor.build.sky.release.version` \n* `pairedDeviceMAC` \n* `pairedDeviceSerial` \n* `pairedFirmwareVersion` \n* `pairedDeviceAccountID` \n* `pairedBluetoothMAC` \n* `pairedDeviceLocation`",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "property": {
+                        "$ref": "#/definitions/property"
+                    },
+                    "value": {
+                        "summary": "The property value",
+                        "type": "string",
+                        "example": "VC02SK0213100056N"
+                    }
+                },
+                "required": [
+                    "property",
+                    "value"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "triggerFirmwareInstall": {
+            "summary": "Triggers a firmware install on the connected accessory. \n\n **NOTE**: This method currently calls `triggerFirmwareCheck` due to unimplemented device manager functions.",
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "wipeDeviceForNewPairing": {
+            "summary": "Sets all the host and household values on the connected accessory to their defaults without performing an FSR or AFR",
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        }
+    },
+    "events": {
+        "ConnectionStatusChanged":{
+            "summary": "Triggered when the status of the connection to the accessory changes",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "ipAddress": {
+                        "$ref": "#/definitions/ipAddress"
+                    },
+                    "port": {
+                        "$ref": "#/definitions/port"
+                    },
+                    "connected": {
+                        "$ref": "#/definitions/connected"
+                    },
+                    "usbInterface": {
+                        "$ref": "#/definitions/usbInterface"
+                    },
+                    "reason": {
+                        "$ref": "#/definitions/reason"
+                    },
+                    "success": {
+                        "$ref": "#/definitions/success"
+                    }
+                },
+                "required":[
+                    "ipAddress",
+                    "port",
+                    "connected",
+                    "usbInterface",
+                    "reason",
+                    "success"
+                ]
+            }
+        }
+    }
+}
