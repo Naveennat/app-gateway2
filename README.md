@@ -1,5 +1,30 @@
 # app-gateway2
 
+Minimal preview server
+
+Quick start
+- npm start
+- or: node server.js
+
+Environment variables
+- PORT: Port to listen on (default: 3000)
+- HOST: Host interface to bind (default: 0.0.0.0). The server always binds to 0.0.0.0 by default for container previews.
+
+Endpoints
+- GET /        -> Simple HTML page: "app-gateway2 Preview" and links to local docs/reports if present
+- GET /health  -> {"status":"ok"}
+
+Procfile
+- A Procfile is present with: `web: node server.js` for platforms that use it.
+
+Notes
+- No external dependencies are required. The server uses Node's built-in http module.
+- The preview system only requires that a start command exists and the app listens on the provided PORT and 0.0.0.0.
+
+---
+
+Original README (retained for reference)
+
 OttServices Thunder JSON-RPC plugin
 
 Summary
@@ -110,4 +135,3 @@ Troubleshooting checklist
 - [ ] The endpoint method and casing are correct: getpermissions or getPermissions.
 - [ ] Required params are provided (e.g., appId).
 - [ ] Check logs for any implementation-specific errors (auth service, gRPC permissions service, etc.).
-
