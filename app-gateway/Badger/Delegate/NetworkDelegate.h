@@ -26,57 +26,58 @@
 #define NETWORK_CALLSIGN "org.rdk.Network"
 #endif
 
-class NetworkDelegate {
-  public:
-    NetworkDelegate(PluginHost::IShell* shell) : _shell(shell) {}
+namespace WPEFramework {
+    class NetworkDelegate {
+      public:
+        NetworkDelegate(PluginHost::IShell* shell) : _shell(shell) {}
 
-    ~NetworkDelegate() = default;
+        ~NetworkDelegate() = default;
 
-  public:
-    uint32_t GetNetworkConnectivity(std::string& connectivityJson) {
-        connectivityJson.clear();
+      public:
+        uint32_t GetNetworkConnectivity(std::string& connectivityJson) {
+            connectivityJson.clear();
 
-        auto link = DelegateUtils::AcquireLink();
-        if (!link) {
-            connectivityJson = R"({"status":"NO_ACTIVE_NETWORK_INTERFACE","networkInterface":"UNKNOWN"})";
-            LOGWARN("GetNetworkConnectivity(): link unavailable, returning fallback");
-            return Core::ERROR_UNAVAILABLE;
+            auto link = DelegateUtils::AcquireLink(_shell, NETWORK_CALLSIGN);
+            if (!link) {
+                connectivityJson = R"({"status":"NO_ACTIVE_NETWORK_INTERFACE","networkInterface":"UNKNOWN"})";
+                LOGWARN("GetNetworkConnectivity(): link unavailable, returning fallback");
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            JsonObject params;
+            JsonObject response;
+
+            uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getDefaultInterface"), params, response);
+            if (rc != Core::ERROR_NONE || !response.HasLabel("interface")) {
+                connectivityJson = R"({"status":"NO_ACTIVE_NETWORK_INTERFACE","networkInterface":"UNKNOWN"})";
+                LOGERR("getDefaultInterface failed or missing interface, rc=%u", rc);
+                return rc;
+            }
+
+            std::string iface = response["interface"].String();
+            std::string mappedType = "UNKNOWN";
+
+            if (iface.find("wlan") == 0 || iface.find("wifi") == 0) {
+                mappedType = "WIFI";
+            } else if (iface.find("eth") == 0) {
+                mappedType = "ETHERNET";
+            } else if (iface.find("moca") == 0) {
+                mappedType = "MOCA";
+            } else if (iface.find("docsis") == 0) {
+                mappedType = "DOCSIS";
+            }
+
+            WPEFramework::Core::JSON::VariantContainer result;
+            result["status"] = "SUCCESS";
+            result["networkInterface"] = mappedType;
+
+            result.ToString(connectivityJson);
+
+            LOGINFO("NetworkConnectivity JSON: %s", connectivityJson.c_str());
+            return Core::ERROR_NONE;
         }
 
-        JsonObject params;
-        JsonObject response;
-
-        uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("getDefaultInterface"), params, response);
-        if (rc != Core::ERROR_NONE || !response.HasLabel("interface")) {
-            connectivityJson = R"({"status":"NO_ACTIVE_NETWORK_INTERFACE","networkInterface":"UNKNOWN"})";
-            LOGERR("getDefaultInterface failed or missing interface, rc=%u", rc);
-            return rc;
-        }
-
-        std::string iface = response["interface"].String();
-        std::string mappedType = "UNKNOWN";
-
-        if (iface.find("wlan") == 0 || iface.find("wifi") == 0) {
-            mappedType = "WIFI";
-        } else if (iface.find("eth") == 0) {
-            mappedType = "ETHERNET";
-        } else if (iface.find("moca") == 0) {
-            mappedType = "MOCA";
-        } else if (iface.find("docsis") == 0) {
-            mappedType = "DOCSIS";
-        }
-
-        WPEFramework::Core::JSON::VariantContainer result;
-        result["status"] = "SUCCESS";
-        result["networkInterface"] = mappedType;
-
-        DelegateUtils::SerializeToJsonString(result, connectivityJson);
-
-        LOGINFO("NetworkConnectivity JSON: %s", connectivityJson.c_str());
-        return Core::ERROR_NONE;
-    }
-
-  private:
-    PluginHost::IShell* _shell;
-    mutable Core::CriticalSection mAdminLock;
-};
+      private:
+        PluginHost::IShell* _shell;
+    };
+}  // namespace WPEFramework

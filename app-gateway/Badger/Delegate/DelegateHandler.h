@@ -1,5 +1,3 @@
-#pragma once
-
 /**
 * If not stated otherwise in this file or this component's LICENSE
 * file the following copyright and licenses apply:
@@ -19,87 +17,85 @@
 * limitations under the License.
 **/
 
+#pragma once
+
 #include "DisplaySettingsDelegate.h"
 #include "HdcpProfileDelegate.h"
 #include "NetworkDelegate.h"
 #include "SystemDelegate.h"
-#include "MetricsDelegate.h"
-#include "UserSettingsDelegate.h"
-#include "PrivacyDelegate.h"
+#include "AuthServiceDelegate.h"
+#include "AdvertisingDelegate.h"
+#include "DiscoveryDelegate.h"
 
-using namespace WPEFramework;
+namespace WPEFramework {
+    class DelegateHandler {
+      public:
+        DelegateHandler()
+            : displaySettingsDelegate(nullptr), hdcpProfileDelegate(nullptr), networkDelegate(nullptr), systemDelegate(nullptr), authServiceDelegate(nullptr), advertisingDelegate(nullptr),
+              discoveryDelegate(nullptr) {}
 
-class DelegateHandler {
-  public:
-    DelegateHandler()
-        : displaySettingsDelegate(nullptr)
-        , hdcpProfileDelegate(nullptr)
-        , networkDelegate(nullptr)
-        , systemDelegate(nullptr)
-        , metricsDelegate(nullptr)
-        , userSettingsDelegate(nullptr)
-        , privacyDelegate(nullptr) {}
-
-    ~DelegateHandler() {
-        displaySettingsDelegate = nullptr;
-        hdcpProfileDelegate = nullptr;
-        networkDelegate = nullptr;
-        systemDelegate = nullptr;
-        metricsDelegate = nullptr;
-        userSettingsDelegate = nullptr;
-        privacyDelegate = nullptr;
-    }
-
-    // PUBLIC_INTERFACE
-    void setShell(PluginHost::IShell* shell) {
-        ASSERT(shell != nullptr);
-        LOGDBG("DelegateHandler::setShell");
-
-        if (displaySettingsDelegate == nullptr) {
-            displaySettingsDelegate = std::make_shared<DisplaySettingsDelegate>(shell);
+        ~DelegateHandler() {
+            displaySettingsDelegate = nullptr;
+            hdcpProfileDelegate = nullptr;
+            networkDelegate = nullptr;
+            systemDelegate = nullptr;
+            authServiceDelegate = nullptr;
+            advertisingDelegate = nullptr;
+            discoveryDelegate = nullptr;
         }
-        if (hdcpProfileDelegate == nullptr) {
-            hdcpProfileDelegate = std::make_shared<HdcpProfileDelegate>(shell);
-        }
-        if (networkDelegate == nullptr) {
-            networkDelegate = std::make_shared<NetworkDelegate>(shell);
-        }
-        if (systemDelegate == nullptr) {
-            systemDelegate = std::make_shared<SystemDelegate>(shell);
-        }
-        if (metricsDelegate == nullptr) {
-            metricsDelegate = std::make_shared<MetricsDelegate>(shell);
-        }
-        if (userSettingsDelegate == nullptr) {
-            userSettingsDelegate = std::make_shared<UserSettingsDelegate>(shell);
-        }
-        if (privacyDelegate == nullptr) {
-            privacyDelegate = std::make_shared<PrivacyDelegate>(shell);
-        }
-    }
 
-    void Cleanup() { displaySettingsDelegate.reset(); }
+        void setShell(PluginHost::IShell* shell) {
+            ASSERT(shell != nullptr);
+            LOGDBG("DelegateHandler::setShell");
 
-    std::shared_ptr<DisplaySettingsDelegate> getDisplaySettingsDelegate() const { return displaySettingsDelegate; }
-    std::shared_ptr<HdcpProfileDelegate> getHdcpProfileDelegate() const { return hdcpProfileDelegate; }
-    std::shared_ptr<NetworkDelegate> getNetworkDelegate() const { return networkDelegate; }
-    std::shared_ptr<SystemDelegate> getSystemDelegate() const { return systemDelegate; }
+            if (displaySettingsDelegate == nullptr) {
+                displaySettingsDelegate = std::make_shared<DisplaySettingsDelegate>(shell);
+            }
+            if (hdcpProfileDelegate == nullptr) {
+                hdcpProfileDelegate = std::make_shared<HdcpProfileDelegate>(shell);
+            }
+            if (networkDelegate == nullptr) {
+                networkDelegate = std::make_shared<NetworkDelegate>(shell);
+            }
+            if (systemDelegate == nullptr) {
+                systemDelegate = std::make_shared<SystemDelegate>(shell);
+            }
+            if (authServiceDelegate == nullptr) {
+                authServiceDelegate = std::make_shared<AuthServiceDelegate>(shell);
+            }
+            if (advertisingDelegate == nullptr) {
+                advertisingDelegate = std::make_shared<AdvertisingDelegate>(shell);
+            }
+            if (discoveryDelegate == nullptr) {
+                discoveryDelegate = std::make_shared<DiscoveryDelegate>(shell);
+            }
+        }
 
-    // PUBLIC_INTERFACE
-    std::shared_ptr<MetricsDelegate> getMetricsDelegate() const { return metricsDelegate; }
+        void Cleanup() {
+            displaySettingsDelegate.reset();
+            hdcpProfileDelegate.reset();
+            networkDelegate.reset();
+            systemDelegate.reset();
+            authServiceDelegate.reset();
+            advertisingDelegate.reset();
+            discoveryDelegate.reset();
+        }
 
-    // PUBLIC_INTERFACE
-    std::shared_ptr<UserSettingsDelegate> getUserSettingsDelegate() const { return userSettingsDelegate; }
+        std::shared_ptr<DisplaySettingsDelegate> getDisplaySettingsDelegate() const { return displaySettingsDelegate; }
+        std::shared_ptr<HdcpProfileDelegate> getHdcpProfileDelegate() const { return hdcpProfileDelegate; }
+        std::shared_ptr<NetworkDelegate> getNetworkDelegate() const { return networkDelegate; }
+        std::shared_ptr<SystemDelegate> getSystemDelegate() const { return systemDelegate; }
+        std::shared_ptr<AuthServiceDelegate> getAuthServiceDelegate() const { return authServiceDelegate; }
+        std::shared_ptr<AdvertisingDelegate> getAdvertisingDelegate() const { return advertisingDelegate; }
+        std::shared_ptr<DiscoveryDelegate> getDiscoveryDelegate() const { return discoveryDelegate; }
 
-    // PUBLIC_INTERFACE
-    std::shared_ptr<PrivacyDelegate> getPrivacyDelegate() const { return privacyDelegate; }
-
-  private:
-    std::shared_ptr<DisplaySettingsDelegate> displaySettingsDelegate;
-    std::shared_ptr<HdcpProfileDelegate> hdcpProfileDelegate;
-    std::shared_ptr<NetworkDelegate> networkDelegate;
-    std::shared_ptr<SystemDelegate> systemDelegate;
-    std::shared_ptr<MetricsDelegate> metricsDelegate;
-    std::shared_ptr<UserSettingsDelegate> userSettingsDelegate;
-    std::shared_ptr<PrivacyDelegate> privacyDelegate;
-};
+      private:
+        std::shared_ptr<DisplaySettingsDelegate> displaySettingsDelegate;
+        std::shared_ptr<HdcpProfileDelegate> hdcpProfileDelegate;
+        std::shared_ptr<NetworkDelegate> networkDelegate;
+        std::shared_ptr<SystemDelegate> systemDelegate;
+        std::shared_ptr<AuthServiceDelegate> authServiceDelegate;
+        std::shared_ptr<AdvertisingDelegate> advertisingDelegate;
+        std::shared_ptr<DiscoveryDelegate> discoveryDelegate;
+    };
+}  // namespace WPEFramework

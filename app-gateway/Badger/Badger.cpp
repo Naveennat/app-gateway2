@@ -28,6 +28,8 @@
 #define LAUNCHDELEGATE_CALLSIGN "org.rdk.LaunchDelegate"
 #define OTT_SERVICES_CALLSIGN "org.rdk.OttServices"
 
+#define ADVERTISING_APP_BUNDLE_ID_SUFFIX "Comcast"
+
 namespace WPEFramework {
 
     namespace {
@@ -165,7 +167,7 @@ namespace WPEFramework {
             "supported_hdcp_version": "UNKNOWN",
             "receiver_hdcp_version": "UNKNOWN",
             "current_hdcp_version": "UNKNOWN"
-        })";
+            })";
                 return Core::ERROR_NONE;
             }
 
@@ -820,26 +822,211 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::GetDeviceUid(const std::string& appId, std::string& deviceUidJson) {
-            deviceUidJson = R"({"device_uid":"1234567890"})";
+        // ---------- Advertising ----------
+        uint32_t Badger::AppStoreId(const std::string& appId, std::string& result) {
+            result.clear();
+
+            uint32_t rc = ValidateCachedPermission(appId, "API_Advertising_advertisingId");
+            if (rc != Core::ERROR_NONE) {
+                return rc;
+            }
+
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto advertisingDelegate = mDelegate->getAdvertisingDelegate();
+            if (!advertisingDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            std::string appBundleId;
+            uint32_t res = advertisingDelegate->GetAppBundleId(appId, appBundleId);
+            if (res != Core::ERROR_NONE) {
+                LOGERR("AdvertisingDelegate::GetAppBundleId failed");
+                result = R"({"appStoreId":"UNKNOWN"})";
+                return Core::ERROR_NONE;
+            }
+            result = R"({"appStoreId":)" + appBundleId + R"(})";
+            LOGINFO("AppStoreId JSON: %s", result.c_str());
             return Core::ERROR_NONE;
         }
-        uint32_t Badger::GetAccountUid(const std::string& appId, std::string& accountUidJson) {
-            accountUidJson = R"({"account_uid":"0987654321"})";
+
+        uint32_t Badger::LimitAdTracking(const std::string& appId, bool& limitAdTracking) {
+            uint32_t rc = ValidateCachedPermission(appId, "API_Advertising_advertisingId");
+            if (rc != Core::ERROR_NONE) {
+                return rc;
+            }
+
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto advertisingDelegate = mDelegate->getAdvertisingDelegate();
+            if (!advertisingDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            uint32_t res = advertisingDelegate->LimitAdTracking(appId, limitAdTracking);
+            if (res != Core::ERROR_NONE) {
+                LOGERR("AdvertisingDelegate::LimitAdTracking failed");
+                limitAdTracking = false;
+                return Core::ERROR_NONE;
+            }
+
+            LOGINFO("LimitAdTracking JSON: %s", limitAdTracking ? "true" : "false");
             return Core::ERROR_NONE;
         }
+
+        uint32_t Badger::DeviceAdAttributes(const std::string& appId, std::string& result) {
+            result.clear();
+
+            uint32_t permissionResult = ValidateCachedPermission(appId, "API_AdPlatform_operations");
+            if (permissionResult != Core::ERROR_NONE) {
+                return permissionResult;
+            }
+
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto advertisingDelegate = mDelegate->getAdvertisingDelegate();
+            if (!advertisingDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            uint32_t res = advertisingDelegate->DeviceAdAttributes(appId, result);
+            if (res != Core::ERROR_NONE) {
+                LOGERR("AdvertisingDelegate::DeviceAdAttributes failed");
+                // Return default attributes as fallback
+                result = R"({})";
+                return Core::ERROR_NONE;
+            }
+
+            LOGINFO("DeviceAdAttributes JSON: %s", result.c_str());
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::XIFA(const std::string& appId, std::string& advertisingId) {
+            uint32_t rc = ValidateCachedPermission(appId, "API_Advertising_advertisingId");
+            if (rc != Core::ERROR_NONE) {
+                return rc;
+            }
+
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto advertisingDelegate = mDelegate->getAdvertisingDelegate();
+            if (!advertisingDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            uint32_t res = advertisingDelegate->DeviceAdAttributes(appId, advertisingId);
+            if (res != Core::ERROR_NONE) {
+                LOGERR("AdvertisingDelegate::DeviceAdAttributes failed");
+            }
+
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::InitObject(const std::string& appId, const std::string& options, std::string& result) {
+            uint32_t rc = ValidateCachedPermission(appId, "API_Advertising_advertisingId");
+            if (rc != Core::ERROR_NONE) {
+                return rc;
+            }
+
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto advertisingDelegate = mDelegate->getAdvertisingDelegate();
+            if (!advertisingDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            uint32_t res = advertisingDelegate->InitObject(appId, options, result);
+            if (res != Core::ERROR_NONE) {
+                LOGERR("AdvertisingDelegate::InitObject failed");
+            }
+
+            return Core::ERROR_NONE;
+        }
+
+        // ---------- Discovery ----------
+        uint32_t Badger::MediaEventAccountLink(const std::string& appId, const std::string& payload, std::string& result) {
+            uint32_t rc = ValidateCachedPermission(appId, "API_AccountLinkService_mediaEventAccountLink");
+            if (rc != Core::ERROR_NONE) {
+                return rc;
+            }
+
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            auto discoverDelegate = mDelegate->getDiscoveryDelegate();
+            if (!discoverDelegate)
+                return Core::ERROR_UNAVAILABLE;
+
+            uint32_t res = discoverDelegate->MediaEventAccountLink(appId, payload, result);
+            if (res != Core::ERROR_NONE) {
+                LOGERR("DiscoveryDelegate::MediaEventAccountLink failed");
+            }
+
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::EntitlementsAccountLink(const std::string& appId, const std::string& payload, std::string& result) {
+            result = R"({"status":"entitlements_account_linked"})";
+            return Core::ERROR_NONE;
+        }
+
+        uint32_t Badger::NavigateToEntityPage(const std::string& appId, std::string& result) {
+            /*
+            {
+                "name": "developerNotes",
+                "x-notes": "For navigateToEntityPage(), use Discovery.launch(appId, EntityIntent)",
+                "x-doc-url": "Discovery:https://developer.comcast.com/firebolt/core/sdk/latest/api/discovery/#launch"
+            },
+            */
+            result = R"({"status":"navigated_to_entity_page"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::NavigateToFullScreenVideo(const std::string& appId, std::string& result) {
+            /*
+            {
+                "name": "developerNotes",
+                "x-notes": "For navigateToFullScreenVideo(), use Discovery.launch(appId, playbackIntent)",
+                "x-doc-url": "Discovery:https://developer.comcast.com/firebolt/core/sdk/latest/api/discovery/#launch"
+            },
+            */
+            result = R"({"status":"navigated_to_full_screen_video"})";
+            return Core::ERROR_NONE;
+        }
+        uint32_t Badger::NavigateToCompanyPage(const std::string& appId, std::string& result) {
+            /*
+        {
+            "name": "developerNotes",
+            "x-notes": "For navigateToCompanyPage(), use Discovery.launch(appId, sectionIntent)",
+            "x-doc-url": "Discovery:https://developer.comcast.com/firebolt/core/sdk/latest/api/discovery/#launch"
+        },
+        */
+            result = R"({"status":"navigated_to_company_page"})";
+            return Core::ERROR_NONE;
+        }
+
         uint32_t Badger::GetPayload(const std::string& appId, std::string& payloadJson) {
+            /*
+        {
+            "name": "developerNotes",
+            "x-notes": "For dial().getPayload(), use Parameters.initialization()",
+            "x-doc-url": "https://developer.comcast.com/firebolt/core/sdk/latest/api/parameters/#initialization"
+        },
+        */
             payloadJson = R"({"payload":"sample_payload_data"})";
             return Core::ERROR_NONE;
         }
         uint32_t Badger::OnLaunch(const std::string& appId, std::string& result) {
+            /*
+        {
+            "name": "developerNotes",
+            "x-notes": "For dial().onLaunch(), use SecondScreen.listen('launchRequest')",
+            "x-doc-url": "https://developer.comcast.com/firebolt/core/sdk/latest/api/secondscreen/#launchrequest"
+        },
+        */
             result = R"({"status":"launch_handled"})";
             return Core::ERROR_NONE;
         }
-        uint32_t Badger::NavigateToCompanyPage(const std::string& appId, std::string& result) {
-            result = R"({"status":"navigated_to_company_page"})";
-            return Core::ERROR_NONE;
-        }
+
         uint32_t Badger::PromptEmail(const std::string& appId, std::string& result) {
             result = R"({"status":"email_prompted"})";
             return Core::ERROR_NONE;
@@ -848,112 +1035,49 @@ namespace WPEFramework {
             result = R"({"status":"pin_overlay_shown"})";
             return Core::ERROR_NONE;
         }
+
         uint32_t Badger::Settings(const std::string& appId, std::string& result) {
-            result.clear();
-
-            // Follow the same call pattern as other getters:
-            //  - obtain delegate from handler
-            //  - call methods on delegate
-            //  - assign to response/JSON
-            if (!mDelegate)
-                return Core::ERROR_UNAVAILABLE;
-
-            auto systemDelegate = mDelegate->getSystemDelegate();
-            if (!systemDelegate)
-                return Core::ERROR_UNAVAILABLE;
-
-            std::string legacyJson;
-            std::string powerJson;
-
-            if (systemDelegate->GetLegacyMiniGuide(legacyJson) != Core::ERROR_NONE) {
-                LOGWARN("SystemDelegate::GetLegacyMiniGuide failed; using default {}");
-                legacyJson = "{}";
-            }
-            if (systemDelegate->GetPowerSaveStatus(powerJson) != Core::ERROR_NONE) {
-                LOGWARN("SystemDelegate::GetPowerSaveStatus failed; using default {}");
-                powerJson = "{}";
-            }
-
-            Core::JSON::VariantContainer legacyObj;
-            Core::JSON::VariantContainer powerObj;
-
-            // Parse returned JSON; on parse failure keep empty object
-            Core::OptionalType<Core::JSON::Error> parseErr;
-            (void)parseErr;
-
-            legacyObj.FromString(legacyJson);
-            powerObj.FromString(powerJson);
-
-            Core::JSON::VariantContainer response;
-            response["legacyMiniGuide"] = legacyObj;
-            response["power_save_status"] = powerObj;
-
-            response.ToString(result);
-            LOGINFO("Settings JSON: %s", result.c_str());
+            result = R"({"settings":"sample_settings_data"})";
             return Core::ERROR_NONE;
         }
         uint32_t Badger::SubscribeToSettings(const std::string& appId, std::string& result) {
             result = R"({"status":"subscribed_to_settings"})";
             return Core::ERROR_NONE;
         }
-        uint32_t Badger::EntitlementsAccountLink(const std::string& appId, std::string& result) {
-            result = R"({"status":"entitlements_account_linked"})";
-            return Core::ERROR_NONE;
-        }
-        uint32_t Badger::MediaEventAccountLink(const std::string& appId, std::string& result) {
-            result = R"({"status":"media_event_account_linked"})";
-            return Core::ERROR_NONE;
-        }
+
         uint32_t Badger::LaunchpadAccountLink(const std::string& appId, std::string& result) {
             result = R"({"status":"launchpad_account_linked"})";
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::XIFA(const std::string& appId, std::string& result) {
-            result = R"({"xifa_data":"sample_xifa_data"})";
-            return Core::ERROR_NONE;
-        }
-        uint32_t Badger::AppStoreId(const std::string& appId, std::string& result) {
-            result = R"({"app_store_id":"com.example.app"})";
-            return Core::ERROR_NONE;
-        }
-        uint32_t Badger::LimitAdTracking(const std::string& appId, std::string& result) {
-            result = R"({"limit_ad_tracking":false})";
-            return Core::ERROR_NONE;
-        }
-        uint32_t Badger::DeviceAdAttributes(const std::string& appId, std::string& result) {
-            result = R"({"ad_attributes":{"attribute1":"value1","attribute2":"value2"}})";
-            return Core::ERROR_NONE;
-        }
-        uint32_t Badger::InitObject(const std::string& appId, std::string& result) {
-            result = R"({"init_object":"sample_init_object"})";
-            return Core::ERROR_NONE;
-        }
         uint32_t Badger::AppAuth(const std::string& appId, std::string& result) {
             result = R"({"app_auth_token":"sample_app_auth_token"})";
             return Core::ERROR_NONE;
         }
         uint32_t Badger::OAuthBearerToken(const std::string& appId, std::string& result) {
+            /*                        
+            {
+                            "name": "developerNotes",
+                            "x-notes": "For getBearerToken(), use Authentication.token(TokenType.CIMA).value",
+                            "x-doc-url": "https://developer.comcast.com/firebolt/core/sdk/latest/api/authentication/"
+                        },
+            */
             result = R"({"oauth_bearer_token":"sample_oauth_bearer_token"})";
             return Core::ERROR_NONE;
         }
-
         uint32_t Badger::RefreshPlatformAuthToken(const std::string& appId, std::string& result) {
+            /*
+                                    {
+                            "name": "developerNotes",
+                            "x-notes": "For platformAuth().getToken() or platformAuth().refreshToken(), use Authentication.token(TokenType.PLATFORM)",
+                            "x-doc-url": "https://developer.comcast.com/firebolt/core/sdk/latest/api/authentication/"
+                        },
+            */
             result = R"({"status":"platform_auth_token_refreshed"})";
             return Core::ERROR_NONE;
         }
-
         uint32_t Badger::GetXact(const std::string& appId, std::string& result) {
             result = R"({"xact_token":"sample_xact_token"})";
-            return Core::ERROR_NONE;
-        }
-
-        uint32_t Badger::NavigateToEntityPage(const std::string& appId, std::string& result) {
-            result = R"({"status":"navigated_to_entity_page"})";
-            return Core::ERROR_NONE;
-        }
-        uint32_t Badger::NavigateToFullScreenVideo(const std::string& appId, std::string& result) {
-            result = R"({"status":"navigated_to_full_screen_video"})";
             return Core::ERROR_NONE;
         }
 
@@ -961,95 +1085,12 @@ namespace WPEFramework {
             result = R"({"status":"money_badger_loaded_logged"})";
             return Core::ERROR_NONE;
         }
-
-
-        // Helper that encapsulates the logic previously in MetricsHandlerDelegate::HandleBadgerMetrics
-        Core::hresult Badger::HandleMetricsProcessing(const std::string& appId,
-                                                      const Core::JSON::VariantContainer& params)
-        {
-            auto metricsDelegate = (mDelegate ? mDelegate->getMetricsDelegate() : nullptr);
-            if (!metricsDelegate) {
-                LOGWARN("badger.metricsHandler: metrics delegate unavailable");
-                return Core::ERROR_UNAVAILABLE;
-            }
-
-            using ParamKV = MetricsDelegate::ParamKV;
-
-            // Flatten evt -> args
-            std::vector<ParamKV> args;
-            const Core::JSON::Variant evtVar = params["evt"];
-            if (evtVar.IsSet() && !evtVar.IsNull() && evtVar.Content() == Core::JSON::Variant::type::OBJECT) {
-                Core::JSON::VariantContainer evtObj = evtVar.Object();
-                auto it = evtObj.Variants();
-                while (it.Next()) {
-                    ParamKV kv;
-                    kv.name = it.Label();
-                    kv.value = it.Current();
-                    args.emplace_back(std::move(kv));
-                }
-            }
-
-            auto ReadString = [](const Core::JSON::VariantContainer& obj, const char* key) -> std::string {
-                const Core::JSON::Variant v = obj[key];
-                if (v.IsSet() && !v.IsNull() && v.Content() == Core::JSON::Variant::type::STRING) {
-                    return v.String();
-                }
-                return std::string();
-            };
-
-            auto ReadBool = [](const Core::JSON::VariantContainer& obj, const char* key, bool defVal) -> bool {
-                const Core::JSON::Variant v = obj[key];
-                if (v.IsSet() && !v.IsNull() && v.Content() == Core::JSON::Variant::type::BOOLEAN) {
-                    return v.Boolean();
-                }
-                return defVal;
-            };
-
-            const Core::JSON::Variant segVar = params["segment"];
-            if (segVar.IsSet() && !segVar.IsNull() && segVar.Content() == Core::JSON::Variant::type::STRING) {
-                const std::string segment = segVar.String();
-                if (segment == "LAUNCH_COMPLETED") {
-                    return metricsDelegate->LaunchCompleted(args, appId);
-                }
-                Core::OptionalType<std::string> seg(segment);
-                return metricsDelegate->MetricsHandler(seg, args, appId);
-            }
-
-            const Core::JSON::Variant evtTypeVar = params["eventType"];
-            if (evtTypeVar.IsSet() && !evtTypeVar.IsNull() && evtTypeVar.Content() == Core::JSON::Variant::type::STRING) {
-                const std::string eventType = evtTypeVar.String();
-                const std::string eventTypeLower = StringUtils::toLower(eventType);
-
-                if (eventTypeLower == "useraction") {
-                    const std::string action = ReadString(params, "action");
-                    return metricsDelegate->UserAction(action, args, appId);
-                } else if (eventTypeLower == "appaction") {
-                    const std::string action = ReadString(params, "action");
-                    return metricsDelegate->AppAction(action, args, appId);
-                } else if (eventTypeLower == "pageview") {
-                    const std::string page = ReadString(params, "page");
-                    return metricsDelegate->PageView(page, args, appId);
-                } else if (eventTypeLower == "usererror" || eventTypeLower == "error") {
-                    const std::string errMsg  = ReadString(params, "errMsg");
-                    const std::string errCode = ReadString(params, "errCode");
-                    const bool errVisible     = ReadBool(params, "errVisible", false);
-                    if (eventTypeLower == "usererror") {
-                        return metricsDelegate->UserError(errMsg, errVisible, errCode, args, appId);
-                    } else {
-                        return metricsDelegate->Error(errMsg, errVisible, errCode, args, appId);
-                    }
-                } else {
-                    // Unknown eventType: route as generic app action with type=eventType
-                    Core::OptionalType<std::string> seg(eventType);
-                    return metricsDelegate->MetricsHandler(seg, args, appId);
-                }
-            }
-
-            // Neither 'segment' nor 'eventType' provided, still send generic metrics to avoid drop
-            Core::OptionalType<std::string> empty;
-            return metricsDelegate->MetricsHandler(empty, args, appId);
+        uint32_t Badger::MetricsHandler(const std::string& appId, std::string& result) {
+            result = R"({"status":"metrics_handled"})";
+            return Core::ERROR_NONE;
         }
 
+        // ----------- End of Life APIs -------------
         uint32_t Badger::CompareAppSettings(const std::string& appId, std::string& result) {
             result = R"({"status":"tag: endOfLife - No longer supported"})";
             return Core::ERROR_NONE;
@@ -1085,7 +1126,7 @@ namespace WPEFramework {
 
             const std::string lower = StringUtils::toLower(method);
 
-            static const std::unordered_map<std::string, std::function<Core::hresult(const std::string&, std::string&)>> simpleHandlers = {
+            static const std::unordered_map<std::string, std::function<Core::hresult(const std::string&, std::string&)>> getterHandlers = {
                     {"info", [this](const std::string& appId, std::string& r) { return DeviceInfo(appId, r); }},
                     {"deviceCapabilities", [this](const std::string& appId, std::string& r) { return DeviceCapabilities(appId, r); }},
                     {"networkConnectivity", [this](const std::string& appId, std::string& r) { return NetworkConnectivity(appId, r); }},
@@ -1100,17 +1141,11 @@ namespace WPEFramework {
                     {"showPinOverlay", [this](const std::string& appId, std::string& r) { return ShowPinOverlay(appId, r); }},
                     {"settings", [this](const std::string& appId, std::string& r) { return Settings(appId, r); }},
                     {"subscribeToSettings", [this](const std::string& appId, std::string& r) { return SubscribeToSettings(appId, r); }},
-                    {"deviceUid", [this](const std::string& appId, std::string& r) { return GetDeviceUid(appId, r); }},
-                    {"accountUid", [this](const std::string& appId, std::string& r) { return GetAccountUid(appId, r); }},
-                    {"entitlementsAccountLink", [this](const std::string& appId, std::string& r) { return EntitlementsAccountLink(appId, r); }},
-                    {"mediaEventAccountLink", [this](const std::string& appId, std::string& r) { return MediaEventAccountLink(appId, r); }},
                     {"launchpadAccountLink", [this](const std::string& appId, std::string& r) { return LaunchpadAccountLink(appId, r); }},
                     {"compareAppSettings", [this](const std::string& appId, std::string& r) { return CompareAppSettings(appId, r); }},
                     {"xifa", [this](const std::string& appId, std::string& r) { return XIFA(appId, r); }},
                     {"appStoreId", [this](const std::string& appId, std::string& r) { return AppStoreId(appId, r); }},
-                    {"limitAdTracking", [this](const std::string& appId, std::string& r) { return LimitAdTracking(appId, r); }},
                     {"deviceAdAttributes", [this](const std::string& appId, std::string& r) { return DeviceAdAttributes(appId, r); }},
-                    {"initObject", [this](const std::string& appId, std::string& r) { return InitObject(appId, r); }},
                     {"appAuth", [this](const std::string& appId, std::string& r) { return AppAuth(appId, r); }},
                     {"oauthBearerToken", [this](const std::string& appId, std::string& r) { return OAuthBearerToken(appId, r); }},
                     {"xscd", [this](const std::string& appId, std::string& r) { return XSCD(appId, r); }},
@@ -1137,33 +1172,34 @@ namespace WPEFramework {
             };
 
             // Run setter handler
-            if (auto it = simpleHandlers.find(lower); it != simpleHandlers.end()) {
+            if (auto it = getterHandlers.find(lower); it != getterHandlers.end()) {
                 std::string appId = context.appId;
                 return it->second(appId, result);
             }
 
-                        // badger.metricsHandler - accepts multiple shapes and returns true
-            if (lower == "badger.metricshandler") {
-                Core::JSON::VariantContainer params;
-                Core::OptionalType<Core::JSON::Error> parseError;
-                if (!params.FromString(payload, parseError)) {
-                    LOGERR("badger.metricsHandler: invalid JSON params: %s", payload.c_str());
-                    return Core::ERROR_BAD_REQUEST; // structural parse error -> let gateway send error
+            if (lower == "limitadtracking") {
+                std::string appId = context.appId;
+                bool limitAdTracking = false;
+                uint32_t res = LimitAdTracking(appId, limitAdTracking);
+                if (res != Core::ERROR_NONE) {
+                    return res;
                 }
-
-                LOGDBG("badger.metricsHandler: received params: %s", payload.c_str());
-
-                Core::hresult mhResult = HandleMetricsProcessing(context.appId, params);
-
-                if (mhResult != Core::ERROR_NONE) {
-                    LOGWARN("badger.metricsHandler: helper returned rc=%d (fire-and-forget semantics)", mhResult);
-                }
-
-                // Return boolean true to satisfy JSON-RPC result expectations
-                result = "true";
+                result = "{\"limitAdTracking\":" + std::string(limitAdTracking ? "true" : "false") + "}";
                 return Core::ERROR_NONE;
             }
-            
+
+            // payload handler
+            static const std::unordered_map<std::string, std::function<Core::hresult(const std::string&, const std::string&, std::string&)>> payloadHandlers = {
+                    {"mediaEventAccountLink", [this](const std::string& appId, const std::string& p, std::string& r) { return MediaEventAccountLink(appId, p, r); }},
+                    {"initObject", [this](const std::string& appId, const std::string& p, std::string& r) { return InitObject(appId, p, r); }},
+                    {"entitlementsAccountLink", [this](const std::string& appId, const std::string& p, std::string& r) { return EntitlementsAccountLink(appId, p, r); }},
+            };
+
+            if (auto it = payloadHandlers.find(lower); it != payloadHandlers.end()) {
+                std::string appId = context.appId;
+                return it->second(appId, payload, result);
+            }
+
             // TODO: uncomment below 2 lines in RDKE
             // ErrorUtils::NotSupported(result);
             // LOGERR("Unsupported method: %s", method.c_str());

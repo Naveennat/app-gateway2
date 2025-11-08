@@ -26,21 +26,19 @@
 #include "UtilsLogging.h"
 #include "UtilsJsonrpcDirectLink.h"
 
-class DelegateUtils {
-public:
-    static inline void SerializeToJsonString(const Core::JSON::VariantContainer& container,
-                                             std::string& outJson) {
-        Core::JSON::String serialized;
-        container.ToString(serialized);
-        outJson = serialized.Value();
-    }
-
-    static inline std::shared_ptr<WPEFramework::Utils::JSONRPCDirectLink>
-    AcquireLink(PluginHost::IShell* shell, const char* callsign) {
-        if (!shell) {
-            LOGERR("AcquireLink(): shell is null");
-            return nullptr;
+namespace WPEFramework {
+    class DelegateUtils {
+      public:
+        static inline std::shared_ptr<WPEFramework::Utils::JSONRPCDirectLink> AcquireLink(PluginHost::IShell* shell, const char* callsign) {
+            if (!shell) {
+                LOGERR("AcquireLink(): shell is null");
+                return nullptr;
+            }
+            return WPEFramework::Utils::GetThunderControllerClient(shell, callsign);
         }
-        return WPEFramework::Utils::GetThunderControllerClient(shell, callsign);
-    }
-};
+
+        static inline std::string GetStringSafe(const Core::JSON::VariantContainer& vc, const char* key, const char* fallback = "UNKNOWN") {
+            return (vc[key].Content() == Core::JSON::Variant::type::STRING) ? vc[key].String() : fallback;
+        }
+    };
+}  // namespace WPEFramework
