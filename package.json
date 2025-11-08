@@ -1,8 +1,8 @@
 {
-  "name": "app-gateway2-preview-server",
+  "name": "app-gateway2",
   "version": "1.0.0",
   "private": true,
-  "description": "Minimal preview server to serve documentation and reports for the app-gateway2 container.",
+  "description": "Minimal preview server for app-gateway2. Starts a Node HTTP server that binds to 0.0.0.0 and PORT.",
   "scripts": {
     "start": "node server.js"
   },

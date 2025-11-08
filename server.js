@@ -48,7 +48,8 @@ function startServer({ host, port } = {}) {
 
       // Health endpoint
       if (pathname === '/health' || pathname === '/healthz') {
-        return sendText(res, 200, 'ok');
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        return res.end(JSON.stringify({ status: 'ok' }));
       }
 
       // Root index page
