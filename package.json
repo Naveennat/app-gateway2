@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Minimal preview server for app-gateway2. Starts a Node HTTP server that binds to 0.0.0.0 and PORT.",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
