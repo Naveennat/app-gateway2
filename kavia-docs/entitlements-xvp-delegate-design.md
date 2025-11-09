@@ -19,6 +19,87 @@ This document analyzes the app-gateway2 codebase to determine whether to reuse a
 
 All file references below are under app-gateway2/.
 
+## Current status
+
+- XvpClient:
+  - There is no dedicated “appLaunch” API.
+  - XvpClient supports SetContentAccess(appId, availabilities, entitlements) via IXvpSession.
+  - SignIn/SignOut is supported via IXvpVideo::SignIn.
+  - Media progress (“watched”/resume points) is supported via IXvpPlayback::PutResumePoint.
+- Badger::EntitlementsAccountLink:
+  - Currently stub/no-op behavior in this repo (returns a static empty object).
+- DiscoveryDelegate::EntitlementsAccountLink:
+  - Only handles type:"accountLink" with action:"signIn" and action:"signOut".
+  - Returns NOT_SUPPORTED (or does not route) for other actions such as action:"appLaunch".
+- FbDiscoveryImplementation::ContentAccess:
+  - Exists and calls XvpClient::SetContentAccess, passing entitlements/availabilities to XVP.
+- Conclusion:
+  - appLaunch is not currently routed to XVP.
+  - Wiring Badger/Discovery to FbDiscovery.contentAccess enables appLaunch behavior without adding any new XVP APIs.
+
+## How appLaunch maps to XVP
+
+- appLaunch is an account-link signal that should trigger a refresh of the app’s content access on startup (idempotent).
+- Implementation mapping:
+  - Map appLaunch to FbDiscovery.contentAccess.
+  - FbDiscovery.contentAccess calls IXvpSession::SetContentAccess(appId, availabilities, entitlements).
+  - No sign-in/out is implied by appLaunch; it is purely a content access refresh.
+  - The payload forwarded should include subscription entitlements (and optionally availabilities) as provided by the client.
+
+## To enable appLaunch (routing steps)
+
+- Update Badger::EntitlementsAccountLink routing:
+  - If type:"accountLink" and action:"signIn" → DiscoveryDelegate.SignIn
+  - If type:"accountLink" and action:"signOut" → DiscoveryDelegate.SignOut
+  - If action:"appLaunch" OR type:"entitlementsUpdate" → DiscoveryDelegate.ContentAccess (forward entitlements/availabilities)
+- Implement DiscoveryDelegate.ContentAccess(appId, payload, result) to invoke org.rdk.FbDiscovery.contentAccess with:
+  - { context:{ appId }, ids: payload }
+  - The payload must carry entitlements and/or availabilities in the “ids” field, preserving the client-provided arrays.
+- Keep FbDiscoveryImplementation unchanged (it already parses ids and calls XvpClient::SetContentAccess).
+- Client-visible result remains {} for compatibility (internal success/failure can be logged).
+
+## Comparison with ripple-eos (parity gaps)
+
+- appLaunch:
+  - ripple-eos treats appLaunch as an entitlements update:
+    - handle_badger_entitlement_update → handle_content_access → XVP SetContentAccess.
+  - In this repo, the end plumbing exists (FbDiscovery.contentAccess and XvpClient.SetContentAccess), but Badger/Discovery wiring for appLaunch is missing.
+- signIn/signOut:
+  - ripple-eos emits discovery.onSignIn/onSignOut events.
+  - This repo does not currently emit those events; consider adding for parity.
+- Media events:
+  - ripple-eos normalizes progressUnits and augments payloads with privacy/CET/category tags.
+  - This repo forwards progress largely as-is and lacks the same governance layers.
+- Privacy/data governance:
+  - ripple-eos integrates explicit privacy handling; this repo does not yet (future enhancement).
+
+## Sequence: appLaunch flow (mermaid)
+
+```mermaid
+sequenceDiagram
+  participant App as App
+  participant Badger as Badger
+  participant Dlg as DiscoveryDelegate
+  participant Disc as FbDiscovery
+  participant XVP as XvpClient
+
+  App->>Badger: entitlementsAccountLink { action:"appLaunch", subscriptionEntitlements:[...] }
+  Badger->>Dlg: ContentAccess(appId, {"entitlements":[...]})
+  Dlg->>Disc: contentAccess({context:{appId}, ids:{entitlements:[...]}})
+  Disc->>XVP: IXvpSession.SetContentAccess(appId, "", entitlements)
+  XVP-->>Disc: OK
+  Disc-->>Dlg: {"success": true}
+  Dlg-->>Badger: {}
+  Badger-->>App: {}
+```
+
+## Future work (optional)
+
+- Emit discovery.onSignIn/onSignOut events for parity after SignIn/SignOut flows.
+- Normalize progressUnits and consider privacy/CET/category tagging before forwarding PutResumePoint/Watched events.
+
+---
+
 ## Decision: Reuse Existing Delegates
 
 Decision: Reuse existing delegates and plugins. A new XVP delegate is not required.
@@ -437,7 +518,7 @@ uint32_t Badger::EntitlementsUpdate(const std::string& appId, const std::string&
 
 - Idempotency
   - ContentAccess is a PUT that replaces current entitlements/availabilities for the app; repeated calls with the same arrays are safe and idempotent.
-  - App launch flow (“action":"appLaunch”) triggers only SetContentAccess; repeating during cold/warm start is idempotent.
+  - App launch flow (“action":"appLaunch") triggers only SetContentAccess; repeating during cold/warm start is idempotent.
 
 ## Logging and Observability
 
