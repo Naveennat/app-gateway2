@@ -29,7 +29,7 @@
  namespace WPEFramework {
      class DiscoveryDelegate {
        public:
-         DiscoveryDelegate(PluginHost::IShell* shell) : _shell(shell) {}
+         DiscoveryDelegate(PluginHost::IShell* shell) : _shell(shell) { LOGDBG("DiscoveryDelegate constructed (shell=%p)", static_cast<void*>(_shell)); }
 
          ~DiscoveryDelegate() = default;
 
