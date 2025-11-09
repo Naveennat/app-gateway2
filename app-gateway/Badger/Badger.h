@@ -84,7 +84,7 @@ namespace WPEFramework {
             uint32_t SubscribeToSettings(const std::string& appId, std::string& result);
             uint32_t EntitlementsAccountLink(const std::string& appId, const std::string& payload, std::string& result);
             uint32_t MediaEventAccountLink(const std::string& appId, const std::string& payload, std::string& result);
-            uint32_t LaunchpadAccountLink(const std::string& appId, std::string& result);
+            uint32_t LaunchpadAccountLink(const std::string& appId, const std::string& payload, std::string& result);
             uint32_t CompareAppSettings(const std::string& appId, std::string& result);
             uint32_t XIFA(const std::string& appId, std::string& advertisingId);
             uint32_t AppStoreId(const std::string& appId, std::string& result);

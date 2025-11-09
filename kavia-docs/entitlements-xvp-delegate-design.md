@@ -19,6 +19,33 @@ This document analyzes the app-gateway2 codebase to determine whether to reuse a
 
 All file references below are under app-gateway2/.
 
+## Change Summary (this update)
+
+Wired new routing paths from Badger to FbDiscovery (which calls XvpClient) and aligned return shapes for the affected JSON-RPC methods:
+
+- app-gateway/Badger/Delegate/DiscoveryDelegate.h
+  - Added PUBLIC_INTERFACE helpers: ContentAccess(appId, idsPayload), WatchNext(appId, contentId), Watched(appId, entityId, progress, completed, watchedOn)
+  - Updated MediaEventAccountLink to:
+    - event.completed true → FbDiscovery.watchNext (maps to Watched with progress=1.0)
+    - event.completed false → FbDiscovery.watched with progress passed through (no normalization)
+  - All above return {} on success as required
+
+- app-gateway/Badger/Badger.cpp
+  - entitlementsAccountLink:
+    - action:"appLaunch" → DiscoveryDelegate.ContentAccess (maps subscriptionEntitlements → ids.entitlements); returns {}
+    - type:"entitlementsUpdate" → DiscoveryDelegate.ContentAccess; returns {}
+    - action:"signIn" → DiscoveryDelegate.SignIn (passes entitlements if present); returns {}
+    - action:"signOut" path left unchanged
+  - launchpadAccountLink now accepts payload and routes launchpadTile.contentId → DiscoveryDelegate.WatchNext; returns {}
+  - HandleAppGatewayRequest updated to treat launchpadAccountLink as a payload method
+
+- app-gateway/Badger/Badger.h
+  - LaunchpadAccountLink signature updated to accept payload (for launchpadTile.contentId)
+
+- Note: XvpClient has no dedicated appLaunch endpoint; we use FbDiscovery.contentAccess (SetContentAccess via IXvpSession) to implement appLaunch behavior.
+
+These changes do not alter unrelated behavior.
+
 ## Current status
 
 - XvpClient:
@@ -27,51 +54,49 @@ All file references below are under app-gateway2/.
   - SignIn/SignOut is supported via IXvpVideo::SignIn.
   - Media progress (“watched”/resume points) is supported via IXvpPlayback::PutResumePoint.
 - Badger::EntitlementsAccountLink:
-  - Currently stub/no-op behavior in this repo (returns a static empty object).
-- DiscoveryDelegate::EntitlementsAccountLink:
-  - Only handles type:"accountLink" with action:"signIn" and action:"signOut".
-  - Returns NOT_SUPPORTED (or does not route) for other actions such as action:"appLaunch".
+  - Previously returned a static stub. Now routes appLaunch and entitlementsUpdate to FbDiscovery.contentAccess; signIn routes to FbDiscovery.signIn; signOut unchanged.
+- DiscoveryDelegate::MediaEventAccountLink:
+  - Updated to support event.completed routing (watchNext when true; watched when false), passing progress values as-is.
 - FbDiscoveryImplementation::ContentAccess:
   - Exists and calls XvpClient::SetContentAccess, passing entitlements/availabilities to XVP.
-- Conclusion:
-  - appLaunch is not currently routed to XVP.
-  - Wiring Badger/Discovery to FbDiscovery.contentAccess enables appLaunch behavior without adding any new XVP APIs.
+
+Conclusion:
+- appLaunch and entitlementsUpdate now use FbDiscovery.contentAccess.
+- signIn routes to FbDiscovery.signIn (with optional entitlements).
+- mediaEventAccountLink and launchpadAccountLink are wired to FbDiscovery (watched/watchNext).
+- All affected methods return {} on success.
 
 ## How appLaunch maps to XVP
 
-- appLaunch is an account-link signal that should trigger a refresh of the app’s content access on startup (idempotent).
+- appLaunch is an account-link signal that triggers a refresh of the app’s content access on startup (idempotent).
 - Implementation mapping:
   - Map appLaunch to FbDiscovery.contentAccess.
   - FbDiscovery.contentAccess calls IXvpSession::SetContentAccess(appId, availabilities, entitlements).
   - No sign-in/out is implied by appLaunch; it is purely a content access refresh.
-  - The payload forwarded should include subscription entitlements (and optionally availabilities) as provided by the client.
+  - The payload forwarded includes subscription entitlements (and optionally availabilities) as provided by the client.
 
 ## To enable appLaunch (routing steps)
 
 - Update Badger::EntitlementsAccountLink routing:
   - If type:"accountLink" and action:"signIn" → DiscoveryDelegate.SignIn
-  - If type:"accountLink" and action:"signOut" → DiscoveryDelegate.SignOut
+  - If type:"accountLink" and action:"signOut" → unchanged
   - If action:"appLaunch" OR type:"entitlementsUpdate" → DiscoveryDelegate.ContentAccess (forward entitlements/availabilities)
-- Implement DiscoveryDelegate.ContentAccess(appId, payload, result) to invoke org.rdk.FbDiscovery.contentAccess with:
+- Implement DiscoveryDelegate.ContentAccess(appId, idsPayload) to invoke org.rdk.FbDiscovery.contentAccess with:
   - { context:{ appId }, ids: payload }
-  - The payload must carry entitlements and/or availabilities in the “ids” field, preserving the client-provided arrays.
-- Keep FbDiscoveryImplementation unchanged (it already parses ids and calls XvpClient::SetContentAccess).
-- Client-visible result remains {} for compatibility (internal success/failure can be logged).
+  - payload carries entitlements and/or availabilities in the “ids” field, preserving the client-provided arrays.
+- FbDiscoveryImplementation unchanged (already parses ids and calls XvpClient::SetContentAccess).
 
 ## Comparison with ripple-eos (parity gaps)
 
 - appLaunch:
-  - ripple-eos treats appLaunch as an entitlements update:
-    - handle_badger_entitlement_update → handle_content_access → XVP SetContentAccess.
-  - In this repo, the end plumbing exists (FbDiscovery.contentAccess and XvpClient.SetContentAccess), but Badger/Discovery wiring for appLaunch is missing.
+  - ripple-eos treats appLaunch as an entitlements update (SetContentAccess).
+  - We matched this via FbDiscovery.contentAccess.
 - signIn/signOut:
-  - ripple-eos emits discovery.onSignIn/onSignOut events.
-  - This repo does not currently emit those events; consider adding for parity.
+  - ripple-eos emits discovery.onSignIn/onSignOut; not added here.
 - Media events:
-  - ripple-eos normalizes progressUnits and augments payloads with privacy/CET/category tags.
-  - This repo forwards progress largely as-is and lacks the same governance layers.
+  - ripple-eos normalizes progressUnits; our implementation passes values as-is (no normalization).
 - Privacy/data governance:
-  - ripple-eos integrates explicit privacy handling; this repo does not yet (future enhancement).
+  - ripple-eos integrates explicit privacy; not included here.
 
 ## Sequence: appLaunch flow (mermaid)
 
@@ -84,217 +109,55 @@ sequenceDiagram
   participant XVP as XvpClient
 
   App->>Badger: entitlementsAccountLink { action:"appLaunch", subscriptionEntitlements:[...] }
-  Badger->>Dlg: ContentAccess(appId, {"entitlements":[...]})
+  Badger->>Dlg: ContentAccess(appId, {"entitlements":[...]} as ids)
   Dlg->>Disc: contentAccess({context:{appId}, ids:{entitlements:[...]}})
   Disc->>XVP: IXvpSession.SetContentAccess(appId, "", entitlements)
   XVP-->>Disc: OK
-  Disc-->>Dlg: {"success": true}
+  Disc-->>Dlg: {}
   Dlg-->>Badger: {}
   Badger-->>App: {}
 ```
-
-## Future work (optional)
-
-- Emit discovery.onSignIn/onSignOut events for parity after SignIn/SignOut flows.
-- Normalize progressUnits and consider privacy/CET/category tagging before forwarding PutResumePoint/Watched events.
-
----
-
-## Decision: Reuse Existing Delegates
-
-Decision: Reuse existing delegates and plugins. A new XVP delegate is not required.
-
-Rationale:
-
-- FbDiscovery already encapsulates the content access and sign-in/out operations and calls into XvpClient’s IXvpSession, IXvpVideo, and IXvpPlayback.
-  - FbDiscoveryImplementation::ContentAccess parses “availabilities” and “entitlements” and invokes IXvpSession::SetContentAccess.
-  - FbDiscoveryImplementation::SignIn optionally applies SetContentAccess (when entitlements are provided) and then IXvpVideo::SignIn(true); SignOut invokes IXvpVideo::SignIn(false).
-  - FbDiscoveryImplementation::Watched posts resume points via IXvpPlayback::PutResumePoint.
-  - Files: app-gateway/FbDiscovery/FbDiscoveryImplementation.cpp, .h
-
-- Badger already delegates discovery flows via DiscoveryDelegate (JSON-RPC direct link to org.rdk.FbDiscovery).
-  - DiscoveryDelegate implements MediaEventAccountLink (mapped to FbDiscovery.watched) and has SignIn/SignOut helpers.
-  - It also has a router for EntitlementsAccountLink type: "accountLink" + action: "signIn"/"signOut".
-  - File: app-gateway/Badger/Delegate/DiscoveryDelegate.h
-
-- XvpClient provides SetContentAccess, ClearContentAccess, SignIn, and PutResumePoint against configured service endpoints and handles token acquisition and a retry on 401.
-  - Files: app-gateway/XvpClient/Implementation/SessionClient.cpp, XvpClientImplementation.cpp|.h
-
-Conclusion: Implement entitlement update and account-link flows through the existing DiscoveryDelegate and FbDiscovery, which rely on XvpClient. No new org.rdk plugin or delegate class is required.
-
-## Scope and Assumptions
-
-- Scope
-  - Implement and document entitlement-related flows without introducing a new Thunder plugin.
-  - Add entitlements update routing and finish handling of account link and media events through FbDiscovery.
-- Assumptions
-  - Calls flow: Badger -> DiscoveryDelegate (JSON-RPC direct) -> org.rdk.FbDiscovery -> org.rdk.XvpClient
-  - No changes to wire-visible callsigns or interfaces outside Badger, FbDiscovery, and XvpClient.
-  - Permission gating is enforced via OttPermissions in Badger prior to calling delegates.
 
 ## JSON-RPC API Contracts
 
 ### badger.entitlementsAccountLink
 
-Accepted payload shapes on the AppGateway wire (the Badger handler is a resolver; method is matched in Badger::HandleAppGatewayRequest with a payload):
-
 - Account link sign-in with optional immediate entitlement update
-  - { "type": "accountLink", "action": "signIn", "subscriptionEntitlements": [{ "id": "<ent_id>", "startDate": <epochSec>?, "endDate": <epochSec>? }] }
-  - Expected result: {}
-  - Flow: Badger -> DiscoveryDelegate.SignIn -> FbDiscovery.signIn -> XVP: optional SetContentAccess, then SignIn(true)
+  - { "type": "accountLink", "action": "signIn", "subscriptionEntitlements": [ { "id": "<ent_id>", "startDate"?: <epochSec>, "endDate"?: <epochSec> } ] }
+  - Result: {}
+  - Flow: Badger → DiscoveryDelegate.SignIn → FbDiscovery.signIn → XVP: optional SetContentAccess, then SignIn(true)
 
-- Account link sign-out
+- Account link sign-out (unchanged)
   - { "type": "accountLink", "action": "signOut" }
-  - Expected result: {}
-  - Flow: Badger -> DiscoveryDelegate.SignOut -> FbDiscovery.signOut -> XVP: SignIn(false)
+  - Result: existing behavior (unchanged here) 
 
 - App launch entitlement update
-  - { "action": "appLaunch", "subscriptionEntitlements": [{ "id": "<ent_id>", "startDate"?: <epochSec>, "endDate"?: <epochSec> }] }
-  - Expected result: {}
-  - Flow: Badger -> DiscoveryDelegate.ContentAccess -> FbDiscovery.contentAccess -> XVP: SetContentAccess
+  - { "action": "appLaunch", "subscriptionEntitlements": [ { "id": "<ent_id>", "startDate"?: <epochSec>, "endDate"?: <epochSec> } ] }
+  - Result: {}
+  - Flow: Badger → DiscoveryDelegate.ContentAccess → FbDiscovery.contentAccess → XVP: SetContentAccess
 
 - Explicit entitlements update
-  - { "type": "entitlementsUpdate", "subscriptionEntitlements": [{ "id": "<ent_id>", "startDate"?: <epochSec>, "endDate"?: <epochSec> }] }
-  - Expected result: {}
-  - Flow: Badger -> DiscoveryDelegate.ContentAccess -> FbDiscovery.contentAccess -> XVP: SetContentAccess
-
-Notes:
-- Current DiscoveryDelegate::EntitlementsAccountLink supports type "accountLink" with action "signIn"/"signOut". For "appLaunch" and "entitlementsUpdate", Badger should route to DiscoveryDelegate.ContentAccess (see Proposed Changes).
-- Badger currently returns a static stub for EntitlementsAccountLink; this document proposes wiring it to DiscoveryDelegate to perform real work.
-
-Example requests:
-
-- Sign-in with entitlements
-```
-{
-  "method": "entitlementsAccountLink",
-  "params": {
-    "type": "accountLink",
-    "action": "signIn",
-    "subscriptionEntitlements": [
-      { "id": "ENT-123", "startDate": 1735689600, "endDate": 1738371600 }
-    ]
-  }
-}
-```
-
-- App launch entitlement update
-```
-{
-  "method": "entitlementsAccountLink",
-  "params": {
-    "action": "appLaunch",
-    "subscriptionEntitlements": [
-      { "id": "ENT-789" }
-    ]
-  }
-}
-```
-
-- Explicit entitlements update
-```
-{
-  "method": "entitlementsAccountLink",
-  "params": {
-    "type": "entitlementsUpdate",
-    "subscriptionEntitlements": [
-      { "id": "ENT-456", "startDate": 1735689600, "endDate": 1738371600 }
-    ]
-  }
-}
-```
-
-Expected Badger result for all the above: {}
+  - { "type": "entitlementsUpdate", "subscriptionEntitlements": [ { "id": "<ent_id>", "startDate"?: <epochSec>, "endDate"?: <epochSec> } ] }
+  - Result: {}
+  - Flow: Badger → DiscoveryDelegate.ContentAccess → FbDiscovery.contentAccess → XVP: SetContentAccess
 
 ### badger.mediaEventAccountLink
 
-- Payload (maps to FbDiscovery.watched):
-  - {
-      "event": {
-        "contentId": "<entity-uri-or-id>",
-        "completed": true|false,
-        "progress": <float>,
-        "progressUnits": "seconds" | "percent"
-      }
-    }
-- Expected result: {}
-- Behavior details:
-  - Progress units:
-    - "percent": if > 1.0, divide by 100 to normalize to 0..1 range; if <= 1.0, treat as given.
-    - "seconds": pass seconds value; core mapping to fractional progress is handled consistently by consumers (Rust reference does unit-specific mapping; C++ side forwards as provided).
-  - Flow: Badger -> DiscoveryDelegate.MediaEventAccountLink -> FbDiscovery.watched -> XVP PutResumePoint
-
-Example:
-```
-{
-  "method": "mediaEventAccountLink",
-  "params": {
-    "event": {
-      "contentId": "partner.com/entity/123",
-      "completed": false,
-      "progress": 50.0,
-      "progressUnits": "percent"
-    }
-  }
-}
-```
-Result: {}
+- Payload:
+  - { "event": { "contentId": "<entity-uri-or-id>", "completed": true|false, "progress"?: <float>, "progressUnits"?: "seconds" | "percent" } }
+- Result: {}
+- Behavior:
+  - completed true → DiscoveryDelegate.WatchNext (calls FbDiscovery.watchNext; maps to Watched with progress=1.0)
+  - completed false → DiscoveryDelegate routes to FbDiscovery.watched with progress passed as-is (no normalization)
+  - No errors on missing optional fields; returns {}.
 
 ### badger.launchpadAccountLink
 
-- Payload (minimum shape):
+- Payload:
   - { "launchpadTile": { "contentId": "<entity-id>" } }
-- Expected result: {}
+- Result: {}
 - Behavior:
-  - Maps to a Discovery.watchNext effect: FbDiscoveryImplementation::WatchNext calls Watched(context, entityId, 1.0, false, ""), effectively registering “Watch Next” with progress=1.0 and completed=false.
-- Flow: Badger -> DiscoveryDelegate (proposed) -> FbDiscovery.watchNext (implemented) -> FbDiscovery.watched -> XVP PutResumePoint
-
-Example:
-```
-{
-  "method": "launchpadAccountLink",
-  "params": {
-    "launchpadTile": {
-      "contentId": "partner.com/entity/123"
-    }
-  }
-}
-```
-Result: {}
-
-## Data Models and Schema Mapping
-
-### SubscriptionEntitlements
-
-Input (Badger wire):
-- subscriptionEntitlements: [{ id: string, startDate?: epochSec, endDate?: epochSec }]
-
-Mapping:
-- FbDiscoveryImplementation.ContentAccess expects ids object with arrays: { "availabilities": [...], "entitlements": [...] }.
-  - For entitlements, the array shape becomes ContentAccessEntitlement with fields entitlement_id, start_time, end_time.
-  - The SessionClient converts the JSON arrays into the body for PUT to /appSettings/{appId}. The XVP Session endpoint expects ISO8601 for start_time/end_time in some implementations; Rust reference shows conversion. C++ currently forwards numeric fields as provided; the backend accepts both depending on configuration.
-
-### MediaEvent
-
-Input:
-- { event: { contentId: string, completed: bool, progress: float, progressUnits?: "seconds"|"percent" } }
-
-Mapping:
-- DiscoveryDelegate builds FbDiscovery.watched parameters:
-  - entityId ← contentId
-  - progress ← normalized as described in JSON-RPC contract
-  - completed ← bool
-  - watchedOn ← optional string (empty if not provided)
-- FbDiscoveryImplementation::Watched sends to XvpClientImplementation::PutResumePoint
-
-### LaunchpadTile
-
-Input:
-- { launchpadTile: { contentId: string, ... } }
-
-Mapping:
-- FbDiscovery::WatchNext extracts identifiers.entityId and then calls Watched with progress=1.0 and completed=false.
-- Expected UX effect: "Discovery.watchNext" semantics in downstream systems.
+  - Maps launchpadTile.contentId → DiscoveryDelegate.WatchNext (FbDiscovery.watchNext → Watched with progress=1.0).
 
 ## Architecture
 
@@ -305,341 +168,66 @@ graph TD
   A["Badger (Badger.cpp/h)"] --> B["DiscoveryDelegate (DiscoveryDelegate.h)"]
   B --> C["org.rdk.FbDiscovery (FbDiscoveryImplementation.cpp)"]
   C --> D["org.rdk.XvpClient (XvpClientImplementation.cpp)"]
-  D --> E["SessionClient (SessionClient.cpp)"]
-  D --> F["VideoClient (XvpClientImplementation.cpp uses)"]
-  D --> G["PlaybackClient (PutResumePoint)"]
+  D --> E["SessionClient (SetContentAccess)"]
+  D --> F["Video (SignIn)"]
+  D --> G["Playback (PutResumePoint)"]
   A --> H["OttPermissions (Badger.cpp ValidateCachedPermission)"]
-  E --> I["AuthService via DeviceInfo (DeviceInfo.cpp)"]
 ```
 
 ## Sequence Flows
 
-### Sign-in with entitlements
-
-```mermaid
-sequenceDiagram
-  participant App as "App"
-  participant Badger as "Badger"
-  participant Dlg as "DiscoveryDelegate"
-  participant Disc as "FbDiscovery"
-  participant XVP as "XvpClient"
-
-  App->>Badger: "entitlementsAccountLink" {type:"accountLink", action:"signIn", subscriptionEntitlements:[...]}
-  Badger->>Dlg: EntitlementsAccountLink(appId, payload)
-  Dlg->>Disc: signIn(context{appId}, entitlements)
-  Disc->>XVP: SetContentAccess(appId, "", entitlements) (if non-empty)
-  Disc->>XVP: SignIn(appId, true)
-  XVP-->>Disc: Core::ERROR_NONE
-  Disc-->>Dlg: {"success": true}
-  Dlg-->>Badger: {"success": true}
-  Badger-->>App: {}
-```
-
-### Entitlements update (explicit or via appLaunch)
-
-```mermaid
-sequenceDiagram
-  participant App as "App"
-  participant Badger as "Badger"
-  participant Dlg as "DiscoveryDelegate"
-  participant Disc as "FbDiscovery"
-  participant XVP as "XvpClient"
-
-  App->>Badger: "entitlementsAccountLink" {action:"appLaunch", subscriptionEntitlements:[...]} OR {type:"entitlementsUpdate", ...}
-  Badger->>Dlg: ContentAccess(appId, {"entitlements":[...]} as ids)
-  Dlg->>Disc: contentAccess(context{appId}, ids)
-  Disc->>XVP: SetContentAccess(appId, availabilities?, entitlements?)
-  XVP-->>Disc: Core::ERROR_NONE
-  Disc-->>Dlg: {"success": true}
-  Dlg-->>Badger: {"success": true}
-  Badger-->>App: {}
-```
-
-### Media event account link
-
-```mermaid
-sequenceDiagram
-  participant App as "App"
-  participant Badger as "Badger"
-  participant Dlg as "DiscoveryDelegate"
-  participant Disc as "FbDiscovery"
-  participant XVP as "XvpClient"
-
-  App->>Badger: "mediaEventAccountLink" {event:{contentId,completed,progress,progressUnits}}
-  Badger->>Dlg: MediaEventAccountLink(appId, payload)
-  Dlg->>Disc: watched(context{appId}, entityId, progress, completed, watchedOn)
-  Disc->>XVP: PutResumePoint(appId, entityId, progress, completed, watchedOn)
-  XVP-->>Disc: Core::ERROR_NONE
-  Disc-->>Dlg: {"success": true}
-  Dlg-->>Badger: {"success": true}
-  Badger-->>App: {}
-```
-
-### Launchpad account link -> WatchNext
-
-```mermaid
-sequenceDiagram
-  participant App as "App"
-  participant Badger as "Badger"
-  participant Dlg as "DiscoveryDelegate"
-  participant Disc as "FbDiscovery"
-  participant XVP as "XvpClient"
-
-  App->>Badger: "launchpadAccountLink" {launchpadTile:{contentId}}
-  Badger->>Dlg: (proposed) WatchNext(appId, contentId)
-  Dlg->>Disc: watchNext(context{appId}, title?, identifiers{entityId}, expires?, images?)
-  Disc->>Disc: Watched(context, entityId, 1.0, false, "")
-  Disc->>XVP: PutResumePoint(appId, entityId, 1.0, false, "")
-  XVP-->>Disc: Core::ERROR_NONE
-  Disc-->>Dlg: {"success": true}
-  Dlg-->>Badger: {"success": true}
-  Badger-->>App: {}
-```
+See sections above for detailed flows.
 
 ## Interfaces and Method Signatures
-
-Existing interfaces (extracts):
 
 - FbDiscoveryImplementation (JSON-RPC exposed)
   - ContentAccess(const IFbDiscovery::Context&, const string& ids)
   - SignIn(const IFbDiscovery::Context&, const string& entitlements, bool& success)
   - SignOut(const IFbDiscovery::Context&, bool& success)
   - Watched(const IFbDiscovery::Context&, const string& entityId, double progress, bool completed, const string& watchedOn, bool& success)
-  - WatchNext(const IFbDiscovery::Context&,...)
-  - Files: app-gateway/FbDiscovery/FbDiscoveryImplementation.cpp|.h
-
-- XvpClientImplementation (COM interfaces)
-  - IXvpSession::SetContentAccess(appId, availabilities, entitlements)
-  - IXvpSession::ClearContentAccess(appId)
-  - IXvpVideo::SignIn(appId, isSignedIn)
-  - IXvpPlayback::PutResumePoint(appId, entityId, progress, completed, watchedOn)
-  - Files: app-gateway/XvpClient/Implementation/XvpClientImplementation.cpp|.h
-
-- DiscoveryDelegate (Badger internal direct-link)
-  - MediaEventAccountLink(const string& appId, const string& payload, string& result)
-  - SignIn(const string& appId, const string& entitlements, bool& success)
-  - SignOut(const string& appId, bool& success)
-  - EntitlementsAccountLink(const string& appId, const string& payload, string& result)
-  - File: app-gateway/Badger/Delegate/DiscoveryDelegate.h
-
-Proposed additions (to enable “entitlementsUpdate” and “appLaunch” entitlement refresh):
-
-- New helper in DiscoveryDelegate to call FbDiscovery.contentAccess
-
-```cpp
-// app-gateway/Badger/Delegate/DiscoveryDelegate.h  (proposed)
-uint32_t ContentAccess(const std::string& appId, const std::string& payload, std::string& result) {
-    auto link = DelegateUtils::AcquireLink(_shell, FB_DISCOVERY_CALLSIGN);
-    if (!link) {
-        LOGWARN("Discovery link unavailable");
-        result = "{}";
-        return Core::ERROR_UNAVAILABLE;
-    }
-    JsonObject params, response, context;
-    context["appId"] = appId;
-    params["context"] = context;
-    // payload is expected to be a stringified object containing optional arrays:
-    // { "availabilities":[...], "entitlements":[...] }
-    params["ids"] = payload;
-    uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("contentAccess"), params, response);
-    if (rc != Core::ERROR_NONE) {
-        LOGERR("contentAccess RPC failed, rc=%u", rc);
-        result = "{}";
-        return rc;
-    }
-    response.ToString(result);
-    return Core::ERROR_NONE;
-}
-```
-
-- New method in Badger to expose “entitlementsUpdate” (wire alias)
-
-```cpp
-// app-gateway/Badger/Badger.h  (proposed)
-uint32_t EntitlementsUpdate(const std::string& appId, const std::string& payload, std::string& result);
-```
-
-```cpp
-// app-gateway/Badger/Badger.cpp  (proposed)
-uint32_t Badger::EntitlementsUpdate(const std::string& appId, const std::string& payload, std::string& result) {
-    uint32_t rc = ValidateCachedPermission(appId, "API_AccountLinkService_entitlementsUpdate");
-    if (rc != Core::ERROR_NONE) {
-        return rc;
-    }
-    if (!mDelegate) return Core::ERROR_UNAVAILABLE;
-    auto discovery = mDelegate->getDiscoveryDelegate();
-    if (!discovery) return Core::ERROR_UNAVAILABLE;
-    return discovery->ContentAccess(appId, payload, result); // returns "{}" on success
-}
-```
-
-- Extend Badger::HandleAppGatewayRequest to map “entitlementsUpdate” to Badger::EntitlementsUpdate, and route “entitlementsAccountLink” shapes that carry action "appLaunch" or type “entitlementsUpdate” to DiscoveryDelegate.ContentAccess.
+  - WatchNext(...) → internally calls Watched with progress=1.0
+- DiscoveryDelegate (Badger internal)
+  - NEW: ContentAccess(appId, idsPayload)
+  - NEW: WatchNext(appId, contentId)
+  - NEW: Watched(appId, entityId, progress, completed, watchedOn)
+  - UPDATED: MediaEventAccountLink parses event payload and routes to watchNext/watched
+  - SignIn/SignOut unchanged
+- Badger
+  - entitlementsAccountLink now routes appLaunch/type:entitlementsUpdate/signIn as described; returns {}
+  - launchpadAccountLink moved to payload method; routes to WatchNext; returns {}
+  - mediaEventAccountLink unchanged signature; returns {}
 
 ## Integration Points
 
-### XvpClient
-
-- SessionClient::SetContentAccess/ ClearContentAccess
-  - Builds URL: {base}/partners/{partnerId}/accounts/{accountId}/appSettings/{appId}?deviceId={deviceId}&clientId=ripple
-  - DeviceInfo supplies partnerId, accountId, deviceId and a service access token; on 401, it reacquires token and retries once.
-  - Files: app-gateway/XvpClient/Implementation/SessionClient.cpp; Supporting_Files/DeviceInfo.cpp
-
-- Video sign-in/out
-  - XvpClientImplementation::SignIn delegates to VideoClient, building ownerReference and sending PUT to videoServices engaged endpoint.
-  - File: app-gateway/XvpClient/Implementation/XvpClientImplementation.cpp
-
-- Playback resume point (media events and WatchNext)
-  - XvpClientImplementation::PutResumePoint also obtains contentPartnerId by querying ILaunchDelegate via INTERNAL_GATEWAY_CALLSIGN ("org.rdk.InternalGateway") and passes it to the playback service.
-  - Files: app-gateway/XvpClient/Implementation/XvpClientImplementation.cpp, Supporting_Files/UtilsCallsign.h, app-gateway/interfaces/ILaunchDelegate.h
-
-### Privacy
-
-- The Rust reference integrates privacy checks (allow_watch_history) when sending media events; the current C++ code path does not perform additional FbPrivacy checks before PutResumePoint.
-- Tie-in recommendation (non-breaking): optionally query FbPrivacy prior to forwarding watched or watchNext events to respect privacy settings. The absence of this check in current C++ does not block the flows but should be considered for compliance.
-- File reference: app-gateway/Privacy/Implementation/PrivacyImplementation.cpp
-
-### DeviceBridge, IDs, and Session
-
-- Device and account IDs and token are sourced via DeviceInfo (which queries AuthService).
-- Content partner ID is sourced via LaunchDelegate::GetContentPartnerId(appId), resolved inside XvpClientImplementation using INTERNAL_GATEWAY_CALLSIGN.
-- Together, DeviceInfo + LaunchDelegate form the “device/session/partner” bridge required by the XVP requests.
+- XvpClient:
+  - SetContentAccess (no dedicated appLaunch); called via FbDiscovery.contentAccess
+  - SignIn/SignOut via IXvpVideo::SignIn
+  - PutResumePoint via IXvpPlayback
 
 ## Error Handling, Retries, and Idempotency
 
-- XVP HTTP PUTs
-  - On 401 response codes, SessionClient retries once with a refreshed token.
-  - Status mapping: 404 → Core::ERROR_UNAVAILABLE; 400 → Core::ERROR_NOT_SUPPORTED; 0 → Core::ERROR_UNREACHABLE_NETWORK; else → Core::ERROR_GENERAL.
-
-- JSON-RPC failures (delegate link unavailable)
-  - DiscoveryDelegate returns Core::ERROR_UNAVAILABLE and "{}".
-
-- Badger permission gating
-  - ValidateCachedPermission checks OttPermissions JSON (cached) for the required capability. Missing permission returns Core::ERROR_PRIVILIGED_REQUEST.
-
-- Idempotency
-  - ContentAccess is a PUT that replaces current entitlements/availabilities for the app; repeated calls with the same arrays are safe and idempotent.
-  - App launch flow (“action":"appLaunch") triggers only SetContentAccess; repeating during cold/warm start is idempotent.
+- XvpClient retries on 401 for PUTs
+- DiscoveryDelegate returns {} on success; unavailable links/logging handled
+- Idempotent ContentAccess PUTs
 
 ## Logging and Observability
 
-- Use LOGINFO/LOGWARN/LOGERR/LOGTRACE at each boundary (Badger, DiscoveryDelegate, FbDiscovery, and XvpClient).
-- Correlation identifiers:
-  - AppGateway context carries requestId and connectionId; use these in trace lines to reconstruct flows.
-- Consider adding metrics for:
-  - Counts of entitlements updates and success/failure rates
-  - Sign-in/out events
-  - Watched and watchNext posts
+- LOGINFO/WARN/ERR maintained at each boundary
 
 ## Configuration
 
-- XvpClientImplementation reads endpoints from PLUGIN_PRODUCT_CFG:
-  - xvp_xifa_service.url
-  - xvp_playback_service.url
-  - xvp_video_service.url
-  - xvp_session_service.url
-
-Example:
-```
-{
-  "xvp_xifa_service": { "url": "https://xvp.example/xifa" },
-  "xvp_playback_service": { "url": "https://xvp.example/playback" },
-  "xvp_video_service": { "url": "https://xvp.example/video" },
-  "xvp_session_service": { "url": "https://xvp.example/session" }
-}
-```
-
-- AppGateway address, resolver defaults, etc., remain unchanged.
+- XvpClient endpoints via product config (unchanged)
 
 ## Backward Compatibility and Migration
 
-- Current state:
-  - Badger::EntitlementsAccountLink returns a stub response and DiscoveryDelegate supports signIn/signOut via FbDiscovery.
-  - MediaEventAccountLink is wired to FbDiscovery.watched already.
-- Migration:
-  - Add Badger::EntitlementsUpdate and map “entitlementsUpdate” requests to DiscoveryDelegate.ContentAccess.
-  - Update Badger::EntitlementsAccountLink to route appLaunch/entitlementsUpdate shapes to DiscoveryDelegate.ContentAccess; keep signIn/signOut on the existing DiscoveryDelegate helpers.
-- Wire-visible behavior:
-  - The result objects for the entitlement/account-link/media-event flows should be {} for client compatibility (FbDiscovery’s “success” can be logged but not surfaced).
-
-## Step-by-Step File Change Plan
-
-1. Badger: Add entitlements update handler
-   - app-gateway/Badger/Badger.h
-     - Add: uint32_t EntitlementsUpdate(const std::string& appId, const std::string& payload, std::string& result);
-   - app-gateway/Badger/Badger.cpp
-     - Implement EntitlementsUpdate as described above (permission gate: API_AccountLinkService_entitlementsUpdate).
-     - In HandleAppGatewayRequest, extend payloadHandlers to include:
-       - "entitlementsUpdate" → Badger::EntitlementsUpdate
-
-2. DiscoveryDelegate: Add ContentAccess
-   - app-gateway/Badger/Delegate/DiscoveryDelegate.h
-     - Add ContentAccess(appId, payload, result) that calls org.rdk.FbDiscovery contentAccess with params { context:{appId}, ids: payload }.
-
-3. Badger: Route entitlementsAccountLink variants
-   - app-gateway/Badger/Badger.cpp
-     - Update EntitlementsAccountLink handler to:
-       - Parse payload; if type:"accountLink" and action:"signIn" → DiscoveryDelegate::SignIn
-       - If action:"signOut" → DiscoveryDelegate::SignOut
-       - If action:"appLaunch" OR type:"entitlementsUpdate" → DiscoveryDelegate::ContentAccess
-     - Always return {} to client; log internal “success” fields.
-
-4. Verify FbDiscovery signatures remain unchanged
-   - app-gateway/FbDiscovery/FbDiscoveryImplementation.cpp|.h (no changes required)
-
-5. Ensure XvpClient config and retry behavior are documented (no code change)
-   - app-gateway/XvpClient/Implementation/XvpClientImplementation.cpp, SessionClient.cpp
-
-6. Logging, permission gating, and results
-   - Ensure all new paths log at boundaries and use existing ValidateCachedPermission.
+- SignOut in entitlementsAccountLink left unchanged per requirements
+- Newly wired methods return {} as specified
 
 ## Testing Strategy
 
-Unit tests:
-- Badger payload parsing
-  - entitlementsAccountLink:
-    - action: "signIn" with entitlements → DiscoveryDelegate::SignIn
-    - action: "signOut" → DiscoveryDelegate::SignOut
-    - action: "appLaunch" → DiscoveryDelegate::ContentAccess
-    - type: "entitlementsUpdate" → DiscoveryDelegate::ContentAccess
-  - mediaEventAccountLink:
-    - percent and seconds unit normalization
-  - launchpadAccountLink:
-    - verify watchNext indirect Watched behavior (call presence)
-- Permission gates
-  - Absence of required permission returns Core::ERROR_PRIVILIGED_REQUEST
-
-Integration tests (with running FbDiscovery and XvpClient):
-- Sign-in and sign-out produce expected XVP calls; sign-in with entitlements invokes SetContentAccess then SignIn(true).
-- Entitlements update via both explicit type and appLaunch calls SetContentAccess.
-- Media events produce PutResumePoint with correct mapping.
-- Launchpad account link triggers WatchNext → Watched with progress=1.0.
-
-End-to-end JSON-RPC examples:
-- Use the examples in the API contracts above to validate success (result {}).
-
-## Security and Privacy Considerations
-
-- Permission gating via OttPermissions before executing entitlement and media event APIs.
-- Tokens are handled internally by DeviceInfo and never exposed to callers.
-- Privacy:
-  - Current C++ pathway does not consult FbPrivacy for watch history decisions prior to PutResumePoint; consider adding a conditional check in future to adhere to policy. This proposal is a non-breaking enhancement and out of scope for this change.
-
-## Appendix: Key File References
-
-- Badger plugin
-  - app-gateway/Badger/Badger.cpp
-  - app-gateway/Badger/Badger.h
-  - app-gateway/Badger/Delegate/DiscoveryDelegate.h
-- FbDiscovery
-  - app-gateway/FbDiscovery/FbDiscoveryImplementation.cpp|.h
-- XvpClient
-  - app-gateway/XvpClient/Implementation/XvpClientImplementation.cpp|.h
-  - app-gateway/XvpClient/Implementation/SessionClient.cpp
-- Device/IDs and partner ID
-  - Supporting_Files/DeviceInfo.cpp
-  - app-gateway/interfaces/ILaunchDelegate.h
-  - Supporting_Files/UtilsCallsign.h
-- Rust reference (behavioral guidance)
-  - Supporting_Files/ripple-eos/src/rpc/eos_discovery_rpc.rs
-  - Supporting_Files/ripple-eos/src/client/xvp_session.rs
-  - Supporting_Files/ripple-eos/src/client/xvp_videoservice.rs
+- Validate that:
+  - entitlementsAccountLink: appLaunch and entitlementsUpdate → FbDiscovery.contentAccess; result {}
+  - entitlementsAccountLink: signIn → FbDiscovery.signIn; result {}
+  - mediaEventAccountLink: event.completed true → watchNext; else → watched; result {}
+  - launchpadAccountLink: watchNext; result {}
+- No unrelated behavior changed
