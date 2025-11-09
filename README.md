@@ -1,25 +1,33 @@
 # app-gateway2
 
-Minimal preview server
+Minimal preview server for the app-gateway2 repository.
 
-Quick start
-- npm start
-- or: node server.js
+Detected framework
+- Node.js lightweight HTTP server (no external dependencies; uses Node's built-in http module)
+
+How to run
+- npm run build  -> No-op (prints a message). Exists so preview/CI build steps succeed.
+- npm start      -> Starts the production-capable server (binds to 0.0.0.0 and respects PORT).
+- npm run dev    -> Starts the server in the same way as start (convenience for local runs).
+- Alternatively: node server.js or node index.js
 
 Environment variables
 - PORT: Port to listen on (default: 3000)
-- HOST: Host interface to bind (default: 0.0.0.0). The server always binds to 0.0.0.0 by default for container previews.
+- HOST: Host interface to bind (default: 0.0.0.0). The server binds to 0.0.0.0 by default for container previews.
 
 Endpoints
 - GET /        -> Simple HTML page: "app-gateway2 Preview" and links to local docs/reports if present
 - GET /health  -> {"status":"ok"}
+- GET /docs    -> Serves files from ./docs if available
+- GET /reports -> Serves files from ./Supporting_Files/Badger_Test_Results/HTML_Report if available
 
 Procfile
-- A Procfile is present with: `web: node server.js` for platforms that use it.
+- A Procfile is present with: `web: npm start` for platforms that use it.
 
 Notes
 - No external dependencies are required. The server uses Node's built-in http module.
-- The preview system only requires that a start command exists and the app listens on the provided PORT and 0.0.0.0.
+- The preview system requires that a start command exists and the app listens on the provided PORT and 0.0.0.0.
+- Dockerfile is included for containerized runs and exposes port 3000.
 
 ---
 
