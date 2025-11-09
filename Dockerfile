@@ -14,6 +14,7 @@ WORKDIR /usr/src/app
 # Copy only what's needed to run the preview server
 COPY package.json ./ 
 COPY server.js ./ 
+COPY index.js ./ 
 COPY README.md ./
 
 # Container documentation; the platform may use PORT env for mapping
@@ -25,4 +26,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node -e "require('http').get({hostname:'127.0.0.1',port:process.env.PORT||3000,path:'/health'},res=>{process.exit(res.statusCode===200?0:1)}).on('error',()=>process.exit(1))"
 
 # Start the preview server
-CMD ["node", "server.js"]
+CMD ["node", "index.js"]
