@@ -966,6 +966,85 @@ namespace WPEFramework {
         }
 
         uint32_t Badger::EntitlementsAccountLink(const std::string& appId, const std::string& payload, std::string& result) {
+            // Route based on payload:
+            // - action:"appLaunch" -> FbDiscovery.contentAccess (ids.entitlements from subscriptionEntitlements)
+            // - action:"signIn" -> FbDiscovery.signIn (with entitlements if provided)
+            // - type:"entitlementsUpdate" -> FbDiscovery.contentAccess (ids.entitlements from subscriptionEntitlements)
+            // - action:"signOut" -> leave existing behavior (no change)
+            result.clear();
+
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto discovery = mDelegate->getDiscoveryDelegate();
+            if (!discovery)
+                return Core::ERROR_UNAVAILABLE;
+
+            Core::JSON::VariantContainer payloadVC;
+            if (!payload.empty()) {
+                payloadVC.FromString(payload);
+            }
+
+            const std::string action = payloadVC.HasLabel("action") ? payloadVC["action"].String() : "";
+            const std::string type   = payloadVC.HasLabel("type") ? payloadVC["type"].String() : "";
+
+            auto buildEntitlementsArrayString = [&](std::string& entitlementsOut) {
+                entitlementsOut.clear();
+                if (payloadVC.HasLabel("subscriptionEntitlements") &&
+                    payloadVC["subscriptionEntitlements"].Content() == Core::JSON::Variant::type::ARRAY) {
+
+                    Core::JSON::ArrayType<Core::JSON::Variant> arr = payloadVC["subscriptionEntitlements"].Array();
+                    arr.ToString(entitlementsOut);
+                } else {
+                    // default to empty array
+                    entitlementsOut = "[]";
+                }
+            };
+
+            auto buildIdsObjectString = [&](std::string& idsStr) {
+                // Build: { "entitlements": <subscriptionEntitlements or []> }
+                std::string entitlementsStr;
+                buildEntitlementsArrayString(entitlementsStr);
+                Core::JSON::VariantContainer idsObj;
+                // Set as raw array string
+                Core::JSON::ArrayType<Core::JSON::Variant> entArr;
+                entArr.FromString(entitlementsStr);
+                idsObj["entitlements"] = entArr;
+
+                idsObj.ToString(idsStr);
+            };
+
+            // appLaunch -> contentAccess
+            if (action == "appLaunch") {
+                std::string idsStr;
+                buildIdsObjectString(idsStr);
+                std::string tmp;
+                (void) discovery->ContentAccess(appId, idsStr, tmp);
+                result = "{}";
+                return Core::ERROR_NONE;
+            }
+
+            // explicit entitlementsUpdate -> contentAccess
+            if (type == "entitlementsUpdate") {
+                std::string idsStr;
+                buildIdsObjectString(idsStr);
+                std::string tmp;
+                (void) discovery->ContentAccess(appId, idsStr, tmp);
+                result = "{}";
+                return Core::ERROR_NONE;
+            }
+
+            // signIn -> FbDiscovery.signIn with optional entitlements
+            if (action == "signIn") {
+                std::string entitlementsStr;
+                buildEntitlementsArrayString(entitlementsStr);
+                bool success = false;
+                (void) discovery->SignIn(appId, entitlementsStr, success);
+                // Always return {} to the client
+                result = "{}";
+                return Core::ERROR_NONE;
+            }
+
+            // For signOut and any other actions, keep previous behavior unchanged (stub)
             result = R"({"status":"entitlements_account_linked"})";
             return Core::ERROR_NONE;
         }
@@ -1045,8 +1124,33 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::LaunchpadAccountLink(const std::string& appId, std::string& result) {
-            result = R"({"status":"launchpad_account_linked"})";
+        uint32_t Badger::LaunchpadAccountLink(const std::string& appId, const std::string& payload, std::string& result) {
+            if (!mDelegate)
+                return Core::ERROR_UNAVAILABLE;
+            auto discovery = mDelegate->getDiscoveryDelegate();
+            if (!discovery)
+                return Core::ERROR_UNAVAILABLE;
+
+            Core::JSON::VariantContainer payloadVC;
+            if (!payload.empty()) {
+                payloadVC.FromString(payload);
+            }
+
+            std::string contentId;
+            if (payloadVC.HasLabel("launchpadTile") && payloadVC["launchpadTile"].Content() == Core::JSON::Variant::type::OBJECT) {
+                Core::JSON::VariantContainer lp = payloadVC["launchpadTile"].Object();
+                if (lp.HasLabel("contentId")) {
+                    contentId = lp["contentId"].String();
+                }
+            }
+
+            if (!contentId.empty()) {
+                std::string tmp;
+                (void) discovery->WatchNext(appId, contentId, tmp);
+            } else {
+                LOGWARN("launchpadAccountLink: launchpadTile.contentId missing, returning {}");
+            }
+            result = "{}";
             return Core::ERROR_NONE;
         }
 
@@ -1141,7 +1245,7 @@ namespace WPEFramework {
                     {"showPinOverlay", [this](const std::string& appId, std::string& r) { return ShowPinOverlay(appId, r); }},
                     {"settings", [this](const std::string& appId, std::string& r) { return Settings(appId, r); }},
                     {"subscribeToSettings", [this](const std::string& appId, std::string& r) { return SubscribeToSettings(appId, r); }},
-                    {"launchpadAccountLink", [this](const std::string& appId, std::string& r) { return LaunchpadAccountLink(appId, r); }},
+
                     {"compareAppSettings", [this](const std::string& appId, std::string& r) { return CompareAppSettings(appId, r); }},
                     {"xifa", [this](const std::string& appId, std::string& r) { return XIFA(appId, r); }},
                     {"appStoreId", [this](const std::string& appId, std::string& r) { return AppStoreId(appId, r); }},
@@ -1193,6 +1297,7 @@ namespace WPEFramework {
                     {"mediaEventAccountLink", [this](const std::string& appId, const std::string& p, std::string& r) { return MediaEventAccountLink(appId, p, r); }},
                     {"initObject", [this](const std::string& appId, const std::string& p, std::string& r) { return InitObject(appId, p, r); }},
                     {"entitlementsAccountLink", [this](const std::string& appId, const std::string& p, std::string& r) { return EntitlementsAccountLink(appId, p, r); }},
+                    {"launchpadAccountLink", [this](const std::string& appId, const std::string& p, std::string& r) { return LaunchpadAccountLink(appId, p, r); }},
             };
 
             if (auto it = payloadHandlers.find(lower); it != payloadHandlers.end()) {
