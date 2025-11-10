@@ -1110,8 +1110,114 @@ namespace WPEFramework {
             return Core::ERROR_NONE;
         }
 
-        uint32_t Badger::Settings(const std::string& appId, std::string& result) {
-            result = R"({"settings":"sample_settings_data"})";
+        uint32_t Badger::Settings(const std::string& appId, const std::string& payload, std::string& result) {
+            (void) appId;
+            result.clear();
+
+            // Parse payload to extract params.keys array
+            Core::JSON::VariantContainer request;
+            if (!payload.empty()) {
+                request.FromString(payload);
+            }
+
+            Core::JSON::ArrayType<Core::JSON::Variant> keys;
+            if (request.HasLabel("params") && request["params"].Content() == Core::JSON::Variant::type::OBJECT) {
+                Core::JSON::VariantContainer params = request["params"].Object();
+                if (params.HasLabel("keys") && params["keys"].Content() == Core::JSON::Variant::type::ARRAY) {
+                    keys = params["keys"].Array();
+                }
+            } else if (request.HasLabel("keys") && request["keys"].Content() == Core::JSON::Variant::type::ARRAY) {
+                keys = request["keys"].Array();
+            }
+
+            // Prepare delegates
+            auto userSettings = (mDelegate ? mDelegate->getUserSettingsDelegate() : nullptr);
+            auto privacy = (mDelegate ? mDelegate->getPrivacyDelegate() : nullptr);
+            auto system = (mDelegate ? mDelegate->getSystemDelegate() : nullptr);
+
+            Core::JSON::VariantContainer merged;
+
+            // Helper to set {"<key>":{"enabled":<bool>}} from delegate JSON {"enabled":<bool>}
+            auto setEnabledFromJson = [&](const std::string& outKey, const std::string& srcJson) {
+                Core::JSON::VariantContainer enabledObj;
+                if (!srcJson.empty()) {
+                    enabledObj.FromString(srcJson);
+                }
+                // If missing/failed, default to false to preserve shape
+                if (!enabledObj.HasLabel("enabled")) {
+                    enabledObj["enabled"] = Core::JSON::Boolean(false);
+                }
+                merged[outKey] = enabledObj;
+            };
+
+            // Iterate request keys and populate shapes
+            Core::JSON::ArrayType<Core::JSON::Variant>::Iterator it(keys.Elements());
+            while (it.Next()) {
+                const std::string key = it.Current().String();
+
+                if (key == "CC_STATE" || key == "ShowClosedCapture") {
+                    std::string json;
+                    if (userSettings && userSettings->GetCaptionsEnabled(json) == Core::ERROR_NONE) {
+                        setEnabledFromJson(key, json);
+                    } else {
+                        setEnabledFromJson(key, "{}");
+                    }
+                } else if (key == "VOICE_GUIDANCE_STATE" || key == "TextToSpeechEnabled2") {
+                    std::string json;
+                    if (userSettings && userSettings->GetVoiceGuidanceState(json) == Core::ERROR_NONE) {
+                        setEnabledFromJson(key, json);
+                    } else {
+                        setEnabledFromJson(key, "{}");
+                    }
+                } else if (key == "DisplayPersonalizedRecommendations") {
+                    std::string json;
+                    if (privacy && privacy->GetPersonalizationAllowed(json) == Core::ERROR_NONE) {
+                        setEnabledFromJson(key, json);
+                    } else {
+                        setEnabledFromJson(key, "{}");
+                    }
+                } else if (key == "RememberWatchedPrograms" || key == "ShareWatchHistoryStatus") {
+                    std::string json;
+                    if (privacy && privacy->GetWatchHistoryAllowed(json) == Core::ERROR_NONE) {
+                        setEnabledFromJson(key, json);
+                    } else {
+                        setEnabledFromJson(key, "{}");
+                    }
+                } else if (key == "friendly_name") {
+                    std::string fnJson;
+                    std::string name = "Living room";
+                    if (system && system->GetFriendlyName(fnJson) == Core::ERROR_NONE) {
+                        Core::JSON::VariantContainer obj;
+                        obj.FromString(fnJson);
+                        if (obj.HasLabel("friendly_name")) {
+                            const std::string n = obj["friendly_name"].String();
+                            if (!n.empty()) {
+                                name = n;
+                            }
+                        }
+                    }
+                    // Wrap with inner quotes as requested: "\"<Name>\""
+                    std::string valueWithQuotes = std::string("\"") + name + std::string("\"");
+                    Core::JSON::VariantContainer wrap;
+                    wrap["value"] = valueWithQuotes;
+                    merged["friendly_name"] = wrap;
+                } else if (key == "legacyMiniGuide") {
+                    Core::JSON::VariantContainer empty;
+                    merged["legacyMiniGuide"] = empty;
+                } else if (key == "power_save_status") {
+                    Core::JSON::VariantContainer empty;
+                    merged["power_save_status"] = empty;
+                } else {
+                    // Ignore unknown keys to include only requested recognized keys
+                }
+            }
+
+            // Serialize result as the merged object (JSON-RPC wrapping handled upstream)
+            merged.ToString(result);
+            if (result.empty()) {
+                // If no keys provided, return empty object
+                result = "{}";
+            }
             return Core::ERROR_NONE;
         }
         uint32_t Badger::SubscribeToSettings(const std::string& appId, std::string& result) {
@@ -1184,9 +1290,88 @@ namespace WPEFramework {
             result = R"({"status":"money_badger_loaded_logged"})";
             return Core::ERROR_NONE;
         }
-        uint32_t Badger::MetricsHandler(const std::string& appId, std::string& result) {
-            result = R"({"status":"metrics_handled"})";
-            return Core::ERROR_NONE;
+        uint32_t Badger::MetricsHandler(const std::string& appId, const std::string& payload, std::string& result) {
+            result.clear();
+
+            if (!mDelegate) {
+                return Core::ERROR_UNAVAILABLE;
+            }
+            auto metrics = mDelegate->getMetricsDelegate();
+            if (!metrics) {
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            Core::JSON::VariantContainer req;
+            if (!payload.empty()) {
+                req.FromString(payload);
+            }
+
+            // Extract evt into vector<ParamKV>
+            std::vector<MetricsDelegate::ParamKV> args;
+            if (req.HasLabel("evt") && req["evt"].Content() == Core::JSON::Variant::type::OBJECT) {
+                Core::JSON::VariantContainer evt = req["evt"].Object();
+                Core::JSON::VariantContainer::Iterator kv(evt.Variants());
+                while (kv.Next()) {
+                    // Copy the variant value as-is
+                    args.emplace_back(kv.Label(), kv.Current());
+                }
+            }
+
+            Core::hresult rc = Core::ERROR_NONE;
+
+            // Shape-based dispatch
+            if (req.HasLabel("eventType")) {
+                const std::string et = req["eventType"].String();
+
+                if (et == "userAction") {
+                    const std::string action = req.HasLabel("action") ? req["action"].String() : "";
+                    rc = metrics->UserAction(action, args, appId);
+                } else if (et == "appAction") {
+                    const std::string action = req.HasLabel("action") ? req["action"].String() : "";
+                    rc = metrics->AppAction(action, args, appId);
+                } else if (et == "pageView") {
+                    const std::string page = req.HasLabel("page") ? req["page"].String() : "";
+                    rc = metrics->PageView(page, args, appId);
+                } else if (et == "userError") {
+                    const std::string errMsg = req.HasLabel("errMsg") ? req["errMsg"].String() : "";
+                    const bool errVisible = req.HasLabel("errVisible") ? req["errVisible"].Boolean() : false;
+                    const std::string errCode = req.HasLabel("errCode") ? req["errCode"].String() : "";
+                    rc = metrics->UserError(errMsg, errVisible, errCode, args, appId);
+                } else if (et == "error") {
+                    const std::string errMsg = req.HasLabel("errMsg") ? req["errMsg"].String() : "";
+                    const bool errVisible = req.HasLabel("errVisible") ? req["errVisible"].Boolean() : false;
+                    const std::string errCode = req.HasLabel("errCode") ? req["errCode"].String() : "";
+                    rc = metrics->Error(errMsg, errVisible, errCode, args, appId);
+                } else {
+                    // Unknown eventType, treat as generic handler
+                    Core::OptionalType<std::string> seg;
+                    rc = metrics->MetricsHandler(seg, args, appId);
+                }
+            } else {
+                // Segment-based dispatch
+                Core::OptionalType<std::string> seg;
+                if (req.HasLabel("segment") && req["segment"].Content() == Core::JSON::Variant::type::STRING) {
+                    seg = req["segment"].String();
+                }
+
+                const std::string segVal = seg.IsSet() ? seg.Value() : "";
+
+                if (segVal == "LAUNCH_COMPLETED") {
+                    rc = metrics->LaunchCompleted(args, appId);
+                } else {
+                    rc = metrics->MetricsHandler(seg, args, appId);
+                }
+            }
+
+            if (rc == Core::ERROR_NONE) {
+                // As requested, boolean literal "true" (not an object)
+                result = "true";
+                return Core::ERROR_NONE;
+            }
+
+            // On failure, return false boolean literal to indicate failure
+            result = "false";
+            return rc;
         }
 
         // ----------- End of Life APIs -------------
@@ -1238,7 +1423,6 @@ namespace WPEFramework {
                     {"navigateToCompanyPage", [this](const std::string& appId, std::string& r) { return NavigateToCompanyPage(appId, r); }},
                     {"promptEmail", [this](const std::string& appId, std::string& r) { return PromptEmail(appId, r); }},
                     {"showPinOverlay", [this](const std::string& appId, std::string& r) { return ShowPinOverlay(appId, r); }},
-                    {"settings", [this](const std::string& appId, std::string& r) { return Settings(appId, r); }},
                     {"subscribeToSettings", [this](const std::string& appId, std::string& r) { return SubscribeToSettings(appId, r); }},
 
                     {"compareAppSettings", [this](const std::string& appId, std::string& r) { return CompareAppSettings(appId, r); }},
@@ -1257,7 +1441,6 @@ namespace WPEFramework {
                     {"resizeVideo", [this](const std::string& appId, std::string& r) { return ResizeVideo(appId, r); }},
                     {"logMoneyBadgerLoaded", [this](const std::string& appId, std::string& r) { return LogMoneyBadgerLoaded(appId, r); }},
                     {"getSystemInfo", [this](const std::string& appId, std::string& r) { return GetSystemInfo(appId, r); }},
-                    {"metricsHandler", [this](const std::string& appId, std::string& r) { return MetricsHandler(appId, r); }},
                     {"shutdown",
                             [this](const std::string& appId, std::string& r) {
                                 (void) r;
@@ -1289,10 +1472,12 @@ namespace WPEFramework {
 
             // payload handler
             static const std::unordered_map<std::string, std::function<Core::hresult(const std::string&, const std::string&, std::string&)>> payloadHandlers = {
-                    {"mediaEventAccountLink", [this](const std::string& appId, const std::string& p, std::string& r) { return MediaEventAccountLink(appId, p, r); }},
-                    {"initObject", [this](const std::string& appId, const std::string& p, std::string& r) { return InitObject(appId, p, r); }},
-                    {"entitlementsAccountLink", [this](const std::string& appId, const std::string& p, std::string& r) { return EntitlementsAccountLink(appId, p, r); }},
-                    {"launchpadAccountLink", [this](const std::string& appId, const std::string& p, std::string& r) { return LaunchpadAccountLink(appId, p, r); }},
+                    {"mediaeventaccountlink", [this](const std::string& appId, const std::string& p, std::string& r) { return MediaEventAccountLink(appId, p, r); }},
+                    {"initobject", [this](const std::string& appId, const std::string& p, std::string& r) { return InitObject(appId, p, r); }},
+                    {"entitlementsaccountlink", [this](const std::string& appId, const std::string& p, std::string& r) { return EntitlementsAccountLink(appId, p, r); }},
+                    {"launchpadaccountlink", [this](const std::string& appId, const std::string& p, std::string& r) { return LaunchpadAccountLink(appId, p, r); }},
+                    {"settings", [this](const std::string& appId, const std::string& p, std::string& r) { return Settings(appId, p, r); }},
+                    {"metricshandler", [this](const std::string& appId, const std::string& p, std::string& r) { return MetricsHandler(appId, p, r); }},
             };
 
             if (auto it = payloadHandlers.find(lower); it != payloadHandlers.end()) {

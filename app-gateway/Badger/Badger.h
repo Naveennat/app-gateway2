@@ -80,7 +80,7 @@ namespace WPEFramework {
             uint32_t NavigateToCompanyPage(const std::string& appId, std::string& result);
             uint32_t PromptEmail(const std::string& appId, std::string& result);
             uint32_t ShowPinOverlay(const std::string& appId, std::string& result);
-            uint32_t Settings(const std::string& appId, std::string& result);
+            uint32_t Settings(const std::string& appId, const std::string& payload, std::string& result);
             uint32_t SubscribeToSettings(const std::string& appId, std::string& result);
             uint32_t EntitlementsAccountLink(const std::string& appId, const std::string& payload, std::string& result);
             uint32_t MediaEventAccountLink(const std::string& appId, const std::string& payload, std::string& result);
@@ -103,7 +103,7 @@ namespace WPEFramework {
             uint32_t ResizeVideo(const std::string& appId, std::string& result);
             uint32_t LogMoneyBadgerLoaded(const std::string& appId, std::string& result);
             uint32_t GetSystemInfo(const std::string& appId, std::string& result);
-            uint32_t MetricsHandler(const std::string& appId, std::string& result);
+            uint32_t MetricsHandler(const std::string& appId, const std::string& payload, std::string& result);
 
             uint32_t Shutdown(const std::string& appId);
             uint32_t DismissLoadingScreen(const std::string& appId);

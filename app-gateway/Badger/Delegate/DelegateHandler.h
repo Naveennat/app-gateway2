@@ -26,13 +26,16 @@
 #include "AuthServiceDelegate.h"
 #include "AdvertisingDelegate.h"
 #include "DiscoveryDelegate.h"
+#include "UserSettingsDelegate.h"
+#include "PrivacyDelegate.h"
+#include "MetricsDelegate.h"
 
 namespace WPEFramework {
     class DelegateHandler {
       public:
         DelegateHandler()
             : displaySettingsDelegate(nullptr), hdcpProfileDelegate(nullptr), networkDelegate(nullptr), systemDelegate(nullptr), authServiceDelegate(nullptr), advertisingDelegate(nullptr),
-              discoveryDelegate(nullptr) {}
+              discoveryDelegate(nullptr), userSettingsDelegate(nullptr), privacyDelegate(nullptr), metricsDelegate(nullptr) {}
 
         ~DelegateHandler() {
             displaySettingsDelegate = nullptr;
@@ -42,6 +45,9 @@ namespace WPEFramework {
             authServiceDelegate = nullptr;
             advertisingDelegate = nullptr;
             discoveryDelegate = nullptr;
+            userSettingsDelegate = nullptr;
+            privacyDelegate = nullptr;
+            metricsDelegate = nullptr;
         }
 
         void setShell(PluginHost::IShell* shell) {
@@ -69,6 +75,15 @@ namespace WPEFramework {
             if (discoveryDelegate == nullptr) {
                 discoveryDelegate = std::make_shared<DiscoveryDelegate>(shell);
             }
+            if (userSettingsDelegate == nullptr) {
+                userSettingsDelegate = std::make_shared<UserSettingsDelegate>(shell);
+            }
+            if (privacyDelegate == nullptr) {
+                privacyDelegate = std::make_shared<PrivacyDelegate>(shell);
+            }
+            if (metricsDelegate == nullptr) {
+                metricsDelegate = std::make_shared<MetricsDelegate>(shell);
+            }
         }
 
         void Cleanup() {
@@ -79,6 +94,9 @@ namespace WPEFramework {
             authServiceDelegate.reset();
             advertisingDelegate.reset();
             discoveryDelegate.reset();
+            userSettingsDelegate.reset();
+            privacyDelegate.reset();
+            metricsDelegate.reset();
         }
 
         std::shared_ptr<DisplaySettingsDelegate> getDisplaySettingsDelegate() const { return displaySettingsDelegate; }
@@ -88,6 +106,9 @@ namespace WPEFramework {
         std::shared_ptr<AuthServiceDelegate> getAuthServiceDelegate() const { return authServiceDelegate; }
         std::shared_ptr<AdvertisingDelegate> getAdvertisingDelegate() const { return advertisingDelegate; }
         std::shared_ptr<DiscoveryDelegate> getDiscoveryDelegate() const { return discoveryDelegate; }
+        std::shared_ptr<UserSettingsDelegate> getUserSettingsDelegate() const { return userSettingsDelegate; }
+        std::shared_ptr<PrivacyDelegate> getPrivacyDelegate() const { return privacyDelegate; }
+        std::shared_ptr<MetricsDelegate> getMetricsDelegate() const { return metricsDelegate; }
 
       private:
         std::shared_ptr<DisplaySettingsDelegate> displaySettingsDelegate;
@@ -97,5 +118,8 @@ namespace WPEFramework {
         std::shared_ptr<AuthServiceDelegate> authServiceDelegate;
         std::shared_ptr<AdvertisingDelegate> advertisingDelegate;
         std::shared_ptr<DiscoveryDelegate> discoveryDelegate;
+        std::shared_ptr<UserSettingsDelegate> userSettingsDelegate;
+        std::shared_ptr<PrivacyDelegate> privacyDelegate;
+        std::shared_ptr<MetricsDelegate> metricsDelegate;
     };
 }  // namespace WPEFramework
