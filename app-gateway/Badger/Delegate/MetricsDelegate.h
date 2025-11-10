@@ -19,6 +19,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <list>
 
 #include <core/JSON.h>
 #include <plugins/plugins.h>
@@ -83,7 +84,7 @@ namespace WPEFramework {
 
             JsonObject parameters;
             ArgsToParametersObject(args, parameters);
-            if (parameters.Length() > 0) {
+            if (!args.empty()) {
                 eventPayload["parameters"] = parameters;
             }
 
@@ -112,7 +113,7 @@ namespace WPEFramework {
 
             JsonObject parameters;
             ArgsToParametersObject(args, parameters);
-            if (parameters.Length() > 0) {
+            if (!args.empty()) {
                 eventPayload["parameters"] = parameters;
             }
 
@@ -145,7 +146,7 @@ namespace WPEFramework {
 
             JsonObject parameters;
             ArgsToParametersObject(args, parameters);
-            if (parameters.Length() > 0) {
+            if (!args.empty()) {
                 eventPayload["parameters"] = parameters;
             }
 
@@ -178,7 +179,7 @@ namespace WPEFramework {
 
             JsonObject parameters;
             ArgsToParametersObject(args, parameters);
-            if (parameters.Length() > 0) {
+            if (!args.empty()) {
                 eventPayload["parameters"] = parameters;
             }
 
@@ -210,7 +211,7 @@ namespace WPEFramework {
             // Optional parameters
             JsonObject parameters;
             ArgsToParametersObject(args, parameters);
-            if (parameters.Length() > 0) {
+            if (!args.empty()) {
                 eventPayload["parameters"] = parameters;
             }
 
@@ -248,7 +249,7 @@ namespace WPEFramework {
 
             JsonObject parameters;
             ArgsToParametersObject(args, parameters);
-            if (parameters.Length() > 0) {
+            if (!args.empty()) {
                 eventPayload["parameters"] = parameters;
             }
 
@@ -289,7 +290,7 @@ namespace WPEFramework {
 
             JsonObject parameters;
             ArgsToParametersObject(args, parameters);
-            if (parameters.Length() > 0) {
+            if (!args.empty()) {
                 eventPayload["parameters"] = parameters;
             }
 
@@ -313,30 +314,39 @@ namespace WPEFramework {
 
         // Convert Core::JSON::Variant to JsonValue for embedding in JsonObject
         static inline JsonValue VariantToJsonValue(const Core::JSON::Variant& v) {
+            // Align with Core::JSON::Variant API: use Content() to branch and
+            // assign directly using typed accessors. This preserves native
+            // JSON types (object/array/number/boolean/string/null).
             JsonValue out;
-            if (v.IsString()) {
-                out = v.String();
-            } else if (v.IsNumber()) {
-                out = v.Number();
-            } else if (v.IsBoolean()) {
-                out = v.Boolean();
-            } else if (v.IsNull()) {
-                out = JsonValue(); // null
-            } else if (v.IsObject()) {
-                Core::JSON::String tmp;
-                v.Object().ToString(tmp);
-                JsonObject obj;
-                obj.FromString(tmp.Value());
-                out = obj;
-            } else if (v.IsArray()) {
-                Core::JSON::String tmp;
-                v.Array().ToString(tmp);
-                JsonArray arr;
-                arr.FromString(tmp.Value());
-                out = arr;
-            } else {
-                // Fallback: serialize to string
-                out = v.Serialize();
+            switch (v.Content()) {
+                case Core::JSON::Variant::type::STRING:
+                    out = v.String();
+                    break;
+                case Core::JSON::Variant::type::BOOLEAN:
+                    out = v.Boolean();
+                    break;
+                case Core::JSON::Variant::type::NUMBER:
+                    out = v.Number();
+                    break;
+                case Core::JSON::Variant::type::FLOAT:
+                    out = v.Float();
+                    break;
+                case Core::JSON::Variant::type::DOUBLE:
+                    out = v.Double();
+                    break;
+                case Core::JSON::Variant::type::OBJECT: {
+                    out = v.Object();
+                    break;
+                }
+                case Core::JSON::Variant::type::ARRAY: {
+                    out = v.Array();
+                    break;
+                }
+                case Core::JSON::Variant::type::EMPTY:
+                default:
+                    // Copy as-is; Variant assignment preserves content including null
+                    out = v;
+                    break;
             }
             return out;
         }
