@@ -143,7 +143,11 @@
              JsonObject context;
              context["appId"] = appId;
              params["context"] = context;
-             params["ids"] = idsPayload;
+             JsonObject idsObject;
+             if (!idsPayload.empty()) {
+                 idsObject.FromString(idsPayload);
+             }
+             params["ids"] = idsObject;
 
              uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("contentAccess"), params, response);
              if (rc != Core::ERROR_NONE) {
@@ -240,7 +244,11 @@
              JsonObject context;
              context["appId"] = appId;
              params["context"] = context;
-             params["entitlements"] = entitlements;
+             Core::JSON::ArrayType<Core::JSON::Variant> entArr;
+             if (!entitlements.empty()) {
+                 entArr.FromString(entitlements);
+             }
+             params["entitlements"] = entArr;
 
              uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("signIn"), params, response);
              if (rc != Core::ERROR_NONE) {
