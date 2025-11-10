@@ -1,49 +1,37 @@
-# app-gateway2
+# app-gateway2 Minimal Web Gateway
 
-## Quick Start (Preview/Dev)
+This directory provides a minimal Express-based HTTP server for health checks and preview environment validation.
 
-This repository includes a minimal Node.js preview server for app-gateway2.
+## Usage
 
-**Start the preview server:**
-```bash
-npm install
-npm start
-```
-- This launches Node.js using `index.js` on port specified by the `PORT` environment variable (default: 3000).
-- Server binds to `0.0.0.0` for preview containers.
-- No dependencies required (uses Node's built-in http module).
+- **Start in production mode:**  
+  ```
+  npm install
+  npm start
+  ```
+  or  
+  ```
+  yarn install
+  yarn start
+  ```
 
----
+- **Development mode (auto-reload):**  
+  ```
+  npm run dev
+  ```
+  or  
+  ```
+  yarn run dev
+  ```
 
-Minimal preview server for the app-gateway2 repository.
+- **Health check:**  
+  Open your browser at [http://localhost:3000/](http://localhost:3000/) (or on the port assigned in the PORT environment variable).
 
-Detected framework:
-- Node.js lightweight HTTP server (no external dependencies; uses Node's built-in http module)
+- If a `public/` or `dist/` directory exists, its contents (such as an `index.html`) will be served automatically at the root endpoint.
 
-How to run:
-- `npm start` – Starts the production-capable server (binds to 0.0.0.0 and respects PORT).
-- Alternatively: `node index.js`
+## Notes
 
-Environment variables:
-- `PORT`: Port to listen on (default: 3000)
-- `HOST`: Host interface to bind (default: 0.0.0.0). The server binds to 0.0.0.0 by default for container previews.
+- The actual app logic is not implemented in this minimal setup.  
+- Do not change the port in config; always relies on the `PORT` environment variable.
+- The server is suitable for preview/health check only.
 
-Endpoints:
-- GET `/` – Simple HTML page: "app-gateway2 Preview"
-- GET `/health` – Returns `{"status":"ok"}`
-
-Procfile:
-- A Procfile is present with: `web: npm start` for platforms that use it.
-
-Notes:
-- No external dependencies are required. The server uses Node's built-in http module.
-- The preview system requires that a start command exists and the app listens on the provided PORT and 0.0.0.0.
-- Dockerfile is included for containerized runs and exposes port 3000.
-
----
-
-Original README (retained for reference)
-
-OttServices Thunder JSON-RPC plugin
-
-(Snipped: see previous version in repo for extended Thunder/JSON-RPC instructions.)
