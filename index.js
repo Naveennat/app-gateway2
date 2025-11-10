@@ -7,8 +7,6 @@
  * It delegates to the existing server.js implementation.
  */
 
-const { startServer } = require('./server');
-
 // Basic process-level error logging to avoid silent exits
 process.on('unhandledRejection', (err) => {
   console.error('[app-gateway2] Unhandled Promise Rejection:', err);
@@ -18,4 +16,6 @@ process.on('uncaughtException', (err) => {
 });
 
 console.log(`[app-gateway2] Node version: ${process.version}`);
-startServer();
+
+// Requiring server.js starts the server (server.js calls app.listen)
+require('./server');

@@ -20,12 +20,18 @@ for (const dir of staticDirs) {
     }
 }
 
-// Health endpoint
+// Liveness endpoint for container/preview health checks
+// PUBLIC_INTERFACE
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
+
+// Root endpoint - serves static index.html if available, else simple HTML
 // PUBLIC_INTERFACE
 app.get('/', (req, res) => {
     if (staticDirServed) {
         // Ordinary static fallback handled by Express if index.html in static dir
-        res.sendFile('index.html', { root: path.join(__dirname, staticDirs.find(d=>require('fs').existsSync(path.join(__dirname,d)))) }, err => {
+        res.sendFile('index.html', { root: path.join(__dirname, staticDirs.find(d => require('fs').existsSync(path.join(__dirname, d)))) }, err => {
             if (err) res.type('text/html').status(200).send('<h1>App Gateway2</h1><p>Static build not found. Server running.</p>');
         });
     } else {
