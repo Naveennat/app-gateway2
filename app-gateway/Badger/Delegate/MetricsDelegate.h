@@ -308,7 +308,8 @@ namespace WPEFramework {
         static inline void ArgsToParametersObject(const std::vector<ParamKV>& src, JsonObject& out) {
             out.Clear();
             for (const auto& kv : src) {
-                out[kv.name] = VariantToJsonValue(kv.value);
+                // Avoid operator[] for dynamic keys on JsonObject; use Set API which accepts a Variant.
+                out.Set(kv.name.c_str(), VariantToJsonValue(kv.value));
             }
         }
 
