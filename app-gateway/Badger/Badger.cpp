@@ -987,36 +987,29 @@ namespace WPEFramework {
             const std::string action = payloadVC.HasLabel("action") ? payloadVC["action"].String() : "";
             const std::string type   = payloadVC.HasLabel("type") ? payloadVC["type"].String() : "";
 
-            auto buildEntitlementsArrayString = [&](std::string& entitlementsOut) {
-                entitlementsOut.clear();
+            // Build entitlements as a JSON array (not a string)
+            auto buildEntitlementsArray = [&]() -> Core::JSON::ArrayType<Core::JSON::Variant> {
+                Core::JSON::ArrayType<Core::JSON::Variant> arr;
                 if (payloadVC.HasLabel("subscriptionEntitlements") &&
                     payloadVC["subscriptionEntitlements"].Content() == Core::JSON::Variant::type::ARRAY) {
-
-                    Core::JSON::ArrayType<Core::JSON::Variant> arr = payloadVC["subscriptionEntitlements"].Array();
-                    arr.ToString(entitlementsOut);
-                } else {
-                    // default to empty array
-                    entitlementsOut = "[]";
+                    arr = payloadVC["subscriptionEntitlements"].Array();
                 }
+                return arr;
             };
 
-            auto buildIdsObjectString = [&](std::string& idsStr) {
-                // Build: { "entitlements": <subscriptionEntitlements or []> }
-                std::string entitlementsStr;
-                buildEntitlementsArrayString(entitlementsStr);
+            // Build ids as a JSON object with "entitlements" array inside (not a string)
+            auto buildIdsObject = [&]() -> Core::JSON::VariantContainer {
                 Core::JSON::VariantContainer idsObj;
-                // Set as raw array string
-                Core::JSON::ArrayType<Core::JSON::Variant> entArr;
-                entArr.FromString(entitlementsStr);
+                Core::JSON::ArrayType<Core::JSON::Variant> entArr = buildEntitlementsArray();
                 idsObj["entitlements"] = entArr;
-
-                idsObj.ToString(idsStr);
+                return idsObj;
             };
 
             // appLaunch -> contentAccess
             if (action == "appLaunch") {
+                Core::JSON::VariantContainer idsObj = buildIdsObject();
                 std::string idsStr;
-                buildIdsObjectString(idsStr);
+                idsObj.ToString(idsStr);
                 std::string tmp;
                 (void) discovery->ContentAccess(appId, idsStr, tmp);
                 result = "{}";
@@ -1025,8 +1018,9 @@ namespace WPEFramework {
 
             // explicit entitlementsUpdate -> contentAccess
             if (type == "entitlementsUpdate") {
+                Core::JSON::VariantContainer idsObj = buildIdsObject();
                 std::string idsStr;
-                buildIdsObjectString(idsStr);
+                idsObj.ToString(idsStr);
                 std::string tmp;
                 (void) discovery->ContentAccess(appId, idsStr, tmp);
                 result = "{}";
@@ -1035,8 +1029,9 @@ namespace WPEFramework {
 
             // signIn -> FbDiscovery.signIn with optional entitlements
             if (action == "signIn") {
+                Core::JSON::ArrayType<Core::JSON::Variant> entArr = buildEntitlementsArray();
                 std::string entitlementsStr;
-                buildEntitlementsArrayString(entitlementsStr);
+                entArr.ToString(entitlementsStr);
                 bool success = false;
                 (void) discovery->SignIn(appId, entitlementsStr, success);
                 // Always return {} to the client
