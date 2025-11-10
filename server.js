@@ -36,6 +36,13 @@ const CONTENT_TYPES = {
   '.ico': 'image/x-icon'
 };
 
+ // PUBLIC_INTERFACE
+/**
+ * Start the HTTP preview server.
+ * - Binds to process.env.HOST or '0.0.0.0'
+ * - Listens on process.env.PORT or the provided port/default 3000
+ * Returns the created http.Server instance.
+ */
 // PUBLIC_INTERFACE
 function startServer({ host, port } = {}) {
   const serverHost = host || process.env.HOST || '0.0.0.0';
