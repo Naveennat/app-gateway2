@@ -1,6 +1,5 @@
 # syntax=docker/dockerfile:1
 # Minimal container to run the app-gateway2 preview server.
-# Avoids dependencies by using Node's built-in http.
 
 FROM node:18-alpine AS runtime
 
@@ -11,10 +10,13 @@ ENV NODE_ENV=production \
 
 WORKDIR /usr/src/app
 
+# Copy dependency manifest first for better layer caching and install deps
+COPY package*.json ./
+RUN npm install --omit=dev
+
 # Copy only what's needed to run the preview server
-COPY package.json ./ 
-COPY server.js ./ 
-COPY index.js ./ 
+COPY server.js ./
+COPY index.js ./
 COPY README.md ./
 
 # Container documentation; the platform may use PORT env for mapping
