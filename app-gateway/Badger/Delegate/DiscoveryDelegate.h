@@ -21,6 +21,10 @@
 
  #include "DelegateUtils.h"
  #include "UtilsLogging.h"
+ #include <ctime>
+ #include <cctype>
+ #include <cstdlib>
+ #include <string>
 
  #ifndef FB_DISCOVERY_CALLSIGN
  #define FB_DISCOVERY_CALLSIGN "org.rdk.FbDiscovery"
@@ -130,6 +134,10 @@
               * Helper to call FbDiscovery.contentAccess with ids payload.
               * idsPayload should be a JSON string for: { "entitlements": [...], "availabilities": [...] } (either or both).
               * Always returns {} on success.
+              *
+              * This function normalizes:
+              *  - entitlements: id -> entitlementId, startDate/endDate (epoch ms or s) -> startTime/endTime (ISO8601 UTC Z)
+              *  - availabilities: startDate/endDate (epoch ms or s) -> startTime/endTime, preserves type/id/catalogId
               */
              auto link = DelegateUtils::AcquireLink(_shell, FB_DISCOVERY_CALLSIGN);
              if (!link) {
@@ -143,10 +151,76 @@
              JsonObject context;
              context["appId"] = appId;
              params["context"] = context;
+
+             // Parse ids object from payload
              JsonObject idsObject;
              if (!idsPayload.empty()) {
                  idsObject.FromString(idsPayload);
              }
+
+             // Normalize entitlements array if present
+             if (idsObject.HasLabel("entitlements") && idsObject["entitlements"].Content() == Core::JSON::Variant::type::ARRAY) {
+                 auto inArr = idsObject["entitlements"].Array();
+                 Core::JSON::ArrayType<Core::JSON::Variant> outArr;
+
+                 for (uint32_t i = 0; i < inArr.Length(); ++i) {
+                     Core::JSON::Variant& v = inArr[i];
+                     if (v.Content() != Core::JSON::Variant::type::OBJECT) {
+                         continue;
+                     }
+                     JsonObject ent = v.Object();
+
+                     // Start with a copy to preserve any extra fields
+                     JsonObject normalized = ent;
+
+                     // Map id -> entitlementId if entitlementId is not already present
+                     if (!ent.HasLabel("entitlementId") && ent.HasLabel("id")) {
+                         normalized["entitlementId"] = ent["id"];
+                     }
+
+                     // Normalize date fields to ISO8601 UTC Z if not already present
+                     NormalizeDateField(normalized, "startDate", "startTime");
+                     NormalizeDateField(normalized, "endDate", "endTime");
+
+                     // Append normalized object to array
+                     Core::JSON::Variant& outVar = outArr.Add();
+                     outVar = normalized;
+                 }
+
+                 idsObject["entitlements"] = outArr;
+             }
+
+             // Normalize availabilities array if present
+             if (idsObject.HasLabel("availabilities") && idsObject["availabilities"].Content() == Core::JSON::Variant::type::ARRAY) {
+                 auto inArr = idsObject["availabilities"].Array();
+                 Core::JSON::ArrayType<Core::JSON::Variant> outArr;
+
+                 for (uint32_t i = 0; i < inArr.Length(); ++i) {
+                     Core::JSON::Variant& v = inArr[i];
+                     if (v.Content() != Core::JSON::Variant::type::OBJECT) {
+                         continue;
+                     }
+                     JsonObject av = v.Object();
+
+                     // Start with a copy to preserve all fields (type/id/catalogId/etc.)
+                     JsonObject normalized = av;
+
+                     // Normalize dates
+                     NormalizeDateField(normalized, "startDate", "startTime");
+                     NormalizeDateField(normalized, "endDate", "endTime");
+
+                     Core::JSON::Variant& outVar = outArr.Add();
+                     outVar = normalized;
+                 }
+
+                 idsObject["availabilities"] = outArr;
+             }
+
+             // Log the transformed payload for verification
+             std::string normalizedIdsStr;
+             idsObject.ToString(normalizedIdsStr);
+             LOGINFO("ContentAccess normalized ids for appId=%s: %s", appId.c_str(), normalizedIdsStr.c_str());
+
              params["ids"] = idsObject;
 
              uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("contentAccess"), params, response);
@@ -328,6 +402,66 @@
              } else {
                  LOGERR("Unsupported type for EntitlementsAccountLink: %s", type.c_str());
                  return Core::ERROR_NOT_SUPPORTED;
+             }
+         }
+
+       private:
+         // Convert epoch (ms or s) Variant to milliseconds, if possible
+         static bool TryEpochVariantToMillis(const Core::JSON::Variant& v, uint64_t& outMillis) {
+             using Type = Core::JSON::Variant::type;
+             if (v.Content() == Type::NUMBER) {
+                 int64_t n = v.Number();
+                 if (n < 0) return false;
+                 uint64_t u = static_cast<uint64_t>(n);
+                 // Heuristic: >= 1e12 -> ms, else seconds
+                 outMillis = (u >= 100000000000ULL) ? u : (u * 1000ULL);
+                 return true;
+             }
+             if (v.Content() == Type::STRING) {
+                 std::string s = v.String();
+                 // Trim whitespace
+                 size_t start = 0, end = s.size();
+                 while (start < end && std::isspace(static_cast<unsigned char>(s[start]))) start++;
+                 while (end > start && std::isspace(static_cast<unsigned char>(s[end - 1]))) end--;
+                 if (start >= end) return false;
+                 uint64_t val = 0;
+                 for (size_t i = start; i < end; ++i) {
+                     if (!std::isdigit(static_cast<unsigned char>(s[i]))) {
+                         return false;
+                     }
+                     val = (val * 10ULL) + static_cast<uint64_t>(s[i] - '0');
+                 }
+                 outMillis = ((end - start) >= 13) ? val : (val * 1000ULL);
+                 return true;
+             }
+             return false;
+         }
+
+         // Format milliseconds since epoch to ISO8601 UTC with Z
+         static std::string FormatIso8601FromMillis(uint64_t ms) {
+             time_t sec = static_cast<time_t>(ms / 1000ULL);
+             struct tm tmUtc;
+ #if defined(_WIN32)
+             gmtime_s(&tmUtc, &sec);
+ #else
+             gmtime_r(&sec, &tmUtc);
+ #endif
+             char buf[32] = {0};
+             strftime(buf, sizeof(buf), "%Y-%m-%dT%H:%M:%SZ", &tmUtc);
+             return std::string(buf);
+         }
+
+         // Normalize a date field on obj: if newKey not present, and oldKey present (ms or s), set newKey as ISO8601 Z
+         static void NormalizeDateField(JsonObject& obj, const char* oldKey, const char* newKey) {
+             // If already has normalized field, do nothing
+             if (obj.HasLabel(newKey) && obj[newKey].Content() == Core::JSON::Variant::type::STRING) {
+                 return;
+             }
+             if (obj.HasLabel(oldKey)) {
+                 uint64_t ms = 0;
+                 if (TryEpochVariantToMillis(obj[oldKey], ms)) {
+                     obj[newKey] = FormatIso8601FromMillis(ms);
+                 }
              }
          }
 
