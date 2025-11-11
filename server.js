@@ -3,6 +3,7 @@ const path = require('path');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
 // Try to serve static files if dist/ or public/ exists, else serve basic HTML
 const staticDirs = ['dist', 'public'];
@@ -39,8 +40,8 @@ app.get('/', (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`app-gateway2 Express server listening on port ${PORT}`);
+app.listen(PORT, HOST, () => {
+    console.log(`app-gateway2 Express server listening on http://${HOST}:${PORT}`);
 });
 
 module.exports = app;
