@@ -81,7 +81,7 @@ function requestHandler(req, res) {
   const pathName = url.pathname;
 
   if (pathName === '/' || pathName === '/index.html') {
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 3001;
     const html = renderIndex(port);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(html);
@@ -140,7 +140,7 @@ function createServer() {
 }
 
 if (require.main === module) {
-  const port = parseInt(process.env.PORT || '3000', 10);
+  const port = parseInt(process.env.PORT || '3001', 10);
   const host = '0.0.0.0';
 
   // Ensure log dir exists if logs will be tailed
