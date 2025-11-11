@@ -666,10 +666,15 @@ public:
      {
          /**
           * Retrieve HDMI audio format via DisplaySettings.getAudioFormat(audioPort: "HDMI0")
-          * Normalize plugin values and produce capability flags:
+          * New behavior: If the response contains supportedAudioFormat (array), compute capability flags
+          * based on the supported formats (non one-hot, multiple true flags allowed).
+          * Fallback: If supportedAudioFormat is absent or not an array, preserve previous behavior using
+          * the current/active format mapping and default stereo=true.
+          *
+          * Returned JSON shape (unchanged):
           * { "stereo":bool, "dolbyAtmos":bool, "dolbyDigital5.1":bool, "dolbyDigital5.1+":bool }
           */
-         // Default payload
+         // Default payload (stereo true by default for backward compatibility)
          {
              JsonObject obj;
              obj["stereo"] = true;
@@ -693,13 +698,22 @@ public:
              return Core::ERROR_GENERAL;
          }
 
-         // Parse and extract HDMIAudioFormat or currentAudioFormat (support different plugin payloads)
+         // Parse and prefer result.supportedAudioFormat or supportedAudioFormat (top-level) if present.
          WPEFramework::Core::JSON::VariantContainer obj;
          WPEFramework::Core::OptionalType<WPEFramework::Core::JSON::Error> error;
-         std::string rawFormat;
+         std::string rawFormat; // fallback
+         bool stereo = false, dd51 = false, dd51p = false, atmos = false;
+         bool usedSupportedArray = false;
 
          auto extractFormat = [&](const WPEFramework::Core::JSON::Variant& v) {
              if (v.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT) {
+                 // First, try supportedAudioFormat array under this object
+                 auto saf = v.Object().Get(_T("supportedAudioFormat"));
+                 if (SetFlagsFromSupported(saf, stereo, dd51, dd51p, atmos)) {
+                     usedSupportedArray = true;
+                 }
+
+                 // Capture raw/active format for fallback or logging
                  auto k1 = v.Object().Get(_T("HDMIAudioFormat"));
                  auto k2 = v.Object().Get(_T("currentAudioFormat"));
                  auto k3 = v.Object().Get(_T("audioFormat"));
@@ -720,12 +734,34 @@ public:
              } else {
                  extractFormat(obj);
              }
+
+             // If not found under "result", attempt top-level supportedAudioFormat
+             if (!usedSupportedArray) {
+                 auto supTop = obj.Get(_T("supportedAudioFormat"));
+                 if (SetFlagsFromSupported(supTop, stereo, dd51, dd51p, atmos)) {
+                     usedSupportedArray = true;
+                 }
+             }
          }
 
-         const std::string normalized = NormalizeHdmiAudioFormat(rawFormat);
-         jsonObject = BuildAudioCapabilityJsonFromFormat(normalized);
-         LOGDBG("[FbSettings|Audio] rawFormat='%s' normalized='%s' -> %s",
-                rawFormat.c_str(), normalized.c_str(), jsonObject.c_str());
+         if (usedSupportedArray) {
+             // Build capability JSON from aggregated flags (multi-true allowed)
+             JsonObject cap;
+             cap["stereo"] = stereo || (!dd51 && !dd51p && !atmos); // ensure at least stereo if nothing else matched
+             cap["dolbyAtmos"] = atmos;
+             cap["dolbyDigital5.1"] = dd51;
+             cap["dolbyDigital5.1+"] = dd51p;
+             cap.ToString(jsonObject);
+             LOGDBG("[FbSettings|Audio] Using supportedAudioFormat -> stereo=%d dd5.1=%d dd5.1+=%d atmos=%d -> %s",
+                    (int)(cap["stereo"].Boolean()), (int)dd51, (int)dd51p, (int)atmos, jsonObject.c_str());
+         } else {
+             // Fallback to previous behavior: map current/active format and default to stereo
+             const std::string normalized = NormalizeHdmiAudioFormat(rawFormat);
+             jsonObject = BuildAudioCapabilityJsonFromFormat(normalized);
+             LOGDBG("[FbSettings|Audio] Fallback using currentAudioFormat raw='%s' normalized='%s' -> %s",
+                    rawFormat.c_str(), normalized.c_str(), jsonObject.c_str());
+         }
+
          return Core::ERROR_NONE;
      }
     // ---- Event exposure (Emit helpers) ----
@@ -963,6 +999,51 @@ private:
          std::string out;
          obj.ToString(out);
          return out;
+     }
+
+     /**
+      * Helper: Parse supportedAudioFormat array and set flags. Returns true iff an array was found
+      * and at least one recognized token was matched. Tokens are matched case-insensitively:
+      * - stereo: contains "PCM" or "STEREO"
+      * - dolbyDigital5.1: contains "AC3" or "DOLBY AC3" or "DOLBY DIGITAL"
+      * - dolbyDigital5.1+: contains "EAC3" or "DD+" or "DOLBY DIGITAL PLUS" or "AC4"
+      * - dolbyAtmos: contains "ATMOS"
+      */
+     static bool SetFlagsFromSupported(const WPEFramework::Core::JSON::Variant& supportedNode,
+                                       bool& stereo, bool& dd51, bool& dd51p, bool& atmos)
+     {
+         using Var = WPEFramework::Core::JSON::Variant;
+         bool anyRecognized = false;
+         if (supportedNode.Content() == Var::type::ARRAY) {
+             auto arr = supportedNode.Array();
+             const uint16_t n = arr.Length();
+             for (uint16_t i = 0; i < n; ++i) {
+                 std::string token = arr[i].String();
+                 if (token.empty()) {
+                     continue;
+                 }
+                 std::string u = token;
+                 std::transform(u.begin(), u.end(), u.begin(), [](unsigned char c){ return static_cast<char>(::toupper(c)); });
+
+                 // Stereo detection
+                 if (u.find("PCM") != std::string::npos || u.find("STEREO") != std::string::npos) {
+                     stereo = true; anyRecognized = true;
+                 }
+                 // Dolby Digital (AC3)
+                 if (u.find("AC3") != std::string::npos || u.find("DOLBY AC3") != std::string::npos || u.find("DOLBY DIGITAL") != std::string::npos) {
+                     dd51 = true; anyRecognized = true;
+                 }
+                 // Dolby Digital Plus (EAC3/DD+/AC4)
+                 if (u.find("EAC3") != std::string::npos || u.find("DD+") != std::string::npos || u.find("DOLBY DIGITAL PLUS") != std::string::npos || u.find("AC4") != std::string::npos) {
+                     dd51p = true; anyRecognized = true;
+                 }
+                 // Atmos (any transport)
+                 if (u.find("ATMOS") != std::string::npos) {
+                     atmos = true; anyRecognized = true;
+                 }
+             }
+         }
+         return anyRecognized;
      }
     static bool EqualsIgnoreCase(const std::string &a, const std::string &b)
     {
