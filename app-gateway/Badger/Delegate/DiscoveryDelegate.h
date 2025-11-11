@@ -25,6 +25,7 @@
  #include <cctype>
  #include <cstdlib>
  #include <string>
+ #include <cstdint>
 
  #ifndef FB_DISCOVERY_CALLSIGN
  #define FB_DISCOVERY_CALLSIGN "org.rdk.FbDiscovery"
@@ -221,7 +222,7 @@
              idsObject.ToString(normalizedIdsStr);
              LOGINFO("ContentAccess normalized ids for appId=%s: %s", appId.c_str(), normalizedIdsStr.c_str());
 
-             params["ids"] = idsObject;
+             params["ids"] = normalizedIdsStr;
 
              uint32_t rc = link->Invoke<JsonObject, JsonObject>(_T("contentAccess"), params, response);
              if (rc != Core::ERROR_NONE) {
