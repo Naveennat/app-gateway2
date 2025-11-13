@@ -273,23 +273,19 @@ impl AuthenticationServer for AuthenticationImpl {
             dist_session: dist_session.clone(),
         };
 
-        debug!("Getting platform token for {}", context.app_id);
+        debug!("Getting platform token for {} via OTT Token Service", context.app_id);
+        // Retrieve root (xACT) token and request platform token from OTT Token Service
+        let root_token = self.get_root_token().await?;
         match self
             .state
             .get_auth_service()
-            .get_thor_permission_service()
-            .get_thor_token(
-                &context.dist_session,
-                context.app_id,
-                context.content_provider,
-                context.device_session_id,
-                context.app_session_id,
-            )
+            .get_ott_token_service()
+            .get_ott_token(&dist_session, cp_id, root_token.value)
             .await
         {
-            Ok(response) => Ok(response),
+            Ok(response) => Ok(response.access_token),
             Err(e) => Err(jsonrpsee::core::Error::Custom(format!(
-                "Ripple Error getting distributor token: {:?}",
+                "Ripple Error getting platform token via OTT Token Service: {:?}",
                 e
             ))),
         }
@@ -405,24 +401,15 @@ impl AuthenticationImpl {
                     dist_session,
                 };
                 debug!("Getting platform token for {}", context.app_id);
+                // Retrieve root (xACT) token and request platform token from OTT Token Service
+                let root_token = self.get_root_token().await?;
                 self.state
                     .get_auth_service()
-                    .get_thor_permission_service()
-                    .get_thor_token(
-                        &context.dist_session,
-                        context.app_id,
-                        context.content_provider,
-                        context.device_session_id,
-                        context.app_session_id,
-                    )
+                    .get_ott_token_service()
+                    .get_ott_token(&dist_session, cp_id, root_token.value)
                     .await
-                    .map(|token| convert_into_platform_token_response(token))
-                    .map_err(|_| {
-                        jsonrpsee::core::Error::Custom(format!(
-                            "Ripple Error getting {:?} token",
-                            TokenType::Platform
-                        ))
-                    })
+                    .map(|response| convert_into_platform_token_response(response.access_token))
+                    .map_err(|e| jsonrpsee::core::Error::Custom(format!("{:?}", e)))
             }
             TokenType::Distributor => {
                 // get root token & get the cima token from ots
