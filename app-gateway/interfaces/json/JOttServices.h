@@ -2,8 +2,8 @@
 
 /*
  * JSON-RPC registration helpers for IOttServices.
- * Adds initial ott.getDistributorToken and ott.getAuthToken method shims.
- * Handlers call into the COMRPC interface and return placeholder data or errors.
+ * Updated: ott.getDistributorToken and ott.getAuthToken no longer accept xact/sat.
+ * OttServices now retrieves SAT and xACT internally via Thunder plugins.
  */
 
 #include <plugins/JSONRPC.h>
@@ -26,28 +26,23 @@ namespace Exchange {
             }
 
             // ott.getDistributorToken
+            // params: { "appId": "<firebolt appId>" }
             parent.Register(_T("ott.getDistributorToken"),
                 [api](const Core::JSONRPC::Context& /*ctx*/, const string& /*method*/, const string& parameters, string& response) -> uint32_t {
                     Core::JSON::VariantContainer input;
                     input.FromString(parameters);
 
                     string appId;
-                    string xact;
-                    string sat;
-
                     if (input.HasLabel(_T("appId"))) { appId = input[_T("appId")].String(); }
-                    if (input.HasLabel(_T("xact")))  { xact  = input[_T("xact")].String();  }
-                    if (input.HasLabel(_T("sat")))   { sat   = input[_T("sat")].String();   }
 
-                    if (appId.empty() || sat.empty()) {
+                    if (appId.empty()) {
                         return Core::ERROR_BAD_REQUEST;
                     }
 
                     string tokenJson;
-                    const Core::hresult rc = api->GetDistributorToken(appId, xact, sat, tokenJson);
+                    const Core::hresult rc = api->GetDistributorToken(appId, tokenJson);
 
                     if (rc == Core::ERROR_NONE) {
-                        // If tokenJson is a JSON object string, return it directly.
                         response = tokenJson.empty() ? _T("{}") : tokenJson;
                     }
 
@@ -55,23 +50,21 @@ namespace Exchange {
                 });
 
             // ott.getAuthToken
+            // params: { "appId": "<firebolt appId>" }
             parent.Register(_T("ott.getAuthToken"),
                 [api](const Core::JSONRPC::Context& /*ctx*/, const string& /*method*/, const string& parameters, string& response) -> uint32_t {
                     Core::JSON::VariantContainer input;
                     input.FromString(parameters);
 
                     string appId;
-                    string sat;
-
                     if (input.HasLabel(_T("appId"))) { appId = input[_T("appId")].String(); }
-                    if (input.HasLabel(_T("sat")))   { sat   = input[_T("sat")].String();   }
 
-                    if (appId.empty() || sat.empty()) {
+                    if (appId.empty()) {
                         return Core::ERROR_BAD_REQUEST;
                     }
 
                     string tokenJson;
-                    const Core::hresult rc = api->GetAuthToken(appId, sat, tokenJson);
+                    const Core::hresult rc = api->GetAuthToken(appId, tokenJson);
 
                     if (rc == Core::ERROR_NONE) {
                         response = tokenJson.empty() ? _T("{}") : tokenJson;

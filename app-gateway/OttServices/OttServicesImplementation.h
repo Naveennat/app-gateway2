@@ -20,6 +20,7 @@
 
 // Permissions client and cache utils
 #include "PermissionsClient.h"
+#include "TokenCache.h"
 
 namespace WPEFramework {
 namespace Plugin {
@@ -67,16 +68,13 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult UpdatePermissionsCache(const string& appId, uint32_t& updatedCount) override;
 
-        // ---- Token retrieval placeholders (stubs for future implementation) ----
+        // ---- Token retrieval (internal SAT/xACT resolution) ----
         // PUBLIC_INTERFACE
         Core::hresult GetDistributorToken(const string& appId,
-                                          const string& xact,
-                                          const string& sat,
                                           string& tokenJson) override;
 
         // PUBLIC_INTERFACE
         Core::hresult GetAuthToken(const string& appId,
-                                   const string& sat,
                                    string& tokenJson) override;
 
     private:
@@ -102,6 +100,14 @@ namespace Plugin {
                                  std::string& accountId,
                                  std::string& partnerId) const;
 
+        // Helpers to fetch SAT and xACT via AuthService
+        bool FetchSat(std::string& sat /* @out */, uint64_t& expiryEpoch /* @out */) const;
+        bool FetchXact(const std::string& appId /* @in */, std::string& xact /* @out */, uint64_t& expiryEpoch /* @out */) const;
+
+        // Utility: current epoch seconds and JSON parsing for expires_in
+        static uint64_t NowEpochSec();
+        static uint64_t ExtractExpiresInSeconds(const std::string& json);
+
     private:
         PluginHost::IShell* _service;
         string _state;
@@ -117,6 +123,7 @@ namespace Plugin {
 
         // Token path: guard token cache/client access.
         std::mutex _tokenMutex;
+        TokenCache _tokenCache;
 
         // Reference counter for COM-style lifetime management.
         mutable std::atomic<uint32_t> _refCount {1};

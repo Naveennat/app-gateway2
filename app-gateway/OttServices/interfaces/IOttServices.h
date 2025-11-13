@@ -47,26 +47,20 @@ namespace Exchange {
 
         // PUBLIC_INTERFACE
         // @text getDistributorToken
-        // @brief Retrieve a distributor token for the given app and transaction context.
+        // @brief Retrieve a distributor token for the given app. Internally fetches xACT and SAT via Thunder.
         // @param appId: Application identifier (Firebolt appId).
-        // @param xact: Transaction identifier/context (if required by server).
-        // @param sat: Service access token (bearer) used to authorize the request.
         // @param tokenJson: Output JSON string containing the token or token envelope (opaque).
-        // @returns Core::hresult (Core::ERROR_UNAVAILABLE until implemented)
+        // @returns Core::hresult
         virtual Core::hresult GetDistributorToken(const string& appId /* @in */,
-                                                  const string& xact /* @in */,
-                                                  const string& sat /* @in */,
                                                   string& tokenJson /* @out @opaque */) = 0;
 
         // PUBLIC_INTERFACE
         // @text getAuthToken
-        // @brief Retrieve an auth token for the given app using a sat.
+        // @brief Retrieve an auth token for the given app. Internally fetches SAT via Thunder.
         // @param appId: Application identifier (Firebolt appId).
-        // @param sat: Service access token (bearer) used to authorize the request.
         // @param tokenJson: Output JSON string containing the token or token envelope (opaque).
-        // @returns Core::hresult (Core::ERROR_UNAVAILABLE until implemented)
+        // @returns Core::hresult
         virtual Core::hresult GetAuthToken(const string& appId /* @in */,
-                                           const string& sat /* @in */,
                                            string& tokenJson /* @out @opaque */) = 0;
     };
 
