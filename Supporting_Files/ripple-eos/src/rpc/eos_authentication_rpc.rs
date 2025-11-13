@@ -264,28 +264,32 @@ impl AuthenticationServer for AuthenticationImpl {
             }
         };
 
-        // get platform token from tps
+        // Acquire platform token using Thor Permission Service (original permission service flow)
         let context = PlatformTokenContext {
-            app_id: ctx.app_id,
-            content_provider: cp_id,
+            app_id: ctx.app_id.clone(),
+            content_provider: cp_id.clone(),
             device_session_id: self.state.metrics.device_session_id.clone().into(),
             app_session_id: ctx.session_id.clone(),
             dist_session: dist_session.clone(),
         };
 
-        debug!("Getting platform token for {} via OTT Token Service", context.app_id);
-        // Retrieve root (xACT) token and request platform token from OTT Token Service
-        let root_token = self.get_root_token().await?;
+        debug!("Getting platform token for {} via Permission Service", context.app_id);
         match self
             .state
             .get_auth_service()
-            .get_ott_token_service()
-            .get_ott_token(&dist_session, cp_id, root_token.value)
+            .get_thor_permission_service()
+            .get_thor_token(
+                &context.dist_session,
+                context.app_id,
+                context.content_provider,
+                context.device_session_id,
+                context.app_session_id,
+            )
             .await
         {
-            Ok(response) => Ok(response.access_token),
+            Ok(token) => Ok(token),
             Err(e) => Err(jsonrpsee::core::Error::Custom(format!(
-                "Ripple Error getting platform token via OTT Token Service: {:?}",
+                "Ripple Error getting platform token via Permission Service: {:?}",
                 e
             ))),
         }
@@ -392,23 +396,27 @@ impl AuthenticationImpl {
 
         match token_type {
             TokenType::Platform => {
-                // get platform token from tps
+                // Acquire platform token via Thor Permission Service (original permission service flow)
                 let context = PlatformTokenContext {
-                    app_id: ctx.app_id,
-                    content_provider: cp_id,
+                    app_id: ctx.app_id.clone(),
+                    content_provider: cp_id.clone(),
                     device_session_id: self.state.metrics.device_session_id.clone().into(),
                     app_session_id: ctx.session_id.clone(),
                     dist_session,
                 };
                 debug!("Getting platform token for {}", context.app_id);
-                // Retrieve root (xACT) token and request platform token from OTT Token Service
-                let root_token = self.get_root_token().await?;
                 self.state
                     .get_auth_service()
-                    .get_ott_token_service()
-                    .get_ott_token(&dist_session, cp_id, root_token.value)
+                    .get_thor_permission_service()
+                    .get_thor_token(
+                        &context.dist_session,
+                        context.app_id.clone(),
+                        context.content_provider.clone(),
+                        context.device_session_id.clone(),
+                        context.app_session_id.clone(),
+                    )
                     .await
-                    .map(|response| convert_into_platform_token_response(response.access_token))
+                    .map(|token| convert_into_platform_token_response(token))
                     .map_err(|e| jsonrpsee::core::Error::Custom(format!("{:?}", e)))
             }
             TokenType::Distributor => {
