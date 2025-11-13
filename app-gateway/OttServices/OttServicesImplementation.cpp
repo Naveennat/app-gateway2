@@ -3,13 +3,17 @@
 #include <core/Enumerate.h>
 #include "UtilsLogging.h"
 
- // Use in-module permission cache and JSONRPC direct link utils
+// Use in-module permission cache and JSONRPC direct link utils
 #include "OttPermissionCache.h"
 #include "UtilsJsonrpcDirectLink.h"
 
-// Ott token scaffolding (stubs; no network calls yet)
+// Token client and cache
 #include "TokenClient.h"
 #include "TokenCache.h"
+
+#include <chrono>
+#include <cctype>
+#include <cstdlib>
 
 namespace WPEFramework {
 namespace Plugin {
@@ -71,7 +75,7 @@ namespace Plugin {
         // Create permissions client (works even if gRPC disabled; will return ERROR_UNAVAILABLE on use)
         _perms.reset(new PermissionsClient(_permsEndpoint, _permsUseTls));
 
-        // Create token client (compiles to stub if feature disabled)
+        // Create token client
         _token.reset(new TokenClient(_tokenEndpoint, _tokenUseTls));
 
         // Warm up cache file load
@@ -89,7 +93,7 @@ namespace Plugin {
         LOGINFO("OttServices: Deinitialize implementation");
     }
 
- 
+
     // Exchange::IOttServices implementation and local variants
 
     Core::hresult OttServicesImplementation::Ping(const string& message, string& reply) {
@@ -254,14 +258,162 @@ namespace Plugin {
         return Core::ERROR_NONE;
     }
 
+    // Helper: current epoch seconds
+    uint64_t OttServicesImplementation::NowEpochSec() {
+        return static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::seconds>(
+            std::chrono::system_clock::now().time_since_epoch()).count());
+    }
+
+    // Helper: naive JSON parse of expires_in integer field
+    uint64_t OttServicesImplementation::ExtractExpiresInSeconds(const std::string& json) {
+        const std::string key = "\"expires_in\":";
+        const auto pos = json.find(key);
+        if (pos == std::string::npos) {
+            return 0;
+        }
+        size_t i = pos + key.size();
+        while (i < json.size() && (json[i] == ' ' || json[i] == '\"')) { ++i; }
+        size_t j = i;
+        while (j < json.size() && isdigit(static_cast<unsigned char>(json[j]))) { ++j; }
+        if (i == j) {
+            return 0;
+        }
+        return std::strtoull(json.substr(i, j - i).c_str(), nullptr, 10);
+    }
+
+    bool OttServicesImplementation::FetchSat(std::string& sat, uint64_t& expiryEpoch) const {
+        sat.clear();
+        expiryEpoch = 0;
+
+        if (_service == nullptr) {
+            LOGERR("OttServices: FetchSat called with null service");
+            return false;
+        }
+
+        auto link = Utils::GetThunderControllerClient(_service, kAuthServiceCallsign);
+        if (link == nullptr) {
+            LOGERR("OttServices: Failed to acquire AuthService direct link for SAT");
+            return false;
+        }
+
+        JsonObject params;
+        JsonObject response;
+        uint32_t rc = link->Invoke<JsonObject, JsonObject>("getServiceAccessToken", params, response);
+        if (rc != Core::ERROR_NONE || !response.HasLabel("token")) {
+            LOGERR("OttServices: getServiceAccessToken failed rc=%u", rc);
+            return false;
+        }
+        sat = response["token"].String();
+
+        // Optional expiry parsing
+        if (response.HasLabel("expires")) {
+            const string expStr = response["expires"].String();
+            if (!expStr.empty()) {
+                char* endPtr = nullptr;
+                uint64_t v = std::strtoull(expStr.c_str(), &endPtr, 10);
+                if (endPtr != expStr.c_str() && v > 0) {
+                    expiryEpoch = v;
+                }
+            }
+        }
+        return !sat.empty();
+    }
+
+    bool OttServicesImplementation::FetchXact(const std::string& appId, std::string& xact, uint64_t& expiryEpoch) const {
+        xact.clear();
+        expiryEpoch = 0;
+
+        if (_service == nullptr) {
+            LOGERR("OttServices: FetchXact called with null service");
+            return false;
+        }
+
+        auto link = Utils::GetThunderControllerClient(_service, kAuthServiceCallsign);
+        if (link == nullptr) {
+            LOGERR("OttServices: Failed to acquire AuthService direct link for xACT");
+            return false;
+        }
+
+        JsonObject params;
+        if (!appId.empty()) {
+            params["appId"] = appId;
+        }
+
+        JsonObject response;
+        uint32_t rc = link->Invoke<JsonObject, JsonObject>("getAuthToken", params, response);
+        if (rc != Core::ERROR_NONE) {
+            LOGERR("OttServices: getAuthToken failed rc=%u", rc);
+            return false;
+        }
+
+        // Accept several possible field names
+        if (response.HasLabel("token")) {
+            xact = response["token"].String();
+        } else if (response.HasLabel("xact")) {
+            xact = response["xact"].String();
+        } else if (response.HasLabel("xACT")) {
+            xact = response["xACT"].String();
+        } else if (response.HasLabel("access_token")) {
+            xact = response["access_token"].String();
+        }
+
+        // Optional expiry parsing
+        if (response.HasLabel("expires_in")) {
+            const string expInStr = response["expires_in"].String();
+            if (!expInStr.empty()) {
+                char* endPtr = nullptr;
+                uint64_t v = std::strtoull(expInStr.c_str(), &endPtr, 10);
+                if (endPtr != expInStr.c_str() && v > 0) {
+                    expiryEpoch = NowEpochSec() + v;
+                }
+            }
+        } else if (response.HasLabel("expires")) {
+            const string expStr = response["expires"].String();
+            if (!expStr.empty()) {
+                char* endPtr = nullptr;
+                uint64_t v = std::strtoull(expStr.c_str(), &endPtr, 10);
+                if (endPtr != expStr.c_str() && v > 0) {
+                    expiryEpoch = v;
+                }
+            }
+        }
+
+        if (xact.empty()) {
+            LOGERR("OttServices: getAuthToken returned empty xACT");
+            return false;
+        }
+        return true;
+    }
+
     Core::hresult OttServicesImplementation::GetDistributorToken(const string& appId,
-                                                                 const string& xact,
-                                                                 const string& sat,
                                                                  string& tokenJson)
     {
         LOGINFO("OttServices: GetDistributorToken called (appId='%s')", appId.c_str());
-        if (appId.empty() || sat.empty()) {
+        if (appId.empty()) {
             return Core::ERROR_BAD_REQUEST;
+        }
+
+        const std::string cacheKey = std::string("platform:") + appId;
+
+        // Attempt cache hit
+        if (_tokenCache.Get(cacheKey, tokenJson)) {
+            LOGINFO("OttServices: GetDistributorToken cache hit (appId='%s')", appId.c_str());
+            return Core::ERROR_NONE;
+        }
+
+        // Resolve SAT and xACT internally
+        std::string sat;
+        std::string xact;
+        uint64_t satExpiry = 0;
+        uint64_t xactExpiry = 0;
+
+        if (!FetchSat(sat, satExpiry)) {
+            LOGERR("OttServices: FetchSat failed");
+            return Core::ERROR_UNAVAILABLE;
+        }
+        if (!FetchXact(appId, xact, xactExpiry)) {
+            LOGERR("OttServices: FetchXact failed");
+            return Core::ERROR_UNAVAILABLE;
         }
 
         std::lock_guard<std::mutex> guard(_tokenMutex);
@@ -277,17 +429,45 @@ namespace Plugin {
             return Core::ERROR_UNAVAILABLE;
         }
 
+        // Cache with conservative expiry (earliest of sat/xact/token)
+        const uint64_t now = NowEpochSec();
+        uint64_t ttl = ExtractExpiresInSeconds(tokenJson);
+        uint64_t tokenExpiry = (ttl > 0 ? now + ttl : 0);
+        uint64_t expiry = tokenExpiry;
+        if (expiry == 0 || (satExpiry > 0 && (satExpiry < expiry || expiry == 0))) expiry = satExpiry;
+        if (expiry == 0 || (xactExpiry > 0 && (xactExpiry < expiry || expiry == 0))) expiry = xactExpiry;
+
+        if (expiry > now) {
+            TokenEntry entry{ tokenJson, expiry };
+            _tokenCache.Put(cacheKey, entry);
+        }
+
         LOGINFO("OttServices: GetDistributorToken success (token=[REDACTED])");
         return Core::ERROR_NONE;
     }
 
     Core::hresult OttServicesImplementation::GetAuthToken(const string& appId,
-                                                          const string& sat,
                                                           string& tokenJson)
     {
         LOGINFO("OttServices: GetAuthToken called (appId='%s')", appId.c_str());
-        if (appId.empty() || sat.empty()) {
+        if (appId.empty()) {
             return Core::ERROR_BAD_REQUEST;
+        }
+
+        const std::string cacheKey = std::string("auth:") + appId;
+
+        // Attempt cache hit
+        if (_tokenCache.Get(cacheKey, tokenJson)) {
+            LOGINFO("OttServices: GetAuthToken cache hit (appId='%s')", appId.c_str());
+            return Core::ERROR_NONE;
+        }
+
+        // Resolve SAT internally
+        std::string sat;
+        uint64_t satExpiry = 0;
+        if (!FetchSat(sat, satExpiry)) {
+            LOGERR("OttServices: FetchSat failed");
+            return Core::ERROR_UNAVAILABLE;
         }
 
         std::lock_guard<std::mutex> guard(_tokenMutex);
@@ -301,6 +481,18 @@ namespace Plugin {
             LOGERR("OttServices: GetAuthToken failed: %s", err.c_str());
             tokenJson.clear();
             return Core::ERROR_UNAVAILABLE;
+        }
+
+        // Cache using expires_in if present, bounded by SAT expiry
+        const uint64_t now = NowEpochSec();
+        uint64_t ttl = ExtractExpiresInSeconds(tokenJson);
+        uint64_t expiry = (ttl > 0 ? now + ttl : 0);
+        if (expiry == 0 || (satExpiry > 0 && (satExpiry < expiry || expiry == 0))) {
+            expiry = satExpiry;
+        }
+        if (expiry > now) {
+            TokenEntry entry{ tokenJson, expiry };
+            _tokenCache.Put(cacheKey, entry);
         }
 
         LOGINFO("OttServices: GetAuthToken success (token=[REDACTED])");

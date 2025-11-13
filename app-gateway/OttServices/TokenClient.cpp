@@ -3,11 +3,9 @@
 #include <core/JSON.h>
 #include "UtilsLogging.h"
 
-#if defined(OTTSERVICES_ENABLE_OTT_TOKEN)
 #include <grpcpp/grpcpp.h>
 #include "ott_token.pb.h"
 #include "ott_token.grpc.pb.h"
-#endif
 
 namespace WPEFramework {
 namespace Plugin {
@@ -21,7 +19,6 @@ namespace Plugin {
             return out;
         }
 
-    #if defined(OTTSERVICES_ENABLE_OTT_TOKEN)
         static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint, bool useTls) {
             if (useTls) {
                 grpc::SslCredentialsOptions ssl_opts;
@@ -37,7 +34,6 @@ namespace Plugin {
                 ctx.AddMetadata("authorization", std::string("Bearer ") + sat);
             }
         }
-    #endif
     } // namespace
 
     TokenClient::TokenClient(const std::string& endpoint, bool useTls)
@@ -61,12 +57,6 @@ namespace Plugin {
             return false;
         }
 
-    #if !defined(OTTSERVICES_ENABLE_OTT_TOKEN)
-        VARIABLE_IS_NOT_USED std::string _xact = xact;
-        VARIABLE_IS_NOT_USED std::string _sat  = sat;
-        errMsg = "ott_token support disabled at build time";
-        return false;
-    #else
         auto channel = CreateChannel(_endpoint, _useTls);
         auto stub = ottx::otttoken::OttTokenService::NewStub(channel);
 
@@ -97,7 +87,6 @@ namespace Plugin {
 
         LOGINFO("TokenClient PlatformToken success (endpoint=%s, token=[REDACTED])", _endpoint.c_str());
         return true;
-    #endif
     }
 
     bool TokenClient::GetAuthToken(const std::string& appId,
@@ -114,11 +103,6 @@ namespace Plugin {
             return false;
         }
 
-    #if !defined(OTTSERVICES_ENABLE_OTT_TOKEN)
-        VARIABLE_IS_NOT_USED std::string _sat = sat;
-        errMsg = "ott_token support disabled at build time";
-        return false;
-    #else
         auto channel = CreateChannel(_endpoint, _useTls);
         auto stub = ottx::otttoken::OttTokenService::NewStub(channel);
 
@@ -148,7 +132,6 @@ namespace Plugin {
 
         LOGINFO("TokenClient AuthToken success (endpoint=%s, token=[REDACTED])", _endpoint.c_str());
         return true;
-    #endif
     }
 
 } // namespace Plugin
