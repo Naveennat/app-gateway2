@@ -45,6 +45,9 @@ set(PLUGIN_IMPLEMENTATION ${MODULE_NAME}Implementation)
 
 find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 
+# Optional ott_token.proto integration (generates stubs/headers and exports OTT_TOKEN_GENERATED_* variables)
+include(cmake/ott_token.cmake)
+
 
 # Define a target for protobuf file generation
 # Removed intermediate target - depending directly on proto file in custom commands
@@ -111,17 +114,33 @@ add_custom_target(force_regenerate2 ALL
 
 
 
-add_library(${MODULE_NAME} SHARED
+# Compose OttServices sources; always build TokenClient.cpp (it compiles to a stub if token feature is disabled)
+set(OTTSERVICES_SOURCES
         OttServicesImplementation.cpp
         OttPermissionCache.cpp
         PermissionsClient.cpp
+        TokenClient.cpp
         OttServices.cpp
         permission_service.pb.cc
         permission_service.grpc.pb.cc
         Module.cpp)
 
+# Append generated ott_token sources if enabled
+if(OTTSERVICES_ENABLE_OTT_TOKEN)
+    list(APPEND OTTSERVICES_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/ott_token.pb.cc
+        ${CMAKE_CURRENT_SOURCE_DIR}/ott_token.grpc.pb.cc)
+endif()
+
+add_library(${MODULE_NAME} SHARED ${OTTSERVICES_SOURCES})
+
 # Ensure the library depends on the protobuf generation
 add_dependencies(${MODULE_NAME} force_regenerate force_regenerate2)
+# Also depend on ott_token codegen if enabled
+if(OTTSERVICES_ENABLE_OTT_TOKEN)
+    add_dependencies(${MODULE_NAME} ott_token_codegen)
+    target_compile_definitions(${MODULE_NAME} PRIVATE OTTSERVICES_ENABLE_OTT_TOKEN)
+endif()
 
 
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers ${GRPC_INCLUDE_DIRS})

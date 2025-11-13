@@ -24,6 +24,8 @@
 namespace WPEFramework {
 namespace Plugin {
 
+    class TokenClient; // forward declaration
+
     class OttServicesImplementation : public Exchange::IOttServices , public Exchange::IConfiguration{
     public:
         OttServicesImplementation(const OttServicesImplementation&) = delete;
@@ -79,12 +81,20 @@ namespace Plugin {
 
     private:
         struct Config : public Core::JSON::Container {
-            Config() : Core::JSON::Container(), PermissionsEndpoint(), UseTls(true) {
+            Config() : Core::JSON::Container(), PermissionsEndpoint(), UseTls(true), TokenEndpoint(), UseTlsToken(true) {
                 Add(_T("PermissionsEndpoint"), &PermissionsEndpoint);
                 Add(_T("UseTls"), &UseTls);
+
+                // Optional ott_token service endpoint; falls back to PermissionsEndpoint if not provided.
+                Add(_T("TokenEndpoint"), &TokenEndpoint);
+                // Optional TLS flag for token service; falls back to UseTls if not provided.
+                Add(_T("UseTlsToken"), &UseTlsToken);
             }
             Core::JSON::String PermissionsEndpoint;
             Core::JSON::Boolean UseTls;
+
+            Core::JSON::String TokenEndpoint;
+            Core::JSON::Boolean UseTlsToken;
         };
 
         bool CollectAuthMetadata(std::string& bearerToken,
@@ -100,7 +110,12 @@ namespace Plugin {
         std::string _permsEndpoint;
         bool _permsUseTls;
 
-        // Token path: guard token cache/client access (future use).
+        // Token client and configuration
+        std::unique_ptr<TokenClient> _token;
+        std::string _tokenEndpoint;
+        bool _tokenUseTls;
+
+        // Token path: guard token cache/client access.
         std::mutex _tokenMutex;
 
         // Reference counter for COM-style lifetime management.

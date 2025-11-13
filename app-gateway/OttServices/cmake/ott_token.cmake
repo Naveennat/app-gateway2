@@ -1,29 +1,67 @@
-# OttServices - ott_token.proto scaffolding (no-op by default)
+# Optional generation and wiring for ott_token.proto within OttServices.
+# Provides:
+# - option(OTTSERVICES_ENABLE_OTT_TOKEN ...)
+# - Custom commands that generate ott_token.pb.{cc,h} and ott_token.grpc.pb.{cc,h}
+# - A custom target `ott_token_codegen` and variables OTT_TOKEN_GENERATED_SRCS/HDRS
 #
-# This file documents how future gRPC/proto stubs will be wired without breaking existing builds.
-# It is not included by any top-level CMakeLists.txt in this repo and thus has no effect unless
-# explicitly included by a consumer project.
-#
-# Usage (example):
-#   option(OTTSERVICES_ENABLE_OTT_TOKEN "Enable ott_token.proto generated stubs" OFF)
-#   if(OTTSERVICES_ENABLE_OTT_TOKEN)
-#       find_package(Protobuf REQUIRED)
-#       find_package(gRPC REQUIRED)
-#       # set(PROTO_DIR "${CMAKE_CURRENT_LIST_DIR}/proto")
-#       # set(OTT_TOKEN_PROTO "${PROTO_DIR}/ott_token.proto")
-#       #
-#       # protobuf_generate_cpp(OTT_TOKEN_PROTO_SRCS OTT_TOKEN_PROTO_HDRS ${OTT_TOKEN_PROTO})
-#       # grpc_generate_cpp(OTT_TOKEN_GRPC_SRCS OTT_TOKEN_GRPC_HDRS ${OTT_TOKEN_PROTO})
-#       #
-#       # add_library(ott_token_proto STATIC
-#       #     ${OTT_TOKEN_PROTO_SRCS} ${OTT_TOKEN_PROTO_HDRS}
-#       #     ${OTT_TOKEN_GRPC_SRCS} ${OTT_TOKEN_GRPC_HDRS}
-#       # )
-#       # target_link_libraries(ott_token_proto PUBLIC gRPC::grpc++ protobuf::libprotobuf)
-#       #
-#       # target_link_libraries(WPEFrameworkOttServices PRIVATE ott_token_proto)
-#   endif()
-#
-# NOTE:
-# - Keep this file additive and optional. Do not enable by default.
-# - The actual proto and gRPC wiring will be added when the toolchain and proto are available.
+# Include this file from OttServices/CMakeLists.txt.
+
+option(OTTSERVICES_ENABLE_OTT_TOKEN "Enable ott_token.proto generated stubs" ON)
+
+if(OTTSERVICES_ENABLE_OTT_TOKEN)
+    if(NOT Protobuf_FOUND)
+        find_package(Protobuf REQUIRED)
+    endif()
+    if(NOT GRPC_CPP_PLUGIN)
+        find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
+    endif()
+
+    # Paths
+    set(OTT_TOKEN_PROTO "${CMAKE_CURRENT_SOURCE_DIR}/ott_token.proto")
+    set(OTT_TOKEN_PB_CC   "${CMAKE_CURRENT_SOURCE_DIR}/ott_token.pb.cc")
+    set(OTT_TOKEN_PB_H    "${CMAKE_CURRENT_SOURCE_DIR}/ott_token.pb.h")
+    set(OTT_TOKEN_GRPC_CC "${CMAKE_CURRENT_SOURCE_DIR}/ott_token.grpc.pb.cc")
+    set(OTT_TOKEN_GRPC_H  "${CMAKE_CURRENT_SOURCE_DIR}/ott_token.grpc.pb.h")
+
+    # Generate protobuf sources
+    add_custom_command(
+        OUTPUT
+            "${OTT_TOKEN_PB_CC}"
+            "${OTT_TOKEN_PB_H}"
+        COMMAND
+            "${Protobuf_PROTOC_EXECUTABLE}" --cpp_out "${CMAKE_CURRENT_SOURCE_DIR}"
+            -I "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${OTT_TOKEN_PROTO}"
+        DEPENDS
+            "${OTT_TOKEN_PROTO}"
+        COMMENT "Generating C++ sources from ott_token.proto"
+        VERBATIM
+    )
+
+    # Generate gRPC sources
+    add_custom_command(
+        OUTPUT
+            "${OTT_TOKEN_GRPC_CC}"
+            "${OTT_TOKEN_GRPC_H}"
+        COMMAND
+            "${Protobuf_PROTOC_EXECUTABLE}" --grpc_out "${CMAKE_CURRENT_SOURCE_DIR}"
+            --plugin=protoc-gen-grpc="${GRPC_CPP_PLUGIN}"
+            -I "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${OTT_TOKEN_PROTO}"
+        DEPENDS
+            "${OTT_TOKEN_PROTO}"
+        COMMENT "Generating gRPC C++ sources from ott_token.proto"
+        VERBATIM
+    )
+
+    # Aggregate codegen target
+    add_custom_target(ott_token_codegen ALL
+        DEPENDS
+            "${OTT_TOKEN_PB_CC}" "${OTT_TOKEN_PB_H}"
+            "${OTT_TOKEN_GRPC_CC}" "${OTT_TOKEN_GRPC_H}"
+    )
+
+    # Export variables the parent CMakeLists.txt can consume
+    set(OTT_TOKEN_GENERATED_SRCS "${OTT_TOKEN_PB_CC};${OTT_TOKEN_GRPC_CC}" PARENT_SCOPE)
+    set(OTT_TOKEN_GENERATED_HDRS "${OTT_TOKEN_PB_H};${OTT_TOKEN_GRPC_H}"   PARENT_SCOPE)
+endif()
