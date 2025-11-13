@@ -42,6 +42,32 @@ namespace Exchange {
         // @param updatedCount: Output number of permissions retrieved/updated.
         // @returns Core::hresult
         virtual Core::hresult UpdatePermissionsCache(const string& appId, uint32_t& updatedCount /* @out */) = 0;
+
+        // ---- Token retrieval placeholders (COMRPC) ----
+
+        // PUBLIC_INTERFACE
+        // @text getDistributorToken
+        // @brief Retrieve a distributor token for the given app and transaction context.
+        // @param appId: Application identifier (Firebolt appId).
+        // @param xact: Transaction identifier/context (if required by server).
+        // @param sat: Service access token (bearer) used to authorize the request.
+        // @param tokenJson: Output JSON string containing the token or token envelope (opaque).
+        // @returns Core::hresult (Core::ERROR_UNAVAILABLE until implemented)
+        virtual Core::hresult GetDistributorToken(const string& appId /* @in */,
+                                                  const string& xact /* @in */,
+                                                  const string& sat /* @in */,
+                                                  string& tokenJson /* @out @opaque */) = 0;
+
+        // PUBLIC_INTERFACE
+        // @text getAuthToken
+        // @brief Retrieve an auth token for the given app using a sat.
+        // @param appId: Application identifier (Firebolt appId).
+        // @param sat: Service access token (bearer) used to authorize the request.
+        // @param tokenJson: Output JSON string containing the token or token envelope (opaque).
+        // @returns Core::hresult (Core::ERROR_UNAVAILABLE until implemented)
+        virtual Core::hresult GetAuthToken(const string& appId /* @in */,
+                                           const string& sat /* @in */,
+                                           string& tokenJson /* @out @opaque */) = 0;
     };
 
 } // namespace Exchange

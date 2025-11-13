@@ -12,6 +12,7 @@
 #include <string>
 #include <type_traits>
 #include <utility>
+#include <mutex>
 
 #include "Module.h"
 #include <interfaces/IOttServices.h>
@@ -64,6 +65,18 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         Core::hresult UpdatePermissionsCache(const string& appId, uint32_t& updatedCount) override;
 
+        // ---- Token retrieval placeholders (stubs for future implementation) ----
+        // PUBLIC_INTERFACE
+        Core::hresult GetDistributorToken(const string& appId,
+                                          const string& xact,
+                                          const string& sat,
+                                          string& tokenJson) override;
+
+        // PUBLIC_INTERFACE
+        Core::hresult GetAuthToken(const string& appId,
+                                   const string& sat,
+                                   string& tokenJson) override;
+
     private:
         struct Config : public Core::JSON::Container {
             Config() : Core::JSON::Container(), PermissionsEndpoint(), UseTls(true) {
@@ -86,6 +99,9 @@ namespace Plugin {
         std::unique_ptr<PermissionsClient> _perms;
         std::string _permsEndpoint;
         bool _permsUseTls;
+
+        // Token path: guard token cache/client access (future use).
+        std::mutex _tokenMutex;
 
         // Reference counter for COM-style lifetime management.
         mutable std::atomic<uint32_t> _refCount {1};
