@@ -1,53 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
   <title>app-gateway2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
       color-scheme: light dark;
+      --bg: #0f172a;
+      --fg: #e2e8f0;
+      --accent: #60a5fa;
+      --muted: #94a3b8;
+      --card: #111827;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --fg: #0f172a;
+        --accent: #2563eb;
+        --muted: #475569;
+        --card: #ffffff;
+      }
     }
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
       margin: 0;
-      padding: 2rem;
-      line-height: 1.5;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--fg);
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 14px;
+      padding: 28px 32px;
+      max-width: 720px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.25);
     }
-    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
-    code { background: rgba(127,127,127,.15); padding: .15rem .3rem; border-radius: .25rem; }
-    .links { margin-top: 1rem; }
-    .links a { display: inline-block; padding: .5rem .75rem; border: 1px solid currentColor; border-radius: .375rem; text-decoration: none; margin-right: .5rem; }
-    .muted { opacity: .75; }
+    h1 {
+      font-size: 1.75rem;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: 0.2px;
+    }
+    p {
+      margin: 0.25rem 0 1rem 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .meta {
+      margin-top: 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9rem;
+      background: rgba(99, 102, 241, 0.09);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: var(--fg);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .links {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(148, 163, 184, 0.08);
+      color: var(--fg);
+      font-size: 0.85rem;
+    }
   </style>
 </head>
 <body>
-  <main class="container">
+  <main class="card" role="main" aria-label="app-gateway2">
     <h1>app-gateway2</h1>
-    <p class="muted">Minimal Express server is running.</p>
-
-    <section>
-      <h2>Health</h2>
-      <p>Probe the service health at <a href="/health"><code>/health</code></a> (returns JSON).</p>
-    </section>
-
-    <section>
-      <h2>Runtime</h2>
-      <ul>
-        <li>Binds to <code>0.0.0.0</code></li>
-        <li>Port: <code>PORT</code> env (default <code>3000</code>)</li>
-        <li>Start: <code>npm start</code></li>
-      </ul>
-    </section>
-
-    <section class="links">
-      <a href="/">Home</a>
-      <a href="/health">/health</a>
-    </section>
+    <p>Your preview server is running.</p>
+    <div class="links">
+      <a href="/health" class="tag" aria-label="Health endpoint">GET /health</a>
+      <span class="tag" title="Express static">Static served from /public (or /dist if present)</span>
+    </div>
+    <div class="meta" aria-live="polite">
+      <div><strong>Host:</strong> <span id="host">0.0.0.0</span></div>
+      <div><strong>Port:</strong> <span id="port">3000</span></div>
+      <div><strong>Process:</strong> Node.js Express</div>
+    </div>
   </main>
+  <script>
+    // Render basic env-aware hints when behind a reverse proxy
+    (function () {
+      // These are runtime defaults; container/platform may proxy different public URL/port.
+      var host = (window.location.hostname || '0.0.0.0');
+      var port = (window.location.port || '3000');
+      document.getElementById('host').textContent = host;
+      document.getElementById('port').textContent = port || '80';
+    })();
+  </script>
 </body>
 </html>
