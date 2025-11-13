@@ -12,7 +12,6 @@
 #include "TokenCache.h"
 
 #include <chrono>
-#include <cctype>
 #include <cstdlib>
 
 namespace WPEFramework {
@@ -264,23 +263,6 @@ namespace Plugin {
             std::chrono::system_clock::now().time_since_epoch()).count());
     }
 
-    // Helper: naive JSON parse of expires_in integer field
-    uint64_t OttServicesImplementation::ExtractExpiresInSeconds(const std::string& json) {
-        const std::string key = "\"expires_in\":";
-        const auto pos = json.find(key);
-        if (pos == std::string::npos) {
-            return 0;
-        }
-        size_t i = pos + key.size();
-        while (i < json.size() && (json[i] == ' ' || json[i] == '\"')) { ++i; }
-        size_t j = i;
-        while (j < json.size() && isdigit(static_cast<unsigned char>(json[j]))) { ++j; }
-        if (i == j) {
-            return 0;
-        }
-        return std::strtoull(json.substr(i, j - i).c_str(), nullptr, 10);
-    }
-
     bool OttServicesImplementation::FetchSat(std::string& sat, uint64_t& expiryEpoch) const {
         sat.clear();
         expiryEpoch = 0;
@@ -386,7 +368,7 @@ namespace Plugin {
     }
 
     Core::hresult OttServicesImplementation::GetDistributorToken(const string& appId,
-                                                                 string& tokenJson)
+                                                                 string& token)
     {
         LOGINFO("OttServices: GetDistributorToken called (appId='%s')", appId.c_str());
         if (appId.empty()) {
@@ -396,7 +378,7 @@ namespace Plugin {
         const std::string cacheKey = std::string("platform:") + appId;
 
         // Attempt cache hit
-        if (_tokenCache.Get(cacheKey, tokenJson)) {
+        if (_tokenCache.Get(cacheKey, token)) {
             LOGINFO("OttServices: GetDistributorToken cache hit (appId='%s')", appId.c_str());
             return Core::ERROR_NONE;
         }
@@ -422,23 +404,23 @@ namespace Plugin {
         }
 
         std::string err;
-        const bool ok = _token->GetPlatformToken(appId, xact, sat, tokenJson, err);
+        uint32_t expiresInSec = 0;
+        const bool ok = _token->GetPlatformToken(appId, xact, sat, token, expiresInSec, err);
         if (!ok) {
             LOGERR("OttServices: GetDistributorToken failed: %s", err.c_str());
-            tokenJson.clear();
+            token.clear();
             return Core::ERROR_UNAVAILABLE;
         }
 
         // Cache with conservative expiry (earliest of sat/xact/token)
         const uint64_t now = NowEpochSec();
-        uint64_t ttl = ExtractExpiresInSeconds(tokenJson);
-        uint64_t tokenExpiry = (ttl > 0 ? now + ttl : 0);
+        uint64_t tokenExpiry = (expiresInSec > 0 ? now + static_cast<uint64_t>(expiresInSec) : 0);
         uint64_t expiry = tokenExpiry;
         if (expiry == 0 || (satExpiry > 0 && (satExpiry < expiry || expiry == 0))) expiry = satExpiry;
         if (expiry == 0 || (xactExpiry > 0 && (xactExpiry < expiry || expiry == 0))) expiry = xactExpiry;
 
         if (expiry > now) {
-            TokenEntry entry{ tokenJson, expiry };
+            TokenEntry entry{ token, expiry };
             _tokenCache.Put(cacheKey, entry);
         }
 
@@ -447,7 +429,7 @@ namespace Plugin {
     }
 
     Core::hresult OttServicesImplementation::GetAuthToken(const string& appId,
-                                                          string& tokenJson)
+                                                          string& token)
     {
         LOGINFO("OttServices: GetAuthToken called (appId='%s')", appId.c_str());
         if (appId.empty()) {
@@ -457,7 +439,7 @@ namespace Plugin {
         const std::string cacheKey = std::string("auth:") + appId;
 
         // Attempt cache hit
-        if (_tokenCache.Get(cacheKey, tokenJson)) {
+        if (_tokenCache.Get(cacheKey, token)) {
             LOGINFO("OttServices: GetAuthToken cache hit (appId='%s')", appId.c_str());
             return Core::ERROR_NONE;
         }
@@ -476,22 +458,22 @@ namespace Plugin {
         }
 
         std::string err;
-        const bool ok = _token->GetAuthToken(appId, sat, tokenJson, err);
+        uint32_t expiresInSec = 0;
+        const bool ok = _token->GetAuthToken(appId, sat, token, expiresInSec, err);
         if (!ok) {
             LOGERR("OttServices: GetAuthToken failed: %s", err.c_str());
-            tokenJson.clear();
+            token.clear();
             return Core::ERROR_UNAVAILABLE;
         }
 
         // Cache using expires_in if present, bounded by SAT expiry
         const uint64_t now = NowEpochSec();
-        uint64_t ttl = ExtractExpiresInSeconds(tokenJson);
-        uint64_t expiry = (ttl > 0 ? now + ttl : 0);
+        uint64_t expiry = (expiresInSec > 0 ? now + static_cast<uint64_t>(expiresInSec) : 0);
         if (expiry == 0 || (satExpiry > 0 && (satExpiry < expiry || expiry == 0))) {
             expiry = satExpiry;
         }
         if (expiry > now) {
-            TokenEntry entry{ tokenJson, expiry };
+            TokenEntry entry{ token, expiry };
             _tokenCache.Put(cacheKey, entry);
         }
 

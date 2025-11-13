@@ -7,10 +7,13 @@
 //  - OttTokenService::PlatformToken
 //  - OttTokenService::AuthToken
 //
-// Returned JSON structure mirrors the proto outputs:
-//  - PlatformTokenResponse -> { "platform_token", "token_type", "scope", "expires_in" }
-//  - AuthTokenResponse     -> { "access_token",   "token_type", "scope", "expires_in" }
+// Returned values:
+//  - PlatformTokenResponse -> platform_token (string), expires_in (seconds)
+//  - AuthTokenResponse     -> access_token   (string), expires_in (seconds)
+//
+// This client returns only the raw token string to callers (no JSON).
 
+#include <cstdint>
 #include <string>
 
 namespace WPEFramework {
@@ -31,22 +34,28 @@ namespace Plugin {
         // PUBLIC_INTERFACE
         // Retrieve a platform/distributor token (CIMA).
         // Inputs: appId, xact, sat
-        // Output: outTokenJson -> JSON string containing: platform_token, token_type, scope, expires_in
+        // Output:
+        //   outToken     -> raw token string (platform_token)
+        //   outExpiresIn -> expires_in value in seconds (0 if unknown)
         // Return: true on success, false on failure with errMsg filled.
         bool GetPlatformToken(const std::string& appId,
                               const std::string& xact,
                               const std::string& sat,
-                              std::string& outTokenJson,
+                              std::string& outToken,
+                              uint32_t& outExpiresIn,
                               std::string& errMsg);
 
         // PUBLIC_INTERFACE
         // Retrieve an auth token for a partner/app.
-        // Inputs: appId, sat (AuthTokenRequest also supports partner_id/xsct but they are optional in this client)
-        // Output: outTokenJson -> JSON string containing: access_token, token_type, scope, expires_in
+        // Inputs: appId, sat
+        // Output:
+        //   outToken     -> raw token string (access_token)
+        //   outExpiresIn -> expires_in value in seconds (0 if unknown)
         // Return: true on success, false on failure with errMsg filled.
         bool GetAuthToken(const std::string& appId,
                           const std::string& sat,
-                          std::string& outTokenJson,
+                          std::string& outToken,
+                          uint32_t& outExpiresIn,
                           std::string& errMsg);
 
         // PUBLIC_INTERFACE

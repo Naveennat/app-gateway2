@@ -49,10 +49,10 @@ namespace Exchange {
         // @text getDistributorToken
         // @brief Retrieve a distributor token for the given app. Internally fetches xACT and SAT via Thunder.
         // @param appId: Application identifier (Firebolt appId).
-        // @param tokenJson: Output JSON string containing the token or token envelope (opaque).
+        // @param token: Output string containing the token value (no JSON).
         // @returns Core::hresult
         virtual Core::hresult GetDistributorToken(const string& appId /* @in */,
-                                                  string& tokenJson /* @out @opaque */) = 0;
+                                                  string& token /* @out */) = 0;
 
         // PUBLIC_INTERFACE
         // @text getAuthToken
@@ -61,7 +61,7 @@ namespace Exchange {
         // @param tokenJson: Output JSON string containing the token or token envelope (opaque).
         // @returns Core::hresult
         virtual Core::hresult GetAuthToken(const string& appId /* @in */,
-                                           string& tokenJson /* @out @opaque */) = 0;
+                                           string& token /* @out */) = 0;
     };
 
 } // namespace Exchange

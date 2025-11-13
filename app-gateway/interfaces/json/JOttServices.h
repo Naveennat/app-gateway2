@@ -39,11 +39,12 @@ namespace Exchange {
                         return Core::ERROR_BAD_REQUEST;
                     }
 
-                    string tokenJson;
-                    const Core::hresult rc = api->GetDistributorToken(appId, tokenJson);
+                    string token;
+                    const Core::hresult rc = api->GetDistributorToken(appId, token);
 
                     if (rc == Core::ERROR_NONE) {
-                        response = tokenJson.empty() ? _T("{}") : tokenJson;
+                        Core::JSON::String js; js = token;
+                        js.ToString(response); // serialize as a JSON string literal
                     }
 
                     return rc;
@@ -63,11 +64,12 @@ namespace Exchange {
                         return Core::ERROR_BAD_REQUEST;
                     }
 
-                    string tokenJson;
-                    const Core::hresult rc = api->GetAuthToken(appId, tokenJson);
+                    string token;
+                    const Core::hresult rc = api->GetAuthToken(appId, token);
 
                     if (rc == Core::ERROR_NONE) {
-                        response = tokenJson.empty() ? _T("{}") : tokenJson;
+                        Core::JSON::String js; js = token;
+                        js.ToString(response); // serialize as a JSON string literal
                     }
 
                     return rc;

@@ -1,6 +1,5 @@
 #include "TokenClient.h"
 
-#include <core/JSON.h>
 #include "UtilsLogging.h"
 
 #include <grpcpp/grpcpp.h>
@@ -11,14 +10,6 @@ namespace WPEFramework {
 namespace Plugin {
 
     namespace {
-        inline std::string QuoteJson(const std::string& value) {
-            Core::JSON::String s;
-            s = value;
-            std::string out;
-            s.ToString(out); // produces a JSON string with proper quoting
-            return out;
-        }
-
         static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint, bool useTls) {
             if (useTls) {
                 grpc::SslCredentialsOptions ssl_opts;
@@ -45,11 +36,13 @@ namespace Plugin {
     bool TokenClient::GetPlatformToken(const std::string& appId,
                                        const std::string& xact,
                                        const std::string& sat,
-                                       std::string& outTokenJson,
+                                       std::string& outToken,
+                                       uint32_t& outExpiresIn,
                                        std::string& errMsg)
     {
         LOGINFO("TokenClient::GetPlatformToken (appId='%s', endpoint=%s)", appId.c_str(), _endpoint.c_str());
-        outTokenJson.clear();
+        outToken.clear();
+        outExpiresIn = 0;
         errMsg.clear();
 
         if (appId.empty() || sat.empty()) {
@@ -76,26 +69,21 @@ namespace Plugin {
             return false;
         }
 
-        // Build JSON safely using quoted values
-        outTokenJson.reserve(256);
-        outTokenJson  = "{";
-        outTokenJson += "\"platform_token\":" + QuoteJson(response.platform_token()) + ",";
-        outTokenJson += "\"token_type\":"     + QuoteJson(response.token_type())     + ",";
-        outTokenJson += "\"scope\":"          + QuoteJson(response.scope())          + ",";
-        outTokenJson += "\"expires_in\":"     + std::to_string(response.expires_in());
-        outTokenJson += "}";
-
+        outToken = response.platform_token();
+        outExpiresIn = static_cast<uint32_t>(response.expires_in());
         LOGINFO("TokenClient PlatformToken success (endpoint=%s, token=[REDACTED])", _endpoint.c_str());
         return true;
     }
 
     bool TokenClient::GetAuthToken(const std::string& appId,
                                    const std::string& sat,
-                                   std::string& outTokenJson,
+                                   std::string& outToken,
+                                   uint32_t& outExpiresIn,
                                    std::string& errMsg)
     {
         LOGINFO("TokenClient::GetAuthToken (appId='%s', endpoint=%s)", appId.c_str(), _endpoint.c_str());
-        outTokenJson.clear();
+        outToken.clear();
+        outExpiresIn = 0;
         errMsg.clear();
 
         if (appId.empty() || sat.empty()) {
@@ -122,14 +110,8 @@ namespace Plugin {
             return false;
         }
 
-        outTokenJson.reserve(256);
-        outTokenJson  = "{";
-        outTokenJson += "\"access_token\":" + QuoteJson(response.access_token()) + ",";
-        outTokenJson += "\"token_type\":"   + QuoteJson(response.token_type())   + ",";
-        outTokenJson += "\"scope\":"        + QuoteJson(response.scope())        + ",";
-        outTokenJson += "\"expires_in\":"   + std::to_string(response.expires_in());
-        outTokenJson += "}";
-
+        outToken = response.access_token();
+        outExpiresIn = static_cast<uint32_t>(response.expires_in());
         LOGINFO("TokenClient AuthToken success (endpoint=%s, token=[REDACTED])", _endpoint.c_str());
         return true;
     }
