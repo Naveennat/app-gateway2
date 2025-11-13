@@ -71,11 +71,11 @@ namespace Plugin {
         // ---- Token retrieval (internal SAT/xACT resolution) ----
         // PUBLIC_INTERFACE
         Core::hresult GetDistributorToken(const string& appId,
-                                          string& tokenJson) override;
+                                          string& token) override;
 
         // PUBLIC_INTERFACE
         Core::hresult GetAuthToken(const string& appId,
-                                   string& tokenJson) override;
+                                   string& token) override;
 
     private:
         struct Config : public Core::JSON::Container {
@@ -106,7 +106,7 @@ namespace Plugin {
 
         // Utility: current epoch seconds and JSON parsing for expires_in
         static uint64_t NowEpochSec();
-        static uint64_t ExtractExpiresInSeconds(const std::string& json);
+        // Removed: ExtractExpiresInSeconds no longer needed (token methods return raw strings).
 
     private:
         PluginHost::IShell* _service;
