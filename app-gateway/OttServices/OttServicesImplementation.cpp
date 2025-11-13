@@ -18,6 +18,7 @@ namespace Plugin {
 
     namespace {
         static constexpr const char* kDefaultPermsEndpoint = "thor-permission.svc.thor.comcast.com:443";
+        static constexpr const char* kDefaultTokenEndpoint = kDefaultPermsEndpoint; // fallback if token endpoint not configured
         static constexpr const char* kAuthServiceCallsign = "org.rdk.AuthService";
     }
 
@@ -27,6 +28,9 @@ namespace Plugin {
         , _perms(nullptr)
         , _permsEndpoint(kDefaultPermsEndpoint)
         , _permsUseTls(true)
+        , _token(nullptr)
+        , _tokenEndpoint(kDefaultTokenEndpoint)
+        , _tokenUseTls(true)
         , _refCount(1) {
     }
 
@@ -46,7 +50,7 @@ namespace Plugin {
         _service = service;
         _state = _T("ready");
 
-        // Load configuration: PermissionsEndpoint, UseTls
+        // Load configuration: PermissionsEndpoint, UseTls; TokenEndpoint (optional), UseTlsToken (optional)
         if (_service != nullptr) {
             Config cfg;
             cfg.FromString(_service->ConfigLine());
@@ -54,6 +58,11 @@ namespace Plugin {
                                 ? cfg.PermissionsEndpoint.Value()
                                 : std::string(kDefaultPermsEndpoint);
             _permsUseTls = cfg.UseTls.IsSet() ? static_cast<bool>(cfg.UseTls.Value()) : true;
+
+            _tokenEndpoint = (cfg.TokenEndpoint.IsSet() && !cfg.TokenEndpoint.Value().empty())
+                                ? cfg.TokenEndpoint.Value()
+                                : _permsEndpoint;
+            _tokenUseTls = cfg.UseTlsToken.IsSet() ? static_cast<bool>(cfg.UseTlsToken.Value()) : _permsUseTls;
         }
 
         LOGINFO("OttServices: Initialize implementation (endpoint=%s, tls=%s)",
@@ -61,6 +70,9 @@ namespace Plugin {
 
         // Create permissions client (works even if gRPC disabled; will return ERROR_UNAVAILABLE on use)
         _perms.reset(new PermissionsClient(_permsEndpoint, _permsUseTls));
+
+        // Create token client (compiles to stub if feature disabled)
+        _token.reset(new TokenClient(_tokenEndpoint, _tokenUseTls));
 
         // Warm up cache file load
         OttPermissionCache::Instance();
@@ -71,6 +83,7 @@ namespace Plugin {
 
     void OttServicesImplementation::Deinitialize(PluginHost::IShell* /*service*/) {
         _perms.reset();
+        _token.reset();
         _state = _T("deinitialized");
         _service = nullptr;
         LOGINFO("OttServices: Deinitialize implementation");
@@ -247,15 +260,25 @@ namespace Plugin {
                                                                  string& tokenJson)
     {
         LOGINFO("OttServices: GetDistributorToken called (appId='%s')", appId.c_str());
-        // Placeholder: guard future token cache usage
-        std::lock_guard<std::mutex> guard(_tokenMutex);
-        VARIABLE_IS_NOT_USED string notUsedXact = xact;
-        VARIABLE_IS_NOT_USED string notUsedSat = sat;
+        if (appId.empty() || sat.empty()) {
+            return Core::ERROR_BAD_REQUEST;
+        }
 
-        // TODO: Integrate TokenCache and TokenClient once ott_token.proto stubs are wired.
-        tokenJson.clear();
-        LOGWARN("OttServices: GetDistributorToken not implemented yet");
-        return Core::ERROR_UNAVAILABLE;
+        std::lock_guard<std::mutex> guard(_tokenMutex);
+        if (!_token) {
+            _token.reset(new TokenClient(_tokenEndpoint.empty() ? _permsEndpoint : _tokenEndpoint, _tokenUseTls));
+        }
+
+        std::string err;
+        const bool ok = _token->GetPlatformToken(appId, xact, sat, tokenJson, err);
+        if (!ok) {
+            LOGERR("OttServices: GetDistributorToken failed: %s", err.c_str());
+            tokenJson.clear();
+            return Core::ERROR_UNAVAILABLE;
+        }
+
+        LOGINFO("OttServices: GetDistributorToken success (token=[REDACTED])");
+        return Core::ERROR_NONE;
     }
 
     Core::hresult OttServicesImplementation::GetAuthToken(const string& appId,
@@ -263,13 +286,25 @@ namespace Plugin {
                                                           string& tokenJson)
     {
         LOGINFO("OttServices: GetAuthToken called (appId='%s')", appId.c_str());
-        std::lock_guard<std::mutex> guard(_tokenMutex);
-        VARIABLE_IS_NOT_USED string notUsedSat = sat;
+        if (appId.empty() || sat.empty()) {
+            return Core::ERROR_BAD_REQUEST;
+        }
 
-        // TODO: Integrate TokenCache and TokenClient once ott_token.proto stubs are wired.
-        tokenJson.clear();
-        LOGWARN("OttServices: GetAuthToken not implemented yet");
-        return Core::ERROR_UNAVAILABLE;
+        std::lock_guard<std::mutex> guard(_tokenMutex);
+        if (!_token) {
+            _token.reset(new TokenClient(_tokenEndpoint.empty() ? _permsEndpoint : _tokenEndpoint, _tokenUseTls));
+        }
+
+        std::string err;
+        const bool ok = _token->GetAuthToken(appId, sat, tokenJson, err);
+        if (!ok) {
+            LOGERR("OttServices: GetAuthToken failed: %s", err.c_str());
+            tokenJson.clear();
+            return Core::ERROR_UNAVAILABLE;
+        }
+
+        LOGINFO("OttServices: GetAuthToken success (token=[REDACTED])");
+        return Core::ERROR_NONE;
     }
 
 } // namespace Plugin
