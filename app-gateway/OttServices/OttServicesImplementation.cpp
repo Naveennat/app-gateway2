@@ -7,6 +7,10 @@
 #include "OttPermissionCache.h"
 #include "UtilsJsonrpcDirectLink.h"
 
+// Ott token scaffolding (stubs; no network calls yet)
+#include "TokenClient.h"
+#include "TokenCache.h"
+
 namespace WPEFramework {
 namespace Plugin {
 
@@ -235,6 +239,37 @@ namespace Plugin {
         updatedCount = static_cast<uint32_t>(fetched.size());
         LOGINFO("OttServices: UpdatePermissionsCache updated (appId='%s', count=%u)", appId.c_str(), updatedCount);
         return Core::ERROR_NONE;
+    }
+
+    Core::hresult OttServicesImplementation::GetDistributorToken(const string& appId,
+                                                                 const string& xact,
+                                                                 const string& sat,
+                                                                 string& tokenJson)
+    {
+        LOGINFO("OttServices: GetDistributorToken called (appId='%s')", appId.c_str());
+        // Placeholder: guard future token cache usage
+        std::lock_guard<std::mutex> guard(_tokenMutex);
+        VARIABLE_IS_NOT_USED string notUsedXact = xact;
+        VARIABLE_IS_NOT_USED string notUsedSat = sat;
+
+        // TODO: Integrate TokenCache and TokenClient once ott_token.proto stubs are wired.
+        tokenJson.clear();
+        LOGWARN("OttServices: GetDistributorToken not implemented yet");
+        return Core::ERROR_UNAVAILABLE;
+    }
+
+    Core::hresult OttServicesImplementation::GetAuthToken(const string& appId,
+                                                          const string& sat,
+                                                          string& tokenJson)
+    {
+        LOGINFO("OttServices: GetAuthToken called (appId='%s')", appId.c_str());
+        std::lock_guard<std::mutex> guard(_tokenMutex);
+        VARIABLE_IS_NOT_USED string notUsedSat = sat;
+
+        // TODO: Integrate TokenCache and TokenClient once ott_token.proto stubs are wired.
+        tokenJson.clear();
+        LOGWARN("OttServices: GetAuthToken not implemented yet");
+        return Core::ERROR_UNAVAILABLE;
     }
 
 } // namespace Plugin
