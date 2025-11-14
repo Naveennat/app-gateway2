@@ -1,50 +1,42 @@
-# app-gateway2 Minimal Web Gateway
+# app-gateway2
 
-This directory provides a minimal Express-based HTTP server for health checks and preview environment validation.
+Minimal Express web server for local development and preview.
 
-## Requirements
+## Prerequisites
 
-- Node.js >= 18
+- Node.js (v14 or above)
+- npm
 
-## Usage
+## Setup
 
-- Start in production mode:
-  ```
-  npm install
-  npm start
-  ```
-  or
-  ```
-  yarn install
-  yarn start
-  ```
+```sh
+npm install
+```
+(To install dependencies.)
 
-- Development mode (auto-reload):
-  ```
-  npm run dev
-  ```
-  or
-  ```
-  yarn run dev
-  ```
+## Running
 
-## Health and Endpoints
+```sh
+npm start
+```
+_By default binds to `PORT=3000` (or whatever is set in `.env`)._
 
-- Root: open your browser at [http://localhost:3000/](http://localhost:3000/) (or on the port assigned in the `PORT` environment variable).
-- Health endpoint: `GET /health` responds with `{"status":"ok"}` for liveness checks.
+- Visit [http://localhost:3000](http://localhost:3000)
+- Health check (returns 200 OK): [http://localhost:3000/healthz](http://localhost:3000/healthz)
 
-## Ports and Binding
+## Environment Variables
 
-- The server listens on `HOST=0.0.0.0` and respects `PORT` from the environment (defaults to `3000`).
-- Do not hardcode ports; rely on the `PORT` env provided by your runtime.
+Create a `.env` file if needed with:
+```
+PORT=3000
+```
 
-## Static Content
+## Files
 
-- If a `public/` or `dist/` directory exists, its contents (such as an `index.html`) will be served automatically at the root endpoint.
-- This repository includes a minimal `public/index.html` landing page for convenience.
+- `server.js` &mdash; Express app, static file server, health endpoint.
+- `public/index.html` &mdash; Placeholder content.
+- `.env.example` &mdash; Example env settings.
+- `package.json` &mdash; NPM metadata, scripts, dependencies.
 
-## Notes
-
-- The actual app logic is not implemented in this minimal setup.
-- Keep the start script as `npm start` which runs `node server.js`.
-- The server is suitable for preview/health check only.
+---
+This scaffold is intended for development/preview only.

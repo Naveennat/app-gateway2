@@ -1,100 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>app-gateway2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    :root {
-      --bg: #0f172a;
-      --fg: #e2e8f0;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --card: #0b1220;
-      --border: #1e293b;
-    }
-    html, body {
-      height: 100%;
-    }
-    body {
-      margin: 0;
-      background: radial-gradient(1200px 800px at 50% -200px, #172554 0%, var(--bg) 60%);
-      color: var(--fg);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      display: grid;
-      place-items: center;
-    }
-    .card {
-      background: linear-gradient(180deg, rgba(56,189,248,0.08), rgba(56,189,248,0.03)), var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-      padding: 28px 32px;
-      width: min(720px, calc(100% - 32px));
-    }
-    h1 {
-      margin: 0 0 8px 0;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-    }
-    p {
-      margin: 0 0 16px 0;
-      color: var(--muted);
-    }
-    .pill {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(56,189,248,0.15);
-      color: var(--accent);
-      border: 1px solid rgba(56,189,248,0.35);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      margin-bottom: 12px;
-    }
-    .links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-    .links a {
-      color: var(--fg);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      background: rgba(2,6,23,0.3);
-      padding: 10px 14px;
-      border-radius: 10px;
-      transition: border-color .2s ease, transform .08s ease;
-    }
-    .links a:hover {
-      border-color: rgba(56,189,248,0.45);
-    }
-    .links a:active {
-      transform: translateY(1px);
-    }
-    code {
-      background: rgba(15,23,42,0.7);
-      border: 1px solid var(--border);
-      padding: 2px 6px;
-      border-radius: 6px;
-      color: var(--fg);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>app-gateway2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body { font-family: sans-serif; margin: 2rem; }
+      .container { max-width: 400px; margin: 3rem auto; padding: 2rem; border: 1px solid #ccc; border-radius: 7px; background: #fafafa; }
+      h1   { text-align: center; color: #333; font-size: 2rem; }
+      p    { color: #555; }
+    </style>
 </head>
 <body>
-  <main class="card" role="main" aria-label="app-gateway2 welcome">
-    <div class="pill">app-gateway2</div>
-    <h1>Service is running</h1>
-    <p>
-      This is a minimal landing page served from <code>public/</code>. The server binds to <code>0.0.0.0</code> and respects the <code>PORT</code> environment variable.
+  <div class="container">
+    <h1>app-gateway2 Service</h1>
+    <p>This is a minimal web server setup.<br><br>
+       <strong>/healthz</strong> will return 200 OK when the server is up.<br>
+       You are viewing <em>app-gateway2/public/index.html</em> served by Express.
     </p>
-    <div class="links" role="navigation" aria-label="quick links">
-      <a href="/">Home</a>
-      <a href="/health">Health check</a>
+    <hr>
+    <div style="text-align:center; font-size: 0.9em; color: #999;">
+      &copy; 2024 app-gateway2 Minimal Scaffold
     </div>
-  </main>
+  </div>
 </body>
 </html>
