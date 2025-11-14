@@ -10,14 +10,14 @@ curl -d '{
   "jsonrpc":"2.0","id":1,
   "method":"Controller.1.activate",
   "params":{"callsign":"OttServices"}
-}' http://$HOST:$PORT/jsonrpc
+}' http://127.0.0.1:9998/jsonrpc
 
 # Deactivate
 curl -d '{
   "jsonrpc":"2.0","id":2,
   "method":"Controller.1.deactivate",
   "params":{"callsign":"OttServices"}
-}' http://$HOST:$PORT/jsonrpc
+}' http://127.0.0.1:9998/jsonrpc
 ```
 
 ---
@@ -64,7 +64,7 @@ curl -d '{
   "id":101,
   "method":"OttServices.1.ott.getDistributorToken",
   "params":{ "appId":"comcast.test.firecert" }
-}' http://$HOST:$PORT/jsonrpc
+}' http://127.0.0.1:9998/jsonrpc
 ```
 
 ---
@@ -77,7 +77,7 @@ curl -d '{
   "id":102,
   "method":"OttServices.1.ott.getDistributorToken",
   "params":{ "appId":"xumo" }
-}' http://$HOST:$PORT/jsonrpc
+}' http://127.0.0.1:9998/jsonrpc
 ```
 
 ---
@@ -90,7 +90,7 @@ curl -d '{
   "id":201,
   "method":"OttServices.1.ott.getAuthToken",
   "params":{ "appId":"comcast.test.firecert" }
-}' http://$HOST:$PORT/jsonrpc
+}' http://127.0.0.1:9998/jsonrpc
 ```
 
 ---
@@ -103,7 +103,7 @@ curl -d '{
   "id":202,
   "method":"OttServices.1.ott.getAuthToken",
   "params":{ "appId":"xumo" }
-}' http://$HOST:$PORT/jsonrpc
+}' http://127.0.0.1:9998/jsonrpc
 ```
 
 ---
