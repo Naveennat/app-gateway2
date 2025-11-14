@@ -1,111 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8">
   <title>app-gateway2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
-      color-scheme: light dark;
       --bg: #0f172a;
       --fg: #e2e8f0;
-      --accent: #60a5fa;
       --muted: #94a3b8;
-      --card: #111827;
+      --accent: #38bdf8;
+      --card: #0b1220;
+      --border: #1e293b;
     }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f8fafc;
-        --fg: #0f172a;
-        --accent: #2563eb;
-        --muted: #475569;
-        --card: #ffffff;
-      }
+    html, body {
+      height: 100%;
     }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: var(--bg);
+      background: radial-gradient(1200px 800px at 50% -200px, #172554 0%, var(--bg) 60%);
       color: var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       display: grid;
-      min-height: 100vh;
       place-items: center;
     }
     .card {
-      background: var(--card);
-      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: linear-gradient(180deg, rgba(56,189,248,0.08), rgba(56,189,248,0.03)), var(--card);
+      border: 1px solid var(--border);
       border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
       padding: 28px 32px;
-      max-width: 720px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+      width: min(720px, calc(100% - 32px));
     }
     h1 {
-      font-size: 1.75rem;
-      margin: 0 0 0.5rem 0;
+      margin: 0 0 8px 0;
+      font-size: 22px;
+      font-weight: 700;
       letter-spacing: 0.2px;
     }
     p {
-      margin: 0.25rem 0 1rem 0;
+      margin: 0 0 16px 0;
       color: var(--muted);
-      line-height: 1.55;
     }
-    .meta {
-      margin-top: 1rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 0.9rem;
-      background: rgba(99, 102, 241, 0.09);
-      border: 1px solid rgba(99, 102, 241, 0.25);
-      padding: 10px 12px;
-      border-radius: 10px;
-      color: var(--fg);
-    }
-    a {
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.15);
       color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+      border: 1px solid rgba(56,189,248,0.35);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 12px;
     }
     .links {
-      margin-top: 1rem;
       display: flex;
-      gap: 1rem;
+      gap: 12px;
       flex-wrap: wrap;
+      margin-top: 12px;
     }
-    .tag {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      background: rgba(148, 163, 184, 0.08);
+    .links a {
       color: var(--fg);
-      font-size: 0.85rem;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      background: rgba(2,6,23,0.3);
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: border-color .2s ease, transform .08s ease;
+    }
+    .links a:hover {
+      border-color: rgba(56,189,248,0.45);
+    }
+    .links a:active {
+      transform: translateY(1px);
+    }
+    code {
+      background: rgba(15,23,42,0.7);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: var(--fg);
     }
   </style>
 </head>
 <body>
-  <main class="card" role="main" aria-label="app-gateway2">
-    <h1>app-gateway2</h1>
-    <p>Your preview server is running.</p>
-    <div class="links">
-      <a href="/health" class="tag" aria-label="Health endpoint">GET /health</a>
-      <span class="tag" title="Express static">Static served from /public (or /dist if present)</span>
-    </div>
-    <div class="meta" aria-live="polite">
-      <div><strong>Host:</strong> <span id="host">0.0.0.0</span></div>
-      <div><strong>Port:</strong> <span id="port">3000</span></div>
-      <div><strong>Process:</strong> Node.js Express</div>
+  <main class="card" role="main" aria-label="app-gateway2 welcome">
+    <div class="pill">app-gateway2</div>
+    <h1>Service is running</h1>
+    <p>
+      This is a minimal landing page served from <code>public/</code>. The server binds to <code>0.0.0.0</code> and respects the <code>PORT</code> environment variable.
+    </p>
+    <div class="links" role="navigation" aria-label="quick links">
+      <a href="/">Home</a>
+      <a href="/health">Health check</a>
     </div>
   </main>
-  <script>
-    // Render basic env-aware hints when behind a reverse proxy
-    (function () {
-      // These are runtime defaults; container/platform may proxy different public URL/port.
-      var host = (window.location.hostname || '0.0.0.0');
-      var port = (window.location.port || '3000');
-      document.getElementById('host').textContent = host;
-      document.getElementById('port').textContent = port || '80';
-    })();
-  </script>
 </body>
 </html>
