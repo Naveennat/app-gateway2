@@ -1,47 +1,25 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
+
 const app = express();
-
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '0.0.0.0';
 
-// Try to serve static files if dist/ or public/ exists, else serve basic HTML
-const staticDirs = ['dist', 'public'];
-let staticDirServed = false;
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-for (const dir of staticDirs) {
-    try {
-        if (require('fs').existsSync(path.join(__dirname, dir))) {
-            app.use(express.static(path.join(__dirname, dir)));
-            staticDirServed = true;
-            break;
-        }
-    } catch (e) {
-        // continue
-    }
-}
-
-// Liveness endpoint for container/preview health checks
+// Health endpoint
 // PUBLIC_INTERFACE
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok' });
+app.get('/healthz', (req, res) => {
+    /** Health check endpoint, returns 200 OK if service is running */
+    res.status(200).send('OK');
 });
 
-// Root endpoint - serves static index.html if available, else simple HTML
-// PUBLIC_INTERFACE
-app.get('/', (req, res) => {
-    if (staticDirServed) {
-        // Ordinary static fallback handled by Express if index.html in static dir
-        res.sendFile('index.html', { root: path.join(__dirname, staticDirs.find(d => require('fs').existsSync(path.join(__dirname, d)))) }, err => {
-            if (err) res.type('text/html').status(200).send('<h1>App Gateway2</h1><p>Static build not found. Server running.</p>');
-        });
-    } else {
-        res.type('text/html').status(200).send('<h1>App Gateway2</h1><p>Server is running.</p>');
-    }
+// Catch-all (optional): if not found, fallback to index.html for SPA-like experience
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, HOST, () => {
-    console.log(`app-gateway2 Express server listening on http://${HOST}:${PORT}`);
+app.listen(PORT, () => {
+    console.log(`app-gateway2 is running at http://localhost:${PORT}`);
 });
-
-module.exports = app;
