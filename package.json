@@ -1,7 +1,7 @@
 {
   "name": "app-gateway2",
   "version": "1.0.0",
-  "description": "Minimal Express web application for app-gateway2",
+  "description": "app-gateway service",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

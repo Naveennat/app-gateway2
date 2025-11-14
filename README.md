@@ -1,42 +1,39 @@
 # app-gateway2
 
-Minimal Express web server for local development and preview.
+This is the app-gateway2 service.
 
-## Prerequisites
+## Getting Started
 
-- Node.js (v14 or above)
-- npm
+1. **Install Dependencies**
 
-## Setup
+   ```
+   npm install
+   ```
 
-```sh
-npm install
-```
-(To install dependencies.)
+2. **Set Environment Variables**
 
-## Running
+   Copy `.env.example` to `.env` and edit the `PORT` value as needed.
+   ```
+   cp .env.example .env
+   ```
 
-```sh
-npm start
-```
-_By default binds to `PORT=3000` (or whatever is set in `.env`)._
+3. **Start the Service**
 
-- Visit [http://localhost:3000](http://localhost:3000)
-- Health check (returns 200 OK): [http://localhost:3000/healthz](http://localhost:3000/healthz)
+   ```
+   npm start
+   ```
 
-## Environment Variables
+   By default, the service will run on the port specified by `PORT` in your `.env` file (default: 3000).
 
-Create a `.env` file if needed with:
-```
-PORT=3000
-```
+## Endpoints
 
-## Files
+- `/` - Health check, returns simple text.
 
-- `server.js` &mdash; Express app, static file server, health endpoint.
-- `public/index.html` &mdash; Placeholder content.
-- `.env.example` &mdash; Example env settings.
-- `package.json` &mdash; NPM metadata, scripts, dependencies.
+## Requirements
 
----
-This scaffold is intended for development/preview only.
+- Node.js (v14 or higher recommended)
+- [express](https://expressjs.com/)
+
+## License
+
+See [LICENSE](../LICENSE) for details.
