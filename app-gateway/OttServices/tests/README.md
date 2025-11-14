@@ -1,89 +1,116 @@
-# OttServices Tests
+# OttServices Thunder Plugin – cURL Test Commands
 
-This guide explains how to test the OttServices JSON-RPC methods via cURL. It mirrors the style and intent of FbSettings/tests while focusing on OttServices behavior.
+---
 
-Key JSON-RPC methods:
+## Activate / Deactivate
+
+```bash
+# Activate
+curl -d '{
+  "jsonrpc":"2.0","id":1,
+  "method":"Controller.1.activate",
+  "params":{"callsign":"OttServices"}
+}' http://$HOST:$PORT/jsonrpc
+
+# Deactivate
+curl -d '{
+  "jsonrpc":"2.0","id":2,
+  "method":"Controller.1.deactivate",
+  "params":{"callsign":"OttServices"}
+}' http://$HOST:$PORT/jsonrpc
+```
+
+---
+
+## Environment
+
+```bash
+# Set these to point at your Thunder JSON-RPC endpoint
+export HOST=127.0.0.1
+export PORT=3001
+
+# Optional helper
+export JSONRPC="http://$HOST:$PORT/jsonrpc"
+```
+
+Notes:
+- If your platform uses a different port (e.g., 9998), adjust PORT accordingly.
+- You may invoke using $JSONRPC or http://$HOST:$PORT/jsonrpc interchangeably below.
+
+---
+
+## Method naming rationale
+
+OttServices registers JSON-RPC methods with the names:
+- ott.getDistributorToken
+- ott.getAuthToken
+
+As per JOttServices registration (see app-gateway2/app-gateway/interfaces/json/JOttServices.h), the effective invocation path is:
 - OttServices.1.ott.getDistributorToken
 - OttServices.1.ott.getAuthToken
 
-Both endpoints accept params: { "appId": "<firebolt-app-id>" } and return a token string (or a structured token object depending on implementation).
+Params:
+- { "appId": "<firebolt-app-id>" }
 
-## Prerequisites
+Note: These methods do not accept xACT/SAT parameters. OttServices retrieves tokens internally via Thunder plugins.
 
-- OttServices Thunder plugin is loaded/activated.
-- JSON-RPC endpoint is reachable. Examples below default to:
-  - HOST=127.0.0.1
-  - PORT=3001
-  - JSON-RPC URL: http://$HOST:$PORT/jsonrpc
-- Recommended: jq installed for pretty-printing JSON (optional).
+---
 
-Notes:
-- Your deployment may use a different port (e.g., Thunder default 9998 or a customized port). Adjust HOST/PORT accordingly.
-- If running against a remote target device, set HOST to its IP/hostname.
+## ott.getDistributorToken (comcast.test.firecert)
 
-## Quick Start
-
-Export variables (adjust as needed):
 ```bash
-export HOST=127.0.0.1
-export PORT=3001
-export JSONRPC=http://$HOST:$PORT/jsonrpc
-export APP_ID="com.example.app"
+curl -d '{
+  "jsonrpc":"2.0",
+  "id":101,
+  "method":"OttServices.1.ott.getDistributorToken",
+  "params":{ "appId":"comcast.test.firecert" }
+}' http://$HOST:$PORT/jsonrpc
 ```
 
-Distributor token:
+---
+
+## ott.getDistributorToken (xumo)
+
 ```bash
-curl -sS -X POST "$JSONRPC" \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "jsonrpc":"2.0",
-    "id":1,
-    "method":"OttServices.1.ott.getDistributorToken",
-    "params": { "appId": "'"$APP_ID"'" }
-  }' | jq .
+curl -d '{
+  "jsonrpc":"2.0",
+  "id":102,
+  "method":"OttServices.1.ott.getDistributorToken",
+  "params":{ "appId":"xumo" }
+}' http://$HOST:$PORT/jsonrpc
 ```
 
-Auth token:
+---
+
+## ott.getAuthToken (comcast.test.firecert)
+
 ```bash
-curl -sS -X POST "$JSONRPC" \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "jsonrpc":"2.0",
-    "id":2,
-    "method":"OttServices.1.ott.getAuthToken",
-    "params": { "appId": "'"$APP_ID"'" }
-  }' | jq .
+curl -d '{
+  "jsonrpc":"2.0",
+  "id":201,
+  "method":"OttServices.1.ott.getAuthToken",
+  "params":{ "appId":"comcast.test.firecert" }
+}' http://$HOST:$PORT/jsonrpc
 ```
 
-Tip: A helper script and additional examples also exist:
-- app-gateway2/tests/ottservices_curl.sh
-- app-gateway2/tests/ottservices_curl_examples.md
+---
 
-## Raw JSON Request Examples
+## ott.getAuthToken (xumo)
 
-getDistributorToken:
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 101,
-  "method": "OttServices.1.ott.getDistributorToken",
-  "params": { "appId": "com.example.app" }
-}
+```bash
+curl -d '{
+  "jsonrpc":"2.0",
+  "id":202,
+  "method":"OttServices.1.ott.getAuthToken",
+  "params":{ "appId":"xumo" }
+}' http://$HOST:$PORT/jsonrpc
 ```
 
-getAuthToken:
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 102,
-  "method": "OttServices.1.ott.getAuthToken",
-  "params": { "appId": "com.example.app" }
-}
-```
+---
 
-## Sample Responses
+## Example expected responses
 
-String token (commonly returned):
+Success (string token):
 ```json
 {
   "jsonrpc": "2.0",
@@ -92,23 +119,11 @@ String token (commonly returned):
 }
 ```
 
-Structured token (if implementation wraps additional fields):
+Error (invalid params / missing appId):
 ```json
 {
   "jsonrpc": "2.0",
   "id": 102,
-  "result": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp...",
-    "expiresAt": 1731568200
-  }
-}
-```
-
-Error (invalid params, missing appId):
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 103,
   "error": {
     "code": 3,
     "message": "ERROR_BAD_REQUEST"
@@ -116,11 +131,11 @@ Error (invalid params, missing appId):
 }
 ```
 
-Error (method not found, plugin not active or wrong method string):
+Error (method not found – plugin not active or callsign/version mismatch):
 ```json
 {
   "jsonrpc": "2.0",
-  "id": 104,
+  "id": 201,
   "error": {
     "code": -32601,
     "message": "Method not found"
@@ -128,49 +143,28 @@ Error (method not found, plugin not active or wrong method string):
 }
 ```
 
-## Environment and Host/Port Notes
-
-- HOST: Thunder JSON-RPC host (default: 127.0.0.1).
-- PORT: Thunder JSON-RPC port (examples use 3001; your deployment may differ, e.g., 9998).
-- APP_ID: Firebolt appId the token request is for (e.g., com.example.app).
-- JSONRPC: Constructed as http://$HOST:$PORT/jsonrpc.
-
-Ensure the endpoint is reachable:
-```bash
-curl -sS -X POST "$JSONRPC" -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":0,"method":"Controller.1.status"}' | jq .
-```
+---
 
 ## Troubleshooting
 
-1) Plugin initialization / binding
-- If OttServices fails to bind to its implementation, it may start in a degraded mode.
-- See: app-gateway2/docs/troubleshooting/ottservices-initialization.md for detailed steps.
+- Ensure the plugin is active:
+  - Use the Activate command above or Thunder Controller UI.
+- Verify the method path matches your environment:
+  - Callsign: OttServices
+  - Version: 1
+  - Methods: ott.getDistributorToken, ott.getAuthToken
+- Confirm host/port:
+  - HOST and PORT must match your Thunder JSON-RPC endpoint.
+- Check plugin configuration and connectivity:
+  - See app-gateway2/configs/plugins/OttServices.json.example
+- For initialization/binding issues:
+  - See app-gateway2/docs/troubleshooting/ottservices-initialization.md
 
-2) Method not found (-32601)
-- The OttServices plugin may not be loaded/activated.
-- The method string must be exactly:
-  - OttServices.1.ott.getDistributorToken
-  - OttServices.1.ott.getAuthToken
-- Verify the plugin is active via Thunder Controller and that the version (1) matches your deployment.
+---
 
-3) Bad request / invalid params
-- Ensure "params" includes "appId" as a non-empty string.
+## Related
 
-4) Downstream permission/token service errors
-- Validate configuration such as PermissionsEndpoint and UseTls in plugin config.
-- Reference: app-gateway2/configs/plugins/OttServices.json.example
-- Ensure the device/network can reach the endpoint (firewall/DNS/TLS considerations).
-
-5) Connection refused / no route to host
-- HOST or PORT may be incorrect.
-- If targeting a remote device, confirm network connectivity and that Thunder is listening on the specified port.
-
-6) Pretty-printing failures
-- If jq is not installed, remove the final pipe to jq from the cURL examples.
-
-## References
-
-- Example script: app-gateway2/tests/ottservices_curl.sh
-- Example markdown: app-gateway2/tests/ottservices_curl_examples.md
-- Troubleshooting: app-gateway2/docs/troubleshooting/ottservices-initialization.md
-- Example plugin configuration: app-gateway2/configs/plugins/OttServices.json.example
+- Helper script: app-gateway2/tests/ottservices_curl.sh
+- Examples: app-gateway2/tests/ottservices_curl_examples.md
+- Registration source: app-gateway2/app-gateway/interfaces/json/JOttServices.h
+- Example plugin config: app-gateway2/configs/plugins/OttServices.json.example
