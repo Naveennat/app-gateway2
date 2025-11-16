@@ -24,7 +24,8 @@ curl -d '{
 ```
 
 ----
-First call updatePermissionsCache and call getpermissions
+
+### First call updatePermissionsCache and call getpermissions
 
 ----
 
@@ -34,7 +35,7 @@ curl -s -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":4,"method"
 curl -s -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":4,"method":"org.rdk.OttServices.1.getPermissions","params":{"appId":"xumo"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
-To Refresh permissions in cache , call invalidate and then above commands
+### To Refresh permissions in cache , call invalidate and then above commands
 
 ----
 
@@ -43,6 +44,7 @@ curl -s -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":4,"method"
 ```
 
 ----
+
 ## Platform Token:
 
 ```bash
