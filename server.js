@@ -12,6 +12,11 @@ const PORT = process.env.PORT || 3000;
 const publicDir = path.join(__dirname, 'public');
 app.use(express.static(publicDir));
 
+ // Health endpoint for container/platform probes
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // Example root endpoint
 app.get('/', (req, res) => {
   // Serve index.html if it exists, else generic message
