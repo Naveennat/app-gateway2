@@ -6,6 +6,7 @@ const path = require('path');
 // Starts an HTTP server listening on process.env.PORT
 const app = express();
 
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 3000;
 
 // Serve static files if public/index.html exists
@@ -26,7 +27,7 @@ app.get('/', (req, res) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`app-gateway2 listening on port ${PORT}`);
+ // Start server
+app.listen(PORT, HOST, () => {
+  console.log(`app-gateway2 listening on http://${HOST}:${PORT}`);
 });
