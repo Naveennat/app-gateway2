@@ -31,9 +31,13 @@ namespace Plugin {
         , _perms(nullptr)
         , _permsEndpoint(kDefaultPermsEndpoint)
         , _permsUseTls(true)
+        , _permsMutex()
+        , _permsClientUseTls(true)
         , _token(nullptr)
         , _tokenEndpoint(kDefaultTokenEndpoint)
         , _tokenUseTls(true)
+        , _tokenMutex()
+        , _tokenClientUseTls(true)
         , _refCount(1) {
     }
 
@@ -68,14 +72,19 @@ namespace Plugin {
             _tokenUseTls = cfg.UseTlsToken.IsSet() ? static_cast<bool>(cfg.UseTlsToken.Value()) : _permsUseTls;
         }
 
-        LOGINFO("OttServices: Initialize implementation (endpoint=%s, tls=%s)",
-                _permsEndpoint.c_str(), _permsUseTls ? "true" : "false");
+        LOGINFO("OttServices: Initialize implementation (permsEndpoint=%s, permsTls=%s, tokenEndpoint=%s, tokenTls=%s)",
+                _permsEndpoint.c_str(), _permsUseTls ? "true" : "false",
+                _tokenEndpoint.c_str(), _tokenUseTls ? "true" : "false");
 
-        // Create permissions client (works even if gRPC disabled; will return ERROR_UNAVAILABLE on use)
-        _perms.reset(new PermissionsClient(_permsEndpoint, _permsUseTls));
-
-        // Create token client
-        _token.reset(new TokenClient(_tokenEndpoint, _tokenUseTls));
+        // Reset clients on (re)configure; will be lazily created on first use.
+        {
+            std::lock_guard<std::mutex> lockPerms(_permsMutex);
+            _perms.reset();
+        }
+        {
+            std::lock_guard<std::mutex> lockToken(_tokenMutex);
+            _token.reset();
+        }
 
         // Warm up cache file load
         OttPermissionCache::Instance();
@@ -85,8 +94,14 @@ namespace Plugin {
     }
 
     void OttServicesImplementation::Deinitialize(PluginHost::IShell* /*service*/) {
-        _perms.reset();
-        _token.reset();
+        {
+            std::lock_guard<std::mutex> lockPerms(_permsMutex);
+            _perms.reset();
+        }
+        {
+            std::lock_guard<std::mutex> lockToken(_tokenMutex);
+            _token.reset();
+        }
         _state = _T("deinitialized");
         _service = nullptr;
         LOGINFO("OttServices: Deinitialize implementation");
@@ -228,9 +243,9 @@ namespace Plugin {
             LOGERR("OttServices: UpdatePermissionsCache bad request (empty appId)");
             return Core::ERROR_BAD_REQUEST;
         }
-        if (!_perms) {
-            _perms.reset(new PermissionsClient(_permsEndpoint.empty() ? kDefaultPermsEndpoint : _permsEndpoint, _permsUseTls));
-        }
+
+        // Ensure (lazily) the permissions client is created and up-to-date with current configuration.
+        EnsurePerms();
 
         LOGINFO("OttServices: UpdatePermissionsCache start (appId='%s', endpoint=%s)", appId.c_str(), _perms->Endpoint().c_str());
 
@@ -398,10 +413,8 @@ namespace Plugin {
             return Core::ERROR_UNAVAILABLE;
         }
 
-        std::lock_guard<std::mutex> guard(_tokenMutex);
-        if (!_token) {
-            _token.reset(new TokenClient(_tokenEndpoint.empty() ? _permsEndpoint : _tokenEndpoint, _tokenUseTls));
-        }
+        // Ensure (lazily) the token client is created and up-to-date with current configuration.
+        EnsureToken();
 
         std::string err;
         uint32_t expiresInSec = 0;
@@ -452,10 +465,8 @@ namespace Plugin {
             return Core::ERROR_UNAVAILABLE;
         }
 
-        std::lock_guard<std::mutex> guard(_tokenMutex);
-        if (!_token) {
-            _token.reset(new TokenClient(_tokenEndpoint.empty() ? _permsEndpoint : _tokenEndpoint, _tokenUseTls));
-        }
+        // Ensure (lazily) the token client is created and up-to-date with current configuration.
+        EnsureToken();
 
         std::string err;
         uint32_t expiresInSec = 0;
@@ -479,6 +490,52 @@ namespace Plugin {
 
         LOGINFO("OttServices: GetAuthToken success (token=[REDACTED])");
         return Core::ERROR_NONE;
+    }
+
+    // ---- Lazy client helpers ----
+
+    void OttServicesImplementation::EnsurePerms() {
+        const std::string desiredEndpoint = _permsEndpoint.empty() ? std::string(kDefaultPermsEndpoint) : _permsEndpoint;
+        const bool desiredTls = _permsUseTls;
+
+        std::lock_guard<std::mutex> lock(_permsMutex);
+
+        bool needCreate = !_perms;
+        if (!needCreate) {
+            if (_perms->Endpoint() != desiredEndpoint || _permsClientUseTls != desiredTls) {
+                needCreate = true;
+            }
+        }
+
+        if (needCreate) {
+            LOGINFO("OttServices: (Re)creating PermissionsClient (endpoint=%s, tls=%s)",
+                    desiredEndpoint.c_str(), desiredTls ? "true" : "false");
+            _perms.reset(new PermissionsClient(desiredEndpoint, desiredTls));
+            _permsClientUseTls = desiredTls;
+        }
+    }
+
+    void OttServicesImplementation::EnsureToken() {
+        // token endpoint falls back to permissions endpoint if not explicitly set
+        const std::string effectiveEndpoint = (!_tokenEndpoint.empty() ? _tokenEndpoint :
+                                               (!_permsEndpoint.empty() ? _permsEndpoint : std::string(kDefaultTokenEndpoint)));
+        const bool desiredTls = _tokenUseTls;
+
+        std::lock_guard<std::mutex> lock(_tokenMutex);
+
+        bool needCreate = !_token;
+        if (!needCreate) {
+            if (_token->Endpoint() != effectiveEndpoint || _tokenClientUseTls != desiredTls) {
+                needCreate = true;
+            }
+        }
+
+        if (needCreate) {
+            LOGINFO("OttServices: (Re)creating TokenClient (endpoint=%s, tls=%s)",
+                    effectiveEndpoint.c_str(), desiredTls ? "true" : "false");
+            _token.reset(new TokenClient(effectiveEndpoint, desiredTls));
+            _tokenClientUseTls = desiredTls;
+        }
     }
 
 } // namespace Plugin

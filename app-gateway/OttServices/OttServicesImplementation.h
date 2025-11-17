@@ -2,6 +2,8 @@
 
 // Internal implementation for the OttServices plugin.
 // Contains business logic and state, separated from the Thunder plugin facade.
+// NOTE: PermissionsClient and TokenClient are lazily initialized (thread-safe) on first use
+// to avoid unnecessary startup work and to properly react to dynamic reconfiguration.
 
 #include <atomic>
 #include <core/core.h>
@@ -108,21 +110,31 @@ namespace Plugin {
         static uint64_t NowEpochSec();
         // Removed: ExtractExpiresInSeconds no longer needed (token methods return raw strings).
 
+        // Lazy client helpers (thread-safe)
+        void EnsurePerms();
+        void EnsureToken();
+
     private:
         PluginHost::IShell* _service;
         string _state;
 
+        // Permissions client and configuration
         std::unique_ptr<PermissionsClient> _perms;
         std::string _permsEndpoint;
         bool _permsUseTls;
+        std::mutex _permsMutex;
+        // Tracks TLS mode used to create current _perms instance (for change detection)
+        bool _permsClientUseTls { true };
 
         // Token client and configuration
         std::unique_ptr<TokenClient> _token;
         std::string _tokenEndpoint;
         bool _tokenUseTls;
 
-        // Token path: guard token cache/client access.
+        // Token path: guard token cache/client access and lazy (re)creation.
         std::mutex _tokenMutex;
+        // Tracks TLS mode used to create current _token instance (for change detection)
+        bool _tokenClientUseTls { true };
         TokenCache _tokenCache;
 
         // Reference counter for COM-style lifetime management.
