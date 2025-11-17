@@ -14,8 +14,8 @@ if command -v npm >/dev/null 2>&1; then
   echo "[app-gateway2] Starting via npm start on ${HOST}:${PORT} ..."
   exec npm start
 elif command -v node >/dev/null 2>&1; then
-  echo "[app-gateway2] npm not found, starting via node server.js on ${HOST}:${PORT} ..."
-  exec node server.js
+  echo "[app-gateway2] npm not found, starting via node index.js on ${HOST}:${PORT} ..."
+  exec node index.js
 else
   echo "[app-gateway2] Error: neither npm nor node is available in PATH." >&2
   exit 1

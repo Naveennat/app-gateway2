@@ -4,49 +4,56 @@ This is the app-gateway2 service.
 
 ## Getting Started
 
-1. **Install Dependencies**
+1. Install Dependencies
 
    ```
    npm install
    ```
 
-2. **Set Environment Variables**
+2. Set Environment Variables
 
-   Copy `.env.example` to `.env` and edit the `PORT` value as needed.
+   Copy `.env.example` to `.env` and edit the values as needed.
    ```
    cp .env.example .env
    ```
 
-3. **Start the Service**
+   - HOST defaults to 0.0.0.0 (required for most container/preview platforms)
+   - PORT defaults to 3000
+
+3. Start the Service
 
    ```
    npm start
    ```
 
-   By default, the service will run on the port specified by `PORT` in your `.env` file (default: 3000).
+   This runs `node index.js` using the start script in `package.json`. By default, the service will run on HOST/PORT (default: 0.0.0.0:3000).
 
 ### Express App Details
 
-- The server entrypoint is `server.js` and can be started with:
-  ```sh
-  npm start
-  ```
-  This runs `node server.js` using the start script in `package.json`.
-- The server listens on the `PORT` environment variable (defaults to 3000 if not set).
+- The runtime entrypoint is `index.js` which delegates to `server.js`.
+- The server listens on the `HOST` and `PORT` environment variables (defaults: HOST=0.0.0.0, PORT=3000).
+- If you add a file as `public/index.html`, it will be served at the root path `/`. If not present, the root path responds with a basic "app-gateway2 running" message.
 
-### Static Files
+### Preview/Platform Integration
 
-- If you add a file as `public/index.html`, it will be served at the root path `/`.
-- Accessing `/` loads the static HTML if present, or returns a basic 'app-gateway2 running' message otherwise.
+- `package.json` defines `"start": "node index.js"`.
+- A `Procfile` is included with `web: npm start` to assist platforms that expect Procfile (e.g., Heroku-style).
+- A `start.sh` helper is included to prefer `npm start` and fallback to `node index.js`.
 
 ## Endpoints
 
-- `/` - Serves static index.html if present (public/index.html), otherwise returns 'app-gateway2 running'.
-- `/health` - Health check endpoint, returns JSON status.
+- `/` - Serves static `public/index.html` if present, otherwise returns 'app-gateway2 running'.
+- `/health` - Health check endpoint, returns `{ "status": "ok" }`.
+
+## Docker
+
+- Minimal `Dockerfile` provided with `CMD ["node", "index.js"]`.
+- Exposes port 3000 and sets `HOST=0.0.0.0` by default.
+- Includes a lightweight `HEALTHCHECK` that probes `/health`.
 
 ## Requirements
 
-- Node.js (v14 or higher recommended)
+- Node.js (>= 16)
 - [express](https://expressjs.com/)
 
 ## License
