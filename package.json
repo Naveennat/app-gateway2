@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
+    "prestart": "npm install --no-audit --no-fund --omit=dev",
     "start": "node index.js",
     "start:server": "node server.js",
     "health": "node -e \"require('http').get({hostname:'127.0.0.1',port:process.env.PORT||3000,path:'/health'},res=>{console.log('status',res.statusCode);process.exit(res.statusCode===200?0:1)}).on('error',()=>process.exit(1))\""
