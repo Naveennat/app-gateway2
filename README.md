@@ -41,7 +41,8 @@ This is the app-gateway2 service.
 
 ## Endpoints
 
-- `/` - Health check, returns simple text.
+- `/` - Serves static index.html if present (public/index.html), otherwise returns 'app-gateway2 running'.
+- `/health` - Health check endpoint, returns JSON status.
 
 ## Requirements
 
