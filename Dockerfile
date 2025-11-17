@@ -18,6 +18,7 @@ RUN npm install --omit=dev
 COPY server.js ./
 COPY index.js ./
 COPY README.md ./
+COPY public ./public
 
 # Container documentation; the platform may use PORT env for mapping
 EXPOSE 3000
