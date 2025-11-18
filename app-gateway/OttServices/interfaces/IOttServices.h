@@ -1,20 +1,15 @@
 #pragma once
-
-// Exchange interface for the OttServices plugin, exposed via COMRPC.
-// This interface allows callers to invoke OttServices functionality through COMRPC,
-// leveraging WPEFramework's Core::IUnknown and RPC infrastructure.
-
 #include "Module.h"
 
 namespace WPEFramework {
 namespace Exchange {
 
     // @json 1.0.0 @text:keep
-    struct EXTERNAL IOttServices : virtual public Core::IUnknown {
+    struct EXTERNAL IOttPermissions : virtual public Core::IUnknown {
        
-        enum { ID = ID_OTT_SERVICES };
+        enum { ID = ID_OTT_PERMISSIONS };
 
-        virtual ~IOttServices() override = default;
+        virtual ~IOttPermissions() override = default;
 
         // @text ping
         // @brief Ping the service and obtain a reply string.
@@ -43,25 +38,19 @@ namespace Exchange {
         // @returns Core::hresult
         virtual Core::hresult UpdatePermissionsCache(const string& appId, uint32_t& updatedCount /* @out */) = 0;
 
-        // ---- Token retrieval placeholders (COMRPC) ----
-
-        // PUBLIC_INTERFACE
         // @text getDistributorToken
-        // @brief Retrieve a distributor token for the given app. Internally fetches xACT and SAT via Thunder.
-        // @param appId: Application identifier (Firebolt appId).
-        // @param token: Output string containing the token value (no JSON).
+        // @brief Retrieve a distributor/platform token for the given application identifier.
+        // @param appId: Application identifier for which to retrieve the token.
+        // @param token: Output raw token string.
         // @returns Core::hresult
-        virtual Core::hresult GetDistributorToken(const string& appId /* @in */,
-                                                  string& token /* @out */) = 0;
+        virtual Core::hresult GetDistributorToken(const string& appId, string& token /* @out */) = 0;
 
-        // PUBLIC_INTERFACE
         // @text getAuthToken
-        // @brief Retrieve an auth token for the given app. Internally fetches SAT via Thunder.
-        // @param appId: Application identifier (Firebolt appId).
-        // @param tokenJson: Output JSON string containing the token or token envelope (opaque).
+        // @brief Retrieve an auth token for the given application identifier.
+        // @param appId: Application identifier for which to retrieve the auth token.
+        // @param token: Output raw auth token string.
         // @returns Core::hresult
-        virtual Core::hresult GetAuthToken(const string& appId /* @in */,
-                                           string& token /* @out */) = 0;
+        virtual Core::hresult GetAuthToken(const string& appId, string& token /* @out */) = 0;
     };
 
 } // namespace Exchange
