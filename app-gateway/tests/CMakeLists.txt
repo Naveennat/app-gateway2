@@ -107,7 +107,7 @@ add_test(NAME FbCommon.Resolutions COMMAND test_fbcommon)
 # Additional test: OttPermissionCache behavior and file format/idempotency
 add_executable(test_ottpermissioncache
     test_ottpermissioncache.cpp
-    ../OttServices/OttPermissionCache.cpp
+    ../OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp
 )
 target_include_directories(test_ottpermissioncache
     PUBLIC
