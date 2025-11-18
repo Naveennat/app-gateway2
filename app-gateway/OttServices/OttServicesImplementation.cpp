@@ -1,9 +1,27 @@
+/*
+ * Copyright 2023 Comcast Cable Communications Management, LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 #include "OttServicesImplementation.h"
 
 #include <core/Enumerate.h>
 #include "UtilsLogging.h"
 
-// Use in-module permission cache and JSONRPC direct link utils
+ // Use in-module permission cache and JSONRPC direct link utils
 #include "OttPermissionCache.h"
 #include "UtilsJsonrpcDirectLink.h"
 
@@ -11,17 +29,14 @@
 #include "TokenClient.h"
 #include "TokenCache.h"
 
-#include <chrono>
-#include <cstdlib>
-
 namespace WPEFramework {
 namespace Plugin {
 
     SERVICE_REGISTRATION(OttServicesImplementation, 1, 0);
 
     namespace {
-        static constexpr const char* kDefaultPermsEndpoint = "thor-permission.svc.thor.comcast.com:443";
-        static constexpr const char* kDefaultTokenEndpoint = kDefaultPermsEndpoint; // fallback if token endpoint not configured
+        static constexpr const char* kDefaultPermsEndpoint = "thor-permission.svc.thor.comcast.com";
+        static constexpr const char* kDefaultTokenEndpoint = "ott-token-service.svc.thor.comcast.com";
         static constexpr const char* kAuthServiceCallsign = "org.rdk.AuthService";
     }
 
@@ -31,13 +46,9 @@ namespace Plugin {
         , _perms(nullptr)
         , _permsEndpoint(kDefaultPermsEndpoint)
         , _permsUseTls(true)
-        , _permsMutex()
-        , _permsClientUseTls(true)
         , _token(nullptr)
         , _tokenEndpoint(kDefaultTokenEndpoint)
         , _tokenUseTls(true)
-        , _tokenMutex()
-        , _tokenClientUseTls(true)
         , _refCount(1) {
     }
 
@@ -47,7 +58,6 @@ namespace Plugin {
 
         LOGINFO("Configuring OttServices");
         ASSERT(shell != nullptr);
-        shell->AddRef();
         // Configure using the provided shell (mirrors Initialize logic; return Core::ERROR_NONE on success)
         Initialize(shell);
         return Core::ERROR_NONE;
@@ -57,7 +67,7 @@ namespace Plugin {
         _service = service;
         _state = _T("ready");
 
-        // Load configuration: PermissionsEndpoint, UseTls; TokenEndpoint (optional), UseTlsToken (optional)
+        // Load configuration: PermissionsEndpoint, UseTls
         if (_service != nullptr) {
             Config cfg;
             cfg.FromString(_service->ConfigLine());
@@ -68,23 +78,21 @@ namespace Plugin {
 
             _tokenEndpoint = (cfg.TokenEndpoint.IsSet() && !cfg.TokenEndpoint.Value().empty())
                                 ? cfg.TokenEndpoint.Value()
-                                : _permsEndpoint;
-            _tokenUseTls = cfg.UseTlsToken.IsSet() ? static_cast<bool>(cfg.UseTlsToken.Value()) : _permsUseTls;
+                                : std::string(kDefaultTokenEndpoint);
+            _tokenUseTls = cfg.UseTlsToken.IsSet() ? static_cast<bool>(cfg.UseTlsToken.Value()) : true;
         }
+  
+        LOGINFO("OttServices: Initialize implementation (endpoint=%s, tls=%s)",
+                _permsEndpoint.c_str(), _permsUseTls ? "true" : "false");
 
-        LOGINFO("OttServices: Initialize implementation (permsEndpoint=%s, permsTls=%s, tokenEndpoint=%s, tokenTls=%s)",
-                _permsEndpoint.c_str(), _permsUseTls ? "true" : "false",
+        // Create permissions client (works even if gRPC disabled; will return ERROR_UNAVAILABLE on use)
+       _perms.reset(new PermissionsClient(_permsEndpoint, _permsUseTls));
+      
+        LOGINFO("OttServices: Initialize implementation (endpoint=%s, tls=%s)",
                 _tokenEndpoint.c_str(), _tokenUseTls ? "true" : "false");
 
-        // Reset clients on (re)configure; will be lazily created on first use.
-        {
-            std::lock_guard<std::mutex> lockPerms(_permsMutex);
-            _perms.reset();
-        }
-        {
-            std::lock_guard<std::mutex> lockToken(_tokenMutex);
-            _token.reset();
-        }
+        // Create token client
+        _token.reset(new TokenClient(_tokenEndpoint, _tokenUseTls));
 
         // Warm up cache file load
         OttPermissionCache::Instance();
@@ -94,21 +102,14 @@ namespace Plugin {
     }
 
     void OttServicesImplementation::Deinitialize(PluginHost::IShell* /*service*/) {
-        {
-            std::lock_guard<std::mutex> lockPerms(_permsMutex);
-            _perms.reset();
-        }
-        {
-            std::lock_guard<std::mutex> lockToken(_tokenMutex);
-            _token.reset();
-        }
+        _perms.reset();
         _state = _T("deinitialized");
         _service = nullptr;
         LOGINFO("OttServices: Deinitialize implementation");
     }
 
 
-    // Exchange::IOttServices implementation and local variants
+    // Exchange::IOttPermissions implementation and local variants
 
     Core::hresult OttServicesImplementation::Ping(const string& message, string& reply) {
         LOGINFO("OttServices: Ping called");
@@ -175,18 +176,8 @@ namespace Plugin {
         JsonObject params;
         JsonObject response;
 
-        // Service Access Token (require token and expires)
-        uint32_t result = link->Invoke<JsonObject, JsonObject>("getServiceAccessToken", params, response);
-        if ((result == Core::ERROR_NONE) && response.HasLabel("token") && response.HasLabel("expires")) {
-            bearerToken = response["token"].String();
-        } else {
-            LOGERR("OttServices: getServiceAccessToken failed rc=%u", result);
-            return false;
-        }
-        response.Clear();
-
         // XDeviceId
-        result = link->Invoke<JsonObject, JsonObject>("getXDeviceId", params, response);
+        uint32_t result = link->Invoke<JsonObject, JsonObject>("getXDeviceId", params, response);
         if ((result == Core::ERROR_NONE) && response.HasLabel("xDeviceId")) {
             deviceId = response["xDeviceId"].String();
             if (deviceId.empty()) {
@@ -195,6 +186,16 @@ namespace Plugin {
             }
         } else {
             LOGERR("OttServices: getXDeviceId failed rc=%u", result);
+            return false;
+        }
+        response.Clear();
+
+        // Service Access Token (require token and expires)
+        result = link->Invoke<JsonObject, JsonObject>("getServiceAccessToken", params, response);
+        if ((result == Core::ERROR_NONE) && response.HasLabel("token") && response.HasLabel("expires")) {
+            bearerToken = response["token"].String();
+        } else {
+            LOGERR("OttServices: getServiceAccessToken failed rc=%u", result);
             return false;
         }
         response.Clear();
@@ -243,9 +244,10 @@ namespace Plugin {
             LOGERR("OttServices: UpdatePermissionsCache bad request (empty appId)");
             return Core::ERROR_BAD_REQUEST;
         }
-
-        // Ensure (lazily) the permissions client is created and up-to-date with current configuration.
-        EnsurePerms();
+        if (!_perms) {
+            LOGERR("OttServices: UpdatePermissionsCache failed - PermissionsClient not initialized");
+            return Core::ERROR_UNAVAILABLE;
+        }
 
         LOGINFO("OttServices: UpdatePermissionsCache start (appId='%s', endpoint=%s)", appId.c_str(), _perms->Endpoint().c_str());
 
@@ -272,11 +274,6 @@ namespace Plugin {
         return Core::ERROR_NONE;
     }
 
-    // Helper: current epoch seconds
-    uint64_t OttServicesImplementation::NowEpochSec() {
-        return static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::seconds>(
-            std::chrono::system_clock::now().time_since_epoch()).count());
-    }
 
     bool OttServicesImplementation::FetchSat(std::string& sat, uint64_t& expiryEpoch) const {
         sat.clear();
@@ -314,6 +311,12 @@ namespace Plugin {
             }
         }
         return !sat.empty();
+    }
+
+    // Helper: current epoch seconds
+    uint64_t OttServicesImplementation::NowEpochSec() {
+        return static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::seconds>(
+            std::chrono::system_clock::now().time_since_epoch()).count());
     }
 
     bool OttServicesImplementation::FetchXact(const std::string& appId, std::string& xact, uint64_t& expiryEpoch) const {
@@ -413,8 +416,10 @@ namespace Plugin {
             return Core::ERROR_UNAVAILABLE;
         }
 
-        // Ensure (lazily) the token client is created and up-to-date with current configuration.
-        EnsureToken();
+        std::lock_guard<std::mutex> guard(_tokenMutex);
+        if (!_token) {
+            _token.reset(new TokenClient(_tokenEndpoint, _tokenUseTls));
+        }
 
         std::string err;
         uint32_t expiresInSec = 0;
@@ -433,7 +438,9 @@ namespace Plugin {
         if (expiry == 0 || (xactExpiry > 0 && (xactExpiry < expiry || expiry == 0))) expiry = xactExpiry;
 
         if (expiry > now) {
-            TokenEntry entry{ token, expiry };
+            TokenEntry entry;
+            entry.tokenJson = token;
+            entry.expiryEpochSec = expiry;
             _tokenCache.Put(cacheKey, entry);
         }
 
@@ -465,8 +472,10 @@ namespace Plugin {
             return Core::ERROR_UNAVAILABLE;
         }
 
-        // Ensure (lazily) the token client is created and up-to-date with current configuration.
-        EnsureToken();
+        std::lock_guard<std::mutex> guard(_tokenMutex);
+        if (!_token) {
+            _token.reset(new TokenClient(_tokenEndpoint.empty() ? _permsEndpoint : _tokenEndpoint, _tokenUseTls));
+        }
 
         std::string err;
         uint32_t expiresInSec = 0;
@@ -484,58 +493,14 @@ namespace Plugin {
             expiry = satExpiry;
         }
         if (expiry > now) {
-            TokenEntry entry{ token, expiry };
+            TokenEntry entry;
+            entry.tokenJson = token;
+            entry.expiryEpochSec = expiry;
             _tokenCache.Put(cacheKey, entry);
         }
 
         LOGINFO("OttServices: GetAuthToken success (token=[REDACTED])");
         return Core::ERROR_NONE;
-    }
-
-    // ---- Lazy client helpers ----
-
-    void OttServicesImplementation::EnsurePerms() {
-        const std::string desiredEndpoint = _permsEndpoint.empty() ? std::string(kDefaultPermsEndpoint) : _permsEndpoint;
-        const bool desiredTls = _permsUseTls;
-
-        std::lock_guard<std::mutex> lock(_permsMutex);
-
-        bool needCreate = !_perms;
-        if (!needCreate) {
-            if (_perms->Endpoint() != desiredEndpoint || _permsClientUseTls != desiredTls) {
-                needCreate = true;
-            }
-        }
-
-        if (needCreate) {
-            LOGINFO("OttServices: (Re)creating PermissionsClient (endpoint=%s, tls=%s)",
-                    desiredEndpoint.c_str(), desiredTls ? "true" : "false");
-            _perms.reset(new PermissionsClient(desiredEndpoint, desiredTls));
-            _permsClientUseTls = desiredTls;
-        }
-    }
-
-    void OttServicesImplementation::EnsureToken() {
-        // token endpoint falls back to permissions endpoint if not explicitly set
-        const std::string effectiveEndpoint = (!_tokenEndpoint.empty() ? _tokenEndpoint :
-                                               (!_permsEndpoint.empty() ? _permsEndpoint : std::string(kDefaultTokenEndpoint)));
-        const bool desiredTls = _tokenUseTls;
-
-        std::lock_guard<std::mutex> lock(_tokenMutex);
-
-        bool needCreate = !_token;
-        if (!needCreate) {
-            if (_token->Endpoint() != effectiveEndpoint || _tokenClientUseTls != desiredTls) {
-                needCreate = true;
-            }
-        }
-
-        if (needCreate) {
-            LOGINFO("OttServices: (Re)creating TokenClient (endpoint=%s, tls=%s)",
-                    effectiveEndpoint.c_str(), desiredTls ? "true" : "false");
-            _token.reset(new TokenClient(effectiveEndpoint, desiredTls));
-            _tokenClientUseTls = desiredTls;
-        }
     }
 
 } // namespace Plugin

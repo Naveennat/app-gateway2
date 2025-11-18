@@ -12,21 +12,5 @@
 #include <plugins/JSONRPC.h>
 #include <plugins/IShell.h>
 
-#ifndef EXTERNAL
-#ifdef __WINDOWS__
-#define EXTERNAL EXTERNAL_EXPORT
-#else
+#undef EXTERNAL
 #define EXTERNAL
-#endif
-#endif
-
-
-// Compatibility alias: some Thunder/WPEFramework versions use VariantContainer as the dynamic JSON object.
-// Provide an alias so Object is always available in code that uses it.
-namespace WPEFramework {
-namespace Core {
-namespace JSON {
-    using Object = VariantContainer;
-}
-}
-}

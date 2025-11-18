@@ -5,11 +5,11 @@ namespace WPEFramework {
 namespace Exchange {
 
     // @json 1.0.0 @text:keep
-    struct EXTERNAL IOttPermissions : virtual public Core::IUnknown {
+    struct EXTERNAL IOttServices : virtual public Core::IUnknown {
        
         enum { ID = ID_OTT_PERMISSIONS };
 
-        virtual ~IOttPermissions() override = default;
+        virtual ~IOttServices() override = default;
 
         // @text ping
         // @brief Ping the service and obtain a reply string.

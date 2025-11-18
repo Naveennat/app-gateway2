@@ -1,3 +1,21 @@
+/*
+ * Copyright 2023 Comcast Cable Communications Management, LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+ 
 #pragma once
 
 // Module: OttServices
@@ -19,8 +37,6 @@ namespace WPEFramework {
 
 namespace Plugin {
 
-    // This is a server for a JSONRPC communication channel.
-    // For a plugin to be capable to handle JSONRPC, inherit from PluginHost::JSONRPC.
     class OttServices : public PluginHost::IPlugin, public PluginHost::JSONRPC {
     private:
         OttServices(const OttServices&) = delete;
@@ -30,22 +46,19 @@ namespace Plugin {
         OttServices();
         ~OttServices() override;
 
-        // PUBLIC_INTERFACE
-        const string Initialize(PluginHost::IShell* shell) override;
         /** Initialize the plugin and acquire the out-of-process IOttServices interface. */
+        const string Initialize(PluginHost::IShell* shell) override;
 
-        // PUBLIC_INTERFACE
-        void Deinitialize(PluginHost::IShell* service) override;
         /** Release the acquired interface and terminate remote connection if needed. */
+        void Deinitialize(PluginHost::IShell* service) override;
 
-        // PUBLIC_INTERFACE
-        string Information() const override { return {}; }
         /** Provide plugin information (empty for thin adapter). */
+        string Information() const override { return {}; }
 
         BEGIN_INTERFACE_MAP(OttServices)
             INTERFACE_ENTRY(PluginHost::IPlugin)
             INTERFACE_ENTRY(PluginHost::IDispatcher)
-            INTERFACE_AGGREGATE(Exchange::IOttServices, _ottServices)
+            INTERFACE_AGGREGATE(Exchange::IOttServices, _mOttServices)
         END_INTERFACE_MAP
 
     private:
@@ -53,10 +66,9 @@ namespace Plugin {
 
     private:
         PluginHost::IShell* _service;
-        Exchange::IOttServices* _ottServices;
+        Exchange::IOttServices* _mOttServices;
         uint32_t _connectionId;
     };
 
 } // namespace Plugin
 } // namespace WPEFramework
-
