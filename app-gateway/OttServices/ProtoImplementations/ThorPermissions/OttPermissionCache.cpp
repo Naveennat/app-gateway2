@@ -1,3 +1,21 @@
+/*
+ * Copyright 2023 Comcast Cable Communications Management, LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+ 
 #include "OttPermissionCache.h"
 
 #include <fstream>
@@ -16,7 +34,7 @@ namespace Plugin {
 
 namespace {
     // Default path to the on-disk permissions cache (line-delimited JSON, one record per app)
-    static constexpr const char* kDefaultPermsFile = "/opt/app_perms.json";
+    static constexpr const char* kDefaultPermsFile = "/opt/app_thor_perms.json";
 
     // Resolve cache file path with environment override to support testing and deployment flexibility
     inline const std::string& PermsFilePath() {
@@ -310,9 +328,11 @@ OttPermissionCache& OttPermissionCache::Instance() {
     static OttPermissionCache g_instance;
 
     // On first use, attempt to pre-load the cache from disk.
+    LOGINFO("OttPermissionCache: preloading cache from disk");
     if (g_instance.Size() == 0) {
         std::map<std::string, std::vector<std::string>> onDisk;
         if (LoadLatestFromFile(onDisk)) {
+            LOGINFO("OttPermissionCache: loaded %zu entries from %s", onDisk.size(), PermsFilePath().c_str());
             std::lock_guard<std::mutex> lock(g_instance._admin);
             for (auto& kv : onDisk) {
                 g_instance._cache[kv.first] = std::move(kv.second);
@@ -359,7 +379,7 @@ std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
         {
             std::lock_guard<std::mutex> lock(_admin);
             for (auto& kv : onDisk) {
-                _cache.emplace(kv.first, kv.second);
+                _cache.emplace(kv.first, std::move(kv.second));
             }
         }
         LOGWARN("OttPermissionCache: appId '%s' not present in %s after reload", appId.c_str(), PermsFilePath().c_str());
