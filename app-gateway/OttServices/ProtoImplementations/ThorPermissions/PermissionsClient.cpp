@@ -24,6 +24,7 @@
 
 // Lightweight logging; avoid leaking secrets
 #include "UtilsLogging.h"
+#include <chrono>
 
 namespace WPEFramework {
 namespace Plugin {
@@ -71,9 +72,17 @@ namespace Plugin {
 
     PermissionsClient::PermissionsClient(const std::string& endpoint, bool useTls)
         : _endpoint(endpoint)
-        , _channel(CreateChannel(endpoint, useTls))
-        , _stub(ottx::permission::AppPermissionsService::NewStub(_channel))
     {
+        auto t0 = std::chrono::steady_clock::now();
+        LOGINFO("PermissionsClient: ctor begin (endpoint=%s, tls=%s)", endpoint.c_str(), useTls ? "true" : "false");
+
+        _channel = CreateChannel(endpoint, useTls);
+        auto t1 = std::chrono::steady_clock::now();
+        LOGINFO("PermissionsClient: channel created (dt_ms=%lld)", (long long)std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0).count());
+
+        _stub = ottx::permission::AppPermissionsService::NewStub(_channel);
+        auto t2 = std::chrono::steady_clock::now();
+        LOGINFO("PermissionsClient: stub created (dt_ms=%lld)", (long long)std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count());
     }
 
     PermissionsClient::PermissionsClient(const std::string& endpoint, std::shared_ptr<grpc::ChannelCredentials> creds)
@@ -91,10 +100,13 @@ namespace Plugin {
 
     std::shared_ptr<grpc::Channel> PermissionsClient::CreateChannel(const std::string& endpoint, bool useTls) {
         if (useTls) {
+            LOGINFO("PermissionsClient: CreateChannel TLS on (endpoint=%s)", endpoint.c_str());
             grpc::SslCredentialsOptions ssl_opts;
             auto creds = grpc::SslCredentials(ssl_opts);
+            LOGINFO("PermissionsClient: TLS creds created, creating channel");
             return grpc::CreateChannel(endpoint, creds);
         } else {
+            LOGWARN("PermissionsClient: CreateChannel TLS off (insecure) (endpoint=%s)", endpoint.c_str());
             return grpc::CreateChannel(endpoint, grpc::InsecureChannelCredentials());
         }
     }
@@ -133,10 +145,14 @@ namespace Plugin {
 
         // Build context with required metadata. Redact secrets in logs!
         grpc::ClientContext ctx;
+        ctx.set_wait_for_ready(false);
+        ctx.set_deadline(std::chrono::system_clock::now() + std::chrono::milliseconds(1500));
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::EnumeratePermissionsResponse response;
+        LOGINFO("PermissionsClient: EnumeratePermissions call begin");
         grpc::Status status = _stub->EnumeratePermissions(&ctx, request, &response);
+        LOGINFO("PermissionsClient: EnumeratePermissions status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
 
         if (!status.ok()) {
             uint32_t rc = MapGrpcStatusToCore(status);
@@ -178,7 +194,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::GetResponse response;
+        LOGINFO("PermissionsClient: Get call begin");
         grpc::Status status = _stub->Get(&ctx, request, &response);
+        LOGINFO("PermissionsClient: Get status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Get failed (endpoint=%s, app=%s, code=%d, msg=%s)",
@@ -226,7 +244,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::GrantResponse response;
+        LOGINFO("PermissionsClient: Grant call begin");
         grpc::Status status = _stub->Grant(&ctx, request, &response);
+        LOGINFO("PermissionsClient: Grant status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Grant failed (endpoint=%s, app=%s, code=%d, msg=%s)",
@@ -275,7 +295,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::SetResponse response;
+        LOGINFO("PermissionsClient: Set call begin");
         grpc::Status status = _stub->Set(&ctx, request, &response);
+        LOGINFO("PermissionsClient: Set status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Set failed (endpoint=%s, app=%s, code=%d, msg=%s)",
@@ -319,7 +341,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::RevokeResponse response;
+        LOGINFO("PermissionsClient: Revoke call begin");
         grpc::Status status = _stub->Revoke(&ctx, request, &response);
+        LOGINFO("PermissionsClient: Revoke status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Revoke failed (endpoint=%s, app=%s, code=%d, msg=%s)",
@@ -353,7 +377,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::DeleteResponse response;
+        LOGINFO("PermissionsClient: Delete call begin");
         grpc::Status status = _stub->Delete(&ctx, request, &response);
+        LOGINFO("PermissionsClient: Delete status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Delete failed (endpoint=%s, app=%s, code=%d, msg=%s)",
@@ -391,7 +417,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::AuthorizeResponse response;
+        LOGINFO("PermissionsClient: Authorize call begin");
         grpc::Status status = _stub->Authorize(&ctx, request, &response);
+        LOGINFO("PermissionsClient: Authorize status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Authorize failed (endpoint=%s, code=%d, msg=%s)",
@@ -432,7 +460,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::GetAllForAppResponse response;
+        LOGINFO("PermissionsClient: GetAllForApp call begin");
         grpc::Status status = _stub->GetAllForApp(&ctx, request, &response);
+        LOGINFO("PermissionsClient: GetAllForApp status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: GetAllForApp failed (endpoint=%s, app=%s, code=%d, msg=%s)",
@@ -470,7 +500,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::GetAllAppKeysResponse response;
+        LOGINFO("PermissionsClient: GetAllAppKeys call begin");
         grpc::Status status = _stub->GetAllAppKeys(&ctx, request, &response);
+        LOGINFO("PermissionsClient: GetAllAppKeys status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: GetAllAppKeys failed (endpoint=%s, code=%d, msg=%s)",
@@ -520,7 +552,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::GetThorTokenResponse response;
+        LOGINFO("PermissionsClient: GetThorToken call begin");
         grpc::Status status = _stub->GetThorToken(&ctx, request, &response);
+        LOGINFO("PermissionsClient: GetThorToken status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: GetThorToken failed (endpoint=%s, app=%s, code=%d, msg=%s)",
@@ -554,7 +588,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::GetRegisteredPermissionsResponse response;
+        LOGINFO("PermissionsClient: GetRegisteredPermissions call begin");
         grpc::Status status = _stub->GetRegisteredPermissions(&ctx, request, &response);
+        LOGINFO("PermissionsClient: GetRegisteredPermissions status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: GetRegisteredPermissions failed (endpoint=%s, code=%d, msg=%s)",
@@ -595,7 +631,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::RegisterPermissionsResponse response;
+        LOGINFO("PermissionsClient: RegisterPermissions call begin");
         grpc::Status status = _stub->RegisterPermissions(&ctx, request, &response);
+        LOGINFO("PermissionsClient: RegisterPermissions status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: RegisterPermissions failed (endpoint=%s, code=%d, msg=%s)",
@@ -626,7 +664,9 @@ namespace Plugin {
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
 
         ottx::permission::DeleteRegisteredPermissionResponse response;
+        LOGINFO("PermissionsClient: DeleteRegisteredPermission call begin");
         grpc::Status status = _stub->DeleteRegisteredPermission(&ctx, request, &response);
+        LOGINFO("PermissionsClient: DeleteRegisteredPermission status=%s code=%d", status.ok() ? "OK" : "ERR", (int)status.error_code());
         if (!status.ok()) {
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: DeleteRegisteredPermission failed (endpoint=%s, code=%d, msg=%s)",
