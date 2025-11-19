@@ -1,33 +1,26 @@
-const express = require('express');
 const path = require('path');
+const express = require('express');
 
-// PUBLIC_INTERFACE
-// Entry point for app-gateway2 server.
-// Starts an HTTP server listening on process.env.PORT
 const app = express();
-
-const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 3000;
 
-// Serve static files if public/index.html exists
-const publicDir = path.join(__dirname, 'public');
-app.use(express.static(publicDir));
+// Serve static files from 'public' if it exists, otherwise from the current directory
+try {
+  app.use(express.static(path.join(__dirname, 'public')));
+} catch {
+  app.use(express.static(__dirname));
+}
 
- // Health endpoint for container/platform probes
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
-});
-
-// Example root endpoint
-app.get('/', (req, res) => {
-  // Serve index.html if it exists, else generic message
-  const indexPath = path.join(publicDir, 'index.html');
-  res.sendFile(indexPath, err => {
-    if (err) res.status(200).send('app-gateway2 running');
+// Fallback route for SPA or general catch-all (optional)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'), err => {
+    if (err) {
+      // If not in public, try root
+      res.sendFile(path.join(__dirname, 'index.html'));
+    }
   });
 });
 
- // Start server
-app.listen(PORT, HOST, () => {
-  console.log(`app-gateway2 listening on http://${HOST}:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
