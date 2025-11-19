@@ -21,7 +21,7 @@
 #include <core/Enumerate.h>
 #include "UtilsLogging.h"
 
- // Use in-module permission cache and JSONRPC direct link utils
+// Use in-module permission cache and JSONRPC direct link utils
 #include "OttPermissionCache.h"
 #include "UtilsJsonrpcDirectLink.h"
 
@@ -86,13 +86,13 @@ namespace Plugin {
                 _permsEndpoint.c_str(), _permsUseTls ? "true" : "false");
 
         // Create permissions client (works even if gRPC disabled; will return ERROR_UNAVAILABLE on use)
-       _perms.reset(new PermissionsClient(_permsEndpoint, _permsUseTls));
+        _perms = std::make_shared<PermissionsClient>(_permsEndpoint, _permsUseTls);
       
         LOGINFO("OttServices: Initialize implementation (endpoint=%s, tls=%s)",
                 _tokenEndpoint.c_str(), _tokenUseTls ? "true" : "false");
 
         // Create token client
-        _token.reset(new TokenClient(_tokenEndpoint, _tokenUseTls));
+        _token = std::make_shared<TokenClient>(_tokenEndpoint, _tokenUseTls);
 
         // Warm up cache file load
         OttPermissionCache::Instance();
@@ -103,6 +103,7 @@ namespace Plugin {
 
     void OttServicesImplementation::Deinitialize(PluginHost::IShell* /*service*/) {
         _perms.reset();
+        _token.reset();
         _state = _T("deinitialized");
         _service = nullptr;
         LOGINFO("OttServices: Deinitialize implementation");
@@ -418,7 +419,7 @@ namespace Plugin {
 
         std::lock_guard<std::mutex> guard(_tokenMutex);
         if (!_token) {
-            _token.reset(new TokenClient(_tokenEndpoint, _tokenUseTls));
+            _token = std::make_shared<TokenClient>(_tokenEndpoint, _tokenUseTls);
         }
 
         std::string err;
@@ -474,7 +475,7 @@ namespace Plugin {
 
         std::lock_guard<std::mutex> guard(_tokenMutex);
         if (!_token) {
-            _token.reset(new TokenClient(_tokenEndpoint.empty() ? _permsEndpoint : _tokenEndpoint, _tokenUseTls));
+            _token = std::make_shared<TokenClient>(_tokenEndpoint.empty() ? _permsEndpoint : _tokenEndpoint, _tokenUseTls);
         }
 
         std::string err;

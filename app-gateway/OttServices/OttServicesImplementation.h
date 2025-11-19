@@ -120,12 +120,12 @@ namespace Plugin {
         PluginHost::IShell* _service;
         string _state;
 
-        std::unique_ptr<PermissionsClient> _perms;
+        std::shared_ptr<PermissionsClient> _perms;
         std::string _permsEndpoint;
         bool _permsUseTls;
 
         // Token client and configuration
-        std::unique_ptr<TokenClient> _token;
+        std::shared_ptr<TokenClient> _token;
         std::string _tokenEndpoint;
         bool _tokenUseTls;
 
