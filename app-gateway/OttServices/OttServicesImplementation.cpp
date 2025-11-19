@@ -20,7 +20,6 @@
 
 #include <core/Enumerate.h>
 #include "UtilsLogging.h"
-#include <chrono>
 
  // Use in-module permission cache and JSONRPC direct link utils
 #include "OttPermissionCache.h"
@@ -87,21 +86,13 @@ namespace Plugin {
                 _permsEndpoint.c_str(), _permsUseTls ? "true" : "false");
 
         // Create permissions client (works even if gRPC disabled; will return ERROR_UNAVAILABLE on use)
-        auto t_perms_start = std::chrono::steady_clock::now();
-        LOGINFO("OttServices: creating PermissionsClient (endpoint=%s, tls=%s)", _permsEndpoint.c_str(), _permsUseTls ? "true" : "false");
-        _perms.reset(new PermissionsClient(_permsEndpoint, _permsUseTls));
-        auto t_perms_end = std::chrono::steady_clock::now();
-        LOGINFO("OttServices: PermissionsClient constructed in %lld ms", (long long)std::chrono::duration_cast<std::chrono::milliseconds>(t_perms_end - t_perms_start).count());
+       _perms.reset(new PermissionsClient(_permsEndpoint, _permsUseTls));
       
         LOGINFO("OttServices: Initialize implementation (endpoint=%s, tls=%s)",
                 _tokenEndpoint.c_str(), _tokenUseTls ? "true" : "false");
 
         // Create token client
-        auto t_token_start = std::chrono::steady_clock::now();
-        LOGINFO("OttServices: creating TokenClient (endpoint=%s, tls=%s)", _tokenEndpoint.c_str(), _tokenUseTls ? "true" : "false");
         _token.reset(new TokenClient(_tokenEndpoint, _tokenUseTls));
-        auto t_token_end = std::chrono::steady_clock::now();
-        LOGINFO("OttServices: TokenClient constructed in %lld ms", (long long)std::chrono::duration_cast<std::chrono::milliseconds>(t_token_end - t_token_start).count());
 
         // Warm up cache file load
         OttPermissionCache::Instance();
