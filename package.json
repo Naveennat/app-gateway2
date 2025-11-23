@@ -1,6 +1,7 @@
 {
   "name": "app-gateway2",
   "version": "1.0.0",
+  "type": "commonjs",
   "private": true,
   "description": "app-gateway2 service - minimal Express server for preview environment",
   "main": "server.js",
