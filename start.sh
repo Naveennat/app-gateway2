@@ -3,7 +3,7 @@
 # - Installs dependencies if needed
 # - Prefers npm start, falls back to node index.js
 # - Binds to HOST/PORT environment variables with safe defaults
-set -euo pipefail
+set -eu
 
 # Always run from this script's directory
 cd "$(dirname "$0")"
