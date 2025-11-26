@@ -8,7 +8,7 @@ How to run locally
 - Or: ./start.sh
 
 Preview/Container start
-- Procfile is configured as: web: npm run start:preview
+- Procfile is configured as: web: npm start
 - Dockerfile provided with CMD ./start.sh and ENV HOST/PORT defaults.
 
 Health check
