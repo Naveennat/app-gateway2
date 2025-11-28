@@ -1,0 +1,12 @@
+{
+  "name": "app-gateway2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal static web container for app-gateway2 with an Express start command.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "4.21.2"
+  }
+}
