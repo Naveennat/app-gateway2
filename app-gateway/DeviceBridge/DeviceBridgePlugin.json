@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/Thunder/master/Tools/JsonGenerator/schemas/plugin.schema.json",
+    "info": {
+      "title": "DeviceBridge Plugin",
+      "callsign": "org.rdk.DeviceBridge",
+      "locator": "libWPEFrameworkDeviceBridge.so",
+      "status": "production",
+      "description": "The `DeviceBridge` plugin allows you to interact with an accessory that is connected to an RDK device over a bi-directional communication channel.",
+    },
+    "interface": {
+      "$ref": "DeviceBridge.json#"
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "callsign": "OttServices",
+  "locator": "libOttServices.so",
+  "classname": "OttServices",
+  "startmode": "Activated",
+  "startuporder": 10,
+  "configuration": {
+    "PermissionsEndpoint": "thor-permission.svc.thor.comcast.com:443",
+    "UseTls": true,
+    "root": {
+      "mode": "Off"
+    }
+  }
+}

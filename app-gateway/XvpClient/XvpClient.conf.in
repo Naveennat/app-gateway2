@@ -1,0 +1,4 @@
+precondition = ["Platform"]
+callsign = "org.rdk.XvpClient"
+autostart = "@PLUGIN_XVPCLIENT_AUTOSTART@"
+startuporder = "@PLUGIN_XVPCLIENT_STARTUPORDER@"

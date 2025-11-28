@@ -1,0 +1,5 @@
+{
+  "command": "sh scripts/start.sh",
+  "cwd": ".",
+  "description": "Runs build steps (Node deps and optional top-level CMake) and then starts the app. Exposes health at /health on PORT."
+}
