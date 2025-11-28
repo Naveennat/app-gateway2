@@ -1,0 +1,4 @@
+precondition = ["Platform"]
+callsign = "org.rdk.FbPrivacy"
+autostart = "@PLUGIN_FBPRIVACY_AUTOSTART@"
+startuporder = "@PLUGIN_FBPRIVACY_STARTUPORDER@"
