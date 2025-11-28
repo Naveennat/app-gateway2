@@ -1,0 +1,124 @@
+[package]
+name = "eos_distributor"
+version = "1.16.0"
+edition = "2021"
+build = "build.rs"
+
+[lib]
+crate-type = ["cdylib"]
+
+[[bin]]
+name = "eos-distributor"
+path = "src/main.rs"
+
+[features]
+#default=["gateway"]
+default=["extn"]
+local_dev=[]
+gateway=[]
+extn=[]
+full=[]
+sysd = []
+
+http_contract_tests = [
+    "pact_consumer",
+    "expectest",
+    "maplit",
+    "test-log",
+]
+grpc_contract_tests = [
+    "pact_consumer",
+    "expectest",
+    "maplit",
+    "test-log",
+]
+websocket_contract_tests = [
+    "pact_consumer",
+    "expectest",
+    "maplit",
+    "test-log",
+]
+contract_tests = [
+    "http_contract_tests",
+    "grpc_contract_tests",
+    "websocket_contract_tests",
+]
+#tests that are broken, mainly due to to network service dependencies that cannot currently work due to missing auth in unit tests
+broken_tests = []
+[dependencies]
+base64 = {workspace = true, features=["alloc"]}
+chrono.workspace = true
+serde_json.workspace = true
+serde.workspace = true
+tokio = { workspace = true, features = ["macros", "sync", "rt"] }
+url.workspace = true
+
+async-trait = "^0.1.57"
+
+#logging related crates; TBD Review
+log = { version = "0.4.0", features = ["std"] }
+test-log = { version = "0.2.11", optional = true }
+
+cached = "0.36.0"
+
+#networking related creates
+tonic = { version = "0.7.2", default-features = false, features = ["transport"] }
+prost-types = "0.10.1"
+hyper  = {version = "0.14.20"}
+hyper-tls = {version = "0.5.0"}
+tower = { version = "0.4.13", default-features = false, features = ["discover"] }
+tower-http = { version = "0.3.4", default-features = false, features = ["trace","decompression-full","set-header","auth"] }
+
+uuid = { workspace = true,features = [
+    "v4",                # Lets you generate random UUIDs
+    "fast-rng",          # Use a faster (but still sufficiently random) RNG
+    "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+]}
+
+queues = {version = "1.0.2"}
+pact_consumer = { workspace = true, optional = true }
+expectest = { version = "0.12.0", optional = true }
+maplit = { version = "1.0.2", optional = true }
+env-file-reader = "0.2.0"
+distro_protos = { version = "1.0.0", registry="partner_artifactory" }
+ottx_protos = { version = "1.0.0", registry="partner_artifactory" }
+rand = {version = "0.8.5", default-features = false, features = ["std"]}
+jsonrpsee = { workspace = true, features = [ "macros", "jsonrpsee-core"] }
+
+# for testing on Git remote branch
+# dpab_core = { git = "ssh://git@github.comcast.com/ottx/dpab_core.git", "branch" = "main" }
+# rust-linchpin-client = { git = "ssh://git@github.comcast.com/ottx/rust-linchpin-client.git", version = "0.1.0" }
+# ripple_sdk = { git = "ssh://git@github.com/rdkcentral/Ripple.git", version = "0.6.0" }
+
+# for local development
+ripple_sdk = { workspace = true, features=["tdk"]}
+thunder_ripple_sdk = { path = "../Ripple/device/thunder_ripple_sdk", features=["mock"]}
+cryptoxide = { version = "0.4.2", default-features = false, features = ["sha1"] }
+
+
+[build-dependencies]
+tonic-build = "=0.7.1"
+vergen = "1"
+home ="=0.5.5"
+
+[dev-dependencies]
+#hard pinning a few 
+env_logger = "0.9.0"
+wiremock = "0.5"
+pact_consumer = { workspace = true }
+reqwest = "0.11"
+expectest = "0.12.0"
+pact-plugin-driver = "0.4.1"
+pact_models = "1.0.9"
+rstest = "0.19.0"
+httpmock = "=0.7.0"
+lalrpop = "=0.20.0"
+lalrpop-util = "=0.20.0"
+async-global-executor ="=2.2.0"
+ripple_sdk = { workspace = true, features=["tdk"]}
+thunder_ripple_sdk = { path = "../Ripple/device/thunder_ripple_sdk", features=["mock"]}
+
+dirs = "3.0.2"
+toml = "0.8.12"
+ripple_eos_test_utils =  { path = "../ripple-eos-test-utils"}
+

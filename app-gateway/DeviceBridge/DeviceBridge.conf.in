@@ -1,0 +1,3 @@
+precondition = ["Platform"]
+autostart = "true"
+callsign = "org.rdk.DeviceBridge"

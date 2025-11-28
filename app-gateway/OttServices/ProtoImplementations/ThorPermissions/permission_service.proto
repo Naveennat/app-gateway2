@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+package ottx.permission;
+
+option java_package = "com.comcast.ottx.permission";
+option java_multiple_files = true;
+
+option go_package = "github.com/comcast-ottx-racers/ottx-protobuf/api/permissions;permissions";
+
+message Permission {
+  string id = 1;
+  string description = 2;
+  string display_name = 3;
+}
+
+message AppKey {
+  string app = 1;
+  string syndication_partner_id = 2;
+}
+
+message ApplicationPermissions {
+  AppKey app_key = 1;
+  repeated string bundles = 2;
+  repeated string includes = 3;
+  repeated string excludes = 4;
+}
+
+message Authorization {
+  repeated string permissions = 1;
+}
+
+message AppKeys {
+  string app = 1;
+  repeated string syndication_partner_id = 2;
+}
+
+message GetRequest {
+  AppKey app_key = 1;
+}
+
+message GetResponse {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message GrantRequest {
+  AppKey app_key = 1;
+  repeated string bundles = 2;
+  repeated string permissions = 3;
+}
+
+message GrantResponse {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message SetRequest {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message SetResponse {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message RevokeRequest {
+  AppKey app_key = 1;
+  repeated string bundles = 2;
+  repeated string permissions = 3;
+}
+
+message RevokeResponse {
+  ApplicationPermissions app_permissions = 1;
+}
+
+message DeleteRequest {
+  AppKey app_key = 1;
+}
+
+message DeleteResponse {}
+
+message AuthorizeRequest {
+  // thor token
+  string session_token = 1;
+  repeated string permission_filters = 2;
+}
+
+message EnumeratePermissionsRequest {
+  AppKey app_key = 1;
+  repeated string permission_filters = 2;
+}
+
+message AuthorizeResponse {
+  Authorization authorization = 1;
+}
+
+message EnumeratePermissionsResponse {
+  repeated string permissions = 1;
+}
+
+message GetAllForAppRequest {
+  string app = 1;
+}
+
+message GetAllForAppResponse {
+  repeated ApplicationPermissions app_permissions = 1;
+}
+
+message GetAllAppKeysRequest {
+}
+
+message GetAllAppKeysResponse {
+  repeated AppKeys app_keys = 1;
+}
+
+message GetThorTokenRequest {
+  string app = 1;
+  string content_provider = 2;
+  string device_session_id = 3;
+  string app_session_id = 4;
+  string token_mode = 5;
+  int32 ttl = 6;
+}
+
+message GetThorTokenResponse {
+  string token = 1;
+}
+
+message GetRegisteredPermissionsRequest {}
+
+message GetRegisteredPermissionsResponse {
+  repeated Permission permissions = 1;
+}
+
+message RegisterPermissionsRequest {
+  repeated Permission permissions = 1;
+  bool replace_all = 2;
+}
+
+message RegisterPermissionsResponse {}
+
+message DeleteRegisteredPermissionRequest {
+  Permission permission = 1;
+}
+
+message DeleteRegisteredPermissionResponse {}
+
+service AppPermissionsService {
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Grant (GrantRequest) returns (GrantResponse);
+  rpc Set (SetRequest) returns (SetResponse);
+  rpc Revoke (RevokeRequest) returns (RevokeResponse);
+  rpc Delete (DeleteRequest) returns (DeleteResponse);
+  rpc Authorize (AuthorizeRequest) returns (AuthorizeResponse);
+  rpc EnumeratePermissions (EnumeratePermissionsRequest) returns (EnumeratePermissionsResponse);
+  rpc GetAllForApp (GetAllForAppRequest) returns (GetAllForAppResponse);
+  rpc GetAllAppKeys (GetAllAppKeysRequest) returns (GetAllAppKeysResponse);
+  rpc GetThorToken (GetThorTokenRequest) returns (GetThorTokenResponse);
+  rpc GetRegisteredPermissions (GetRegisteredPermissionsRequest) returns (GetRegisteredPermissionsResponse);
+  rpc RegisterPermissions (RegisterPermissionsRequest) returns (RegisterPermissionsResponse);
+  rpc DeleteRegisteredPermission (DeleteRegisteredPermissionRequest) returns (DeleteRegisteredPermissionResponse);
+
+}
