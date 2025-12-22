@@ -19,7 +19,7 @@
 #pragma once
 
 #include "Module.h"
-#include "IAppGateway.h"
+#include <interfaces/IAppGateway.h>
 
 namespace WPEFramework {
 
@@ -31,7 +31,7 @@ namespace WPEFramework {
 		// - exists
 		// - register
 		// - unregister
-		// Any other methood to be handled by this plugin  can be added can be added by using the
+		// Any other method to be handled by this plugin  can be added can be added by using the
 		// templated methods Register on the PluginHost::JSONRPC class.
 		// As the registration/unregistration of notifications is realized by the class PluginHost::JSONRPC,
 		// this class exposes a public method called, Notify(), using this methods, all subscribed clients
@@ -54,7 +54,8 @@ namespace WPEFramework {
             BEGIN_INTERFACE_MAP(AppGateway)
             INTERFACE_ENTRY(PluginHost::IPlugin)
             INTERFACE_ENTRY(PluginHost::IDispatcher)
-            INTERFACE_AGGREGATE(Exchange::IAppGateway, mAppGateway)
+            INTERFACE_AGGREGATE(Exchange::IAppGatewayResolver, mAppGateway)
+            INTERFACE_AGGREGATE(Exchange::IAppGatewayResponder, mResponder)
             END_INTERFACE_MAP
 
         private:
@@ -62,7 +63,8 @@ namespace WPEFramework {
 
         private:
             PluginHost::IShell* mService;
-            Exchange::IAppGateway* mAppGateway;
+            Exchange::IAppGatewayResolver* mAppGateway;
+            Exchange::IAppGatewayResponder* mResponder;
             uint32_t mConnectionId;
         };
 	} // namespace Plugin

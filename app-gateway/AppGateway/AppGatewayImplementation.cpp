@@ -26,13 +26,22 @@
 #include "ObjectUtils.h"
 #include <fstream>
 #include <streambuf>
-#include "UtilsConnections.h"
 #include "UtilsCallsign.h"
 #include "UtilsFirebolt.h"
-#define APPGATEWAY_SOCKET_ADDRESS "0.0.0.0:3473"
-#define DEFAULT_CONFIG_PATH "/etc/app-gateway/resolution.base.json"
+#include "StringUtils.h"
 
-//#define APPGATEWAY_SOCKET_ADDRESS "0.0.0.0:3473"
+#define DEFAULT_CONFIG_PATH "/etc/app-gateway/resolution.base.json"
+#define RESOLUTIONS_PATH_CFG "/etc/app-gateway/resolutions.json"
+
+// Build and vendor config paths are defined via CMake
+// These should be set in the platform-specific .bbappend file
+#ifndef BUILD_CONFIG_PATH
+#define BUILD_CONFIG_PATH ""
+#endif
+
+#ifndef VENDOR_CONFIG_PATH
+#define VENDOR_CONFIG_PATH ""
+#endif
 
 namespace WPEFramework
 {
@@ -40,40 +49,112 @@ namespace WPEFramework
     {
         SERVICE_REGISTRATION(AppGatewayImplementation, 1, 0, 0);
 
-        class ResolutionPaths : public Core::JSON::Container
+        class RegionalResolutionConfig : public Core::JSON::Container
         {
         private:
-            ResolutionPaths(const ResolutionPaths &) = delete;
-            ResolutionPaths &operator=(const ResolutionPaths &) = delete;
+            RegionalResolutionConfig(const RegionalResolutionConfig &) = delete;
+            RegionalResolutionConfig &operator=(const RegionalResolutionConfig &) = delete;
+
         public:
-            ResolutionPaths()
+            class Region : public Core::JSON::Container
+            {
+            public:
+                Region()
+                : Core::JSON::Container()
+                {
+                    Add(_T("countryCodes"), &countryCodes);
+                    Add(_T("paths"), &paths);
+                }
+
+                Region(const Region& other)
+                : Core::JSON::Container(),
+                  countryCodes(other.countryCodes),
+                  paths(other.paths)
+                {
+                    Add(_T("countryCodes"), &countryCodes);
+                    Add(_T("paths"), &paths);
+                }
+                Region& operator=(const Region& other)
+                {
+                    if (this != &other) {
+                        countryCodes = other.countryCodes;
+                        paths = other.paths;
+                    }
+                    return *this;
+                }
+                ~Region() {}
+
+                Core::JSON::ArrayType<Core::JSON::String> countryCodes;
+                Core::JSON::ArrayType<Core::JSON::String> paths;
+
+                bool HasCountryCode(const std::string& country) const {
+                    auto index = countryCodes.Elements();
+                    while (index.Next()) {
+                        std::string code = index.Current().Value();
+                        // Case-insensitive equality using StringUtils::toLower
+                        if (StringUtils::toLower(code) == StringUtils::toLower(country)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+                std::vector<std::string> GetPaths() const {
+                    std::vector<std::string> result;
+                    auto index = paths.Elements();
+                    while (index.Next()) {
+                        result.push_back(index.Current().Value().c_str());
+                    }
+                    return result;
+                }
+            };
+
+            RegionalResolutionConfig()
             : Core::JSON::Container()
             {
-                Add(_T("paths"), &paths);
+                Add(_T("defaultCountryCode"), &defaultCountryCode);
+                Add(_T("regions"), &regions);
             }
-            ~ResolutionPaths()
-            {}
-            std::vector<std::string> GetConfigPaths() {
-                std::vector<std::string> configPaths;
-                auto index = paths.Elements();
+            ~RegionalResolutionConfig() {}
+
+            std::vector<std::string> GetPathsForCountry(const std::string& country) const {
+                std::vector<std::string> result;
+
+                // Search through regions for matching country code
+                auto index = regions.Elements();
                 while (index.Next()) {
-                    configPaths.push_back(index.Current().Value().c_str());
+                    const Region& region = index.Current();
+                    if (region.HasCountryCode(country)) {
+                        result = region.GetPaths();
+                        LOGINFO("Found %zu paths for country '%s'", result.size(), country.c_str());
+                        return result;
+                    }
                 }
-                return configPaths;
+
+                // If no match found and we have a default country, try that
+                if (!country.empty() && defaultCountryCode.IsSet()) {
+                    std::string defaultCode = defaultCountryCode.Value();
+                    if (!defaultCode.empty() && StringUtils::toLower(country) != StringUtils::toLower(defaultCode)) {
+                        LOGWARN("Country '%s' not found, trying default country '%s'",
+                                country.c_str(), defaultCode.c_str());
+                        return GetPathsForCountry(defaultCode);
+                    }
+                }
+
+                return result;
             }
 
         public:
-            Core::JSON::ArrayType<Core::JSON::String> paths;
-
+            Core::JSON::String defaultCountryCode;
+            Core::JSON::ArrayType<Region> regions;
         };
 
         AppGatewayImplementation::AppGatewayImplementation()
             : mService(nullptr),
             mResolverPtr(nullptr), 
-            mWsManager(), 
-            mAppNotifications(nullptr), 
-            mInternalGatewayResponder(nullptr), 
-            mApp2AppProvider(nullptr),
+            mAppNotifications(nullptr),
+            mAppGatewayResponder(nullptr),
+            mInternalGatewayResponder(nullptr),
             mAuthenticator(nullptr)
         {
             LOGINFO("AppGatewayImplementation constructor");
@@ -100,10 +181,10 @@ namespace WPEFramework
                 mInternalGatewayResponder = nullptr;
             }
 
-            if (nullptr != mApp2AppProvider)
+            if (nullptr != mAppGatewayResponder)
             {
-                mApp2AppProvider->Release();
-                mApp2AppProvider = nullptr;
+                mAppGatewayResponder->Release();
+                mAppGatewayResponder = nullptr;
             }
 
             if (nullptr != mAuthenticator)
@@ -111,6 +192,7 @@ namespace WPEFramework
                 mAuthenticator->Release();
                 mAuthenticator = nullptr;
             }
+            
 
             // Shared pointer will automatically clean up
             mResolverPtr.reset();
@@ -128,127 +210,93 @@ namespace WPEFramework
             if (Core::ERROR_NONE != result) {
                 return result;
             }
-
-            result = InitializeWebsocket();
-
             return result;
         }
         
         uint32_t AppGatewayImplementation::InitializeResolver() {
             // Initialize resolver after setting mService
-            mResolverPtr = std::make_shared<Resolver>(mService, DEFAULT_CONFIG_PATH);
-            if (mResolverPtr == nullptr)
-            {
-                LOGERR("Failed to create Resolver instance");
+            try {
+                mResolverPtr = std::make_shared<Resolver>(mService);
+            } catch (const std::bad_alloc& e) {
+                LOGERR("Failed to create Resolver instance: %s", e.what());
                 return Core::ERROR_GENERAL;
             }
 
-            ResolutionPaths paths;
-            Core::OptionalType<Core::JSON::Error> error;
-            std::ifstream resolutionPathsFile(PLUGIN_PRODUCT_CFG);
+            // Read country from build config
+            std::string country = ReadCountryFromConfigFile();
+            if (country.empty()) {
+                LOGWARN("No country found in build config, will use default from resolutions config");
+            } else {
+                LOGINFO("Device country code: %s", country.c_str());
+            }
 
-            if(!resolutionPathsFile.is_open())
+            // Load the regional resolutions configuration
+            RegionalResolutionConfig regionalConfig;
+            Core::OptionalType<Core::JSON::Error> error;
+            std::ifstream resolutionConfigFile(RESOLUTIONS_PATH_CFG);
+
+            if (!resolutionConfigFile.is_open())
             {
-                LOGERR("Failed to open AppGateway config file: %s", PLUGIN_PRODUCT_CFG);
-                return Core::ERROR_GENERAL;
-            }
-            else
-            {
-                std::string resolutionPathsContent((std::istreambuf_iterator<char>(resolutionPathsFile)), std::istreambuf_iterator<char>());
-                if (paths.FromString(resolutionPathsContent, error) == false)
-                {
-                    LOGERR("Failed to parse AppGateway config file, error: '%s', content: '%s'.",
-                           (error.IsSet() ? error.Value().Message().c_str() : "Unknown"),
-                           resolutionPathsContent.c_str());
-                } else {
-                    auto configPaths = paths.GetConfigPaths();
-                    if (configPaths.empty()) {
-                        LOGERR("No configuration paths found in AppGateway config file");
-                        return Core::ERROR_BAD_REQUEST;
-                    }
-                    LOGINFO("Found %zu configuration paths in AppGateway config file", configPaths.size());
-                    Core::hresult configResult = InternalResolutionConfigure(std::move(configPaths));
-                    if (configResult != Core::ERROR_NONE) {
-                        LOGERR("Failed to configure resolutions from provided paths");
-                        return configResult;
-                    }
+                LOGWARN("Failed to open resolutions config file: %s, falling back to default config", RESOLUTIONS_PATH_CFG);
+
+                // Fallback: Load only the base resolution file
+                std::vector<std::string> fallbackPaths = {DEFAULT_CONFIG_PATH};
+                LOGINFO("Using fallback: loading default config path: %s", DEFAULT_CONFIG_PATH);
+
+                Core::hresult configResult = InternalResolutionConfigure(std::move(fallbackPaths));
+                if (configResult != Core::ERROR_NONE) {
+                    LOGERR("Failed to configure resolutions from fallback path");
+                    return configResult;
                 }
+                return Core::ERROR_NONE;
             }
+
+            // Parse the regional config file
+            std::string configContent((std::istreambuf_iterator<char>(resolutionConfigFile)), std::istreambuf_iterator<char>());
+            resolutionConfigFile.close();
+
+            if (regionalConfig.FromString(configContent, error) == false)
+            {
+                LOGERR("Failed to parse regional resolutions config file, error: '%s'",
+                       (error.IsSet() ? error.Value().Message().c_str() : "Unknown"));
+                LOGWARN("Falling back to default config path: %s", DEFAULT_CONFIG_PATH);
+                std::vector<std::string> fallbackPaths = { DEFAULT_CONFIG_PATH };
+                Core::hresult configResult = InternalResolutionConfigure(std::move(fallbackPaths));
+                if (configResult != Core::ERROR_NONE) {
+                    LOGERR("Failed to configure resolutions from fallback path after parse error");
+                    return configResult;
+                }
+                return Core::ERROR_NONE;
+            }
+
+            // If country is empty, use the default from config
+            if (country.empty() && regionalConfig.defaultCountryCode.IsSet()) {
+                country = regionalConfig.defaultCountryCode.Value();
+                LOGINFO("Using default country code from config: %s", country.c_str());
+            }
+
+            // Get paths for the country
+            std::vector<std::string> configPaths = regionalConfig.GetPathsForCountry(country);
+
+            if (configPaths.empty()) {
+                LOGERR("No configuration paths found for country '%s' and no fallback available", country.c_str());
+
+                // Last resort fallback
+                configPaths = {DEFAULT_CONFIG_PATH};
+                LOGWARN("Using last resort fallback: %s", DEFAULT_CONFIG_PATH);
+            }
+
+            LOGINFO("Loading %zu configuration paths for country '%s'", configPaths.size(), country.c_str());
+            Core::hresult configResult = InternalResolutionConfigure(std::move(configPaths));
+            if (configResult != Core::ERROR_NONE) {
+                LOGERR("Failed to configure resolutions from country-specific paths");
+                return configResult;
+            }
+
             return Core::ERROR_NONE;
         }
 
-        uint32_t AppGatewayImplementation::InitializeWebsocket(){
-            // Initialize WebSocket server
-            WebSocketConnectionManager::Config config(APPGATEWAY_SOCKET_ADDRESS);
-            std::string configLine = mService->ConfigLine();
-            Core::OptionalType<Core::JSON::Error> error;
-            if (config.FromString(configLine, error) == false)
-            {
-                LOGERR("Failed to parse config line, error: '%s', config line: '%s'.",
-                       (error.IsSet() ? error.Value().Message().c_str() : "Unknown"),
-                       configLine.c_str());
-            }
-
-            LOGINFO("Connector: %s", config.Connector.Value().c_str());
-            Core::NodeId source(config.Connector.Value().c_str());
-            LOGINFO("Parsed port: %d", source.PortNumber());
-            mWsManager.SetMessageHandler(
-                [this](const std::string &method, const std::string &params, const int requestId, const uint32_t connectionId)
-                {
-                    Core::IWorkerPool::Instance().Submit(WsMsgJob::Create(this, method, params, requestId, connectionId));
-                });
-
-            mWsManager.SetAuthHandler(
-                [this](const uint32_t connectionId, const std::string &token) -> bool
-                {
-                    string sessionId = Utils::ResolveQuery(token, "session");
-                    if (sessionId.empty())
-                    {
-                        LOGERR("No session token provided");
-                        return false;
-                    }
-
-                    if ( mAuthenticator==nullptr ) {
-                        mAuthenticator = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayAuthenticator>(GATEWAY_AUTHENTICATOR_CALLSIGN);
-                        if (mAuthenticator == nullptr) {
-                            LOGERR("Authenticator Not available");
-                            return false;
-                        }
-                    }
-
-                    string appId;
-                    if (Core::ERROR_NONE == mAuthenticator->Authenticate(sessionId,appId)) {
-                        LOGINFO("APP ID %s", appId.c_str());
-                        mAppIdRegistry.Add(connectionId, std::move(appId));
-                        return true;
-                    }
-
-                    return false;
-                });
-
-            mWsManager.SetDisconnectHandler(
-                [this](const uint32_t connectionId)
-                {
-                    LOGINFO("Connection disconnected: %d", connectionId);
-                    mAppIdRegistry.Remove(connectionId);
-                    if (mAppNotifications != nullptr) {
-                        if (Core::ERROR_NONE != mAppNotifications->Cleanup(connectionId, APP_GATEWAY_CALLSIGN)) {
-                            LOGERR("AppNotifications Cleanup failed for connectionId: %d", connectionId);
-                        }
-                    }
-                    
-                    if (mApp2AppProvider != nullptr) {
-                        if (Core::ERROR_NONE != mApp2AppProvider->Cleanup(connectionId, APP_GATEWAY_CALLSIGN)) {
-                            LOGERR("App2AppProvider Cleanup failed for connectionId: %d", connectionId);
-                        }
-                    }
-                }
-            );
-            mWsManager.Start(source);
-            return Core::ERROR_NONE;
-        }
-
-        Core::hresult AppGatewayImplementation::Configure(Exchange::IAppGateway::IStringIterator *const &paths)
+        Core::hresult AppGatewayImplementation::Configure(Exchange::IAppGatewayResolver::IStringIterator *const &paths)
         {
             LOGINFO("Call AppGatewayImplementation::Configure");
 
@@ -288,7 +336,7 @@ namespace WPEFramework
             
         }
 
-        Core::hresult AppGatewayImplementation::InternalResolutionConfigure(std::vector<std::string> configPaths){
+        Core::hresult AppGatewayImplementation::InternalResolutionConfigure(std::vector<std::string>&& configPaths){
             // Process all paths in order - later paths override earlier ones
             bool anyConfigLoaded = false;
             for (size_t i = 0; i < configPaths.size(); i++)
@@ -319,29 +367,19 @@ namespace WPEFramework
 
         }
 
-
-
-        Core::hresult AppGatewayImplementation::Respond(const Context &context, const string &payload)
+        Core::hresult AppGatewayImplementation::Resolve(const Context& context, const string& origin, const string& method, const string& params, string& resolution)
         {
-            LOGINFO("Call AppGatewayImplementation::Respond");
-            Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context.connectionId, context.requestId, payload, APP_GATEWAY_CALLSIGN));
-
-            return Core::ERROR_NONE;
+            LOGTRACE("method=%s params=%s", method.c_str(), params.c_str());
+            return InternalResolve(context, method, params, origin, resolution);
         }
 
-        Core::hresult AppGatewayImplementation::Resolve(const Context &context, const string &method, const string &params)
+        Core::hresult AppGatewayImplementation::InternalResolve(const Context& context, const string& method, const string& params, const string& origin, string& resolution)
         {
-            LOGINFO("method=%s params=%s", method.c_str(), params.c_str());
-            return InternalResolve(context, method, params, INTERNAL_GATEWAY_CALLSIGN);
-        }
-
-        Core::hresult AppGatewayImplementation::InternalResolve(const Context &context, const string &method, const string &params, const string &origin)
-        {
-            string resolution;
             Core::hresult result = FetchResolvedData(context, method, params, origin, resolution);
-
-            LOGINFO("Final resolution: %s", resolution.c_str());
-            Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context.connectionId, context.requestId, resolution, origin));
+            if (!resolution.empty()) {
+                LOGTRACE("Final resolution: %s", resolution.c_str());
+                Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context, resolution, origin));
+            }
             return result;
         }
 
@@ -371,24 +409,37 @@ namespace WPEFramework
                 ErrorUtils::NotSupported(resolution);
                 return Core::ERROR_GENERAL;
             }
-            LOGDBG("Resolved method '%s' to alias '%s'", method.c_str(), alias.c_str());
-            string providerCapability;
-            ProviderMethodType methodType;
-            
+
+            std::string permissionGroup;
+            if (mResolverPtr->HasPermissionGroup(method, permissionGroup)) {
+                LOGTRACE("Method '%s' requires permission group '%s'", method.c_str(), permissionGroup.c_str());
+                if (SetupAppGatewayAuthenticator()) {
+                    bool allowed = false;
+                    if (Core::ERROR_NONE != mAuthenticator->CheckPermissionGroup(context.appId, permissionGroup, allowed)) {
+                        LOGERR("Failed to check permission group '%s' for appId '%s'", permissionGroup.c_str(), context.appId.c_str());
+                        ErrorUtils::NotPermitted(resolution);
+                        return Core::ERROR_GENERAL;
+                    }
+                    if (!allowed) {
+                        LOGERR("AppId '%s' not allowed in permission group '%s'", context.appId.c_str(), permissionGroup.c_str());
+                        ErrorUtils::NotPermitted(resolution);
+                        return Core::ERROR_GENERAL;
+                    }
+                }
+            }
+            LOGTRACE("Resolved method '%s' to alias '%s'", method.c_str(), alias.c_str());            
             // Check if the given method is an event
             if (mResolverPtr->HasEvent(method)) {
                 result = PreProcessEvent(context, alias, method, origin, params, resolution);
-            } else if(mResolverPtr->HasProviderCapability(method, providerCapability, methodType)) {
-                result = PreProcessProvider(context, method, params, providerCapability, methodType, origin, resolution);
             } else if(mResolverPtr->HasComRpcRequestSupport(method)) {
-                result = ProcessComRpcRequest(context, alias, method, params, resolution);
+                result = ProcessComRpcRequest(context, alias, method, params, origin, resolution);
             } else {
                 // Check if includeContext is enabled for this method
-                std::string finalParams = UpdateContext(context, method, params);
-                LOGDBG("Final Request params alias=%s Params = %s", alias.c_str(), finalParams.c_str());
+                std::string finalParams = UpdateContext(context, method, params, origin);
+                LOGTRACE("Final Request params alias=%s Params = %s", alias.c_str(), finalParams.c_str());
 
                 result = mResolverPtr->CallThunderPlugin(alias, finalParams, resolution);
-                if (result!=-1 && result != Core::ERROR_NONE) {
+                if (result != Core::ERROR_NONE) {
                     LOGERR("Failed to retrieve resolution from Thunder method %s", alias.c_str());
                     ErrorUtils::CustomInternal("Failed with internal error", resolution);
                 } else {
@@ -399,66 +450,52 @@ namespace WPEFramework
             }
             return result;
         }
-        
-        string AppGatewayImplementation::UpdateContext(const Context &context, const string& method, const string& params){
+
+        string AppGatewayImplementation::UpdateContext(const Context &context, const string& method, const string& params, const string& origin, const bool& onlyAdditionalContext) {
             // Check if includeContext is enabled for this method
             std::string finalParams = params;
-            if (mResolverPtr->HasIncludeContext(method)) {
-                LOGDBG("Method '%s' requires context inclusion", method.c_str());
-
-                // Construct params with context
-                JsonObject contextObj;
-                contextObj["appId"] = context.appId;
-                contextObj["connectionId"] = context.connectionId;
-                contextObj["requestId"] = context.requestId;
+            JsonValue additionalContext;
+            if (mResolverPtr->HasIncludeContext(method, additionalContext)) {
+                LOGTRACE("Method '%s' requires context inclusion", method.c_str());
                 JsonObject paramsObj;
                 if (!paramsObj.FromString(params))
                 {
+                    // In json rpc params are optional
                     LOGWARN("Failed to parse original params as JSON: %s", params.c_str());
                 }
-                paramsObj["context"] = contextObj;
-
-                paramsObj.ToString(finalParams);
-
-                LOGDBG("Modified params with context: %s", finalParams.c_str());
+                if (onlyAdditionalContext) {
+                    if (additionalContext.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT) {
+                        JsonObject contextWithOrigin = additionalContext.Object();
+                        contextWithOrigin["origin"] = origin;
+                        JsonObject finalParamsObject;
+                        finalParamsObject["params"] = paramsObj;
+                        finalParamsObject["_additionalContext"] = contextWithOrigin;
+                        finalParamsObject.ToString(finalParams);
+                    } else {
+                        LOGERR("Additional context is not a JSON object for method: %s", method.c_str());
+                    }
+                } else {
+                    JsonObject contextObj;
+                    contextObj["appId"] = context.appId;
+                    contextObj["connectionId"] = context.connectionId;
+                    contextObj["requestId"] = context.requestId;
+                    paramsObj["context"] = contextObj;
+                    paramsObj.ToString(finalParams);
+                }                
             }
             return finalParams;
         }
 
-        uint32_t AppGatewayImplementation::ProcessComRpcRequest(const Context &context, const string& alias, const string& method, const string& params, string &resolution) {
+        uint32_t AppGatewayImplementation::ProcessComRpcRequest(const Context &context, const string& alias, const string& method, const string& params, const string& origin, string &resolution) {
             uint32_t result = Core::ERROR_GENERAL;
-
-            // First attempt: try the alias as-is (e.g. "org.rdk.FbSettings")
-            Exchange::IAppGatewayRequestHandler* requestHandler =
-                mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(alias);
-
-            // Special-case: metricsHandler alias is intended to resolve to Badger's handler
-            if (requestHandler == nullptr && alias == "metricsHandler") {
-                LOGDBG("COM-RPC: 'metricsHandler' alias detected; routing to Badger plugin");
-                requestHandler =
-                    mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>("org.rdk.Badger");
-                if (requestHandler == nullptr) {
-                    requestHandler =
-                        mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>("Badger");
-                }
-            }
-
-            // If not found, try a normalized callsign without a known prefix ("org.rdk.")
-            if (requestHandler == nullptr) {
-                const string prefix = "org.rdk.";
-                if (alias.compare(0, prefix.size(), prefix) == 0 && alias.size() > prefix.size()) {
-                    string normalized = alias.substr(prefix.size()); // e.g. "FbSettings"
-                    LOGWARN("COM-RPC: %s not found. Retrying with normalized callsign: %s",
-                            alias.c_str(), normalized.c_str());
-                    requestHandler =
-                        mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(normalized);
-                }
-            }
-
+            Exchange::IAppGatewayRequestHandler *requestHandler = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(alias);
             if (requestHandler != nullptr) {
-                if (Core::ERROR_NONE != requestHandler->HandleAppGatewayRequest(ContextUtils::ToGatewayContext(context), method, params, resolution)) {
+                std::string finalParams = UpdateContext(context, method, params, origin, true);
+                if (Core::ERROR_NONE != requestHandler->HandleAppGatewayRequest(context, method, finalParams, resolution)) {
                     LOGERR("HandleAppGatewayRequest failed for callsign: %s", alias.c_str());
-                    ErrorUtils::CustomInternal("HandleAppGatewayRequest failed", resolution);
+                    if (resolution.empty()){
+                        ErrorUtils::CustomInternal("HandleAppGatewayRequest failed", resolution);
+                    }
                 } else {
                     result = Core::ERROR_NONE;
                 }
@@ -479,14 +516,12 @@ namespace WPEFramework
                     bool resultValue;
                     // Use ObjectUtils::HasBooleanEntry and populate resultValue
                     if (ObjectUtils::HasBooleanEntry(params_obj, "listen", resultValue)) {
-                        LOGDBG("Event method '%s' with listen: %s", method.c_str(), resultValue ? "true" : "false");
+                        LOGTRACE("Event method '%s' with listen: %s", method.c_str(), resultValue ? "true" : "false");
                         auto ret_value = HandleEvent(context, alias, method, origin, resultValue);
-                        JsonObject returnData;
                         JsonObject returnResult;
                         returnResult["listening"] = resultValue;
                         returnResult["event"] = method;
-                        returnData["result"] = returnResult;
-                        returnData.ToString(resolution);
+                        returnResult.ToString(resolution);
                         return ret_value;
                     } else {
                         LOGERR("Event method '%s' missing required boolean 'listen' parameter", method.c_str());
@@ -498,62 +533,6 @@ namespace WPEFramework
                     ErrorUtils::CustomBadRequest("Event methods require parameters", resolution);
                     return Core::ERROR_BAD_REQUEST;
             }
-        }
-
-        uint32_t AppGatewayImplementation::PreProcessProvider(const Context &context, const string& method, const string& params, 
-            const string& providerCapability, const ProviderMethodType &methodType, 
-            const string &origin, string &resolution){
-            LOGDBG("params=%s providerCapability=%s ", params.c_str(), providerCapability.c_str());
-            JsonObject params_obj;
-            if (mApp2AppProvider == nullptr) {
-                mApp2AppProvider = mService->QueryInterfaceByCallsign<Exchange::IApp2AppProvider>(APP_TO_APP_PROVIDER_CALLSIGN);
-                if (mApp2AppProvider == nullptr) {
-                    LOGERR("IApp2AppProvider interface not available");
-                    return Core::ERROR_GENERAL;
-                }
-            }
-            Exchange::IApp2AppProvider::Context providerContext = ContextUtils::ConvertAppGatewayToProviderContext(context, origin);
-            switch (methodType) {
-                case ProviderMethodType::REGISTER:
-                    LOGDBG("Register %s ", providerCapability.c_str());
-                    bool resultValue;
-                    if (params_obj.FromString(params)) {
-                        if (ObjectUtils::HasBooleanEntry(params_obj, "listen", resultValue)) {
-                            LOGDBG("Invoking RegisterProvider for capability '%s'", providerCapability.c_str());
-                            JsonObject returnData;
-                            JsonObject returnResult;
-                            returnResult["listening"] = resultValue;
-                            returnResult["event"] = method;
-                            returnData["result"] = returnResult;
-                            returnData.ToString(resolution);
-                            return mApp2AppProvider->RegisterProvider(providerContext, resultValue, providerCapability);
-                        } else {
-                            ErrorUtils::CustomBadRequest("Event methods require parameters", resolution);
-                        }
-                    }
-                    else {
-                        LOGERR("Failed to parse params as JSON: %s", params.c_str());
-                        ErrorUtils::CustomBadRequest("Invalid JSON format", resolution);
-                    }
-                    break;
-                case ProviderMethodType::INVOKE:
-                    LOGDBG("Invoking InvokeProvider for capability '%s' with params: %s", providerCapability.c_str(), params.c_str());
-                    return mApp2AppProvider->InvokeProvider(providerContext, providerCapability, params);
-                
-                case ProviderMethodType::RESULT:
-                    LOGDBG("Invoking ResultProvider for capability '%s' with params: %s", providerCapability.c_str(), params.c_str());
-                    return mApp2AppProvider->HandleProviderResponse(providerCapability, params);
-                case ProviderMethodType::ERROR:
-                    LOGDBG("Invoking ResultProvider for capability '%s' with params: %s", providerCapability.c_str(), params.c_str());
-                    return mApp2AppProvider->HandleProviderError(providerCapability, params);
-                default:
-                    LOGERR("Unknown ProviderMethodType for method '%s'", providerCapability.c_str());
-                    
-                    ErrorUtils::CustomBadRequest("Unknown ProviderMethodType", resolution);
-                    return Core::ERROR_BAD_REQUEST;
-            }
-
-            return Core::ERROR_GENERAL;
         }
 
         Core::hresult AppGatewayImplementation::HandleEvent(const Context &context, const string &alias,  const string &event, const string &origin, const bool listen) {
@@ -568,32 +547,6 @@ namespace WPEFramework
             return mAppNotifications->Subscribe(ContextUtils::ConvertAppGatewayToNotificationContext(context,origin), listen, alias, event);
         }
 
-        void AppGatewayImplementation::DispatchWsMsg(const std::string &method,
-                                                     const std::string &params,
-                                                     const int requestId,
-                                                     const uint32_t connectionId)
-        {
-
-            LOGINFO("Received message: method=%s, params=%s, requestId=%d, connectionId=%d",
-                    method.c_str(), params.c_str(), requestId, connectionId);
-
-            std::string resolution;
-            string appId;
-
-            if (mAppIdRegistry.Get(connectionId, appId)) {
-                // App Id is available
-                Context context;
-                context.requestId = requestId;
-                context.connectionId = connectionId;
-                context.appId = std::move(appId);
-                InternalResolve(context, method, params, APP_GATEWAY_CALLSIGN);
-
-            } else {
-                LOGERR("No App ID found for connection %d. Terminate connection", connectionId);
-                mWsManager.Close(connectionId);
-            }
-        }
-
         void AppGatewayImplementation::SendToLaunchDelegate(const Context& context, const string& payload)
         {
             if ( mInternalGatewayResponder==nullptr ) {
@@ -604,10 +557,66 @@ namespace WPEFramework
                 }
             }
 
-            // Convert IAppGateway::Context to common GatewayContext for responder call
-            mInternalGatewayResponder->Respond(ContextUtils::ToGatewayContext(context), payload);
+            mInternalGatewayResponder->Respond(context, payload);
 
+        }
+
+        bool AppGatewayImplementation::SetupAppGatewayAuthenticator() {
+            if ( mAuthenticator==nullptr ) {
+                mAuthenticator = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayAuthenticator>(INTERNAL_GATEWAY_CALLSIGN);
+                if (mAuthenticator == nullptr) {
+                    LOGERR("AppGateway Authenticator not available");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Helper: read a string key from a JSON file; returns empty if any step fails.
+        static std::string ReadJsonStringKey(const std::string& filePath, const std::string& key, const char* tag) {
+            if (filePath.empty()) {
+                return "";
+            }
+            std::ifstream file(filePath);
+            if (!file.is_open()) {
+                LOGINFO("%s file not found: %s", tag, filePath.c_str());
+                return "";
+            }
+            std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+            file.close();
+            JsonObject json;
+            if (!json.FromString(content)) {
+                LOGERR("Failed to parse %s JSON: %s", tag, filePath.c_str());
+                return "";
+            }
+            if (!json.HasLabel(key.c_str())) {
+                LOGWARN("No '%s' field found in %s: %s", key.c_str(), tag, filePath.c_str());
+                return "";
+            }
+            std::string value = json[key.c_str()].String();
+            LOGINFO("%s '%s' read: %s", tag, key.c_str(), value.c_str());
+            return value;
+        }
+
+        std::string AppGatewayImplementation::ReadCountryFromConfigFile() {
+            // Both config paths empty: rely on defaultCountryCode in resolutions.json later.
+            if (strlen(VENDOR_CONFIG_PATH) == 0 && strlen(BUILD_CONFIG_PATH) == 0) {
+                LOGINFO("Platform config paths not set; will use defaultCountryCode from resolutions.json if present");
+                return "";
+            }
+
+            // Try vendor first, then build.
+            const std::string vendorPath = VENDOR_CONFIG_PATH;
+            const std::string buildPath  = BUILD_CONFIG_PATH;
+
+            std::string country = ReadJsonStringKey(vendorPath, "country", "Vendor config");
+            if (!country.empty()) {
+                return country;
+            }
+            country = ReadJsonStringKey(buildPath, "country", "Build config");
+            return country; // may be empty; caller handles fallback
         }
 
     } // namespace Plugin
 } // namespace WPEFramework
+

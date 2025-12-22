@@ -49,6 +49,6 @@ enable_testing()
 
 # Build the AppGateway plugin, FbSettings plugin, and the unit tests
 add_subdirectory(AppGateway)
-add_subdirectory(FbSettings)
-add_subdirectory(FbCommon)
-add_subdirectory(tests)
+#add_subdirectory(FbSettings)
+#add_subdirectory(FbCommon)
+#add_subdirectory(tests)

@@ -40,15 +40,12 @@ find_package(CompileSettingsDebug CONFIG REQUIRED)
 add_library(${MODULE_NAME} SHARED
         AppGateway.cpp
         AppGatewayImplementation.cpp
+        AppGatewayResponderImplementation.cpp
         Resolver.cpp
-        RequestRouter.cpp
-        Module.cpp)
+	Module.cpp)
 
-# Include helper headers, resolution configs, top-level interfaces, and shared Supporting_Files
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
-target_include_directories(${MODULE_NAME} PRIVATE "${PROJECT_SOURCE_DIR}")
-target_include_directories(${MODULE_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/../Supporting_Files")
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
@@ -56,12 +53,31 @@ set_target_properties(${MODULE_NAME} PROPERTIES
 
 target_compile_definitions(${MODULE_NAME} PRIVATE MODULE_NAME=Plugin_${PLUGIN_NAME})
 
+# Add platform-specific paths
+if(BUILD_CONFIG_PATH)
+        target_compile_definitions(${MODULE_NAME} PRIVATE BUILD_CONFIG_PATH="${BUILD_CONFIG_PATH}")
+endif()
+
+if(VENDOR_CONFIG_PATH)
+        target_compile_definitions(${MODULE_NAME} PRIVATE VENDOR_CONFIG_PATH="${VENDOR_CONFIG_PATH}")
+endif()
+
+# Add App Gateway Automation definitions if enabled
+if(ENABLE_APP_GATEWAY_AUTOMATION)
+    target_compile_definitions(${MODULE_NAME} PRIVATE ENABLE_APP_GATEWAY_AUTOMATION)
+    if(AUTOMATION_APP_ID)
+        target_compile_definitions(${MODULE_NAME} PRIVATE AUTOMATION_APP_ID=${AUTOMATION_APP_ID})
+    endif()
+    if(APP_GATEWAY_ENHANCED_LOGGING_INDICATOR)
+        target_compile_definitions(${MODULE_NAME} PRIVATE APP_GATEWAY_ENHANCED_LOGGING_INDICATOR=${APP_GATEWAY_ENHANCED_LOGGING_INDICATOR})
+    endif()
+endif()
+
 target_link_libraries(${MODULE_NAME} 
         PRIVATE
         CompileSettingsDebug::CompileSettingsDebug
         ${NAMESPACE}Plugins::${NAMESPACE}Plugins
         ${NAMESPACE}Definitions::${NAMESPACE}Definitions)
-
 
 # To error any missing links
 target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
@@ -69,17 +85,7 @@ target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
 install(TARGETS ${MODULE_NAME}
         DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
 
-# define PLUGIN_PRODUCT_CFG
-target_compile_definitions(${MODULE_NAME} PRIVATE
-	PLUGIN_PRODUCT_CFG="${PRODUCT_CONFIG_DIR}/appGatewayConfig.json")
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/resolution.base.json
+        DESTINATION "/etc/app-gateway/")
 
-# TODO: temporary install gateway.config.json - should be added by Platform
-install(FILES appGatewayConfig.json
-        DESTINATION "${PRODUCT_CONFIG_DIR}")
-
-
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/
-        DESTINATION "${PRODUCT_CONFIG_DIR}/app-gateway"
-        FILES_MATCHING PATTERN "resolution*.json")
-
-write_config(PLUGINS ${PLUGIN_NAME})
+write_config(${PLUGIN_NAME})
