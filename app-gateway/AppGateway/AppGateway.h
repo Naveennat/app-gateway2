@@ -20,6 +20,7 @@
 
 #include "Module.h"
 #include <interfaces/IAppGateway.h>
+#include "../helpers/ErrorUtils.h"
 
 namespace WPEFramework {
 

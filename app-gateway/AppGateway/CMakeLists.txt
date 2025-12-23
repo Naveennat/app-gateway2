@@ -44,8 +44,39 @@ add_library(${MODULE_NAME} SHARED
         Resolver.cpp
 	Module.cpp)
 
-target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
-target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
+# Ensure local helpers and resolutions are on the include path
+target_include_directories(${MODULE_NAME} PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/../helpers
+        ${CMAKE_CURRENT_SOURCE_DIR}/resolutions)
+
+# Include shared Supporting_Files for common utilities like ContextUtils.h
+if(EXISTS ${CMAKE_SOURCE_DIR}/../Supporting_Files)
+    target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../Supporting_Files)
+endif()
+
+# Also search in repository-level dependencies helpers if present (for shared headers)
+if(EXISTS ${CMAKE_SOURCE_DIR}/../entservices-infra-712/helpers)
+    target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../entservices-infra-712/helpers)
+endif()
+
+# Add Thunder include directories explicitly if package config did not propagate
+# This helps resolve <interfaces/...> headers like IAppGateway.h
+if(CMAKE_PREFIX_PATH)
+    target_include_directories(${MODULE_NAME} PRIVATE
+        ${CMAKE_PREFIX_PATH}/include
+        ${CMAKE_PREFIX_PATH}/include/WPEFramework
+        ${CMAKE_PREFIX_PATH}/include/WPEFramework/interfaces
+        ${CMAKE_PREFIX_PATH}/include/interfaces)
+endif()
+# Prefer our local helpers by adding it again at the end of the include search list
+target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../helpers)
+
+# If a local interfaces folder exists in this repo, include it as well
+if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/../interfaces)
+    target_include_directories(${MODULE_NAME} PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/../interfaces
+        ${CMAKE_CURRENT_LIST_DIR}/..) # so <interfaces/...> works
+endif()
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
@@ -73,11 +104,24 @@ if(ENABLE_APP_GATEWAY_AUTOMATION)
     endif()
 endif()
 
-target_link_libraries(${MODULE_NAME} 
+target_link_libraries(${MODULE_NAME}
         PRIVATE
         CompileSettingsDebug::CompileSettingsDebug
         ${NAMESPACE}Plugins::${NAMESPACE}Plugins
-        ${NAMESPACE}Definitions::${NAMESPACE}Definitions)
+        ${NAMESPACE}Definitions::${NAMESPACE}Definitions
+        # Add common Thunder components explicitly
+        ${NAMESPACE}Core::${NAMESPACE}Core
+)
+
+# Link Tracing if available in this Thunder installation
+if(TARGET ${NAMESPACE}Tracing::${NAMESPACE}Tracing)
+    target_link_libraries(${MODULE_NAME} PRIVATE ${NAMESPACE}Tracing::${NAMESPACE}Tracing)
+endif()
+
+# If the Interfaces target exists, link it as well (used by IAppGateway et al.)
+if(TARGET ${NAMESPACE}Interfaces::${NAMESPACE}Interfaces)
+    target_link_libraries(${MODULE_NAME} PRIVATE ${NAMESPACE}Interfaces::${NAMESPACE}Interfaces)
+endif()
 
 # To error any missing links
 target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
@@ -85,7 +129,9 @@ target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
 install(TARGETS ${MODULE_NAME}
         DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
 
+# Install configs under the install prefix to avoid root-only /etc writes in CI
+set(APP_GATEWAY_INSTALL_ETC_DIR "${CMAKE_INSTALL_PREFIX}/etc/app-gateway")
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/resolution.base.json
-        DESTINATION "/etc/app-gateway/")
+        DESTINATION "${APP_GATEWAY_INSTALL_ETC_DIR}")
 
-write_config(${PLUGIN_NAME})
+write_config(PLUGINS ${PLUGIN_NAME})

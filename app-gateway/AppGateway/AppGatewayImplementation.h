@@ -24,6 +24,7 @@
 #include <interfaces/IAppGateway.h>
 #include <interfaces/IConfiguration.h>
 #include <interfaces/IAppNotifications.h>
+// Ensure IAppGateway is visible before including ContextUtils which references IAppGateway::Context
 #include "ContextUtils.h"
 #include <com/com.h>
 #include <core/core.h>

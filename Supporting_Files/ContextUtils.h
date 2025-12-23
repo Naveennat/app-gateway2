@@ -19,6 +19,8 @@
 
 #ifndef __CONTEXTUTILS_H__
 #define __CONTEXTUTILS_H__
+
+// Ensure IAppGateway is visible before any declarations using Exchange::IAppGateway::Context.
 #include <interfaces/IAppGateway.h>
 #include <interfaces/IAppNotifications.h>
 #include <interfaces/IApp2AppProvider.h>
@@ -51,11 +53,9 @@ class ContextUtils {
             return launchDelegateContext;
         }
 
-        // Implement a static method which accepts a Exchange::IAppGateway::Context object and
-        // converts it into Exchange::IAppNotifications::Context object
+        // Convert GatewayContext to AppNotifications context
         static Exchange::IAppNotifications::AppNotificationContext ConvertAppGatewayToNotificationContext(const Exchange::GatewayContext& appGatewayContext, const string& origin){
             Exchange::IAppNotifications::AppNotificationContext notificationsContext;
-            // Perform the conversion logic here
             notificationsContext.requestId = appGatewayContext.requestId;
             notificationsContext.connectionId = appGatewayContext.connectionId;
             notificationsContext.appId = appGatewayContext.appId;
@@ -106,9 +106,8 @@ class ContextUtils {
             return origin == APP_GATEWAY_CALLSIGN;
         }
 
-        // Convert from the local IAppGateway::Context (used by AppGatewayImplementation)
-        // to the common Exchange::GatewayContext used by other interfaces.
-        static Exchange::GatewayContext ToGatewayContext(const Exchange::IAppGateway::Context& appGatewayContext) {
+        // Convert from GatewayContext to GatewayContext (identity helper for compatibility)
+        static Exchange::GatewayContext ToGatewayContext(const Exchange::GatewayContext& appGatewayContext) {
             Exchange::GatewayContext gatewayContext;
             gatewayContext.requestId = appGatewayContext.requestId;
             gatewayContext.connectionId = appGatewayContext.connectionId;
@@ -116,26 +115,6 @@ class ContextUtils {
             return gatewayContext;
         }
 
-        // Overload: Convert AppGateway context (local type) to AppNotifications context
-        static Exchange::IAppNotifications::AppNotificationContext ConvertAppGatewayToNotificationContext(
-            const Exchange::IAppGateway::Context& appGatewayContext, const string& origin) {
-            Exchange::IAppNotifications::AppNotificationContext notificationsContext;
-            notificationsContext.requestId = appGatewayContext.requestId;
-            notificationsContext.connectionId = appGatewayContext.connectionId;
-            notificationsContext.appId = appGatewayContext.appId;
-            notificationsContext.origin = origin;
-            return notificationsContext;
-        }
 
-        // Overload: Convert AppGateway context (local type) to App2AppProvider context
-        static Exchange::IApp2AppProvider::Context ConvertAppGatewayToProviderContext(
-            const Exchange::IAppGateway::Context& appGatewayContext, const string& origin) {
-            Exchange::IApp2AppProvider::Context providerContext;
-            providerContext.requestId = appGatewayContext.requestId;
-            providerContext.connectionId = appGatewayContext.connectionId;
-            providerContext.appId = appGatewayContext.appId;
-            providerContext.origin = origin;
-            return providerContext;
-        }
 };
 #endif

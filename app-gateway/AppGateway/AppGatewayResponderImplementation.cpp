@@ -21,6 +21,7 @@
 #include <plugins/JSONRPC.h>
 #include <plugins/IShell.h>
 #include "AppGatewayResponderImplementation.h"
+#include <interfaces/IAppGateway.h>
 #include "UtilsLogging.h"
 #include "UtilsConnections.h"
 #include "UtilsCallsign.h"
