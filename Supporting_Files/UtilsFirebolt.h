@@ -22,6 +22,7 @@
 
 #include <mutex>
 #include <map>
+#include <unordered_map>
 
 using namespace WPEFramework;
 
@@ -149,6 +150,10 @@ class ErrorUtils {
 
     static void NotAvailable(string& resolution) {
         resolution = ErrorUtils::GetFireboltError(FireboltError::NOT_AVAILABLE);
+    }
+
+    static void NotPermitted(string& resolution) {
+        resolution = ErrorUtils::GetFireboltError(FireboltError::NOT_PERMITTED);
     }
 
     static void CustomInitialize(const string& message, string& resolution) {

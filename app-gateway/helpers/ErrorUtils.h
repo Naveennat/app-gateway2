@@ -1,39 +1,37 @@
 #pragma once
 
 // PUBLIC_INTERFACE
-// Minimal ErrorUtils stub providing NotPermitted helper used by AppGatewayImplementation.cpp.
-#include <string>
+// Wrapper header for ErrorUtils utilities used across this repo.
+//
+// The canonical implementation in this repo lives in Supporting_Files/UtilsFirebolt.h
+// and defines a global `class ErrorUtils` with static helper methods.
+// Some AppGateway code also expects `AppGwErrorUtils::NotPermitted(...)`, so we
+// provide that alias here.
+//
+// NOTE: Do NOT define `namespace ErrorUtils` here (it conflicts with the class).
+
+#include <UtilsFirebolt.h>
+
+// UtilsFirebolt.h defines generic macro names that collide with Thunder Core
+// constants (e.g., WPEFramework::Core::ERROR_NOT_SUPPORTED). Ensure they don't
+// leak beyond the Firebolt helper implementation.
+#ifdef ERROR_NOT_SUPPORTED
+#undef ERROR_NOT_SUPPORTED
+#endif
+#ifdef ERROR_NOT_AVAILABLE
+#undef ERROR_NOT_AVAILABLE
+#endif
+#ifdef ERROR_NOT_PERMITTED
+#undef ERROR_NOT_PERMITTED
+#endif
 
 namespace AppGwErrorUtils {
 
-// PUBLIC_INTERFACE
-static inline void NotPermitted(const std::string& /*resolution*/) {
-    // No-op stub. Real implementation would log or track permission errors.
-}
+    // PUBLIC_INTERFACE
+    static inline void NotPermitted(string& resolutionOut)
+    {
+        /** AppGateway-specific helper used by AppGatewayImplementation.cpp. */
+        resolutionOut = ErrorUtils::GetFireboltError(FireboltError::NOT_PERMITTED);
+    }
 
- // PUBLIC_INTERFACE
-static inline void CustomBadRequest(const std::string& /*message*/, std::string& /*resolutionOut*/) {
-    // No-op stub. Real implementation would set error message in resolution JSON.
-}
-
-// PUBLIC_INTERFACE
-static inline void CustomInternal(const std::string& /*message*/, std::string& /*resolutionOut*/) {
-    // No-op stub for internal error mapping.
-}
-
-// PUBLIC_INTERFACE
-static inline void NotAvailable(std::string& /*resolutionOut*/) {
-    // No-op stub for not available mapping.
-}
-
-// PUBLIC_INTERFACE
-static inline void CustomInitialize(const std::string& /*message*/, std::string& /*resolutionOut*/) {
-    // No-op stub for initialize failure mapping.
-}
-
-// PUBLIC_INTERFACE
-static inline void NotSupported(std::string& /*resolutionOut*/) {
-    // No-op stub for not supported mapping.
-}
-
-} // namespace ErrorUtils
+} // namespace AppGwErrorUtils
