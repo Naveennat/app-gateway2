@@ -22,6 +22,162 @@ using WPEFramework::PluginHost::IPlugin;
 
 namespace {
 
+/*
+ * TEST-ONLY BOOTSTRAP
+ * -------------------
+ * These l0tests run the AppGateway plugin in-proc (without the real Thunder host).
+ * Some Thunder/WPEFramework code paths (e.g. JSON-RPC resolving) assume that the
+ * global Core::WorkerPool singleton is available.
+ *
+ * In production, Thunder initializes this for the process. For the l0test harness,
+ * we explicitly create, run, and tear down the WorkerPool for the lifetime of the
+ * test executable, to avoid aborts and to ensure clean shutdown.
+ */
+class TestOnlyDispatcher final : public WPEFramework::Core::ThreadPool::IDispatcher {
+public:
+    TestOnlyDispatcher() = default;
+    ~TestOnlyDispatcher() override = default;
+
+    TestOnlyDispatcher(const TestOnlyDispatcher&) = delete;
+    TestOnlyDispatcher& operator=(const TestOnlyDispatcher&) = delete;
+
+    void Initialize() override
+    {
+        // No-op for l0tests. The worker threads will call this on start.
+    }
+
+    void Deinitialize() override
+    {
+        // No-op for l0tests. The worker threads will call this on stop.
+    }
+
+    void Dispatch(WPEFramework::Core::IDispatch* job) override
+    {
+        if (job != nullptr) {
+            job->Dispatch();
+        }
+    }
+};
+
+/*
+ * Optional test-only Core::Messaging sink.
+ * Some builds may route tracing/logging via Core::Messaging::IStore.
+ * We provide a no-op sink only if none is configured, keeping tests deterministic.
+ */
+class NullMessageStore final : public WPEFramework::Core::Messaging::IStore {
+public:
+    NullMessageStore() = default;
+    ~NullMessageStore() override = default;
+
+    NullMessageStore(const NullMessageStore&) = delete;
+    NullMessageStore& operator=(const NullMessageStore&) = delete;
+
+    bool Default(const WPEFramework::Core::Messaging::Metadata& /*metadata*/) const override
+    {
+        // Accept defaults; we drop messages anyway.
+        return true;
+    }
+
+    void Push(const WPEFramework::Core::Messaging::MessageInfo& /*messageInfo*/,
+              const WPEFramework::Core::Messaging::IEvent* /*message*/) override
+    {
+        // Intentionally no-op.
+    }
+};
+
+class L0TestBootstrap final {
+public:
+    L0TestBootstrap()
+        : _ownsWorkerPool(false)
+        , _dispatcher(nullptr)
+        , _workerPool(nullptr)
+        , _ownsMessageStore(false)
+        , _messageStore(nullptr)
+    {
+        InitializeMessagingIfNeeded();
+        InitializeWorkerPoolIfNeeded();
+    }
+
+    ~L0TestBootstrap()
+    {
+        // Ensure teardown happens even if the test process exits early.
+        DeinitializeWorkerPoolIfOwned();
+        DeinitializeMessagingIfOwned();
+    }
+
+    L0TestBootstrap(const L0TestBootstrap&) = delete;
+    L0TestBootstrap& operator=(const L0TestBootstrap&) = delete;
+
+private:
+    void InitializeWorkerPoolIfNeeded()
+    {
+        // Core::IWorkerPool is a global singleton used by various Thunder subsystems.
+        if (WPEFramework::Core::IWorkerPool::IsAvailable() == false) {
+            // Keep sizes modest; we only need basic dispatch for in-proc tests.
+            const uint8_t threadCount = 2;
+            const uint32_t stackSize = 0;   // use default stack size
+            const uint32_t queueSize = 64;  // sufficient for l0 tests
+
+            _dispatcher = new TestOnlyDispatcher();
+            _workerPool = new WPEFramework::Core::WorkerPool(threadCount, stackSize, queueSize, _dispatcher);
+
+            WPEFramework::Core::IWorkerPool::Assign(_workerPool);
+            _workerPool->Run();
+
+            _ownsWorkerPool = true;
+        }
+    }
+
+    void DeinitializeWorkerPoolIfOwned()
+    {
+        if (_ownsWorkerPool == true) {
+            // Stop threads and timers cleanly before deleting.
+            if (_workerPool != nullptr) {
+                _workerPool->Stop();
+            }
+
+            // Detach global singleton first, then destroy.
+            WPEFramework::Core::IWorkerPool::Assign(nullptr);
+
+            delete _workerPool;
+            _workerPool = nullptr;
+
+            delete _dispatcher;
+            _dispatcher = nullptr;
+
+            _ownsWorkerPool = false;
+        }
+    }
+
+    void InitializeMessagingIfNeeded()
+    {
+        // Only install a test sink if none is configured by the runtime/build.
+        if (WPEFramework::Core::Messaging::IStore::Instance() == nullptr) {
+            _messageStore = new NullMessageStore();
+            WPEFramework::Core::Messaging::IStore::Set(_messageStore);
+            _ownsMessageStore = true;
+        }
+    }
+
+    void DeinitializeMessagingIfOwned()
+    {
+        if (_ownsMessageStore == true) {
+            WPEFramework::Core::Messaging::IStore::Set(nullptr);
+            delete _messageStore;
+            _messageStore = nullptr;
+            _ownsMessageStore = false;
+        }
+    }
+
+private:
+    bool _ownsWorkerPool;
+    TestOnlyDispatcher* _dispatcher;
+    WPEFramework::Core::WorkerPool* _workerPool;
+
+    bool _ownsMessageStore;
+    NullMessageStore* _messageStore;
+};
+
 struct TestResult {
     uint32_t failures { 0 };
 };
@@ -320,6 +476,14 @@ static uint32_t Test_ContextUtils_Conversions()
 
 int main()
 {
+    // Test-only bootstrap for WorkerPool (and optional Core::Messaging store).
+    // This must be constructed before any plugin Initialize()/Invoke() calls.
+    L0TestBootstrap bootstrap;
+
+    // Run instructions (from repo root):
+    //   export LD_LIBRARY_PATH=$PWD/dependencies/install/lib:$PWD/build/appgatewayl0test/AppGateway:$LD_LIBRARY_PATH
+    //   ./build/appgatewayl0test/AppGateway/appgateway_l0test
+
     struct Case {
         const char* name;
         uint32_t (*fn)();
