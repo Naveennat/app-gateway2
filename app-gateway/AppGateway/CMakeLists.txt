@@ -135,3 +135,54 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/resolution.base.json
         DESTINATION "${APP_GATEWAY_INSTALL_ETC_DIR}")
 
 write_config(PLUGINS ${PLUGIN_NAME})
+
+# -----------------------------------------------------------------------------
+# l0test target (CloudStore-style minimal harness)
+# -----------------------------------------------------------------------------
+set(L0TEST_NAME appgateway_l0test)
+
+add_executable(${L0TEST_NAME}
+    l0test/AppGatewayTest.cpp
+)
+
+# Include directories for test build
+target_include_directories(${L0TEST_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}                 # AppGateway/
+        ${CMAKE_CURRENT_SOURCE_DIR}/..             # app-gateway/ (so <interfaces/...> resolves to local stubs if present)
+        ${CMAKE_CURRENT_SOURCE_DIR}/../helpers
+        ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces
+)
+
+# Thunder include fallbacks from CMAKE_PREFIX_PATH (if set)
+if(CMAKE_PREFIX_PATH)
+    target_include_directories(${L0TEST_NAME} PRIVATE
+        ${CMAKE_PREFIX_PATH}/include
+        ${CMAKE_PREFIX_PATH}/include/WPEFramework
+        ${CMAKE_PREFIX_PATH}/include/WPEFramework/interfaces
+        ${CMAKE_PREFIX_PATH}/include/interfaces
+    )
+endif()
+
+# Link against the built AppGateway plugin and Thunder components
+target_link_libraries(${L0TEST_NAME}
+    PRIVATE
+        ${MODULE_NAME}
+        ${NAMESPACE}Plugins::${NAMESPACE}Plugins
+        ${NAMESPACE}Core::${NAMESPACE}Core
+        ${NAMESPACE}Definitions::${NAMESPACE}Definitions
+)
+
+# Define MODULE_NAME for WPEFramework core/core.h usage in the test binary
+target_compile_definitions(${L0TEST_NAME} PRIVATE MODULE_NAME=AppGateway_L0Test)
+
+# Coverage flags (GCC/Clang)
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(${L0TEST_NAME} PRIVATE --coverage -O0 -g)
+    target_link_options(${L0TEST_NAME} PRIVATE --coverage)
+endif()
+
+# Output directory for the test executable (for later lcov consumption)
+set_target_properties(${L0TEST_NAME} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/appgatewayl0test"
+)
