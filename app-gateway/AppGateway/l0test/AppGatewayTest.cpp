@@ -29,6 +29,11 @@ extern uint32_t Test_Resolve_HappyPath_JSONRPC();
 extern uint32_t Test_Resolve_MissingFields_BadRequest();
 extern uint32_t Test_Resolve_ParamsEmpty_DefaultsToEmptyObject();
 extern uint32_t Test_Resolve_ImplementationError_Propagates();
+extern uint32_t Test_Resolver_Configure_WithBaseOnly_LoadsOK();
+extern uint32_t Test_Resolver_Configure_WithOverride_TakesPrecedence();
+extern uint32_t Test_Resolver_Resolve_UnknownMethod_ReturnsNotFound();
+extern uint32_t Test_Resolver_Resolve_MalformedParams_ReturnsBadRequest();
+extern uint32_t Test_Resolver_Configure_InvalidJson_ReturnsError();
 
 namespace {
 
@@ -520,6 +525,13 @@ int main()
         { "JsonRpcResolve_Error_MalformedInput", Test_JsonRpcResolve_Error_MalformedInput },
         { "JsonRpcResolve_Error_MissingHandler_WhenResolverMissing", Test_JsonRpcResolve_Error_MissingHandler_WhenResolverMissing },
         { "ContextUtils_Conversions", Test_ContextUtils_Conversions },
+
+        // New Resolver Configure/Resolve tests
+        { "Resolver_Configure_WithBaseOnly_LoadsOK", Test_Resolver_Configure_WithBaseOnly_LoadsOK },
+        { "Resolver_Configure_WithOverride_TakesPrecedence", Test_Resolver_Configure_WithOverride_TakesPrecedence },
+        { "Resolver_Resolve_UnknownMethod_ReturnsNotFound", Test_Resolver_Resolve_UnknownMethod_ReturnsNotFound },
+        { "Resolver_Resolve_MalformedParams_ReturnsBadRequest", Test_Resolver_Resolve_MalformedParams_ReturnsBadRequest },
+        { "Resolver_Configure_InvalidJson_ReturnsError", Test_Resolver_Configure_InvalidJson_ReturnsError },
     };
 
     uint32_t failures = 0;

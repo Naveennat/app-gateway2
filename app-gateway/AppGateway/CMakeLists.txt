@@ -147,6 +147,7 @@ target_sources(${L0TEST_NAME}
         l0test/AppGatewayTest.cpp
         l0test/AppGateway_Init_DeinitTests.cpp
         l0test/AppGateway_JsonRpcResolveTests.cpp
+        l0test/Resolver_Configure_And_ResolveTests.cpp
 )
 
 # Include directories for test build
