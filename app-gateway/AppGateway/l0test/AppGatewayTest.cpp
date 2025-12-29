@@ -35,6 +35,13 @@ extern uint32_t Test_Resolver_Resolve_UnknownMethod_ReturnsNotFound();
 extern uint32_t Test_Resolver_Resolve_MalformedParams_ReturnsBadRequest();
 extern uint32_t Test_Resolver_Configure_InvalidJson_ReturnsError();
 
+// New Responder behavior tests
+extern uint32_t Test_Responder_Register_Unregister_Notifications();
+extern uint32_t Test_Responder_Respond_Success_And_Unavailable();
+extern uint32_t Test_Responder_Emit_Success_And_Unavailable();
+extern uint32_t Test_Responder_Request_Success_And_Unavailable();
+extern uint32_t Test_Responder_GetGatewayConnectionContext_Known_And_Unknown();
+
 namespace {
 
 /*
@@ -532,6 +539,13 @@ int main()
         { "Resolver_Resolve_UnknownMethod_ReturnsNotFound", Test_Resolver_Resolve_UnknownMethod_ReturnsNotFound },
         { "Resolver_Resolve_MalformedParams_ReturnsBadRequest", Test_Resolver_Resolve_MalformedParams_ReturnsBadRequest },
         { "Resolver_Configure_InvalidJson_ReturnsError", Test_Resolver_Configure_InvalidJson_ReturnsError },
+
+        // New Responder behavior tests
+        { "Responder_Register_Unregister_Notifications", Test_Responder_Register_Unregister_Notifications },
+        { "Responder_Respond_Success_And_Unavailable", Test_Responder_Respond_Success_And_Unavailable },
+        { "Responder_Emit_Success_And_Unavailable", Test_Responder_Emit_Success_And_Unavailable },
+        { "Responder_Request_Success_And_Unavailable", Test_Responder_Request_Success_And_Unavailable },
+        { "Responder_GetGatewayConnectionContext_Known_And_Unknown", Test_Responder_GetGatewayConnectionContext_Known_And_Unknown },
     };
 
     uint32_t failures = 0;

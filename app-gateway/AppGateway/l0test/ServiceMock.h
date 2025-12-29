@@ -15,6 +15,10 @@
 #include <atomic>
 #include <cstdint>
 #include <string>
+#include <vector>
+#include <list>
+#include <unordered_map>
+#include <mutex>
 
 #include "../Module.h"
 
@@ -111,16 +115,26 @@ namespace L0Test {
         mutable std::atomic<uint32_t> _refCount;
     };
 
-    // Minimal responder fake used only for plugin Initialize()/Deinitialize().
+    // Responder fake with controllable transport availability and simple notification/context scaffolding.
     class ResponderFake final : public WPEFramework::Exchange::IAppGatewayResponder,
                                 public WPEFramework::Exchange::IConfiguration {
     public:
-        ResponderFake()
+        explicit ResponderFake(const bool transportEnabled = true)
             : _refCount(1)
+            , _transportEnabled(transportEnabled)
         {
         }
 
-        ~ResponderFake() override = default;
+        ~ResponderFake() override
+        {
+            // Release all registered notifications
+            for (auto* n : _notifications) {
+                if (n != nullptr) {
+                    n->Release();
+                }
+            }
+            _notifications.clear();
+        }
 
         // Core::IUnknown
         uint32_t AddRef() const override
@@ -161,14 +175,14 @@ namespace L0Test {
         WPEFramework::Core::hresult Respond(const WPEFramework::Exchange::GatewayContext& /*context*/,
                                             const string& /*payload*/) override
         {
-            return WPEFramework::Core::ERROR_NONE;
+            return _transportEnabled ? WPEFramework::Core::ERROR_NONE : WPEFramework::Core::ERROR_UNAVAILABLE;
         }
 
         WPEFramework::Core::hresult Emit(const WPEFramework::Exchange::GatewayContext& /*context*/,
                                          const string& /*method*/,
                                          const string& /*payload*/) override
         {
-            return WPEFramework::Core::ERROR_NONE;
+            return _transportEnabled ? WPEFramework::Core::ERROR_NONE : WPEFramework::Core::ERROR_UNAVAILABLE;
         }
 
         WPEFramework::Core::hresult Request(const uint32_t /*connectionId*/,
@@ -176,28 +190,79 @@ namespace L0Test {
                                             const string& /*method*/,
                                             const string& /*params*/) override
         {
+            return _transportEnabled ? WPEFramework::Core::ERROR_NONE : WPEFramework::Core::ERROR_UNAVAILABLE;
+        }
+
+        WPEFramework::Core::hresult GetGatewayConnectionContext(const uint32_t connectionId,
+                                                                const string& contextKey,
+                                                                string& contextValue) override
+        {
+            std::lock_guard<std::mutex> lock(_ctxMutex);
+            auto itConn = _contexts.find(connectionId);
+            if (itConn == _contexts.end()) {
+                return WPEFramework::Core::ERROR_BAD_REQUEST;
+            }
+            auto itKey = itConn->second.find(contextKey);
+            if (itKey == itConn->second.end()) {
+                return WPEFramework::Core::ERROR_BAD_REQUEST;
+            }
+            contextValue = itKey->second;
             return WPEFramework::Core::ERROR_NONE;
         }
 
-        WPEFramework::Core::hresult GetGatewayConnectionContext(const uint32_t /*connectionId*/,
-                                                                const string& /*contextKey*/,
-                                                                string& /*contextValue*/) override
+        WPEFramework::Core::hresult Register(INotification* notification) override
         {
+            if (notification == nullptr) {
+                return WPEFramework::Core::ERROR_GENERAL;
+            }
+            // Avoid duplicate registrations
+            if (std::find(_notifications.begin(), _notifications.end(), notification) == _notifications.end()) {
+                _notifications.push_back(notification);
+                notification->AddRef();
+            }
             return WPEFramework::Core::ERROR_NONE;
         }
 
-        WPEFramework::Core::hresult Register(INotification* /*notification*/) override
+        WPEFramework::Core::hresult Unregister(INotification* notification) override
         {
+            if (notification == nullptr) {
+                return WPEFramework::Core::ERROR_GENERAL;
+            }
+            auto it = std::find(_notifications.begin(), _notifications.end(), notification);
+            if (it != _notifications.end()) {
+                (*it)->Release();
+                _notifications.erase(it);
+                return WPEFramework::Core::ERROR_NONE;
+            }
+            // Not found; keep behavior tolerant
             return WPEFramework::Core::ERROR_NONE;
         }
 
-        WPEFramework::Core::hresult Unregister(INotification* /*notification*/) override
+        // Helpers for tests (not part of Exchange interface)
+        void SetTransportEnabled(const bool enabled) { _transportEnabled = enabled; }
+
+        void SetConnectionContext(const uint32_t connectionId, const string& key, const string& value)
         {
-            return WPEFramework::Core::ERROR_NONE;
+            std::lock_guard<std::mutex> lock(_ctxMutex);
+            _contexts[connectionId][key] = value;
+        }
+
+        void SimulateAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool connected)
+        {
+            for (auto* n : _notifications) {
+                if (n != nullptr) {
+                    n->OnAppConnectionChanged(appId, connectionId, connected);
+                }
+            }
         }
 
     private:
         mutable std::atomic<uint32_t> _refCount;
+        bool _transportEnabled;
+        std::list<INotification*> _notifications;
+
+        std::mutex _ctxMutex;
+        std::unordered_map<uint32_t, std::unordered_map<string, string>> _contexts;
     };
 
     class ServiceMock final : public WPEFramework::PluginHost::IShell,
@@ -206,11 +271,13 @@ namespace L0Test {
         struct Config {
             bool provideResolver;
             bool provideResponder;
+            bool responderTransportAvailable;
 
             // PUBLIC_INTERFACE
-            explicit Config(const bool resolver = true, const bool responder = true)
+            explicit Config(const bool resolver = true, const bool responder = true, const bool responderTransport = true)
                 : provideResolver(resolver)
                 , provideResponder(responder)
+                , responderTransportAvailable(responderTransport)
             {
             }
         };
@@ -357,7 +424,7 @@ namespace L0Test {
                 return (_cfg.provideResolver ? static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake()) : nullptr);
             }
             if (idx == 1) {
-                return (_cfg.provideResponder ? static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake()) : nullptr);
+                return (_cfg.provideResponder ? static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake(_cfg.responderTransportAvailable)) : nullptr);
             }
 
             return nullptr;
