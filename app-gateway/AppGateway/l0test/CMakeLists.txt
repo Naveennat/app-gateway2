@@ -62,19 +62,48 @@ endif()
 # Include directories required by tests and plugin code
 # Notes:
 #  - ..                         -> AppGateway
+#  - ../..                      -> app-gateway (so <interfaces/...> resolves)
 #  - ../../helpers              -> project helpers under app-gateway
 #  - ../../../Supporting_Files  -> shared supporting files at the repository container root
 #  - ../../interfaces/*         -> local interface stubs
-#  - ${PREFIX}/include/WPEFramework -> installed WPEFramework headers
+#  - ${PREFIX}/include (+/WPEFramework) -> installed WPEFramework and interfaces headers
+#  - CMAKE_PREFIX_PATH roots (include and include/WPEFramework) if provided
+#
+# Verify presence of interfaces/IAppGateway.h and warn if not found locally/installed.
+set(APPGW_LOCAL_IFACE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces/IAppGateway.h")
+set(APPGW_INSTALLED_IFACE_HEADER "${PREFIX}/include/WPEFramework/interfaces/IAppGateway.h")
+if(EXISTS "${APPGW_LOCAL_IFACE_HEADER}")
+    message(STATUS "AppGateway l0test: Using local interfaces stub: ${APPGW_LOCAL_IFACE_HEADER}")
+elseif(EXISTS "${APPGW_INSTALLED_IFACE_HEADER}")
+    message(STATUS "AppGateway l0test: Using installed WPEFramework interface: ${APPGW_INSTALLED_IFACE_HEADER}")
+else()
+    message(WARNING "AppGateway l0test: interfaces/IAppGateway.h not found locally at ${APPGW_LOCAL_IFACE_HEADER} nor installed at ${APPGW_INSTALLED_IFACE_HEADER}. Building may fail; ensure a stub exists under app-gateway/interfaces or adjust PREFIX/CMAKE_PREFIX_PATH.")
+endif()
+
 target_include_directories(appgateway_l0test PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}                      # this folder (ServiceMock.h, etc.)
     ${CMAKE_CURRENT_SOURCE_DIR}/..                  # AppGateway
+    ${CMAKE_CURRENT_SOURCE_DIR}/../..               # app-gateway (so <interfaces/...> resolves)
+    ${CMAKE_SOURCE_DIR}/../..                       # app-gateway (from CMAKE_SOURCE_DIR for standalone builds)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../helpers       # helpers under app-gateway
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../Supporting_Files # repo-level Supporting_Files
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces    # local interface headers (direct includes)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces/json
+    ${PREFIX}/include
     ${PREFIX}/include/WPEFramework
 )
+
+# Add include roots from CMAKE_PREFIX_PATH if provided (Thunder/WPEFramework/ThunderInterfaces)
+if(CMAKE_PREFIX_PATH)
+    foreach(_prefix IN LISTS CMAKE_PREFIX_PATH)
+        if(EXISTS "${_prefix}/include")
+            target_include_directories(appgateway_l0test PRIVATE "${_prefix}/include")
+        endif()
+        if(EXISTS "${_prefix}/include/WPEFramework")
+            target_include_directories(appgateway_l0test PRIVATE "${_prefix}/include/WPEFramework")
+        endif()
+    endforeach()
+endif()
 
 # Link directories for Thunder/WPEFramework libs
 # Default to ${PREFIX}/lib
