@@ -25,6 +25,10 @@ extern uint32_t Test_Initialize_WithValidConfig_Succeeds();
 extern uint32_t Test_Initialize_Twice_Idempotent();
 extern uint32_t Test_Deinitialize_Twice_NoCrash();
 extern uint32_t Test_JsonRpc_Registration_And_Unregistration();
+extern uint32_t Test_Resolve_HappyPath_JSONRPC();
+extern uint32_t Test_Resolve_MissingFields_BadRequest();
+extern uint32_t Test_Resolve_ParamsEmpty_DefaultsToEmptyObject();
+extern uint32_t Test_Resolve_ImplementationError_Propagates();
 
 namespace {
 
@@ -501,6 +505,10 @@ int main()
         { "Initialize_Twice_Idempotent", Test_Initialize_Twice_Idempotent },
         { "Deinitialize_Twice_NoCrash", Test_Deinitialize_Twice_NoCrash },
         { "JsonRpc_Registration_And_Unregistration", Test_JsonRpc_Registration_And_Unregistration },
+        { "Resolve_HappyPath_JSONRPC", Test_Resolve_HappyPath_JSONRPC },
+        { "Resolve_MissingFields_BadRequest", Test_Resolve_MissingFields_BadRequest },
+        { "Resolve_ParamsEmpty_DefaultsToEmptyObject", Test_Resolve_ParamsEmpty_DefaultsToEmptyObject },
+        { "Resolve_ImplementationError_Propagates", Test_Resolve_ImplementationError_Propagates },
 
         // Existing tests
         { "Initialize_Deinitialize_HappyPath", Test_Initialize_Deinitialize_HappyPath },
