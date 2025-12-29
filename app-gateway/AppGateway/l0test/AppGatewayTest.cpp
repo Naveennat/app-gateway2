@@ -20,6 +20,12 @@ using WPEFramework::Plugin::AppGateway;
 using WPEFramework::PluginHost::IDispatcher;
 using WPEFramework::PluginHost::IPlugin;
 
+// Prototypes for additional l0test cases implemented in AppGateway_Init_DeinitTests.cpp
+extern uint32_t Test_Initialize_WithValidConfig_Succeeds();
+extern uint32_t Test_Initialize_Twice_Idempotent();
+extern uint32_t Test_Deinitialize_Twice_NoCrash();
+extern uint32_t Test_JsonRpc_Registration_And_Unregistration();
+
 namespace {
 
 /*
@@ -490,6 +496,13 @@ int main()
     };
 
     const Case cases[] = {
+        // New Init/Deinit lifecycle tests
+        { "Initialize_WithValidConfig_Succeeds", Test_Initialize_WithValidConfig_Succeeds },
+        { "Initialize_Twice_Idempotent", Test_Initialize_Twice_Idempotent },
+        { "Deinitialize_Twice_NoCrash", Test_Deinitialize_Twice_NoCrash },
+        { "JsonRpc_Registration_And_Unregistration", Test_JsonRpc_Registration_And_Unregistration },
+
+        // Existing tests
         { "Initialize_Deinitialize_HappyPath", Test_Initialize_Deinitialize_HappyPath },
         { "JsonRpcResolve_Success", Test_JsonRpcResolve_Success },
         { "DirectResolver_Success", Test_DirectResolver_Success },

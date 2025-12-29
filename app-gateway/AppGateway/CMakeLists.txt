@@ -145,6 +145,7 @@ add_executable(${L0TEST_NAME})
 target_sources(${L0TEST_NAME}
     PRIVATE
         l0test/AppGatewayTest.cpp
+        l0test/AppGateway_Init_DeinitTests.cpp
 )
 
 # Include directories for test build
