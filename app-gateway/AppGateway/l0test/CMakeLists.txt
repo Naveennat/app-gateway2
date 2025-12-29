@@ -49,6 +49,9 @@ set(APPGW_L0_SOURCES
 
 add_executable(appgateway_l0test ${APPGW_L0_SOURCES})
 
+# Define MODULE_NAME for Thunder/WPEFramework Module.h users
+target_compile_definitions(appgateway_l0test PRIVATE MODULE_NAME=AppGateway_L0Test)
+
 # Coverage flags for this target only
 # -O0, -g for debug; --coverage for GCC/Clang instrumented coverage
 target_compile_options(appgateway_l0test PRIVATE -O0 -g --coverage)
@@ -87,6 +90,7 @@ target_include_directories(appgateway_l0test PRIVATE
     ${CMAKE_SOURCE_DIR}/../..                       # app-gateway (from CMAKE_SOURCE_DIR for standalone builds)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../helpers       # helpers under app-gateway
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../Supporting_Files # repo-level Supporting_Files
+    ${CMAKE_CURRENT_LIST_DIR}/../../Supporting_Files # app-gateway/Supporting_Files if present
     ${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces    # local interface headers (direct includes)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces/json
     ${PREFIX}/include
