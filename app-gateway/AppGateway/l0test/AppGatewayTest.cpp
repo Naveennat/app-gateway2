@@ -42,6 +42,12 @@ extern uint32_t Test_Responder_Emit_Success_And_Unavailable();
 extern uint32_t Test_Responder_Request_Success_And_Unavailable();
 extern uint32_t Test_Responder_GetGatewayConnectionContext_Known_And_Unknown();
 
+// New ContextUtils and JSON boundary/round-trip tests
+extern uint32_t Test_ContextUtils_BoundaryValues_Conversions();
+extern uint32_t Test_Json_Boundary_RequestId_ConnectionId();
+extern uint32_t Test_Json_Params_Empty_Equals_EmptyObject();
+extern uint32_t Test_Json_EmptyAppId_BadRequest();
+
 namespace {
 
 /*
@@ -546,6 +552,12 @@ int main()
         { "Responder_Emit_Success_And_Unavailable", Test_Responder_Emit_Success_And_Unavailable },
         { "Responder_Request_Success_And_Unavailable", Test_Responder_Request_Success_And_Unavailable },
         { "Responder_GetGatewayConnectionContext_Known_And_Unknown", Test_Responder_GetGatewayConnectionContext_Known_And_Unknown },
+
+        // New ContextUtils conversion and JSON boundary tests
+        { "ContextUtils_BoundaryValues_Conversions", Test_ContextUtils_BoundaryValues_Conversions },
+        { "Json_Boundary_RequestId_ConnectionId", Test_Json_Boundary_RequestId_ConnectionId },
+        { "Json_Params_Empty_Equals_EmptyObject", Test_Json_Params_Empty_Equals_EmptyObject },
+        { "Json_EmptyAppId_BadRequest", Test_Json_EmptyAppId_BadRequest },
     };
 
     uint32_t failures = 0;
