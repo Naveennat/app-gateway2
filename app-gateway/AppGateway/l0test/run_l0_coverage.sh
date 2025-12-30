@@ -2,38 +2,46 @@
 #
 # AppGateway standalone L0 tests + coverage
 # ----------------------------------------
-# Builds the standalone l0test target under:
-#   $ROOT/app-gateway2/app-gateway/AppGateway/l0test/build
-# runs the binary with Real-plugin runtime environment variables,
-# then generates an lcov + genhtml report under:
-#   $ROOT/coverage/index.html
+# This script:
+#  - Cleans and rebuilds the standalone l0test target (Ninja generator)
+#  - Forces coverage compilation/link flags
+#  - Runs the l0tests in "Real plugin mode" runtime environment
+#  - Generates an lcov + genhtml report under:
+#      app-gateway2/app-gateway/AppGateway/l0test/coverage/index.html
 #
-# Assumptions (per request):
-# - Repository root is the current working directory when executing:
-#     ROOT=$(pwd)
-#
-# Notes:
-# - This script is intended to be executable (chmod +x). We preserve the executable
-#   bit by creating this file from an existing executable script template.
+# Requirements satisfied by this script (see task description):
+#  1) rm -rf the l0test build directory before configure
+#  2) Reconfigure using Ninja generator pointing to standalone l0test CMakeLists.txt
+#  3) Build with coverage flags: CXXFLAGS='--coverage -O0 -g' and LDFLAGS='--coverage'
+#  4) Run l0tests with Real plugin mode defaults:
+#       - preferred plugin: ./build/app-gateway/AppGateway/libWPEFrameworkAppGateway.so
+#       - fallback plugin:  ./dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
+#       - APPGATEWAY_RESOLUTIONS_PATH defaults to:
+#           app-gateway2/app-gateway/AppGateway/resolutions/resolution.base.json
+#     (If env vars are already set, they are preserved.)
+#  5) Coverage:
+#       - info file: app-gateway2/app-gateway/AppGateway/l0test/build/coverage.info
+#       - html dir:  app-gateway2/app-gateway/AppGateway/l0test/coverage
+#  6) Clear logs + final HTML path printed
+#  7) Robust error handling (set -euo pipefail). Script is intended to be executable.
 
 set -euo pipefail
 
-log()  { echo "[run_l0_coverage] $*"; }
-warn() { echo "[run_l0_coverage][WARN] $*" >&2; }
-die()  { echo "[run_l0_coverage][ERROR] $*" >&2; exit 1; }
+log()        { echo "[run_l0_coverage] $*"; }
+log_section(){ echo ""; echo "[run_l0_coverage] ===== $* ====="; }
+warn()       { echo "[run_l0_coverage][WARN] $*" >&2; }
+die()        { echo "[run_l0_coverage][ERROR] $*" >&2; exit 1; }
 
 need_cmd() {
   local cmd="$1"
-  if ! command -v "${cmd}" >/dev/null 2>&1; then
-    return 1
-  fi
-  return 0
+  command -v "${cmd}" >/dev/null 2>&1
 }
 
 # Per requirement: ROOT is the current working directory.
 ROOT="$(pwd)"
 
-# Defensive fallback if user didn't run from repo root, but don't break the stated assumption.
+# Defensive fallback if user didn't run from repo root. We keep the "ROOT=$(pwd)" assumption,
+# but provide a helpful fallback for CI/agent execution.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EXPECTED_L0_DIR="${ROOT}/app-gateway2/app-gateway/AppGateway/l0test"
 if [[ ! -d "${EXPECTED_L0_DIR}" ]]; then
@@ -45,63 +53,104 @@ fi
 
 L0_DIR="${ROOT}/app-gateway2/app-gateway/AppGateway/l0test"
 BUILD_DIR="${L0_DIR}/build"
+COVERAGE_DIR="${L0_DIR}/coverage"
 INSTALL_PREFIX="${ROOT}/dependencies/install"
 
-RESOLUTIONS_PATH="${ROOT}/app-gateway2/app-gateway/AppGateway/resolutions/resolution.base.json"
+DEFAULT_RESOLUTIONS_PATH="${ROOT}/app-gateway2/app-gateway/AppGateway/resolutions/resolution.base.json"
 
-PLUGIN_CANDIDATE_1="${ROOT}/build/app-gateway/AppGateway/libWPEFrameworkAppGateway.so"
-PLUGIN_CANDIDATE_2="${INSTALL_PREFIX}/lib/plugins/libWPEFrameworkAppGateway.so"
+DEFAULT_PLUGIN_PREFERRED="${ROOT}/build/app-gateway/AppGateway/libWPEFrameworkAppGateway.so"
+DEFAULT_PLUGIN_FALLBACK="${ROOT}/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so"
 
 log "ROOT=${ROOT}"
 log "L0_DIR=${L0_DIR}"
 log "BUILD_DIR=${BUILD_DIR}"
-log "CMAKE_PREFIX_PATH=${INSTALL_PREFIX}"
+log "INSTALL_PREFIX=${INSTALL_PREFIX}"
+log "COVERAGE_DIR=${COVERAGE_DIR}"
 
 # ---- Tool checks ----
-need_cmd cmake || die "cmake not found in PATH."
-need_cmd ninja || die "ninja not found in PATH."
-need_cmd genhtml || die "genhtml not found in PATH."
-
-if ! need_cmd lcov; then
-  echo "[run_l0_coverage][ERROR] lcov not found in PATH."
-  echo "[run_l0_coverage][ERROR] Install hint: sudo apt install -y lcov"
-  exit 1
-fi
+log_section "Tool checks"
+need_cmd cmake   || die "cmake not found in PATH."
+need_cmd ninja   || die "ninja not found in PATH."
+need_cmd lcov    || die "lcov not found in PATH. Install hint: sudo apt install -y lcov"
+need_cmd genhtml || die "genhtml not found in PATH. Install hint: sudo apt install -y lcov"
 
 # ---- Input checks ----
+log_section "Input checks"
 [[ -d "${L0_DIR}" ]] || die "L0 test directory not found: ${L0_DIR}"
 [[ -f "${L0_DIR}/CMakeLists.txt" ]] || die "CMakeLists.txt not found in: ${L0_DIR}"
 [[ -d "${INSTALL_PREFIX}" ]] || die "Install prefix not found: ${INSTALL_PREFIX} (expected dependencies to be built/installed)"
+
+# Preserve env var if already set; otherwise default it to the required file.
+RESOLUTIONS_PATH="${APPGATEWAY_RESOLUTIONS_PATH:-${DEFAULT_RESOLUTIONS_PATH}}"
 [[ -f "${RESOLUTIONS_PATH}" ]] || die "Resolution base file not found: ${RESOLUTIONS_PATH}"
 
-# ---- Plugin presence check (warn only) ----
-if [[ -f "${PLUGIN_CANDIDATE_1}" ]]; then
-  log "Found AppGateway plugin (build tree): ${PLUGIN_CANDIDATE_1}"
-elif [[ -f "${PLUGIN_CANDIDATE_2}" ]]; then
-  log "Found AppGateway plugin (installed): ${PLUGIN_CANDIDATE_2}"
-else
-  warn "AppGateway plugin not found at:"
-  warn "  - ${PLUGIN_CANDIDATE_1}"
-  warn "  - ${PLUGIN_CANDIDATE_2}"
-  warn "Continuing anyway (tests may run in a mock-like configuration depending on environment)."
+# Select plugin path:
+# - If APPGATEWAY_PLUGIN_SO is set externally, preserve it.
+# - Else pick preferred, then fallback (as requested).
+APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO:-}"
+if [[ -z "${APPGATEWAY_PLUGIN_SO}" ]]; then
+  if [[ -f "${DEFAULT_PLUGIN_PREFERRED}" ]]; then
+    APPGATEWAY_PLUGIN_SO="${DEFAULT_PLUGIN_PREFERRED}"
+  elif [[ -f "${DEFAULT_PLUGIN_FALLBACK}" ]]; then
+    APPGATEWAY_PLUGIN_SO="${DEFAULT_PLUGIN_FALLBACK}"
+  else
+    # Default to preferred path even if missing, for consistency in logs.
+    APPGATEWAY_PLUGIN_SO="${DEFAULT_PLUGIN_PREFERRED}"
+  fi
 fi
 
-# ---- Force coverage flags (requested) ----
-# Force via environment variables AND pass into CMake cache to avoid stale-cache issues.
+if [[ -f "${APPGATEWAY_PLUGIN_SO}" ]]; then
+  log "Using AppGateway plugin .so: ${APPGATEWAY_PLUGIN_SO}"
+else
+  warn "AppGateway plugin .so not found at selected path: ${APPGATEWAY_PLUGIN_SO}"
+  warn "Also expected either:"
+  warn "  - ${DEFAULT_PLUGIN_PREFERRED}"
+  warn "  - ${DEFAULT_PLUGIN_FALLBACK}"
+  warn "Continuing anyway (tests may run in pure-mock mode)."
+fi
+
+# ---- Coverage flags (requested) ----
+# Preserve existing flags but ensure coverage flags are present.
+log_section "Coverage flags"
 COVERAGE_CXXFLAGS="--coverage -O0 -g"
 COVERAGE_LDFLAGS="--coverage"
 
-export CXXFLAGS="${COVERAGE_CXXFLAGS} ${CXXFLAGS:-}"
-export LDFLAGS="${COVERAGE_LDFLAGS} ${LDFLAGS:-}"
+export CXXFLAGS="${COVERAGE_CXXFLAGS}${CXXFLAGS:+ ${CXXFLAGS}}"
+export LDFLAGS="${COVERAGE_LDFLAGS}${LDFLAGS:+ ${LDFLAGS}}"
 
-log "Using coverage flags:"
-log "  CXXFLAGS=${CXXFLAGS}"
-log "  LDFLAGS=${LDFLAGS}"
+log "CXXFLAGS=${CXXFLAGS}"
+log "LDFLAGS=${LDFLAGS}"
 
+# ---- Clean build dir (requested) ----
+log_section "Clean build directory"
+# Safety: only ever delete the canonical l0test build directory.
+if [[ "${BUILD_DIR}" != "${L0_DIR}/build" ]]; then
+  die "Refusing to clean unexpected build directory. BUILD_DIR='${BUILD_DIR}' L0_DIR='${L0_DIR}'"
+fi
+
+log "rm -rf '${BUILD_DIR}'"
+rm -rf "${BUILD_DIR}"
 mkdir -p "${BUILD_DIR}"
 
-# ---- Configure & build ----
-log "Configuring (Debug) with Ninja generator..."
+# ---- Help l0test CMake find the preferred plugin without changing any CMake files ----
+# l0test/CMakeLists.txt probes:
+#   ${CMAKE_BINARY_DIR}/../AppGateway/libWPEFrameworkAppGateway.so
+# With BUILD_DIR=${L0_DIR}/build that becomes:
+#   ${L0_DIR}/AppGateway/libWPEFrameworkAppGateway.so
+# So if we have a real plugin .so (preferred or fallback), create a symlink there.
+log_section "Prepare Real-plugin link path (optional)"
+if [[ -f "${APPGATEWAY_PLUGIN_SO}" ]]; then
+  mkdir -p "${L0_DIR}/AppGateway"
+  ln -sf "${APPGATEWAY_PLUGIN_SO}" "${L0_DIR}/AppGateway/libWPEFrameworkAppGateway.so"
+  log "Symlinked for CMake probe:"
+  log "  ${L0_DIR}/AppGateway/libWPEFrameworkAppGateway.so -> ${APPGATEWAY_PLUGIN_SO}"
+else
+  warn "Skipping plugin symlink (plugin .so missing)."
+fi
+
+# ---- Configure & build (Ninja, standalone l0test CMake) ----
+log_section "Configure (Ninja) and build"
+log "Configuring with Ninja generator against: ${L0_DIR}"
 cmake -S "${L0_DIR}" -B "${BUILD_DIR}" -G Ninja \
   -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}" \
@@ -119,6 +168,7 @@ log "Building target 'appgateway_l0test' (jobs=${JOBS})..."
 cmake --build "${BUILD_DIR}" --target appgateway_l0test -j "${JOBS}"
 
 # ---- Locate test binary ----
+log_section "Locate test binary"
 CANDIDATES=(
   "${BUILD_DIR}/appgateway_l0test"
   "${BUILD_DIR}/AppGateway/appgateway_l0test"
@@ -140,49 +190,52 @@ if [[ -z "${TEST_BIN}" ]]; then
   fi
 fi
 
-if [[ -z "${TEST_BIN}" ]]; then
-  echo "[run_l0_coverage][ERROR] Test binary 'appgateway_l0test' not found after build." >&2
-  echo "[run_l0_coverage][ERROR] Looked in:" >&2
-  for c in "${CANDIDATES[@]}"; do
-    echo "  - ${c}" >&2
-  done
-  echo "[run_l0_coverage][ERROR] Also searched under: ${BUILD_DIR} (maxdepth 4)" >&2
-  exit 1
-fi
-
+[[ -n "${TEST_BIN}" ]] || die "Test binary 'appgateway_l0test' not found after build (searched maxdepth 4 under ${BUILD_DIR})."
 log "Test binary: ${TEST_BIN}"
 
-# ---- Run tests in 'Real plugin mode' environment (requested env vars) ----
-# Include:
-# - installed libs: $ROOT/dependencies/install/lib
-# - l0test build dir (and possible AppGateway subdir) for runtime-loaded artifacts
+# ---- Run tests (Real plugin mode env) ----
+log_section "Run tests"
+# Ensure runtime can find:
+# - Thunder libs: dependencies/install/lib
+# - l0test build output: build/AppGateway (where the l0test CMake may emit artifacts)
+# - plugin directory (preferred or fallback) to satisfy dynamic loader for the real plugin
+PLUGIN_DIR="$(dirname "${APPGATEWAY_PLUGIN_SO}")"
+
 LD_PATH_EXTRA=(
   "${INSTALL_PREFIX}/lib"
   "${BUILD_DIR}/AppGateway"
   "${BUILD_DIR}"
 )
 
-# Assemble LD_LIBRARY_PATH without introducing trailing ':' if empty
+if [[ -n "${PLUGIN_DIR}" && -d "${PLUGIN_DIR}" ]]; then
+  LD_PATH_EXTRA=( "${PLUGIN_DIR}" "${LD_PATH_EXTRA[@]}" )
+fi
+
 LD_LIBRARY_PATH_COMPOSED="$(IFS=:; echo "${LD_PATH_EXTRA[*]}")"
 if [[ -n "${LD_LIBRARY_PATH:-}" ]]; then
   LD_LIBRARY_PATH_COMPOSED="${LD_LIBRARY_PATH_COMPOSED}:${LD_LIBRARY_PATH}"
 fi
 
-log "Running tests with:"
-log "  LD_LIBRARY_PATH=${LD_LIBRARY_PATH_COMPOSED}"
+log "Environment:"
 log "  APPGATEWAY_RESOLUTIONS_PATH=${RESOLUTIONS_PATH}"
+log "  APPGATEWAY_PLUGIN_SO=${APPGATEWAY_PLUGIN_SO}"
+log "  LD_LIBRARY_PATH=${LD_LIBRARY_PATH_COMPOSED}"
 
 APPGATEWAY_RESOLUTIONS_PATH="${RESOLUTIONS_PATH}" \
+APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO}" \
 LD_LIBRARY_PATH="${LD_LIBRARY_PATH_COMPOSED}" \
 "${TEST_BIN}"
 
-# ---- Coverage generation (requested commands) ----
-log "Capturing coverage (lcov)..."
+# ---- Coverage generation (lcov + genhtml) ----
+log_section "Generate coverage"
+log "Capturing coverage to: ${BUILD_DIR}/coverage.info"
 lcov -c -o "${BUILD_DIR}/coverage.info" -d "${BUILD_DIR}" --ignore-errors empty
 
-log "Generating HTML report (genhtml)..."
-mkdir -p "${ROOT}/coverage"
-genhtml -o "${ROOT}/coverage" "${BUILD_DIR}/coverage.info"
+log "Generating HTML report into: ${COVERAGE_DIR}"
+rm -rf "${COVERAGE_DIR}"
+mkdir -p "${COVERAGE_DIR}"
+genhtml -o "${COVERAGE_DIR}" "${BUILD_DIR}/coverage.info"
 
+log_section "Done"
 log "Coverage report generated:"
-echo "${ROOT}/coverage/index.html"
+echo "${COVERAGE_DIR}/index.html"
