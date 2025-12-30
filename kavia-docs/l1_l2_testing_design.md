@@ -1,212 +1,228 @@
-# L1 and L2 Testing Design for Thunder Plugins and App-Gateway2
+# AppGateway L0/L1/L2 Testing Design
 
-## Introduction
+## Overview
 
-This document details the present approach and a proposed improved strategy for L1 (unit/component) and L2 (integration/system) testing within the codebases covered by Thunder-712, entservices-infra-712, and app-gateway2— with a special focus on Thunder plugins such as OttServices, AppGateway, and similar. It discusses relevant ADRs, includes visual sequence and block diagrams, and provides actionable recommendations for comprehensive test coverage, especially targeting the needs of modern Thunder plugin development.
+This document describes how the `AppGateway` plugin is tested at three levels: L0 (offline and deterministic), L1 (component/unit testing with shared mocks), and L2 (integration-style tests executed through a Thunder/WPEFramework test plugin). It focuses on what is implemented in this repository today, and it uses concrete code references from the existing L0 test harness and the L2 test controller/plugin.
 
----
+The key idea across all levels is to keep tests repeatable by controlling the plugin host environment. For L0, this is done by running the plugin in-process with a custom `IShell`/`ICOMLink` mock. For L2, the repository provides a controller that starts a local `WPEFramework` process and invokes `RUN_ALL_TESTS()` through a dedicated Thunder plugin.
 
-## 1. Current L1 and L2 Testing Approach
+## Architecture
 
-### 1.1 Overall Testing Architecture
+### L0 (offline, in-process)
 
-- **L1 tests** (unit/component): Each plugin or module provides its unit tests (C++ files), residing under respective directories like `Tests/L1Tests/` or `app-gateway/tests/`.
-    - These tests focus on isolated logic, mock dependencies, and method/contract validation.
-    - Tests are built as shared libraries, then linked and executed via runners in a centralized test harness—`entservices-testframework`.
+AppGateway L0 tests live under `app-gateway2/app-gateway/AppGateway/l0test/` and build an `appgateway_l0test` executable. This test binary exercises the AppGateway plugin logic entirely in-process, and it avoids starting a Thunder daemon or creating real network connections.
 
-- **L2 tests** (integration/system): Higher-level tests in `Tests/L2Tests/`, `entservices-testframework/Tests/L2Tests/`, or similar, that:
-    - Exercise real or mocked inter-plugin flows (often via Thunder/WPEFramework RPC).
-    - Start WPEFramework/Thunder, load plugins dynamically (startup .jsons, dynamic activation).
-    - Use mocks and scaffolding libraries provided centrally.
-    - Are orchestrated by tools such as `L2testController` to start the Thunder process, configure plugins, and run parameterized test flows.
+The L0 harness is built around `L0Test::ServiceMock`, which implements:
 
-- **CI/CD**: GitHub workflows or similar (referenced in documentation but often defined externally) drive orchestration across repositories, building test libraries, and executing/aggregating results in a top-level test runner build.
+- `WPEFramework::PluginHost::IShell` so the plugin can call `Initialize()` and `Deinitialize()` normally.
+- `WPEFramework::PluginHost::IShell::ICOMLink` so that `IShell::Root<T>()` calls inside the plugin can resolve into deterministic in-process fakes instead of spawning out-of-process COM-RPC components.
 
-#### Current Visual Overview
+In `app-gateway2/app-gateway/AppGateway/l0test/ServiceMock.h`, `ServiceMock::Instantiate(...)` returns the fakes based on call order, which matches the plugin initialization pattern. The first instantiation returns a `ResolverFake` (implementing `Exchange::IAppGatewayResolver`), and the second returns a `ResponderFake` (implementing `Exchange::IAppGatewayResponder`).
+
+### L1 (unit/component tests with centralized mocks)
+
+This repository includes `app-gateway2/app-gateway/L1_L2_Testing/entservices-testframework/`, which documents the broader RDK approach where gtest/gmock-based stubs are centralized in a shared “testframework” to avoid duplication. The README in this folder explains the intended build job split:
+
+- Build mocks into a `TestMock` library.
+- Build per-repository test shared libraries.
+- Build the testframework executable(s) that link those test libraries.
+
+Within this repo, the most visible, concrete implementations are the L2 controller and L2 test plugin described below. The L0 tests are explicitly not gtest-based, and instead use a minimal custom assertion style.
+
+### L2 (integration-style tests via a Thunder plugin)
+
+L2 tests are orchestrated in two pieces:
+
+- A controller executable: `app-gateway2/app-gateway/L1_L2_Testing/entservices-testframework/Tests/L2Tests/L2testController.cpp`
+- A Thunder test plugin: `app-gateway2/app-gateway/L1_L2_Testing/entservices-testframework/Tests/L2Tests/L2TestsPlugin/L2Tests.cpp`
+
+The controller starts a local `WPEFramework` process using `popen()`, sets up the JSON-RPC access point using the `THUNDER_ACCESS` environment variable, and then invokes the L2Tests plugin method `PerformL2Tests` via `JSONRPC::LinkType`.
+
+The L2Tests plugin registers a JSON-RPC method named `PerformL2Tests` and calls `RUN_ALL_TESTS()` to execute the compiled-in gtest suites. It also supports optional filtering via `::testing::GTEST_FLAG(filter)` when the controller provides a `test_suite_list` field in the request parameters.
+
+### End-to-end view
 
 ```mermaid
 flowchart TD
-    subgraph Codebase
-        A1["Plugin Sources (AppGateway, OttServices, etc)"]
-        A2["L1 Test Sources"]
-        A3["L2 Test Sources"]
-    end
-    A1 --> B1["L1 Shared Test Library"]
-    A1 --> B2["L2 Shared Test Library"]
-    B1 --> C1["entservices-testframework L1 Runner"]
-    B2 --> C2["entservices-testframework L2 Runner"]
-    C2 -->|MockAccessor, Mocks| D1["Mock Thunder Components"]
-    C2 -->|JSONRPC, COMRPC| D2["WPEFramework Thunder (Port 9998)"]
-    E1["Manual/Exploratory Test Scripts (e.g. ociContainerTest.sh)"] --> D2
+  A["Developer or CI"] --> B{"Select test level"}
+
+  B -->|L0| L0A["appgateway_l0test (executable)"]
+  L0A --> L0B["ServiceMock implements IShell + ICOMLink"]
+  L0B --> L0C["Instantiate ResolverFake and ResponderFake"]
+  L0A --> L0D["In-proc JSONRPC dispatcher Invoke('resolve')"]
+
+  B -->|L2| L2A["L2testController (executable)"]
+  L2A --> L2B["Start WPEFramework process (local)"]
+  L2A --> L2C["Set THUNDER_ACCESS to 127.0.0.1:THUNDER_PORT"]
+  L2A --> L2D["Invoke org.rdk.L2Tests.1 PerformL2Tests (JSON-RPC)"]
+  L2D --> L2E["L2Tests plugin calls RUN_ALL_TESTS()"]
 ```
 
-### 1.2 Test Example Coverage
+## Mocking
 
-- **entservices-infra-712:** See ADR and README for details. L1 tests include user, USB, resource manager, etc.—each component has its tests, extensively using GoogleTest/Mock.
-- **AppGateway (app-gateway2):** Unit tests cover internal data structures and helpers (ResolutionStore, RequestRouter, etc.). L2 tests are orchestrated through Thunder JSON-RPC flows and plugin composition.
-- **OttServices:** Has isolated tests around permission cache/file, token retrieval, and gRPC permission client logic.
+### L0 mocking: deterministic fakes via `ServiceMock`
 
-**Note:** Major mocks (device, shell, proxy, permissions clients, etc.) reside centrally to avoid duplication.
+In L0, mocking is implemented by providing a fake host environment rather than by gmock expectations. `L0Test::ServiceMock` controls “what the plugin sees” when it queries interfaces or tries to instantiate its dependencies.
 
-### 1.3 Limitations and Gaps
+The key fakes are:
 
-- L1/L2 test discoveries are split across repos; CI orchestration for aggregating and running is not always locally discoverable.
-- No uniform way to locally execute all L2 flows without testframework.
-- Test coverage for new plugins (e.g., OttServices, AppGateway) sometimes lags behind their evolving feature set (esp. gRPC, JSONRPC flows, and error boundary cases).
-- Plugin startup/autostart behavior complicates L2 isolation (see controller utilities for mass autostart disabling).
----
+- `L0Test::ResolverFake`, which implements `Exchange::IAppGatewayResolver` and `Exchange::IConfiguration`.
+- `L0Test::ResponderFake`, which implements `Exchange::IAppGatewayResponder` and `Exchange::IConfiguration`.
 
-## 2. Proposed Improved L1/L2 Testing Approach
+`ResolverFake::Resolve(...)` implements deterministic behavior based on the requested method name:
 
-### 2.1 Unified, Traceable Test Flows
+- If the method is `"l0.notPermitted"`, it returns `Core::ERROR_PRIVILIGED_REQUEST` and a small JSON error object.
+- If the method is `"l0.notSupported"`, it returns `Core::ERROR_NOT_SUPPORTED`.
+- If the method is `"l0.notAvailable"`, it returns `Core::ERROR_UNAVAILABLE`.
+- Otherwise, it returns `Core::ERROR_NONE` and the JSON literal `null`.
 
-- **Unified Test Runner:** Provide a thin CLI or script in each plugin/repo that invokes the entservices-testframework runners for both L1 and L2 and aggregates results, minimizing the barrier to local runs.
-- **Test Registration by Convention:** All Thunder plugins (including new ones such as OttServices, AppGateway) must register a minimal set of L1 and L2 tests as part of their CMake build—no new plugin merges without these present.
-- **Mock Discovery:** Automatically discover and register needed mocks for new interfaces, to prevent test failures due to missing stubs.
-- **API Contract Tests for JSONRPC:** All plugins must include contract-level integration tests (using 
-Pact or equivalent) for *each* JSONRPC method (with positive, negative, and edge cases).
-- **gRPC/External Service Integration:** For plugins involving gRPC/external endpoints (e.g., OttServices):
-    - Use locally-run mock servers (as seen in Rust/ripple-eos tests and OTT permission service pact tests) for L2 integration.
-    - Orchestrate start/stop and test mocks via L2testController or equivalent in all new test additions.
+`ResponderFake` supports “transport available vs unavailable” behavior via an internal boolean and a helper method `SetTransportEnabled(bool)`. When transport is disabled, responder methods return `Core::ERROR_UNAVAILABLE`, which allows the tests to validate error-path behavior without a real WebSocket connection.
 
-### 2.2 Improved Visibility and Documentation 
+`ServiceMock::Config` allows tests to simulate missing dependencies by controlling whether the resolver and/or responder are provided.
 
-- Each repository's CI should publish human-friendly coverage and test pass/fail reports.
-- Each plugin subfolder should include a `TEST_GUIDE.md` summarizing its L1/L2 coverage, current gaps, and how to extend.
-- Enhance ADRs for all new plugins, embedding architectural diagrams and explicit test strategies (see below for template/structure).
+### L2 mocking: disabling plugin autostart before starting Thunder
 
-### 2.3 Recommendations for Thunder Plugins and New Extensions
+`L2testController.cpp` includes a concrete mitigation for startup ordering and dependency mocking. Before starting Thunder, it scans `./install/etc/WPEFramework/plugins/` and replaces `"autostart":true` with `"autostart":false` for all plugins except `L2Tests.json`. The comment explains why: some plugins perform IARM calls in `Initialize()`, which can crash if the relevant mocks are not ready.
 
-- **AppGateway:** Extend integration test coverage to all registered Firebolt methods; Simulate broken/missing plugin scenarios via the test controller (L2).
-- **OttServices:** Add contract and mocking for permission failures, token expiry, service timeouts, error boundary cases. Simulate real-world gRPC service downtime and permission changes via in-process mocks for L2.
-- **All Plugins:** Must provide at least:
-    - L1: Logic path coverage, mock use of external dependencies, and direct API assertions.
-    - L2: RPC, JSON-RPC, gRPC integration, failover, and recovery flows.
-    - Manual test scripts for edge cases not practical to automate.
-- **Test Automation for Start/Stop/Recovery:** Automated tests for Thunder plugin load/unload, autostart on/off, and OOP remote deactivation, using orchestrators.
+This is part of the L2 orchestration “mocking story”: L2 is still meant to be testable in a controlled environment, but instead of a single in-proc fake host (L0), the environment is controlled by configuring which plugins start and when.
 
----
+## Testing Scenarios
 
-## 3. ADRs: Architecture Decision Records
+### L0 scenarios (examples based on current tests)
 
-### ADR: Centralized Shared Mocks and Out-of-Repo Test Runners
+The following scenarios are directly represented by the current L0 tests and harness behavior:
 
-**Context:** Supporting multiple plugins across many repos with evolving interfaces (incl. Thunder plugins, gRPC services).
+- Plugin lifecycle success. `Initialize()` returns an empty string on success and `Deinitialize()` can be called cleanly afterwards.
+- JSON-RPC registration and unregistration. After `Initialize()`, an `IDispatcher` can invoke `"resolve"` successfully; after `Deinitialize()`, invoking `"resolve"` should fail (typically `ERROR_UNKNOWN_METHOD`).
+- Error-path coverage without external dependencies. By using `ResolverFake`, L0 tests can validate error returns like `ERROR_NOT_SUPPORTED` or `ERROR_UNAVAILABLE` deterministically.
+- Malformed or missing JSON parameters. L0 tests call the dispatcher’s `Invoke(...)` and validate `ERROR_BAD_REQUEST` for invalid inputs (as described in the L0 overview documentation and supported by the l0test test suite structure).
+- Missing resolver/responder dependency. If the resolver is not provided, the plugin cannot register the `"resolve"` method, and invoking it returns `ERROR_UNKNOWN_METHOD`.
 
-**Decision:** Shared test mocks and runners are centralized (entservices-testframework), not duplicated in each page/plugin repo. Plugins supply only test logic and integration scripts.
+### L2 scenarios (examples based on current controller + plugin implementation)
 
-**Alternatives:**
-- Duplication of mocks (rejected due to maintenance burden).
-- Standalone in-repo runners (limited cross-repo integration).
+At L2, the key scenario is “start Thunder, run gtest suites, collect results”:
 
-**Consequences:**
-- Streamlined maintenance, but higher entry barrier for single-repo/local execution.
-- Central dependency on testframework for all test orchestration.
+- Start the local Thunder process (WPEFramework).
+- Set the JSON-RPC access location via `THUNDER_ACCESS` to `127.0.0.1:<THUNDER_PORT>`.
+- Invoke the test plugin method `PerformL2Tests` using JSON-RPC.
+- Optionally provide a filter string so only certain suites run.
+- Collect results from gtest JSON output.
 
----
+Because the L2Tests plugin supports `test_suite_list`, the controller can run one or more suites by building a filter string like `"SuiteA*:SuiteB*"` and sending it in the JSON-RPC parameters.
 
-### ADR: Mandatory L1/L2 Hooks for All New Thunder Plugins
+## Pros/Cons
 
-**Context:** With plugins such as OttServices, AppGateway, and future Thunder extensions, testing must evolve to match complexity, including new RPCs, JSONRPCs, and integration points.
+### L0
 
-**Decision:** All plugins must declare and export minimal L1 and L2 test entrypoints and provide stubs/mocks for all new external/cross-service integrations. New feature branches/migrations must pass full L1/L2 with mocks and non-mocks before review/acceptance.
+L0 is the fastest and most deterministic test level in this repository. Because it runs entirely in-process, it is suitable for rapid iteration and for validating return codes and registration semantics without worrying about process start/stop or network access.
 
-**Alternatives:**
-- Selective/manual test extension for new features (risks coverage gaps).
-- Restrict all L2 testing to synthetic/mock; run real integrations through staging only (reduces real-world safety).
+The main trade-off is that L0 does not test the real runtime environment. It validates AppGateway behavior against deterministic fakes, so it can miss issues that only occur when the real Thunder process is running, when plugins are activated/deactivated, or when process-level configuration and startup ordering come into play.
 
-**Consequences:**
-- Higher immediate investment per new plugin, but much more robust release integration and test reliability.
-- More visible coverage reporting.
+### L1
 
----
+The shared-testframework approach (as described in the `entservices-testframework` README) reduces duplication of mocks and makes it easier to keep mock interfaces consistent across many plugins and repositories. It also aligns with typical gtest/gmock workflows, including richer assertions and expectations.
 
-## 4. Block and Sequence Diagrams
+The downside of centralization is that local discovery and execution can be less straightforward. Developers often need to understand how the testframework builds and links per-repo test libraries, and how CI orchestrates the combined build.
 
-### Block Diagram: Improved Test Execution Flow
+### L2
 
-```mermaid
-flowchart TB
-    subgraph Developer Host
-        F1["L1 Test Executable (per plugin)"]
-        F2["L2 Test Executable (per repo)"]
-        F0["Thin Run Wrapper (per repo)"]
-    end
-    F0 --> F1
-    F0 --> F2
-    F2 -->|Boot + provision| G1["Thunder/WPEFramework (local, port 9998)"]
-    F1 -->|Mocks| H1["entservices-testframework"]
-    F2 -->|Mocks| H1
-    F2 -->|gRPC test double| J1["gRPC MockServer (OttServices etc.)"]
-    F1 -->|Stubs| K1["Plugin/unit stubs"]
-    F2 -->|Full integration| L2["Real External Services (optional, selective)"]
-    H1 -->|Coverage| M1["Coverage Reports/Upload"]
+L2 provides an integration-style execution model that is closer to how plugins are exercised in real deployments: it starts a Thunder runtime and runs tests through a Thunder plugin interface. This is particularly valuable for catching issues that depend on runtime configuration, plugin startup ordering, and JSON-RPC integration.
+
+The trade-offs are cost and complexity. L2 runs slower than L0, relies on process orchestration, and requires careful environment isolation (for example, toggling autostart off for other plugins to avoid crashes during initialization).
+
+## Example Code
+
+### L0: building JSON-RPC parameters and calling `resolve`
+
+The L0 test `AppGateway_Init_DeinitTests.cpp` builds a JSON parameter string for `resolve` and invokes it via `PluginHost::IDispatcher`:
+
+```cpp
+static std::string ResolveParamsJson(const std::string& method, const std::string& params = "{}")
+{
+    return std::string("{")
+        + "\"requestId\": 1001,"
+        + "\"connectionId\": 10,"
+        + "\"appId\": \"com.example.test\","
+        + "\"origin\": \"org.rdk.AppGateway\","
+        + "\"method\": \"" + method + "\","
+        + "\"params\": \"" + params + "\""
+        + "}";
+}
 ```
 
-### Sequence Diagram: L2 Test on AppGateway Plugin
+It then invokes the registered JSON-RPC method:
 
-```mermaid
-sequenceDiagram
-    participant TestController
-    participant Thunder
-    participant AppGatewayPlugin
-    participant MockPeripheral/Service
-    TestController->>Thunder: Start process (WPEFramework)
-    Thunder->>AppGatewayPlugin: Load via config/autostart
-    TestController->>AppGatewayPlugin: JSON-RPC request (Firebolt method)
-    AppGatewayPlugin->>MockPeripheral/Service: Outbound call or data access
-    MockPeripheral/Service-->>AppGatewayPlugin: Mocked response or fault
-    AppGatewayPlugin-->>TestController: JSON-RPC reply
-    TestController->>Thunder: Stop process
+```cpp
+auto dispatcher = ps.plugin->QueryInterface<IDispatcher>();
+std::string jsonResponse;
+const std::string paramsJson = ResolveParamsJson("dummy.method", "{}");
+const uint32_t rc = dispatcher->Invoke(nullptr, 0, 0, "", "resolve", paramsJson, jsonResponse);
 ```
 
----
+### L0: simulating missing resolver/responder
 
-## 5. Recommendations for Advancing L1/L2 Test Coverage
+The L0 overview documentation includes a concrete example of disabling both resolver and responder provisioning so that `Initialize()` fails and `"resolve"` is not registered:
 
-### For OttServices, AppGateway, and Similar Thunder Plugins
+```cpp
+PluginAndService ps{ L0Test::ServiceMock::Config(false, false) };
+const std::string rc = ps.plugin->Initialize(ps.service);
+// Later: dispatcher->Invoke(..., "resolve", ...) -> ERROR_UNKNOWN_METHOD
+```
 
-#### L1 (Unit/Component) Testing:
+This behavior is implemented by `ServiceMock::Instantiate(...)` returning `nullptr` for the expected dependency instantiations.
 
-- Isolate all business logic from RPC bindings; ensure pure logic classes can be tested with simple mocks.
-- For OttServices: Thoroughly test permission cache, token retrieval, gRPC fallback behaviors—validate all error cases in the PermissionsClient and TokenClient logic.
-- For AppGateway: Validate all resolver logic, overlay/merging, and any platform delegation or request routing code.
+### L2: invoking the L2Tests plugin and applying a gtest filter
 
-#### L2 (Integration/System) Testing:
+The L2Tests plugin registers `"PerformL2Tests"` and supports a `test_suite_list` parameter:
 
-- Expand tests to simulate both local (mock) and real (process-bound) Thunder plugin interaction:
-    - Use L2testController utility for robust process orchestration, plugin startup/teardown, and dynamic test selection.
-    - For OttServices: Use gRPC mocks or contract-pact flows to validate JSONRPC and permission methods across connectivity, network, and service-unavailable scenarios.
-    - For AppGateway: Explicitly add tests covering double-resolution, request router fallbacks, plugin callsign mismatches, and configuration reloads.
+```cpp
+if (parameters.HasLabel("test_suite_list")) {
+    const std::string& message = parameters["test_suite_list"].String();
+    ::testing::GTEST_FLAG(filter) = message;
+}
+status = RUN_ALL_TESTS();
+```
 
-#### Cross-repo/System Recommendations:
+The controller builds the filter based on CLI arguments and forwards it through JSON-RPC:
 
-- Document plugin and test interdependencies clearly; provide version compatibility matrix in CI logs.
-- Maintain central mocks and test assets up to date with all new feature introductions.
-- Automate checks for required test entrypoints and coverage reports on all plugin merges.
+```cpp
+if (argc > 1) {
+    message = std::string(argv[1]) + std::string("*");
+    while (arguments < argc) {
+        message = (message + std::string(":") + std::string(argv[arguments]) + std::string("*"));
+        arguments++;
+    }
+    params["test_suite_list"] = message;
+}
+status = L2testobj->PerformL2Tests(params, result);
+```
 
----
+## Artifacts
 
-## 6. Next Steps and High Impact Actions
+### L0 artifacts
 
-- Publish usage documentation and local test runner scripts (or wrappers) in each plugin repo for single-command L1/L2 runs.
-- Encourage contract testing for every new RPC/JSON_RPC method in Thunder plugins, using tools like Pact (e.g. `ripple-eos/tests` patterns) with stubs/mocks.
-- Establish automated CI jobs to run all L1 and L2 tests, aggregate/pass/fail, and report coverage for both isolated logic (L1) and full-system integration (L2).
-- Incrementally improve L2 coverage for Thunder plugin edge cases (autostart, fail/restart, network fault, etc.)—especially as plugins like OttServices expand their integration footprint.
-- Require that all new Thunder plugin features be accompanied by corresponding new L1 and L2 test logic in their merges.
+L0 tests support coverage collection using `lcov` and HTML report generation via `genhtml`. The L0 README describes a common output flow:
 
----
+- `coverage.info` generated by `lcov -c ...`
+- HTML report generated under a `coverage/` folder by `genhtml -o coverage coverage.info`
 
-## 7. References
+The L0 test harness also supports an environment variable `APPGATEWAY_RESOLUTIONS_PATH` (read via `getenv()` in the L0 tests) to point the tests at a real resolution JSON file when exercising resolution-loading behavior.
 
-- [entservices-infra-712/docs/adr/20251215-adr-l1-l2-testing-entservices-infra-712.md](../../entservices-infra-712/docs/adr/20251215-adr-l1-l2-testing-entservices-infra-712.md)
-- [app-gateway2/app-gateway/L1_L2_Testing/entservices-testframework/README.md](../app-gateway2/app-gateway/L1_L2_Testing/entservices-testframework/README.md)
-- OttServices: `OttServices.h`, `OttServicesImplementation.h`, `PermissionsClient.h`, tests in `tests/`
-- AppGateway: `ResolutionStore.h`, `RequestRouter.h`, `tests/test_appgateway.cpp`
-- Test orchestrators: `L2testController.h`, `L2testController.cpp`
-- Ripple-eos: Pact-based test implementations for advanced L2 scenarios
+### L2 artifacts
 
----
+When starting Thunder, `L2testController.cpp` exports:
 
-**This document should serve as an evolving centerpoint for L1/L2 testing design and readiness across current and future Thunder plugins and the broader enterprise codebase.**
+- `GTEST_OUTPUT="json:$PWD/rdkL2TestResults.json"`
 
+This means the L2 run is expected to emit a gtest JSON report named `rdkL2TestResults.json` in the current working directory of the controller process. This output is useful for CI parsing and for post-processing results outside the Thunder logs.
+
+## References
+
+- [AppGateway l0test README](../app-gateway/AppGateway/l0test/README.md)
+- [AppGateway l0test overview](../app-gateway/AppGateway/l0test/docs/l0test-overview.md)
+- [L0 ServiceMock and fakes](../app-gateway/AppGateway/l0test/ServiceMock.h)
+- [L0 init/deinit test example](../app-gateway/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp)
+- [entservices-testframework README](../app-gateway/L1_L2_Testing/entservices-testframework/README.md)
+- [L2 test controller](../app-gateway/L1_L2_Testing/entservices-testframework/Tests/L2Tests/L2testController.cpp)
+- [L2Tests plugin implementation](../app-gateway/L1_L2_Testing/entservices-testframework/Tests/L2Tests/L2TestsPlugin/L2Tests.cpp)
+- [L2Tests plugin header](../app-gateway/L1_L2_Testing/entservices-testframework/Tests/L2Tests/L2TestsPlugin/L2Tests.h)
