@@ -1,0 +1,69 @@
+L0 coverage run result: FAIL
+
+Script: app-gateway2/AppGateway/l0test/run_l0_coverage.sh
+Timestamp: 2026-01-02
+
+Repo root (ROOT):
+  /home/kavia/workspace/code-generation
+
+Install prefix (PREFIX):
+  /home/kavia/workspace/code-generation/dependencies/install
+
+Plugin .so used by script:
+  /home/kavia/workspace/code-generation/build/app-gateway/AppGateway/libWPEFrameworkAppGateway.so
+
+Failure stage:
+  Build (Ninja) of target appgateway_l0test
+
+Primary blocking errors observed:
+  1) Missing header:
+     - fatal error: ContextUtils.h: No such file or directory
+       seen in:
+         - AppGatewayTest.cpp
+         - ContextUtils_ConversionTests.cpp
+         - AppGatewayImplementation.h (included by Resolver_Configure_And_ResolveTests.cpp)
+
+  2) Thunder/WPEFramework stub/header incompatibilities (non-exhaustive, follow-on after above):
+     - RPC namespace/type not found for:
+         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+     - Interface-map macros not defined at point of use:
+         BEGIN_INTERFACE_MAP / INTERFACE_ENTRY / INTERFACE_AGGREGATE / END_INTERFACE_MAP
+       (log notes END_INTERFACE_MAP defined later in WPEFramework/plugins/IShell.h)
+     - PluginHost::IPlugin in current headers missing expected members used in tests:
+         Initialize / Deinitialize
+     - Numerous override signature mismatches and string type resolution errors in ServiceMock.h.
+
+Include paths used by compilation (excerpt):
+  -I.../app-gateway2/AppGateway/l0test
+  -I.../app-gateway2/AppGateway
+  -I.../app-gateway2/helpers
+  -I.../app-gateway2/interfaces
+  -I.../app-gateway2/interfaces/json
+  -I/home/kavia/workspace/code-generation/dependencies/install/include
+  -I/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework
+
+Install prefix contents relevant to includes/libs:
+  Includes present under PREFIX/include/WPEFramework (excerpt):
+    - plugins/Module.h
+    - plugins/IShell.h
+    - plugins/JSONRPC.h
+    - plugins/IDispatcher.h
+    - core/core.h
+    - com/IIteratorType.h
+    - interfaces/IAppGateway.h
+  ContextUtils.h:
+    - Not found under PREFIX/include
+
+  Libs present under PREFIX/lib/plugins:
+    - libWPEFrameworkAppGateway.so
+    - libWPEFrameworkFbCommon.so
+    - libWPEFrameworkFbSettings.so
+
+CMake warnings about libs not found via find_library:
+  - WPEFrameworkCore/ThunderCore not found via find_library; ensure PREFIX is correct.
+  - WPEFrameworkMessaging/ThunderMessaging not found via find_library; ensure PREFIX is correct.
+  - WPEFrameworkPlugins/ThunderPlugins not found via find_library; ensure PREFIX is correct.
+
+Captured logs:
+  - /tmp/appgateway_l0_coverage_run.log
+  - /tmp/appgateway_l0_coverage_run.log.strings.txt
