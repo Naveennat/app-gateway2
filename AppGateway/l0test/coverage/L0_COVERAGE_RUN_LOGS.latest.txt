@@ -36,93 +36,93 @@
 -- Generating done (0.0s)
 -- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build
 [run_l0_coverage] Building target 'appgateway_l0test' (jobs=16)...
-[1/7] Building CXX object CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o
-FAILED: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o 
-/usr/bin/c++ -DMODULE_NAME=AppGateway_L0Test -I/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test -I/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/.. -I/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../.. -I/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../../helpers -I/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../../../Supporting_Files -I/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../../Supporting_Files -I/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../../interfaces -I/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../../interfaces/json -I/home/kavia/workspace/code-generation/dependencies/install/include -I/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework --coverage -O0 -g -O0 -g --coverage -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp
-In file included from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:26,
-                 from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
-                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../Module.h:25,
-                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../AppGatewayImplementation.h:22,
-                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:13:
-/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
-   50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
-      |                                   ^~~~~~
-/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
-   53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
-      |                          ^~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:191:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  191 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                                                                         ^
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:191:73: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp: In constructor ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:193:56: error: template argument 1 is invalid
-  193 |         , plugin(WPEFramework::Core::Service<AppGateway>::Create<IPlugin>()) {
-      |                                                        ^
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:193:73: error: expected primary-expression before ‘>’ token
-  193 |         , plugin(WPEFramework::Core::Service<AppGateway>::Create<IPlugin>()) {
-      |                                                                         ^
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:193:75: error: expected primary-expression before ‘)’ token
-  193 |         , plugin(WPEFramework::Core::Service<AppGateway>::Create<IPlugin>()) {
-      |                                                                           ^
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp: In function ‘uint32_t Test_Resolver_Configure_WithBaseOnly_LoadsOK()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:208:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  208 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:208:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:191:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-  191 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp: At global scope:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:42:13: warning: ‘void {anonymous}::ExpectNotEmpty(TestResult&, const std::string&, const std::string&)’ defined but not used [-Wunused-function]
-   42 | static void ExpectNotEmpty(TestResult& tr, const std::string& s, const std::string& what) {
-      |             ^~~~~~~~~~~~~~
-[2/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGateway_JsonRpcResolveTests.cpp.o
-In file included from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:6:
+[1/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGateway_Init_DeinitTests.cpp.o
+In file included from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:6:
 /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
    50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
       |                                   ^~~~~~
 In file included from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
                  from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../Module.h:25,
                  from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../AppGateway.h:21,
-                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:8:
+                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:8:
 /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
    53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
       |                          ^~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                                                                         ^
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:73: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_HappyPath_JSONRPC()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:140:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  140 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:73: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Initialize_WithValidConfig_Succeeds()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:93:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+   93 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:140:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:93:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_MissingFields_BadRequest()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:167:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  167 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Initialize_Twice_Idempotent()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:122:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  122 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:167:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:122:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ParamsEmpty_DefaultsToEmptyObject()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:225:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  225 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Deinitialize_Twice_NoCrash()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:149:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  149 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:225:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:149:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ImplementationError_Propagates()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:253:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  253 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_JsonRpc_Registration_And_Unregistration()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:168:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  168 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:253:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:168:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+[2/7] Building CXX object CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o
+In file included from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:6:
+/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
+   50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
+      |                                   ^~~~~~
+In file included from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
+                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../Module.h:25,
+                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../AppGateway.h:21,
+                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:8:
+/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
+   53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
+      |                          ^~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+   67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                                                                         ^
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:73: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp: In function ‘uint32_t Test_Json_Boundary_RequestId_ConnectionId()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:201:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  201 |     PluginAndService ps;
+      |                      ^~
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:201:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp: In function ‘uint32_t Test_Json_Params_Empty_Equals_EmptyObject()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:246:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  246 |     PluginAndService ps;
+      |                      ^~
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:246:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp: In function ‘uint32_t Test_Json_EmptyAppId_BadRequest()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:283:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  283 |     PluginAndService ps;
+      |                      ^~
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:283:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 [3/7] Building CXX object CMakeFiles/appgateway_l0test.dir/Responder_BehaviorTests.cpp.o
 In file included from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:26,
@@ -180,93 +180,68 @@ In file included from /home/kavia/workspace/code-generation/dependencies/install
 /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Responder_BehaviorTests.cpp:46:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
    46 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-[4/7] Building CXX object CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o
-In file included from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:6:
+[4/7] Building CXX object CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o
+In file included from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:26,
+                 from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
+                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../Module.h:25,
+                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../AppGatewayImplementation.h:22,
+                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:13:
+/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
+   50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
+      |                                   ^~~~~~
+/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
+   53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
+      |                          ^~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:42:13: warning: ‘void {anonymous}::ExpectNotEmpty(TestResult&, const std::string&, const std::string&)’ defined but not used [-Wunused-function]
+   42 | static void ExpectNotEmpty(TestResult& tr, const std::string& s, const std::string& what) {
+      |             ^~~~~~~~~~~~~~
+[5/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGateway_JsonRpcResolveTests.cpp.o
+In file included from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:6:
 /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
    50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
       |                                   ^~~~~~
 In file included from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
                  from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../Module.h:25,
                  from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../AppGateway.h:21,
-                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:8:
+                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:8:
 /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
    53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
       |                          ^~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-   67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                                                                         ^
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:73: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp: In function ‘uint32_t Test_Json_Boundary_RequestId_ConnectionId()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:201:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  201 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:73: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_HappyPath_JSONRPC()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:140:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  140 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:201:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:140:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp: In function ‘uint32_t Test_Json_Params_Empty_Equals_EmptyObject()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:246:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  246 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_MissingFields_BadRequest()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:167:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  167 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:246:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:167:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp: In function ‘uint32_t Test_Json_EmptyAppId_BadRequest()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:283:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  283 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ParamsEmpty_DefaultsToEmptyObject()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:225:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  225 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:283:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/ContextUtils_ConversionTests.cpp:67:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:225:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-[5/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGateway_Init_DeinitTests.cpp.o
-In file included from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:6:
-/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
-   50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
-      |                                   ^~~~~~
-In file included from /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
-                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../Module.h:25,
-                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/../AppGateway.h:21,
-                 from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:8:
-/home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
-   53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
-      |                          ^~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                                                                         ^
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:73: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Initialize_WithValidConfig_Succeeds()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:93:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-   93 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ImplementationError_Propagates()’:
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:253:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  253 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:93:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Initialize_Twice_Idempotent()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:122:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  122 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:122:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Deinitialize_Twice_NoCrash()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:149:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  149 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:149:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_JsonRpc_Registration_And_Unregistration()’:
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:168:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  168 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:168:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:253:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 [6/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGatewayTest.cpp.o
 In file included from /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGatewayTest.cpp:5:
@@ -340,4 +315,16 @@ In file included from /home/kavia/workspace/code-generation/dependencies/install
 /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/AppGatewayTest.cpp:241:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
   241 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+[7/7] Linking CXX executable appgateway_l0test
+FAILED: appgateway_l0test 
+: && /usr/bin/c++ --coverage -O0 -g --coverage    --coverage CMakeFiles/appgateway_l0test.dir/AppGatewayTest.cpp.o CMakeFiles/appgateway_l0test.dir/AppGateway_Init_DeinitTests.cpp.o CMakeFiles/appgateway_l0test.dir/AppGateway_JsonRpcResolveTests.cpp.o CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o CMakeFiles/appgateway_l0test.dir/Responder_BehaviorTests.cpp.o CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o -o appgateway_l0test -L/home/kavia/workspace/code-generation/dependencies/install/lib -Wl,-rpath,"\$ORIGIN:/home/kavia/workspace/code-generation/dependencies/install/lib:/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/../AppGateway"  /home/kavia/workspace/code-generation/dependencies/install/lib/libWPEFrameworkCore.so  /home/kavia/workspace/code-generation/dependencies/install/lib/libWPEFrameworkMessaging.so  /home/kavia/workspace/code-generation/dependencies/install/lib/libWPEFrameworkPlugins.so  -lm  -ldl  ../AppGateway/libWPEFrameworkAppGateway.so && :
+/usr/bin/ld: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o: in function `Test_Resolver_Configure_WithOverride_TakesPrecedence()':
+/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:246:(.text+0x32f9): undefined reference to `WPEFramework::Plugin::Resolver::Resolver(WPEFramework::PluginHost::IShell*)'
+/usr/bin/ld: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o:(.data.rel.ro._ZTVN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE[_ZTVN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE]+0x60): undefined reference to `WPEFramework::Plugin::AppGatewayImplementation::Configure(WPEFramework::RPC::IIteratorType<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, 5u>* const&)'
+/usr/bin/ld: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o:(.data.rel.ro._ZTVN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE[_ZTVN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE]+0x68): undefined reference to `WPEFramework::Plugin::AppGatewayImplementation::Resolve(WPEFramework::Exchange::GatewayContext const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)'
+/usr/bin/ld: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o:(.data.rel.ro._ZTCN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE0_S5_[_ZTVN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE]+0x60): undefined reference to `WPEFramework::Plugin::AppGatewayImplementation::Configure(WPEFramework::RPC::IIteratorType<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, 5u>* const&)'
+/usr/bin/ld: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o:(.data.rel.ro._ZTCN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE0_S5_[_ZTVN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE]+0x68): undefined reference to `WPEFramework::Plugin::AppGatewayImplementation::Resolve(WPEFramework::Exchange::GatewayContext const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)'
+/usr/bin/ld: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o:(.data.rel.ro._ZTCN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE0_S4_[_ZTVN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE]+0x60): undefined reference to `WPEFramework::Plugin::AppGatewayImplementation::Configure(WPEFramework::RPC::IIteratorType<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, 5u>* const&)'
+/usr/bin/ld: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o:(.data.rel.ro._ZTCN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE0_S4_[_ZTVN12WPEFramework4Core11ProxyObjectINS0_7ServiceINS_6Plugin24AppGatewayImplementationEEEEE]+0x68): undefined reference to `WPEFramework::Plugin::AppGatewayImplementation::Resolve(WPEFramework::Exchange::GatewayContext const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)'
+collect2: error: ld returned 1 exit status
 ninja: build stopped: subcommand failed.
