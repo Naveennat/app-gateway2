@@ -1,4 +1,0 @@
-autostart = "@PLUGIN_FBCOMMON_AUTOSTART@"
-precondition = ["Platform"]
-callsign = "org.rdk.FbCommon"
-startuporder = "@PLUGIN_FBCOMMON_STARTUPORDER@"

@@ -1,4 +1,0 @@
-precondition = ["Platform"]
-callsign = "org.rdk.FbDiscovery"
-autostart = "@PLUGIN_FBDISCOVERY_AUTOSTART@"
-startuporder = "@PLUGIN_FBDISCOVERY_STARTUPORDER@"
