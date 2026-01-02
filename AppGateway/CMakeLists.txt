@@ -1,0 +1,212 @@
+# If not stated otherwise in this file or this component's license file the
+# following copyright and licenses apply:
+#
+# Copyright 2020 RDK Management
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+set(PLUGIN_NAME AppGateway)
+set(MODULE_NAME ${NAMESPACE}${PLUGIN_NAME})
+
+set(VERSION_MAJOR 1)
+set(VERSION_MINOR 0)
+set(VERSION_PATCH 0)
+
+add_compile_definitions(APPGATEWAY_MAJOR_VERSION=${VERSION_MAJOR})
+add_compile_definitions(APPGATEWAY_MINOR_VERSION=${VERSION_MINOR})
+add_compile_definitions(APPGATEWAY_PATCH_VERSION=${VERSION_PATCH})
+
+set(MODULE_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
+
+set(PLUGIN_APPGATEWAY_STARTUPORDER "" CACHE STRING "To configure startup order of AppGateway plugin")
+set(PLUGIN_APPGATEWAY_AUTOSTART "false" CACHE STRING "Automatically start AppGateway plugin")
+
+message("Setup ${MODULE_NAME} v${MODULE_VERSION}")
+
+find_package(${NAMESPACE}Plugins REQUIRED)
+find_package(${NAMESPACE}Definitions REQUIRED)
+find_package(${NAMESPACE}Core REQUIRED)
+find_package(CompileSettingsDebug CONFIG REQUIRED)
+
+add_library(${MODULE_NAME} SHARED
+        AppGateway.cpp
+        AppGatewayImplementation.cpp
+        AppGatewayResponderImplementation.cpp
+        Resolver.cpp
+        Module.cpp)
+
+# Ensure local helpers and resolutions are on the include path
+target_include_directories(${MODULE_NAME} PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/../helpers
+        ${CMAKE_CURRENT_SOURCE_DIR}/resolutions)
+
+# Include shared Supporting_Files for common utilities like ContextUtils.h
+if(EXISTS ${CMAKE_SOURCE_DIR}/../Supporting_Files)
+    target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../Supporting_Files)
+endif()
+
+# Also search in repository-level dependencies helpers if present (for shared headers)
+if(EXISTS ${CMAKE_SOURCE_DIR}/../entservices-infra-712/helpers)
+    target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../entservices-infra-712/helpers)
+endif()
+
+# Add Thunder include directories explicitly if package config did not propagate
+# This helps resolve <interfaces/...> headers like IAppGateway.h
+if(CMAKE_PREFIX_PATH)
+    target_include_directories(${MODULE_NAME} PRIVATE
+        ${CMAKE_PREFIX_PATH}/include
+        ${CMAKE_PREFIX_PATH}/include/WPEFramework
+        ${CMAKE_PREFIX_PATH}/include/WPEFramework/interfaces
+        ${CMAKE_PREFIX_PATH}/include/interfaces)
+endif()
+# Prefer our local helpers by adding it again at the end of the include search list
+target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../helpers)
+
+# If a local interfaces folder exists in this repo, include it as well
+if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/../interfaces)
+    target_include_directories(${MODULE_NAME} PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/../interfaces
+        ${CMAKE_CURRENT_LIST_DIR}/..) # so <interfaces/...> works
+endif()
+
+set_target_properties(${MODULE_NAME} PROPERTIES
+        CXX_STANDARD 11
+        CXX_STANDARD_REQUIRED YES)
+
+target_compile_definitions(${MODULE_NAME} PRIVATE MODULE_NAME=Plugin_${PLUGIN_NAME})
+
+# Add platform-specific paths
+if(BUILD_CONFIG_PATH)
+        target_compile_definitions(${MODULE_NAME} PRIVATE BUILD_CONFIG_PATH="${BUILD_CONFIG_PATH}")
+endif()
+
+if(VENDOR_CONFIG_PATH)
+        target_compile_definitions(${MODULE_NAME} PRIVATE VENDOR_CONFIG_PATH="${VENDOR_CONFIG_PATH}")
+endif()
+
+# Add App Gateway Automation definitions if enabled
+if(ENABLE_APP_GATEWAY_AUTOMATION)
+    target_compile_definitions(${MODULE_NAME} PRIVATE ENABLE_APP_GATEWAY_AUTOMATION)
+    if(AUTOMATION_APP_ID)
+        target_compile_definitions(${MODULE_NAME} PRIVATE AUTOMATION_APP_ID=${AUTOMATION_APP_ID})
+    endif()
+    if(APP_GATEWAY_ENHANCED_LOGGING_INDICATOR)
+        target_compile_definitions(${MODULE_NAME} PRIVATE APP_GATEWAY_ENHANCED_LOGGING_INDICATOR=${APP_GATEWAY_ENHANCED_LOGGING_INDICATOR})
+    endif()
+endif()
+
+target_link_libraries(${MODULE_NAME}
+        PRIVATE
+        CompileSettingsDebug::CompileSettingsDebug
+        ${NAMESPACE}Plugins::${NAMESPACE}Plugins
+        ${NAMESPACE}Definitions::${NAMESPACE}Definitions
+        ${NAMESPACE}Core::${NAMESPACE}Core
+)
+
+# Link Tracing if available in this Thunder installation
+if(TARGET ${NAMESPACE}Tracing::${NAMESPACE}Tracing)
+    target_link_libraries(${MODULE_NAME} PRIVATE ${NAMESPACE}Tracing::${NAMESPACE}Tracing)
+endif()
+
+# If the Interfaces target exists, link it as well (used by IAppGateway et al.)
+if(TARGET ${NAMESPACE}Interfaces::${NAMESPACE}Interfaces)
+    target_link_libraries(${MODULE_NAME} PRIVATE ${NAMESPACE}Interfaces::${NAMESPACE}Interfaces)
+endif()
+
+# To error any missing links
+target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
+
+install(TARGETS ${MODULE_NAME}
+        DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
+
+# Install configs under the install prefix to avoid root-only /etc writes in CI
+set(APP_GATEWAY_INSTALL_ETC_DIR "${CMAKE_INSTALL_PREFIX}/etc/app-gateway")
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/resolution.base.json
+        DESTINATION "${APP_GATEWAY_INSTALL_ETC_DIR}")
+
+write_config(PLUGINS ${PLUGIN_NAME})
+
+# -----------------------------------------------------------------------------
+# appgateway_l0test target (offline, deterministic l0 test binary)
+# -----------------------------------------------------------------------------
+set(L0TEST_NAME appgateway_l0test)
+
+add_executable(${L0TEST_NAME})
+target_sources(${L0TEST_NAME}
+    PRIVATE
+        l0test/AppGatewayTest.cpp
+        l0test/AppGateway_Init_DeinitTests.cpp
+        l0test/AppGateway_JsonRpcResolveTests.cpp
+        l0test/Resolver_Configure_And_ResolveTests.cpp
+        l0test/Responder_BehaviorTests.cpp
+        l0test/ContextUtils_ConversionTests.cpp
+)
+
+# Include directories for test build
+target_include_directories(${L0TEST_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}                  # AppGateway/
+        ${CMAKE_CURRENT_SOURCE_DIR}/..              # app-gateway/ (so <interfaces/...> can resolve to local stubs)
+        ${CMAKE_CURRENT_SOURCE_DIR}/../helpers
+        ${CMAKE_CURRENT_SOURCE_DIR}/resolutions
+        ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces
+)
+
+# Supporting_Files (ContextUtils.h, etc.)
+if(EXISTS ${CMAKE_SOURCE_DIR}/../Supporting_Files)
+    target_include_directories(${L0TEST_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../Supporting_Files)
+endif()
+
+# Thunder include fallbacks from CMAKE_PREFIX_PATH (if set by invoker)
+if(CMAKE_PREFIX_PATH)
+    target_include_directories(${L0TEST_NAME} PRIVATE
+        ${CMAKE_PREFIX_PATH}/include
+        ${CMAKE_PREFIX_PATH}/include/WPEFramework
+        ${CMAKE_PREFIX_PATH}/include/WPEFramework/interfaces
+        ${CMAKE_PREFIX_PATH}/include/interfaces
+    )
+endif()
+
+# Link against the built AppGateway plugin and Thunder components
+target_link_libraries(${L0TEST_NAME}
+    PRIVATE
+        ${MODULE_NAME}
+        ${NAMESPACE}Plugins::${NAMESPACE}Plugins
+        ${NAMESPACE}Core::${NAMESPACE}Core
+        ${NAMESPACE}Definitions::${NAMESPACE}Definitions
+)
+
+# Define MODULE_NAME for WPEFramework logging/core macros in the test binary
+target_compile_definitions(${L0TEST_NAME} PRIVATE MODULE_NAME=AppGateway_L0Test)
+
+# Coverage flags (GCC/Clang) on the test target only
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(${L0TEST_NAME} PRIVATE -O0 -g --coverage)
+    target_link_options(${L0TEST_NAME} PRIVATE --coverage)
+endif()
+
+# Place the test binary under <build>/AppGateway/appgateway_l0test (matches requested run path)
+set_target_properties(${L0TEST_NAME} PROPERTIES
+    CXX_STANDARD 11
+    CXX_STANDARD_REQUIRED YES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/AppGateway"
+)
+
+# Optional convenience target for coverage generation in the build directory:
+#   cmake --build <build> --target appgateway_l0test_coverage
+add_custom_target(appgateway_l0test_coverage
+    COMMAND lcov -c -o coverage.info -d ${CMAKE_BINARY_DIR}
+    COMMAND genhtml -o coverage coverage.info
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    DEPENDS ${L0TEST_NAME}
+)
