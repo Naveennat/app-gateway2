@@ -20,6 +20,7 @@
 #pragma once
 
 #include <plugins/Module.h>
+#include <com/com.h>
 
 // Fallback interface ID definitions if not supplied by platform headers.
 #ifndef ID_APP_GATEWAY
