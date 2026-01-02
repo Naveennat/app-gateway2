@@ -7,7 +7,7 @@
 #  - Forces coverage compilation/link flags
 #  - Runs the l0tests in "Real plugin mode" runtime environment
 #  - Generates an lcov + genhtml report under:
-#      app-gateway2/app-gateway/AppGateway/l0test/coverage/index.html
+#      app-gateway2/AppGateway/l0test/coverage/index.html
 #
 # Requirements satisfied by this script (see task description):
 #  1) rm -rf the l0test build directory before configure
@@ -17,11 +17,11 @@
 #       - preferred plugin: ./build/app-gateway/AppGateway/libWPEFrameworkAppGateway.so
 #       - fallback plugin:  ./dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
 #       - APPGATEWAY_RESOLUTIONS_PATH defaults to:
-#           app-gateway2/app-gateway/AppGateway/resolutions/resolution.base.json
+#           app-gateway2/AppGateway/resolutions/resolution.base.json
 #     (If env vars are already set, they are preserved.)
 #  5) Coverage:
-#       - info file: app-gateway2/app-gateway/AppGateway/l0test/build/coverage.info
-#       - html dir:  app-gateway2/app-gateway/AppGateway/l0test/coverage
+#       - info file: app-gateway2/AppGateway/l0test/build/coverage.info
+#       - html dir:  app-gateway2/AppGateway/l0test/coverage
 #  6) Clear logs + final HTML path printed
 #  7) Robust error handling (set -euo pipefail). Script is intended to be executable.
 
@@ -37,26 +37,18 @@ need_cmd() {
   command -v "${cmd}" >/dev/null 2>&1
 }
 
-# Per requirement: ROOT is the current working directory.
-ROOT="$(pwd)"
-
-# Defensive fallback if user didn't run from repo root. We keep the "ROOT=$(pwd)" assumption,
-# but provide a helpful fallback for CI/agent execution.
+# NOTE: In some CI/agent environments, the working directory may not be the repo root
+# even if the command is invoked from it. Derive ROOT from this script's location
+# to make the script robust.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-EXPECTED_L0_DIR="${ROOT}/app-gateway2/app-gateway/AppGateway/l0test"
-if [[ ! -d "${EXPECTED_L0_DIR}" ]]; then
-  ROOT_FALLBACK="$(cd "${SCRIPT_DIR}/../../../.." && pwd)"
-  warn "Expected '${EXPECTED_L0_DIR}' does not exist. You may not be running from repo root."
-  warn "Falling back to ROOT derived from script location: ${ROOT_FALLBACK}"
-  ROOT="${ROOT_FALLBACK}"
-fi
+ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 
-L0_DIR="${ROOT}/app-gateway2/app-gateway/AppGateway/l0test"
+L0_DIR="${ROOT}/app-gateway2/AppGateway/l0test"
 BUILD_DIR="${L0_DIR}/build"
 COVERAGE_DIR="${L0_DIR}/coverage"
 INSTALL_PREFIX="${ROOT}/dependencies/install"
 
-DEFAULT_RESOLUTIONS_PATH="${ROOT}/app-gateway2/app-gateway/AppGateway/resolutions/resolution.base.json"
+DEFAULT_RESOLUTIONS_PATH="${ROOT}/app-gateway2/AppGateway/resolutions/resolution.base.json"
 
 DEFAULT_PLUGIN_PREFERRED="${ROOT}/build/app-gateway/AppGateway/libWPEFrameworkAppGateway.so"
 DEFAULT_PLUGIN_FALLBACK="${ROOT}/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so"
