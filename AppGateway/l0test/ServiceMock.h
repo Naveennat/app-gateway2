@@ -30,7 +30,7 @@
 
 namespace L0Test {
 
-    using WPEFramework::string;
+    using string = std::string;
 
     // A simple deterministic resolver fake with multiple error paths.
     class ResolverFake final : public WPEFramework::Exchange::IAppGatewayResolver,

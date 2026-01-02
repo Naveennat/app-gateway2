@@ -31,6 +31,13 @@ namespace Exchange {
 struct EXTERNAL IApp2AppProvider : virtual public Core::IUnknown {
     enum { ID = ID_APP2APP_PROVIDER };
 
+    struct Context {
+        uint32_t requestId;
+        uint32_t connectionId;
+        string appId;
+        string origin;
+    };
+
     virtual Core::hresult Provide(const string& method /* @in */, const string& params /* @in @opaque */, string& result /* @out @opaque */) = 0;
 };
 
