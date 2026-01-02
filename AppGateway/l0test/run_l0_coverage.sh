@@ -195,6 +195,7 @@ PLUGIN_DIR="$(dirname "${APPGATEWAY_PLUGIN_SO}")"
 
 LD_PATH_EXTRA=(
   "${INSTALL_PREFIX}/lib"
+  "${INSTALL_PREFIX}/lib/plugins"
   "${BUILD_DIR}/AppGateway"
   "${BUILD_DIR}"
 )
