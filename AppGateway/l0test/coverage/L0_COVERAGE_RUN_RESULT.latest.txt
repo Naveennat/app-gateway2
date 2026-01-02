@@ -1,34 +1,33 @@
-L0 coverage run result (latest)
+L0 Coverage Run Result (latest)
 ==============================
-Date: 2026-01-02
-Script: app-gateway2/AppGateway/l0test/run_l0_coverage.sh
-SDK prefix: /home/kavia/workspace/code-generation/dependencies/install
-Log: app-gateway2/AppGateway/l0test/coverage/L0_COVERAGE_BUILD_AND_RUN.log
 
-Result: FAILED (build did not complete; tests and coverage not generated)
+Timestamp: 2026-01-02
+Status: FAILED (compile-time)
 
-Primary failure: Thunder SDK shim headers use unqualified `string`
- (expects WPEFramework::string), but core.h only defines WPEFramework::Core::string.
- Example: WPEFramework/plugins/IDispatcher.h and IShell.h.
+What ran
+--------
+1) installCommand from /home/kavia/workspace/code-generation/.project_manifest.yaml was executed fully.
+   - Verified install prefix exists: /home/kavia/workspace/code-generation/dependencies/install
+2) /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/run_l0_coverage.sh was run.
 
-First distinct compiler errors (top 20):
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:13:35: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:13:65: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:14:35: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:14:59: error: ‘string’ has not been declared
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:28:19: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:29:31: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:30:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:71:40: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:71:55: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:74:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:76:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:77:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:78:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:79:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:80:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:81:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:83:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:84:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:85:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
-- /home/kavia/workspace/code-generation/dependencies/install/include/WPEFramework/plugins/IShell.h:86:13: error: ‘string’ does not name a type; did you mean ‘stdin’?
+Primary failure
+---------------
+Compilation failed building target `appgateway_l0test`:
+
+File:
+  app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp
+
+Errors (first failure):
+  Resolver_Configure_And_ResolveTests.cpp:193:56: error: template argument 1 is invalid
+    , plugin(WPEFramework::Core::Service<AppGateway>::Create<IPlugin>())
+
+  Resolver_Configure_And_ResolveTests.cpp:193:73: error: expected primary-expression before '>' token
+  Resolver_Configure_And_ResolveTests.cpp:193:75: error: expected primary-expression before ')' token
+
+Captured artifacts
+------------------
+- Full console output log:
+  app-gateway2/AppGateway/l0test/coverage/L0_COVERAGE_RUN_OUTPUT.latest.log
+
+- Blockers summary:
+  app-gateway2/AppGateway/l0test/coverage/L0_COVERAGE_RUN_BLOCKERS.latest.md
