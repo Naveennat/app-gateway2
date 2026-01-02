@@ -16,7 +16,7 @@
 #include <plugins/IDispatcher.h>
 #include "ServiceMock.h"
 
-using WPEFramework::Plugin::AppGateway;
+using AppGatewayPlugin = WPEFramework::Plugin::AppGateway;
 using WPEFramework::PluginHost::IPlugin;
 using WPEFramework::Core::ERROR_BAD_REQUEST;
 using WPEFramework::Core::ERROR_NONE;
@@ -188,9 +188,9 @@ struct PluginAndService {
     L0Test::ServiceMock* service { nullptr };
     WPEFramework::PluginHost::IPlugin* plugin { nullptr };
 
-    explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+    explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = L0Test::ServiceMock::Config())
         : service(new L0Test::ServiceMock(cfg))
-        , plugin(WPEFramework::Core::Service<AppGateway>::Create<IPlugin>()) {
+        , plugin(WPEFramework::Core::Service<AppGatewayPlugin>::Create<IPlugin>()) {
     }
     ~PluginAndService() {
         if (plugin != nullptr) { plugin->Release(); plugin = nullptr; }

@@ -48,6 +48,12 @@ BUILD_DIR="${L0_DIR}/build"
 COVERAGE_DIR="${L0_DIR}/coverage"
 INSTALL_PREFIX="${ROOT}/dependencies/install"
 
+# ---- Thunder/WPEFramework SDK (R4_4 / 4.4) resolution ----
+# Force CMake and pkg-config to pick SDK artifacts from our local install prefix.
+# This is critical to avoid mixing headers/libs from other Thunder versions present on the system.
+export CMAKE_PREFIX_PATH="${INSTALL_PREFIX}${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}"
+export PKG_CONFIG_PATH="${INSTALL_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+
 DEFAULT_RESOLUTIONS_PATH="${ROOT}/app-gateway2/AppGateway/resolutions/resolution.base.json"
 
 DEFAULT_PLUGIN_PREFERRED="${ROOT}/build/app-gateway/AppGateway/libWPEFrameworkAppGateway.so"

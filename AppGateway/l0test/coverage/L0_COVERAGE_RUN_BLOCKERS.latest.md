@@ -1,39 +1,38 @@
 # L0 Coverage Run Blockers (latest)
 
-Run date: 2026-01-02  
-Run script: `app-gateway2/AppGateway/l0test/run_l0_coverage.sh`  
-Output log: `app-gateway2/AppGateway/l0test/coverage/L0_COVERAGE_RUN_OUTPUT.latest.log`
+## Goal
+Run `AppGateway/l0test/run_l0_coverage.sh` using Thunder/WPEFramework **R4_4 / 4.4** from:
+`/home/kavia/workspace/code-generation/dependencies/install`
 
-## Blocker 1 — L0 test build fails at compile-time
+## SDK Alignment (Thunder 4.4)
+- `dependencies/install/lib/cmake/WPEFramework/WPEFrameworkConfig.cmake` exists.
+- `dependencies/install/include/WPEFramework/core/Portability.h` defines `THUNDER_VERSION 4`.
+- `dependencies/install/include/WPEFramework/core/JSONRPC.h` contains Thunder 4.4 compatibility notes.
 
-**Target:** `appgateway_l0test`  
-**First failing TU:** `Resolver_Configure_And_ResolveTests.cpp`
+## Current blocker
+The L0 coverage run fails at **compile time** in:
+`AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp`
 
-### Error
-```
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:193:56: error: template argument 1 is invalid
-  , plugin(WPEFramework::Core::Service<AppGateway>::Create<IPlugin>())
+Error (from `coverage/L0_COVERAGE_RUN_LOGS.latest.txt`):
+- `template argument 1 is invalid` at the plugin creation expression.
 
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:193:73: error: expected primary-expression before '>' token
-/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp:193:75: error: expected primary-expression before ')' token
-```
+## What was changed in this step
+- Forced SDK resolution via:
+  - `CMAKE_PREFIX_PATH=/home/kavia/workspace/code-generation/dependencies/install`
+  - `PKG_CONFIG_PATH=/home/kavia/workspace/code-generation/dependencies/install/lib/pkgconfig`
+  in `run_l0_coverage.sh`.
+- Updated `Resolver_Configure_And_ResolveTests.cpp` to instantiate the plugin using:
+  `WPEFramework::Core::Service<WPEFramework::Plugin::AppGateway>::Create<WPEFramework::PluginHost::IPlugin>()`
+  pattern (Thunder 4.x compatible), rather than an invalid `Core::Service<AppGateway>::Create<IPlugin>()`.
 
-### Location (in source)
-The failure is around the `PluginAndService` constructor initialization list:
+## Artifacts
+- Build+run logs: `AppGateway/l0test/coverage/L0_COVERAGE_RUN_LOGS.latest.txt`
+- Result marker (updated by script when successful): `AppGateway/l0test/coverage/L0_COVERAGE_RUN_RESULT.latest.txt`
+- Coverage HTML output (when successful): `AppGateway/l0test/coverage/index.html`
 
-```
-, plugin(WPEFramework::Core::Service<AppGateway>::Create<IPlugin>())
-```
-
-### Impact
-Because the test binary does not compile, **no tests execute** and therefore **no coverage report** can be generated.
-
----
-
-## Non-blocking warnings observed (not the root failure)
-
-- Multiple instances of:
-  - `-Woverloaded-virtual`: `PluginHost::IDispatcher::Invoke(...) was hidden`
-  - Explicit constructor warning when using `{}` default config for `L0Test::ServiceMock::Config`
-
-These warnings are present across multiple test files but **do not stop the build**. The compile error above is the immediate blocker.
+## Next expected outcome
+After these changes, rerunning `./run_l0_coverage.sh` should:
+1) Configure/build against Thunder 4.4 SDK from `dependencies/install`
+2) Compile `appgateway_l0test`
+3) Execute tests
+4) Generate `coverage/coverage.info` and `coverage/index.html`
