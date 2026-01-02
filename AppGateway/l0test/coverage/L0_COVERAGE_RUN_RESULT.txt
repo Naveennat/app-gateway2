@@ -1,0 +1,13 @@
+L0 coverage run result: FAILED
+
+Command:
+  bash AppGateway/l0test/run_l0_coverage.sh
+
+Failure summary:
+  Compilation failed because required Thunder/WPEFramework headers are missing.
+  Specifically: fatal error: core/core.h: No such file or directory
+
+Notes:
+  - dependencies/install exists but contains only etc/ and lib/ (no include/ tree).
+  - CMake also warned that interfaces/IAppGateway.h was not found under ../../interfaces or ${PREFIX}/include/WPEFramework/interfaces.
+  - No coverage report was generated.
