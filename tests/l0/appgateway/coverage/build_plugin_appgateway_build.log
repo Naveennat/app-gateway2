@@ -1,51 +1,67 @@
-[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260105_062702) (C++17) ===
-[1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
-FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/Module.o 
-/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/Module.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/Module.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/Module.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.cpp
-In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:31,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.cpp:20:
-/home/kavia/workspace/code-generation/app-gateway2/interfaces/Ids.h:36:10: fatal error: WPEFramework/interfaces/Ids.h: No such file or directory
-   36 | #include <WPEFramework/interfaces/Ids.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-[2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
+[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260105_063001) (C++17) ===
+[1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
 FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o 
 /usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp
-In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:31,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:21,
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:22,
                  from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:20:
-/home/kavia/workspace/code-generation/app-gateway2/interfaces/Ids.h:36:10: fatal error: WPEFramework/interfaces/Ids.h: No such file or directory
-   36 | #include <WPEFramework/interfaces/Ids.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-[3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
-FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o 
-/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp
-In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:31,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.h:22,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp:23:
-/home/kavia/workspace/code-generation/app-gateway2/interfaces/Ids.h:36:10: fatal error: WPEFramework/interfaces/Ids.h: No such file or directory
-   36 | #include <WPEFramework/interfaces/Ids.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-[4/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
-FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o 
-/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Resolver.cpp
-In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:31,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Resolver.h:22,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Resolver.cpp:20:
-/home/kavia/workspace/code-generation/app-gateway2/interfaces/Ids.h:36:10: fatal error: WPEFramework/interfaces/Ids.h: No such file or directory
-   36 | #include <WPEFramework/interfaces/Ids.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-[5/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:38:22: error: ‘ID_APP_GATEWAY’ was not declared in this scope; did you mean ‘RTA_GATEWAY’?
+   38 |                 ID = ID_APP_GATEWAY
+      |                      ^~~~~~~~~~~~~~
+      |                      RTA_GATEWAY
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:72:22: error: ‘ID_APP_GATEWAY_AUTHENTICATOR’ was not declared in this scope
+   72 |                 ID = ID_APP_GATEWAY_AUTHENTICATOR
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:106:22: error: ‘ID_APP_GATEWAY_RESPONDER’ was not declared in this scope
+  106 |                 ID = ID_APP_GATEWAY_RESPONDER
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:176:22: error: ‘ID_APP_GATEWAY_REQUEST_HANDLER’ was not declared in this scope
+  176 |                 ID = ID_APP_GATEWAY_REQUEST_HANDLER
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
 FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o 
 /usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp
-In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:31,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.h:22,
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.h:24,
                  from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:23:
-/home/kavia/workspace/code-generation/app-gateway2/interfaces/Ids.h:36:10: fatal error: WPEFramework/interfaces/Ids.h: No such file or directory
-   36 | #include <WPEFramework/interfaces/Ids.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:38:22: error: ‘ID_APP_GATEWAY’ was not declared in this scope; did you mean ‘RTA_GATEWAY’?
+   38 |                 ID = ID_APP_GATEWAY
+      |                      ^~~~~~~~~~~~~~
+      |                      RTA_GATEWAY
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:72:22: error: ‘ID_APP_GATEWAY_AUTHENTICATOR’ was not declared in this scope
+   72 |                 ID = ID_APP_GATEWAY_AUTHENTICATOR
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:106:22: error: ‘ID_APP_GATEWAY_RESPONDER’ was not declared in this scope
+  106 |                 ID = ID_APP_GATEWAY_RESPONDER
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:176:22: error: ‘ID_APP_GATEWAY_REQUEST_HANDLER’ was not declared in this scope
+  176 |                 ID = ID_APP_GATEWAY_REQUEST_HANDLER
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
+[4/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.h:24,
+                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp:23:
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:38:22: error: ‘ID_APP_GATEWAY’ was not declared in this scope; did you mean ‘RTA_GATEWAY’?
+   38 |                 ID = ID_APP_GATEWAY
+      |                      ^~~~~~~~~~~~~~
+      |                      RTA_GATEWAY
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:72:22: error: ‘ID_APP_GATEWAY_AUTHENTICATOR’ was not declared in this scope
+   72 |                 ID = ID_APP_GATEWAY_AUTHENTICATOR
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:106:22: error: ‘ID_APP_GATEWAY_RESPONDER’ was not declared in this scope
+  106 |                 ID = ID_APP_GATEWAY_RESPONDER
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:176:22: error: ‘ID_APP_GATEWAY_REQUEST_HANDLER’ was not declared in this scope
+  176 |                 ID = ID_APP_GATEWAY_REQUEST_HANDLER
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[5/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
 ninja: build stopped: subcommand failed.
