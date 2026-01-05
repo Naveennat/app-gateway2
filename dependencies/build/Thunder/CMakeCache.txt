@@ -291,9 +291,6 @@ HTTPSCLIENT_TEST:BOOL=OFF
 //Idle time
 IDLE_TIME:STRING=180
 
-//No help, variable specified on the command line.
-INITV_SCRIPT:UNINITIALIZED=OFF
-
 //Controls if should application supports ipv6
 IPV6_SUPPORT:STRING=false
 
@@ -412,9 +409,6 @@ SYSTEM_ROOT_PATH:STRING=root
 
 //The number of threads in the thread pool
 THREADPOOL_COUNT:STRING=4
-
-//No help, variable specified on the command line.
-TOOLS_SYSROOT:UNINITIALIZED=/home/kavia/workspace/code-generation/app-gateway2/dependencies
 
 //Set the permission mask for the creation of new files. e.g. 0760
 UMASK:STRING=

@@ -120,7 +120,7 @@ set(MODULE_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}" CACHE INTERNAL "" FORCE)
 list(APPEND CMAKE_MODULE_PATH "${MODULE_BASE_DIR}/common" "${CMAKE_SYSROOT}/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/${NAMESPACE}/Modules")
 
 if(NOT DEFINED TOOLS_SYSROOT)
-    set(TOOLS_SYSROOT /home/kavia/workspace/code-generation/app-gateway2/dependencies)
+    set(TOOLS_SYSROOT )
 endif()
 
 if(TOOLS_SYSROOT)

@@ -194,13 +194,13 @@ LCOV_EXECUTABLE:FILEPATH=/usr/bin/lcov
 PREFIX:STRING=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
 
 //Path to a library.
-WPEFRAMEWORK_CORE_LIB:FILEPATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkCore.so
+WPEFRAMEWORK_CORE_LIB:FILEPATH=WPEFRAMEWORK_CORE_LIB-NOTFOUND
 
 //Path to a library.
-WPEFRAMEWORK_MESSAGING_LIB:FILEPATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkMessaging.so
+WPEFRAMEWORK_MESSAGING_LIB:FILEPATH=WPEFRAMEWORK_MESSAGING_LIB-NOTFOUND
 
 //Path to a library.
-WPEFRAMEWORK_PLUGINS_LIB:FILEPATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkPlugins.so
+WPEFRAMEWORK_PLUGINS_LIB:FILEPATH=WPEFRAMEWORK_PLUGINS_LIB-NOTFOUND
 
 //Value Computed by CMake
 appgateway_l0test_BINARY_DIR:STATIC=/home/kavia/workspace/code-generation/app-gateway2/build/tests_l0_appgateway

@@ -1,9 +1,0 @@
-{
- "locator":"libWPEFrameworkAppGateway.so",
- "classname":"AppGateway",
- "precondition":[
-  "Platform"
- ],
- "callsign":"org.rdk.AppGateway",
- "autostart":false
-}

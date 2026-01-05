@@ -27,7 +27,7 @@ namespace ProxyStubs {
     // -----------------------------------------------------------------
 
     //
-    // IIteratorTypeInstance17BF09A4 interface stub definitions
+    // IIteratorTypeInstanceEDBC9DB6 interface stub definitions
     //
     // Methods:
     //  (0) virtual bool Next(string&) = 0
@@ -38,7 +38,7 @@ namespace ProxyStubs {
     //  (5) virtual string Current() const = 0
     //
 
-    ProxyStub::MethodHandler IteratorTypeInstance17BF09A4StubMethods[] = {
+    ProxyStub::MethodHandler IteratorTypeInstanceEDBC9DB6StubMethods[] = {
         // (0) virtual bool Next(string&) = 0
         //
         [](Core::ProxyType<Core::IPCChannel>& /* channel */, Core::ProxyType<RPC::InvokeMessage>& message) {
@@ -129,10 +129,10 @@ namespace ProxyStubs {
             writer.Text(result);
         }
         , nullptr
-    }; // IteratorTypeInstance17BF09A4StubMethods
+    }; // IteratorTypeInstanceEDBC9DB6StubMethods
 
     //
-    // IIteratorTypeInstanceE00C62A7 interface stub definitions
+    // IIteratorTypeInstance753F9ABD interface stub definitions
     //
     // Methods:
     //  (0) virtual bool Next(uint32_t&) = 0
@@ -143,7 +143,7 @@ namespace ProxyStubs {
     //  (5) virtual uint32_t Current() const = 0
     //
 
-    ProxyStub::MethodHandler IteratorTypeInstanceE00C62A7StubMethods[] = {
+    ProxyStub::MethodHandler IteratorTypeInstance753F9ABDStubMethods[] = {
         // (0) virtual bool Next(uint32_t&) = 0
         //
         [](Core::ProxyType<Core::IPCChannel>& /* channel */, Core::ProxyType<RPC::InvokeMessage>& message) {
@@ -234,7 +234,7 @@ namespace ProxyStubs {
             writer.Number<uint32_t>(result);
         }
         , nullptr
-    }; // IteratorTypeInstanceE00C62A7StubMethods
+    }; // IteratorTypeInstance753F9ABDStubMethods
 
     //
     // IRemoteConnection interface stub definitions
@@ -342,20 +342,20 @@ namespace ProxyStubs {
             ASSERT(implementation != nullptr);
 
             RPC::Data::Frame::Reader reader(message->Parameters().Reader());
-            const Core::instance_id parameter_46aa9305Implementation = reader.Number<Core::instance_id>();
+            const Core::instance_id parameter_93324840Implementation = reader.Number<Core::instance_id>();
 
-            IRemoteConnection* _parameter_46aa9305 = nullptr;
-            ProxyStub::UnknownProxy* parameter_46aa9305Proxy = nullptr;
-            if (parameter_46aa9305Implementation != 0) {
-                parameter_46aa9305Proxy = RPC::Administrator::Instance().ProxyInstance(channel, parameter_46aa9305Implementation, false, _parameter_46aa9305);
+            IRemoteConnection* _parameter_93324840 = nullptr;
+            ProxyStub::UnknownProxy* parameter_93324840Proxy = nullptr;
+            if (parameter_93324840Implementation != 0) {
+                parameter_93324840Proxy = RPC::Administrator::Instance().ProxyInstance(channel, parameter_93324840Implementation, false, _parameter_93324840);
 
-                ASSERT((_parameter_46aa9305 != nullptr) && (parameter_46aa9305Proxy != nullptr));
+                ASSERT((_parameter_93324840 != nullptr) && (parameter_93324840Proxy != nullptr));
             }
 
-            implementation->Activated(_parameter_46aa9305);
+            implementation->Activated(_parameter_93324840);
 
-            if (parameter_46aa9305Proxy != nullptr) {
-                RPC::Administrator::Instance().Release(parameter_46aa9305Proxy, message->Response());
+            if (parameter_93324840Proxy != nullptr) {
+                RPC::Administrator::Instance().Release(parameter_93324840Proxy, message->Response());
             }
         },
 
@@ -366,20 +366,20 @@ namespace ProxyStubs {
             ASSERT(implementation != nullptr);
 
             RPC::Data::Frame::Reader reader(message->Parameters().Reader());
-            const Core::instance_id parameter_0b273205Implementation = reader.Number<Core::instance_id>();
+            const Core::instance_id parameter_fe625b61Implementation = reader.Number<Core::instance_id>();
 
-            IRemoteConnection* _parameter_0b273205 = nullptr;
-            ProxyStub::UnknownProxy* parameter_0b273205Proxy = nullptr;
-            if (parameter_0b273205Implementation != 0) {
-                parameter_0b273205Proxy = RPC::Administrator::Instance().ProxyInstance(channel, parameter_0b273205Implementation, false, _parameter_0b273205);
+            IRemoteConnection* _parameter_fe625b61 = nullptr;
+            ProxyStub::UnknownProxy* parameter_fe625b61Proxy = nullptr;
+            if (parameter_fe625b61Implementation != 0) {
+                parameter_fe625b61Proxy = RPC::Administrator::Instance().ProxyInstance(channel, parameter_fe625b61Implementation, false, _parameter_fe625b61);
 
-                ASSERT((_parameter_0b273205 != nullptr) && (parameter_0b273205Proxy != nullptr));
+                ASSERT((_parameter_fe625b61 != nullptr) && (parameter_fe625b61Proxy != nullptr));
             }
 
-            implementation->Deactivated(_parameter_0b273205);
+            implementation->Deactivated(_parameter_fe625b61);
 
-            if (parameter_0b273205Proxy != nullptr) {
-                RPC::Administrator::Instance().Release(parameter_0b273205Proxy, message->Response());
+            if (parameter_fe625b61Proxy != nullptr) {
+                RPC::Administrator::Instance().Release(parameter_fe625b61Proxy, message->Response());
             }
         },
 
@@ -390,20 +390,20 @@ namespace ProxyStubs {
             ASSERT(implementation != nullptr);
 
             RPC::Data::Frame::Reader reader(message->Parameters().Reader());
-            const Core::instance_id parameter_5631f274Implementation = reader.Number<Core::instance_id>();
+            const Core::instance_id parameter_b5b786abImplementation = reader.Number<Core::instance_id>();
 
-            IRemoteConnection* _parameter_5631f274 = nullptr;
-            ProxyStub::UnknownProxy* parameter_5631f274Proxy = nullptr;
-            if (parameter_5631f274Implementation != 0) {
-                parameter_5631f274Proxy = RPC::Administrator::Instance().ProxyInstance(channel, parameter_5631f274Implementation, false, _parameter_5631f274);
+            IRemoteConnection* _parameter_b5b786ab = nullptr;
+            ProxyStub::UnknownProxy* parameter_b5b786abProxy = nullptr;
+            if (parameter_b5b786abImplementation != 0) {
+                parameter_b5b786abProxy = RPC::Administrator::Instance().ProxyInstance(channel, parameter_b5b786abImplementation, false, _parameter_b5b786ab);
 
-                ASSERT((_parameter_5631f274 != nullptr) && (parameter_5631f274Proxy != nullptr));
+                ASSERT((_parameter_b5b786ab != nullptr) && (parameter_b5b786abProxy != nullptr));
             }
 
-            implementation->Terminated(_parameter_5631f274);
+            implementation->Terminated(_parameter_b5b786ab);
 
-            if (parameter_5631f274Proxy != nullptr) {
-                RPC::Administrator::Instance().Release(parameter_5631f274Proxy, message->Response());
+            if (parameter_b5b786abProxy != nullptr) {
+                RPC::Administrator::Instance().Release(parameter_b5b786abProxy, message->Response());
             }
         }
         , nullptr
@@ -414,7 +414,7 @@ namespace ProxyStubs {
     // -----------------------------------------------------------------
 
     //
-    // IIteratorTypeInstance17BF09A4 interface proxy definitions
+    // IIteratorTypeInstanceEDBC9DB6 interface proxy definitions
     //
     // Methods:
     //  (0) virtual bool Next(string&) = 0
@@ -425,9 +425,9 @@ namespace ProxyStubs {
     //  (5) virtual string Current() const = 0
     //
 
-    class IteratorTypeInstance17BF09A4Proxy final : public ProxyStub::UnknownProxyType<IIteratorType<string, ID_STRINGITERATOR>> {
+    class IteratorTypeInstanceEDBC9DB6Proxy final : public ProxyStub::UnknownProxyType<IIteratorType<string, ID_STRINGITERATOR>> {
     public:
-        IteratorTypeInstance17BF09A4Proxy(const Core::ProxyType<Core::IPCChannel>& channel, const Core::instance_id implementation, const bool otherSideInformed)
+        IteratorTypeInstanceEDBC9DB6Proxy(const Core::ProxyType<Core::IPCChannel>& channel, const Core::instance_id implementation, const bool otherSideInformed)
             : BaseClass(channel, implementation, otherSideInformed)
         {
         }
@@ -527,10 +527,10 @@ namespace ProxyStubs {
             return (result);
         }
 
-    }; // class IteratorTypeInstance17BF09A4Proxy
+    }; // class IteratorTypeInstanceEDBC9DB6Proxy
 
     //
-    // IIteratorTypeInstanceE00C62A7 interface proxy definitions
+    // IIteratorTypeInstance753F9ABD interface proxy definitions
     //
     // Methods:
     //  (0) virtual bool Next(uint32_t&) = 0
@@ -541,9 +541,9 @@ namespace ProxyStubs {
     //  (5) virtual uint32_t Current() const = 0
     //
 
-    class IteratorTypeInstanceE00C62A7Proxy final : public ProxyStub::UnknownProxyType<IIteratorType<uint32_t, ID_VALUEITERATOR>> {
+    class IteratorTypeInstance753F9ABDProxy final : public ProxyStub::UnknownProxyType<IIteratorType<uint32_t, ID_VALUEITERATOR>> {
     public:
-        IteratorTypeInstanceE00C62A7Proxy(const Core::ProxyType<Core::IPCChannel>& channel, const Core::instance_id implementation, const bool otherSideInformed)
+        IteratorTypeInstance753F9ABDProxy(const Core::ProxyType<Core::IPCChannel>& channel, const Core::instance_id implementation, const bool otherSideInformed)
             : BaseClass(channel, implementation, otherSideInformed)
         {
         }
@@ -643,7 +643,7 @@ namespace ProxyStubs {
             return (result);
         }
 
-    }; // class IteratorTypeInstanceE00C62A7Proxy
+    }; // class IteratorTypeInstance753F9ABDProxy
 
     //
     // IRemoteConnection interface proxy definitions
@@ -790,12 +790,12 @@ namespace ProxyStubs {
             return (result);
         }
 
-        void Activated(IRemoteConnection* _parameter_46aa9305) override
+        void Activated(IRemoteConnection* _parameter_93324840) override
         {
             IPCMessage message(BaseClass::Message(0));
 
             RPC::Data::Frame::Writer writer(message->Parameters().Writer());
-            writer.Number<Core::instance_id>(RPC::instance_cast(_parameter_46aa9305));
+            writer.Number<Core::instance_id>(RPC::instance_cast(_parameter_93324840));
 
             UnknownProxyType::Invoke(message);
             RPC::Data::Frame::Reader reader(message->Response().Reader());
@@ -803,12 +803,12 @@ namespace ProxyStubs {
             Complete(reader);
         }
 
-        void Deactivated(IRemoteConnection* _parameter_0b273205) override
+        void Deactivated(IRemoteConnection* _parameter_fe625b61) override
         {
             IPCMessage message(BaseClass::Message(1));
 
             RPC::Data::Frame::Writer writer(message->Parameters().Writer());
-            writer.Number<Core::instance_id>(RPC::instance_cast(_parameter_0b273205));
+            writer.Number<Core::instance_id>(RPC::instance_cast(_parameter_fe625b61));
 
             UnknownProxyType::Invoke(message);
             RPC::Data::Frame::Reader reader(message->Response().Reader());
@@ -816,12 +816,12 @@ namespace ProxyStubs {
             Complete(reader);
         }
 
-        void Terminated(IRemoteConnection* _parameter_5631f274) override
+        void Terminated(IRemoteConnection* _parameter_b5b786ab) override
         {
             IPCMessage message(BaseClass::Message(2));
 
             RPC::Data::Frame::Writer writer(message->Parameters().Writer());
-            writer.Number<Core::instance_id>(RPC::instance_cast(_parameter_5631f274));
+            writer.Number<Core::instance_id>(RPC::instance_cast(_parameter_b5b786ab));
 
             UnknownProxyType::Invoke(message);
             RPC::Data::Frame::Reader reader(message->Response().Reader());
@@ -840,8 +840,8 @@ namespace ProxyStubs {
 
     namespace {
 
-        typedef ProxyStub::UnknownStubType<IIteratorType<string, ID_STRINGITERATOR>, IteratorTypeInstance17BF09A4StubMethods> IteratorTypeInstance17BF09A4Stub;
-        typedef ProxyStub::UnknownStubType<IIteratorType<uint32_t, ID_VALUEITERATOR>, IteratorTypeInstanceE00C62A7StubMethods> IteratorTypeInstanceE00C62A7Stub;
+        typedef ProxyStub::UnknownStubType<IIteratorType<string, ID_STRINGITERATOR>, IteratorTypeInstanceEDBC9DB6StubMethods> IteratorTypeInstanceEDBC9DB6Stub;
+        typedef ProxyStub::UnknownStubType<IIteratorType<uint32_t, ID_VALUEITERATOR>, IteratorTypeInstance753F9ABDStubMethods> IteratorTypeInstance753F9ABDStub;
         typedef ProxyStub::UnknownStubType<IRemoteConnection, RemoteConnectionStubMethods> RemoteConnectionStub;
         typedef ProxyStub::UnknownStubType<IRemoteConnection::INotification, RemoteConnectionNotificationStubMethods> RemoteConnectionNotificationStub;
 
@@ -849,8 +849,8 @@ namespace ProxyStubs {
         public:
             Instantiation()
             {
-                RPC::Administrator::Instance().Announce<IIteratorType<string, ID_STRINGITERATOR>, IteratorTypeInstance17BF09A4Proxy, IteratorTypeInstance17BF09A4Stub>();
-                RPC::Administrator::Instance().Announce<IIteratorType<uint32_t, ID_VALUEITERATOR>, IteratorTypeInstanceE00C62A7Proxy, IteratorTypeInstanceE00C62A7Stub>();
+                RPC::Administrator::Instance().Announce<IIteratorType<string, ID_STRINGITERATOR>, IteratorTypeInstanceEDBC9DB6Proxy, IteratorTypeInstanceEDBC9DB6Stub>();
+                RPC::Administrator::Instance().Announce<IIteratorType<uint32_t, ID_VALUEITERATOR>, IteratorTypeInstance753F9ABDProxy, IteratorTypeInstance753F9ABDStub>();
                 RPC::Administrator::Instance().Announce<IRemoteConnection, RemoteConnectionProxy, RemoteConnectionStub>();
                 RPC::Administrator::Instance().Announce<IRemoteConnection::INotification, RemoteConnectionNotificationProxy, RemoteConnectionNotificationStub>();
             }
