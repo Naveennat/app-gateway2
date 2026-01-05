@@ -355,8 +355,15 @@ namespace L0Test {
 
         string ConfigLine() const override
         {
-            // Minimal plugin config line.
-            return "{}";
+            // IMPORTANT: This config line is parsed by the real implementations (AppGatewayImplementation
+            // and AppGatewayResponderImplementation) when the installed plugin .so is used in L0 tests.
+            //
+            // Returning "{}" triggers JSON parse errors in WPEFramework's JSON parser (it expects at least
+            // one element inside the object). Provide a minimal, valid config object with the fields
+            // used by the responder implementation.
+            //
+            // Keep it deterministic/offline: bind localhost and use a fixed port.
+            return R"JSON({"connector":"127.0.0.1:3473","port":3473})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
@@ -413,19 +420,27 @@ namespace L0Test {
             return nullptr;
         }
 
-        void* Instantiate(const WPEFramework::RPC::Object& /*object*/, const uint32_t /*waitTime*/, uint32_t& connectionId) override
+        void* Instantiate(const WPEFramework::RPC::Object& object, const uint32_t /*waitTime*/, uint32_t& connectionId) override
         {
-            // AppGateway::Initialize() calls Root<IAppGatewayResolver>(..., "AppGatewayImplementation")
-            // followed by Root<IAppGatewayResponder>(..., "AppGatewayResponderImplementation").
-            // The simplest deterministic mapping is by call order.
+            // AppGateway::Initialize() requests (via IShell::Root):
+            //  - "AppGatewayImplementation"          (Exchange::IAppGatewayResolver)
+            //  - "AppGatewayResponderImplementation" (Exchange::IAppGatewayResponder)
+            //
+            // When running L0 tests in-proc, we do NOT spawn processes. Instead, map the
+            // requested implementation class name to deterministic fakes.
+            //
+            // This avoids relying on call-order and prevents runtime failures like:
+            //   "Missing implementation classname AppGatewayImplementation in library"
+            //
             connectionId = 1;
+            _instantiateCount.fetch_add(1, std::memory_order_acq_rel);
 
-            const uint32_t idx = _instantiateCount.fetch_add(1, std::memory_order_acq_rel);
+            const std::string className = object.ClassName.Value();
 
-            if (idx == 0) {
+            if (className == "AppGatewayImplementation") {
                 return (_cfg.provideResolver ? static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake()) : nullptr);
             }
-            if (idx == 1) {
+            if (className == "AppGatewayResponderImplementation") {
                 return (_cfg.provideResponder ? static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake(_cfg.responderTransportAvailable)) : nullptr);
             }
 

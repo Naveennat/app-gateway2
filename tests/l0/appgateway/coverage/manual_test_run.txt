@@ -1,0 +1,55 @@
+[ RUN      ] Initialize_WithValidConfig_Succeeds
+[61493] INFO [AppGateway.cpp:54] AppGateway: AppGateway Constructor
+[61493] INFO [AppGateway.cpp:67] Initialize: AppGateway::Initialize: PID=61493
+[1;32m[JSON.h:154](FromString)<PID:61493><TID:61493><1>: Parsing failed: Expected new element, "}" found.
+At character 2: {}
+[0m[1;32m[Singleton.h:95](SingletonType)<PID:61493><TID:61493><1>: Singleton constructing MessageUnit
+[0m[61493] INFO [AppGatewayImplementation.cpp:160] AppGatewayImplementation: AppGatewayImplementation constructor
+[61493] INFO [AppGatewayImplementation.cpp:165] ~AppGatewayImplementation: AppGatewayImplementation destructor
+[1;32m[Services.cpp:90](Instantiate)<PID:61493><TID:61493><1>: Missing implementation classname AppGatewayImplementation in library 
+
+[0m[61493] ERROR [AppGateway.cpp:85] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:61493><TID:61493><1>: Parsing failed: Expected new element, "}" found.
+At character 2: {}
+[0m[61493] INFO [AppGatewayResponderImplementation.cpp:48] AppGatewayResponderImplementation: AppGatewayResponderImplementation constructor
+[61493] INFO [AppGatewayResponderImplementation.cpp:83] Configure: Configuring AppGatewayResponderImplementation
+[1;32m[JSON.h:154](FromString)<PID:61493><TID:61493><1>: Parsing failed: Expected new element, "}" found.
+At character 2: {}
+[0m[61493] ERROR [AppGatewayResponderImplementation.cpp:100] InitializeWebsocket: Failed to parse config line, error: 'Expected new element, "}" found.', config line: '{}'.
+[61493] INFO [AppGatewayResponderImplementation.cpp:105] InitializeWebsocket: Connector: 127.0.0.1:3473
+[61493] INFO [AppGatewayResponderImplementation.cpp:107] InitializeWebsocket: Parsed port: 3473
+[1;32m[Singleton.h:95](SingletonType)<PID:61493><TID:61493><1>: Singleton constructing ResourceMonitor
+[0m[61493] INFO [WsManager.h:479] Start: WebSocket channel started successfully on 127.0.0.1 3473
+FAIL: Initialize() returns empty string on success expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: resolve method is registered and callable expected=0 actual=53
+[61493] INFO [AppGatewayResponderImplementation.cpp:60] ~AppGatewayResponderImplementation: AppGatewayResponderImplementation destructor
+[  FAILED  ] Initialize_WithValidConfig_Succeeds failures=2
+[ RUN      ] Initialize_Twice_Idempotent
+[61493] INFO [AppGateway.cpp:54] AppGateway: AppGateway Constructor
+[61493] INFO [AppGateway.cpp:67] Initialize: AppGateway::Initialize: PID=61493
+[1;32m[JSON.h:154](FromString)<PID:61493><TID:61493><1>: Parsing failed: Expected new element, "}" found.
+At character 2: {}
+[0m[61493] INFO [AppGatewayImplementation.cpp:160] AppGatewayImplementation: AppGatewayImplementation constructor
+[61493] INFO [AppGatewayImplementation.cpp:165] ~AppGatewayImplementation: AppGatewayImplementation destructor
+[1;32m[Services.cpp:90](Instantiate)<PID:61493><TID:61493><1>: Missing implementation classname AppGatewayImplementation in library 
+
+[0m[61493] ERROR [AppGateway.cpp:85] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:61493><TID:61493><1>: Parsing failed: Expected new element, "}" found.
+At character 2: {}
+[0m[61493] INFO [AppGatewayResponderImplementation.cpp:48] AppGatewayResponderImplementation: AppGatewayResponderImplementation constructor
+[61493] INFO [AppGatewayResponderImplementation.cpp:83] Configure: Configuring AppGatewayResponderImplementation
+[1;32m[JSON.h:154](FromString)<PID:61493><TID:61493><1>: Parsing failed: Expected new element, "}" found.
+At character 2: {}
+[0m[61493] ERROR [AppGatewayResponderImplementation.cpp:100] InitializeWebsocket: Failed to parse config line, error: 'Expected new element, "}" found.', config line: '{}'.
+[61493] INFO [AppGatewayResponderImplementation.cpp:105] InitializeWebsocket: Connector: 127.0.0.1:3473
+[61493] INFO [AppGatewayResponderImplementation.cpp:107] InitializeWebsocket: Parsed port: 3473
+[61493] INFO [WsManager.h:479] Start: WebSocket channel started successfully on 127.0.0.1 3473
+FAIL: First Initialize() succeeds (empty string) expected='' actual='Could not retrieve the AppGateway interface.'
+===== $$ [61493]: ASSERT [/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:65] (mResponder == nullptr)
+[dependencies/install/lib/libWPEFrameworkCore.so.1]:[DumpCallStack]:[74]
+[dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so]:[WPEFramework::Plugin::AppGateway::Initialize[abi:cxx11](WPEFramework::PluginHost::IShell*)]:[860]
+[./build/tests_l0_appgateway/appgateway_l0test]:[]:[-1]
+[./build/tests_l0_appgateway/appgateway_l0test]:[]:[-1]
+[/lib/x86_64-linux-gnu/libc.so.6]:[]:[-1]
+[/lib/x86_64-linux-gnu/libc.so.6]:[__libc_start_main]:[139]
+[./build/tests_l0_appgateway/appgateway_l0test]:[]:[-1]
