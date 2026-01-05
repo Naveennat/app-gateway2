@@ -46,7 +46,9 @@ ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 L0_DIR="${ROOT}/app-gateway2/AppGateway/l0test"
 BUILD_DIR="${L0_DIR}/build"
 COVERAGE_DIR="${L0_DIR}/coverage"
-INSTALL_PREFIX="${ROOT}/dependencies/install"
+# Repo layout note:
+# Dependencies are vendored under app-gateway2/dependencies (not at repo-root).
+INSTALL_PREFIX="${ROOT}/app-gateway2/dependencies/install"
 
 # ---- Thunder/WPEFramework SDK (R4_4 / 4.4) resolution ----
 # Force CMake and pkg-config to pick SDK artifacts from our local install prefix.

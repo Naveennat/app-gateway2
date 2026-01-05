@@ -8,25 +8,28 @@ Artifacts:
 - Console log captured to: `coverage/L0_COVERAGE_RUN_CONSOLE.latest.log`
 
 ## Current result
-**FAIL (pre-flight tool check)** — script exits before configure/build/tests.
+**FAIL (input checks)** — script exits before configure/build/tests.
 
 ## Primary blocker
-### 1) `lcov` not available in PATH
-The script requires `lcov` and `genhtml` (both provided by the `lcov` package). Current run output:
+### 1) Install prefix path mismatch in script
+The script is currently using:
+- `/home/kavia/workspace/code-generation/dependencies/install`
 
-- `[run_l0_coverage][ERROR] lcov not found in PATH. Install hint: sudo apt install -y lcov`
+But in this repo layout, dependencies are located at:
+- `/home/kavia/workspace/code-generation/app-gateway2/dependencies/install`
 
-**Impact:** No build, no test execution, and no coverage info/html report can be generated.
+**Impact:** The script exits early and does not build/run tests or generate coverage output.
 
-## Secondary / downstream blocker (previously observed)
-Once `lcov` is installed and the script proceeds to build/link, prior runs indicated a likely **AppGateway interface/API mismatch** leading to link errors for `appgateway_l0test` (Thunder/WPEFramework R4_4 / 4.4).
+## Status on tooling requested by this subtask
+### `lcov` / `genhtml`
+Installed successfully and available on PATH:
+- `/usr/bin/lcov` (LCOV 2.0-1)
+- `/usr/bin/genhtml` (LCOV 2.0-1)
 
-See older evidence in:
-- `coverage/L0_COVERAGE_RUN_LOGS.latest.txt`
-- `coverage/L0_COVERAGE_BUILD_AND_RUN.log`
-
-## Suggested next step
-Install `lcov` (provides `lcov` + `genhtml`) in the execution environment, then re-run:
+## Next step
+Re-run the script after the install-prefix fix:
 - `bash app-gateway2/AppGateway/l0test/run_l0_coverage.sh`
 
-If the build then fails at link again, address the interface mismatch as indicated by the link errors.
+Expected outputs on success:
+- `app-gateway2/AppGateway/l0test/build/coverage.info`
+- `app-gateway2/AppGateway/l0test/coverage/index.html`
