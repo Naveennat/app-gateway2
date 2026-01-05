@@ -71,20 +71,21 @@ else
 fi
 
 # Some AppGateway sources depend on helper headers. Include precedence matters:
-#   - entservices-infra helpers must come before rdkservices-comcast helpers to avoid
-#     ambiguous/mismatched headers like StringUtils/ErrorUtils.
+#   - We want rdkservices-comcast/helpers to win first (preferred)
+#   - entservices-infra/helpers should remain as a fallback
 #
-# Headers we need (as seen in build failures) live in:
-#   - dependencies/entservices-infra/helpers/{UtilsLogging.h,WsManager.h}
-#   - helpers/entservices-infra/helpers/UtilsLogging.h
-#   - helpers/rdkservices-comcast/helpers/{UtilsLogging.h,WsManager.h}
+# The plugin includes these by short name:
+#   - UtilsLogging.h
+#   - WsManager.h
 #
-# So we include both repo-local helpers/* AND vendored dependencies/* with
-# entservices-infra taking precedence.
-ENTSERVICES_HELPERS_DIR="${ROOT}/helpers/entservices-infra/helpers"
-ENTSERVICES_DEPS_HELPERS_DIR="${ROOT}/dependencies/entservices-infra/helpers"
+# Those headers exist in repo-local helpers/* (and sometimes in vendored deps/*).
+# We inject include dirs into the plugin CMake using APPGATEWAY_EXTRA_INCLUDE_DIRS.
 RDKSERVICES_HELPERS_DIR="${ROOT}/helpers/rdkservices-comcast/helpers"
+ENTSERVICES_HELPERS_DIR="${ROOT}/helpers/entservices-infra/helpers"
+
+# Optional/legacy vendored helper locations (may not exist in this repo)
 RDKSERVICES_DEPS_HELPERS_DIR="${ROOT}/dependencies/rdkservices-comcast/helpers"
+ENTSERVICES_DEPS_HELPERS_DIR="${ROOT}/dependencies/entservices-infra/helpers"
 
 CMAKE_HELPER_INCLUDE_DIRS=()
 
@@ -99,12 +100,16 @@ add_inc_if_dir() {
 }
 
 # Preferred order (highest precedence first)
-add_inc_if_dir "${ENTSERVICES_HELPERS_DIR}"
-add_inc_if_dir "${ENTSERVICES_DEPS_HELPERS_DIR}"
 add_inc_if_dir "${RDKSERVICES_HELPERS_DIR}"
+add_inc_if_dir "${ENTSERVICES_HELPERS_DIR}"
+# Keep vendored deps as additional fallback (lowest precedence)
 add_inc_if_dir "${RDKSERVICES_DEPS_HELPERS_DIR}"
+add_inc_if_dir "${ENTSERVICES_DEPS_HELPERS_DIR}"
 
 # Convert helper include dirs to a semicolon-separated CMake list.
+# IMPORTANT: Pass this to CMake as a LIST (not STRING), otherwise
+# target_include_directories() treats the whole thing as one "path" and it will
+# not show up as -I... flags in the compile command (causing missing headers).
 CMAKE_HELPER_INCLUDE_LIST=""
 if [[ ${#CMAKE_HELPER_INCLUDE_DIRS[@]} -gt 0 ]]; then
   (IFS=';'; CMAKE_HELPER_INCLUDE_LIST="${CMAKE_HELPER_INCLUDE_DIRS[*]}")
@@ -120,7 +125,7 @@ fi
     -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \
     -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" \
     -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
-    ${CMAKE_HELPER_INCLUDE_LIST:+-DAPPGATEWAY_EXTRA_INCLUDE_DIRS:STRING="${CMAKE_HELPER_INCLUDE_LIST}"} \
+    ${CMAKE_HELPER_INCLUDE_LIST:+-DAPPGATEWAY_EXTRA_INCLUDE_DIRS:LIST="${CMAKE_HELPER_INCLUDE_LIST}"} \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 } 2>&1 | tee "${CONFIGURE_LOG}" | tee -a "${APPEND_LOG}"
 
