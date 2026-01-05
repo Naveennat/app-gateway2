@@ -1,0 +1,29 @@
+[build_plugin_appgateway] ROOT=/home/kavia/workspace/code-generation/app-gateway2
+[build_plugin_appgateway] PLUGIN_SRC=/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway
+[build_plugin_appgateway] INSTALL_PREFIX=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] CMAKE_PREFIX_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] PKG_CONFIG_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/pkgconfig
+[build_plugin_appgateway] Thunder CMake modules dir: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules
+[build_plugin_appgateway] Extra helper include (preferred): /home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers
+[build_plugin_appgateway] Extra local helpers include: /home/kavia/workspace/code-generation/app-gateway2/helpers
+[build_plugin_appgateway] Configuring...
+Setup WPEFrameworkAppGateway v1.0.0
+-- Writing configuration for AppGateway using config_generator
+ConfigGenerator: Writing Config JSON
+-- Configuring done (0.1s)
+CMake Error at CMakeLists.txt:167 (target_sources):
+  Cannot find source file:
+
+    l0test/AppGatewayTest.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm
+  .ccm .cxxm .c++m .h .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90
+  .f95 .f03 .hip .ispc
+
+
+CMake Error at CMakeLists.txt:166 (add_executable):
+  No SOURCES given to target: appgateway_l0test
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

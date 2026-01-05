@@ -159,76 +159,11 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/resolution.base.json
 write_config(PLUGINS ${PLUGIN_NAME})
 
 # -----------------------------------------------------------------------------
-# appgateway_l0test target (offline, deterministic l0 test binary)
+# L0 tests moved to: tests/l0/appgateway/l0test
 # -----------------------------------------------------------------------------
-set(L0TEST_NAME appgateway_l0test)
-
-add_executable(${L0TEST_NAME})
-target_sources(${L0TEST_NAME}
-    PRIVATE
-        l0test/AppGatewayTest.cpp
-        l0test/AppGateway_Init_DeinitTests.cpp
-        l0test/AppGateway_JsonRpcResolveTests.cpp
-        l0test/Resolver_Configure_And_ResolveTests.cpp
-        l0test/Responder_BehaviorTests.cpp
-        l0test/ContextUtils_ConversionTests.cpp
-)
-
-# Include directories for test build
-target_include_directories(${L0TEST_NAME}
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}                  # AppGateway/
-        ${CMAKE_CURRENT_SOURCE_DIR}/..              # app-gateway/ (so <interfaces/...> can resolve to local stubs)
-        ${CMAKE_CURRENT_SOURCE_DIR}/../helpers
-        ${CMAKE_CURRENT_SOURCE_DIR}/resolutions
-        ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces
-)
-
-# Supporting_Files (ContextUtils.h, etc.)
-if(EXISTS ${CMAKE_SOURCE_DIR}/../Supporting_Files)
-    target_include_directories(${L0TEST_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../Supporting_Files)
-endif()
-
-# Thunder include fallbacks from CMAKE_PREFIX_PATH (if set by invoker)
-if(CMAKE_PREFIX_PATH)
-    target_include_directories(${L0TEST_NAME} PRIVATE
-        ${CMAKE_PREFIX_PATH}/include
-        ${CMAKE_PREFIX_PATH}/include/WPEFramework
-        ${CMAKE_PREFIX_PATH}/include/WPEFramework/interfaces
-        ${CMAKE_PREFIX_PATH}/include/interfaces
-    )
-endif()
-
-# Link against the built AppGateway plugin and Thunder components
-target_link_libraries(${L0TEST_NAME}
-    PRIVATE
-        ${MODULE_NAME}
-        ${NAMESPACE}Plugins::${NAMESPACE}Plugins
-        ${NAMESPACE}Core::${NAMESPACE}Core
-        ${NAMESPACE}Definitions::${NAMESPACE}Definitions
-)
-
-# Define MODULE_NAME for WPEFramework logging/core macros in the test binary
-target_compile_definitions(${L0TEST_NAME} PRIVATE MODULE_NAME=AppGateway_L0Test)
-
-# Coverage flags (GCC/Clang) on the test target only
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(${L0TEST_NAME} PRIVATE -O0 -g --coverage)
-    target_link_options(${L0TEST_NAME} PRIVATE --coverage)
-endif()
-
-# Place the test binary under <build>/AppGateway/appgateway_l0test (matches requested run path)
-set_target_properties(${L0TEST_NAME} PROPERTIES
-    CXX_STANDARD 11
-    CXX_STANDARD_REQUIRED YES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/AppGateway"
-)
-
-# Optional convenience target for coverage generation in the build directory:
-#   cmake --build <build> --target appgateway_l0test_coverage
-add_custom_target(appgateway_l0test_coverage
-    COMMAND lcov -c -o coverage.info -d ${CMAKE_BINARY_DIR}
-    COMMAND genhtml -o coverage coverage.info
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    DEPENDS ${L0TEST_NAME}
-)
+# The plugin build must not depend on test sources. Unit/L0 tests are built from
+# the dedicated test CMake under tests/l0/appgateway/l0test.
+#
+# (Previously, this repo temporarily embedded an appgateway_l0test target here,
+# but after restructuring to multi-plugin layout, those sources no longer exist
+# under plugin/AppGateway.)
