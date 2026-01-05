@@ -1,0 +1,27 @@
+[build_plugin_appgateway] ROOT=/home/kavia/workspace/code-generation
+[build_plugin_appgateway] PLUGIN_SRC=/home/kavia/workspace/code-generation/app-gateway2/AppGateway
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway
+[build_plugin_appgateway] INSTALL_PREFIX=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] CMAKE_PREFIX_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] PKG_CONFIG_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/pkgconfig
+Setup WPEFrameworkAppGateway v1.0.0
+CMake Error at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/cmake/WPEFrameworkPlugins/WPEFrameworkPluginsConfig.cmake:22 (find_package):
+  By not providing "FindConfigGenerator.cmake" in CMAKE_MODULE_PATH this
+  project has asked CMake to find a package configuration file provided by
+  "ConfigGenerator", but CMake did not find one.
+
+  Could not find a package configuration file provided by "ConfigGenerator"
+  with any of the following names:
+
+    ConfigGeneratorConfig.cmake
+    configgenerator-config.cmake
+
+  Add the installation prefix of "ConfigGenerator" to CMAKE_PREFIX_PATH or
+  set "ConfigGenerator_DIR" to a directory containing one of the above files.
+  If "ConfigGenerator" provides a separate development package or SDK, be
+  sure it has been installed.
+Call Stack (most recent call first):
+  CMakeLists.txt:48 (find_package)
+
+
+-- Configuring incomplete, errors occurred!
