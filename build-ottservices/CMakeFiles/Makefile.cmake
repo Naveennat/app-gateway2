@@ -7,9 +7,8 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/CMakeLists.txt"
   "/home/kavia/workspace/code-generation/app-gateway2/app-gateway/CMakeLists.txt"
-  "/home/kavia/workspace/code-generation/app-gateway2/app-gateway/tests/CMakeLists.txt"
+  "/home/kavia/workspace/code-generation/app-gateway2/app-gateway/cmake/ThunderConfigHelpers.cmake"
   "CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeSystem.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake"
@@ -38,12 +37,8 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "AppGateway/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "tests/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/DependInfo.cmake"
-  "tests/CMakeFiles/test_appgateway.dir/DependInfo.cmake"
   )

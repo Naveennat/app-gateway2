@@ -42,11 +42,8 @@ if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway/cmake_install.cmake")
-  include("/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/tests/cmake_install.cmake")
-
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  message(STATUS "[noop] Nothing to install (plugins skipped).")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

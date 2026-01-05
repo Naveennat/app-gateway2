@@ -97,7 +97,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"libs\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -171,32 +171,6 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named WPEFrameworkAppGateway
-
-# Build rule for target.
-WPEFrameworkAppGateway: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WPEFrameworkAppGateway
-.PHONY : WPEFrameworkAppGateway
-
-# fast build rule for target.
-WPEFrameworkAppGateway/fast:
-	$(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build
-.PHONY : WPEFrameworkAppGateway/fast
-
-#=============================================================================
-# Target rules for targets named test_appgateway
-
-# Build rule for target.
-test_appgateway: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_appgateway
-.PHONY : test_appgateway
-
-# fast build rule for target.
-test_appgateway/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_appgateway.dir/build.make tests/CMakeFiles/test_appgateway.dir/build
-.PHONY : test_appgateway/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,8 +184,6 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... WPEFrameworkAppGateway"
-	@echo "... test_appgateway"
 .PHONY : help
 
 

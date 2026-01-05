@@ -1,0 +1,2 @@
+# Artifact outputs (test logs, coverage) are written under artifacts/ at runtime.
+# This placeholder keeps the directory present in environments that track empty folders.
