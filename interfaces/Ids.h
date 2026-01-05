@@ -33,4 +33,4 @@
 // Therefore, this file is intentionally a thin wrapper that includes the SDK header.
 // The build system adds the SDK include path, so this resolves via normal include paths.
 
-#include <WPEFramework/interfaces/Ids.h>
+#include <interfaces/Ids.h>
