@@ -15,6 +15,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+cmake_minimum_required(VERSION 3.15)
+
+project(AppGateway LANGUAGES C CXX)
+
+# Thunder/WPEFramework convention:
+# - NAMESPACE is usually "WPEFramework" (used by package config + imported targets)
+# - STORAGE_DIRECTORY is typically "wpeframework"
+set(NAMESPACE "WPEFramework" CACHE STRING "Thunder CMake package namespace (e.g. WPEFramework)")
+set(STORAGE_DIRECTORY "wpeframework" CACHE STRING "Install storage directory under lib/<storage>/plugins")
+
 set(PLUGIN_NAME AppGateway)
 set(MODULE_NAME ${NAMESPACE}${PLUGIN_NAME})
 
@@ -33,9 +43,11 @@ set(PLUGIN_APPGATEWAY_AUTOSTART "false" CACHE STRING "Automatically start AppGat
 
 message("Setup ${MODULE_NAME} v${MODULE_VERSION}")
 
-find_package(${NAMESPACE}Plugins REQUIRED)
-find_package(${NAMESPACE}Definitions REQUIRED)
-find_package(${NAMESPACE}Core REQUIRED)
+# Thunder 4.4 SDK exports packages as:
+#  - WPEFrameworkPlugins, WPEFrameworkCore, WPEFrameworkDefinitions, ...
+find_package(${NAMESPACE}Plugins CONFIG REQUIRED)
+find_package(${NAMESPACE}Definitions CONFIG REQUIRED)
+find_package(${NAMESPACE}Core CONFIG REQUIRED)
 find_package(CompileSettingsDebug CONFIG REQUIRED)
 
 add_library(${MODULE_NAME} SHARED
