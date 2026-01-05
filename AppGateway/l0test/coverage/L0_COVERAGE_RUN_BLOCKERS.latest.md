@@ -1,36 +1,32 @@
 # L0 Coverage Run Blockers (latest)
 
-## Goal
-Run `AppGateway/l0test/run_l0_coverage.sh` using Thunder/WPEFramework **R4_4 / 4.4** from:
-`/home/kavia/workspace/code-generation/dependencies/install`
+## Run attempted
+Command:
+- `bash /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/run_l0_coverage.sh`
+
+Artifacts:
+- Console log captured to: `coverage/L0_COVERAGE_RUN_CONSOLE.latest.log`
 
 ## Current result
-**FAIL** (link step): `appgateway_l0test` fails to link.
+**FAIL (pre-flight tool check)** — script exits before configure/build/tests.
 
-## Root cause
-The test build compiles against the local interface header:
-`app-gateway2/interfaces/IAppGateway.h` which defines:
-- `WPEFramework::Exchange::GatewayContext`
-- `IAppGatewayResolver::Configure(IStringIterator* const&)`
-- `IAppGatewayResolver::Resolve(const GatewayContext&, const string&, const string&, const string&, string&)`
+## Primary blocker
+### 1) `lcov` not available in PATH
+The script requires `lcov` and `genhtml` (both provided by the `lcov` package). Current run output:
 
-But the plugin `.so` being linked (`build/app-gateway/AppGateway/libWPEFrameworkAppGateway.so`) exports different signatures:
-- `WPEFramework::Plugin::Resolver::Resolver()` and `Resolver(IShell*, const string&)` (no `Resolver(IShell*)`)
-- `WPEFramework::Plugin::AppGatewayImplementation::Configure(PluginHost::IShell*)`
-- `WPEFramework::Plugin::AppGatewayImplementation::Configure(WPEFramework::Exchange::IAppGateway::IStringIterator* const&)`
-- `WPEFramework::Plugin::AppGatewayImplementation::Resolve(WPEFramework::Exchange::IAppGateway::Context const&, const string&, const string&)`
+- `[run_l0_coverage][ERROR] lcov not found in PATH. Install hint: sudo apt install -y lcov`
 
-This indicates an **API mismatch** between what the L0 tests expect (GatewayContext + 5-arg Resolve) and what the built plugin actually implements (IAppGateway::Context + 3-arg Resolve).
+**Impact:** No build, no test execution, and no coverage info/html report can be generated.
 
-## Evidence
-From `coverage/L0_COVERAGE_RUN_LOGS.latest.txt`:
-- `undefined reference to WPEFramework::Plugin::Resolver::Resolver(WPEFramework::PluginHost::IShell*)`
-- `undefined reference to AppGatewayImplementation::Configure(RPC::IIteratorType<string,...>* const&)`
-- `undefined reference to AppGatewayImplementation::Resolve(Exchange::GatewayContext const&, string const&, string const&, string const&, string&)`
+## Secondary / downstream blocker (previously observed)
+Once `lcov` is installed and the script proceeds to build/link, prior runs indicated a likely **AppGateway interface/API mismatch** leading to link errors for `appgateway_l0test` (Thunder/WPEFramework R4_4 / 4.4).
 
-## Next steps
-Either:
-1. Align the L0 tests to the plugin API in this repo (use `WPEFramework::Exchange::IAppGateway`/`Context` and the 3-arg `Resolve` signature), OR
-2. Rebuild/link against a plugin variant that implements `IAppGatewayResolver` (GatewayContext + 5-arg Resolve) matching the interfaces used by tests.
+See older evidence in:
+- `coverage/L0_COVERAGE_RUN_LOGS.latest.txt`
+- `coverage/L0_COVERAGE_BUILD_AND_RUN.log`
 
-Until the API mismatch is resolved, L0 coverage cannot complete.
+## Suggested next step
+Install `lcov` (provides `lcov` + `genhtml`) in the execution environment, then re-run:
+- `bash app-gateway2/AppGateway/l0test/run_l0_coverage.sh`
+
+If the build then fails at link again, address the interface mismatch as indicated by the link errors.

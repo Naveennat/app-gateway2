@@ -1,0 +1,8 @@
+[run_l0_coverage] ROOT=/home/kavia/workspace/code-generation
+[run_l0_coverage] L0_DIR=/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test
+[run_l0_coverage] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build
+[run_l0_coverage] INSTALL_PREFIX=/home/kavia/workspace/code-generation/dependencies/install
+[run_l0_coverage] COVERAGE_DIR=/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/coverage
+
+[run_l0_coverage] ===== Tool checks =====
+[run_l0_coverage][ERROR] lcov not found in PATH. Install hint: sudo apt install -y lcov
