@@ -85,10 +85,11 @@ else()
 endif()
 
 target_include_directories(appgateway_l0test PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}                               # this folder (ServiceMock.h, ContextUtils.h, etc.)
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../plugin/AppGateway  # Plugin headers (read-only, no sources copied into tests)
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../helpers           # helpers under app-gateway2 (as needed by test harness)
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces        # repo interface stubs
+    ${CMAKE_CURRENT_SOURCE_DIR}                                               # this folder (ServiceMock.h, ContextUtils.h, etc.)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../plugin/AppGateway                  # Plugin headers (read-only, no sources copied into tests)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../helpers                           # helpers under app-gateway2 (as needed by test harness)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../helpers/rdkservices-comcast/helpers # provides UtilsLogging.h + StringUtils.h (required by plugin headers)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces                        # repo interface stubs
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces/json
     ${PREFIX}/include
     ${PREFIX}/include/WPEFramework
