@@ -4,11 +4,10 @@
 #include <core/core.h>
 #include <plugins/IDispatcher.h>
 
-#include "../AppGateway.h"
+#include <AppGateway.h>
 #include "ServiceMock.h"
 
-// Context conversion utilities live under app-gateway2/Supporting_Files
-#include <ContextUtils.h>
+#include "ContextUtils.h"
 
 using WPEFramework::Core::ERROR_BAD_REQUEST;
 using WPEFramework::Core::ERROR_NONE;
