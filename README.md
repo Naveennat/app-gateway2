@@ -1,27 +1,34 @@
-# AppGateway (imported from cm6024a498)
+# app-gateway2 (AppGateway plugin + tests)
 
-This repository has been pruned to contain only:
+This workspace contains:
 
-- `AppGateway/` (imported from `origin/cga-cm6024a498`)
+- `plugin/AppGateway/`  
+  **IMMUTABLE / upstream-synced** copy of `rdkcentral/entservices-infra` (branch `develop`) `AppGateway/`.  
+  Do **not** edit any sources in this directory. See: `plugin/AppGateway/IMMUTABLE_UPSTREAM.md`.
 
-## Build (CMake)
+- `tests/l0/appgateway/`  
+  All test-only code, harnesses, coverage scripts, and test CMake live here.
 
-From the repository root:
+- `interfaces/`  
+  Local interface headers and lightweight JSON stubs needed for building/linking in CI.
+
+## Build the AppGateway plugin (no source modification)
+
+From this workspace root:
 
 ```bash
-mkdir -p build
-cmake -S AppGateway -B build
-cmake --build build -j
+./build_plugin_appgateway.sh
 ```
+
+This configures/builds/installs the plugin into:
+
+- `dependencies/install`
 
 ## L0 tests / coverage
 
-The AppGateway l0 test sources are under `AppGateway/l0test/`.
+See:
 
-A convenience script exists:
+- `tests/l0/appgateway/l0test/README.md` (if present)
+- `tests/l0/appgateway/l0test/CMakeLists.txt`
 
-- `AppGateway/l0test/run_l0_coverage.sh`
-
-Notes:
-- You may need a build environment that provides Thunder/WPEFramework dependencies expected by the plugin and tests.
-- See `AppGateway/l0test/README.md` for additional context.
+All test-related changes must remain under `tests/l0/appgateway/**`.

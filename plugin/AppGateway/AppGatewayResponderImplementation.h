@@ -23,9 +23,7 @@
 #include "WsManager.h"
 #include <interfaces/IAppGateway.h>
 #include <interfaces/IConfiguration.h>
-// Ensure interface types are visible before including ContextUtils
 #include "ContextUtils.h"
-#include <interfaces/IAppGateway.h>
 #include <com/com.h>
 #include <core/core.h>
 #include <map>

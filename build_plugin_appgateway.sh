@@ -19,18 +19,12 @@ die()  { echo "[build_plugin_appgateway][ERROR] $*" >&2; exit 1; }
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-# Repo reorg support:
-# - plugin source may be in: app-gateway2/AppGateway (this workspace), or plugin/AppGateway (legacy)
-# - Thunder SDK prefix may be: app-gateway2/dependencies/install (this workspace), or dependencies/install (legacy)
-if [[ -d "${ROOT}/app-gateway2/AppGateway" ]]; then
-  PLUGIN_SRC="${ROOT}/app-gateway2/AppGateway"
-  INSTALL_PREFIX="${ROOT}/app-gateway2/dependencies/install"
-  BUILD_DIR="${ROOT}/app-gateway2/build/plugin_appgateway"
-else
-  PLUGIN_SRC="${ROOT}/plugin/AppGateway"
-  INSTALL_PREFIX="${ROOT}/dependencies/install"
-  BUILD_DIR="${ROOT}/build/plugin_appgateway"
-fi
+# AppGateway plugin sources are upstream-synced and live in this workspace at:
+#   app-gateway2/plugin/AppGateway
+# They MUST be treated as read-only (see plugin/AppGateway/IMMUTABLE_UPSTREAM.md).
+PLUGIN_SRC="${ROOT}/plugin/AppGateway"
+INSTALL_PREFIX="${ROOT}/dependencies/install"
+BUILD_DIR="${ROOT}/build/plugin_appgateway"
 
 log "ROOT=${ROOT}"
 log "PLUGIN_SRC=${PLUGIN_SRC}"

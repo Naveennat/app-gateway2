@@ -15,16 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.15)
-
-project(AppGateway LANGUAGES C CXX)
-
-# Thunder/WPEFramework convention:
-# - NAMESPACE is usually "WPEFramework" (used by package config + imported targets)
-# - STORAGE_DIRECTORY is typically "wpeframework"
-set(NAMESPACE "WPEFramework" CACHE STRING "Thunder CMake package namespace (e.g. WPEFramework)")
-set(STORAGE_DIRECTORY "wpeframework" CACHE STRING "Install storage directory under lib/<storage>/plugins")
-
 set(PLUGIN_NAME AppGateway)
 set(MODULE_NAME ${NAMESPACE}${PLUGIN_NAME})
 
@@ -43,11 +33,8 @@ set(PLUGIN_APPGATEWAY_AUTOSTART "false" CACHE STRING "Automatically start AppGat
 
 message("Setup ${MODULE_NAME} v${MODULE_VERSION}")
 
-# Thunder 4.4 SDK exports packages as:
-#  - WPEFrameworkPlugins, WPEFrameworkCore, WPEFrameworkDefinitions, ...
-find_package(${NAMESPACE}Plugins CONFIG REQUIRED)
-find_package(${NAMESPACE}Definitions CONFIG REQUIRED)
-find_package(${NAMESPACE}Core CONFIG REQUIRED)
+find_package(${NAMESPACE}Plugins REQUIRED)
+find_package(${NAMESPACE}Definitions REQUIRED)
 find_package(CompileSettingsDebug CONFIG REQUIRED)
 
 add_library(${MODULE_NAME} SHARED
@@ -55,51 +42,10 @@ add_library(${MODULE_NAME} SHARED
         AppGatewayImplementation.cpp
         AppGatewayResponderImplementation.cpp
         Resolver.cpp
-        Module.cpp)
+	Module.cpp)
 
-# -----------------------------------------------------------------------------
-# Include paths
-#
-# IMPORTANT: Prefer entservices-infra helpers BEFORE local shims to avoid
-# duplicate/ambiguous definitions (e.g., ErrorUtils, StringUtils, etc.).
-# -----------------------------------------------------------------------------
-
-# Prefer vendored entservices-infra helper headers (if present).
-if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../dependencies/entservices-infra/helpers)
-    target_include_directories(${MODULE_NAME} PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/../dependencies/entservices-infra/helpers)
-endif()
-
-# Include shared Supporting_Files for common utilities like ContextUtils.h and
-# callsign constants.
-if(EXISTS ${CMAKE_SOURCE_DIR}/../Supporting_Files)
-    target_include_directories(${MODULE_NAME} PRIVATE
-        ${CMAKE_SOURCE_DIR}/../Supporting_Files)
-endif()
-
-# Local helpers and resolutions (kept after entservices-infra to avoid conflicts)
-target_include_directories(${MODULE_NAME} PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/../helpers
-        ${CMAKE_CURRENT_SOURCE_DIR}/resolutions)
-
-# Add Thunder include directories explicitly if package config did not propagate
-# This helps resolve <interfaces/...> headers like IAppGateway.h
-if(CMAKE_PREFIX_PATH)
-    target_include_directories(${MODULE_NAME} PRIVATE
-        ${CMAKE_PREFIX_PATH}/include
-        ${CMAKE_PREFIX_PATH}/include/WPEFramework
-        ${CMAKE_PREFIX_PATH}/include/WPEFramework/interfaces
-        ${CMAKE_PREFIX_PATH}/include/interfaces)
-endif()
-# Prefer our local helpers by adding it again at the end of the include search list
-target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../helpers)
-
-# If a local interfaces folder exists in this repo, include it as well
-if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/../interfaces)
-    target_include_directories(${MODULE_NAME} PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../interfaces
-        ${CMAKE_CURRENT_LIST_DIR}/..) # so <interfaces/...> works
-endif()
+target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
+target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
@@ -127,23 +73,11 @@ if(ENABLE_APP_GATEWAY_AUTOMATION)
     endif()
 endif()
 
-target_link_libraries(${MODULE_NAME}
+target_link_libraries(${MODULE_NAME} 
         PRIVATE
         CompileSettingsDebug::CompileSettingsDebug
         ${NAMESPACE}Plugins::${NAMESPACE}Plugins
-        ${NAMESPACE}Definitions::${NAMESPACE}Definitions
-        ${NAMESPACE}Core::${NAMESPACE}Core
-)
-
-# Link Tracing if available in this Thunder installation
-if(TARGET ${NAMESPACE}Tracing::${NAMESPACE}Tracing)
-    target_link_libraries(${MODULE_NAME} PRIVATE ${NAMESPACE}Tracing::${NAMESPACE}Tracing)
-endif()
-
-# If the Interfaces target exists, link it as well (used by IAppGateway et al.)
-if(TARGET ${NAMESPACE}Interfaces::${NAMESPACE}Interfaces)
-    target_link_libraries(${MODULE_NAME} PRIVATE ${NAMESPACE}Interfaces::${NAMESPACE}Interfaces)
-endif()
+        ${NAMESPACE}Definitions::${NAMESPACE}Definitions)
 
 # To error any missing links
 target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
@@ -151,19 +85,7 @@ target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
 install(TARGETS ${MODULE_NAME}
         DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
 
-# Install configs under the install prefix to avoid root-only /etc writes in CI
-set(APP_GATEWAY_INSTALL_ETC_DIR "${CMAKE_INSTALL_PREFIX}/etc/app-gateway")
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/resolution.base.json
-        DESTINATION "${APP_GATEWAY_INSTALL_ETC_DIR}")
+        DESTINATION "/etc/app-gateway/")
 
-write_config(PLUGINS ${PLUGIN_NAME})
-
-# -----------------------------------------------------------------------------
-# L0 tests moved to: tests/l0/appgateway/l0test
-# -----------------------------------------------------------------------------
-# The plugin build must not depend on test sources. Unit/L0 tests are built from
-# the dedicated test CMake under tests/l0/appgateway/l0test.
-#
-# (Previously, this repo temporarily embedded an appgateway_l0test target here,
-# but after restructuring to multi-plugin layout, those sources no longer exist
-# under plugin/AppGateway.)
+write_config(${PLUGIN_NAME})

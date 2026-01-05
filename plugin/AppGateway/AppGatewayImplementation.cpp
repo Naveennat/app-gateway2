@@ -21,8 +21,6 @@
 #include <plugins/JSONRPC.h>
 #include <plugins/IShell.h>
 #include "AppGatewayImplementation.h"
-#include "../helpers/ErrorUtils.h"
-using namespace AppGwErrorUtils;
 #include "UtilsLogging.h"
 #include "ContextUtils.h"
 #include "ObjectUtils.h"
@@ -419,12 +417,12 @@ namespace WPEFramework
                     bool allowed = false;
                     if (Core::ERROR_NONE != mAuthenticator->CheckPermissionGroup(context.appId, permissionGroup, allowed)) {
                         LOGERR("Failed to check permission group '%s' for appId '%s'", permissionGroup.c_str(), context.appId.c_str());
-                        AppGwErrorUtils::NotPermitted(resolution);
+                        ErrorUtils::NotPermitted(resolution);
                         return Core::ERROR_GENERAL;
                     }
                     if (!allowed) {
                         LOGERR("AppId '%s' not allowed in permission group '%s'", context.appId.c_str(), permissionGroup.c_str());
-                        AppGwErrorUtils::NotPermitted(resolution);
+                        ErrorUtils::NotPermitted(resolution);
                         return Core::ERROR_GENERAL;
                     }
                 }
