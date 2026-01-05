@@ -1,10 +1,1 @@
-Expected AppGateway plugin artifacts after successful build/install:
-
-Install prefix:
-  app-gateway2/dependencies/install
-
-Primary plugin shared object (Thunder default):
-  app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
-
-Compatibility symlink (created by scripts/build_plugin_appgateway.sh):
-  app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so

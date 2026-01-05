@@ -57,20 +57,30 @@ add_library(${MODULE_NAME} SHARED
         Resolver.cpp
         Module.cpp)
 
-# Ensure local helpers and resolutions are on the include path
+# -----------------------------------------------------------------------------
+# Include paths
+#
+# IMPORTANT: Prefer entservices-infra helpers BEFORE local shims to avoid
+# duplicate/ambiguous definitions (e.g., ErrorUtils, StringUtils, etc.).
+# -----------------------------------------------------------------------------
+
+# Prefer vendored entservices-infra helper headers (if present).
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../dependencies/entservices-infra/helpers)
+    target_include_directories(${MODULE_NAME} PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/../dependencies/entservices-infra/helpers)
+endif()
+
+# Include shared Supporting_Files for common utilities like ContextUtils.h and
+# callsign constants.
+if(EXISTS ${CMAKE_SOURCE_DIR}/../Supporting_Files)
+    target_include_directories(${MODULE_NAME} PRIVATE
+        ${CMAKE_SOURCE_DIR}/../Supporting_Files)
+endif()
+
+# Local helpers and resolutions (kept after entservices-infra to avoid conflicts)
 target_include_directories(${MODULE_NAME} PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../helpers
         ${CMAKE_CURRENT_SOURCE_DIR}/resolutions)
-
-# Include shared Supporting_Files for common utilities like ContextUtils.h
-if(EXISTS ${CMAKE_SOURCE_DIR}/../Supporting_Files)
-    target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../Supporting_Files)
-endif()
-
-# Also search in repository-level dependencies helpers if present (for shared headers)
-if(EXISTS ${CMAKE_SOURCE_DIR}/../entservices-infra-712/helpers)
-    target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../entservices-infra-712/helpers)
-endif()
 
 # Add Thunder include directories explicitly if package config did not propagate
 # This helps resolve <interfaces/...> headers like IAppGateway.h
