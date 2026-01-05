@@ -33,9 +33,34 @@ set(PLUGIN_FBCOMMON_AUTOSTART "false" CACHE STRING "Automatically start FbCommon
 
 message("Setup ${MODULE_NAME} v${MODULE_VERSION}")
 
-find_package(${NAMESPACE}Plugins REQUIRED)
-find_package(${NAMESPACE}Definitions REQUIRED)
+# Thunder installs may not always provide CMake package config files (e.g. in minimal CI environments).
+# Prefer the exported CMake targets when available, but gracefully fall back to header-only includes
+# so the plugin can still compile against the SDK headers.
+find_package(${NAMESPACE}Plugins QUIET)
+find_package(${NAMESPACE}Definitions QUIET)
 find_package(CompileSettingsDebug CONFIG REQUIRED)
+
+if (NOT TARGET ${NAMESPACE}Plugins::${NAMESPACE}Plugins)
+    message(WARNING "${NAMESPACE}Plugins CMake package not found; falling back to header-only interface target.")
+    add_library(${NAMESPACE}Plugins::${NAMESPACE}Plugins INTERFACE IMPORTED)
+    set(_thunder_include_guess "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
+    if (EXISTS "${_thunder_include_guess}")
+        set_target_properties(${NAMESPACE}Plugins::${NAMESPACE}Plugins PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES "${_thunder_include_guess}"
+        )
+    endif()
+endif()
+
+if (NOT TARGET ${NAMESPACE}Definitions::${NAMESPACE}Definitions)
+    message(WARNING "${NAMESPACE}Definitions CMake package not found; falling back to header-only interface target.")
+    add_library(${NAMESPACE}Definitions::${NAMESPACE}Definitions INTERFACE IMPORTED)
+    set(_thunder_include_guess "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
+    if (EXISTS "${_thunder_include_guess}")
+        set_target_properties(${NAMESPACE}Definitions::${NAMESPACE}Definitions PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES "${_thunder_include_guess}"
+        )
+    endif()
+endif()
 
 add_library(${MODULE_NAME} SHARED
     FbCommonImplementation.cpp
