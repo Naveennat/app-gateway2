@@ -108,7 +108,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //No help, variable specified on the command line.
-CMAKE_PREFIX_PATH:UNINITIALIZED=/home/kavia/workspace/code-generation/dependencies/install
+CMAKE_PREFIX_PATH:UNINITIALIZED=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -191,16 +191,16 @@ GENHTML_EXECUTABLE:FILEPATH=/usr/bin/genhtml
 LCOV_EXECUTABLE:FILEPATH=/usr/bin/lcov
 
 //Install prefix to locate Thunder/WPEFramework artifacts (include/lib/plugins)
-PREFIX:STRING=/home/kavia/workspace/code-generation/dependencies/install
+PREFIX:STRING=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
 
 //Path to a library.
-WPEFRAMEWORK_CORE_LIB:FILEPATH=/home/kavia/workspace/code-generation/dependencies/install/lib/libWPEFrameworkCore.so
+WPEFRAMEWORK_CORE_LIB:FILEPATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkCore.so
 
 //Path to a library.
-WPEFRAMEWORK_MESSAGING_LIB:FILEPATH=/home/kavia/workspace/code-generation/dependencies/install/lib/libWPEFrameworkMessaging.so
+WPEFRAMEWORK_MESSAGING_LIB:FILEPATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkMessaging.so
 
 //Path to a library.
-WPEFRAMEWORK_PLUGINS_LIB:FILEPATH=/home/kavia/workspace/code-generation/dependencies/install/lib/libWPEFrameworkPlugins.so
+WPEFRAMEWORK_PLUGINS_LIB:FILEPATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkPlugins.so
 
 //Value Computed by CMake
 appgateway_l0test_BINARY_DIR:STATIC=/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build

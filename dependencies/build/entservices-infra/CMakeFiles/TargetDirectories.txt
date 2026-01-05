@@ -1,0 +1,13 @@
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/CMakeFiles/edit_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/CMakeFiles/rebuild_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/CMakeFiles/list_install_components.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/CMakeFiles/install.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/CMakeFiles/install/local.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/CMakeFiles/install/strip.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/AppGateway/CMakeFiles/edit_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/AppGateway/CMakeFiles/rebuild_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/AppGateway/CMakeFiles/list_install_components.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/AppGateway/CMakeFiles/install.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/AppGateway/CMakeFiles/install/local.dir
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/build/entservices-infra/AppGateway/CMakeFiles/install/strip.dir

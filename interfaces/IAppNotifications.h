@@ -31,6 +31,11 @@ namespace Exchange {
 struct EXTERNAL IAppNotifications : virtual public Core::IUnknown {
     enum { ID = ID_APP_NOTIFICATIONS };
 
+    // NOTE:
+    // Upstream entservices-infra/AppGateway (develop) expects an AppNotifications
+    // interface that supports event subscription management. Our previous stub
+    // only exposed Notify(), which caused build-time API mismatches.
+
     struct AppNotificationContext {
         uint32_t requestId;
         uint32_t connectionId;
@@ -38,7 +43,25 @@ struct EXTERNAL IAppNotifications : virtual public Core::IUnknown {
         string origin;
     };
 
+    // Existing API (kept for backward compatibility with any local tests/mocks).
     virtual Core::hresult Notify(const string& eventName /* @in */, const string& payload /* @in @opaque */) = 0;
+
+    // Newer API used by AppGatewayImplementation.cpp (develop).
+    // @brief Subscribe or unsubscribe the given connection to an event.
+    // @param context Execution context information (appId/connectionId/origin etc.)
+    // @param listen true to subscribe, false to unsubscribe
+    // @param callsign target plugin callsign (alias)
+    // @param event event name
+    virtual Core::hresult Subscribe(const AppNotificationContext& context /* @in */,
+                                    const bool listen /* @in */,
+                                    const string& callsign /* @in */,
+                                    const string& event /* @in */) = 0;
+
+    // @brief Cleanup any subscriptions/registrations associated with a connection.
+    // @param connectionId connection identifier
+    // @param callsign owning callsign / originating callsign
+    virtual Core::hresult Cleanup(const uint32_t connectionId /* @in */,
+                                  const string& callsign /* @in */) = 0;
 };
 
 } // namespace Exchange

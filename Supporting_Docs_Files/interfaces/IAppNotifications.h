@@ -31,7 +31,22 @@ namespace Exchange {
 struct EXTERNAL IAppNotifications : virtual public Core::IUnknown {
     enum { ID = ID_APP_NOTIFICATIONS };
 
+    struct AppNotificationContext {
+        uint32_t requestId;
+        uint32_t connectionId;
+        string appId;
+        string origin;
+    };
+
     virtual Core::hresult Notify(const string& eventName /* @in */, const string& payload /* @in @opaque */) = 0;
+
+    virtual Core::hresult Subscribe(const AppNotificationContext& context /* @in */,
+                                    const bool listen /* @in */,
+                                    const string& callsign /* @in */,
+                                    const string& event /* @in */) = 0;
+
+    virtual Core::hresult Cleanup(const uint32_t connectionId /* @in */,
+                                  const string& callsign /* @in */) = 0;
 };
 
 } // namespace Exchange

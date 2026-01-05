@@ -24,13 +24,13 @@ events:
       The output was:
       1
       CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
-        365 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
             |           ^
       CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
-        370 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
             |           ^
       CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
-        373 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
             |           ^
       
       
@@ -50,13 +50,13 @@ events:
       The output was:
       1
       CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
-        365 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
             |           ^
       CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
-        370 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
             |           ^
       CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
-        373 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
             |           ^
       
       
@@ -131,13 +131,13 @@ events:
       The output was:
       1
       CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
-        365 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
             |           ^
       CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
-        370 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
             |           ^
       CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
-        373 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
             |           ^
       
       
@@ -157,13 +157,13 @@ events:
       The output was:
       1
       CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
-        365 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
             |           ^
       CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
-        370 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
             |           ^
       CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
-        373 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
             |           ^
       
       
@@ -183,13 +183,13 @@ events:
       The output was:
       1
       CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
-        365 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
             |           ^
       CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
-        370 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
             |           ^
       CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
-        373 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
             |           ^
       
       
@@ -264,13 +264,13 @@ events:
       The output was:
       1
       CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
-        365 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
             |           ^
       CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
-        370 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
             |           ^
       CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
-        373 | #  define /home/kavia/workspace/code-generation/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
             |           ^
       
       
@@ -305,8 +305,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-lJPBF7"
-      binary: "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-lJPBF7"
+      source: "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-SAQUAx"
+      binary: "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-SAQUAx"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "--coverage -O0 -g"
       CMAKE_CXX_FLAGS_DEBUG: ""
@@ -315,11 +315,11 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-lJPBF7'
+        Change Dir: '/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-SAQUAx'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_da623
-        [1/2] /usr/bin/c++   --coverage -O0 -g -o CMakeFiles/cmTC_da623.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
-        [2/2] : && /usr/bin/c++ --coverage -O0 -g --coverage CMakeFiles/cmTC_da623.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_da623   && :
+        Run Build Command(s): /usr/bin/ninja -v cmTC_e3088
+        [1/2] /usr/bin/c++   --coverage -O0 -g -o CMakeFiles/cmTC_e3088.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        [2/2] : && /usr/bin/c++ --coverage -O0 -g --coverage CMakeFiles/cmTC_e3088.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_e3088   && :
         
       exitCode: 0
   -
@@ -333,8 +333,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-Z0dqb2"
-      binary: "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-Z0dqb2"
+      source: "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-ExgQLY"
+      binary: "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-ExgQLY"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "--coverage -O0 -g"
       CMAKE_CXX_FLAGS_DEBUG: ""
@@ -343,11 +343,11 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-Z0dqb2'
+        Change Dir: '/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-ExgQLY'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_7c623
-        [1/2] /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  --coverage -O0 -g -o CMakeFiles/cmTC_7c623.dir/src.cxx.o -c /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-Z0dqb2/src.cxx
-        [2/2] : && /usr/bin/c++ --coverage -O0 -g --coverage CMakeFiles/cmTC_7c623.dir/src.cxx.o -o cmTC_7c623   && :
+        Run Build Command(s): /usr/bin/ninja -v cmTC_cd710
+        [1/2] /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  --coverage -O0 -g -o CMakeFiles/cmTC_cd710.dir/src.cxx.o -c /home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build/CMakeFiles/CMakeScratch/TryCompile-ExgQLY/src.cxx
+        [2/2] : && /usr/bin/c++ --coverage -O0 -g --coverage CMakeFiles/cmTC_cd710.dir/src.cxx.o -o cmTC_cd710   && :
         
       exitCode: 0
 ...
