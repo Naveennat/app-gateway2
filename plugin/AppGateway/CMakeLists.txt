@@ -47,6 +47,10 @@ add_library(${MODULE_NAME} SHARED
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
 
+# Prefer repo-local stub JSON headers (e.g., interfaces/json/JAppGatewayResolver.h)
+# over SDK placeholders under dependencies/install/include/WPEFramework/interfaces/json.
+target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../..)
+
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES)

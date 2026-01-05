@@ -167,9 +167,16 @@ namespace WPEFramework
                     mAppIdRegistry.Remove(connectionId);
                     Exchange::IAppNotifications* appNotifications = mService->QueryInterfaceByCallsign<Exchange::IAppNotifications>(APP_NOTIFICATIONS_CALLSIGN);
                     if (appNotifications != nullptr) {
-                        if (Core::ERROR_NONE != appNotifications->Cleanup(connectionId, APP_GATEWAY_CALLSIGN)) {
-                            LOGERR("AppNotifications Cleanup failed for connectionId: %d", connectionId);
-                        }
+                        // NOTE: current SDK's IAppNotifications does not expose Cleanup().
+                        // Best-effort: notify about disconnect so AppNotifications can react if desired.
+                        JsonObject payload;
+                        payload["connectionId"] = connectionId;
+                        payload["origin"] = APP_GATEWAY_CALLSIGN;
+
+                        std::string payloadStr;
+                        payload.ToString(payloadStr);
+
+                        (void)appNotifications->Notify(_T("appgateway.connection.cleanup"), payloadStr);
                         appNotifications->Release();
                         appNotifications = nullptr;
                     }

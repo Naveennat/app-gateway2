@@ -1,24 +1,9 @@
-BUILD_SCRIPT=app-gateway2/build_plugin_appgateway.sh
-WORKDIR=app-gateway2
-STATUS=FAILED
-
-LOG_FILE=app-gateway2/build_plugin_appgateway.log
-
-MARKERS_OBSERVED:
-- Setup WPEFrameworkAppGateway v1.0.0
-- -- Writing configuration for AppGateway using config_generator
-- -- Configuring done
-- -- Generating done
-- -- Build files have been written to: app-gateway2/build/plugin_appgateway
-- ninja: build stopped: subcommand failed.
-
-PRIMARY_FAILURES:
-- Resolver.cpp: error: 'StringUtils' has not been declared
-- AppGatewayImplementation.cpp: error: 'StringUtils' has not been declared
-- AppGatewayImplementation.cpp: error: reference to 'ErrorUtils' is ambiguous
-  candidates:
-    * struct AppGwErrorUtils::ErrorUtils (helpers/ErrorUtils.h)
-    * class ErrorUtils (dependencies/entservices-infra/helpers/UtilsFirebolt.h)
-
-WARNINGS:
-- UtilsLogging macros redefined (LOGTRACE/LOGINFO/LOGWARN/LOGERR)
+RESULT=FAIL
+WHEN=2026-01-05
+SUMMARY="Rebuild failed: SDK placeholder interfaces/json/JAppGatewayResolver.h lacks stub, and IAppNotifications in SDK has only Notify() (no Subscribe/Cleanup). Fixes added: prefer repo-local stub headers + adapt AppNotifications calls."
+LOGS:
+- app-gateway2/build_logs/rebuild_20260105.log
+- app-gateway2/build_logs/rebuild_after_fixes_20260105.log
+- app-gateway2/tests/l0/appgateway/coverage/rebuild_20260105.log
+- app-gateway2/tests/l0/appgateway/coverage/rebuild_after_fixes_20260105.log
+NEXT="Re-run ./build_plugin_appgateway.sh to validate fixes; if still failing, check include ordering and any additional API drift."

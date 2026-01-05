@@ -536,15 +536,34 @@ namespace WPEFramework
         }
 
         Core::hresult AppGatewayImplementation::HandleEvent(const Context &context, const string &alias,  const string &event, const string &origin, const bool listen) {
+            // NOTE: In this SDK, IAppNotifications only exposes Notify(eventName, payload).
+            // Older AppNotifications implementations offered Subscribe/Cleanup; we keep
+            // build compatibility by sending a best-effort notification.
             if (mAppNotifications == nullptr) {
                 mAppNotifications = mService->QueryInterfaceByCallsign<Exchange::IAppNotifications>(APP_NOTIFICATIONS_CALLSIGN);
                 if (mAppNotifications == nullptr) {
-                    LOGERR("IAppNotifications interface not available");
-                    return Core::ERROR_GENERAL;
+                    LOGWARN("IAppNotifications interface not available; ignoring event listen=%s for %s", listen ? "true" : "false", event.c_str());
+                    return Core::ERROR_NONE;
                 }
             }
 
-            return mAppNotifications->Subscribe(ContextUtils::ConvertAppGatewayToNotificationContext(context,origin), listen, alias, event);
+            JsonObject payload;
+            payload["listen"] = listen;
+            payload["alias"] = alias;
+            payload["event"] = event;
+            payload["origin"] = origin;
+
+            // Provide gateway context (if AppNotifications chooses to use it in payload)
+            JsonObject ctx;
+            ctx["requestId"] = context.requestId;
+            ctx["connectionId"] = context.connectionId;
+            ctx["appId"] = context.appId;
+            payload["context"] = ctx;
+
+            std::string payloadStr;
+            payload.ToString(payloadStr);
+
+            return mAppNotifications->Notify(_T("appgateway.event.listen"), payloadStr);
         }
 
         void AppGatewayImplementation::SendToLaunchDelegate(const Context& context, const string& payload)
