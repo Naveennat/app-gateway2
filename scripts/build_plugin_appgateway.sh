@@ -19,7 +19,7 @@ die()  { echo "[build_plugin_appgateway][ERROR] $*" >&2; exit 1; }
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-PLUGIN_SRC="${ROOT}/AppGateway"
+PLUGIN_SRC="${ROOT}/plugin/AppGateway"
 INSTALL_PREFIX="${ROOT}/dependencies/install"
 BUILD_DIR="${ROOT}/build/plugin_appgateway"
 

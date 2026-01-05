@@ -21,8 +21,9 @@ if(NOT DEFINED PREFIX OR "${PREFIX}" STREQUAL "")
     if(DEFINED ENV{PREFIX} AND NOT "$ENV{PREFIX}" STREQUAL "")
         set(PREFIX "$ENV{PREFIX}")
     else()
-        # Compute repository root from this folder (../.. -> app-gateway, ../../.. -> app-gateway2, ../../../.. -> repo root)
-        get_filename_component(REPO_ROOT "${CMAKE_SOURCE_DIR}/../../.." ABSOLUTE)
+        # Compute app-gateway2 root from this folder:
+        #   tests/l0/appgateway/l0test -> ../../../.. == app-gateway2
+        get_filename_component(REPO_ROOT "${CMAKE_SOURCE_DIR}/../../../.." ABSOLUTE)
         if(EXISTS "${REPO_ROOT}/dependencies/install")
             set(PREFIX "${REPO_ROOT}/dependencies/install")
         elseif(DEFINED ENV{PWD} AND EXISTS "$ENV{PWD}/dependencies/install")
@@ -73,7 +74,7 @@ endif()
 #  - CMAKE_PREFIX_PATH roots (include and include/WPEFramework) if provided
 #
 # Verify presence of interfaces/IAppGateway.h and warn if not found locally/installed.
-set(APPGW_LOCAL_IFACE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces/IAppGateway.h")
+set(APPGW_LOCAL_IFACE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces/IAppGateway.h")
 set(APPGW_INSTALLED_IFACE_HEADER "${PREFIX}/include/WPEFramework/interfaces/IAppGateway.h")
 if(EXISTS "${APPGW_LOCAL_IFACE_HEADER}")
     message(STATUS "AppGateway l0test: Using local interfaces stub: ${APPGW_LOCAL_IFACE_HEADER}")
@@ -84,15 +85,12 @@ else()
 endif()
 
 target_include_directories(appgateway_l0test PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}                      # this folder (ServiceMock.h, etc.)
-    ${CMAKE_CURRENT_SOURCE_DIR}/..                  # AppGateway
-    ${CMAKE_CURRENT_SOURCE_DIR}/../..               # app-gateway (so <interfaces/...> resolves)
-    ${CMAKE_SOURCE_DIR}/../..                       # app-gateway (from CMAKE_SOURCE_DIR for standalone builds)
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../helpers       # helpers under app-gateway
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../Supporting_Files # repo-level Supporting_Files
-    ${CMAKE_CURRENT_LIST_DIR}/../../Supporting_Files # app-gateway/Supporting_Files if present
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces    # local interface headers (direct includes)
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../interfaces/json
+    ${CMAKE_CURRENT_SOURCE_DIR}                          # this folder (ServiceMock.h, etc.)
+    ${CMAKE_CURRENT_SOURCE_DIR}/..                      # tests/l0/appgateway (script folder)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../plugin/AppGateway # Plugin sources (for headers)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../helpers      # helpers under app-gateway2
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces   # local interface headers (direct includes)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces/json
     ${PREFIX}/include
     ${PREFIX}/include/WPEFramework
 )
@@ -163,18 +161,24 @@ target_link_libraries(appgateway_l0test PRIVATE
 )
 
 # Attempt to link the AppGateway plugin shared object:
-#  1) From sibling build tree: ${CMAKE_BINARY_DIR}/../AppGateway/libWPEFrameworkAppGateway.so
-#  2) From installed location: ${PREFIX}/lib/plugins/libWPEFrameworkAppGateway.so
+#  1) From sibling build tree probe: ${CMAKE_BINARY_DIR}/../AppGateway/libWPEFrameworkAppGateway.so
+#     (the runner script creates this symlink if the plugin is installed)
+#  2) From installed location (compat):    ${PREFIX}/lib/plugins/libWPEFrameworkAppGateway.so
+#  3) From installed location (preferred): ${PREFIX}/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
 set(BUILT_PLUGIN_PATH "${CMAKE_BINARY_DIR}/../AppGateway/libWPEFrameworkAppGateway.so")
-set(INSTALLED_PLUGIN_PATH "${PREFIX}/lib/plugins/libWPEFrameworkAppGateway.so")
+set(INSTALLED_PLUGIN_PATH_COMPAT "${PREFIX}/lib/plugins/libWPEFrameworkAppGateway.so")
+set(INSTALLED_PLUGIN_PATH_WPE "${PREFIX}/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so")
 if(EXISTS "${BUILT_PLUGIN_PATH}")
     message(STATUS "Linking against built AppGateway plugin: ${BUILT_PLUGIN_PATH}")
     target_link_libraries(appgateway_l0test PRIVATE "${BUILT_PLUGIN_PATH}")
-elseif(EXISTS "${INSTALLED_PLUGIN_PATH}")
-    message(STATUS "Linking against installed AppGateway plugin: ${INSTALLED_PLUGIN_PATH}")
-    target_link_libraries(appgateway_l0test PRIVATE "${INSTALLED_PLUGIN_PATH}")
+elseif(EXISTS "${INSTALLED_PLUGIN_PATH_WPE}")
+    message(STATUS "Linking against installed AppGateway plugin: ${INSTALLED_PLUGIN_PATH_WPE}")
+    target_link_libraries(appgateway_l0test PRIVATE "${INSTALLED_PLUGIN_PATH_WPE}")
+elseif(EXISTS "${INSTALLED_PLUGIN_PATH_COMPAT}")
+    message(STATUS "Linking against installed AppGateway plugin: ${INSTALLED_PLUGIN_PATH_COMPAT}")
+    target_link_libraries(appgateway_l0test PRIVATE "${INSTALLED_PLUGIN_PATH_COMPAT}")
 else()
-    message(STATUS "AppGateway plugin not found at: ${BUILT_PLUGIN_PATH} or ${INSTALLED_PLUGIN_PATH}. Tests may still build but could fail at runtime.")
+    message(STATUS "AppGateway plugin not found at: ${BUILT_PLUGIN_PATH}, ${INSTALLED_PLUGIN_PATH_WPE}, or ${INSTALLED_PLUGIN_PATH_COMPAT}. Tests may still build but could fail at runtime.")
 endif()
 
 # Set RPATH so test executable runs without needing LD_LIBRARY_PATH
