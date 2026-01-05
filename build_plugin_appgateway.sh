@@ -54,7 +54,9 @@ log "APPEND_LOG=${APPEND_LOG}"
 [[ -d "${SDK_PREFIX}" ]] || die "SDK prefix not found (expected Thunder SDK already installed): ${SDK_PREFIX}"
 
 # Ensure CMake and pkg-config prefer the Thunder 4.4 SDK in dependencies/install.
-export CMAKE_PREFIX_PATH="${SDK_PREFIX}${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}"
+# Note: Thunder's package config files live under ${SDK_PREFIX}/lib/cmake/**, so include
+# that in CMAKE_PREFIX_PATH as well for reliable find_package() behavior.
+export CMAKE_PREFIX_PATH="${SDK_PREFIX}:${SDK_PREFIX}/lib/cmake${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}"
 export PKG_CONFIG_PATH="${SDK_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
 
 log "CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}"

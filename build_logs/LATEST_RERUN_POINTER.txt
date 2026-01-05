@@ -1,0 +1,5 @@
+Latest rerun artifacts are written by build_plugin_appgateway.sh to:
+- build_logs/build_plugin_appgateway_<timestamp>.log
+- tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+- tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
+- (optional) build_logs/build_plugin_appgateway_rerun_<timestamp>.log if invoked with tee externally
