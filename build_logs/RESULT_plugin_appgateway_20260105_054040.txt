@@ -1,0 +1,29 @@
+RESULT: FAILURE
+
+Command:
+  cd /home/kavia/workspace/code-generation/app-gateway2
+  ./build_plugin_appgateway.sh
+
+Timestamp/build id:
+  20260105_054040
+
+Failure summary:
+  Build failed during compilation with:
+    fatal error: Module.h: No such file or directory
+  Triggered from:
+    interfaces/IAppGateway.h:20:10 (#include "Module.h")
+
+Key output locations (logs captured by script):
+  - Configure log:
+      app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+  - Build log:
+      app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
+  - Combined append log:
+      app-gateway2/build_logs/build_plugin_appgateway_20260105_054040.log
+
+Build directory (generated):
+  app-gateway2/build/plugin_appgateway_20260105_054040
+
+Expected installed artifact (NOT produced due to failure):
+  app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
+  (and compat symlink: app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so)
