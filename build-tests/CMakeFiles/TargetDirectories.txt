@@ -1,0 +1,3 @@
+/home/kavia/workspace/code-generation/app-gateway2/build-tests/CMakeFiles/App2AppProviderTest.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-tests/CMakeFiles/edit_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/build-tests/CMakeFiles/rebuild_cache.dir

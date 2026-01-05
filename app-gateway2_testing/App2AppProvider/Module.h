@@ -7,7 +7,7 @@
 #define MODULE_NAME App2AppProvider
 #endif
 
-#include <core/core.h>
+#include <core/Core.h>
 #include <plugins/IPlugin.h>
 #include <plugins/IShell.h>
 
