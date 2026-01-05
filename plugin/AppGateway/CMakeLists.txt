@@ -68,6 +68,17 @@ if(NOT "${APPGATEWAY_EXTRA_INCLUDE_DIRS}" STREQUAL "")
     target_include_directories(${MODULE_NAME} PRIVATE ${APPGATEWAY_EXTRA_INCLUDE_DIRS})
 endif()
 
+# The interface IDs (e.g., ID_APP_GATEWAY*) live in app-gateway2/interfaces/Ids.h.
+# However, interfaces/IAppGateway.h includes "Module.h" which, during this plugin build,
+# resolves to plugin/AppGateway/Module.h (NOT the Thunder SDK's interfaces/Module.h).
+# plugin/AppGateway/Module.h does not include any Ids.h, therefore ID_APP_GATEWAY*
+# would be undefined unless we explicitly provide it at build level.
+#
+# We must not change plugin sources, so we force-include the correct Ids.h here.
+target_compile_options(${MODULE_NAME} PRIVATE
+    "-include" "${CMAKE_CURRENT_LIST_DIR}/../../interfaces/Ids.h"
+)
+
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES)
