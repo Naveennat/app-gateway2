@@ -345,9 +345,9 @@ OttPermissionCache& OttPermissionCache::Instance() {
 }
 
 // PUBLIC_INTERFACE
-std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
+std::vector<std::string> OttPermissionCache::GetPermissions(const std::string& appId) {
     // Copy under lock into a local result to prevent reading shared state without protection
-    std::vector<string> result;
+    std::vector<std::string> result;
     {
         std::lock_guard<std::mutex> lock(_admin);
         auto it = _cache.find(appId);
@@ -391,7 +391,7 @@ std::vector<string> OttPermissionCache::GetPermissions(const string& appId) {
 }
 
 // PUBLIC_INTERFACE
-void OttPermissionCache::UpdateCache(const string& appId, const std::vector<string>& permissions) {
+void OttPermissionCache::UpdateCache(const std::string& appId, const std::vector<std::string>& permissions) {
     // Guard: trim and validate appId (do not write empty)
     const std::string trimmed = Trim(appId);
     if (trimmed.empty()) {
@@ -431,7 +431,7 @@ void OttPermissionCache::UpdateCache(const string& appId, const std::vector<stri
 }
 
 // PUBLIC_INTERFACE
-void OttPermissionCache::Invalidate(const string& appId) {
+void OttPermissionCache::Invalidate(const std::string& appId) {
     std::lock_guard<std::mutex> lock(_admin);
     auto it = _cache.find(appId);
     if (it != _cache.end()) {
@@ -451,7 +451,7 @@ void OttPermissionCache::Clear() {
 }
 
 // PUBLIC_INTERFACE
-bool OttPermissionCache::Has(const string& appId) const {
+bool OttPermissionCache::Has(const std::string& appId) const {
     std::lock_guard<std::mutex> lock(_admin);
     return _cache.find(appId) != _cache.end();
 }

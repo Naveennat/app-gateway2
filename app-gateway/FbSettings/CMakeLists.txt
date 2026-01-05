@@ -43,6 +43,8 @@ add_library(${MODULE_NAME} SHARED
         Module.cpp)
 
 
+# Thunder SDK include root for headers like <core/core.h>
+target_include_directories(${MODULE_NAME} PRIVATE "${THUNDER_INSTALL_PATH_ABS}/include")
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 # Add Supporting_Files and project root to locate headers like UtilsJsonrpcDirectLink.h and <interfaces/...>
 target_include_directories(${MODULE_NAME} PRIVATE ../../Supporting_Files)

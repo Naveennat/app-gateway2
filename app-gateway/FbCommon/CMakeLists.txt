@@ -44,6 +44,8 @@ add_library(${MODULE_NAME} SHARED
     delegate/CommonDelegate.h
 )
 
+# Thunder SDK include root for headers like <core/core.h>
+target_include_directories(${MODULE_NAME} PRIVATE "${THUNDER_INSTALL_PATH_ABS}/include")
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 target_include_directories(${MODULE_NAME} PRIVATE ../../Supporting_Files)
 # Allow includes like <interfaces/...> from the project root

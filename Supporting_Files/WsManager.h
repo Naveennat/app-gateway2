@@ -421,8 +421,10 @@ public:
 
     // Close connection for a given connection id
     void Close(const uint32_t connectionId) {
-        const auto& client = mChannel->Client(connectionId);
-        client->Close(0);
+        auto* client = mChannel->Client(connectionId);
+        if (client != nullptr) {
+            client->Close(0);
+        }
     }
 
 public:

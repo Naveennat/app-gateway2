@@ -21,9 +21,29 @@ if (NOT DEFINED THUNDER_INCLUDE_DIR)
     set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
 endif()
 
-# Find Thunder libs explicitly
-find_library(THUNDER_CORE_LIB NAMES WPEFrameworkCore HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
-find_library(THUNDER_PLUGINS_LIB NAMES WPEFrameworkPlugins HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+# Find Thunder libs explicitly.
+# Note: In this repo the installed artifacts are named libWPEFrameworkCore.so.* and libWPEFrameworkPlugins.so.*.
+# Some CMake environments fail to resolve these when only using the bare library stem, so include both variants.
+find_library(THUNDER_CORE_LIB NAMES libWPEFrameworkCore WPEFrameworkCore HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+find_library(THUNDER_PLUGINS_LIB NAMES libWPEFrameworkPlugins WPEFrameworkPlugins HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+
+# Some generators/toolchains can still fail `find_library()` even when the files exist.
+# Fall back to checking the well-known SONAME symlinks produced by the Thunder install.
+if (NOT THUNDER_CORE_LIB)
+    if (EXISTS "${THUNDER_LIBRARY_DIR}/libWPEFrameworkCore.so.1")
+        set(THUNDER_CORE_LIB "${THUNDER_LIBRARY_DIR}/libWPEFrameworkCore.so.1")
+    elseif (EXISTS "${THUNDER_LIBRARY_DIR}/libWPEFrameworkCore.so")
+        set(THUNDER_CORE_LIB "${THUNDER_LIBRARY_DIR}/libWPEFrameworkCore.so")
+    endif()
+endif()
+
+if (NOT THUNDER_PLUGINS_LIB)
+    if (EXISTS "${THUNDER_LIBRARY_DIR}/libWPEFrameworkPlugins.so.1")
+        set(THUNDER_PLUGINS_LIB "${THUNDER_LIBRARY_DIR}/libWPEFrameworkPlugins.so.1")
+    elseif (EXISTS "${THUNDER_LIBRARY_DIR}/libWPEFrameworkPlugins.so")
+        set(THUNDER_PLUGINS_LIB "${THUNDER_LIBRARY_DIR}/libWPEFrameworkPlugins.so")
+    endif()
+endif()
 
 if (NOT THUNDER_CORE_LIB OR NOT THUNDER_PLUGINS_LIB)
     message(FATAL_ERROR "WPEFramework libraries not found in ${THUNDER_LIBRARY_DIR}. Please ensure dependencies are installed.")
@@ -40,6 +60,7 @@ add_executable(test_appgateway
 target_include_directories(test_appgateway
     PUBLIC
         "${THUNDER_INCLUDE_DIR}"
+        "${THUNDER_INSTALL_PATH_ABS}/include"
     PRIVATE
         "${PROJECT_SOURCE_DIR}"
         "${PROJECT_SOURCE_DIR}/AppGateway"
@@ -79,6 +100,7 @@ add_executable(test_fbcommon
 target_include_directories(test_fbcommon
     PUBLIC
         "${THUNDER_INCLUDE_DIR}"
+        "${THUNDER_INSTALL_PATH_ABS}/include"
     PRIVATE
         "${PROJECT_SOURCE_DIR}"
         "${PROJECT_SOURCE_DIR}/AppGateway"
@@ -112,6 +134,7 @@ add_executable(test_ottpermissioncache
 target_include_directories(test_ottpermissioncache
     PUBLIC
         "${THUNDER_INCLUDE_DIR}"
+        "${THUNDER_INSTALL_PATH_ABS}/include"
     PRIVATE
         "${PROJECT_SOURCE_DIR}"
         "${PROJECT_SOURCE_DIR}/OttServices"

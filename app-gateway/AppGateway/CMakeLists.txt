@@ -45,6 +45,8 @@ add_library(${MODULE_NAME} SHARED
         Module.cpp)
 
 # Include helper headers, resolution configs, top-level interfaces, and shared Supporting_Files
+# Also add the Thunder SDK include root so headers like <core/core.h> resolve.
+target_include_directories(${MODULE_NAME} PRIVATE "${THUNDER_INSTALL_PATH_ABS}/include")
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
 target_include_directories(${MODULE_NAME} PRIVATE "${PROJECT_SOURCE_DIR}")
