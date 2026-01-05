@@ -1,0 +1,8 @@
+# ninja log v5
+1	5900	1767596727596957678	CMakeFiles/appgateway_l0test.dir/AppGateway_Init_DeinitTests.cpp.o	10fde0ea4564f38a
+1	5986	1767596727684957013	CMakeFiles/appgateway_l0test.dir/AppGateway_JsonRpcResolveTests.cpp.o	8616e313fb6d2364
+2	6219	1767596727916955262	CMakeFiles/appgateway_l0test.dir/Responder_BehaviorTests.cpp.o	29f569404a3cd0d2
+2	6222	1767596727916955262	CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o	9a9ff782ffc4f3bd
+2	6386	1767596728080954024	CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o	df3ea67aafb936fa
+1	6884	1767596728580950249	CMakeFiles/appgateway_l0test.dir/AppGatewayTest.cpp.o	ce66b27e1a080a95
+6884	7133	1767596728832948347	appgateway_l0test	293266f99c45ec89

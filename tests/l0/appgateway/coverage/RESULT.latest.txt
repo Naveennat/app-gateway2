@@ -1,0 +1,20 @@
+AppGateway L0 coverage run (run_coverage.sh): FAILED
+
+Date: 2026-01-05
+Plugin used: dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
+SDK used:   dependencies/install
+
+Console output (captured):
+- tests/l0/appgateway/coverage/console.latest.txt
+
+Coverage artifacts:
+- lcov tracefile: NOT GENERATED (script aborted during test execution)
+- genhtml report: NOT GENERATED (script aborted during test execution)
+
+Failure summary (from console.latest.txt):
+- Runtime: "Missing implementation classname AppGatewayImplementation in library"
+- Initialize() returns non-empty error: "Could not retrieve the AppGateway interface."
+- Assertion abort (core dump):
+  ASSERT [plugin/AppGateway/AppGateway.cpp:65] (mResponder == nullptr)
+
+Exit code observed: 134 (Aborted / core dumped)
