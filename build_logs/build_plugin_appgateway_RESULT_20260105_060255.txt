@@ -1,0 +1,24 @@
+RESULT: FAILURE (compile)
+SCRIPT: app-gateway2/build_plugin_appgateway.sh
+TIMESTAMP: 20260105_060255
+
+CONFIGURE: SUCCESS
+BUILD: FAILURE
+
+BUILD_DIR: app-gateway2/build/plugin_appgateway_20260105_060255
+
+LOG_CONFIGURE: app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+LOG_BUILD:      app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
+LOG_APPEND:     app-gateway2/build_logs/build_plugin_appgateway_20260105_060255.log
+
+CMAKECACHE_VERIFY:
+  app-gateway2/build/plugin_appgateway_20260105_060255/CMakeCache.txt
+  APPGATEWAY_EXTRA_INCLUDE_DIRS:STRING=/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers;/home/kavia/workspace/code-generation/app-gateway2/interfaces
+
+FAILURE_CAUSE (first error):
+  interfaces/IAppGateway.h references undefined identifiers:
+    ID_APP_GATEWAY
+    ID_APP_GATEWAY_AUTHENTICATOR
+    ID_APP_GATEWAY_RESPONDER
+    ID_APP_GATEWAY_CONNECTION_NOTIFICATION
+    ID_APP_GATEWAY_REQUEST_HANDLER
