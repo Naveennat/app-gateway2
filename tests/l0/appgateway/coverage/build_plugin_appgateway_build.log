@@ -1,4 +1,4 @@
-[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260105_064056) (C++17) ===
+[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260105_064156) (C++11) ===
 [1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
 [2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
 [3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
@@ -9,11 +9,5 @@
 -- Install configuration: "Debug"
 -- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
 -- Set non-toolchain portion of runtime path of "/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so" to ""
-CMake Error at cmake_install.cmake:81 (file):
-  file cannot create directory: /etc/app-gateway.  Maybe need administrative
-  privileges.
-
-
-FAILED: CMakeFiles/install.util 
-cd /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260105_064056_cxx17 && /usr/bin/cmake -P cmake_install.cmake
-ninja: build stopped: subcommand failed.
+-- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json
+-- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/../etc/WPEFramework/plugins/AppGateway.json
