@@ -1,0 +1,17 @@
+AppGateway plugin build rerun marker
+==================================
+
+Timestamp (from build dir): 20260105_054637
+Script: app-gateway2/build_plugin_appgateway.sh
+
+Top-level captured log:
+- app-gateway2/build_plugin_appgateway.log
+
+Per-run log:
+- app-gateway2/build_logs/build_plugin_appgateway_20260105_054637.log
+
+Result marker:
+- app-gateway2/build_plugin_appgateway.result.txt  (exit_code=1)
+
+Outcome:
+- FAILED (missing headers: UtilsLogging.h, WsManager.h)
