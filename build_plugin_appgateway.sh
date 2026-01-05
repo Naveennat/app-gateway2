@@ -17,46 +17,61 @@ log()  { echo "[build_plugin_appgateway] $*"; }
 die()  { echo "[build_plugin_appgateway][ERROR] $*" >&2; exit 1; }
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+# Repository/container root is the directory where this script lives.
+# (Requirements: derive ROOT via the script location.)
+ROOT="$(cd "${SCRIPT_DIR}" && pwd)"
 
-# AppGateway plugin sources are upstream-synced and live in this workspace at:
-#   app-gateway2/plugin/AppGateway
-# They MUST be treated as read-only (see plugin/AppGateway/IMMUTABLE_UPSTREAM.md).
+# Immutable upstream plugin sources.
 PLUGIN_SRC="${ROOT}/plugin/AppGateway"
-INSTALL_PREFIX="${ROOT}/dependencies/install"
-BUILD_DIR="${ROOT}/build/plugin_appgateway"
 
+# Thunder 4.4 SDK prefix (preinstalled under this repo).
+SDK_PREFIX="${ROOT}/dependencies/install"
+
+# Use a timestamped build dir to avoid needing to delete older build trees.
+TS="$(date +%Y%m%d_%H%M%S)"
+BUILD_DIR="${ROOT}/build/plugin_appgateway_${TS}"
+
+# Required log locations
+COVERAGE_DIR="${ROOT}/tests/l0/appgateway/coverage"
+BUILD_LOG_DIR="${ROOT}/build_logs"
+CONFIGURE_LOG="${COVERAGE_DIR}/build_plugin_appgateway_configure.log"
+BUILD_LOG="${COVERAGE_DIR}/build_plugin_appgateway_build.log"
+APPEND_LOG="${BUILD_LOG_DIR}/build_plugin_appgateway_${TS}.log"
+
+mkdir -p "${COVERAGE_DIR}" "${BUILD_LOG_DIR}"
+
+log "SCRIPT_DIR=${SCRIPT_DIR}"
 log "ROOT=${ROOT}"
 log "PLUGIN_SRC=${PLUGIN_SRC}"
+log "SDK_PREFIX=${SDK_PREFIX}"
 log "BUILD_DIR=${BUILD_DIR}"
-log "INSTALL_PREFIX=${INSTALL_PREFIX}"
+log "CONFIGURE_LOG=${CONFIGURE_LOG}"
+log "BUILD_LOG=${BUILD_LOG}"
+log "APPEND_LOG=${APPEND_LOG}"
 
 [[ -d "${PLUGIN_SRC}" ]] || die "Plugin source directory not found: ${PLUGIN_SRC}"
 [[ -f "${PLUGIN_SRC}/CMakeLists.txt" ]] || die "CMakeLists.txt not found in: ${PLUGIN_SRC}"
-[[ -d "${INSTALL_PREFIX}" ]] || die "Install prefix not found (expected Thunder SDK already installed): ${INSTALL_PREFIX}"
+[[ -d "${SDK_PREFIX}" ]] || die "SDK prefix not found (expected Thunder SDK already installed): ${SDK_PREFIX}"
 
 # Ensure CMake and pkg-config prefer the Thunder 4.4 SDK in dependencies/install.
-export CMAKE_PREFIX_PATH="${INSTALL_PREFIX}${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}"
-export PKG_CONFIG_PATH="${INSTALL_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+export CMAKE_PREFIX_PATH="${SDK_PREFIX}${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}"
+export PKG_CONFIG_PATH="${SDK_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
 
 log "CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}"
 log "PKG_CONFIG_PATH=${PKG_CONFIG_PATH}"
 
-# Ensure CMake can locate Thunder's CMake *modules* (FindConfigGenerator.cmake, etc.).
-# WPEFrameworkPluginsConfig.cmake depends on find_package(ConfigGenerator) but the SDK
-# provides this as a module, not a package config.
-THUNDER_MODULES_DIR="${INSTALL_PREFIX}/include/WPEFramework/Modules"
+# Thunder provides some dependencies as CMake modules (e.g., FindConfigGenerator.cmake).
+# Include Thunder modules and any helper include dirs already configured previously.
+THUNDER_MODULES_DIR="${SDK_PREFIX}/include/WPEFramework/Modules"
 if [[ -d "${THUNDER_MODULES_DIR}" ]]; then
   log "Thunder CMake modules dir: ${THUNDER_MODULES_DIR}"
 else
   die "Thunder CMake modules dir not found: ${THUNDER_MODULES_DIR}"
 fi
 
-# Some AppGateway sources depend on helper headers (StringUtils, ErrorUtils, WsManager,
-# UtilsJsonrpcDirectLink, etc.). We vendor upstream helper trees under app-gateway2/helpers/.
-# Include BOTH so the compiler sees consistent definitions for all plugin sources.
-RDKSERVICES_HELPERS_DIR="${ROOT}/app-gateway2/helpers/rdkservices-comcast/helpers"
-ENTSERVICES_HELPERS_DIR="${ROOT}/app-gateway2/helpers/entservices-infra/helpers"
+# Some AppGateway sources depend on helper headers; include both vendored helper trees.
+RDKSERVICES_HELPERS_DIR="${ROOT}/helpers/rdkservices-comcast/helpers"
+ENTSERVICES_HELPERS_DIR="${ROOT}/helpers/entservices-infra/helpers"
 
 CXX_HELPER_INCLUDES=()
 if [[ -d "${RDKSERVICES_HELPERS_DIR}" ]]; then
@@ -73,38 +88,46 @@ else
   log "Helper include not found (continuing): ${ENTSERVICES_HELPERS_DIR}"
 fi
 
-# Build up a single, consistent flags string for CMake.
-# Note: we intentionally append to existing CMAKE_CXX_FLAGS, if any are passed in env/toolchain.
 HELPER_CXX_FLAGS=""
 if [[ ${#CXX_HELPER_INCLUDES[@]} -gt 0 ]]; then
   HELPER_CXX_FLAGS="$(printf "%s " "${CXX_HELPER_INCLUDES[@]}")"
 fi
 
-# Configure/build/install
-cmake -G Ninja -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
-  -DCMAKE_BUILD_TYPE=Debug \
-  -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}" \
-  -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}" \
-  -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
-  ${HELPER_CXX_FLAGS:+-DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS:-} ${HELPER_CXX_FLAGS}"}
+# Configure (capture to coverage log and append log)
+{
+  log "=== CONFIGURE (timestamp ${TS}) ==="
+  cmake -G Ninja -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
+    -DCMAKE_BUILD_TYPE=Debug \
+    -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \
+    -DCMAKE_PREFIX_PATH="${SDK_PREFIX}" \
+    -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
+    ${HELPER_CXX_FLAGS:+-DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS:-} ${HELPER_CXX_FLAGS}"}
+} 2>&1 | tee "${CONFIGURE_LOG}" | tee -a "${APPEND_LOG}"
 
-cmake --build "${BUILD_DIR}" --target install
+# Build + install (capture to coverage log and append log)
+{
+  log "=== BUILD+INSTALL (timestamp ${TS}) ==="
+  cmake --build "${BUILD_DIR}" --target install
+} 2>&1 | tee "${BUILD_LOG}" | tee -a "${APPEND_LOG}"
 
 # Verify install location and create compatibility symlink if needed.
-PLUGIN_SO="${INSTALL_PREFIX}/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so"
-COMPAT_DIR="${INSTALL_PREFIX}/lib/plugins"
+PLUGIN_SO="${SDK_PREFIX}/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so"
+COMPAT_DIR="${SDK_PREFIX}/lib/plugins"
 COMPAT_SO="${COMPAT_DIR}/libWPEFrameworkAppGateway.so"
 
+# Requirement: install libWPEFrameworkAppGateway.so to $SDK_PREFIX/lib/wpeframework/plugins
+# (the plugin's CMake install DESTINATION uses lib/${STORAGE_DIRECTORY}/plugins; in our SDK
+# STORAGE_DIRECTORY is expected to be 'wpeframework').
 if [[ -f "${PLUGIN_SO}" ]]; then
   log "Installed plugin: ${PLUGIN_SO}"
 else
-  # Some installations may use a different STORAGE_DIRECTORY; search for it.
-  FOUND="$(find "${INSTALL_PREFIX}/lib" -maxdepth 5 -type f -name 'libWPEFrameworkAppGateway.so' 2>/dev/null | head -n 1 || true)"
+  # Fallback: search for it and fail if it wasn't installed at all.
+  FOUND="$(find "${SDK_PREFIX}/lib" -maxdepth 5 -type f -name 'libWPEFrameworkAppGateway.so' 2>/dev/null | head -n 1 || true)"
   if [[ -n "${FOUND}" ]]; then
     PLUGIN_SO="${FOUND}"
     log "Installed plugin found at: ${PLUGIN_SO}"
   else
-    die "Installed plugin not found under ${INSTALL_PREFIX}/lib (expected libWPEFrameworkAppGateway.so)."
+    die "Installed plugin not found under ${SDK_PREFIX}/lib (expected libWPEFrameworkAppGateway.so)."
   fi
 fi
 
