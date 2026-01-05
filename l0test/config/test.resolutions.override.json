@@ -1,0 +1,6 @@
+
+{
+  "resolutions": {
+    "device.name": { "alias": "org.rdk.OverridePlugin.getName", "useComRpc": false }
+  }
+}
