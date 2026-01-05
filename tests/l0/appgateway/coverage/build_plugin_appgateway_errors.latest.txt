@@ -1,0 +1,30 @@
+5:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:14: error: found ‘:’ in nested-name-specifier, expected ‘::’
+9:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:10: error: ‘IDS’ has not been declared
+12:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:25: error: expected unqualified-id before ‘{’ token
+19:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:14: error: found ‘:’ in nested-name-specifier, expected ‘::’
+23:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:10: error: ‘IDS’ has not been declared
+26:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:25: error: expected unqualified-id before ‘{’ token
+31:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:38:22: error: ‘ID_APP_GATEWAY’ was not declared in this scope; did you mean ‘RTA_GATEWAY’?
+35:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:72:22: error: ‘ID_APP_GATEWAY_AUTHENTICATOR’ was not declared in this scope
+38:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:106:22: error: ‘ID_APP_GATEWAY_RESPONDER’ was not declared in this scope
+41:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+44:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:176:22: error: ‘ID_APP_GATEWAY_REQUEST_HANDLER’ was not declared in this scope
+51:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:14: error: found ‘:’ in nested-name-specifier, expected ‘::’
+55:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:10: error: ‘IDS’ has not been declared
+58:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:25: error: expected unqualified-id before ‘{’ token
+65:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:14: error: found ‘:’ in nested-name-specifier, expected ‘::’
+69:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:10: error: ‘IDS’ has not been declared
+72:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:25: error: expected unqualified-id before ‘{’ token
+77:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:38:22: error: ‘ID_APP_GATEWAY’ was not declared in this scope; did you mean ‘RTA_GATEWAY’?
+81:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:72:22: error: ‘ID_APP_GATEWAY_AUTHENTICATOR’ was not declared in this scope
+84:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:106:22: error: ‘ID_APP_GATEWAY_RESPONDER’ was not declared in this scope
+87:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+90:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:176:22: error: ‘ID_APP_GATEWAY_REQUEST_HANDLER’ was not declared in this scope
+97:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:14: error: found ‘:’ in nested-name-specifier, expected ‘::’
+101:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:10: error: ‘IDS’ has not been declared
+104:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/Ids.h:51:25: error: expected unqualified-id before ‘{’ token
+109:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:38:22: error: ‘ID_APP_GATEWAY’ was not declared in this scope; did you mean ‘RTA_GATEWAY’?
+113:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:72:22: error: ‘ID_APP_GATEWAY_AUTHENTICATOR’ was not declared in this scope
+116:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:106:22: error: ‘ID_APP_GATEWAY_RESPONDER’ was not declared in this scope
+119:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+122:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:176:22: error: ‘ID_APP_GATEWAY_REQUEST_HANDLER’ was not declared in this scope

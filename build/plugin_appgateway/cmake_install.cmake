@@ -1,4 +1,4 @@
-# Install script for directory: /home/kavia/workspace/code-generation/app-gateway2/AppGateway
+# Install script for directory: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -71,14 +71,14 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json")
+   "/etc/app-gateway/resolution.base.json")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway" TYPE FILE FILES "/home/kavia/workspace/code-generation/app-gateway2/AppGateway/resolutions/resolution.base.json")
+  file(INSTALL DESTINATION "/etc/app-gateway" TYPE FILE FILES "/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "AppGateway" OR NOT CMAKE_INSTALL_COMPONENT)
