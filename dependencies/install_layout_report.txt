@@ -1,0 +1,60 @@
+AppGateway2 - dependencies/install layout report
+Generated: 2026-01-05
+
+Scope:
+- Inspect dependencies/install layout for include/lib/cmake/etc presence.
+- Confirm presence and exact paths of:
+  - libWPEFrameworkAppGateway.so
+  - WPEFramework Core/Plugins libraries
+  - AppGateway config files under etc
+
+1) Directory layout (observed)
+- dependencies/install/
+  - include/
+    - WPEFramework/
+      - Modules/
+  - sbin/
+    - ConfigGenerator/
+    - JsonGenerator/
+      - schemas/
+      - source/
+    - ProxyStubGenerator/
+
+Not observed under dependencies/install (not present in scan):
+- lib/
+- lib/plugins/ (or wpeframework/plugins)
+- etc/
+- lib/cmake/ (or any cmake package directory)
+
+2) include paths
+Present:
+- dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake
+- dependencies/install/include/WPEFramework/Modules/FindJsonGenerator.cmake
+- dependencies/install/include/WPEFramework/Modules/FindProxyStubGenerator.cmake
+
+Not present (in install prefix):
+- dependencies/install/include/WPEFramework/Core/**
+- dependencies/install/include/core/**
+- dependencies/install/include/WPEFramework/plugins/**
+
+3) lib + plugin .so artifacts
+Search results under dependencies/install:
+- libWPEFrameworkAppGateway.so: NOT FOUND
+- libWPEFramework*.so*: NOT FOUND
+- any directory containing "plugins": NOT FOUND
+
+4) cmake package directories
+Observed only:
+- Find*.cmake modules under dependencies/install/include/WPEFramework/Modules/
+
+Not observed:
+- dependencies/install/lib/cmake/**
+- dependencies/install/*Config.cmake package directories
+
+5) etc / config
+- dependencies/install/etc/**: NOT FOUND
+- AppGateway config under install prefix: NOT FOUND
+
+Conclusion:
+Current dependencies/install contains only include/WPEFramework/Modules Find*.cmake and sbin tooling.
+No libraries/plugins/config were found under this install prefix in the performed scan.
