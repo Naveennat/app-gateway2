@@ -100,6 +100,7 @@ fi
   log "=== CONFIGURE (timestamp ${TS}) ==="
   cmake -G Ninja -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
     -DCMAKE_BUILD_TYPE=Debug \
+    -DNAMESPACE=WPEFramework \
     -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \
     -DCMAKE_PREFIX_PATH="${SDK_PREFIX}" \
     -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \

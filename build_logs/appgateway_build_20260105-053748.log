@@ -1,3 +1,16 @@
+[build_plugin_appgateway] SCRIPT_DIR=/home/kavia/workspace/code-generation/app-gateway2
+[build_plugin_appgateway] ROOT=/home/kavia/workspace/code-generation/app-gateway2
+[build_plugin_appgateway] PLUGIN_SRC=/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway
+[build_plugin_appgateway] SDK_PREFIX=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260105_053748
+[build_plugin_appgateway] CONFIGURE_LOG=/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+[build_plugin_appgateway] BUILD_LOG=/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
+[build_plugin_appgateway] APPEND_LOG=/home/kavia/workspace/code-generation/app-gateway2/build_logs/build_plugin_appgateway_20260105_053748.log
+[build_plugin_appgateway] CMAKE_PREFIX_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install:/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/cmake
+[build_plugin_appgateway] PKG_CONFIG_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/pkgconfig
+[build_plugin_appgateway] Thunder CMake modules dir: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules
+[build_plugin_appgateway] Helper include (rdkservices-comcast): /home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers
+[build_plugin_appgateway] Helper include (entservices-infra): /home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers
 [build_plugin_appgateway] === CONFIGURE (timestamp 20260105_053748) ===
 CMake Warning (dev) in CMakeLists.txt:
   No project() command is present.  The top-level CMakeLists.txt file must
