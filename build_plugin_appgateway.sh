@@ -116,9 +116,11 @@ else
 fi
 
 # Convert to a semicolon-separated CMake LIST.
+# NOTE: must NOT use a subshell here, otherwise the assignment won't persist.
 APPGATEWAY_EXTRA_INCLUDE_LIST=""
 if [[ ${#APPGATEWAY_EXTRA_INCLUDE_DIRS_RESOLVED[@]} -gt 0 ]]; then
-  (IFS=';'; APPGATEWAY_EXTRA_INCLUDE_LIST="${APPGATEWAY_EXTRA_INCLUDE_DIRS_RESOLVED[*]}")
+  IFS=';' APPGATEWAY_EXTRA_INCLUDE_LIST="${APPGATEWAY_EXTRA_INCLUDE_DIRS_RESOLVED[*]}"
+  unset IFS
 fi
 
 # Configure (capture to coverage log and append log)
@@ -131,8 +133,16 @@ fi
     -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \
     -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" \
     -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
-    -DAPPGATEWAY_EXTRA_INCLUDE_DIRS:LIST="${APPGATEWAY_EXTRA_INCLUDE_LIST}" \
+    -DAPPGATEWAY_EXTRA_INCLUDE_DIRS:STRING="${APPGATEWAY_EXTRA_INCLUDE_LIST}" \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+  # After configure, print the exact CMakeCache entry for verification (as requested).
+  if [[ -f "${BUILD_DIR}/CMakeCache.txt" ]]; then
+    log "CMakeCache.txt entry:"
+    grep -n '^APPGATEWAY_EXTRA_INCLUDE_DIRS:' "${BUILD_DIR}/CMakeCache.txt" || true
+  else
+    log "CMakeCache.txt not found at ${BUILD_DIR}/CMakeCache.txt"
+  fi
 } 2>&1 | tee "${CONFIGURE_LOG}" | tee -a "${APPEND_LOG}"
 
 # Build + install (capture to coverage log and append log)
