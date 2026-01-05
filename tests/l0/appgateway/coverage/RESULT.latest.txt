@@ -12,9 +12,14 @@ Coverage artifacts:
 - genhtml report: NOT GENERATED (script aborted during test execution)
 
 Failure summary (from console.latest.txt):
-- Runtime: "Missing implementation classname AppGatewayImplementation in library"
-- Initialize() returns non-empty error: "Could not retrieve the AppGateway interface."
-- Assertion abort (core dump):
-  ASSERT [plugin/AppGateway/AppGateway.cpp:65] (mResponder == nullptr)
+- Runtime instantiation failure:
+  - "Missing implementation classname AppGatewayImplementation in library"
+  - Initialize() returns non-empty error: "Could not retrieve the AppGateway interface."
+  - JSON-RPC resolve not registered/callable (dispatcher Invoke returned rc=53 in failing case)
 
-Exit code observed: 134 (Aborted / core dumped)
+- Prior abort root cause (now addressed via test-harness-only change):
+  - Calling Initialize() twice on the same plugin instance triggered:
+    ASSERT [plugin/AppGateway/AppGateway.cpp:65] (mResponder == nullptr)
+  - Process terminates with exit code 134 (Aborted / core dumped)
+
+Exit code observed in latest console.latest.txt: 134
