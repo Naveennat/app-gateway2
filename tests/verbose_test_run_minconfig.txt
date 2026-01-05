@@ -1,0 +1,15 @@
+## manifest run (minconfig)
+Mon Jan  5 03:22:29 PM UTC 2026
+
+total=4
+passed=1
+failed=1
+skipped=2
+
+### step logs
+artifacts/test-results/coverage_lcov.log
+artifacts/test-results/cpp_app2appprovider_build.log
+artifacts/test-results/cpp_ctest_build_ottservices.log
+artifacts/test-results/manifest_tests.log
+artifacts/test-results/node_healthcheck.log
+artifacts/test-results/node_server.log

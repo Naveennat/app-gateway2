@@ -80,13 +80,23 @@ fi
 
 # 3) Node healthcheck smoke test (server starts and /health responds).
 if command -v node >/dev/null 2>&1; then
+  # Ensure production deps are present (express) so node index.js can start in CI.
+  if command -v npm >/dev/null 2>&1 && [ -f package.json ]; then
+    if [ ! -d node_modules ] || [ ! -d node_modules/express ]; then
+      run_step "node_install_deps" bash -lc '
+        set -euo pipefail
+        npm ci --omit=dev --no-audit --no-fund
+      '
+    fi
+  fi
+
   # Inline runner so we can reliably capture logs/artifacts.
   run_step "node_healthcheck" bash -lc '
     set -euo pipefail
     PORT="${PORT:-3000}"
     node index.js >"'"${RESULTS_DIR}"'/node_server.log" 2>&1 &
     PID=$!
-    trap "kill \"$PID\" >/dev/null 2>&1 || true" EXIT
+    trap "kill \"${PID}\" >/dev/null 2>&1 || true" EXIT
 
     for _ in $(seq 1 40); do
       if curl -fsS "http://127.0.0.1:${PORT}/health" >/dev/null 2>&1; then
@@ -95,6 +105,7 @@ if command -v node >/dev/null 2>&1; then
       fi
       sleep 0.25
     done
+
     curl -fsS "http://127.0.0.1:${PORT}/health" >/dev/null
     kill "$PID" >/dev/null 2>&1 || true
     trap - EXIT
@@ -104,14 +115,20 @@ else
 fi
 
 # 4) Coverage collection (lcov) if any gcda/gcno exist.
-# This does not modify plugin source; it only captures coverage from instrumented builds if present.
+# Best-effort: do not fail the suite if the workspace has no execution data (.gcda).
 if command -v lcov >/dev/null 2>&1; then
   if find . -type f \( -name "*.gcda" -o -name "*.gcno" \) | grep -q .; then
     run_step "coverage_lcov" bash -lc '
       set -euo pipefail
-      # Capture coverage from the workspace (best-effort).
-      lcov --capture --directory . --output-file "'"${COVERAGE_DIR}"'/lcov.info" --ignore-errors mismatch,unused,empty
-      genhtml "'"${COVERAGE_DIR}"'/lcov.info" --output-directory "'"${COVERAGE_DIR}"'/html" >/dev/null
+      lcov --capture --directory . --output-file "'"${COVERAGE_DIR}"'/lcov.info" --ignore-errors mismatch,unused,empty || true
+
+      # If lcov produced an empty tracefile, treat as "no data" (non-fatal) but keep artifacts.
+      if ! grep -q "SF:" "'"${COVERAGE_DIR}"'/lcov.info" 2>/dev/null; then
+        echo "No valid coverage records found (no SF: entries). Keeping lcov.info for artifacts."
+        exit 0
+      fi
+
+      genhtml "'"${COVERAGE_DIR}"'/lcov.info" --output-directory "'"${COVERAGE_DIR}"'/html" --ignore-errors empty >/dev/null
       echo "lcov report written to '"${COVERAGE_DIR}"'/lcov.info and '"${COVERAGE_DIR}"'/html/"
     '
   else

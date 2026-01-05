@@ -1,0 +1,1 @@
+genhtml /home/kavia/workspace/code-generation/app-gateway2/artifacts/coverage/lcov.info --output-directory /home/kavia/workspace/code-generation/app-gateway2/artifacts/coverage/html
