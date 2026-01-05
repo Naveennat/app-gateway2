@@ -29,7 +29,7 @@ SDK_PREFIX="${ROOT}/dependencies/install"
 
 # Use a timestamped build dir to avoid needing to delete older build trees.
 TS="$(date +%Y%m%d_%H%M%S)"
-BUILD_DIR="${ROOT}/build/plugin_appgateway_${TS}"
+BUILD_DIR_BASE="${ROOT}/build/plugin_appgateway_${TS}"
 
 # Required log locations
 COVERAGE_DIR="${ROOT}/tests/l0/appgateway/coverage"
@@ -37,6 +37,7 @@ BUILD_LOG_DIR="${ROOT}/build_logs"
 CONFIGURE_LOG="${COVERAGE_DIR}/build_plugin_appgateway_configure.log"
 BUILD_LOG="${COVERAGE_DIR}/build_plugin_appgateway_build.log"
 APPEND_LOG="${BUILD_LOG_DIR}/build_plugin_appgateway_${TS}.log"
+RESULT_FILE="${BUILD_LOG_DIR}/RESULT_plugin_appgateway_${TS}.txt"
 
 mkdir -p "${COVERAGE_DIR}" "${BUILD_LOG_DIR}"
 
@@ -44,10 +45,11 @@ log "SCRIPT_DIR=${SCRIPT_DIR}"
 log "ROOT=${ROOT}"
 log "PLUGIN_SRC=${PLUGIN_SRC}"
 log "SDK_PREFIX=${SDK_PREFIX}"
-log "BUILD_DIR=${BUILD_DIR}"
+log "BUILD_DIR_BASE=${BUILD_DIR_BASE}"
 log "CONFIGURE_LOG=${CONFIGURE_LOG}"
 log "BUILD_LOG=${BUILD_LOG}"
 log "APPEND_LOG=${APPEND_LOG}"
+log "RESULT_FILE=${RESULT_FILE}"
 
 [[ -d "${PLUGIN_SRC}" ]] || die "Plugin source directory not found: ${PLUGIN_SRC}"
 [[ -f "${PLUGIN_SRC}/CMakeLists.txt" ]] || die "CMakeLists.txt not found in: ${PLUGIN_SRC}"
@@ -123,33 +125,78 @@ if [[ ${#APPGATEWAY_EXTRA_INCLUDE_DIRS_RESOLVED[@]} -gt 0 ]]; then
   unset IFS
 fi
 
-# Configure (capture to coverage log and append log)
-{
-  log "=== CONFIGURE (timestamp ${TS}) ==="
-  log "APPGATEWAY_EXTRA_INCLUDE_DIRS=${APPGATEWAY_EXTRA_INCLUDE_LIST}"
-  cmake -G Ninja -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
-    -DCMAKE_BUILD_TYPE=Debug \
-    -DNAMESPACE=WPEFramework \
-    -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \
-    -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" \
-    -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
-    -DAPPGATEWAY_EXTRA_INCLUDE_DIRS:STRING="${APPGATEWAY_EXTRA_INCLUDE_LIST}" \
-    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+# Try standards in order: C++11 -> C++14 -> C++17 (stop at first success).
+# IMPORTANT: Do not inject any compiler -std flags here; we only pass CMake cache vars.
+CXX_STANDARDS_TO_TRY=(11 14 17)
+SUCCESS=0
+LAST_STD=""
 
-  # After configure, print the exact CMakeCache entry for verification (as requested).
-  if [[ -f "${BUILD_DIR}/CMakeCache.txt" ]]; then
-    log "CMakeCache.txt entry:"
-    grep -n '^APPGATEWAY_EXTRA_INCLUDE_DIRS:' "${BUILD_DIR}/CMakeCache.txt" || true
+for STD in "${CXX_STANDARDS_TO_TRY[@]}"; do
+  BUILD_DIR="${BUILD_DIR_BASE}_cxx${STD}"
+  LAST_STD="${STD}"
+
+  # Configure (capture to coverage log and append log)
+  {
+    log "=== CONFIGURE (timestamp ${TS}) (C++${STD}) ==="
+    log "BUILD_DIR=${BUILD_DIR}"
+    log "APPGATEWAY_EXTRA_INCLUDE_DIRS=${APPGATEWAY_EXTRA_INCLUDE_LIST}"
+    cmake -G Ninja -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
+      -DCMAKE_BUILD_TYPE=Debug \
+      -DNAMESPACE=WPEFramework \
+      -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \
+      -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" \
+      -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
+      -DAPPGATEWAY_EXTRA_INCLUDE_DIRS:STRING="${APPGATEWAY_EXTRA_INCLUDE_LIST}" \
+      -DCMAKE_CXX_STANDARD="${STD}" \
+      -DCMAKE_CXX_STANDARD_REQUIRED=ON \
+      -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+    # After configure, print the exact CMakeCache entry for verification (as requested).
+    if [[ -f "${BUILD_DIR}/CMakeCache.txt" ]]; then
+      log "CMakeCache.txt entry:"
+      grep -n '^APPGATEWAY_EXTRA_INCLUDE_DIRS:' "${BUILD_DIR}/CMakeCache.txt" || true
+      grep -n '^CMAKE_CXX_STANDARD:' "${BUILD_DIR}/CMakeCache.txt" || true
+      grep -n '^CMAKE_CXX_STANDARD_REQUIRED:' "${BUILD_DIR}/CMakeCache.txt" || true
+    else
+      log "CMakeCache.txt not found at ${BUILD_DIR}/CMakeCache.txt"
+    fi
+  } 2>&1 | tee "${CONFIGURE_LOG}" | tee -a "${APPEND_LOG}"
+
+  # Build + install (capture to coverage log and append log)
+  if {
+    log "=== BUILD+INSTALL (timestamp ${TS}) (C++${STD}) ==="
+    cmake --build "${BUILD_DIR}" --target install
+  } 2>&1 | tee "${BUILD_LOG}" | tee -a "${APPEND_LOG}"; then
+    SUCCESS=1
+    break
   else
-    log "CMakeCache.txt not found at ${BUILD_DIR}/CMakeCache.txt"
+    log "Build failed for C++${STD}, will retry with next standard (if any)."
   fi
-} 2>&1 | tee "${CONFIGURE_LOG}" | tee -a "${APPEND_LOG}"
+done
 
-# Build + install (capture to coverage log and append log)
+if [[ "${SUCCESS}" -ne 1 ]]; then
+  {
+    echo "RESULT: FAIL"
+    echo "Timestamp: ${TS}"
+    echo "Last tried C++ standard: C++${LAST_STD}"
+    echo "See logs:"
+    echo "  ${CONFIGURE_LOG}"
+    echo "  ${BUILD_LOG}"
+    echo "  ${APPEND_LOG}"
+  } > "${RESULT_FILE}"
+  die "Build failed for all tried standards: ${CXX_STANDARDS_TO_TRY[*]}"
+fi
+
 {
-  log "=== BUILD+INSTALL (timestamp ${TS}) ==="
-  cmake --build "${BUILD_DIR}" --target install
-} 2>&1 | tee "${BUILD_LOG}" | tee -a "${APPEND_LOG}"
+  echo "RESULT: OK"
+  echo "Timestamp: ${TS}"
+  echo "C++ standard used: C++${LAST_STD}"
+  echo "Build dir: ${BUILD_DIR}"
+  echo "See logs:"
+  echo "  ${CONFIGURE_LOG}"
+  echo "  ${BUILD_LOG}"
+  echo "  ${APPEND_LOG}"
+} > "${RESULT_FILE}"
 
 # Verify install location and create compatibility symlink if needed.
 PLUGIN_SO="${SDK_PREFIX}/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so"
