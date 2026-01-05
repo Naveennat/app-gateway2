@@ -435,7 +435,7 @@ namespace L0Test {
             connectionId = 1;
             _instantiateCount.fetch_add(1, std::memory_order_acq_rel);
 
-            const std::string className = object.ClassName.Value();
+            const std::string className = object.ClassName();
 
             if (className == "AppGatewayImplementation") {
                 return (_cfg.provideResolver ? static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake()) : nullptr);
