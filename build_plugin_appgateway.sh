@@ -58,14 +58,32 @@ else
   die "Thunder CMake modules dir not found: ${THUNDER_MODULES_DIR}"
 fi
 
-# Some AppGateway sources depend on entservices-infra helper headers (WsManager.h,
-# UtilsJsonrpcDirectLink.h, ObjectUtils.h, StringUtils.h, etc.). Prefer the vendored copy.
-HELPERS_DIR="${ROOT}/app-gateway2/dependencies/entservices-infra/helpers"
-if [[ -d "${HELPERS_DIR}" ]]; then
-  log "Extra helper include: ${HELPERS_DIR}"
+# Some AppGateway sources depend on helper headers (StringUtils, ErrorUtils, WsManager,
+# UtilsJsonrpcDirectLink, etc.). We vendor upstream helper trees under app-gateway2/helpers/.
+# Include BOTH so the compiler sees consistent definitions for all plugin sources.
+RDKSERVICES_HELPERS_DIR="${ROOT}/app-gateway2/helpers/rdkservices-comcast/helpers"
+ENTSERVICES_HELPERS_DIR="${ROOT}/app-gateway2/helpers/entservices-infra/helpers"
+
+CXX_HELPER_INCLUDES=()
+if [[ -d "${RDKSERVICES_HELPERS_DIR}" ]]; then
+  log "Helper include (rdkservices-comcast): ${RDKSERVICES_HELPERS_DIR}"
+  CXX_HELPER_INCLUDES+=("-I${RDKSERVICES_HELPERS_DIR}")
 else
-  log "Extra helper include not found (continuing): ${HELPERS_DIR}"
-  HELPERS_DIR=""
+  log "Helper include not found (continuing): ${RDKSERVICES_HELPERS_DIR}"
+fi
+
+if [[ -d "${ENTSERVICES_HELPERS_DIR}" ]]; then
+  log "Helper include (entservices-infra): ${ENTSERVICES_HELPERS_DIR}"
+  CXX_HELPER_INCLUDES+=("-I${ENTSERVICES_HELPERS_DIR}")
+else
+  log "Helper include not found (continuing): ${ENTSERVICES_HELPERS_DIR}"
+fi
+
+# Build up a single, consistent flags string for CMake.
+# Note: we intentionally append to existing CMAKE_CXX_FLAGS, if any are passed in env/toolchain.
+HELPER_CXX_FLAGS=""
+if [[ ${#CXX_HELPER_INCLUDES[@]} -gt 0 ]]; then
+  HELPER_CXX_FLAGS="$(printf "%s " "${CXX_HELPER_INCLUDES[@]}")"
 fi
 
 # Configure/build/install
@@ -74,7 +92,7 @@ cmake -G Ninja -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
   -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}" \
   -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}" \
   -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
-  ${HELPERS_DIR:+-DCMAKE_CXX_FLAGS="-I${HELPERS_DIR}"}
+  ${HELPER_CXX_FLAGS:+-DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS:-} ${HELPER_CXX_FLAGS}"}
 
 cmake --build "${BUILD_DIR}" --target install
 

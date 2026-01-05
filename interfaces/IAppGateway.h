@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2024 RDK Management
+ * Copyright 2025 RDK Management.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,40 +16,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #pragma once
-
-#include <plugins/Module.h>
-#include <com/com.h>
-
-// Fallback interface ID definitions if not supplied by platform headers.
-#ifndef ID_APP_GATEWAY
-#define ID_APP_GATEWAY 0xFA200001
-#endif
-#ifndef ID_APP_GATEWAY_AUTHENTICATOR
-#define ID_APP_GATEWAY_AUTHENTICATOR 0xFA200002
-#endif
-#ifndef ID_APP_GATEWAY_RESPONDER
-#define ID_APP_GATEWAY_RESPONDER 0xFA200003
-#endif
-#ifndef ID_APP_GATEWAY_CONNECTION_NOTIFICATION
-#define ID_APP_GATEWAY_CONNECTION_NOTIFICATION 0xFA200004
-#endif
-#ifndef ID_APP_GATEWAY_REQUEST_HANDLER
-#define ID_APP_GATEWAY_REQUEST_HANDLER 0xFA200005
-#endif
-
+#include "Module.h"
 // @stubgen:include <com/IIteratorType.h>
-
 namespace WPEFramework
 {
     namespace Exchange
     {
-        struct GatewayContext
+        struct EXTERNAL GatewayContext
         {
-                uint32_t requestId;       // @brief Unique identifier for the request.
-                uint32_t connectionId; // @brief Unique identifier for the execution/session context.
-                string appId;        // @brief Application identifier (Firebolt appId).
+                uint32_t requestId;       /* @text requestId */ /* @brief Unique identifier for the request. */ 
+                uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
+                string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
         };
         
         // @json 1.0.0 @text:keep
@@ -66,7 +44,7 @@ namespace WPEFramework
             // @brief Adds additional Resolution paths to the gateway
             // @param paths: Adds set of paths in the order of override to be used by gateway to update the resolutions
             // @returns Core::hresult
-            virtual Core::hresult Configure(IStringIterator *const& paths /* @in */) = 0;
+            virtual Core::hresult Configure(IStringIterator *const& paths ) = 0;
 
 
             // @json:omit
@@ -79,10 +57,10 @@ namespace WPEFramework
             // @param params (optional): the parameters to resolve
             // @param result: Result of the resolution can be empty
             // @returns Core::hresult
-            virtual Core::hresult Resolve(const GatewayContext& context /* @in */,
-                                          const string& origin /* @in */,
-                                          const string& method /* @in */,
-                                          const string& params /* @in @opaque */,
+            virtual Core::hresult Resolve(const GatewayContext& context ,
+                                          const string& origin ,
+                                          const string& method ,
+                                          const string& params /*@opaque */,
                                           string& result /*@out @opaque */) = 0;
         };
 
@@ -96,26 +74,26 @@ namespace WPEFramework
 
             // ---- Authenticate ----
             // @json:omit
-            // @text Authenticate
+            // @text authenticate
             // @param sessionId: Session Id provided by a given application.
             // @brief Authenticate an incoming connection
-            virtual Core::hresult Authenticate(const string& sessionId /* @in */, string& appId /* @out */) = 0;
+            virtual Core::hresult Authenticate(const string& sessionId , string& appId /* @out */) = 0;
 
             // ---- GetSessionId ----
             // @json:omit
-            // @text GetSessionId
+            // @text getSessionId
             // @param appId: AppId of the current application.
             // @brief Get the sessionId for a given application provided to the delegate
-            virtual Core::hresult GetSessionId(const string& appId /* @in */ , string& sessionId /* @out */) = 0;
+            virtual Core::hresult GetSessionId(const string& appId  , string& sessionId /* @out */) = 0;
 
             // ---- CheckPermissionGroup ----
             // @json:omit
-            // @text CheckPermissionGroup
+            // @text checkPermissionGroup
             // @param appId: AppId of the current application.
             // @param permissionGroup: Permission group to check
             // @brief Check if the application belongs to a given permission group
-            virtual Core::hresult CheckPermissionGroup(const string& appId /* @in */,
-                                                       const string& permissionGroup /* @in */,
+            virtual Core::hresult CheckPermissionGroup(const string& appId ,
+                                                       const string& permissionGroup ,
                                                        bool& allowed /* @out */) = 0;
 
         };
@@ -134,39 +112,39 @@ namespace WPEFramework
             // @param context: Execution context containing requestId, connectionId, appId
             // @param payload: the response payload
             // @returns Core::hresult
-            virtual Core::hresult Respond(const GatewayContext& context /* @in */,
-                                          const string& payload /* @in @opaque */) = 0;
+            virtual Core::hresult Respond(const GatewayContext& context ,
+                                          const string& payload /*@opaque */) = 0;
 
             // @json:omit
-            // @text Emit
+            // @text emit
             // @brief Provides support for Emitting Notifications to a given context
             // @param context: Execution context containing requestId, connectionId, appId
             // @param payload: the response payload
             // @returns Core::hresult
-            virtual Core::hresult Emit(const GatewayContext& context /* @in */,
-                const string& method /* @in */, const string& payload /* @in @opaque */) = 0;
+            virtual Core::hresult Emit(const GatewayContext& context ,
+                const string& method , const string& payload /*@opaque */) = 0;
 
             // @json:omit
-            // @text Request
+            // @text request
             // @brief Forwards a Request to the Client. Needed for App Provider Patterns.
             // @param connectionId: Connection Id
             // @param id: Request id
             // @param method: Method
             // @param params: Params string object
             // @returns Core::hresult
-            virtual Core::hresult Request(const uint32_t connectionId /* @in */, 
-                const uint32_t id /* @in */, const string& method /* @in */, const string& params /* @in @opaque */) = 0;
+            virtual Core::hresult Request(const uint32_t connectionId , 
+                const uint32_t id , const string& method , const string& params /*@opaque */) = 0;
 
             
             // @json:omit
-            // @text GetGatewayConnectionContext
+            // @text getGatewayConnectionContext
             // @brief Gets any connection context parameter like headers, url params
             // @param connectionId: Connection Id
             // @param contextKey: Connection Id
             // @param contextValue: response value
             // @returns Core::hresult
-            virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId /* @in */,
-                const string& contextKey /* @in */,
+            virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId ,
+                const string& contextKey ,
                 string& contextValue /* @out */) = 0;
 
 
@@ -175,11 +153,11 @@ namespace WPEFramework
                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
 
                 // @brief Notifies App has either started or stopped a connection. App can create multiple connections.
-                // @text OnAppConnectionChanged
+                // @text onAppConnectionChanged
                 // @param appId App identifier for the application
                 // @param connectionId Unique identifier for the connection
                 // @param connected true if connection started, false if connection stopped
-                virtual void OnAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool& connected) {};
+                virtual void OnAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool connected) {};
             };
 
             /** Register notification interface */
@@ -199,15 +177,16 @@ namespace WPEFramework
             };
 
             // @json:omit
-            // @text respond
+            // @text handleAppGatewayRequest
             // @brief Provides support for responding to a given context
             // @param context: Execution context containing requestId, connectionId, appId
+            // @param method: the method to handle
             // @param payload: the request payload
             // @param result: Response for the given request. Can be empty.
             // @returns Core::hresult
-            virtual Core::hresult HandleAppGatewayRequest(const GatewayContext& context /* @in */,
-                                          const string& method /* @in */,
-                                          const string& payload /* @in @opaque */,
+            virtual Core::hresult HandleAppGatewayRequest(const GatewayContext& context ,
+                                          const string& method ,
+                                          const string& payload /*@opaque */,
                                           string& result /*@out @opaque */) = 0;
 
         };
