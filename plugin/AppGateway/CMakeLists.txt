@@ -57,7 +57,14 @@ target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../.
 
 # Allow the build script to inject additional include directories while keeping
 # deterministic precedence (plugin-local + repo-local first).
-if(DEFINED APPGATEWAY_EXTRA_INCLUDE_DIRS AND NOT "${APPGATEWAY_EXTRA_INCLUDE_DIRS}" STREQUAL "")
+#
+# IMPORTANT:
+# - This is expected to be provided as a CMake cache variable (LIST):
+#     -DAPPGATEWAY_EXTRA_INCLUDE_DIRS:LIST="dir1;dir2;dir3"
+# - We append it AFTER existing include dirs so plugin-local and repo-local stubs
+#   remain highest precedence, while helper injection becomes available.
+set(APPGATEWAY_EXTRA_INCLUDE_DIRS "" CACHE STRING "Extra include directories for AppGateway target (CMake list)")
+if(NOT "${APPGATEWAY_EXTRA_INCLUDE_DIRS}" STREQUAL "")
     target_include_directories(${MODULE_NAME} PRIVATE ${APPGATEWAY_EXTRA_INCLUDE_DIRS})
 endif()
 
