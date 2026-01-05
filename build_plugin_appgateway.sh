@@ -55,7 +55,7 @@ log "APPEND_LOG=${APPEND_LOG}"
 
 # Ensure CMake and pkg-config prefer the Thunder 4.4 SDK in dependencies/install.
 # Note: Thunder's package config files live under ${SDK_PREFIX}/lib/cmake/**, so include
-# that in CMAKE_PREFIX_PATH as well for reliable find_package() behavior.
+# that in CMAKE_PREFIX_PATH for reliable find_package() behavior.
 export CMAKE_PREFIX_PATH="${SDK_PREFIX}:${SDK_PREFIX}/lib/cmake${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}"
 export PKG_CONFIG_PATH="${SDK_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
 
@@ -63,7 +63,6 @@ log "CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}"
 log "PKG_CONFIG_PATH=${PKG_CONFIG_PATH}"
 
 # Thunder provides some dependencies as CMake modules (e.g., FindConfigGenerator.cmake).
-# Include Thunder modules and any helper include dirs already configured previously.
 THUNDER_MODULES_DIR="${SDK_PREFIX}/include/WPEFramework/Modules"
 if [[ -d "${THUNDER_MODULES_DIR}" ]]; then
   log "Thunder CMake modules dir: ${THUNDER_MODULES_DIR}"
@@ -71,28 +70,31 @@ else
   die "Thunder CMake modules dir not found: ${THUNDER_MODULES_DIR}"
 fi
 
-# Some AppGateway sources depend on helper headers; include both vendored helper trees.
-RDKSERVICES_HELPERS_DIR="${ROOT}/helpers/rdkservices-comcast/helpers"
+# Some AppGateway sources depend on helper headers. Include precedence matters:
+#   - entservices-infra helpers must come before rdkservices-comcast helpers to avoid
+#     ambiguous/mismatched headers like StringUtils/ErrorUtils.
 ENTSERVICES_HELPERS_DIR="${ROOT}/helpers/entservices-infra/helpers"
+RDKSERVICES_HELPERS_DIR="${ROOT}/helpers/rdkservices-comcast/helpers"
 
-CXX_HELPER_INCLUDES=()
-if [[ -d "${RDKSERVICES_HELPERS_DIR}" ]]; then
-  log "Helper include (rdkservices-comcast): ${RDKSERVICES_HELPERS_DIR}"
-  CXX_HELPER_INCLUDES+=("-I${RDKSERVICES_HELPERS_DIR}")
-else
-  log "Helper include not found (continuing): ${RDKSERVICES_HELPERS_DIR}"
-fi
-
+CMAKE_HELPER_INCLUDE_DIRS=()
 if [[ -d "${ENTSERVICES_HELPERS_DIR}" ]]; then
-  log "Helper include (entservices-infra): ${ENTSERVICES_HELPERS_DIR}"
-  CXX_HELPER_INCLUDES+=("-I${ENTSERVICES_HELPERS_DIR}")
+  log "Helper include (preferred, entservices-infra): ${ENTSERVICES_HELPERS_DIR}"
+  CMAKE_HELPER_INCLUDE_DIRS+=("${ENTSERVICES_HELPERS_DIR}")
 else
   log "Helper include not found (continuing): ${ENTSERVICES_HELPERS_DIR}"
 fi
 
-HELPER_CXX_FLAGS=""
-if [[ ${#CXX_HELPER_INCLUDES[@]} -gt 0 ]]; then
-  HELPER_CXX_FLAGS="$(printf "%s " "${CXX_HELPER_INCLUDES[@]}")"
+if [[ -d "${RDKSERVICES_HELPERS_DIR}" ]]; then
+  log "Helper include (fallback, rdkservices-comcast): ${RDKSERVICES_HELPERS_DIR}"
+  CMAKE_HELPER_INCLUDE_DIRS+=("${RDKSERVICES_HELPERS_DIR}")
+else
+  log "Helper include not found (continuing): ${RDKSERVICES_HELPERS_DIR}"
+fi
+
+# Convert helper include dirs to a semicolon-separated CMake list.
+CMAKE_HELPER_INCLUDE_LIST=""
+if [[ ${#CMAKE_HELPER_INCLUDE_DIRS[@]} -gt 0 ]]; then
+  (IFS=';'; CMAKE_HELPER_INCLUDE_LIST="${CMAKE_HELPER_INCLUDE_DIRS[*]}")
 fi
 
 # Configure (capture to coverage log and append log)
@@ -102,9 +104,10 @@ fi
     -DCMAKE_BUILD_TYPE=Debug \
     -DNAMESPACE=WPEFramework \
     -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \
-    -DCMAKE_PREFIX_PATH="${SDK_PREFIX}" \
+    -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" \
     -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
-    ${HELPER_CXX_FLAGS:+-DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS:-} ${HELPER_CXX_FLAGS}"}
+    ${CMAKE_HELPER_INCLUDE_LIST:+-DAPPGATEWAY_EXTRA_INCLUDE_DIRS="${CMAKE_HELPER_INCLUDE_LIST}"} \
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 } 2>&1 | tee "${CONFIGURE_LOG}" | tee -a "${APPEND_LOG}"
 
 # Build + install (capture to coverage log and append log)

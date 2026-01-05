@@ -44,12 +44,22 @@ add_library(${MODULE_NAME} SHARED
         Resolver.cpp
 	Module.cpp)
 
-target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
-target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
+# Include plugin-local headers first (e.g., Module.h is located next to sources)
+target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+
+# Plugin-local resolutions
+target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/resolutions)
 
 # Prefer repo-local stub JSON headers (e.g., interfaces/json/JAppGatewayResolver.h)
 # over SDK placeholders under dependencies/install/include/WPEFramework/interfaces/json.
+# This also makes repo-local interfaces (app-gateway2/interfaces/...) visible.
 target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../..)
+
+# Allow the build script to inject additional include directories while keeping
+# deterministic precedence (plugin-local + repo-local first).
+if(DEFINED APPGATEWAY_EXTRA_INCLUDE_DIRS AND NOT "${APPGATEWAY_EXTRA_INCLUDE_DIRS}" STREQUAL "")
+    target_include_directories(${MODULE_NAME} PRIVATE ${APPGATEWAY_EXTRA_INCLUDE_DIRS})
+endif()
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
