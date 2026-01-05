@@ -1,3 +1,92 @@
+[build_plugin_appgateway] === CONFIGURE (timestamp 20260105_054504) ===
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) in CMakeLists.txt:
+  cmake_minimum_required() should be called prior to this top-level project()
+  call.  Please see the cmake-commands(7) manual for usage documentation of
+  both commands.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+Setup WPEFrameworkAppGateway v1.0.0
+CMake Warning (dev) at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:21 (find_package):
+  Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+  are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+  the cmake_policy command to set the policy and suppress this warning.
+
+Call Stack (most recent call first):
+  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/cmake/WPEFrameworkPlugins/WPEFrameworkPluginsConfig.cmake:22 (find_package)
+  CMakeLists.txt:36 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
+  Syntax error in cmake code at
+
+    /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81
+
+  when parsing string
+
+    ======DEPRECATION=DETECTED==================================================\nPROPOSED FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" --> \"${_fix}\"\n\============================================================================
+
+  Invalid escape sequence \=
+
+  Policy CMP0010 is not set: Bad variable reference syntax is an error.  Run
+  "cmake --help-policy CMP0010" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  CMakeLists.txt:105 (write_config)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Deprecation Warning at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
+  
+  ======DEPRECATION=DETECTED==================================================\nPROPOSED
+  FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" -->
+  \"${_fix}\"\n\============================================================================
+Call Stack (most recent call first):
+  CMakeLists.txt:105 (write_config)
+
+
+-- Assuming:
+-- Plugin: AppGateway
+-- Classname: AppGateway
+-- Component: AppGateway
+-- Writing configuration for AppGateway using config_generator
+ConfigGenerator: Writing Config JSON
+CMake Warning (dev) in CMakeLists.txt:
+  No cmake_minimum_required command is present.  A line of code such as
+
+    cmake_minimum_required(VERSION 3.28)
+
+  should be added at the top of the file.  The version specified may be lower
+  if you wish to support older CMake versions for this project.  For more
+  information run "cmake --help-policy CMP0000".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260105_054504
 [build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260105_054504) ===
 [1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
 FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o 

@@ -1,0 +1,14 @@
+RESULT: FAIL
+TIMESTAMP: 20260105_054504
+
+Build script: ./build_plugin_appgateway.sh
+Status: cmake configure completed; build failed during compilation.
+
+Primary errors:
+- fatal error: UtilsLogging.h: No such file or directory
+- fatal error: WsManager.h: No such file or directory
+
+Logs captured:
+- tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+- tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
+- build_logs/build_plugin_appgateway_20260105_054504.log

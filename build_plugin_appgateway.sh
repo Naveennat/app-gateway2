@@ -73,23 +73,36 @@ fi
 # Some AppGateway sources depend on helper headers. Include precedence matters:
 #   - entservices-infra helpers must come before rdkservices-comcast helpers to avoid
 #     ambiguous/mismatched headers like StringUtils/ErrorUtils.
+#
+# Headers we need (as seen in build failures) live in:
+#   - dependencies/entservices-infra/helpers/{UtilsLogging.h,WsManager.h}
+#   - helpers/entservices-infra/helpers/UtilsLogging.h
+#   - helpers/rdkservices-comcast/helpers/{UtilsLogging.h,WsManager.h}
+#
+# So we include both repo-local helpers/* AND vendored dependencies/* with
+# entservices-infra taking precedence.
 ENTSERVICES_HELPERS_DIR="${ROOT}/helpers/entservices-infra/helpers"
+ENTSERVICES_DEPS_HELPERS_DIR="${ROOT}/dependencies/entservices-infra/helpers"
 RDKSERVICES_HELPERS_DIR="${ROOT}/helpers/rdkservices-comcast/helpers"
+RDKSERVICES_DEPS_HELPERS_DIR="${ROOT}/dependencies/rdkservices-comcast/helpers"
 
 CMAKE_HELPER_INCLUDE_DIRS=()
-if [[ -d "${ENTSERVICES_HELPERS_DIR}" ]]; then
-  log "Helper include (preferred, entservices-infra): ${ENTSERVICES_HELPERS_DIR}"
-  CMAKE_HELPER_INCLUDE_DIRS+=("${ENTSERVICES_HELPERS_DIR}")
-else
-  log "Helper include not found (continuing): ${ENTSERVICES_HELPERS_DIR}"
-fi
 
-if [[ -d "${RDKSERVICES_HELPERS_DIR}" ]]; then
-  log "Helper include (fallback, rdkservices-comcast): ${RDKSERVICES_HELPERS_DIR}"
-  CMAKE_HELPER_INCLUDE_DIRS+=("${RDKSERVICES_HELPERS_DIR}")
-else
-  log "Helper include not found (continuing): ${RDKSERVICES_HELPERS_DIR}"
-fi
+add_inc_if_dir() {
+  local d="$1"
+  if [[ -d "$d" ]]; then
+    log "Helper include: $d"
+    CMAKE_HELPER_INCLUDE_DIRS+=("$d")
+  else
+    log "Helper include not found (continuing): $d"
+  fi
+}
+
+# Preferred order (highest precedence first)
+add_inc_if_dir "${ENTSERVICES_HELPERS_DIR}"
+add_inc_if_dir "${ENTSERVICES_DEPS_HELPERS_DIR}"
+add_inc_if_dir "${RDKSERVICES_HELPERS_DIR}"
+add_inc_if_dir "${RDKSERVICES_DEPS_HELPERS_DIR}"
 
 # Convert helper include dirs to a semicolon-separated CMake list.
 CMAKE_HELPER_INCLUDE_LIST=""
@@ -100,13 +113,14 @@ fi
 # Configure (capture to coverage log and append log)
 {
   log "=== CONFIGURE (timestamp ${TS}) ==="
+  log "APPGATEWAY_EXTRA_INCLUDE_DIRS=${CMAKE_HELPER_INCLUDE_LIST}"
   cmake -G Ninja -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
     -DCMAKE_BUILD_TYPE=Debug \
     -DNAMESPACE=WPEFramework \
     -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \
     -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" \
     -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
-    ${CMAKE_HELPER_INCLUDE_LIST:+-DAPPGATEWAY_EXTRA_INCLUDE_DIRS="${CMAKE_HELPER_INCLUDE_LIST}"} \
+    ${CMAKE_HELPER_INCLUDE_LIST:+-DAPPGATEWAY_EXTRA_INCLUDE_DIRS:STRING="${CMAKE_HELPER_INCLUDE_LIST}"} \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 } 2>&1 | tee "${CONFIGURE_LOG}" | tee -a "${APPEND_LOG}"
 
