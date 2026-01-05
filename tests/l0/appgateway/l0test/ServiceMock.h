@@ -20,7 +20,7 @@
 #include <unordered_map>
 #include <mutex>
 
-#include "../Module.h"
+#include <Module.h>
 
 #include <core/core.h>
 #include <plugins/IShell.h>

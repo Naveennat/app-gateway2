@@ -5,7 +5,7 @@
 #include <core/core.h>
 #include <plugins/IDispatcher.h>
 
-#include "../AppGateway.h"
+#include <AppGateway.h>
 #include "ServiceMock.h"
 
 using WPEFramework::Core::ERROR_BAD_REQUEST;

@@ -5,7 +5,7 @@
 #include <core/core.h>
 #include <plugins/IDispatcher.h>
 
-#include "../AppGateway.h"
+#include <AppGateway.h>
 #include "ServiceMock.h"
 
 // Context conversion utilities: Supporting_Files path is added via CMake for tests

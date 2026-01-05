@@ -10,9 +10,9 @@
 #include <core/core.h>
 #include <com/IIteratorType.h>
 
-#include "../AppGatewayImplementation.h"
-#include "../Resolver.h"
-#include "../AppGateway.h"
+#include <AppGatewayImplementation.h>
+#include <Resolver.h>
+#include <AppGateway.h>
 #include <plugins/IDispatcher.h>
 #include "ServiceMock.h"
 
