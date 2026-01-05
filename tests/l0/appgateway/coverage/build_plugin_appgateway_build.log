@@ -1,131 +1,27 @@
-[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260105_063513) (C++17) ===
 [1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
 FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o 
-/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/Module.h:38,
-                 from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IConfiguration.h:21,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:21:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/Ids.h:51:10: error: multiple definition of ‘enum WPEFramework::Exchange::IDS’
-   51 |     enum IDS : uint32_t {
-      |          ^~~
-In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:31,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:21,
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:22,
                  from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:20:
-/home/kavia/workspace/code-generation/app-gateway2/interfaces/Ids.h:51:10: note: previous definition here
-   51 |     enum IDS : uint32_t {
-      |          ^~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
 FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o 
-/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/Module.h:38,
-                 from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IConfiguration.h:21,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.h:25,
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.h:24,
                  from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:23:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/Ids.h:51:10: error: multiple definition of ‘enum WPEFramework::Exchange::IDS’
-   51 |     enum IDS : uint32_t {
-      |          ^~~
-In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:31,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.h:22:
-/home/kavia/workspace/code-generation/app-gateway2/interfaces/Ids.h:51:10: note: previous definition here
-   51 |     enum IDS : uint32_t {
-      |          ^~~
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
 [4/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
 FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o 
-/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -I/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/Module.h:38,
-                 from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IComposition.h:22,
-                 from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/definitions.h:39,
-                 from /home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers/WebSocketLink.h:25,
-                 from /home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers/WsManager.h:26,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.h:23,
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.h:24,
                  from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp:23:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/Ids.h:51:10: error: multiple definition of ‘enum WPEFramework::Exchange::IDS’
-   51 |     enum IDS : uint32_t {
-      |          ^~~
-In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:31,
-                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.h:22:
-/home/kavia/workspace/code-generation/app-gateway2/interfaces/Ids.h:51:10: note: previous definition here
-   51 |     enum IDS : uint32_t {
-      |          ^~~
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IExternal.h:22,
-                 from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/definitions.h:40:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IValuePoint.h:28:21: error: ‘ID_VALUE_POINT’ was not declared in this scope
-   28 |         enum { ID = ID_VALUE_POINT };
-      |                     ^~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IValuePoint.h:32:25: error: ‘ID_VALUE_POINT_CATALOG’ was not declared in this scope
-   32 |             enum { ID = ID_VALUE_POINT_CATALOG };
-      |                         ^~~~~~~~~~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IValuePoint.h:36:29: error: ‘ID_VALUE_POINT_CATALOG_NOTIFICATION’ was not declared in this scope; did you mean ‘ID_APPLICATION_NOTIFICATION’?
-   36 |                 enum { ID = ID_VALUE_POINT_CATALOG_NOTIFICATION };
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                             ID_APPLICATION_NOTIFICATION
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IValuePoint.h:50:25: error: ‘ID_VALUE_POINT_NOTIFICATION’ was not declared in this scope; did you mean ‘ID_WAREHOUSE_NOTIFICATION’?
-   50 |             enum { ID = ID_VALUE_POINT_NOTIFICATION };
-      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                         ID_WAREHOUSE_NOTIFICATION
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IExternal.h:27:21: error: ‘ID_EXTERNAL’ was not declared in this scope; did you mean ‘EXTERNAL’?
-   27 |         enum { ID = ID_EXTERNAL };
-      |                     ^~~~~~~~~~~
-      |                     EXTERNAL
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IExternal.h:30:25: error: ‘ID_EXTERNAL_NOTIFICATION’ was not declared in this scope; did you mean ‘ID_STORE_NOTIFICATION’?
-   30 |             enum { ID = ID_EXTERNAL_NOTIFICATION };
-      |                         ^~~~~~~~~~~~~~~~~~~~~~~~
-      |                         ID_STORE_NOTIFICATION
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IExternal.h:37:25: error: ‘ID_EXTERNAL_CATALOG’ was not declared in this scope
-   37 |             enum { ID = ID_EXTERNAL_CATALOG };
-      |                         ^~~~~~~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IExternal.h:40:29: error: ‘ID_EXTERNAL_CATALOG_NOTIFICATION’ was not declared in this scope; did you mean ‘ID_SCREEN_CAPTURE_NOTIFICATION’?
-   40 |                 enum { ID = ID_EXTERNAL_CATALOG_NOTIFICATION };
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                             ID_SCREEN_CAPTURE_NOTIFICATION
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/definitions.h:42:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IStream.h:29:21: error: ‘ID_STREAM’ was not declared in this scope; did you mean ‘ID_STORE2’?
-   29 |         enum { ID = ID_STREAM };
-      |                     ^~~~~~~~~
-      |                     ID_STORE2
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IStream.h:61:25: error: ‘ID_STREAM_ELEMENT’ was not declared in this scope
-   61 |             enum { ID = ID_STREAM_ELEMENT};
-      |                         ^~~~~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IStream.h:64:29: error: ‘ID_STREAM_ELEMENT_ITERATOR’ was not declared in this scope
-   64 |                 enum { ID = ID_STREAM_ELEMENT_ITERATOR };
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IStream.h:85:25: error: ‘ID_STREAM_CONTROL’ was not declared in this scope; did you mean ‘ID_MESSAGE_CONTROL’?
-   85 |             enum { ID = ID_STREAM_CONTROL };
-      |                         ^~~~~~~~~~~~~~~~~
-      |                         ID_MESSAGE_CONTROL
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IStream.h:88:29: error: ‘ID_STREAM_CONTROL_GEOMETRY’ was not declared in this scope
-   88 |                 enum { ID = ID_STREAM_CONTROL_GEOMETRY };
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IStream.h:98:29: error: ‘ID_STREAM_CONTROL_CALLBACK’ was not declared in this scope
-   98 |                 enum { ID = ID_STREAM_CONTROL_CALLBACK };
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IStream.h:116:25: error: ‘ID_STREAM_CALLBACK’ was not declared in this scope; did you mean ‘ID_SESSION_CALLBACK’?
-  116 |             enum { ID = ID_STREAM_CALLBACK };
-      |                         ^~~~~~~~~~~~~~~~~~
-      |                         ID_SESSION_CALLBACK
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IStream.h:138:21: error: ‘ID_PLAYER’ was not declared in this scope; did you mean ‘KEY_PLAYER’?
-  138 |         enum { ID = ID_PLAYER };
-      |                     ^~~~~~~~~
-      |                     KEY_PLAYER
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/definitions.h:43:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IVoiceHandler.h:33:21: error: ‘ID_VOICEPRODUCER’ was not declared in this scope
-   33 |         enum { ID = ID_VOICEPRODUCER };
-      |                     ^~~~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IVoiceHandler.h:36:25: error: ‘ID_VOICEPRODUCER_PROFILE’ was not declared in this scope
-   36 |             enum { ID = ID_VOICEPRODUCER_PROFILE };
-      |                         ^~~~~~~~~~~~~~~~~~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IVoiceHandler.h:58:21: error: ‘ID_VOICEHANDLER’ was not declared in this scope
-   58 |         enum { ID = ID_VOICEHANDLER };
-      |                     ^~~~~~~~~~~~~~~
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/definitions.h:44:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IPower.h:27:21: error: ‘ID_POWER’ was not declared in this scope; did you mean ‘ID_BROWSER’?
-   27 |         enum { ID = ID_POWER };
-      |                     ^~~~~~~~
-      |                     ID_BROWSER
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/interfaces/IPower.h:44:25: error: ‘ID_POWER_NOTIFICATION’ was not declared in this scope; did you mean ‘ID_BROWSER_NOTIFICATION’?
-   44 |             enum { ID = ID_POWER_NOTIFICATION };
-      |                         ^~~~~~~~~~~~~~~~~~~~~
-      |                         ID_BROWSER_NOTIFICATION
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [5/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
 ninja: build stopped: subcommand failed.

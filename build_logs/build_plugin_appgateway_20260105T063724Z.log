@@ -1,0 +1,153 @@
+=== build_plugin_appgateway rerun 20260105T063724Z UTC ===
+pwd=/home/kavia/workspace/code-generation/app-gateway2
+git=815be496
+--- script ---
+#!/usr/bin/env bash
+#
+# Build + install AppGateway plugin into app-gateway2/dependencies/install using Thunder 4.4 SDK.
+#
+# Requirements implemented:
+#  - Export/append CMAKE_PREFIX_PATH and PKG_CONFIG_PATH pointing to dependencies/install
+#  - Pass -DCMAKE_MODULE_PATH="$PREFIX/include/WPEFramework/Modules" so FindConfigGenerator.cmake resolves
+#  - Add include directories for entservices-infra helpers and repo Supporting_Files
+#  - Build out-of-source under build/plugin_appgateway and install into dependencies/install
+#  - Ensure libWPEFrameworkAppGateway.so is installed under lib/wpeframework/plugins and create/refresh
+#    a symlink under lib/plugins
+#  - Capture configure/build logs under tests/l0/appgateway/coverage/
+#
+set -euo pipefail
+
+log()  { echo "[build_plugin_appgateway] $*"; }
+die()  { echo "[build_plugin_appgateway][ERROR] $*" >&2; exit 1; }
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+PLUGIN_SRC="${ROOT}/plugin/AppGateway"
+INSTALL_PREFIX="${ROOT}/dependencies/install"
+BUILD_DIR="${ROOT}/build/plugin_appgateway"
+
+LOG_DIR="${ROOT}/tests/l0/appgateway/coverage"
+CONFIG_LOG="${LOG_DIR}/build_plugin_appgateway_configure.log"
+BUILD_LOG="${LOG_DIR}/build_plugin_appgateway_build.log"
+ERRORS_LATEST="${LOG_DIR}/build_plugin_appgateway_errors.latest.txt"
+
+mkdir -p "${LOG_DIR}"
+
+log "ROOT=${ROOT}"
+log "PLUGIN_SRC=${PLUGIN_SRC}"
+log "BUILD_DIR=${BUILD_DIR}"
+log "INSTALL_PREFIX=${INSTALL_PREFIX}"
+
+[[ -d "${PLUGIN_SRC}" ]] || die "Plugin source directory not found: ${PLUGIN_SRC}"
+[[ -f "${PLUGIN_SRC}/CMakeLists.txt" ]] || die "CMakeLists.txt not found in: ${PLUGIN_SRC}"
+[[ -d "${INSTALL_PREFIX}" ]] || die "Install prefix not found (expected Thunder SDK already installed): ${INSTALL_PREFIX}"
+--- end script header ---
+
+=== RUN ===
+[build_plugin_appgateway] ROOT=/home/kavia/workspace/code-generation/app-gateway2
+[build_plugin_appgateway] PLUGIN_SRC=/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway
+[build_plugin_appgateway] INSTALL_PREFIX=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] CMAKE_PREFIX_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] PKG_CONFIG_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/pkgconfig
+[build_plugin_appgateway] Thunder CMake modules dir: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules
+[build_plugin_appgateway] Extra helper include (preferred): /home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers
+[build_plugin_appgateway] Extra local helpers include: /home/kavia/workspace/code-generation/app-gateway2/helpers
+[build_plugin_appgateway] Configuring...
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) in CMakeLists.txt:
+  cmake_minimum_required() should be called prior to this top-level project()
+  call.  Please see the cmake-commands(7) manual for usage documentation of
+  both commands.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+Setup WPEFrameworkAppGateway v1.0.0
+CMake Warning (dev) at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
+  Syntax error in cmake code at
+
+    /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81
+
+  when parsing string
+
+    ======DEPRECATION=DETECTED==================================================\nPROPOSED FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" --> \"${_fix}\"\n\============================================================================
+
+  Invalid escape sequence \=
+
+  Policy CMP0010 is not set: Bad variable reference syntax is an error.  Run
+  "cmake --help-policy CMP0010" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  CMakeLists.txt:130 (write_config)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Deprecation Warning at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
+  
+  ======DEPRECATION=DETECTED==================================================\nPROPOSED
+  FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" -->
+  \"${_fix}\"\n\============================================================================
+Call Stack (most recent call first):
+  CMakeLists.txt:130 (write_config)
+
+
+-- Assuming:
+-- Plugin: AppGateway
+-- Classname: AppGateway
+-- Component: AppGateway
+-- Writing configuration for AppGateway using config_generator
+ConfigGenerator: Writing Config JSON
+CMake Warning (dev) in CMakeLists.txt:
+  No cmake_minimum_required command is present.  A line of code such as
+
+    cmake_minimum_required(VERSION 3.28)
+
+  should be added at the top of the file.  The version specified may be lower
+  if you wish to support older CMake versions for this project.  For more
+  information run "cmake --help-policy CMP0000".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway
+[build_plugin_appgateway] Building...
+[1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:22,
+                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:20:
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.h:24,
+                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:23:
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
+[4/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.h:24,
+                 from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp:23:
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../interfaces/IAppGateway.h:153:29: error: ‘ID_APP_GATEWAY_CONNECTION_NOTIFICATION’ was not declared in this scope
+  153 |                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[5/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
+ninja: build stopped: subcommand failed.
+[build_plugin_appgateway] Build failed; capturing first 50 lines of errors into /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_errors.latest.txt
+=== EXIT CODE: 1 ===

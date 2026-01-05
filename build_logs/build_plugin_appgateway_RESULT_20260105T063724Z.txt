@@ -1,0 +1,6 @@
+timestamp=20260105T063724Z
+status=FAIL
+exit_code=1 ===
+combined_log=build_logs/build_plugin_appgateway_20260105T063724Z.log
+configure_log=tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+build_log=tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
