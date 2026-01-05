@@ -60,6 +60,19 @@ target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/reso
 # This also makes repo-local interfaces (app-gateway2/interfaces/...) visible.
 target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../..)
 
+# Make repo interfaces directly reachable via the normal include mechanism.
+# This is required so that Module.h's include chain can resolve:
+#   #include <Ids.h>
+# without modifying any plugin/AppGateway .cpp/.h files or force-including headers.
+#
+# Use an absolute path derived from PROJECT_SOURCE_DIR (PLUGIN_SRC root) to avoid
+# dependence on the caller's current working directory.
+get_filename_component(APPGATEWAY_REPO_INTERFACES_DIR
+    "${PROJECT_SOURCE_DIR}/../../interfaces"
+    ABSOLUTE
+)
+target_include_directories(${MODULE_NAME} PRIVATE ${APPGATEWAY_REPO_INTERFACES_DIR})
+
 # Allow the build script to inject additional include directories while keeping
 # deterministic precedence (plugin-local + repo-local first).
 #
@@ -68,6 +81,8 @@ target_include_directories(${MODULE_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../.
 #     -DAPPGATEWAY_EXTRA_INCLUDE_DIRS:LIST="dir1;dir2;dir3"
 # - We append it AFTER existing include dirs so plugin-local and repo-local stubs
 #   remain highest precedence, while helper injection becomes available.
+# - The build script keeps helpers/rdkservices-comcast/helpers first, then
+#   helpers/entservices-infra/helpers, plus repo-root helpers and interfaces.
 set(APPGATEWAY_EXTRA_INCLUDE_DIRS "" CACHE STRING "Extra include directories for AppGateway target (CMake list)")
 if(NOT "${APPGATEWAY_EXTRA_INCLUDE_DIRS}" STREQUAL "")
     target_include_directories(${MODULE_NAME} PRIVATE ${APPGATEWAY_EXTRA_INCLUDE_DIRS})
