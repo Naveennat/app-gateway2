@@ -1,4 +1,4 @@
-[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260105_063923) (C++17) ===
+[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260105_064056) (C++17) ===
 [1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
 [2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
 [3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
@@ -15,5 +15,5 @@ CMake Error at cmake_install.cmake:81 (file):
 
 
 FAILED: CMakeFiles/install.util 
-cd /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260105_063923_cxx17 && /usr/bin/cmake -P cmake_install.cmake
+cd /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260105_064056_cxx17 && /usr/bin/cmake -P cmake_install.cmake
 ninja: build stopped: subcommand failed.

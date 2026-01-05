@@ -124,7 +124,9 @@ target_link_options(${MODULE_NAME} PRIVATE -Wl,-z,defs)
 install(TARGETS ${MODULE_NAME}
         DESTINATION lib/${STORAGE_DIRECTORY}/plugins)
 
+# Install under the configured sysconf dir (default becomes <prefix>/etc),
+# avoiding writes to system /etc during local builds.
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resolutions/resolution.base.json
-        DESTINATION "/etc/app-gateway/")
+        DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/app-gateway")
 
 write_config(${PLUGIN_NAME})
