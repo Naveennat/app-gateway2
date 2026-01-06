@@ -350,7 +350,6 @@ namespace Plugin {
             if ((handler != nullptr) && (handler->Exists(_T("resolve")) == Core::ERROR_NONE)) {
                 Exchange::JAppGatewayResolver::Unregister(*this);
             }
-
             mAppGateway->Release();
             mAppGateway = nullptr;
         }
@@ -382,10 +381,15 @@ namespace Plugin {
                        const string& /*designator*/,
                        const string& parameters,
                        string& response) -> uint32_t {
+                    // Extra null check for mAppGateway
+                    if (mAppGateway == nullptr) { 
+                        response.clear();
+                        return Core::ERROR_UNAVAILABLE;
+                    }
                     return ResolverJsonRpc::InvokeResolve(mAppGateway, parameters, response);
                 });
         } else {
-            LOGERR("Failed to initialise AppGatewayResolver plugin!");
+            LOGERR("Failed to initialise AppGatewayResolver plugin! (mAppGateway null)");
         }
 
         mResponder = service->Root<Exchange::IAppGatewayResponder>(mConnectionId, 2000, _T("AppGatewayResponderImplementation"));
@@ -396,12 +400,20 @@ namespace Plugin {
                 configConnectionResponder->Release();
             }
         } else {
-            LOGERR("Failed to initialise AppGatewayResponder plugin!");
+            LOGERR("Failed to initialise AppGatewayResponder plugin! (mResponder null)");
         }
 
-        return ((mAppGateway != nullptr) && (mResponder != nullptr))
-            ? EMPTY_STRING
-            : _T("Could not retrieve the AppGateway interface.");
+        if ((mAppGateway == nullptr) || (mResponder == nullptr)) {
+            string errorString = "Could not retrieve the AppGateway interface.";
+            if (mAppGateway == nullptr) {
+                errorString += " mAppGateway is null.";
+            }
+            if (mResponder == nullptr) {
+                errorString += " mResponder is null.";
+            }
+            return _T(errorString);
+        }
+        return EMPTY_STRING;
     }
 
     /* virtual */ void AppGateway::Deinitialize(PluginHost::IShell* service)

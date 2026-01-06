@@ -1,13 +1,8 @@
-[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260106_164228) (C++11) ===
-[1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
-[2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
-[3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
-[4/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
-[5/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
-[6/7] Linking CXX shared library libWPEFrameworkAppGateway.so
-[6/7] Install the project...
--- Install configuration: "Debug"
--- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
--- Set non-toolchain portion of runtime path of "/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so" to ""
--- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json
--- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/../etc/WPEFramework/plugins/AppGateway.json
+[1/3] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp: In destructor ‘virtual WPEFramework::Plugin::AppGatewayImplementation::~AppGatewayImplementation()’:
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:182:31: error: ‘Sleep’ is not a member of ‘WPEFramework::Core::Thread’
+  182 |                 Core::Thread::Sleep(kSleepMs); // Corrected sleep call to fix build
+      |                               ^~~~~
+ninja: build stopped: subcommand failed.

@@ -179,7 +179,7 @@ namespace WPEFramework
 
             uint32_t waited = 0;
             while (mInFlightJobs.load(std::memory_order_acquire) != 0 && waited < kMaxWaitMs) {
-                Core::Thread::SleepMs(kSleepMs);
+                Core::Thread::Sleep(kSleepMs); // Corrected sleep call to fix build
                 waited += kSleepMs;
             }
 
