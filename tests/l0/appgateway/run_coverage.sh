@@ -50,6 +50,15 @@ need_cmd ninja   || die "ninja not found in PATH."
 need_cmd lcov    || die "lcov not found in PATH."
 need_cmd genhtml || die "genhtml not found in PATH."
 
+log_section "Ensure runtime test configs"
+# The plugin uses /etc/app-gateway/resolution.base.json as a fallback path.
+# Ensure it exists so L0 tests run deterministically in CI containers.
+if [[ -x "${ROOT}/scripts/ensure_test_configs.sh" ]]; then
+  "${ROOT}/scripts/ensure_test_configs.sh"
+else
+  warn "Missing ${ROOT}/scripts/ensure_test_configs.sh; continuing without installing /etc/app-gateway fallback config."
+fi
+
 log_section "Input checks"
 [[ -d "${TEST_SRC_DIR}" ]] || die "L0 test directory not found: ${TEST_SRC_DIR}"
 [[ -f "${TEST_SRC_DIR}/CMakeLists.txt" ]] || die "CMakeLists.txt not found in: ${TEST_SRC_DIR}"
