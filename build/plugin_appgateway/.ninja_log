@@ -1,4 +1,7 @@
 # ninja log v5
+5	6144	1767589812304027732	CMakeFiles/appgateway_l0test.dir/l0test/Resolver_Configure_And_ResolveTests.cpp.o	b4035e21cf0556bc
+3	4798	1767691452843135963	CMakeFiles/WPEFrameworkAppGateway.dir/Module.o	66bb869fa5bac462
+5	6181	1767589812340027466	CMakeFiles/appgateway_l0test.dir/l0test/AppGatewayTest.cpp.o	908e4aa0677a3b4b
 4	4577	1767692986674012359	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o	46ad9764ca01adec
 3	5417	1767691453463146878	CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o	465226b30262f0fc
 5	4404	1767589810572040524	CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o	31dcf4e1acf24f4e
@@ -10,9 +13,12 @@
 5	6631	1767589558365909623	CMakeFiles/appgateway_l0test.dir/l0test/AppGateway_Init_DeinitTests.cpp.o	2e57b4747b0642a6
 4857	4877	0	CMakeFiles/install.util	d5c1111e3764413d
 5	5529	1767589811692032252	CMakeFiles/appgateway_l0test.dir/l0test/ContextUtils_ConversionTests.cpp.o	faf4eeb3951f40fa
-2	5199	1767691453243143005	CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o	39f1027502497094
 4	5820	1767589811980030125	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.cpp.o	237a7ae240980f16
-5	6181	1767589812340027466	CMakeFiles/appgateway_l0test.dir/l0test/AppGatewayTest.cpp.o	908e4aa0677a3b4b
-3	4798	1767691452843135963	CMakeFiles/WPEFrameworkAppGateway.dir/Module.o	66bb869fa5bac462
-5	6144	1767589812304027732	CMakeFiles/appgateway_l0test.dir/l0test/Resolver_Configure_And_ResolveTests.cpp.o	b4035e21cf0556bc
 4	4473	1767697220524169485	CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o	39f1027502497094
+3	3668	1767706831728563650	CMakeFiles/WPEFrameworkAppGateway.dir/Module.o	66bb869fa5bac462
+3	4178	1767706832240572591	CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o	465226b30262f0fc
+2	4481	1767706832540577829	CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o	39f1027502497094
+2	4788	1767706832848583207	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o	46ad9764ca01adec
+2	5462	1767706833520594941	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o	be4e460d590f7cd
+5462	5675	1767706833736598712	libWPEFrameworkAppGateway.so	d6fa2e216b5a9193
+5675	5695	0	CMakeFiles/install.util	d5c1111e3764413d

@@ -1,1 +1,0 @@
-7:collect2: error: ld returned 1 exit status

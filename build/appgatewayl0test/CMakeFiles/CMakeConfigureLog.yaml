@@ -1,0 +1,353 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      The system is: Linux - 5.10.230-223.885.amzn2.x86_64 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+            |           ^
+      CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+            |           ^
+      CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+            |           ^
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+            |           ^
+      CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+            |           ^
+      CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+            |           ^
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--c++’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--ec++’; did you mean ‘-Weffc++’?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      c++: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+            |           ^
+      CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+            |           ^
+      CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+            |           ^
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+            |           ^
+      CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+            |           ^
+      CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+            |           ^
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+            |           ^
+      CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+            |           ^
+      CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+            |           ^
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--c++’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--ec++’; did you mean ‘-Weffc++’?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      c++: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      CMakeCXXCompilerId.cpp:365:11: error: macro names must be identifiers
+        365 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MAJOR DEC(__GNUC__)
+            |           ^
+      CMakeCXXCompilerId.cpp:370:11: error: macro names must be identifiers
+        370 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+            |           ^
+      CMakeCXXCompilerId.cpp:373:11: error: macro names must be identifiers
+        373 | #  define /home/kavia/workspace/code-generation/app-gateway2/dependencies/installCOMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+            |           ^
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+      c++: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+      c++: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/CMakeScratch/TryCompile-8Frp7s"
+      binary: "/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/CMakeScratch/TryCompile-8Frp7s"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/CMakeScratch/TryCompile-8Frp7s'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_500eb
+        [1/2] /usr/bin/c++    -o CMakeFiles/cmTC_500eb.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        [2/2] : && /usr/bin/c++   CMakeFiles/cmTC_500eb.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_500eb   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:99 (CHECK_CXX_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "CMakeLists.txt:136 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/CMakeScratch/TryCompile-G7ZRsM"
+      binary: "/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/CMakeScratch/TryCompile-G7ZRsM"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/CMakeScratch/TryCompile-G7ZRsM'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_3b448
+        [1/2] /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_3b448.dir/src.cxx.o -c /home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/CMakeScratch/TryCompile-G7ZRsM/src.cxx
+        [2/2] : && /usr/bin/c++   CMakeFiles/cmTC_3b448.dir/src.cxx.o -o cmTC_3b448   && :
+        
+      exitCode: 0
+...

@@ -20,6 +20,7 @@
 #include <list>
 #include <unordered_map>
 #include <mutex>
+#include <algorithm>
 
 #include <Module.h>
 
@@ -381,12 +382,8 @@ namespace L0Test {
             //   { "root": "<JSON string containing root config>" }
             // i.e. the `root` field is a *string* which is then parsed again as JSON.
             //
-            // The `root` string must therefore contain *valid JSON text* like:
+            // Therefore the `root` string must contain valid JSON text like:
             //   {"outofprocess":true,"locator":""}
-            //
-            // That means the *outer* JSON needs single-escaped quotes (\") so that after the first parse
-            // the string value contains unescaped quotes (") for the second parse. Using \\\" would leave
-            // backslashes in the second-stage JSON and break parsing.
             return R"JSON({"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }

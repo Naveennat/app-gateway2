@@ -1,0 +1,5 @@
+/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/appgateway_l0test.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/run.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/coverage.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/edit_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/appgatewayl0test/CMakeFiles/rebuild_cache.dir
