@@ -378,27 +378,18 @@ namespace L0Test {
         {
             // IMPORTANT:
             // 1) AppGatewayResponderImplementation reads "connector"/"port" from ConfigLine().
-            // 2) PluginHost::IShell::Root() reads a "root" (string) entry from ConfigLine() to decide
-            //    how to locate/load the implementation library.
+            // 2) PluginHost::IShell::Root() uses Plugin::Config::RootConfig which (in this Thunder SDK)
+            //    expects a TOP-LEVEL string field named "root" containing a JSON object.
             //
-            // So we include BOTH:
-            // - responder config fields: connector/port
-            // - a minimal "root" blob so RootConfig is considered "set", and it can fall back to
-            //   IShell::Locator() (which we implement using APPGATEWAY_PLUGIN_SO).
-            // Thunder's IShell::Root() selects between:
-            //  - in-process instantiation via ServiceAdministrator (requires correct library search paths), OR
-            //  - COMLink()->Instantiate(...) out-of-process path (which our L0 harness intercepts to provide fakes).
+            // RootConfig parsing flow (see dependencies/install/include/WPEFramework/plugins/Configuration.h):
+            //   - parse ConfigLine() into RootObject { "root": "<string>" }
+            //   - then parse that string as RootConfig fields (incl. outofprocess)
             //
-            // For these isolated L0 tests, we intentionally force the COMLink path by setting "outofprocess": true.
-            // This ensures Root() calls are satisfied by ServiceMock::Instantiate() and do not depend on the real
-            // AppGatewayImplementation configuration/filesystem behavior.
-            // NOTE:
-            // Thunder's RootConfig expects "root" to be a JSON object. If provided as a JSON-encoded string,
-            // some SDK variants extract it via Variant::String() (which includes quotes) and then attempt to
-            // parse it as JSON, causing: Invalid value. "null" or "{" expected (at character 1).
+            // For isolated L0 tests we force the COMLink Instantiate() path by setting outofprocess=true,
+            // so IShell::Root() is satisfied by ServiceMock::Instantiate() (returns ResolverFake/ResponderFake).
             //
-            // Use an object here to deterministically force the COMLink out-of-process path in our L0 harness.
-            return R"JSON({"connector":"127.0.0.1:3473","port":3473,"root":{"outofprocess":true,"locator":""}})JSON";
+            // Keep connector/port as well for responder implementation config parsing.
+            return R"JSON({"connector":"127.0.0.1:3473","port":3473,"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
