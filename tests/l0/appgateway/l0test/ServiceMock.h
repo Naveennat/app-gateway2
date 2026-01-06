@@ -383,12 +383,9 @@ namespace L0Test {
             //  - outofprocess=false (in-proc instantiation)
             //  - locator points to the built plugin .so so class factories can be located
             //
-            // The runner sets APPGATEWAY_PLUGIN_SO to an absolute path of libWPEFrameworkAppGateway.so.
-            // We embed it here (JSON-escaped) to avoid the observed error:
-            //   "Missing implementation classname AppGatewayImplementation in library"
-            //
             // NOTE: Thunder expects the outer JSON to contain "root" as a JSON STRING which is
-            // then parsed again as JSON text, hence the double-escaping.
+            // then parsed again as JSON text, hence the double-escaping of the *inner* JSON into
+            // the outer JSON string.
             const char* soPath = std::getenv("APPGATEWAY_PLUGIN_SO");
             const std::string locator = (soPath != nullptr && *soPath != '\0') ? std::string(soPath) : std::string();
 
@@ -404,6 +401,8 @@ namespace L0Test {
                 return out;
             };
 
+            // Build inner JSON *text* as valid JSON (no embedded backslashes before quotes).
+            // This inner text will be parsed by Plugin::Config::RootConfig.
             std::string inner = std::string("{\"outofprocess\":false");
             if (!locator.empty()) {
                 inner += ",\"locator\":\"";
@@ -412,7 +411,7 @@ namespace L0Test {
             }
             inner += "}";
 
-            // Outer JSON with "root" as string containing JSON text.
+            // Outer JSON containing the inner JSON as an escaped string.
             return std::string("{\"root\":\"") + escapeJsonString(inner) + "\"}";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
