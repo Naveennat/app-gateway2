@@ -6,8 +6,11 @@
 
 [run_coverage] ===== Tool checks =====
 
+[run_coverage] ===== Ensure runtime test configs =====
+[ensure_test_configs] Installed /etc/app-gateway/resolution.base.json from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+
 [run_coverage] ===== Input checks =====
-[run_coverage] Using AppGateway plugin .so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
+[run_coverage] Using AppGateway plugin .so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
 
 [run_coverage] ===== Coverage flags =====
 [run_coverage] CMAKE_PREFIX_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
@@ -19,7 +22,7 @@
 
 [run_coverage] ===== Prepare Real-plugin link path (optional) =====
 [run_coverage] Symlinked for CMake probe:
-[run_coverage]   /home/kavia/workspace/code-generation/app-gateway2/build/AppGateway/libWPEFrameworkAppGateway.so -> /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
+[run_coverage]   /home/kavia/workspace/code-generation/app-gateway2/build/AppGateway/libWPEFrameworkAppGateway.so -> /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
 
 [run_coverage] ===== Configure (Ninja) and build =====
 -- The CXX compiler identification is unknown
@@ -35,7 +38,55 @@
 -- Configuring done (0.4s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/tests_l0_appgateway
-[1/7] Building CXX object CMakeFiles/appgateway_l0test.dir/Responder_BehaviorTests.cpp.o
+[1/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGateway_JsonRpcResolveTests.cpp.o
+In file included from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:6:
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
+   50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
+      |                                   ^~~~~~
+In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
+                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/Module.h:25,
+                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:21,
+                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:8:
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
+   53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
+      |                          ^~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                                                                         ^
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:73: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_HappyPath_JSONRPC()’:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:140:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  140 |     PluginAndService ps;
+      |                      ^~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:140:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_MissingFields_BadRequest()’:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:167:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  167 |     PluginAndService ps;
+      |                      ^~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:167:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ParamsEmpty_DefaultsToEmptyObject()’:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:225:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  225 |     PluginAndService ps;
+      |                      ^~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:225:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ImplementationError_Propagates()’:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:253:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  253 |     PluginAndService ps;
+      |                      ^~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:253:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+[2/7] Building CXX object CMakeFiles/appgateway_l0test.dir/Responder_BehaviorTests.cpp.o
 In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:26,
                  from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
                  from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/Module.h:25,
@@ -91,7 +142,7 @@ In file included from /home/kavia/workspace/code-generation/app-gateway2/depende
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:46:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
    46 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-[2/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGateway_Init_DeinitTests.cpp.o
+[3/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGateway_Init_DeinitTests.cpp.o
 In file included from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:6:
 /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
    50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
@@ -108,38 +159,74 @@ In file included from /home/kavia/workspace/code-generation/app-gateway2/depende
       |                                                                         ^
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:50:73: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Initialize_WithValidConfig_Succeeds()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:93:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-   93 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:106:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  106 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:93:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:106:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
    50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Initialize_Twice_Idempotent()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:122:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  122 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:122:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:147:26: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  147 |         PluginAndService ps;
+      |                          ^~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:147:26: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:163:26: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  163 |         PluginAndService ps;
+      |                          ^~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:163:26: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
    50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_Deinitialize_Twice_NoCrash()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:149:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  149 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:149:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:196:26: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  196 |         PluginAndService ps;
+      |                          ^~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:196:26: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
+   50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:214:26: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  214 |         PluginAndService ps;
+      |                          ^~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:214:26: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
    50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp: In function ‘uint32_t Test_JsonRpc_Registration_And_Unregistration()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:168:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  168 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:238:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  238 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:168:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:238:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:50:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
    50 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-[3/7] Building CXX object CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp: At global scope:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:39:13: warning: ‘void {anonymous}::ExpectEqStr(TestResult&, const std::string&, const std::string&, const std::string&)’ defined but not used [-Wunused-function]
+   39 | static void ExpectEqStr(TestResult& tr, const std::string& actual, const std::string& expected, const std::string& what) {
+      |             ^~~~~~~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:32:13: warning: ‘void {anonymous}::ExpectEqU32(TestResult&, uint32_t, uint32_t, const std::string&)’ defined but not used [-Wunused-function]
+   32 | static void ExpectEqU32(TestResult& tr, const uint32_t actual, const uint32_t expected, const std::string& what) {
+      |             ^~~~~~~~~~~
+[4/7] Building CXX object CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o
+In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:26,
+                 from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
+                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/Module.h:25,
+                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGatewayImplementation.h:22,
+                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp:13:
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
+   50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
+      |                                   ^~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
+   53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
+      |                          ^~~~~~
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp:42:13: warning: ‘void {anonymous}::ExpectNotEmpty(TestResult&, const std::string&, const std::string&)’ defined but not used [-Wunused-function]
+   42 | static void ExpectNotEmpty(TestResult& tr, const std::string& s, const std::string& what) {
+      |             ^~~~~~~~~~~~~~
+[5/7] Building CXX object CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o
 In file included from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:6:
 /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
    50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
@@ -179,69 +266,6 @@ In file included from /home/kavia/workspace/code-generation/app-gateway2/depende
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:67:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
    67 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-[4/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGateway_JsonRpcResolveTests.cpp.o
-In file included from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:6:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
-   50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
-      |                                   ^~~~~~
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
-                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/Module.h:25,
-                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:21,
-                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:8:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
-   53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
-      |                          ^~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:73: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                                                                         ^
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:73: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_HappyPath_JSONRPC()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:140:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  140 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:140:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_MissingFields_BadRequest()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:167:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  167 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:167:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ParamsEmpty_DefaultsToEmptyObject()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:225:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  225 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:225:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ImplementationError_Propagates()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:253:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  253 |     PluginAndService ps;
-      |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:253:22: note: in C++11 and above a default constructor can be explicit
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:62:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
-   62 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
-      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-[5/7] Building CXX object CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o
-In file included from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:26,
-                 from /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/plugins.h:42,
-                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/Module.h:25,
-                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGatewayImplementation.h:22,
-                 from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp:13:
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
-   50 |             virtual Core::hresult Invoke(ICallback* callback, const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters /* @restrict:(4M-1) */, string& response /* @restrict:(4M-1) @out */) = 0;
-      |                                   ^~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h:53:26: note:   by ‘virtual uint32_t WPEFramework::PluginHost::ILocalDispatcher::Invoke(uint32_t, uint32_t, const string&, const string&, const string&, string&)’
-   53 |         virtual uint32_t Invoke(const uint32_t channelId, const uint32_t id, const string& token, const string& method, const string& parameters, string& response) = 0;
-      |                          ^~~~~~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp:42:13: warning: ‘void {anonymous}::ExpectNotEmpty(TestResult&, const std::string&, const std::string&)’ defined but not used [-Wunused-function]
-   42 | static void ExpectNotEmpty(TestResult& tr, const std::string& s, const std::string& what) {
-      |             ^~~~~~~~~~~~~~
 [6/7] Building CXX object CMakeFiles/appgateway_l0test.dir/AppGatewayTest.cpp.o
 In file included from /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:5:
 /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IDispatcher.h:50:35: warning: ‘virtual WPEFramework::Core::hresult WPEFramework::PluginHost::IDispatcher::Invoke(ICallback*, uint32_t, uint32_t, const string&, const string&, const string&, string&)’ was hidden [-Woverloaded-virtual=]
@@ -259,58 +283,58 @@ In file included from /home/kavia/workspace/code-generation/app-gateway2/depende
       |                                                                         ^
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:240:73: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_Initialize_Deinitialize_HappyPath()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:276:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  276 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:289:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  289 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:276:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:289:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:240:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
   240 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Success()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:294:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  294 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:307:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  307 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:294:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:307:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:240:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
   240 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_DirectResolver_Success()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:320:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  320 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:333:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  333 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:320:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:333:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:240:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
   240 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Error_NotPermitted()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:351:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  351 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:364:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  364 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:351:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:364:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:240:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
   240 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Error_NotSupported()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:374:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  374 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:387:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  387 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:374:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:387:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:240:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
   240 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Error_NotAvailable()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:397:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  397 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:410:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  410 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:397:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:410:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:240:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
   240 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Error_MalformedInput()’:
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:420:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
-  420 |     PluginAndService ps;
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:433:22: warning: converting to ‘const L0Test::ServiceMock::Config’ from initializer list would use explicit constructor ‘L0Test::ServiceMock::Config::Config(bool, bool, bool)’
+  433 |     PluginAndService ps;
       |                      ^~
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:420:22: note: in C++11 and above a default constructor can be explicit
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:433:22: note: in C++11 and above a default constructor can be explicit
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:240:66: note: in passing argument 1 of ‘{anonymous}::PluginAndService::PluginAndService(const L0Test::ServiceMock::Config&)’
   240 |     explicit PluginAndService(const L0Test::ServiceMock::Config& cfg = {})
       |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
@@ -321,43 +345,920 @@ In file included from /home/kavia/workspace/code-generation/app-gateway2/depende
 
 [run_coverage] ===== Run tests =====
 [ RUN      ] Initialize_WithValidConfig_Succeeds
-[64059] INFO [AppGateway.cpp:54] AppGateway: AppGateway Constructor
-[64059] INFO [AppGateway.cpp:67] Initialize: AppGateway::Initialize: PID=64059
-[64059] INFO [AppGatewayImplementation.cpp:160] AppGatewayImplementation: AppGatewayImplementation constructor
-[64059] INFO [AppGatewayImplementation.cpp:165] ~AppGatewayImplementation: AppGatewayImplementation destructor
-[1;32m[Services.cpp:90](Instantiate)<PID:64059><TID:64059><1>: Missing implementation classname AppGatewayImplementation in library 
-
-[0m[64059] ERROR [AppGateway.cpp:85] Initialize: Failed to initialise AppGatewayResolver plugin!
-[64059] INFO [AppGatewayResponderImplementation.cpp:48] AppGatewayResponderImplementation: AppGatewayResponderImplementation constructor
-[64059] INFO [AppGatewayResponderImplementation.cpp:83] Configure: Configuring AppGatewayResponderImplementation
-[64059] INFO [AppGatewayResponderImplementation.cpp:105] InitializeWebsocket: Connector: 127.0.0.1:3473
-[64059] INFO [AppGatewayResponderImplementation.cpp:107] InitializeWebsocket: Parsed port: 3473
-[1;32m[Singleton.h:95](SingletonType)<PID:64059><TID:64059><1>: Singleton constructing ResourceMonitor
-[0m[64059] INFO [WsManager.h:479] Start: WebSocket channel started successfully on 127.0.0.1 3473
-FAIL: Initialize() returns empty string on success expected='' actual='Could not retrieve the AppGateway interface.'
-FAIL: resolve method is registered and callable expected=0 actual=53
-[64059] INFO [AppGatewayResponderImplementation.cpp:60] ~AppGatewayResponderImplementation: AppGatewayResponderImplementation destructor
-[  FAILED  ] Initialize_WithValidConfig_Succeeds failures=2
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[1;32m[Singleton.h:95](SingletonType)<PID:13294><TID:13294><1>: Singleton constructing MessageUnit
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+NOTE: Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+NOTE: resolve not callable in isolated build (accepted), rc=53
+[       OK ] Initialize_WithValidConfig_Succeeds
 [ RUN      ] Initialize_Twice_Idempotent
-[64059] INFO [AppGateway.cpp:54] AppGateway: AppGateway Constructor
-[64059] INFO [AppGateway.cpp:67] Initialize: AppGateway::Initialize: PID=64059
-[64059] INFO [AppGatewayImplementation.cpp:160] AppGatewayImplementation: AppGatewayImplementation constructor
-[64059] INFO [AppGatewayImplementation.cpp:165] ~AppGatewayImplementation: AppGatewayImplementation destructor
-[1;32m[Services.cpp:90](Instantiate)<PID:64059><TID:64059><1>: Missing implementation classname AppGatewayImplementation in library 
-
-[0m[64059] ERROR [AppGateway.cpp:85] Initialize: Failed to initialise AppGatewayResolver plugin!
-[64059] INFO [AppGatewayResponderImplementation.cpp:48] AppGatewayResponderImplementation: AppGatewayResponderImplementation constructor
-[64059] INFO [AppGatewayResponderImplementation.cpp:83] Configure: Configuring AppGatewayResponderImplementation
-[64059] INFO [AppGatewayResponderImplementation.cpp:105] InitializeWebsocket: Connector: 127.0.0.1:3473
-[64059] INFO [AppGatewayResponderImplementation.cpp:107] InitializeWebsocket: Parsed port: 3473
-[64059] INFO [WsManager.h:479] Start: WebSocket channel started successfully on 127.0.0.1 3473
-FAIL: First Initialize() succeeds (empty string) expected='' actual='Could not retrieve the AppGateway interface.'
-===== $$ [64059]: ASSERT [/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:65] (mResponder == nullptr)
-[/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkCore.so.1]:[DumpCallStack]:[74]
-[/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so]:[WPEFramework::Plugin::AppGateway::Initialize[abi:cxx11](WPEFramework::PluginHost::IShell*)]:[860]
-[/home/kavia/workspace/code-generation/app-gateway2/build/tests_l0_appgateway/appgateway_l0test]:[]:[-1]
-[/home/kavia/workspace/code-generation/app-gateway2/build/tests_l0_appgateway/appgateway_l0test]:[]:[-1]
-[/lib/x86_64-linux-gnu/libc.so.6]:[]:[-1]
-[/lib/x86_64-linux-gnu/libc.so.6]:[__libc_start_main]:[139]
-[/home/kavia/workspace/code-generation/app-gateway2/build/tests_l0_appgateway/appgateway_l0test]:[]:[-1]
-run_coverage.sh: line 177: 64059 Aborted                 (core dumped) APPGATEWAY_RESOLUTIONS_PATH="${RESOLUTIONS_PATH}" APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO}" LD_LIBRARY_PATH="${LD_LIBRARY_PATH_COMPOSED}" "${TEST_BIN}"
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+NOTE: Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+NOTE: Second Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+[       OK ] Initialize_Twice_Idempotent
+[ RUN      ] Deinitialize_Twice_NoCrash
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+NOTE: Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+NOTE: Second Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+[       OK ] Deinitialize_Twice_NoCrash
+[ RUN      ] JsonRpc_Registration_And_Unregistration
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+NOTE: Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+NOTE: resolve not callable after Initialize in isolated build (accepted), rc=53
+[       OK ] JsonRpc_Registration_And_Unregistration
+[ RUN      ] Resolve_HappyPath_JSONRPC
+INFO: APPGATEWAY_RESOLUTIONS_PATH=/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json (ResolverFake does not load it; provided for real implementation runs)
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() returns empty string on success
+FAIL: Resolve_HappyPath_JSONRPC returns ERROR_NONE expected=0 actual=53
+FAIL: Resolve_HappyPath_JSONRPC JSON response should be non-empty
+[  FAILED  ] Resolve_HappyPath_JSONRPC failures=3
+[ RUN      ] Resolve_MissingFields_BadRequest
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() returns empty string on success
+FAIL: Missing requestId => ERROR_BAD_REQUEST expected=30 actual=53
+FAIL: Missing connectionId => ERROR_BAD_REQUEST expected=30 actual=53
+FAIL: Missing appId => ERROR_BAD_REQUEST expected=30 actual=53
+FAIL: Missing origin => ERROR_BAD_REQUEST expected=30 actual=53
+FAIL: Missing method => ERROR_BAD_REQUEST expected=30 actual=53
+[  FAILED  ] Resolve_MissingFields_BadRequest failures=6
+[ RUN      ] Resolve_ParamsEmpty_DefaultsToEmptyObject
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() returns empty string on success
+FAIL: Params empty string defaults to {} and succeeds expected=0 actual=53
+FAIL: Response non-empty when method exists should be non-empty
+[  FAILED  ] Resolve_ParamsEmpty_DefaultsToEmptyObject failures=3
+[ RUN      ] Resolve_ImplementationError_Propagates
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() returns empty string on success
+FAIL: Implementation error NOT_AVAILABLE propagates as ERROR_UNAVAILABLE expected=2 actual=53
+FAIL: Implementation error NOT_SUPPORTED propagates as ERROR_NOT_SUPPORTED expected=44 actual=53
+[  FAILED  ] Resolve_ImplementationError_Propagates failures=3
+[ RUN      ] Initialize_Deinitialize_HappyPath
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() happy path returns empty string expected='' actual='Could not retrieve the AppGateway interface.'
+[  FAILED  ] Initialize_Deinitialize_HappyPath failures=1
+[ RUN      ] JsonRpcResolve_Success
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds for JSON-RPC resolve test expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: JSON-RPC resolve returns ERROR_NONE expected=0 actual=53
+FAIL: JSON-RPC resolve response payload matches resolver result expected='null' actual=''
+[  FAILED  ] JsonRpcResolve_Success failures=3
+[ RUN      ] DirectResolver_Success
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds for direct resolver test expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Aggregate IAppGatewayResolver is available via QueryInterface(ID)
+[  FAILED  ] DirectResolver_Success failures=2
+[ RUN      ] JsonRpcResolve_Error_NotPermitted
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds for NotPermitted test expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: NotPermitted maps to ERROR_PRIVILIGED_REQUEST expected=24 actual=53
+[  FAILED  ] JsonRpcResolve_Error_NotPermitted failures=2
+[ RUN      ] JsonRpcResolve_Error_NotSupported
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds for NotSupported test expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: NotSupported maps to ERROR_NOT_SUPPORTED expected=44 actual=53
+[  FAILED  ] JsonRpcResolve_Error_NotSupported failures=2
+[ RUN      ] JsonRpcResolve_Error_NotAvailable
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds for NotAvailable test expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: NotAvailable maps to ERROR_UNAVAILABLE expected=2 actual=53
+[  FAILED  ] JsonRpcResolve_Error_NotAvailable failures=2
+[ RUN      ] JsonRpcResolve_Error_MalformedInput
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds for malformed input test expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Malformed JSON returns ERROR_BAD_REQUEST expected=30 actual=53
+[  FAILED  ] JsonRpcResolve_Error_MalformedInput failures=2
+[ RUN      ] JsonRpcResolve_Error_MissingHandler_WhenResolverMissing
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+[       OK ] JsonRpcResolve_Error_MissingHandler_WhenResolverMissing
+[ RUN      ] ContextUtils_Conversions
+[       OK ] ContextUtils_Conversions
+[ RUN      ] Resolver_Configure_WithBaseOnly_LoadsOK
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() returns empty string on success
+FAIL: IAppGatewayResolver available via QueryInterface(ID)
+[  FAILED  ] Resolver_Configure_WithBaseOnly_LoadsOK failures=2
+[ RUN      ] Resolver_Configure_WithOverride_TakesPrecedence
+[13294] INFO [Resolver.cpp:38] Resolver: [Resolver] Constructor - configurations will be loaded via LoadConfig
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onaudiodescriptionsettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setpreferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.rate -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onvideoresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onScreenResolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setnavigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.audiodescriptionsettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlanguagechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPresentationLanguageChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptions -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptionssettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.language -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.addadditionalinfo -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onaudiochanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.audioFormatChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidancesettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onspeedchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onclosedcaptionssettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.make -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.setname -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.locale -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.countrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setcountrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.highcontrastui -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdr -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setspeed -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.settimezone -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setlocale -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setrate -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onpreferredaudiolanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredAudioLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onnavigationhintschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceHintsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.name -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setpreferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.speed -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidance -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.preferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlocalechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onLocaleChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.preferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnetworkchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onInternetStatusChange, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.oncountrycodechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCountryCodeChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.timezone -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onhighcontrastuichanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onHighContrastChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.navigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.network -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onpreferredlanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredCaptionsLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onratechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onvoiceguidancesettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.version -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onscreenresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.resolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.screenresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.videoresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdcp -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdcpchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.audio -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.ondevicenamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdrchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:131] LoadConfig: [Resolver] Loaded 63 resolutions from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json (63 new, 0 overridden). Total resolutions: 63
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.name -> alias: org.rdk.OverridePlugin.getName, event: , permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.name
+[13294] INFO [Resolver.cpp:131] LoadConfig: [Resolver] Loaded 1 resolutions from l0test/config/test.resolutions.override.json (0 new, 1 overridden). Total resolutions: 63
+[13294] INFO [Resolver.cpp:53] ~Resolver: Call Resolver destructor
+[       OK ] Resolver_Configure_WithOverride_TakesPrecedence
+[ RUN      ] Resolver_Resolve_UnknownMethod_ReturnsNotFound
+[13294] INFO [AppGatewayImplementation.cpp:160] AppGatewayImplementation: AppGatewayImplementation constructor
+[13294] INFO [AppGatewayImplementation.cpp:203] Configure: Configuring AppGateway
+[13294] INFO [Resolver.cpp:38] Resolver: [Resolver] Constructor - configurations will be loaded via LoadConfig
+[13294] INFO [AppGatewayImplementation.cpp:243] InitializeResolver: Using APPGATEWAY_RESOLUTIONS_PATH for initial resolver config: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:377] InternalResolutionConfigure: Processing config path 1/1: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onaudiodescriptionsettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setpreferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.rate -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onvideoresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onScreenResolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setnavigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.audiodescriptionsettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlanguagechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPresentationLanguageChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptions -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptionssettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.language -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.addadditionalinfo -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onaudiochanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.audioFormatChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidancesettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onspeedchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onclosedcaptionssettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.make -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.setname -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.locale -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.countrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setcountrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.highcontrastui -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdr -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setspeed -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.settimezone -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setlocale -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setrate -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onpreferredaudiolanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredAudioLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onnavigationhintschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceHintsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.name -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setpreferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.speed -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidance -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.preferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlocalechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onLocaleChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.preferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnetworkchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onInternetStatusChange, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.oncountrycodechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCountryCodeChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.timezone -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onhighcontrastuichanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onHighContrastChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.navigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.network -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onpreferredlanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredCaptionsLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onratechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onvoiceguidancesettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.version -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onscreenresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.resolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.screenresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.videoresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdcp -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdcpchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.audio -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.ondevicenamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdrchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:131] LoadConfig: [Resolver] Loaded 63 resolutions from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json (63 new, 0 overridden). Total resolutions: 63
+[13294] INFO [AppGatewayImplementation.cpp:381] InternalResolutionConfigure: Successfully loaded configuration from: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:397] InternalResolutionConfigure: Configuration complete. Final resolutions loaded with override priority (later paths take precedence)
+[13294] INFO [AppGatewayImplementation.cpp:333] Configure: Call AppGatewayImplementation::Configure
+[13294] INFO [AppGatewayImplementation.cpp:357] Configure: Found config path: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:366] Configure: Processing 1 configuration paths in override order
+[13294] INFO [AppGatewayImplementation.cpp:377] InternalResolutionConfigure: Processing config path 1/1: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onnamechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onaudiodescriptionsettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.onaudiodescriptionsettingschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setpreferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.setpreferredlanguages
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.rate -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.rate
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: audiodescriptions.enabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onvideoresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onScreenResolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onvideoresolutionchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setnavigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.setnavigationhints
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.setenabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.audiodescriptionsettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.audiodescriptionsettings
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.setenabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlanguagechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPresentationLanguageChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.onlanguagechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptions -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.closedcaptions
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptionssettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.closedcaptionssettings
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.language -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.language
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.addadditionalinfo -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.addadditionalinfo
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onaudiochanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.audioFormatChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onaudiochanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidancesettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.voiceguidancesettings
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onspeedchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.onspeedchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onclosedcaptionssettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.onclosedcaptionssettingschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.make -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.make
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.enabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.setname -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.setname
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.locale -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.locale
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.countrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.countrycode
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setcountrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.setcountrycode
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.highcontrastui -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.highcontrastui
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: audiodescriptions.setenabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdr -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.hdr
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setspeed -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.setspeed
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.settimezone -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.settimezone
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setlocale -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.setlocale
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setrate -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.setrate
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onpreferredaudiolanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredAudioLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.onpreferredaudiolanguageschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onnavigationhintschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceHintsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.onnavigationhintschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.name -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.name
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setpreferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.setpreferredaudiolanguages
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.enabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.speed -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.speed
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidance -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.voiceguidance
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.onenabledchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.preferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.preferredlanguages
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlocalechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onLocaleChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.onlocalechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.preferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.preferredaudiolanguages
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnetworkchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onInternetStatusChange, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onnetworkchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.oncountrycodechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCountryCodeChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.oncountrycodechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.onenabledchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.timezone -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.timezone
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: audiodescriptions.onenabledchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onhighcontrastuichanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onHighContrastChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.onhighcontrastuichanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.navigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.navigationhints
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.network -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.network
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onpreferredlanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredCaptionsLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.onpreferredlanguageschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onratechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.onratechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onvoiceguidancesettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.onvoiceguidancesettingschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.version -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.version
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onscreenresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.resolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onscreenresolutionchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.screenresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.screenresolution
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.videoresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.videoresolution
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdcp -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.hdcp
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdcpchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onhdcpchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.audio -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.audio
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.ondevicenamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.ondevicenamechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdrchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onhdrchanged
+[13294] INFO [Resolver.cpp:131] LoadConfig: [Resolver] Loaded 63 resolutions from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json (0 new, 63 overridden). Total resolutions: 63
+[13294] INFO [AppGatewayImplementation.cpp:381] InternalResolutionConfigure: Successfully loaded configuration from: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:397] InternalResolutionConfigure: Configuration complete. Final resolutions loaded with override priority (later paths take precedence)
+[13294] TRACE [AppGatewayImplementation.cpp:404] Resolve: method=no.such.method params={}
+[13294] ERROR [AppGatewayImplementation.cpp:459] FetchResolvedData: No alias found for method: no.such.method
+[13294] TRACE [AppGatewayImplementation.cpp:412] InternalResolve: Final resolution: {"code":-50100,"message":"NotSupported"}
+[13294] INFO [AppGatewayImplementation.cpp:423] InternalResolve: No gateway responder available; skipping async response dispatch (origin=org.rdk.AppGateway)
+[13294] INFO [AppGatewayImplementation.cpp:165] ~AppGatewayImplementation: AppGatewayImplementation destructor
+[13294] INFO [Resolver.cpp:53] ~Resolver: Call Resolver destructor
+[       OK ] Resolver_Resolve_UnknownMethod_ReturnsNotFound
+[ RUN      ] Resolver_Resolve_MalformedParams_ReturnsBadRequest
+[13294] INFO [AppGatewayImplementation.cpp:160] AppGatewayImplementation: AppGatewayImplementation constructor
+[13294] INFO [AppGatewayImplementation.cpp:203] Configure: Configuring AppGateway
+[13294] INFO [Resolver.cpp:38] Resolver: [Resolver] Constructor - configurations will be loaded via LoadConfig
+[13294] INFO [AppGatewayImplementation.cpp:243] InitializeResolver: Using APPGATEWAY_RESOLUTIONS_PATH for initial resolver config: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:377] InternalResolutionConfigure: Processing config path 1/1: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onaudiodescriptionsettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setpreferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.rate -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onvideoresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onScreenResolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setnavigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.audiodescriptionsettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlanguagechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPresentationLanguageChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptions -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptionssettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.language -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.addadditionalinfo -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onaudiochanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.audioFormatChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidancesettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onspeedchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onclosedcaptionssettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.make -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.setname -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.locale -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.countrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setcountrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.highcontrastui -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdr -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setspeed -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.settimezone -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setlocale -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setrate -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onpreferredaudiolanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredAudioLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onnavigationhintschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceHintsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.name -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setpreferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.speed -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidance -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.preferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlocalechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onLocaleChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.preferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnetworkchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onInternetStatusChange, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.oncountrycodechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCountryCodeChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.timezone -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onhighcontrastuichanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onHighContrastChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.navigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.network -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onpreferredlanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredCaptionsLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onratechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onvoiceguidancesettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.version -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onscreenresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.resolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.screenresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.videoresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdcp -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdcpchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.audio -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.ondevicenamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdrchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:131] LoadConfig: [Resolver] Loaded 63 resolutions from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json (63 new, 0 overridden). Total resolutions: 63
+[13294] INFO [AppGatewayImplementation.cpp:381] InternalResolutionConfigure: Successfully loaded configuration from: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:397] InternalResolutionConfigure: Configuration complete. Final resolutions loaded with override priority (later paths take precedence)
+[13294] INFO [AppGatewayImplementation.cpp:333] Configure: Call AppGatewayImplementation::Configure
+[13294] INFO [AppGatewayImplementation.cpp:357] Configure: Found config path: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:366] Configure: Processing 1 configuration paths in override order
+[13294] INFO [AppGatewayImplementation.cpp:377] InternalResolutionConfigure: Processing config path 1/1: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onnamechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onaudiodescriptionsettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.onaudiodescriptionsettingschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setpreferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.setpreferredlanguages
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.rate -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.rate
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: audiodescriptions.enabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onvideoresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onScreenResolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onvideoresolutionchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setnavigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.setnavigationhints
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.setenabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.audiodescriptionsettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.audiodescriptionsettings
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.setenabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlanguagechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPresentationLanguageChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.onlanguagechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptions -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.closedcaptions
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptionssettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.closedcaptionssettings
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.language -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.language
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.addadditionalinfo -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.addadditionalinfo
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onaudiochanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.audioFormatChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onaudiochanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidancesettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.voiceguidancesettings
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onspeedchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.onspeedchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onclosedcaptionssettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.onclosedcaptionssettingschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.make -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.make
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.enabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.setname -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.setname
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.locale -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.locale
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.countrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.countrycode
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setcountrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.setcountrycode
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.highcontrastui -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.highcontrastui
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: audiodescriptions.setenabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdr -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.hdr
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setspeed -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.setspeed
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.settimezone -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.settimezone
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setlocale -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.setlocale
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setrate -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.setrate
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onpreferredaudiolanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredAudioLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.onpreferredaudiolanguageschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onnavigationhintschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceHintsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.onnavigationhintschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.name -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.name
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setpreferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.setpreferredaudiolanguages
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.enabled
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.speed -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.speed
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidance -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.voiceguidance
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.onenabledchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.preferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.preferredlanguages
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlocalechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onLocaleChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.onlocalechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.preferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.preferredaudiolanguages
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnetworkchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onInternetStatusChange, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onnetworkchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.oncountrycodechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCountryCodeChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.oncountrycodechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.onenabledchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.timezone -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: localization.timezone
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: audiodescriptions.onenabledchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onhighcontrastuichanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onHighContrastChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.onhighcontrastuichanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.navigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.navigationhints
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.network -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.network
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onpreferredlanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredCaptionsLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: closedcaptions.onpreferredlanguageschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onratechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: voiceguidance.onratechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onvoiceguidancesettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: accessibility.onvoiceguidancesettingschanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.version -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.version
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onscreenresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.resolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onscreenresolutionchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.screenresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.screenresolution
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.videoresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.videoresolution
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdcp -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.hdcp
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdcpchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onhdcpchanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.audio -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.audio
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.ondevicenamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.ondevicenamechanged
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdrchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] TRACE [Resolver.cpp:122] LoadConfig: [Resolver] Overriding resolution for key: device.onhdrchanged
+[13294] INFO [Resolver.cpp:131] LoadConfig: [Resolver] Loaded 63 resolutions from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json (0 new, 63 overridden). Total resolutions: 63
+[13294] INFO [AppGatewayImplementation.cpp:381] InternalResolutionConfigure: Successfully loaded configuration from: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:397] InternalResolutionConfigure: Configuration complete. Final resolutions loaded with override priority (later paths take precedence)
+[13294] TRACE [AppGatewayImplementation.cpp:404] Resolve: method=localization.onLanguageChanged params={ this is not valid json }
+[13294] TRACE [AppGatewayImplementation.cpp:481] FetchResolvedData: Resolved method 'localization.onLanguageChanged' to alias 'org.rdk.FbSettings'
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Colon expected.
+At character 8: { this i
+[0m[13294] ERROR [AppGatewayImplementation.cpp:583] PreProcessEvent: Event method 'localization.onLanguageChanged' called without parameters
+[13294] TRACE [AppGatewayImplementation.cpp:412] InternalResolve: Final resolution: {"code":-32602,"message":"Event methods require parameters"}
+[13294] INFO [AppGatewayImplementation.cpp:423] InternalResolve: No gateway responder available; skipping async response dispatch (origin=org.rdk.AppGateway)
+[13294] INFO [AppGatewayImplementation.cpp:165] ~AppGatewayImplementation: AppGatewayImplementation destructor
+[13294] INFO [Resolver.cpp:53] ~Resolver: Call Resolver destructor
+[       OK ] Resolver_Resolve_MalformedParams_ReturnsBadRequest
+[ RUN      ] Resolver_Configure_InvalidJson_ReturnsError
+[13294] INFO [AppGatewayImplementation.cpp:160] AppGatewayImplementation: AppGatewayImplementation constructor
+[13294] INFO [AppGatewayImplementation.cpp:203] Configure: Configuring AppGateway
+[13294] INFO [Resolver.cpp:38] Resolver: [Resolver] Constructor - configurations will be loaded via LoadConfig
+[13294] INFO [AppGatewayImplementation.cpp:243] InitializeResolver: Using APPGATEWAY_RESOLUTIONS_PATH for initial resolver config: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:377] InternalResolutionConfigure: Processing config path 1/1: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onaudiodescriptionsettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setpreferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.rate -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onvideoresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onScreenResolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setnavigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.audiodescriptionsettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlanguagechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPresentationLanguageChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptions -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.closedcaptionssettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.language -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.addadditionalinfo -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onaudiochanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.audioFormatChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidancesettings -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onspeedchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onclosedcaptionssettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.make -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.setname -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.locale -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.countrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setcountrycode -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.highcontrastui -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.setenabled -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdr -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setspeed -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.settimezone -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setlocale -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.setrate -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onpreferredaudiolanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredAudioLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onnavigationhintschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceHintsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.name -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.setpreferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: org.rdk.permission.group.enhanced, includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.enabled -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.speed -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.voiceguidance -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.preferredlanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.onlocalechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onLocaleChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.preferredaudiolanguages -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onnetworkchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onInternetStatusChange, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.oncountrycodechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCountryCodeChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onCaptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: localization.timezone -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: audiodescriptions.onenabledchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onAudioDescriptionsChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onhighcontrastuichanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onHighContrastChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.navigationhints -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.network -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: closedcaptions.onpreferredlanguageschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onPreferredCaptionsLanguagesChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: voiceguidance.onratechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceRateChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: accessibility.onvoiceguidancesettingschanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onVoiceGuidanceChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.version -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onscreenresolutionchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.resolutionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.screenresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.videoresolution -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.hdcp -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdcpchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.audio -> alias: org.rdk.FbSettings, event: , permissionGroup: , includeContext: false, useComRpc: true
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.ondevicenamechanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onFriendlyNameChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:116] LoadConfig: [Resolver] Loaded resolution for key: device.onhdrchanged -> alias: org.rdk.FbSettings, event: org.rdk.FbSettings.onDisplayConnectionChanged, permissionGroup: , includeContext: false, useComRpc: false
+[13294] INFO [Resolver.cpp:131] LoadConfig: [Resolver] Loaded 63 resolutions from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json (63 new, 0 overridden). Total resolutions: 63
+[13294] INFO [AppGatewayImplementation.cpp:381] InternalResolutionConfigure: Successfully loaded configuration from: /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+[13294] INFO [AppGatewayImplementation.cpp:397] InternalResolutionConfigure: Configuration complete. Final resolutions loaded with override priority (later paths take precedence)
+[13294] INFO [AppGatewayImplementation.cpp:333] Configure: Call AppGatewayImplementation::Configure
+[13294] INFO [AppGatewayImplementation.cpp:357] Configure: Found config path: l0test/config/invalid.resolutions.json
+[13294] INFO [AppGatewayImplementation.cpp:366] Configure: Processing 1 configuration paths in override order
+[13294] INFO [AppGatewayImplementation.cpp:377] InternalResolutionConfigure: Processing config path 1/1: l0test/config/invalid.resolutions.json
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Colon expected.
+At character 11: { invalid j
+[0m[13294] ERROR [Resolver.cpp:78] LoadConfig: [Resolver] Failed to parse JSON from: l0test/config/invalid.resolutions.json
+[13294] ERROR [Resolver.cpp:80] LoadConfig:  - Error: Colon expected.
+[13294] ERROR [AppGatewayImplementation.cpp:386] InternalResolutionConfigure: Failed to load configuration from: l0test/config/invalid.resolutions.json
+[13294] ERROR [AppGatewayImplementation.cpp:393] InternalResolutionConfigure: Failed to load configuration from any provided path
+[13294] INFO [AppGatewayImplementation.cpp:165] ~AppGatewayImplementation: AppGatewayImplementation destructor
+[13294] INFO [Resolver.cpp:53] ~Resolver: Call Resolver destructor
+[       OK ] Resolver_Configure_InvalidJson_ReturnsError
+[ RUN      ] Responder_Register_Unregister_Notifications
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds for responder register/unregister test expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_Register_Unregister_Notifications failures=2
+[ RUN      ] Responder_Respond_Success_And_Unavailable
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_Respond_Success_And_Unavailable failures=2
+[ RUN      ] Responder_Emit_Success_And_Unavailable
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_Emit_Success_And_Unavailable failures=2
+[ RUN      ] Responder_Request_Success_And_Unavailable
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_Request_Success_And_Unavailable failures=2
+[ RUN      ] Responder_GetGatewayConnectionContext_Known_And_Unknown
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_GetGatewayConnectionContext_Known_And_Unknown failures=2
+[ RUN      ] ContextUtils_BoundaryValues_Conversions
+[       OK ] ContextUtils_BoundaryValues_Conversions
+[ RUN      ] Json_Boundary_RequestId_ConnectionId
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeded expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: resolve succeeds for requestId=0, connectionId=0 expected=0 actual=53
+FAIL: response for boundary zero expected='null' actual=''
+FAIL: resolve succeeds for requestId/connectionId UINT32_MAX expected=0 actual=53
+FAIL: response for boundary max expected='null' actual=''
+[  FAILED  ] Json_Boundary_RequestId_ConnectionId failures=5
+[ RUN      ] Json_Params_Empty_Equals_EmptyObject
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeded expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: resolve with params '' succeeds expected=0 actual=53
+FAIL: resolve with params '{}' succeeds expected=0 actual=53
+[  FAILED  ] Json_Params_Empty_Equals_EmptyObject failures=3
+[ RUN      ] Json_EmptyAppId_BadRequest
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeded expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: empty appId yields ERROR_BAD_REQUEST expected=30 actual=53
+[  FAILED  ] Json_EmptyAppId_BadRequest failures=2
+AppGateway l0test total failures: 51
+[1;32m[Singleton.cpp:41](~SingletonList)<PID:13294><TID:13294><1>: ~SingletonList !!! singleton list is not empty !!!
+[0m[1;32m[Singleton.cpp:51](Dispose)<PID:13294><TID:13294><1>: Singleton destructing MessageUnit
+[0m

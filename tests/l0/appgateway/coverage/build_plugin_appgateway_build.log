@@ -1,5 +1,5 @@
 [0/1] Install the project...
 -- Install configuration: "Debug"
 -- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
--- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json
+-- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json
 -- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/../etc/WPEFramework/plugins/AppGateway.json
