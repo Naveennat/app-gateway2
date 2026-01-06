@@ -377,9 +377,8 @@ namespace L0Test {
         string ConfigLine() const override
         {
             // IMPORTANT:
-            // 1) AppGatewayResponderImplementation reads "connector"/"port" from ConfigLine().
-            // 2) PluginHost::IShell::Root() uses Plugin::Config::RootConfig which (in this Thunder SDK)
-            //    expects a TOP-LEVEL string field named "root" containing a JSON object.
+            // PluginHost::IShell::Root() uses Plugin::Config::RootConfig which (in this Thunder SDK)
+            // expects a TOP-LEVEL string field named "root" containing a JSON object.
             //
             // RootConfig parsing flow (see dependencies/install/include/WPEFramework/plugins/Configuration.h):
             //   - parse ConfigLine() into RootObject { "root": "<string>" }
@@ -388,10 +387,8 @@ namespace L0Test {
             // For isolated L0 tests we force the COMLink Instantiate() path by setting outofprocess=true,
             // so IShell::Root() is satisfied by ServiceMock::Instantiate() (returns ResolverFake/ResponderFake).
             //
-            // Keep connector/port as well for responder implementation config parsing.
-            //
-            // NOTE: The outer object must be valid JSON. Only the inner "root" JSON is escaped as a JSON string.
-            return R"JSON({"connector":"127.0.0.1:3473","port":3473,"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
+            // Keep the top-level JSON minimal to avoid strict parsers rejecting additional keys.
+            return R"JSON({"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 

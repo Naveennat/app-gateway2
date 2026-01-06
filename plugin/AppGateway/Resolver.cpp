@@ -25,14 +25,15 @@
 #include "UtilsJsonrpcDirectLink.h"
 #include <core/JSON.h>
 
-
 namespace WPEFramework
 {
     namespace Plugin
     {
 
         Resolver::Resolver(PluginHost::IShell *shell)
-            : mService(shell), mResolutions(), mMutex()
+            : mService(shell)
+            , mResolutions()
+            , mMutex()
         {
             LOGINFO("[Resolver] Constructor - configurations will be loaded via LoadConfig");
 
@@ -50,8 +51,7 @@ namespace WPEFramework
         Resolver::~Resolver()
         {
             LOGINFO("Call Resolver destructor");
-            if (nullptr != mService)
-            {
+            if (nullptr != mService) {
                 mService->Release();
                 mService = nullptr;
             }
@@ -60,8 +60,7 @@ namespace WPEFramework
         bool Resolver::LoadConfig(const std::string &path)
         {
             std::ifstream file(path);
-            if (!file.is_open())
-            {
+            if (!file.is_open()) {
                 LOGERR("[Resolver] Failed to open config file: %s", path.c_str());
                 return false;
             }
@@ -75,19 +74,16 @@ namespace WPEFramework
                                     std::istreambuf_iterator<char>());
             file.close();
 
-            if (!config.IElement::FromString(jsonContent, error))
-            {
+            if (!config.IElement::FromString(jsonContent, error)) {
                 LOGERR("[Resolver] Failed to parse JSON from: %s", path.c_str());
-                if (error.IsSet())
-                {
+                if (error.IsSet()) {
                     LOGERR(" - Error: %s", error.Value().Message().c_str());
                 }
                 return false;
             }
 
             // Direct access to resolutions via ConfigContainer
-            if (!config.Resolutions.IsSet())
-            {
+            if (!config.Resolutions.IsSet()) {
                 LOGERR("[Resolver] No 'resolutions' object in config file: %s", path.c_str());
                 return false;
             }
@@ -99,13 +95,11 @@ namespace WPEFramework
 
             // Iterate through all resolution entries with optimized parsing
             WPEFramework::Core::JSON::VariantContainer::Iterator it = config.Resolutions.Variants();
-            while (it.Next())
-            {
+            while (it.Next()) {
                 const std::string &key = StringUtils::toLower(it.Label());
                 WPEFramework::Core::JSON::Variant resolutionVariant = it.Current();
 
-                if (resolutionVariant.IsSet() && !resolutionVariant.IsNull())
-                {
+                if (resolutionVariant.IsSet() && !resolutionVariant.IsNull()) {
                     // Create Resolution struct and populate using helper functions
                     Resolution r;
                     WPEFramework::Core::JSON::VariantContainer resolutionObj = resolutionVariant.Object();
@@ -124,8 +118,7 @@ namespace WPEFramework
                             r.includeContext ? "true" : "false", r.useComRpc ? "true" : "false");
 
                     // Check if this resolution already exists (will be overridden)
-                    if (mResolutions.find(key) != mResolutions.end())
-                    {
+                    if (mResolutions.find(key) != mResolutions.end()) {
                         LOGTRACE("[Resolver] Overriding resolution for key: %s", key.c_str());
                         overriddenCount++;
                     }
@@ -159,8 +152,7 @@ namespace WPEFramework
             std::string lowerKey = StringUtils::toLower(key);
             std::lock_guard<std::mutex> lock(mMutex);
             auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end())
-            {
+            if (it != mResolutions.end()) {
                 return it->second.alias;
             }
             return {}; // return empty if not found
@@ -171,39 +163,46 @@ namespace WPEFramework
             // Find last '.' in the string
             size_t dotPos = alias.rfind('.');
 
-            if (dotPos != std::string::npos)
-            {
+            if (dotPos != std::string::npos) {
                 callsign = alias.substr(0, dotPos);      // "org.rdk.UserSettings"
                 pluginMethod = alias.substr(dotPos + 1); // "getAudioDescription"
-            }
-            else
-            {
+            } else {
                 // Fallback: no dot found
                 callsign = alias;
                 pluginMethod = "";
             }
 
             LOGTRACE("[Resolver] Parsed alias '%s' -> callsign: '%s', method: '%s'",
-                    alias.c_str(), callsign.c_str(), pluginMethod.c_str());
+                     alias.c_str(), callsign.c_str(), pluginMethod.c_str());
         }
 
         std::string Resolver::ExtractStringField(const WPEFramework::Core::JSON::VariantContainer &obj, const char *fieldName)
         {
             WPEFramework::Core::JSON::Variant field = obj[fieldName];
-            if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::STRING)
-            {
-                // NOTE:
-                // Core::JSON::Variant derives from JSON::String. Using String() may return a JSON-encoded
-                // representation (including quotes) depending on context, which breaks resolver tests like
-                // "Override precedence" that compare against the raw string.
+            if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::STRING) {
+
+                // Depending on Thunder SDK/version and JSON::Variant behavior, strings can be observed as:
+                //   - raw:                 org.rdk.OverridePlugin.getName
+                //   - JSON-fragment:       "org.rdk.OverridePlugin.getName"
+                //   - escaped JSON-string: \"org.rdk.OverridePlugin.getName\"
                 //
-                // Value() is the raw string payload.
+                // Normalize to raw value so L0 comparisons (override precedence) remain stable.
                 std::string value = field.Value();
 
-                // Defensive: strip wrapping quotes if a JSON-encoded string slips through.
+                // Unescape occurrences of \" -> "
+                for (;;) {
+                    const std::size_t pos = value.find("\\\"");
+                    if (pos == std::string::npos) {
+                        break;
+                    }
+                    value.replace(pos, 2, "\"");
+                }
+
+                // Strip wrapping quotes if present.
                 if (value.size() >= 2 && value.front() == '"' && value.back() == '"') {
                     value = value.substr(1, value.size() - 2);
                 }
+
                 return value;
             }
             return "";
@@ -212,28 +211,25 @@ namespace WPEFramework
         bool Resolver::ExtractBooleanField(const WPEFramework::Core::JSON::VariantContainer &obj, const char *fieldName, bool defaultValue)
         {
             WPEFramework::Core::JSON::Variant field = obj[fieldName];
-            if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::BOOLEAN)
-            {
+            if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::BOOLEAN) {
                 return field.Boolean();
             }
             return defaultValue;
         }
 
-        JsonValue Resolver::ExtractAdditionalContext(JsonObject &obj, const char *fieldName) 
+        JsonValue Resolver::ExtractAdditionalContext(JsonObject &obj, const char *fieldName)
         {
             return obj.Get(fieldName);
         }
 
         Core::hresult Resolver::CallThunderPlugin(const std::string &alias, const std::string &params, std::string &response)
         {
-            if (mService == nullptr)
-            {
+            if (mService == nullptr) {
                 LOGERR("Shell service not set. Call setShell() first.");
                 return Core::ERROR_GENERAL;
             }
 
-            if (alias.empty())
-            {
+            if (alias.empty()) {
                 LOGERR("Empty alias provided");
                 return Core::ERROR_GENERAL;
             }
@@ -244,28 +240,24 @@ namespace WPEFramework
             // Parse the alias to extract callsign and method
             ParseAlias(alias, callsign, pluginMethod);
 
-            if (callsign.empty())
-            {
+            if (callsign.empty()) {
                 LOGERR("Failed to parse callsign from alias: %s", alias.c_str());
                 return Core::ERROR_GENERAL;
             }
 
-            if (pluginMethod.empty())
-            {
+            if (pluginMethod.empty()) {
                 LOGERR("No method found in alias: %s", alias.c_str());
                 return Core::ERROR_GENERAL;
             }
 
             auto thunderLink = Utils::GetThunderControllerClient(mService, callsign);
-            if (!thunderLink)
-            {
+            if (!thunderLink) {
                 LOGERR("Failed to create JSONRPCDirectLink for callsign: %s", callsign.c_str());
                 return Core::ERROR_GENERAL;
             }
 
             Core::hresult result = thunderLink->Invoke<std::string, std::string>(pluginMethod, params, response);
-            if (result != Core::ERROR_NONE)
-            {
+            if (result != Core::ERROR_NONE) {
                 LOGERR("Invoke failed for %s.%s, error code: %u",
                        callsign.c_str(), pluginMethod.c_str(), result);
             }
@@ -273,50 +265,47 @@ namespace WPEFramework
         }
 
         bool Resolver::HasEvent(const std::string &key)
-            {
-                std::lock_guard<std::mutex> lock(mMutex);
-                std::string lowerKey = StringUtils::toLower(key);
-                auto it = mResolutions.find(lowerKey);
-                if (it != mResolutions.end())
-                {
-                    return !it->second.event.empty();
-                }
-                return false;
+        {
+            std::lock_guard<std::mutex> lock(mMutex);
+            std::string lowerKey = StringUtils::toLower(key);
+            auto it = mResolutions.find(lowerKey);
+            if (it != mResolutions.end()) {
+                return !it->second.event.empty();
             }
+            return false;
+        }
 
-        bool Resolver::HasIncludeContext(const std::string &key, JsonValue& additionalContext)
-            {
-                std::lock_guard<std::mutex> lock(mMutex);
-                std::string lowerKey = StringUtils::toLower(key);
-                auto it = mResolutions.find(lowerKey);
-                if (it != mResolutions.end())
-                {
-                    if (it->second.additionalContext.IsSet()) {
-                        additionalContext = it->second.additionalContext;
-                    }
-                    return it->second.includeContext;
+        bool Resolver::HasIncludeContext(const std::string &key, JsonValue &additionalContext)
+        {
+            std::lock_guard<std::mutex> lock(mMutex);
+            std::string lowerKey = StringUtils::toLower(key);
+            auto it = mResolutions.find(lowerKey);
+            if (it != mResolutions.end()) {
+                if (it->second.additionalContext.IsSet()) {
+                    additionalContext = it->second.additionalContext;
                 }
-                return false;
+                return it->second.includeContext;
             }
+            return false;
+        }
 
-        bool Resolver::HasComRpcRequestSupport(const std::string &key) {
+        bool Resolver::HasComRpcRequestSupport(const std::string &key)
+        {
             std::string lowerKey = StringUtils::toLower(key);
             std::lock_guard<std::mutex> lock(mMutex);
             auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end())
-            {
+            if (it != mResolutions.end()) {
                 return it->second.useComRpc;
             }
             return false;
         }
 
-        bool Resolver::HasPermissionGroup(const std::string& key, std::string& permissionGroup )
+        bool Resolver::HasPermissionGroup(const std::string &key, std::string &permissionGroup)
         {
             std::lock_guard<std::mutex> lock(mMutex);
             std::string lowerKey = StringUtils::toLower(key);
             auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end())
-            {
+            if (it != mResolutions.end()) {
                 permissionGroup = it->second.permissionGroup;
                 return !permissionGroup.empty();
             }
