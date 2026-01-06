@@ -343,7 +343,14 @@ namespace Plugin {
         }
         if (mAppGateway != nullptr) {
             LOGWARN("AppGateway::Initialize called while resolver is still set; unregistering and releasing previous resolver");
-            Exchange::JAppGatewayResolver::Unregister(*this);
+
+            // Core::JSONRPC::Handler asserts if Unregister() is called for a non-existent method.
+            // Guard the unregister so repeated init/deinit sequences can't trip the assertion.
+            Core::JSONRPC::Handler* handler = this->Handler(_T("resolve"));
+            if ((handler != nullptr) && (handler->Exists(_T("resolve")) == Core::ERROR_NONE)) {
+                Exchange::JAppGatewayResolver::Unregister(*this);
+            }
+
             mAppGateway->Release();
             mAppGateway = nullptr;
         }
@@ -369,7 +376,7 @@ namespace Plugin {
 
             // Deterministic registration for L0: always (re)register plain "resolve".
             // This eliminates ERROR_UNKNOWN_METHOD(53) when wrapper registration ends up scoped/ignored.
-            this->Unregister(_T("resolve"));
+            // NOTE: Handler::Register overwrites existing registrations, so an explicit Unregister is not required.
             this->Register(_T("resolve"),
                 [this](const Core::JSONRPC::Context& /*ctx*/,
                        const string& /*designator*/,
@@ -415,10 +422,13 @@ namespace Plugin {
         }
 
         if (mAppGateway != nullptr) {
-            // Ensure local/plain resolve handler is removed as well.
-            this->Unregister(_T("resolve"));
+            // Unregister the JSON-RPC "resolve" method.
+            // Core::JSONRPC::Handler asserts if Unregister() is called for a non-existent method, so guard it.
+            Core::JSONRPC::Handler* handler = this->Handler(_T("resolve"));
+            if ((handler != nullptr) && (handler->Exists(_T("resolve")) == Core::ERROR_NONE)) {
+                Exchange::JAppGatewayResolver::Unregister(*this);
+            }
 
-            Exchange::JAppGatewayResolver::Unregister(*this);
             result = mAppGateway->Release();
             mAppGateway = nullptr;
             ASSERT(result == Core::ERROR_DESTRUCTION_SUCCEEDED);
