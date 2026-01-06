@@ -378,14 +378,42 @@ namespace L0Test {
         string ConfigLine() const override
         {
             // IMPORTANT (L0):
-            // Thunder expects:
-            //   outer JSON: { "root": "<json-string>" }
-            // and then it parses the content of "root" again as JSON.
+            // The Thunder host uses IShell::ConfigLine() to derive a "root" configuration object
+            // for IShell::Root() instantiation. In the isolated L0 harness we need to ensure:
+            //  - outofprocess=false (in-proc instantiation)
+            //  - locator points to the built plugin .so so class factories can be located
             //
-            // So `root` must be a JSON STRING containing valid JSON text.
-            // Keep this as a plain string literal (not a raw-string) to avoid any
-            // raw delimiter/escaping mistakes that can break Thunder initialization parsing.
-            return "{\"root\":\"{\\\"outofprocess\\\":true,\\\"locator\\\":\\\"\\\"}\"}";
+            // The runner sets APPGATEWAY_PLUGIN_SO to an absolute path of libWPEFrameworkAppGateway.so.
+            // We embed it here (JSON-escaped) to avoid the observed error:
+            //   "Missing implementation classname AppGatewayImplementation in library"
+            //
+            // NOTE: Thunder expects the outer JSON to contain "root" as a JSON STRING which is
+            // then parsed again as JSON text, hence the double-escaping.
+            const char* soPath = std::getenv("APPGATEWAY_PLUGIN_SO");
+            const std::string locator = (soPath != nullptr && *soPath != '\0') ? std::string(soPath) : std::string();
+
+            auto escapeJsonString = [](const std::string& in) -> std::string {
+                std::string out;
+                out.reserve(in.size() + 8);
+                for (const char c : in) {
+                    if (c == '\\' || c == '\"') {
+                        out.push_back('\\');
+                    }
+                    out.push_back(c);
+                }
+                return out;
+            };
+
+            std::string inner = std::string("{\"outofprocess\":false");
+            if (!locator.empty()) {
+                inner += ",\"locator\":\"";
+                inner += escapeJsonString(locator);
+                inner += "\"";
+            }
+            inner += "}";
+
+            // Outer JSON with "root" as string containing JSON text.
+            return std::string("{\"root\":\"") + escapeJsonString(inner) + "\"}";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 

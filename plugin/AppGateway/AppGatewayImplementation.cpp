@@ -206,6 +206,15 @@ namespace WPEFramework
             mService = shell;
             mService->AddRef();
 
+            // L0 harness safety/performance:
+            // Cache the gateway responder interface early if it is available.
+            // In the in-proc L0 ServiceMock, QueryInterface() for responder is intentionally not provided,
+            // which prevents us from scheduling async response jobs that can outlive stack-allocated
+            // plugin objects in certain tests.
+            if (mAppGatewayResponder == nullptr) {
+                mAppGatewayResponder = mService->QueryInterface<Exchange::IAppGatewayResponder>();
+            }
+
             result = InitializeResolver();
             if (Core::ERROR_NONE != result) {
                 return result;
@@ -220,6 +229,29 @@ namespace WPEFramework
             } catch (const std::bad_alloc& e) {
                 LOGERR("Failed to create Resolver instance: %s", e.what());
                 return Core::ERROR_GENERAL;
+            }
+
+            // L0 harness support:
+            // The test runner exports APPGATEWAY_RESOLUTIONS_PATH pointing at the repo-local
+            // resolution.base.json. Prefer this path to avoid reliance on /etc/app-gateway/*.
+            const char* l0BasePath = std::getenv("APPGATEWAY_RESOLUTIONS_PATH");
+            if (l0BasePath != nullptr && *l0BasePath != '\0') {
+                std::ifstream baseFile(l0BasePath);
+                if (baseFile.is_open()) {
+                    baseFile.close();
+                    std::vector<std::string> paths = { std::string(l0BasePath) };
+                    LOGINFO("Using APPGATEWAY_RESOLUTIONS_PATH for initial resolver config: %s", l0BasePath);
+
+                    const Core::hresult configResult = InternalResolutionConfigure(std::move(paths));
+                    if (configResult == Core::ERROR_NONE) {
+                        return Core::ERROR_NONE;
+                    }
+
+                    LOGERR("Failed to configure resolutions from APPGATEWAY_RESOLUTIONS_PATH: %s", l0BasePath);
+                    // Continue to legacy /etc-based behavior as a fallback.
+                } else {
+                    LOGWARN("APPGATEWAY_RESOLUTIONS_PATH set but file not readable: %s", l0BasePath);
+                }
             }
 
             // Read country from build config
@@ -378,7 +410,26 @@ namespace WPEFramework
             Core::hresult result = FetchResolvedData(context, method, params, origin, resolution);
             if (!resolution.empty()) {
                 LOGTRACE("Final resolution: %s", resolution.c_str());
-                Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context, resolution, origin));
+
+                const bool isGatewayOrigin = ContextUtils::IsOriginGateway(origin);
+
+                // Only schedule an async response if we have a responder to deliver it to.
+                // In the L0 harness, direct tests can instantiate AppGatewayImplementation on the stack,
+                // and scheduling a job that AddRef/Release's 'this' can cause delete-this on stack memory.
+                if (isGatewayOrigin) {
+                    if (mAppGatewayResponder != nullptr) {
+                        Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context, resolution, origin));
+                    } else {
+                        LOGINFO("No gateway responder available; skipping async response dispatch (origin=%s)", origin.c_str());
+                    }
+                } else {
+                    // For non-gateway origins, we need the internal responder to forward to LaunchDelegate.
+                    if (mInternalGatewayResponder != nullptr) {
+                        Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context, resolution, origin));
+                    } else {
+                        LOGINFO("No internal responder available; skipping async response dispatch (origin=%s)", origin.c_str());
+                    }
+                }
             }
             return result;
         }
