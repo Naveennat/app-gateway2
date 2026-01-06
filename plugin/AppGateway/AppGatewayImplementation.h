@@ -60,51 +60,78 @@ namespace Plugin {
 
         class EXTERNAL RespondJob : public Core::IDispatch
         {
-        protected:
-            RespondJob(AppGatewayImplementation *parent, 
-            const Context& context,
-            const std::string& payload,
-            const std::string& destination
-            )
-                : mParent(*parent), mPayload(payload), mContext(context), mDestination(destination)
-            {
-            }
-
         public:
             RespondJob() = delete;
-        RespondJob(const RespondJob &) = delete;
-            RespondJob &operator=(const RespondJob &) = delete;
-            ~RespondJob()
+            RespondJob(const RespondJob&) = delete;
+            RespondJob& operator=(const RespondJob&) = delete;
+
+            RespondJob(AppGatewayImplementation* parent,
+                       const Context& context,
+                       const std::string& payload,
+                       const std::string& destination)
+                : mParent(parent)
+                , mPayload(payload)
+                , mContext(context)
+                , mDestination(destination)
             {
+                // This job is executed asynchronously on the global worker pool.
+                // Keep the parent alive for the full lifetime of the queued job to
+                // prevent use-after-free during plugin shutdown.
+                if (mParent != nullptr) {
+                    mParent->AddRef();
+                }
+            }
+
+            ~RespondJob() override
+            {
+                if (mParent != nullptr) {
+                    mParent->Release();
+                    mParent = nullptr;
+                }
             }
 
         public:
-            static Core::ProxyType<Core::IDispatch> Create(AppGatewayImplementation *parent,
-                const Context& context, const std::string& payload, const std::string& origin)
+            static Core::ProxyType<Core::IDispatch> Create(AppGatewayImplementation* parent,
+                                                          const Context& context,
+                                                          const std::string& payload,
+                                                          const std::string& origin)
             {
-                return (Core::ProxyType<Core::IDispatch>(Core::ProxyType<RespondJob>::Create(parent, context, payload, origin)));
+                return Core::ProxyType<Core::IDispatch>(
+                    Core::ProxyType<RespondJob>::Create(parent, context, payload, origin));
             }
-            virtual void Dispatch()
+
+            void Dispatch() override
             {
-                if(ContextUtils::IsOriginGateway(mDestination)) {
-                    mParent.ReturnMessageInSocket(mContext, std::move(mPayload));
-                } else {
-                    mParent.SendToLaunchDelegate(mContext, std::move(mPayload));
+                if (mParent == nullptr) {
+                    return;
                 }
-                
+
+                if (ContextUtils::IsOriginGateway(mDestination)) {
+                    mParent->ReturnMessageInSocket(mContext, mPayload);
+                } else {
+                    mParent->SendToLaunchDelegate(mContext, mPayload);
+                }
             }
 
         private:
-            AppGatewayImplementation &mParent;
-            const std::string mPayload;
-            const Context mContext;
-            const std::string mDestination;
+            AppGatewayImplementation* mParent;
+            std::string mPayload;
+            Context mContext;
+            std::string mDestination;
         };
 
         Core::hresult HandleEvent(const Context &context, const string &alias, const string &event, const string &origin,  const bool listen);
                 
-        void ReturnMessageInSocket(const Context& context, const string payload ) {
-            if (mAppGatewayResponder==nullptr) {
+        void ReturnMessageInSocket(const Context& context, const string payload )
+        {
+            // This method can be called from an async worker thread. If the plugin is
+            // shutting down, the service pointer may no longer be valid.
+            if (mService == nullptr) {
+                LOGERR("AppGateway service not available (shutdown in progress); dropping response");
+                return;
+            }
+
+            if (mAppGatewayResponder == nullptr) {
                 mAppGatewayResponder = mService->QueryInterface<Exchange::IAppGatewayResponder>();
             }
 
@@ -112,6 +139,7 @@ namespace Plugin {
                 LOGERR("AppGateway Responder not available");
                 return;
             }
+
             if (Core::ERROR_NONE != mAppGatewayResponder->Respond(context, payload)) {
                 LOGERR("Failed to Respond in Gateway");
             }

@@ -33,6 +33,14 @@ set(PLUGIN_APPGATEWAY_AUTOSTART "false" CACHE STRING "Automatically start AppGat
 
 message("Setup ${MODULE_NAME} v${MODULE_VERSION}")
 
+# Ensure standard install directories are defined (SYSCONFDIR, LIBDIR, etc.).
+# Without this, CMAKE_INSTALL_SYSCONFDIR can be empty and the config install
+# destination becomes an absolute path like "/app-gateway" (which fails in CI).
+include(GNUInstallDirs)
+if(NOT DEFINED CMAKE_INSTALL_SYSCONFDIR OR "${CMAKE_INSTALL_SYSCONFDIR}" STREQUAL "")
+    set(CMAKE_INSTALL_SYSCONFDIR "etc")
+endif()
+
 # Enforce upstream-expected C++ standard at the project level.
 # (User request: try C++11 first; fallback handled by build script.)
 set(CMAKE_CXX_STANDARD 11)
