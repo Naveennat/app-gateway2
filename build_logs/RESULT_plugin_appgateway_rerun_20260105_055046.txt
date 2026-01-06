@@ -1,0 +1,18 @@
+RESULT: FAIL
+WHEN: 2026-01-05 05:50 (timestamp tag: 20260105_055046)
+SCRIPT: app-gateway2/build_plugin_appgateway.sh
+LOG: app-gateway2/build_logs/build_plugin_appgateway_20260105_055046.log
+
+CONFIGURE:
+- CMake configured successfully (with dev warnings about missing project()/cmake_minimum_required()).
+
+BUILD FAILURE (key causes):
+- fatal error: UtilsLogging.h: No such file or directory
+- fatal error: WsManager.h: No such file or directory
+
+NOTES:
+- Log shows APPGATEWAY_EXTRA_INCLUDE_DIRS= (empty), so helper include injection did not apply.
+- Headers do exist in repo:
+  - helpers/rdkservices-comcast/helpers/UtilsLogging.h
+  - helpers/rdkservices-comcast/helpers/WsManager.h
+  - helpers/entservices-infra/helpers/UtilsLogging.h

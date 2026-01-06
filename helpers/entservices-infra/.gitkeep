@@ -1,0 +1,3 @@
+# Directory intentionally kept for vendored entservices-infra helper headers.
+# Contents are copied from entservices-infra-712/helpers into:
+#   app-gateway2/helpers/entservices-infra/helpers

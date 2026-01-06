@@ -1,0 +1,6 @@
+[build_plugin_appgateway] ROOT=/home/kavia/workspace/code-generation
+[build_plugin_appgateway] PLUGIN_SRC=/home/kavia/workspace/code-generation/plugin/AppGateway
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/build/plugin_appgateway
+[build_plugin_appgateway] INSTALL_PREFIX=/home/kavia/workspace/code-generation/dependencies/install
+[build_plugin_appgateway][ERROR] Plugin source directory not found: /home/kavia/workspace/code-generation/plugin/AppGateway
+LOGFILE=/tmp/build_plugin_appgateway_20260105_053411.log

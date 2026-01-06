@@ -1,0 +1,11 @@
+AppGateway L0 coverage rerun marker
+date: 2026-01-05T07:11:38+00:00
+harness: tests/l0/appgateway/run_coverage.sh
+result: FAIL (exit 134)
+artifacts:
+  - tests/l0/appgateway/coverage/RESULT.latest.txt
+  - tests/l0/appgateway/coverage/BLOCKERS.latest.md
+notes:
+  - No coverage.info generated (process crashed before lcov capture).
+  - Repeated runtime error: "Missing implementation classname AppGatewayImplementation in library"
+  - Ends with: "double free or corruption (out)"

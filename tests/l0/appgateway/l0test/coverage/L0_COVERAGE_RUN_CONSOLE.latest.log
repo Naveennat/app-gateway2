@@ -1,0 +1,10 @@
+[run_l0_coverage] ROOT=/home/kavia/workspace/code-generation
+[run_l0_coverage] L0_DIR=/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test
+[run_l0_coverage] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/build
+[run_l0_coverage] INSTALL_PREFIX=/home/kavia/workspace/code-generation/dependencies/install
+[run_l0_coverage] COVERAGE_DIR=/home/kavia/workspace/code-generation/app-gateway2/AppGateway/l0test/coverage
+
+[run_l0_coverage] ===== Tool checks =====
+
+[run_l0_coverage] ===== Input checks =====
+[run_l0_coverage][ERROR] Install prefix not found: /home/kavia/workspace/code-generation/dependencies/install (expected dependencies to be built/installed)

@@ -1,0 +1,5 @@
+Next run of ./build_plugin_appgateway.sh will emit:
+- build_logs/build_plugin_appgateway_YYYYMMDD_HHMMSS.log
+- build_logs/RESULT_plugin_appgateway_YYYYMMDD_HHMMSS.txt
+
+This marker exists because timestamps are generated at runtime.
