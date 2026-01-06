@@ -1,0 +1,8 @@
+# ninja log v5
+2	4279	1767705232120521881	CMakeFiles/WPEFrameworkAppGateway.dir/Module.o	bf8f466dedb2c58d
+2	4480	1767705232320525389	CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o	21e4e6eb6946d0f0
+1	4782	1767705232624530721	CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o	8c257ed1efc1f27e
+1	5172	1767705233012537526	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o	46073804a9442544
+2	5802	1767705233640548541	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o	8b59b3517c9cb6c7
+5802	6030	1767705233872552610	libWPEFrameworkAppGateway.so	306d688984b9b102
+6030	6051	0	CMakeFiles/install.util	da1308a7c5abc8a9

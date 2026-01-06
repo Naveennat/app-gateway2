@@ -186,10 +186,25 @@ namespace WPEFramework
                 //   - JSON-fragment:       "org.rdk.OverridePlugin.getName"
                 //   - escaped JSON-string: \"org.rdk.OverridePlugin.getName\"
                 //
-                // Normalize to raw value so L0 comparisons (override precedence) remain stable.
+                // Normalize to a raw, trimmed value so L0 comparisons (override precedence) remain stable.
                 std::string value = field.Value();
 
-                // Unescape occurrences of \" -> "
+                auto trimAscii = [](std::string s) -> std::string {
+                    const auto isSpace = [](const char c) -> bool {
+                        return (c == ' ') || (c == '\t') || (c == '\n') || (c == '\r');
+                    };
+                    while (!s.empty() && isSpace(s.front())) {
+                        s.erase(s.begin());
+                    }
+                    while (!s.empty() && isSpace(s.back())) {
+                        s.pop_back();
+                    }
+                    return s;
+                };
+
+                value = trimAscii(value);
+
+                // Unescape occurrences of \" -> " (repeat until stable to also handle \\\" sequences).
                 for (;;) {
                     const std::size_t pos = value.find("\\\"");
                     if (pos == std::string::npos) {
@@ -198,12 +213,14 @@ namespace WPEFramework
                     value.replace(pos, 2, "\"");
                 }
 
+                value = trimAscii(value);
+
                 // Strip wrapping quotes if present.
-                if (value.size() >= 2 && value.front() == '"' && value.back() == '"') {
+                if (value.size() >= 2 && value.front() == '\"' && value.back() == '\"') {
                     value = value.substr(1, value.size() - 2);
                 }
 
-                return value;
+                return trimAscii(value);
             }
             return "";
         }
@@ -314,4 +331,3 @@ namespace WPEFramework
 
     }
 }
-

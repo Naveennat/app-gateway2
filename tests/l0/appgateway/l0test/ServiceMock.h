@@ -381,16 +381,12 @@ namespace L0Test {
             //   { "root": "<JSON string containing root config>" }
             // i.e. the `root` field is a *string* which is then parsed again as JSON.
             //
-            // If we provide `root` as an object directly, RootConfig::RootObject will fail to parse it
-            // (because RootObject declares `root` as Core::JSON::String), and Root() will silently fall
-            // back to the default in-process instantiation path. That causes:
-            //   - ServiceAdministrator::Instantiate() to look up "AppGatewayImplementation" in the global
-            //     service registry (often failing in this isolated test harness)
-            //   - the plugin not registering the plain JSON-RPC method "resolve"
-            //   - L0 Json_* failures with ERROR_UNKNOWN_METHOD (53)
+            // The `root` string must therefore contain *valid JSON text* like:
+            //   {"outofprocess":true,"locator":""}
             //
-            // We force the out-of-process branch so IShell::Root() calls COMLink()->Instantiate(...),
-            // which is implemented by this ServiceMock and returns deterministic fakes.
+            // That means the *outer* JSON needs single-escaped quotes (\") so that after the first parse
+            // the string value contains unescaped quotes (") for the second parse. Using \\\" would leave
+            // backslashes in the second-stage JSON and break parsing.
             return R"JSON({"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
