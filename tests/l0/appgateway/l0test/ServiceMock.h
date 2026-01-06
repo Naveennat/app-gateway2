@@ -376,19 +376,16 @@ namespace L0Test {
 
         string ConfigLine() const override
         {
-            // IMPORTANT:
-            // PluginHost::IShell::Root() uses Plugin::Config::RootConfig which (in this Thunder SDK)
-            // expects a TOP-LEVEL string field named "root" containing a JSON object.
-            //
-            // RootConfig parsing flow (see dependencies/install/include/WPEFramework/plugins/Configuration.h):
-            //   - parse ConfigLine() into RootObject { "root": "<string>" }
-            //   - then parse that string as RootConfig fields (incl. outofprocess)
+            // IMPORTANT (L0):
+            // Some Thunder/WPEFramework SDKs expect `root` to be a JSON *object* (or null), not a
+            // JSON-encoded string. When a string is provided, JSON parsing fails with messages like:
+            //   "Invalid value. 'null' or '{' expected"
             //
             // For isolated L0 tests we force the COMLink Instantiate() path by setting outofprocess=true,
             // so IShell::Root() is satisfied by ServiceMock::Instantiate() (returns ResolverFake/ResponderFake).
             //
-            // Keep the top-level JSON minimal to avoid strict parsers rejecting additional keys.
-            return R"JSON({"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
+            // Keep the JSON minimal to avoid strict parsers rejecting additional keys.
+            return R"JSON({"root":{"outofprocess":true,"locator":""}})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
