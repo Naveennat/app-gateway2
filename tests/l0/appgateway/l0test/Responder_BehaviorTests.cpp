@@ -77,7 +77,7 @@ public:
         return nullptr;
     }
 
-    void OnAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool& connected) override {
+    void OnAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool connected) override {
         lastAppId = appId;
         lastConnectionId = connectionId;
         lastConnected = connected;
