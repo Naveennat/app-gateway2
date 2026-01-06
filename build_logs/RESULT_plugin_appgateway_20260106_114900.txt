@@ -1,0 +1,8 @@
+RESULT: OK
+Timestamp: 20260106_114900
+C++ standard used: C++11
+Build dir: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260106_114900_cxx11
+See logs:
+  /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+  /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
+  /home/kavia/workspace/code-generation/app-gateway2/build_logs/build_plugin_appgateway_20260106_114900.log

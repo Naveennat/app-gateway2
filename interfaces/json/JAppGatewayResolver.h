@@ -115,6 +115,51 @@ static bool KeyPresent(const string& json, const char* keyWithQuotes)
     return (json.find(keyWithQuotes) != string::npos);
 }
 
+static string TrimAsciiWhitespace(string s)
+{
+    const auto isSpace = [](const char c) -> bool {
+        return (c == ' ') || (c == '\t') || (c == '\n') || (c == '\r');
+    };
+
+    while (!s.empty() && isSpace(s.front())) {
+        s.erase(s.begin());
+    }
+    while (!s.empty() && isSpace(s.back())) {
+        s.pop_back();
+    }
+    return s;
+}
+
+static string NormalizeJsonStringValue(const string& input)
+{
+    // Thunder JSON element implementations are not perfectly consistent across versions:
+    // in some cases Value() can be:
+    //   - raw:                 com.example
+    //   - JSON-fragment:       "com.example"
+    //   - escaped JSON-string: \"com.example\"
+    //
+    // Normalize to a raw string for robust checks like empty-appId detection.
+    string out = TrimAsciiWhitespace(input);
+
+    // Unescape occurrences of \\\" -> \"
+    for (;;) {
+        const std::size_t pos = out.find("\\\"");
+        if (pos == string::npos) {
+            break;
+        }
+        out.replace(pos, 2, "\"");
+    }
+
+    out = TrimAsciiWhitespace(out);
+
+    // Strip wrapping quotes if present.
+    if (out.size() >= 2 && out.front() == '"' && out.back() == '"') {
+        out = out.substr(1, out.size() - 2);
+    }
+
+    return TrimAsciiWhitespace(out);
+}
+
 static bool ExtractContextFields(const ResolveRequestData& req,
                                  const string& rawJson,
                                  uint32_t& requestId,
@@ -127,32 +172,33 @@ static bool ExtractContextFields(const ResolveRequestData& req,
         KeyPresent(rawJson, "\"context\"");
 
     auto requiredKeysPresent = [&rawJson]() -> bool {
+        // NOTE: We intentionally accept keys present in nested objects as well. The L0 tests
+        // include both top-level and "context" wrapper forms.
         return KeyPresent(rawJson, "\"requestId\"") &&
                KeyPresent(rawJson, "\"connectionId\"") &&
                KeyPresent(rawJson, "\"appId\"");
     };
 
-    if (contextMentioned) {
-        // If context is used, the required keys still must be present in the request.
-        // (The tests always use simple JSON shapes; we keep this minimal.)
-        if (!requiredKeysPresent()) {
-            return false;
-        }
-
-        requestId = req.Context.RequestId.Value();
-        connectionId = req.Context.ConnectionId.Value();
-        appId = req.Context.AppId.Value();
-        return !appId.empty();
-    }
-
-    // Fallback to top-level fields.
     if (!requiredKeysPresent()) {
         return false;
     }
 
+    if (contextMentioned) {
+        requestId = req.Context.RequestId.Value();
+        connectionId = req.Context.ConnectionId.Value();
+        appId = NormalizeJsonStringValue(req.Context.AppId.Value());
+
+        // If the request mentions "context" but context.{...} is empty/default (or appId empty),
+        // fall back to top-level fields if present.
+        if (!appId.empty()) {
+            return true;
+        }
+    }
+
+    // Fallback to top-level fields.
     requestId = req.RequestId.Value();
     connectionId = req.ConnectionId.Value();
-    appId = req.AppId.Value();
+    appId = NormalizeJsonStringValue(req.AppId.Value());
     return !appId.empty();
 }
 
@@ -165,7 +211,7 @@ static string NormalizeParamsToJsonText(const ResolveRequestData& req)
 
     // If params is a STRING, interpret it as already JSON text (or empty => {}).
     if (req.Params.Content() == Core::JSON::Variant::type::STRING) {
-        string raw = req.Params.Value(); // Value() is raw (no surrounding quotes)
+        string raw = NormalizeJsonStringValue(req.Params.Value());
         if (raw.empty()) {
             return _T("{}");
         }
@@ -175,10 +221,19 @@ static string NormalizeParamsToJsonText(const ResolveRequestData& req)
     // Otherwise (object/array/number/bool) the Variant already stores the JSON fragment text
     // in its underlying JSON::String base. Do NOT call Variant::ToString() as that symbol
     // is not available in some Thunder SDK builds (leads to undefined reference at link time).
-    const string out = req.Params.Value();
+    string out = TrimAsciiWhitespace(req.Params.Value());
     if (out.empty()) {
         return _T("{}");
     }
+
+    // Defensive: if the fragment is accidentally quoted, normalize it.
+    if (out.size() >= 2 && out.front() == '"' && out.back() == '"') {
+        out = NormalizeJsonStringValue(out);
+        if (out.empty()) {
+            return _T("{}");
+        }
+    }
+
     return out;
 }
 
@@ -211,12 +266,15 @@ inline void Register(PluginHost::JSONRPC& module, IAppGatewayResolver* impl)
                 return Core::ERROR_BAD_REQUEST;
             }
 
-            // Validate required fields.
-            if (!req.Origin.IsSet() || req.Origin.Value().empty()) {
+            // Validate required fields (post-normalization to handle quoted/escaped representations).
+            const string origin = detail::NormalizeJsonStringValue(req.Origin.Value());
+            const string method = detail::NormalizeJsonStringValue(req.Method.Value());
+
+            if (!req.Origin.IsSet() || origin.empty()) {
                 response.clear();
                 return Core::ERROR_BAD_REQUEST;
             }
-            if (!req.Method.IsSet() || req.Method.Value().empty()) {
+            if (!req.Method.IsSet() || method.empty()) {
                 response.clear();
                 return Core::ERROR_BAD_REQUEST;
             }
@@ -238,7 +296,7 @@ inline void Register(PluginHost::JSONRPC& module, IAppGatewayResolver* impl)
             gw.appId = appId;
 
             string result;
-            const uint32_t rc = impl->Resolve(gw, req.Origin.Value(), req.Method.Value(), paramsJson, result);
+            const uint32_t rc = impl->Resolve(gw, origin, method, paramsJson, result);
 
             response = result;
             return rc;
