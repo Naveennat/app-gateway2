@@ -213,6 +213,9 @@ namespace WPEFramework
 
             // Shared pointer will automatically clean up
             mResolverPtr.reset();
+
+            // Defensive: force in-flight job count to zero so late jobs (if any due to scheduler delays) can't call back
+            mInFlightJobs.store(0, std::memory_order_release);
         }
 
         uint32_t AppGatewayImplementation::Configure(PluginHost::IShell *shell)
