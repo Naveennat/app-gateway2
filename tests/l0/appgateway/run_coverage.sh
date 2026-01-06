@@ -17,15 +17,22 @@
 #
 set -euo pipefail
 
+# --- FORCE USE OF THUNDER/WPEFRAMEWORK LIBS ---
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"  # -> app-gateway2
+
+DEPS_LIB="${ROOT}/dependencies/install/lib"
+PLUGINS_LIB="${DEPS_LIB}/plugins"
+WPE_PLUGINS_LIB="${DEPS_LIB}/wpeframework/plugins"
+
+export LD_LIBRARY_PATH="${DEPS_LIB}:${PLUGINS_LIB}:${WPE_PLUGINS_LIB}:${LD_LIBRARY_PATH:-}"
+
 log()        { echo "[run_coverage] $*"; }
 log_section(){ echo ""; echo "[run_coverage] ===== $* ====="; }
 warn()       { echo "[run_coverage][WARN] $*" >&2; }
 die()        { echo "[run_coverage][ERROR] $*" >&2; exit 1; }
 
 need_cmd() { command -v "$1" >/dev/null 2>&1; }
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"  # -> app-gateway2
 
 TEST_SRC_DIR="${ROOT}/tests/l0/appgateway/l0test"
 BUILD_DIR="${ROOT}/build/tests_l0_appgateway"
@@ -51,8 +58,6 @@ need_cmd lcov    || die "lcov not found in PATH."
 need_cmd genhtml || die "genhtml not found in PATH."
 
 log_section "Ensure runtime test configs"
-# The plugin uses /etc/app-gateway/resolution.base.json as a fallback path.
-# Ensure it exists so L0 tests run deterministically in CI containers.
 if [[ -x "${ROOT}/scripts/ensure_test_configs.sh" ]]; then
   "${ROOT}/scripts/ensure_test_configs.sh"
 else
@@ -67,9 +72,6 @@ log_section "Input checks"
 RESOLUTIONS_PATH="${APPGATEWAY_RESOLUTIONS_PATH:-${DEFAULT_RESOLUTIONS_PATH}}"
 [[ -f "${RESOLUTIONS_PATH}" ]] || die "Resolution base file not found: ${RESOLUTIONS_PATH}"
 
-# Select plugin .so:
-# - Preserve external APPGATEWAY_PLUGIN_SO if set.
-# - Otherwise use installed paths (wpeframework/plugins preferred).
 APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO:-}"
 if [[ -z "${APPGATEWAY_PLUGIN_SO}" ]]; then
   if [[ -f "${PLUGIN_SO_WPE}" ]]; then
@@ -77,7 +79,6 @@ if [[ -z "${APPGATEWAY_PLUGIN_SO}" ]]; then
   elif [[ -f "${PLUGIN_SO_COMPAT}" ]]; then
     APPGATEWAY_PLUGIN_SO="${PLUGIN_SO_COMPAT}"
   else
-    # Best-effort find under install prefix
     FOUND="$(find "${INSTALL_PREFIX}/lib" -maxdepth 6 -type f -name 'libWPEFrameworkAppGateway.so' 2>/dev/null | head -n 1 || true)"
     if [[ -n "${FOUND}" ]]; then
       APPGATEWAY_PLUGIN_SO="${FOUND}"
@@ -117,8 +118,6 @@ rm -rf "${BUILD_DIR}"
 mkdir -p "${BUILD_DIR}"
 mkdir -p "${COVERAGE_DIR}"
 
-# Help existing l0test CMake probe (it checks ${CMAKE_BINARY_DIR}/../AppGateway/libWPEFrameworkAppGateway.so)
-# With BUILD_DIR=build/tests_l0_appgateway => probe path is build/AppGateway/libWPEFrameworkAppGateway.so
 log_section "Prepare Real-plugin link path (optional)"
 if [[ -f "${APPGATEWAY_PLUGIN_SO}" ]]; then
   mkdir -p "${ROOT}/build/AppGateway"
@@ -165,24 +164,20 @@ log_section "Run tests"
 PLUGIN_DIR="$(dirname "${APPGATEWAY_PLUGIN_SO}")"
 
 LD_PATH_EXTRA=(
-  "${INSTALL_PREFIX}/lib"
-  "${INSTALL_PREFIX}/lib/plugins"
-  "${INSTALL_PREFIX}/lib/wpeframework/plugins"
+  "${DEPS_LIB}"
+  "${PLUGINS_LIB}"
+  "${WPE_PLUGINS_LIB}"
   "${BUILD_DIR}"
   "${BUILD_DIR}/AppGateway"
 )
 if [[ -n "${PLUGIN_DIR}" && -d "${PLUGIN_DIR}" ]]; then
   LD_PATH_EXTRA=( "${PLUGIN_DIR}" "${LD_PATH_EXTRA[@]}" )
 fi
-
 LD_LIBRARY_PATH_COMPOSED="$(IFS=:; echo "${LD_PATH_EXTRA[*]}")"
-if [[ -n "${LD_LIBRARY_PATH:-}" ]]; then
-  LD_LIBRARY_PATH_COMPOSED="${LD_LIBRARY_PATH_COMPOSED}:${LD_LIBRARY_PATH}"
-fi
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH_COMPOSED}:${LD_LIBRARY_PATH}"
 
 APPGATEWAY_RESOLUTIONS_PATH="${RESOLUTIONS_PATH}" \
 APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO}" \
-LD_LIBRARY_PATH="${LD_LIBRARY_PATH_COMPOSED}" \
 "${TEST_BIN}"
 
 log_section "Generate coverage"

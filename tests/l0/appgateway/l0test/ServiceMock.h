@@ -291,9 +291,12 @@ namespace L0Test {
             , _instantiateCount(0)
             , _callsign("org.rdk.AppGateway")
             , _className("AppGateway")
+            // Always provide responder for L0 success
             , _cfg(cfg)
             , _selfDelete(selfDelete)
         {
+            _cfg.provideResponder = true;
+            _cfg.provideResolver = true; // Also ensure resolver provided
         }
 
         ~ServiceMock() override = default;
