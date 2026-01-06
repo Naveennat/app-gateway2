@@ -152,9 +152,10 @@ static string NormalizeParamsToJsonText(const ResolveRequestData& req)
         return raw;
     }
 
-    // Otherwise stringify the JSON value (object/array/number/bool).
-    string out;
-    req.Params.ToString(out);
+    // Otherwise (object/array/number/bool) the Variant already stores the JSON fragment text
+    // in its underlying JSON::String base. Do NOT call Variant::ToString() as that symbol
+    // is not available in some Thunder SDK builds (leads to undefined reference at link time).
+    const string out = req.Params.Value();
     if (out.empty()) {
         return _T("{}");
     }
