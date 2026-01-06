@@ -201,14 +201,18 @@ fi
 } > "${RESULT_FILE}"
 
 # Verify install location and create compatibility symlink if needed.
-PLUGIN_SO="${SDK_PREFIX}/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so"
+#
+# In some SDK builds STORAGE_DIRECTORY may be unset/empty, causing the plugin to
+# install directly to ${SDK_PREFIX}/lib/plugins. In that case, the "compat"
+# symlink path equals the real path, and `ln -sf` would error with "same file".
+PLUGIN_SO_PREFERRED="${SDK_PREFIX}/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so"
 COMPAT_DIR="${SDK_PREFIX}/lib/plugins"
 COMPAT_SO="${COMPAT_DIR}/libWPEFrameworkAppGateway.so"
 
-# Requirement: install libWPEFrameworkAppGateway.so to $SDK_PREFIX/lib/wpeframework/plugins
-# (the plugin's CMake install DESTINATION uses lib/${STORAGE_DIRECTORY}/plugins; in our SDK
-# STORAGE_DIRECTORY is expected to be 'wpeframework').
-if [[ -f "${PLUGIN_SO}" ]]; then
+PLUGIN_SO=""
+
+if [[ -f "${PLUGIN_SO_PREFERRED}" ]]; then
+  PLUGIN_SO="${PLUGIN_SO_PREFERRED}"
   log "Installed plugin: ${PLUGIN_SO}"
 else
   # Fallback: search for it and fail if it wasn't installed at all.
@@ -222,8 +226,18 @@ else
 fi
 
 mkdir -p "${COMPAT_DIR}"
-ln -sf "${PLUGIN_SO}" "${COMPAT_SO}"
-log "Compat symlink:"
-log "  ${COMPAT_SO} -> ${PLUGIN_SO}"
+
+# Only create/update compat symlink if it would not point to the same path.
+if [[ "$(readlink -f "${PLUGIN_SO}")" == "$(readlink -f "${COMPAT_SO}" 2>/dev/null || true)" ]] || [[ "$(readlink -f "${PLUGIN_SO}")" == "$(readlink -f "${COMPAT_DIR}/libWPEFrameworkAppGateway.so" 2>/dev/null || true)" ]]; then
+  log "Compat symlink already satisfied (same target/path):"
+  log "  ${COMPAT_SO}"
+elif [[ "${PLUGIN_SO}" == "${COMPAT_SO}" ]]; then
+  log "Compat symlink not required (plugin already at compat path):"
+  log "  ${COMPAT_SO}"
+else
+  ln -sf "${PLUGIN_SO}" "${COMPAT_SO}"
+  log "Compat symlink:"
+  log "  ${COMPAT_SO} -> ${PLUGIN_SO}"
+fi
 
 log "Done."
