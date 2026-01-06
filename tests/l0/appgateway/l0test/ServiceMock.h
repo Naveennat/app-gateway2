@@ -389,6 +389,8 @@ namespace L0Test {
             // so IShell::Root() is satisfied by ServiceMock::Instantiate() (returns ResolverFake/ResponderFake).
             //
             // Keep connector/port as well for responder implementation config parsing.
+            //
+            // NOTE: The outer object must be valid JSON. Only the inner "root" JSON is escaped as a JSON string.
             return R"JSON({"connector":"127.0.0.1:3473","port":3473,"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }

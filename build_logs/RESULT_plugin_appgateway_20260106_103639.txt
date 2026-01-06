@@ -1,0 +1,7 @@
+RESULT: FAIL
+Timestamp: 20260106_103639
+Last tried C++ standard: C++17
+See logs:
+  /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+  /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
+  /home/kavia/workspace/code-generation/app-gateway2/build_logs/build_plugin_appgateway_20260106_103639.log
