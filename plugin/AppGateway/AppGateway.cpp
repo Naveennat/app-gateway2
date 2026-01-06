@@ -121,25 +121,49 @@ namespace {
 
         static string NormalizeJsonStringValue(const string& input)
         {
+            // Normalize a possibly-JSON-encoded string into a raw C++ string value.
+            // Across Thunder/JSON element variants we can observe:
+            //   - raw:                 com.example
+            //   - JSON fragment:       "com.example"
+            //   - escaped JSON-string: \"com.example\"
+            //
+            // This function:
+            //   1) trims whitespace
+            //   2) strips a single pair of wrapping quotes
+            //   3) unescapes common sequences (at least \\\" and \\\\)
             string out = TrimAsciiWhitespace(input);
 
-            // Unescape occurrences of \" -> "
-            for (;;) {
-                const std::size_t pos = out.find("\\\"");
-                if (pos == string::npos) {
-                    break;
-                }
-                out.replace(pos, 2, "\"");
-            }
-
-            out = TrimAsciiWhitespace(out);
-
-            // Strip wrapping quotes if present.
+            // Strip wrapping quotes first (if present) to make unescaping deterministic.
             if (out.size() >= 2 && out.front() == '"' && out.back() == '"') {
                 out = out.substr(1, out.size() - 2);
             }
 
-            return TrimAsciiWhitespace(out);
+            // Unescape minimal JSON string sequences we care about for L0 robustness.
+            string unescaped;
+            unescaped.reserve(out.size());
+
+            for (size_t i = 0; i < out.size(); ++i) {
+                const char c = out[i];
+                if (c == '\\' && (i + 1) < out.size()) {
+                    const char n = out[i + 1];
+                    if (n == '"' || n == '\\' || n == '/') {
+                        unescaped.push_back(n);
+                        ++i;
+                        continue;
+                    }
+                    if (n == 'n') { unescaped.push_back('\n'); ++i; continue; }
+                    if (n == 'r') { unescaped.push_back('\r'); ++i; continue; }
+                    if (n == 't') { unescaped.push_back('\t'); ++i; continue; }
+
+                    // Unknown escape: drop the backslash and keep the next character.
+                    unescaped.push_back(n);
+                    ++i;
+                    continue;
+                }
+                unescaped.push_back(c);
+            }
+
+            return TrimAsciiWhitespace(unescaped);
         }
 
         static bool ExtractContextFields(const ResolveRequestData& req,

@@ -155,24 +155,30 @@ static bool WriteTextFile(const std::string& path, const std::string& content) {
 }
 
 static std::string ComputeBaseResolutionsPathFromThisFile() {
-    // If env var provided, use it
+    // Prefer env var only if it points to an existing file (some harnesses used an older path).
     const char* env = std::getenv("APPGATEWAY_RESOLUTIONS_PATH");
     if (env != nullptr && *env != '\0') {
-        return std::string(env);
+        struct stat st;
+        if (stat(env, &st) == 0 && S_ISREG(st.st_mode)) {
+            return std::string(env);
+        }
     }
 
-    // Fall back to resolving via __FILE__
-    // __FILE__ is this file path: .../AppGateway/l0test/Resolver_Configure_And_ResolveTests.cpp
-    // We want: .../AppGateway/resolutions/resolution.base.json
-    std::string f = __FILE__;
-    const std::string needle = "/AppGateway/";
-    const auto pos = f.rfind(needle);
-    if (pos == std::string::npos) {
-        // As a last resort, use a relative path that will work if executed from repo root
-        return "app-gateway2/app-gateway/AppGateway/resolutions/resolution.base.json";
+    // This repository’s authoritative base file lives under:
+    //   <repo-root>/plugin/AppGateway/resolutions/resolution.base.json
+    //
+    // Compute <repo-root> from this test file path:
+    //   <repo-root>/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp
+    const std::string f = __FILE__;
+    const std::string marker = "/tests/l0/appgateway/l0test/";
+    const auto pos = f.rfind(marker);
+    if (pos != std::string::npos) {
+        const std::string repoRoot = f.substr(0, pos);
+        return repoRoot + "/plugin/AppGateway/resolutions/resolution.base.json";
     }
-    const std::string root = f.substr(0, pos + needle.size());
-    return root + "resolutions/resolution.base.json";
+
+    // Last resort: relative path (works when executing from repo root).
+    return "plugin/AppGateway/resolutions/resolution.base.json";
 }
 
 // Build a minimal context for direct Resolve() calls

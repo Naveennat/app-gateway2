@@ -378,13 +378,14 @@ namespace L0Test {
         string ConfigLine() const override
         {
             // IMPORTANT (L0):
-            // Thunder's RootConfig parsing (Plugin::Config::RootConfig) expects the ConfigLine() JSON to be:
-            //   { "root": "<JSON string containing root config>" }
-            // i.e. the `root` field is a *string* which is then parsed again as JSON.
+            // Thunder expects:
+            //   outer JSON: { "root": "<json-string>" }
+            // and then it parses the content of "root" again as JSON.
             //
-            // Therefore the `root` string must contain valid JSON text like:
-            //   {"outofprocess":true,"locator":""}
-            return R"JSON({"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
+            // So `root` must be a JSON STRING containing valid JSON text.
+            // Keep this as a plain string literal (not a raw-string) to avoid any
+            // raw delimiter/escaping mistakes that can break Thunder initialization parsing.
+            return "{\"root\":\"{\\\"outofprocess\\\":true,\\\"locator\\\":\\\"\\\"}\"}";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
