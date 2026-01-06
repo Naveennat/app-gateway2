@@ -74,6 +74,7 @@ endif()
 #  - CMAKE_PREFIX_PATH roots (include and include/WPEFramework) if provided
 #
 # Verify presence of interfaces/IAppGateway.h and warn if not found locally/installed.
+# Repo layout: tests/l0/appgateway/l0test -> ../../../../interfaces == app-gateway2/interfaces
 set(APPGW_LOCAL_IFACE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces/IAppGateway.h")
 set(APPGW_INSTALLED_IFACE_HEADER "${PREFIX}/include/WPEFramework/interfaces/IAppGateway.h")
 if(EXISTS "${APPGW_LOCAL_IFACE_HEADER}")
@@ -81,7 +82,7 @@ if(EXISTS "${APPGW_LOCAL_IFACE_HEADER}")
 elseif(EXISTS "${APPGW_INSTALLED_IFACE_HEADER}")
     message(STATUS "AppGateway l0test: Using installed WPEFramework interface: ${APPGW_INSTALLED_IFACE_HEADER}")
 else()
-    message(WARNING "AppGateway l0test: interfaces/IAppGateway.h not found locally at ${APPGW_LOCAL_IFACE_HEADER} nor installed at ${APPGW_INSTALLED_IFACE_HEADER}. Building may fail; ensure a stub exists under app-gateway/interfaces or adjust PREFIX/CMAKE_PREFIX_PATH.")
+    message(WARNING "AppGateway l0test: interfaces/IAppGateway.h not found locally at ${APPGW_LOCAL_IFACE_HEADER} nor installed at ${APPGW_INSTALLED_IFACE_HEADER}. Building may fail; ensure a stub exists under app-gateway2/interfaces or adjust PREFIX/CMAKE_PREFIX_PATH.")
 endif()
 
 target_include_directories(appgateway_l0test PRIVATE
