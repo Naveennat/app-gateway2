@@ -284,13 +284,15 @@ uint32_t Test_Resolver_Resolve_UnknownMethod_ReturnsNotFound() {
         WPEFramework::Core::Service<WPEFramework::Plugin::AppGatewayImplementation>::Create<WPEFramework::Exchange::IAppGatewayResolver>();
     ExpectTrue(tr, impl != nullptr, "Create AppGatewayImplementation instance");
 
-    // Prepare a ServiceMock for IConfiguration::Configure
-    L0Test::ServiceMock service;
+    // Prepare a heap ServiceMock for IConfiguration::Configure.
+    // AppGatewayImplementation queues async RespondJobs; using a stack ServiceMock can lead to
+    // use-after-scope when jobs run after the test returns.
+    auto* service = new L0Test::ServiceMock(L0Test::ServiceMock::Config(), true);
 
     // Initialize the resolver inside the implementation; it may return a non-OK code if default /etc files not present.
     auto configIfc = static_cast<WPEFramework::Exchange::IConfiguration*>(impl->QueryInterface(WPEFramework::Exchange::IConfiguration::ID));
     if (configIfc != nullptr) {
-        (void)configIfc->Configure(&service); // ignore rc; mResolverPtr will be created regardless
+        (void)configIfc->Configure(service); // ignore rc; mResolverPtr will be created regardless
         configIfc->Release();
     }
 
@@ -314,6 +316,7 @@ uint32_t Test_Resolver_Resolve_UnknownMethod_ReturnsNotFound() {
 
     // Cleanup
     impl->Release();
+    service->Release();
     return tr.failures;
 }
 
@@ -326,10 +329,10 @@ uint32_t Test_Resolver_Resolve_MalformedParams_ReturnsBadRequest() {
         WPEFramework::Core::Service<WPEFramework::Plugin::AppGatewayImplementation>::Create<WPEFramework::Exchange::IAppGatewayResolver>();
     ExpectTrue(tr, impl != nullptr, "Create AppGatewayImplementation instance");
 
-    L0Test::ServiceMock service;
+    auto* service = new L0Test::ServiceMock(L0Test::ServiceMock::Config(), true);
     auto configIfc = static_cast<WPEFramework::Exchange::IConfiguration*>(impl->QueryInterface(WPEFramework::Exchange::IConfiguration::ID));
     if (configIfc != nullptr) {
-        (void)configIfc->Configure(&service);
+        (void)configIfc->Configure(service);
         configIfc->Release();
     }
 
@@ -347,6 +350,7 @@ uint32_t Test_Resolver_Resolve_MalformedParams_ReturnsBadRequest() {
 
     ExpectEqU32(tr, rc, ERROR_BAD_REQUEST, "Malformed params => ERROR_BAD_REQUEST");
     impl->Release();
+    service->Release();
     return tr.failures;
 }
 
