@@ -377,42 +377,20 @@ namespace L0Test {
 
         string ConfigLine() const override
         {
-            // IMPORTANT (L0):
-            // The Thunder host uses IShell::ConfigLine() to derive a "root" configuration object
-            // for IShell::Root() instantiation. In the isolated L0 harness we need to ensure:
-            //  - outofprocess=false (in-proc instantiation)
-            //  - locator points to the built plugin .so so class factories can be located
+            // L0 HARNESS NOTE:
+            // Plugin::Config::RootConfig (Thunder SDK) reads IShell::ConfigLine() using RootObject
+            // and then (optionally) parses a nested JSON string from the "root" field.
             //
-            // NOTE: Thunder expects the outer JSON to contain "root" as a JSON STRING which is
-            // then parsed again as JSON text, hence the double-escaping of the *inner* JSON into
-            // the outer JSON string.
-            const char* soPath = std::getenv("APPGATEWAY_PLUGIN_SO");
-            const std::string locator = (soPath != nullptr && *soPath != '\0') ? std::string(soPath) : std::string();
-
-            auto escapeJsonString = [](const std::string& in) -> std::string {
-                std::string out;
-                out.reserve(in.size() + 8);
-                for (const char c : in) {
-                    if (c == '\\' || c == '\"') {
-                        out.push_back('\\');
-                    }
-                    out.push_back(c);
-                }
-                return out;
-            };
-
-            // Build inner JSON *text* as valid JSON (no embedded backslashes before quotes).
-            // This inner text will be parsed by Plugin::Config::RootConfig.
-            std::string inner = std::string("{\"outofprocess\":false");
-            if (!locator.empty()) {
-                inner += ",\"locator\":\"";
-                inner += escapeJsonString(locator);
-                inner += "\"";
-            }
-            inner += "}";
-
-            // Outer JSON containing the inner JSON as an escaped string.
-            return std::string("{\"root\":\"") + escapeJsonString(inner) + "\"}";
+            // In this repo's isolated L0 harness, that nested parsing path has been observed to fail
+            // with errors like:
+            //   Invalid value. "null" or "{" expected. At character 1: "
+            // which prevents IShell::Root<T>() from proceeding and ultimately causes AppGateway
+            // Initialize() to fail and JSON-RPC resolve to return ERROR_UNKNOWN_METHOD (53).
+            //
+            // For L0 tests we do not need any root/out-of-process configuration. Returning a minimal
+            // JSON object avoids the nested parse and still allows Root<T>() to route to COMLink()
+            // and instantiate our in-proc fakes deterministically.
+            return "{}";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
