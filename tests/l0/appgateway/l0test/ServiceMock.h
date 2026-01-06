@@ -377,15 +377,21 @@ namespace L0Test {
         string ConfigLine() const override
         {
             // IMPORTANT (L0):
-            // Some Thunder/WPEFramework SDKs expect `root` to be a JSON *object* (or null), not a
-            // JSON-encoded string. When a string is provided, JSON parsing fails with messages like:
-            //   "Invalid value. 'null' or '{' expected"
+            // Thunder's RootConfig parsing (Plugin::Config::RootConfig) expects the ConfigLine() JSON to be:
+            //   { "root": "<JSON string containing root config>" }
+            // i.e. the `root` field is a *string* which is then parsed again as JSON.
             //
-            // For isolated L0 tests we force the COMLink Instantiate() path by setting outofprocess=true,
-            // so IShell::Root() is satisfied by ServiceMock::Instantiate() (returns ResolverFake/ResponderFake).
+            // If we provide `root` as an object directly, RootConfig::RootObject will fail to parse it
+            // (because RootObject declares `root` as Core::JSON::String), and Root() will silently fall
+            // back to the default in-process instantiation path. That causes:
+            //   - ServiceAdministrator::Instantiate() to look up "AppGatewayImplementation" in the global
+            //     service registry (often failing in this isolated test harness)
+            //   - the plugin not registering the plain JSON-RPC method "resolve"
+            //   - L0 Json_* failures with ERROR_UNKNOWN_METHOD (53)
             //
-            // Keep the JSON minimal to avoid strict parsers rejecting additional keys.
-            return R"JSON({"root":{"outofprocess":true,"locator":""}})JSON";
+            // We force the out-of-process branch so IShell::Root() calls COMLink()->Instantiate(...),
+            // which is implemented by this ServiceMock and returns deterministic fakes.
+            return R"JSON({"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
