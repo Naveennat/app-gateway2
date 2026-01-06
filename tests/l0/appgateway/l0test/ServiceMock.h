@@ -14,6 +14,7 @@
 
 #include <atomic>
 #include <cstdint>
+#include <cstdlib>
 #include <string>
 #include <vector>
 #include <list>
@@ -284,12 +285,13 @@ namespace L0Test {
             }
         };
 
-        explicit ServiceMock(Config cfg = Config())
+        explicit ServiceMock(Config cfg = Config(), const bool selfDelete = false)
             : _refCount(1)
             , _instantiateCount(0)
             , _callsign("org.rdk.AppGateway")
             , _className("AppGateway")
             , _cfg(cfg)
+            , _selfDelete(selfDelete)
         {
         }
 
@@ -305,7 +307,15 @@ namespace L0Test {
         {
             const uint32_t newCount = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
             if (newCount == 0) {
-                delete this;
+                // L0 test safety:
+                // Some tests use stack-allocated ServiceMock instances, but plugin code may AddRef/Release
+                // them (e.g., AppGatewayImplementation stores IShell* and releases it in destructor).
+                // Deleting a stack object causes heap corruption / SIGABRT.
+                //
+                // Default behavior in this repo's L0 tests is therefore: do NOT delete on Release(0).
+                if (_selfDelete) {
+                    delete this;
+                }
                 return WPEFramework::Core::ERROR_DESTRUCTION_SUCCEEDED;
             }
             return WPEFramework::Core::ERROR_NONE;
@@ -328,7 +338,18 @@ namespace L0Test {
         bool Background() const override { return false; }
         string Accessor() const override { return "127.0.0.1:9998"; }
         string WebPrefix() const override { return "/jsonrpc"; }
-        string Locator() const override { return "WPEFrameworkAppGateway"; }
+        string Locator() const override
+        {
+            // Provide a real locator for PluginHost::IShell::Root() so Thunder can LoadLibrary().
+            // The runner script sets APPGATEWAY_PLUGIN_SO to the absolute path of libWPEFrameworkAppGateway.so.
+            const char* soPath = std::getenv("APPGATEWAY_PLUGIN_SO");
+            if (soPath != nullptr && *soPath != '\0') {
+                return string(soPath);
+            }
+
+            // Fallback: a reasonable default name (may still resolve via Thunder search paths).
+            return "libWPEFrameworkAppGateway.so";
+        }
         string ClassName() const override { return _className; }
         string Versions() const override { return "1.0.0"; }
         string Callsign() const override { return _callsign; }
@@ -355,15 +376,16 @@ namespace L0Test {
 
         string ConfigLine() const override
         {
-            // IMPORTANT: This config line is parsed by the real implementations (AppGatewayImplementation
-            // and AppGatewayResponderImplementation) when the installed plugin .so is used in L0 tests.
+            // IMPORTANT:
+            // 1) AppGatewayResponderImplementation reads "connector"/"port" from ConfigLine().
+            // 2) PluginHost::IShell::Root() reads a "root" (string) entry from ConfigLine() to decide
+            //    how to locate/load the implementation library.
             //
-            // Returning "{}" triggers JSON parse errors in WPEFramework's JSON parser (it expects at least
-            // one element inside the object). Provide a minimal, valid config object with the fields
-            // used by the responder implementation.
-            //
-            // Keep it deterministic/offline: bind localhost and use a fixed port.
-            return R"JSON({"connector":"127.0.0.1:3473","port":3473})JSON";
+            // So we include BOTH:
+            // - responder config fields: connector/port
+            // - a minimal "root" blob so RootConfig is considered "set", and it can fall back to
+            //   IShell::Locator() (which we implement using APPGATEWAY_PLUGIN_SO).
+            return R"JSON({"connector":"127.0.0.1:3473","port":3473,"root":"{\"locator\":\"\"}"})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
@@ -465,6 +487,7 @@ namespace L0Test {
         std::string _callsign;
         std::string _className;
         Config _cfg;
+        const bool _selfDelete;
     };
 
 } // namespace L0Test

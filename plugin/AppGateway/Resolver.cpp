@@ -192,7 +192,19 @@ namespace WPEFramework
             WPEFramework::Core::JSON::Variant field = obj[fieldName];
             if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::STRING)
             {
-                return field.String();
+                // NOTE:
+                // Core::JSON::Variant derives from JSON::String. Using String() may return a JSON-encoded
+                // representation (including quotes) depending on context, which breaks resolver tests like
+                // "Override precedence" that compare against the raw string.
+                //
+                // Value() is the raw string payload.
+                std::string value = field.Value();
+
+                // Defensive: strip wrapping quotes if a JSON-encoded string slips through.
+                if (value.size() >= 2 && value.front() == '"' && value.back() == '"') {
+                    value = value.substr(1, value.size() - 2);
+                }
+                return value;
             }
             return "";
         }

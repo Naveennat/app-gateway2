@@ -1,0 +1,7 @@
+/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260106_083744_cxx11/CMakeFiles/WPEFrameworkAppGateway.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260106_083744_cxx11/CMakeFiles/edit_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260106_083744_cxx11/CMakeFiles/rebuild_cache.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260106_083744_cxx11/CMakeFiles/list_install_components.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260106_083744_cxx11/CMakeFiles/install.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260106_083744_cxx11/CMakeFiles/install/local.dir
+/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260106_083744_cxx11/CMakeFiles/install/strip.dir
