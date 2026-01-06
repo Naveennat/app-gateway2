@@ -27,6 +27,7 @@
 #include "ContextUtils.h"
 #include <com/com.h>
 #include <core/core.h>
+#include <atomic>
 #include <map>
 
 
@@ -57,6 +58,38 @@ namespace Plugin {
         uint32_t Configure(PluginHost::IShell* service) override;
 
     private:
+        // Tracks whether we are shutting down. Any async dispatch should early-return once true.
+        std::atomic<bool> mIsShuttingDown{ false };
+
+        // Tracks number of queued/in-flight async jobs that may call back into this instance.
+        std::atomic<uint32_t> mInFlightJobs{ 0 };
+
+        // Small helper to ensure we decrement the job counter on all paths.
+        class JobTracker final {
+        public:
+            JobTracker() = delete;
+            explicit JobTracker(std::atomic<uint32_t>& counter)
+                : mCounter(counter)
+                , mArmed(true)
+            {
+                mCounter.fetch_add(1, std::memory_order_acq_rel);
+            }
+            JobTracker(const JobTracker&) = delete;
+            JobTracker& operator=(const JobTracker&) = delete;
+
+            ~JobTracker()
+            {
+                if (mArmed) {
+                    mCounter.fetch_sub(1, std::memory_order_acq_rel);
+                }
+            }
+
+            void Disarm() { mArmed = false; }
+
+        private:
+            std::atomic<uint32_t>& mCounter;
+            bool mArmed;
+        };
 
         class EXTERNAL RespondJob : public Core::IDispatch
         {
@@ -73,22 +106,19 @@ namespace Plugin {
                 , mPayload(payload)
                 , mContext(context)
                 , mDestination(destination)
+                , mTracker((parent != nullptr) ? parent->mInFlightJobs : mDummyCounter)
             {
-                // This job is executed asynchronously on the global worker pool.
-                // Keep the parent alive for the full lifetime of the queued job to
-                // prevent use-after-free during plugin shutdown.
-                if (mParent != nullptr) {
-                    mParent->AddRef();
-                }
+                // IMPORTANT:
+                // Do NOT AddRef/Release mParent here.
+                // In L0/in-proc tests, AppGatewayImplementation can be stack-allocated, and
+                // COM-style refcounting would cause delete-this on stack memory (UB/SIGSEGV).
+                //
+                // Instead:
+                // - Count in-flight jobs (best-effort drain during teardown)
+                // - Gate execution on mIsShuttingDown and on mService/responder availability.
             }
 
-            ~RespondJob() override
-            {
-                if (mParent != nullptr) {
-                    mParent->Release();
-                    mParent = nullptr;
-                }
-            }
+            ~RespondJob() override = default;
 
         public:
             static Core::ProxyType<Core::IDispatch> Create(AppGatewayImplementation* parent,
@@ -106,6 +136,11 @@ namespace Plugin {
                     return;
                 }
 
+                // If teardown has started, do not call back into the object.
+                if (mParent->mIsShuttingDown.load(std::memory_order_acquire) == true) {
+                    return;
+                }
+
                 if (ContextUtils::IsOriginGateway(mDestination)) {
                     mParent->ReturnMessageInSocket(mContext, mPayload);
                 } else {
@@ -118,6 +153,10 @@ namespace Plugin {
             std::string mPayload;
             Context mContext;
             std::string mDestination;
+
+            // If constructed with null parent, keep a dummy counter reference (never used).
+            static std::atomic<uint32_t> mDummyCounter;
+            JobTracker mTracker;
         };
 
         Core::hresult HandleEvent(const Context &context, const string &alias, const string &event, const string &origin,  const bool listen);

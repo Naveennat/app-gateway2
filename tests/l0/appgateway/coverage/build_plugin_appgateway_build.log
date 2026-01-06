@@ -1,8 +1,13 @@
-[1/3] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
-[2/3] Linking CXX shared library libWPEFrameworkAppGateway.so
-[2/3] Install the project...
+[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260106_164228) (C++11) ===
+[1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
+[2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
+[3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
+[4/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
+[5/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
+[6/7] Linking CXX shared library libWPEFrameworkAppGateway.so
+[6/7] Install the project...
 -- Install configuration: "Debug"
--- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
--- Set non-toolchain portion of runtime path of "/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so" to ""
+-- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so
+-- Set non-toolchain portion of runtime path of "/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so" to ""
 -- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json
 -- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/../etc/WPEFramework/plugins/AppGateway.json

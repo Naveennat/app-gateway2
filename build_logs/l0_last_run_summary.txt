@@ -1,0 +1,19 @@
+Repro summary (before latest code change removing AddRef/Release from RespondJob):
+
+- Rebuilt plugin:
+  ./build_plugin_appgateway.sh
+  Result: OK
+
+- Ran L0 once via:
+  ./tests/l0/appgateway/run_coverage.sh
+
+- Observed:
+  - L0 still ends with SIGSEGV (exit 139) and creates core dumps:
+    core.40738, core.40604 (timestamp Jan 6 16:43)
+  - gdb is not installed in this container, so backtrace was not captured.
+
+Hypothesis:
+- Remaining SIGSEGV likely tied to RespondJob AddRef/Release on AppGatewayImplementation (unsafe if object is not heap-owned in L0/in-proc),
+  and/or jobs running after teardown without a hard "stop scheduling + drain" gate.
+
+This summary file is informational and should be updated after the next CI run.

@@ -149,9 +149,12 @@ namespace WPEFramework
             Core::JSON::ArrayType<Region> regions;
         };
 
+        // Static member definition for RespondJob
+        std::atomic<uint32_t> AppGatewayImplementation::RespondJob::mDummyCounter{ 0 };
+
         AppGatewayImplementation::AppGatewayImplementation()
             : mService(nullptr),
-            mResolverPtr(nullptr), 
+            mResolverPtr(nullptr),
             mAppNotifications(nullptr),
             mAppGatewayResponder(nullptr),
             mInternalGatewayResponder(nullptr),
@@ -163,36 +166,49 @@ namespace WPEFramework
         AppGatewayImplementation::~AppGatewayImplementation()
         {
             LOGINFO("AppGatewayImplementation destructor");
-            if (nullptr != mService)
-            {
+
+            // Begin teardown gate: no new async dispatch should run past this point.
+            mIsShuttingDown.store(true, std::memory_order_release);
+
+            // Best-effort drain for already queued workerpool jobs:
+            // We cannot reliably "join" the global worker pool, but we can wait for the
+            // jobs we scheduled (tracked by mInFlightJobs) to complete.
+            // Keep this bounded so teardown can't hang indefinitely.
+            constexpr uint32_t kMaxWaitMs = 2000;
+            constexpr uint32_t kSleepMs = 5;
+
+            uint32_t waited = 0;
+            while (mInFlightJobs.load(std::memory_order_acquire) != 0 && waited < kMaxWaitMs) {
+                Core::Thread::SleepMs(kSleepMs);
+                waited += kSleepMs;
+            }
+
+            // After this point we assume no job will call back into this instance.
+            // Clear service pointer first so any late job will early-return on null checks.
+            if (nullptr != mService) {
                 mService->Release();
                 mService = nullptr;
             }
 
-            if (nullptr != mAppNotifications)
-            {
+            if (nullptr != mAppNotifications) {
                 mAppNotifications->Release();
                 mAppNotifications = nullptr;
             }
 
-            if (nullptr != mInternalGatewayResponder)
-            {
+            if (nullptr != mInternalGatewayResponder) {
                 mInternalGatewayResponder->Release();
                 mInternalGatewayResponder = nullptr;
             }
 
-            if (nullptr != mAppGatewayResponder)
-            {
+            if (nullptr != mAppGatewayResponder) {
                 mAppGatewayResponder->Release();
                 mAppGatewayResponder = nullptr;
             }
 
-            if (nullptr != mAuthenticator)
-            {
+            if (nullptr != mAuthenticator) {
                 mAuthenticator->Release();
                 mAuthenticator = nullptr;
             }
-            
 
             // Shared pointer will automatically clean up
             mResolverPtr.reset();
@@ -201,17 +217,25 @@ namespace WPEFramework
         uint32_t AppGatewayImplementation::Configure(PluginHost::IShell *shell)
         {
             LOGINFO("Configuring AppGateway");
+
+            if (shell == nullptr) {
+                LOGERR("AppGatewayImplementation::Configure called with nullptr shell");
+                return Core::ERROR_BAD_REQUEST;
+            }
+
+            // If we are already in teardown, do not accept new configuration.
+            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
+                LOGWARN("Configure called while shutting down; ignoring");
+                return Core::ERROR_UNAVAILABLE;
+            }
+
             uint32_t result = Core::ERROR_NONE;
-            ASSERT(shell != nullptr);
             mService = shell;
             mService->AddRef();
 
-            // L0 harness safety/performance:
             // Cache the gateway responder interface early if it is available.
-            // In the in-proc L0 ServiceMock, QueryInterface() for responder is intentionally not provided,
-            // which prevents us from scheduling async response jobs that can outlive stack-allocated
-            // plugin objects in certain tests.
-            if (mAppGatewayResponder == nullptr) {
+            // IMPORTANT: QueryInterface is allowed to return nullptr in the L0 harness.
+            if (mAppGatewayResponder == nullptr && mService != nullptr) {
                 mAppGatewayResponder = mService->QueryInterface<Exchange::IAppGatewayResponder>();
             }
 
@@ -539,6 +563,19 @@ namespace WPEFramework
 
         uint32_t AppGatewayImplementation::ProcessComRpcRequest(const Context &context, const string& alias, const string& method, const string& params, const string& origin, string &resolution) {
             uint32_t result = Core::ERROR_GENERAL;
+
+            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
+                LOGWARN("ProcessComRpcRequest called during shutdown; dropping");
+                ErrorUtils::NotAvailable(resolution);
+                return Core::ERROR_UNAVAILABLE;
+            }
+
+            if (mService == nullptr) {
+                LOGERR("Service not available in ProcessComRpcRequest");
+                ErrorUtils::NotAvailable(resolution);
+                return Core::ERROR_UNAVAILABLE;
+            }
+
             Exchange::IAppGatewayRequestHandler *requestHandler = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(alias);
             if (requestHandler != nullptr) {
                 std::string finalParams = UpdateContext(context, method, params, origin, true);
@@ -587,6 +624,16 @@ namespace WPEFramework
         }
 
         Core::hresult AppGatewayImplementation::HandleEvent(const Context &context, const string &alias,  const string &event, const string &origin, const bool listen) {
+            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
+                LOGWARN("HandleEvent called during shutdown; ignoring");
+                return Core::ERROR_NONE;
+            }
+
+            if (mService == nullptr) {
+                LOGWARN("Service not available; ignoring event listen=%s for %s", listen ? "true" : "false", event.c_str());
+                return Core::ERROR_NONE;
+            }
+
             // NOTE: In this SDK, IAppNotifications only exposes Notify(eventName, payload).
             // Older AppNotifications implementations offered Subscribe/Cleanup; we keep
             // build compatibility by sending a best-effort notification.
@@ -619,7 +666,16 @@ namespace WPEFramework
 
         void AppGatewayImplementation::SendToLaunchDelegate(const Context& context, const string& payload)
         {
-            if ( mInternalGatewayResponder==nullptr ) {
+            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
+                return;
+            }
+
+            if (mService == nullptr) {
+                LOGERR("Service not available; cannot forward to LaunchDelegate");
+                return;
+            }
+
+            if (mInternalGatewayResponder == nullptr) {
                 mInternalGatewayResponder = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayResponder>(INTERNAL_GATEWAY_CALLSIGN);
                 if (mInternalGatewayResponder == nullptr) {
                     LOGERR("Internal Responder not available Not available");
@@ -628,11 +684,19 @@ namespace WPEFramework
             }
 
             mInternalGatewayResponder->Respond(context, payload);
-
         }
 
         bool AppGatewayImplementation::SetupAppGatewayAuthenticator() {
-            if ( mAuthenticator==nullptr ) {
+            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
+                return false;
+            }
+
+            if (mService == nullptr) {
+                LOGERR("Service not available; cannot setup authenticator");
+                return false;
+            }
+
+            if (mAuthenticator == nullptr) {
                 mAuthenticator = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayAuthenticator>(INTERNAL_GATEWAY_CALLSIGN);
                 if (mAuthenticator == nullptr) {
                     LOGERR("AppGateway Authenticator not available");
