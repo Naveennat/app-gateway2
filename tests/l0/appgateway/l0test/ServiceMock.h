@@ -385,7 +385,14 @@ namespace L0Test {
             // - responder config fields: connector/port
             // - a minimal "root" blob so RootConfig is considered "set", and it can fall back to
             //   IShell::Locator() (which we implement using APPGATEWAY_PLUGIN_SO).
-            return R"JSON({"connector":"127.0.0.1:3473","port":3473,"root":"{\"locator\":\"\"}"})JSON";
+            // Thunder's IShell::Root() selects between:
+            //  - in-process instantiation via ServiceAdministrator (requires correct library search paths), OR
+            //  - COMLink()->Instantiate(...) out-of-process path (which our L0 harness intercepts to provide fakes).
+            //
+            // For these isolated L0 tests, we intentionally force the COMLink path by setting "outofprocess": true.
+            // This ensures Root() calls are satisfied by ServiceMock::Instantiate() and do not depend on the real
+            // AppGatewayImplementation configuration/filesystem behavior.
+            return R"JSON({"connector":"127.0.0.1:3473","port":3473,"root":"{\"outofprocess\":true,\"locator\":\"\"}"})JSON";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
