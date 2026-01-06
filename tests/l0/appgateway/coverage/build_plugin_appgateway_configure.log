@@ -33,7 +33,7 @@ CMake Warning (dev) at /home/kavia/workspace/code-generation/app-gateway2/depend
   "cmake --help-policy CMP0010" for policy details.  Use the cmake_policy
   command to set the policy and suppress this warning.
 Call Stack (most recent call first):
-  CMakeLists.txt:132 (write_config)
+  CMakeLists.txt:140 (write_config)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 CMake Deprecation Warning at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
@@ -42,7 +42,7 @@ CMake Deprecation Warning at /home/kavia/workspace/code-generation/app-gateway2/
   FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" -->
   \"${_fix}\"\n\============================================================================
 Call Stack (most recent call first):
-  CMakeLists.txt:132 (write_config)
+  CMakeLists.txt:140 (write_config)
 
 
 -- Assuming:
@@ -61,6 +61,6 @@ CMake Warning (dev) in CMakeLists.txt:
   information run "cmake --help-policy CMP0000".
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Configuring done (0.8s)
+-- Configuring done (0.3s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway

@@ -66,15 +66,21 @@ struct PluginAndService {
     }
 };
 
-static std::string ResolveParamsJson(const std::string& method, const std::string& params = "{}")
+static std::string ResolveParamsJson(const std::string& method, const std::string& paramsJson = "{}")
 {
+    // Keep JSON-RPC request schema aligned with plugin/AppGateway/tests/CurlCmds.md:
+    // "context" is required and "params" must be a JSON value (object/null), not a quoted JSON string.
+    const std::string effectiveParams = paramsJson.empty() ? "{}" : paramsJson;
+
     return std::string("{")
-        + "\"requestId\": 1001,"
-        + "\"connectionId\": 10,"
-        + "\"appId\": \"com.example.test\","
-        + "\"origin\": \"org.rdk.AppGateway\","
-        + "\"method\": \"" + method + "\","
-        + "\"params\": \"" + params + "\""
+        + "\"context\":{"
+        +   "\"requestId\":1001,"
+        +   "\"connectionId\":10,"
+        +   "\"appId\":\"com.example.test\""
+        + "},"
+        + "\"origin\":\"org.rdk.AppGateway\","
+        + "\"method\":\"" + method + "\","
+        + "\"params\":" + effectiveParams
         + "}";
 }
 

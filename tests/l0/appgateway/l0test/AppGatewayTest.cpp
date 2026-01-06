@@ -256,15 +256,28 @@ struct PluginAndService {
     }
 };
 
-static std::string ResolveParamsJson(const std::string& method, const std::string& params = "{}")
+static std::string ResolveParamsJson(const std::string& method, const std::string& paramsJson = "{}")
 {
+    // The real JSON-RPC contract (see plugin/AppGateway/tests/CurlCmds.md) is:
+    //   {
+    //     "context": { "requestId":..., "connectionId":..., "appId":"..." },
+    //     "method": "Some.Method",
+    //     "params": { ... }   // JSON object/value, NOT a JSON-encoded string
+    //   }
+    //
+    // If we send "params" as a quoted string, Thunder's JSON parser expects '{' or 'null' but sees '\"',
+    // producing: Invalid value. "null" or "{" expected.
+    const std::string effectiveParams = paramsJson.empty() ? "{}" : paramsJson;
+
     return std::string("{")
-        + "\"requestId\": 1001,"
-        + "\"connectionId\": 10,"
-        + "\"appId\": \"com.example.test\","
-        + "\"origin\": \"org.rdk.AppGateway\","
-        + "\"method\": \"" + method + "\","
-        + "\"params\": \"" + params + "\""
+        + "\"context\":{"
+        +   "\"requestId\":1001,"
+        +   "\"connectionId\":10,"
+        +   "\"appId\":\"com.example.test\""
+        + "},"
+        + "\"origin\":\"org.rdk.AppGateway\","
+        + "\"method\":\"" + method + "\","
+        + "\"params\":" + effectiveParams
         + "}";
 }
 
