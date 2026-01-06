@@ -30,6 +30,8 @@
 #include "UtilsFirebolt.h"
 #include "StringUtils.h"
 #include <core/Time.h>
+#include <thread>
+#include <chrono>
 
 #define DEFAULT_CONFIG_PATH "/etc/app-gateway/resolution.base.json"
 #define RESOLUTIONS_PATH_CFG "/etc/app-gateway/resolutions.json"
@@ -180,7 +182,7 @@ namespace WPEFramework
 
             uint32_t waited = 0;
             while (mInFlightJobs.load(std::memory_order_acquire) != 0 && waited < kMaxWaitMs) {
-                Core::Sleep(kSleepMs); // Use cross-platform millisecond sleep
+                std::this_thread::sleep_for(std::chrono::milliseconds(kSleepMs)); // Use cross-platform millisecond sleep
                 waited += kSleepMs;
             }
 
