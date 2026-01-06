@@ -35,6 +35,16 @@ namespace WPEFramework
             : mService(shell), mResolutions(), mMutex()
         {
             LOGINFO("[Resolver] Constructor - configurations will be loaded via LoadConfig");
+
+            // The resolver stores the IShell pointer for later Thunder calls. Since our destructor
+            // releases it, we must AddRef here to keep ownership balanced.
+            //
+            // This is critical for the L0 harness where some tests use a stack-allocated ServiceMock:
+            // without AddRef(), Resolver::~Resolver() would Release() a pointer it didn't own, possibly
+            // dropping refcount to 0 and triggering delete-this on stack memory (heap corruption / SIGABRT).
+            if (mService != nullptr) {
+                mService->AddRef();
+            }
         }
 
         Resolver::~Resolver()

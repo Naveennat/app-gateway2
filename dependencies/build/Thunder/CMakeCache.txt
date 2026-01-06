@@ -414,7 +414,7 @@ SYSTEM_ROOT_PATH:STRING=root
 THREADPOOL_COUNT:STRING=4
 
 //No help, variable specified on the command line.
-TOOLS_SYSROOT:UNINITIALIZED=/home/kavia/workspace/code-generation/app-gateway2
+TOOLS_SYSROOT:UNINITIALIZED=/home/kavia/workspace/code-generation/app-gateway2/dependencies
 
 //Set the permission mask for the creation of new files. e.g. 0760
 UMASK:STRING=

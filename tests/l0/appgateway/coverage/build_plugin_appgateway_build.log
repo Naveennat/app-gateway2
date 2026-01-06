@@ -1,7 +1,7 @@
-[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260106_071828) (C++11) ===
+[build_plugin_appgateway] === BUILD+INSTALL (timestamp 20260106_080456) (C++11) ===
 [1/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Module.o
-[2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
-[3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
+[2/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
+[3/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o
 [4/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
 [5/7] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
 [6/7] Linking CXX shared library libWPEFrameworkAppGateway.so

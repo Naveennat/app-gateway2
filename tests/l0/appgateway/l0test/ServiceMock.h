@@ -426,21 +426,29 @@ namespace L0Test {
             //  - "AppGatewayImplementation"          (Exchange::IAppGatewayResolver)
             //  - "AppGatewayResponderImplementation" (Exchange::IAppGatewayResponder)
             //
-            // When running L0 tests in-proc, we do NOT spawn processes. Instead, map the
-            // requested implementation class name to deterministic fakes.
+            // In some Thunder builds, Object::ClassName() can be fully-qualified
+            // (e.g., "WPEFramework::Plugin::AppGatewayImplementation"). If we only match the short
+            // name, our mock would fail to intercept instantiation and Thunder may fall back to
+            // creating the real implementation (which can trigger COM-RPC wiring and crash in
+            // this isolated L0 environment).
             //
-            // This avoids relying on call-order and prevents runtime failures like:
-            //   "Missing implementation classname AppGatewayImplementation in library"
-            //
+            // So we match by suffix to ensure our deterministic fakes are always used in-proc.
             connectionId = 1;
             _instantiateCount.fetch_add(1, std::memory_order_acq_rel);
 
             const std::string className = object.ClassName();
 
-            if (className == "AppGatewayImplementation") {
+            auto endsWith = [](const std::string& s, const std::string& suffix) -> bool {
+                if (s.size() < suffix.size()) {
+                    return false;
+                }
+                return s.compare(s.size() - suffix.size(), suffix.size(), suffix) == 0;
+            };
+
+            if (endsWith(className, "AppGatewayImplementation")) {
                 return (_cfg.provideResolver ? static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake()) : nullptr);
             }
-            if (className == "AppGatewayResponderImplementation") {
+            if (endsWith(className, "AppGatewayResponderImplementation")) {
                 return (_cfg.provideResponder ? static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake(_cfg.responderTransportAvailable)) : nullptr);
             }
 
