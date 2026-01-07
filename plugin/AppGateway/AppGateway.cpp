@@ -369,7 +369,23 @@ namespace Plugin {
         LOGINFO("AppGateway::Initialize: PID=%u", getpid());
 
         // Robust interface acquisition: Ensure failures can't cause crash/partial init
+        //
+        // L0 harness behavior note:
+        // Some isolated/offline test harnesses provide in-proc fake implementations via
+        // IShell::QueryInterface(), while IShell::Root() can fail depending on the
+        // underlying Thunder RootConfig parsing and process/COM setup.
+        //
+        // Therefore: try Root() first (production path), then fall back to QueryInterface()
+        // for deterministic offline tests.
         mAppGateway = service->Root<Exchange::IAppGatewayResolver>(mConnectionId, 2000, _T("AppGatewayImplementation"));
+        if (mAppGateway == nullptr) {
+            void* qi = service->QueryInterface(Exchange::IAppGatewayResolver::ID);
+            if (qi != nullptr) {
+                mAppGateway = reinterpret_cast<Exchange::IAppGatewayResolver*>(qi);
+                LOGINFO("AppGateway::Initialize: Root(IAppGatewayResolver) failed; using IShell::QueryInterface fallback");
+            }
+        }
+
         if (mAppGateway != nullptr) {
             auto configConnection = mAppGateway->QueryInterface<Exchange::IConfiguration>();
             if (configConnection != nullptr) {
@@ -383,7 +399,7 @@ namespace Plugin {
                        const string& parameters,
                        string& response) -> uint32_t {
                     // Extra null check for mAppGateway
-                    if (mAppGateway == nullptr) { 
+                    if (mAppGateway == nullptr) {
                         response.clear();
                         return Core::ERROR_UNAVAILABLE;
                     }
@@ -395,6 +411,14 @@ namespace Plugin {
         }
 
         mResponder = service->Root<Exchange::IAppGatewayResponder>(mConnectionId, 2000, _T("AppGatewayResponderImplementation"));
+        if (mResponder == nullptr) {
+            void* qi = service->QueryInterface(Exchange::IAppGatewayResponder::ID);
+            if (qi != nullptr) {
+                mResponder = reinterpret_cast<Exchange::IAppGatewayResponder*>(qi);
+                LOGINFO("AppGateway::Initialize: Root(IAppGatewayResponder) failed; using IShell::QueryInterface fallback");
+            }
+        }
+
         if (mResponder != nullptr) {
             auto configConnectionResponder = mResponder->QueryInterface<Exchange::IConfiguration>();
             if (configConnectionResponder != nullptr) {

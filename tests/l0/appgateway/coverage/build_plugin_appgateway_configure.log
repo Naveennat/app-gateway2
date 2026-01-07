@@ -1,5 +1,5 @@
-[build_plugin_appgateway] === CONFIGURE (timestamp 20260107_094510) (C++11) ===
-[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260107_094510_cxx11
+[build_plugin_appgateway] === CONFIGURE (timestamp 20260107_095737) (C++11) ===
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260107_095737_cxx11
 [build_plugin_appgateway] APPGATEWAY_EXTRA_INCLUDE_DIRS=/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers;/home/kavia/workspace/code-generation/app-gateway2/interfaces
 CMake Warning (dev) in CMakeLists.txt:
   No project() command is present.  The top-level CMakeLists.txt file must
@@ -86,7 +86,7 @@ CMake Warning (dev) in CMakeLists.txt:
   information run "cmake --help-policy CMP0000".
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Configuring done (0.5s)
+-- Configuring done (0.4s)
 -- Generating done (0.0s)
 CMake Warning:
   Manually-specified variables were not used by the project:
@@ -94,7 +94,7 @@ CMake Warning:
     APPGATEWAY_SYSCONFDIR
 
 
--- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260107_094510_cxx11
+-- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260107_095737_cxx11
 [build_plugin_appgateway] CMakeCache.txt entry:
 18:APPGATEWAY_EXTRA_INCLUDE_DIRS:STRING=/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers;/home/kavia/workspace/code-generation/app-gateway2/interfaces
 64:CMAKE_CXX_STANDARD:UNINITIALIZED=11
