@@ -19,7 +19,20 @@
 #pragma once
 
 #include "Module.h"
+
+// IMPORTANT (L0 build isolation):
+// The full Thunder header <plugins/JSONRPC.h> pulls in COM/Messaging stacks
+// (Communicator/MessageDispatcher/etc.). In this repository, L0 tests compile the
+// plugin in-proc and do not require those heavy subsystems. Including the full
+// header also makes the build sensitive to SDK include-tree ordering and causes
+// API mismatches.
+// For L0 we therefore use the repo-local minimal JSONRPC shim.
+#if defined(APPGATEWAY_L0_TEST) || defined(APPGW_L0_TEST) || defined(L0TEST)
+#include <l0test/JSONRPC.h>
+#else
 #include <plugins/JSONRPC.h>
+#endif
+
 #include <interfaces/IAppGateway.h>
 
 namespace WPEFramework {

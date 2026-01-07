@@ -51,7 +51,10 @@ set(APPGW_L0_SOURCES
 add_executable(appgateway_l0test ${APPGW_L0_SOURCES})
 
 # Define MODULE_NAME for Thunder/WPEFramework Module.h users
-target_compile_definitions(appgateway_l0test PRIVATE MODULE_NAME=AppGateway_L0Test)
+target_compile_definitions(appgateway_l0test PRIVATE
+    MODULE_NAME=AppGateway_L0Test
+    APPGATEWAY_L0_TEST=1
+)
 
 # Coverage flags for this target only
 # -O0, -g for debug; --coverage for GCC/Clang instrumented coverage

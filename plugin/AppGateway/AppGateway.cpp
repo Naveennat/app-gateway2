@@ -387,6 +387,11 @@ namespace Plugin {
                 configConnection->Release();
             }
             Exchange::JAppGatewayResolver::Register(*this, mAppGateway);
+
+            // Register a plain "resolve" handler on the JSONRPC dispatcher.
+            // Do NOT attempt to cast AppGateway* to IDispatcher*; the dispatcher interface is exposed
+            // via the interface-map and the concrete inheritance layout differs between the full
+            // Thunder SDK and our L0 shim.
             this->Register(_T("resolve"),
                 [this](const Core::JSONRPC::Context& /*ctx*/,
                        const string& /*designator*/,
