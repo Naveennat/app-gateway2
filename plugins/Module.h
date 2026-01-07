@@ -23,3 +23,4 @@
 
 #include <core/Services.h>
 #include <plugins/IPlugin.h>
+#include <plugins/IDispatcher.h>

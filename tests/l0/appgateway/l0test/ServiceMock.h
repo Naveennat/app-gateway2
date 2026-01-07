@@ -26,6 +26,7 @@
 
 #include <core/core.h>
 #include <com/com.h>
+#include <com/Communicator.h>
 #include <plugins/IShell.h>
 
 #include <interfaces/IAppGateway.h>
