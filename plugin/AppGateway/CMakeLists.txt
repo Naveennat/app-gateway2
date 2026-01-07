@@ -21,6 +21,17 @@ cmake_minimum_required(VERSION 3.16)
 # Add a local project() to avoid CMake dev warnings and hard-errors in newer CMake.
 project(WPEFrameworkAppGateway LANGUAGES CXX)
 
+# Standalone build defaulting:
+# When this plugin is built from the full Thunder tree, NAMESPACE/STORAGE_DIRECTORY
+# are typically injected by the parent build. Our repo build script configures this
+# plugin as a standalone project, so we need sensible defaults.
+if(NOT DEFINED NAMESPACE OR "${NAMESPACE}" STREQUAL "")
+    set(NAMESPACE "WPEFramework")
+endif()
+if(NOT DEFINED STORAGE_DIRECTORY OR "${STORAGE_DIRECTORY}" STREQUAL "")
+    set(STORAGE_DIRECTORY "wpeframework")
+endif()
+
 set(PLUGIN_NAME AppGateway)
 set(MODULE_NAME ${NAMESPACE}${PLUGIN_NAME})
 
