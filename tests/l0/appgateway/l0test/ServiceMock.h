@@ -34,6 +34,10 @@ namespace L0Test {
 
     using string = std::string;
 
+    // Test-only interface ID to safely obtain the concrete ResponderFake instance via QueryInterface
+    // without relying on dynamic_cast across shared-library boundaries.
+    static constexpr uint32_t ID_RESPONDER_FAKE = 0xF0F0F001;
+
     // A simple deterministic resolver fake with multiple error paths.
     class ResolverFake final : public WPEFramework::Exchange::IAppGatewayResolver,
                                public WPEFramework::Exchange::IConfiguration {
@@ -165,6 +169,11 @@ namespace L0Test {
             if (id == WPEFramework::Exchange::IConfiguration::ID) {
                 AddRef();
                 return static_cast<WPEFramework::Exchange::IConfiguration*>(this);
+            }
+            // L0 test helper: allow callers to retrieve the concrete fake type safely.
+            if (id == ID_RESPONDER_FAKE) {
+                AddRef();
+                return this;
             }
             return nullptr;
         }

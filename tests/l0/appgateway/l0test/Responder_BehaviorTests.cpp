@@ -117,8 +117,9 @@ uint32_t Test_Responder_Register_Unregister_Notifications() {
         const uint32_t regRc = responder->Register(&collector);
         ExpectEqU32(tr, regRc, ERROR_NONE, "Register returns ERROR_NONE");
 
-        // Drive a synthetic connection change via the test fake
-        auto* fake = dynamic_cast<L0Test::ResponderFake*>(responder);
+        // Drive a synthetic connection change via the test fake.
+        // Do not use dynamic_cast here (fragile across shared-library boundaries in this harness).
+        auto* fake = static_cast<L0Test::ResponderFake*>(responder->QueryInterface(L0Test::ID_RESPONDER_FAKE));
         ExpectTrue(tr, fake != nullptr, "Responder is ResponderFake in l0test");
         if (fake != nullptr) {
             fake->SimulateAppConnectionChanged("com.example.app", 101, true);
@@ -126,6 +127,8 @@ uint32_t Test_Responder_Register_Unregister_Notifications() {
             ExpectEqStr(tr, collector.lastAppId, "com.example.app", "AppId propagated to listener");
             ExpectEqU32(tr, collector.lastConnectionId, 101u, "ConnectionId propagated to listener");
             ExpectTrue(tr, collector.lastConnected, "Connected=true propagated");
+            fake->Release();
+            fake = nullptr;
         }
 
         // Now Unregister and ensure no further notifications are delivered
@@ -137,6 +140,10 @@ uint32_t Test_Responder_Register_Unregister_Notifications() {
             ExpectEqU32(tr, collector.receivedCount, 1u, "No additional notifications after Unregister");
         }
 
+        if (fake != nullptr) {
+            fake->Release();
+            fake = nullptr;
+        }
         responder->Release();
     }
 
@@ -157,7 +164,7 @@ uint32_t Test_Responder_Respond_Success_And_Unavailable() {
     ExpectTrue(tr, responder != nullptr, "Responder interface available");
 
     if (responder != nullptr) {
-        auto* fake = dynamic_cast<L0Test::ResponderFake*>(responder);
+        auto* fake = static_cast<L0Test::ResponderFake*>(responder->QueryInterface(L0Test::ID_RESPONDER_FAKE));
         ExpectTrue(tr, fake != nullptr, "Responder is ResponderFake");
 
         GatewayContext ctx = MakeContext(1, 200, "com.x");
@@ -170,6 +177,8 @@ uint32_t Test_Responder_Respond_Success_And_Unavailable() {
             fake->SetTransportEnabled(false);
             rc = responder->Respond(ctx, "{\"ok\":true}");
             ExpectEqU32(tr, rc, ERROR_UNAVAILABLE, "Respond returns ERROR_UNAVAILABLE when transport is disabled");
+            fake->Release();
+            fake = nullptr;
         }
 
         responder->Release();
@@ -192,7 +201,7 @@ uint32_t Test_Responder_Emit_Success_And_Unavailable() {
     ExpectTrue(tr, responder != nullptr, "Responder interface available");
 
     if (responder != nullptr) {
-        auto* fake = dynamic_cast<L0Test::ResponderFake*>(responder);
+        auto* fake = static_cast<L0Test::ResponderFake*>(responder->QueryInterface(L0Test::ID_RESPONDER_FAKE));
         ExpectTrue(tr, fake != nullptr, "Responder is ResponderFake");
 
         GatewayContext ctx = MakeContext(3, 201, "com.y");
@@ -203,6 +212,8 @@ uint32_t Test_Responder_Emit_Success_And_Unavailable() {
             fake->SetTransportEnabled(false);
             rc = responder->Emit(ctx, "event.name", "{\"a\":1}");
             ExpectEqU32(tr, rc, ERROR_UNAVAILABLE, "Emit returns ERROR_UNAVAILABLE when transport is disabled");
+            fake->Release();
+            fake = nullptr;
         }
 
         responder->Release();
@@ -225,7 +236,7 @@ uint32_t Test_Responder_Request_Success_And_Unavailable() {
     ExpectTrue(tr, responder != nullptr, "Responder interface available");
 
     if (responder != nullptr) {
-        auto* fake = dynamic_cast<L0Test::ResponderFake*>(responder);
+        auto* fake = static_cast<L0Test::ResponderFake*>(responder->QueryInterface(L0Test::ID_RESPONDER_FAKE));
         ExpectTrue(tr, fake != nullptr, "Responder is ResponderFake");
 
         uint32_t rc = responder->Request(300 /*connectionId*/, 9 /*id*/, "method.x", "{\"b\":2}");
@@ -235,6 +246,8 @@ uint32_t Test_Responder_Request_Success_And_Unavailable() {
             fake->SetTransportEnabled(false);
             rc = responder->Request(300 /*connectionId*/, 10 /*id*/, "method.x", "{\"b\":2}");
             ExpectEqU32(tr, rc, ERROR_UNAVAILABLE, "Request returns ERROR_UNAVAILABLE when transport is disabled");
+            fake->Release();
+            fake = nullptr;
         }
 
         responder->Release();
@@ -257,12 +270,14 @@ uint32_t Test_Responder_GetGatewayConnectionContext_Known_And_Unknown() {
     ExpectTrue(tr, responder != nullptr, "Responder interface available");
 
     if (responder != nullptr) {
-        auto* fake = dynamic_cast<L0Test::ResponderFake*>(responder);
+        auto* fake = static_cast<L0Test::ResponderFake*>(responder->QueryInterface(L0Test::ID_RESPONDER_FAKE));
         ExpectTrue(tr, fake != nullptr, "Responder is ResponderFake");
 
         // Pre-populate one context for known/unknown checks
         const uint32_t cid = 410;
-        fake->SetConnectionContext(cid, "header.user-agent", "UA/1.0");
+        if (fake != nullptr) {
+            fake->SetConnectionContext(cid, "header.user-agent", "UA/1.0");
+        }
 
         std::string value;
         uint32_t rc = responder->GetGatewayConnectionContext(cid, "header.user-agent", value);

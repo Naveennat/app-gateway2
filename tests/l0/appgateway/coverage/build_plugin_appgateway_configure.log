@@ -1,3 +1,6 @@
+[build_plugin_appgateway] === CONFIGURE (timestamp 20260107_084701) (C++11) ===
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260107_084701_cxx11
+[build_plugin_appgateway] APPGATEWAY_EXTRA_INCLUDE_DIRS=/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers;/home/kavia/workspace/code-generation/app-gateway2/interfaces
 CMake Warning (dev) in CMakeLists.txt:
   No project() command is present.  The top-level CMakeLists.txt file must
   contain a literal, direct call to the project() command.  Add a line of
@@ -17,7 +20,29 @@ CMake Warning (dev) in CMakeLists.txt:
   both commands.
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
 Setup WPEFrameworkAppGateway v1.0.0
+CMake Warning (dev) at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:21 (find_package):
+  Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+  are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+  the cmake_policy command to set the policy and suppress this warning.
+
+Call Stack (most recent call first):
+  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/cmake/WPEFrameworkPlugins/WPEFrameworkPluginsConfig.cmake:22 (find_package)
+  CMakeLists.txt:49 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
 CMake Warning (dev) at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
   Syntax error in cmake code at
 
@@ -61,6 +86,16 @@ CMake Warning (dev) in CMakeLists.txt:
   information run "cmake --help-policy CMP0000".
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Configuring done (0.1s)
+-- Configuring done (0.5s)
 -- Generating done (0.0s)
--- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    APPGATEWAY_SYSCONFDIR
+
+
+-- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260107_084701_cxx11
+[build_plugin_appgateway] CMakeCache.txt entry:
+18:APPGATEWAY_EXTRA_INCLUDE_DIRS:STRING=/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers;/home/kavia/workspace/code-generation/app-gateway2/interfaces
+64:CMAKE_CXX_STANDARD:UNINITIALIZED=11
+67:CMAKE_CXX_STANDARD_REQUIRED:UNINITIALIZED=ON
