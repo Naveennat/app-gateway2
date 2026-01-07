@@ -1,0 +1,3 @@
+Mirror sync safeguard note:
+- Mirror sync/hard reset performed; repository cleaned.
+- Safeguard commit pushed to branch cga-cmdd9571b1 to prevent losing local state.
