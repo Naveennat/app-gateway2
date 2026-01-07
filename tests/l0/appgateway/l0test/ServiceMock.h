@@ -302,13 +302,26 @@ namespace L0Test {
             , _className("AppGateway")
             , _cfg(cfg)
             , _selfDelete(selfDelete)
+            , _resolverFake(nullptr)
+            , _responderFake(nullptr)
         {
             // IMPORTANT (L0 behavior):
             // Do NOT override _cfg here. Several L0 tests intentionally create ServiceMock with
             // provideResolver/provideResponder=false to validate correct failure behavior.
         }
 
-        ~ServiceMock() override = default;
+        ~ServiceMock() override
+        {
+            // Ensure cached fakes are released once per ServiceMock lifetime.
+            if (_resolverFake != nullptr) {
+                _resolverFake->Release();
+                _resolverFake = nullptr;
+            }
+            if (_responderFake != nullptr) {
+                _responderFake->Release();
+                _responderFake = nullptr;
+            }
+        }
 
         // Core::IUnknown
         uint32_t AddRef() const override
@@ -342,19 +355,30 @@ namespace L0Test {
             }
 
             // L0 HARNESS:
-            // Some test paths (and some Thunder builds) query interfaces directly on the
-            // IShell instance (e.g., via Aggregation patterns) instead of exclusively using
-            // COMLink()->Instantiate(). To keep the suite deterministic, always satisfy
-            // resolver/responder interface queries with our in-proc fakes when enabled.
+            // Some Thunder builds (and some test paths) query interfaces directly on the IShell
+            // instance rather than exclusively via COMLink()->Instantiate(). To keep behavior
+            // deterministic, we return *cached* in-proc fakes here.
+            //
+            // IMPORTANT: Do not allocate a new fake per QueryInterface call; tests rely on
+            // shared state (transport enabled flag, connection contexts, notifications) being
+            // preserved across calls.
             if (id == WPEFramework::Exchange::IAppGatewayResolver::ID) {
                 if (_cfg.provideResolver) {
-                    return static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake());
+                    if (_resolverFake == nullptr) {
+                        _resolverFake = new ResolverFake();
+                    }
+                    _resolverFake->AddRef();
+                    return static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(_resolverFake);
                 }
                 return nullptr;
             }
             if (id == WPEFramework::Exchange::IAppGatewayResponder::ID) {
                 if (_cfg.provideResponder) {
-                    return static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake(_cfg.responderTransportAvailable));
+                    if (_responderFake == nullptr) {
+                        _responderFake = new ResponderFake(_cfg.responderTransportAvailable);
+                    }
+                    _responderFake->AddRef();
+                    return static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(_responderFake);
                 }
                 return nullptr;
             }
@@ -485,12 +509,10 @@ namespace L0Test {
             //  - "AppGatewayResponderImplementation" (Exchange::IAppGatewayResponder)
             //
             // In some Thunder builds, Object::ClassName() can be fully-qualified
-            // (e.g., "WPEFramework::Plugin::AppGatewayImplementation"). If we only match the short
-            // name, our mock would fail to intercept instantiation and Thunder may fall back to
-            // creating the real implementation (which can trigger COM-RPC wiring and crash in
-            // this isolated L0 environment).
+            // (e.g., "WPEFramework::Plugin::AppGatewayImplementation"). We match by suffix.
             //
-            // So we match by suffix to ensure our deterministic fakes are always used in-proc.
+            // IMPORTANT: We must return the same fake instances across Root<T>() and later
+            // QueryInterface() calls, otherwise test state is lost and expectations fail.
             connectionId = 1;
             _instantiateCount.fetch_add(1, std::memory_order_acq_rel);
 
@@ -504,15 +526,20 @@ namespace L0Test {
             };
 
             // Resolver: accept multiple naming variants used by different Thunder/SDK builds.
-            // We match by suffix and also tolerate fully-qualified names like:
-            //   "WPEFramework::Plugin::AppGatewayImplementation"
-            // as well as generic interface-style names.
             if (endsWith(className, "AppGatewayImplementation") ||
                 endsWith(className, "::AppGatewayImplementation") ||
                 endsWith(className, "AppGatewayResolver") ||
                 endsWith(className, "::AppGatewayResolver") ||
                 endsWith(className, "IAppGatewayResolver")) {
-                return (_cfg.provideResolver ? static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake()) : nullptr);
+
+                if (_cfg.provideResolver == false) {
+                    return nullptr;
+                }
+                if (_resolverFake == nullptr) {
+                    _resolverFake = new ResolverFake();
+                }
+                _resolverFake->AddRef();
+                return static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(_resolverFake);
             }
 
             // Responder: same robustness for the responder implementation.
@@ -521,7 +548,15 @@ namespace L0Test {
                 endsWith(className, "AppGatewayResponder") ||
                 endsWith(className, "::AppGatewayResponder") ||
                 endsWith(className, "IAppGatewayResponder")) {
-                return (_cfg.provideResponder ? static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake(_cfg.responderTransportAvailable)) : nullptr);
+
+                if (_cfg.provideResponder == false) {
+                    return nullptr;
+                }
+                if (_responderFake == nullptr) {
+                    _responderFake = new ResponderFake(_cfg.responderTransportAvailable);
+                }
+                _responderFake->AddRef();
+                return static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(_responderFake);
             }
 
             return nullptr;
@@ -538,6 +573,10 @@ namespace L0Test {
         std::string _className;
         Config _cfg;
         const bool _selfDelete;
+
+        // Cached fakes so Root<T>() and QueryInterface() return the same objects.
+        ResolverFake* _resolverFake;
+        ResponderFake* _responderFake;
     };
 
 } // namespace L0Test
