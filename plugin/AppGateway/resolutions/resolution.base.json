@@ -263,6 +263,11 @@
         "device.onnamechanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.onFriendlyNameChanged"
+        },
+
+        "dummy.method": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
         }
     }
 }
