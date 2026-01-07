@@ -484,14 +484,24 @@ namespace L0Test {
                 return s.compare(s.size() - suffix.size(), suffix.size(), suffix) == 0;
             };
 
-            // Resolver: accept both implementation and interface-style names to be robust across Thunder variants.
-            // Some SDKs use short names like "AppGatewayResolver" during Root<T>() instantiation.
-            if (endsWith(className, "AppGatewayImplementation") || endsWith(className, "AppGatewayResolver")) {
+            // Resolver: accept multiple naming variants used by different Thunder/SDK builds.
+            // We match by suffix and also tolerate fully-qualified names like:
+            //   "WPEFramework::Plugin::AppGatewayImplementation"
+            // as well as generic interface-style names.
+            if (endsWith(className, "AppGatewayImplementation") ||
+                endsWith(className, "::AppGatewayImplementation") ||
+                endsWith(className, "AppGatewayResolver") ||
+                endsWith(className, "::AppGatewayResolver") ||
+                endsWith(className, "IAppGatewayResolver")) {
                 return (_cfg.provideResolver ? static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake()) : nullptr);
             }
 
-            // Responder: similarly accept "AppGatewayResponder" in addition to implementation name.
-            if (endsWith(className, "AppGatewayResponderImplementation") || endsWith(className, "AppGatewayResponder")) {
+            // Responder: same robustness for the responder implementation.
+            if (endsWith(className, "AppGatewayResponderImplementation") ||
+                endsWith(className, "::AppGatewayResponderImplementation") ||
+                endsWith(className, "AppGatewayResponder") ||
+                endsWith(className, "::AppGatewayResponder") ||
+                endsWith(className, "IAppGatewayResponder")) {
                 return (_cfg.provideResponder ? static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake(_cfg.responderTransportAvailable)) : nullptr);
             }
 
