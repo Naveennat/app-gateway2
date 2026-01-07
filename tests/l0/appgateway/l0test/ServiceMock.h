@@ -484,10 +484,14 @@ namespace L0Test {
                 return s.compare(s.size() - suffix.size(), suffix.size(), suffix) == 0;
             };
 
-            if (endsWith(className, "AppGatewayImplementation")) {
+            // Resolver: accept both implementation and interface-style names to be robust across Thunder variants.
+            // Some SDKs use short names like "AppGatewayResolver" during Root<T>() instantiation.
+            if (endsWith(className, "AppGatewayImplementation") || endsWith(className, "AppGatewayResolver")) {
                 return (_cfg.provideResolver ? static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake()) : nullptr);
             }
-            if (endsWith(className, "AppGatewayResponderImplementation")) {
+
+            // Responder: similarly accept "AppGatewayResponder" in addition to implementation name.
+            if (endsWith(className, "AppGatewayResponderImplementation") || endsWith(className, "AppGatewayResponder")) {
                 return (_cfg.provideResponder ? static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake(_cfg.responderTransportAvailable)) : nullptr);
             }
 
