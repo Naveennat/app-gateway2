@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-07 12:20:23</td>
+            <td class="headerValue">2026-01-07 12:59:55</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryMed">85.7&nbsp;%</td>
@@ -232,9 +232,9 @@
 <span id="L170"><span class="lineNum">     170</span> <span class="tlaGNC">           3 :                 m_StateChange.SetEvent();</span></span>
 <span id="L171"><span class="lineNum">     171</span>              : </span>
 <span id="L172"><span class="lineNum">     172</span>              :                 // Wait till the interest count reaches 0 again..</span>
-<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">          29 :                 while (m_InterestCount) {</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">          47 :                 while (m_InterestCount) {</span></span>
 <span id="L174"><span class="lineNum">     174</span>              :                     // Give the slice to some else</span>
-<span id="L175"><span class="lineNum">     175</span> <span class="tlaGNC">          26 :                     std::this_thread::yield();</span></span>
+<span id="L175"><span class="lineNum">     175</span> <span class="tlaGNC">          44 :                     std::this_thread::yield();</span></span>
 <span id="L176"><span class="lineNum">     176</span>              :                 }</span>
 <span id="L177"><span class="lineNum">     177</span>              : </span>
 <span id="L178"><span class="lineNum">     178</span> <span class="tlaGNC">           3 :                 m_StateChange.ResetEvent();</span></span>
