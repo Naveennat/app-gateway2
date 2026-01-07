@@ -2,6 +2,8 @@ AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: \
  /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp \
  /usr/include/stdc-predef.h \
  /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/plugins.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Module.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/core.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Module.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Portability.h \
@@ -269,17 +271,24 @@ AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: \
  /usr/include/x86_64-linux-gnu/sys/signalfd.h \
  /usr/include/x86_64-linux-gnu/bits/signalfd.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Config.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/IAction.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Proxy.h \
+ /usr/include/c++/13/memory /usr/include/c++/13/bits/stl_uninitialized.h \
+ /usr/include/c++/13/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/13/bits/align.h /usr/include/c++/13/bit \
+ /usr/include/c++/13/bits/shared_ptr.h \
+ /usr/include/c++/13/bits/shared_ptr_base.h \
+ /usr/include/c++/13/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
+ /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+ /usr/include/c++/13/ext/concurrence.h /usr/include/c++/13/exception \
+ /usr/include/c++/13/bits/exception_ptr.h \
+ /usr/include/c++/13/bits/nested_exception.h \
+ /usr/include/c++/13/bits/shared_ptr_atomic.h \
+ /usr/include/c++/13/backward/auto_ptr.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/StateTrigger.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Trace.h \
  /usr/include/syslog.h /usr/include/x86_64-linux-gnu/sys/syslog.h \
  /usr/include/x86_64-linux-gnu/bits/syslog-path.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/TextFragment.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/IIterator.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/IObserver.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/ASN1.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/DoorBell.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/ResourceMonitor.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Singleton.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Sync.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/WarningReportingControl.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/CallsignTLS.h \
@@ -288,13 +297,9 @@ AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Optional.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/SystemInfo.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Time.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/TextFragment.h \
  /usr/include/c++/13/sstream /usr/include/c++/13/istream \
- /usr/include/c++/13/ios /usr/include/c++/13/exception \
- /usr/include/c++/13/bits/exception_ptr.h \
- /usr/include/c++/13/bits/nested_exception.h \
- /usr/include/c++/13/bits/ios_base.h /usr/include/c++/13/ext/atomicity.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
- /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+ /usr/include/c++/13/ios /usr/include/c++/13/bits/ios_base.h \
  /usr/include/c++/13/bits/locale_classes.h \
  /usr/include/c++/13/bits/locale_classes.tcc \
  /usr/include/c++/13/system_error \
@@ -316,98 +321,29 @@ AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: \
  /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
  /usr/include/c++/13/unordered_set \
  /usr/include/c++/13/bits/unordered_set.h /usr/include/c++/13/vector \
- /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/WarningReportingCategories.h \
  /usr/include/c++/13/iostream /usr/include/semaphore.h \
  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Proxy.h \
- /usr/include/c++/13/memory \
- /usr/include/c++/13/bits/stl_raw_storage_iter.h \
- /usr/include/c++/13/bits/align.h /usr/include/c++/13/bit \
- /usr/include/c++/13/bits/shared_ptr.h \
- /usr/include/c++/13/bits/shared_ptr_base.h \
- /usr/include/c++/13/ext/concurrence.h \
- /usr/include/c++/13/bits/shared_ptr_atomic.h \
- /usr/include/c++/13/backward/auto_ptr.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/StateTrigger.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Thread.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Queue.h \
- /usr/include/c++/13/queue /usr/include/c++/13/deque \
- /usr/include/c++/13/bits/stl_deque.h /usr/include/c++/13/bits/deque.tcc \
- /usr/include/c++/13/bits/stl_queue.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Timer.h \
- /usr/include/c++/13/utility /usr/include/c++/13/bits/stl_relops.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/SocketPort.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/NodeId.h \
- /usr/include/linux/netlink.h /usr/include/linux/const.h \
- /usr/include/linux/socket.h /usr/include/x86_64-linux-gnu/sys/un.h \
- /usr/include/netpacket/packet.h /usr/include/net/ethernet.h \
- /usr/include/linux/if_ether.h /usr/include/net/if.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/CyclicBuffer.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/DataElementFile.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/DataElement.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Serialization.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/JSON.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Enumerate.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Number.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/FileSystem.h \
  /usr/include/x86_64-linux-gnu/sys/statvfs.h \
  /usr/include/x86_64-linux-gnu/bits/statvfs.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/DataBuffer.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Enumerate.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Factory.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/FileObserver.h \
- /usr/include/x86_64-linux-gnu/sys/inotify.h \
- /usr/include/x86_64-linux-gnu/bits/inotify.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Frame.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/IPCMessage.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/IPCChannel.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/IPCConnector.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Link.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/ProcessInfo.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/ISO639.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/IPFrame.h \
- /usr/include/netinet/ip.h /usr/include/netinet/udp.h \
- /usr/include/netinet/tcp.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/JSON.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Serialization.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/JSONRPC.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/KeyValue.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Library.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/LockableContainer.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/ReadWriteLock.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Measurement.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Media.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/MessageException.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Netlink.h \
- /usr/include/linux/connector.h /usr/include/linux/rtnetlink.h \
- /usr/include/linux/if_link.h /usr/include/linux/if_addr.h \
- /usr/include/linux/neighbour.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/NetworkInfo.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Parser.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Range.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Process.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Rectangle.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/SerialPort.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Services.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/SharedBuffer.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/SocketServer.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/StopWatch.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Stream.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/StreamJSON.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/StreamText.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/StreamTypeLengthValue.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Thread.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/IAction.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Queue.h \
+ /usr/include/c++/13/queue /usr/include/c++/13/deque \
+ /usr/include/c++/13/bits/stl_deque.h /usr/include/c++/13/bits/deque.tcc \
+ /usr/include/c++/13/bits/stl_queue.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Synchronize.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/SynchronousChannel.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/TextReader.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/ThreadPool.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/TriState.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/ValueRecorder.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/XGetopt.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/WorkerPool.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/TokenizedStringList.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Module.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Services.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/core/Library.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/com/com.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/com/Administrator.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/com/Messages.h \
@@ -461,10 +397,24 @@ AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/websocket/WebSerializer.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/websocket/WebTransform.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/websocket/WebTransfer.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/System.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Config.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Channel.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Request.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Configuration.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IPlugin.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IShell.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IPlugin.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/ISubSystem.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Shell.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IController.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IControllerDeprecated.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/StateControl.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IStateControl.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/SubSystem.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/JSONRPC.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/System.h \
  /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IDispatcher.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IPlugin.h \
- /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IShell.h
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Service.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/MetaData.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/Types.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/VirtualInput.h \
+ /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/plugins/IVirtualInput.h
