@@ -40,7 +40,7 @@ FAIL: Missing resolve handler returns ERROR_UNKNOWN_METHOD expected=53 actual=1
 FAIL: Resolve known method returns ERROR_NONE expected=0 actual=1
 [  FAILED  ] Resolver_Configure_WithBaseOnly_LoadsOK failures=1
 [ RUN      ] Resolver_Configure_InvalidJson_ReturnsError
-[30732] ERROR [Resolver.cpp:80] LoadConfig:  - Error: Colon expected.
+[32256] ERROR [Resolver.cpp:80] LoadConfig:  - Error: Colon expected.
 [       OK ] Resolver_Configure_InvalidJson_ReturnsError
 FAIL: Responder is ResponderFake in l0test
 [  FAILED  ] Responder_Register_Unregister_Notifications failures=1
@@ -51,6 +51,6 @@ FAIL: Responder is ResponderFake
 FAIL: Responder is ResponderFake
 [  FAILED  ] Responder_Request_Success_And_Unavailable failures=1
 FAIL: Responder is ResponderFake
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/run_coverage.sh: line 213: 30732 Segmentation fault      (core dumped) APPGATEWAY_RESOLUTIONS_PATH="${RESOLUTIONS_PATH}" APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO}" "${TEST_BIN}"
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/run_coverage.sh: line 213: 32256 Segmentation fault      (core dumped) APPGATEWAY_RESOLUTIONS_PATH="${RESOLUTIONS_PATH}" APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO}" "${TEST_BIN}"
 
 Full log is available at /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0_run_full.log

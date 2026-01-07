@@ -34,3 +34,4 @@ tests/l0/appgateway/artifacts/
 
 # Core dumps
 core.*
+.file_activity_report.json
