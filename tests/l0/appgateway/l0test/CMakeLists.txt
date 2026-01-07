@@ -38,12 +38,6 @@ set(PREFIX "${PREFIX}" CACHE STRING "Install prefix to locate Thunder/WPEFramewo
 
 message(STATUS "Using PREFIX='${PREFIX}'")
 
-# Ensure CMake can locate WPEFramework*Config.cmake packages from the vendored SDK.
-# This is required for reliable discovery of libraries and include directories.
-list(PREPEND CMAKE_PREFIX_PATH "${PREFIX}")
-set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}" CACHE STRING "CMake search prefix path" FORCE)
-message(STATUS "CMAKE_PREFIX_PATH='${CMAKE_PREFIX_PATH}'")
-
 # Sources for the L0 test executable (relative paths from this l0test directory)
 set(APPGW_L0_SOURCES
     AppGatewayTest.cpp
@@ -91,22 +85,14 @@ else()
     message(WARNING "AppGateway l0test: interfaces/IAppGateway.h not found locally at ${APPGW_LOCAL_IFACE_HEADER} nor installed at ${APPGW_INSTALLED_IFACE_HEADER}. Building may fail; ensure a stub exists under app-gateway2/interfaces or adjust PREFIX/CMAKE_PREFIX_PATH.")
 endif()
 
-# IMPORTANT:
-# Prefer local shim headers (plugins/*, core/*, com/*, interfaces/*) over SDK ones.
-# This prevents the build from accidentally including SDK headers that drag in heavy
-# websocket/messaging subsystems not needed for L0.
-target_include_directories(appgateway_l0test BEFORE PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}                                               # this folder (ServiceMock.h, ContextUtils.h, etc.)
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../                                   # repo root (so <interfaces/...>, <plugins/...>, <core/...>, <com/...> resolve)
+target_include_directories(appgateway_l0test PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}                                                # this folder (ServiceMock.h, ContextUtils.h, etc.)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../                                   # repo root (so <interfaces/...> resolves)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../plugin/AppGateway                  # Plugin headers (read-only, no sources copied into tests)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../helpers                           # helpers under app-gateway2 (as needed by test harness)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../helpers/rdkservices-comcast/helpers # provides UtilsLogging.h + StringUtils.h (required by plugin headers)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces                        # repo interface stubs
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces/json
-)
-
-# SDK include paths come AFTER local shims.
-target_include_directories(appgateway_l0test PRIVATE
     ${PREFIX}/include
     ${PREFIX}/include/WPEFramework
 )
@@ -129,66 +115,45 @@ if(EXISTS "${PREFIX}/lib")
     target_link_directories(appgateway_l0test PRIVATE "${PREFIX}/lib")
 endif()
 
-# Prefer exported CMake package targets from the vendored SDK:
-#   ${PREFIX}/lib/cmake/WPEFramework*/WPEFramework*Config.cmake
-# This ensures correct transitive link dependencies and include directories.
+# Find Thunder/WPEFramework libraries with fallback names
+# WPEFramework has transitioned from "Thunder" to "WPEFramework" naming,
+# so we search for both to be robust.
+find_library(WPEFRAMEWORK_CORE_LIB
+    NAMES WPEFrameworkCore ThunderCore
+    HINTS "${PREFIX}/lib"
+)
+find_library(WPEFRAMEWORK_MESSAGING_LIB
+    NAMES WPEFrameworkMessaging ThunderMessaging
+    HINTS "${PREFIX}/lib"
+)
+find_library(WPEFRAMEWORK_PLUGINS_LIB
+    NAMES WPEFrameworkPlugins ThunderPlugins
+    HINTS "${PREFIX}/lib"
+)
+
+# Optional: libc, dl, pthread
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-set(_have_wpe_targets FALSE)
-find_package(WPEFrameworkCore QUIET)
-find_package(WPEFrameworkMessaging QUIET)
-find_package(WPEFrameworkCOM QUIET)
-find_package(WPEFrameworkWebSocket QUIET)
-find_package(WPEFrameworkCryptalgo QUIET)
-find_package(WPEFrameworkPlugins QUIET)
-
-if(TARGET WPEFrameworkCore::WPEFrameworkCore)
-    set(_have_wpe_targets TRUE)
-    target_link_libraries(appgateway_l0test PRIVATE WPEFrameworkCore::WPEFrameworkCore)
-endif()
-if(TARGET WPEFrameworkMessaging::WPEFrameworkMessaging)
-    target_link_libraries(appgateway_l0test PRIVATE WPEFrameworkMessaging::WPEFrameworkMessaging)
-endif()
-if(TARGET WPEFrameworkCOM::WPEFrameworkCOM)
-    target_link_libraries(appgateway_l0test PRIVATE WPEFrameworkCOM::WPEFrameworkCOM)
-endif()
-if(TARGET WPEFrameworkWebSocket::WPEFrameworkWebSocket)
-    target_link_libraries(appgateway_l0test PRIVATE WPEFrameworkWebSocket::WPEFrameworkWebSocket)
-endif()
-if(TARGET WPEFrameworkCryptalgo::WPEFrameworkCryptalgo)
-    target_link_libraries(appgateway_l0test PRIVATE WPEFrameworkCryptalgo::WPEFrameworkCryptalgo)
-endif()
-if(TARGET WPEFrameworkPlugins::WPEFrameworkPlugins)
-    target_link_libraries(appgateway_l0test PRIVATE WPEFrameworkPlugins::WPEFrameworkPlugins)
+# Link the core Thunder/WPEFramework libs (if found) and standard libs
+# We do not mark them as REQUIRED to keep this file usable across environments;
+# missing libraries will cause link errors which is clearer than a configure fail.
+if(WPEFRAMEWORK_CORE_LIB)
+    target_link_libraries(appgateway_l0test PRIVATE ${WPEFRAMEWORK_CORE_LIB})
+else()
+    message(STATUS "WPEFrameworkCore/ThunderCore not found via find_library; ensure PREFIX is correct.")
 endif()
 
-# Fallback to manual discovery if package targets are not available.
-if(NOT _have_wpe_targets)
-    message(WARNING "WPEFrameworkCore CMake targets not found; falling back to find_library(). Ensure CMAKE_PREFIX_PATH/PREFIX are correct.")
+if(WPEFRAMEWORK_MESSAGING_LIB)
+    target_link_libraries(appgateway_l0test PRIVATE ${WPEFRAMEWORK_MESSAGING_LIB})
+else()
+    message(STATUS "WPEFrameworkMessaging/ThunderMessaging not found via find_library; ensure PREFIX is correct.")
+endif()
 
-    find_library(WPEFRAMEWORK_CORE_LIB
-        NAMES WPEFrameworkCore ThunderCore
-        HINTS "${PREFIX}/lib"
-    )
-    find_library(WPEFRAMEWORK_MESSAGING_LIB
-        NAMES WPEFrameworkMessaging ThunderMessaging
-        HINTS "${PREFIX}/lib"
-    )
-    find_library(WPEFRAMEWORK_PLUGINS_LIB
-        NAMES WPEFrameworkPlugins ThunderPlugins
-        HINTS "${PREFIX}/lib"
-    )
-
-    if(WPEFRAMEWORK_CORE_LIB)
-        target_link_libraries(appgateway_l0test PRIVATE ${WPEFRAMEWORK_CORE_LIB})
-    endif()
-    if(WPEFRAMEWORK_MESSAGING_LIB)
-        target_link_libraries(appgateway_l0test PRIVATE ${WPEFRAMEWORK_MESSAGING_LIB})
-    endif()
-    if(WPEFRAMEWORK_PLUGINS_LIB)
-        target_link_libraries(appgateway_l0test PRIVATE ${WPEFRAMEWORK_PLUGINS_LIB})
-    endif()
+if(WPEFRAMEWORK_PLUGINS_LIB)
+    target_link_libraries(appgateway_l0test PRIVATE ${WPEFRAMEWORK_PLUGINS_LIB})
+else()
+    message(STATUS "WPEFrameworkPlugins/ThunderPlugins not found via find_library; ensure PREFIX is correct.")
 endif()
 
 target_link_libraries(appgateway_l0test PRIVATE
@@ -222,9 +187,8 @@ endif()
 # BUILD_RPATH: allow loading from the executable's directory ($ORIGIN) and ${PREFIX}/lib
 # INSTALL_RPATH: ${PREFIX}/lib
 set_target_properties(appgateway_l0test PROPERTIES
-    # $ORIGIN keeps local build-tree probing working; PREFIX paths cover vendored SDK runtime.
-    BUILD_RPATH "$ORIGIN;${PREFIX}/lib;${PREFIX}/lib/wpeframework"
-    INSTALL_RPATH "${PREFIX}/lib;${PREFIX}/lib/wpeframework"
+    BUILD_RPATH "$ORIGIN;${PREFIX}/lib"
+    INSTALL_RPATH "${PREFIX}/lib"
 )
 
 # 'run' target to execute the test binary.

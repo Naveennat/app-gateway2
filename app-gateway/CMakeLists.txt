@@ -20,5 +20,9 @@ include_directories(
     "${APPGATEWAY_SDK_ROOT}/include/WPEFramework"
 )
 
+# Provide write_config() for isolated builds (upstream supplies this via FindConfigGenerator.cmake).
+# The plugin's CMakeLists (branch ground-truth) calls write_config(...).
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/WriteConfigCompat.cmake)
+
 # Build the actual plugin sources (kept under ../plugin/AppGateway in this repo).
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../plugin/AppGateway AppGateway)

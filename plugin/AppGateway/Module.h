@@ -22,13 +22,31 @@
 #define MODULE_NAME Plugin_AppGateway
 #endif
 
-#include <plugins/plugins.h>
+#include <core/core.h>
+#include <plugins/IPlugin.h>
+#include <plugins/IShell.h>
 #include <tracing/tracing.h>
+#include <core/Services.h>
 
-// Pull in the repo's interface IDs (e.g., ID_APP_GATEWAY*) via normal include paths.
-// The build config adds app-gateway2/interfaces to the include dirs, so this resolves to
-// app-gateway2/interfaces/Ids.h (not the SDK one).
+// Ensure the isolated repo's logging macro shims are available even when the build
+// does not inject helper include directories (e.g., when building via app-gateway/CMakeLists.txt).
+#include <UtilsLoggingAliases.h>
+
+// Ensure "ErrorUtils::..." symbols referenced by implementation files are available.
+// (Repo provides a forwarding header at app-gateway2/ErrorUtils.h to the plugin stub.)
+#include <ErrorUtils.h>
+
+// Callsign constants expected by AppGatewayImplementation.cpp / ResponderImplementation.cpp.
+// In upstream builds these come from platform-specific headers/config.
+#ifndef APP_NOTIFICATIONS_CALLSIGN
+#define APP_NOTIFICATIONS_CALLSIGN "org.rdk.AppNotifications"
+#endif
+
+#ifndef INTERNAL_GATEWAY_CALLSIGN
+#define INTERNAL_GATEWAY_CALLSIGN "org.rdk.AppGateway"
+#endif
+
+ // Pull in the repo's interface IDs (e.g., ID_APP_GATEWAY*) via normal include paths.
+ // The build config adds app-gateway2/interfaces to the include dirs, so this resolves to
+ // app-gateway2/interfaces/Ids.h (not the SDK one).
 #include <Ids.h>
-
-#undef EXTERNAL
-#define EXTERNAL

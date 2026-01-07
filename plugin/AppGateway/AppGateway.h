@@ -19,6 +19,7 @@
 #pragma once
 
 #include "Module.h"
+#include <plugins/JSONRPC.h>
 #include <interfaces/IAppGateway.h>
 
 namespace WPEFramework {

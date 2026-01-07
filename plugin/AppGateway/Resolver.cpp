@@ -23,6 +23,7 @@
 #include "UtilsLogging.h"
 #include "StringUtils.h"
 #include "UtilsJsonrpcDirectLink.h"
+#include "Utils.h"
 #include <core/JSON.h>
 
 namespace WPEFramework
@@ -267,18 +268,14 @@ namespace WPEFramework
                 return Core::ERROR_GENERAL;
             }
 
-            auto thunderLink = Utils::GetThunderControllerClient(mService, callsign);
-            if (!thunderLink) {
-                LOGERR("Failed to create JSONRPCDirectLink for callsign: %s", callsign.c_str());
-                return Core::ERROR_GENERAL;
-            }
+            // In this repository's isolated build we do not create real cross-plugin JSONRPC links.
+            // Treat this path as not available; callers should handle this gracefully.
+            (void)Utils::GetThunderControllerClient(mService, callsign);
+            (void)pluginMethod;
+            (void)params;
 
-            Core::hresult result = thunderLink->Invoke<std::string, std::string>(pluginMethod, params, response);
-            if (result != Core::ERROR_NONE) {
-                LOGERR("Invoke failed for %s.%s, error code: %u",
-                       callsign.c_str(), pluginMethod.c_str(), result);
-            }
-            return result;
+            response.clear();
+            return Core::ERROR_UNAVAILABLE;
         }
 
         bool Resolver::HasEvent(const std::string &key)

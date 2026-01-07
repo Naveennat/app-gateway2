@@ -18,13 +18,22 @@
  **/
 
 #include <string>
-#include <plugins/JSONRPC.h>
+
 #include <plugins/IShell.h>
 #include "AppGatewayResponderImplementation.h"
 #include "UtilsLogging.h"
 #include "UtilsConnections.h"
 #include "UtilsCallsign.h"
+#include "Utils.h"
 #include <interfaces/IAppNotifications.h>
+
+#ifndef APP_GATEWAY_CALLSIGN
+#define APP_GATEWAY_CALLSIGN "org.rdk.AppGateway"
+#endif
+
+#ifndef GATEWAY_AUTHENTICATOR_CALLSIGN
+#define GATEWAY_AUTHENTICATOR_CALLSIGN "org.rdk.AppGateway"
+#endif
 
 // App Gateway is only available via local connections,
 // so we can use a simple in-memory registry to track connection IDs and their associated app IDs.
@@ -115,8 +124,7 @@ namespace WPEFramework
             }
 
             LOGINFO("Connector: %s", config.Connector.Value().c_str());
-            Core::NodeId source(config.Connector.Value().c_str());
-            LOGINFO("Parsed port: %d", source.PortNumber());
+            const std::string connector = config.Connector.Value();
             mWsManager.SetMessageHandler(
                 [this](const std::string &method, const std::string &params, const int requestId, const uint32_t connectionId)
                 {
@@ -194,7 +202,7 @@ namespace WPEFramework
                     }
                 }
             );
-            mWsManager.Start(source);
+            mWsManager.Start(connector);
             return Core::ERROR_NONE;
         }
 

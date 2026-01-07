@@ -24,9 +24,10 @@
 #include <interfaces/IAppGateway.h>
 #include <interfaces/IConfiguration.h>
 #include "ContextUtils.h"
-#include <com/com.h>
 #include <core/core.h>
 #include <map>
+#include <mutex>
+#include <unordered_map>
 
 
 namespace WPEFramework {

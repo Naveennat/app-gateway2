@@ -347,7 +347,7 @@ namespace Plugin {
             mResponder = nullptr;
         }
         if (mAppGateway != nullptr) {
-            Core::JSONRPC::Handler* handler = this->Handler(_T("resolve"));
+            auto* handler = this->Method(_T("resolve"));
             if ((handler != nullptr) && (handler->Exists(_T("resolve")) == Core::ERROR_NONE)) {
                 Exchange::JAppGatewayResolver::Unregister(*this);
             }
@@ -374,34 +374,11 @@ namespace Plugin {
         // implementations (e.g., AppGatewayResponderImplementation) which starts websocket/worker threads
         // and breaks L0 expectations (ResponderFake wiring) and can crash at teardown.
         //
-        // Therefore: in L0/in-proc mode, prefer COMLink()->Instantiate to get deterministic fakes.
-        auto* comlink = service->COMLink();
-
-        if (comlink != nullptr) {
-            // Resolver
-            {
-                RPC::Object obj(_T("AppGatewayImplementation"), RPC::Object::mode::OFFPROCESS, _T(""));
-                uint32_t cid = 0;
-                void* created = comlink->Instantiate(obj, 2000, cid);
-                mConnectionId = cid;
-
-                mAppGateway = reinterpret_cast<Exchange::IAppGatewayResolver*>(created);
-            }
-
-            // Responder
-            {
-                RPC::Object obj(_T("AppGatewayResponderImplementation"), RPC::Object::mode::OFFPROCESS, _T(""));
-                uint32_t cid = 0;
-                void* created = comlink->Instantiate(obj, 2000, cid);
-                // keep existing mConnectionId if already set; responder uses same in-proc context.
-                mResponder = reinterpret_cast<Exchange::IAppGatewayResponder*>(created);
-            }
-        }
-
-        // Fallback to Thunder Root<> behavior if COMLink isn't available (production-like).
-        if (mAppGateway == nullptr) {
-            mAppGateway = service->Root<Exchange::IAppGatewayResolver>(mConnectionId, 2000, _T("AppGatewayImplementation"));
-        }
+        // NOTE:
+        // In a full Thunder environment we could use COMLink()->Instantiate. In this repo's isolated
+        // build we avoid RPC::Object/COMLink to prevent pulling in incompatible COM/IPC headers.
+        // The L0 harness provides Root<T>() via its ServiceMock.
+        mAppGateway = service->Root<Exchange::IAppGatewayResolver>(mConnectionId, 2000, _T("AppGatewayImplementation"));
 
         if (mAppGateway != nullptr) {
             auto configConnection = mAppGateway->QueryInterface<Exchange::IConfiguration>();
@@ -426,9 +403,7 @@ namespace Plugin {
             mAppGateway = nullptr;
         }
 
-        if (mResponder == nullptr) {
-            mResponder = service->Root<Exchange::IAppGatewayResponder>(mConnectionId, 2000, _T("AppGatewayResponderImplementation"));
-        }
+        mResponder = service->Root<Exchange::IAppGatewayResponder>(mConnectionId, 2000, _T("AppGatewayResponderImplementation"));
 
         if (mResponder != nullptr) {
             auto configConnectionResponder = mResponder->QueryInterface<Exchange::IConfiguration>();
@@ -476,9 +451,8 @@ namespace Plugin {
         }
 
         if (mAppGateway != nullptr) {
-            // Unregister the JSON-RPC "resolve" method.
-            // Core::JSONRPC::Handler asserts if Unregister() is called for a non-existent method, so guard it.
-            Core::JSONRPC::Handler* handler = this->Handler(_T("resolve"));
+            // Unregister the JSON-RPC "resolve" method (guarded).
+            auto* handler = this->Method(_T("resolve"));
             if ((handler != nullptr) && (handler->Exists(_T("resolve")) == Core::ERROR_NONE)) {
                 Exchange::JAppGatewayResolver::Unregister(*this);
             }

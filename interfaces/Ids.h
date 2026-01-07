@@ -1,5 +1,4 @@
 #pragma once
-#include <com/Ids.h>
 
 #define FIREBOLT_INTERFACE_OFFSET                                              \
   (RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x2000)

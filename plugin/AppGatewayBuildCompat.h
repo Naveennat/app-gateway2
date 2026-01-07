@@ -11,22 +11,15 @@
 #include "../UtilsLoggingAliases.h"
 #include "../ErrorUtils.h"
 
-#ifndef SERVICE_REGISTRATION
-#define SERVICE_REGISTRATION(...) /* no-op */
-#endif
-
-#ifndef BEGIN_INTERFACE_MAP
-#define BEGIN_INTERFACE_MAP(...) /* no-op */
-#endif
-#ifndef END_INTERFACE_MAP
-#define END_INTERFACE_MAP /* no-op */
-#endif
-#ifndef INTERFACE_ENTRY
-#define INTERFACE_ENTRY(...) /* no-op */
-#endif
-#ifndef INTERFACE_AGGREGATE
-#define INTERFACE_AGGREGATE(...) /* no-op */
-#endif
+// NOTE:
+// Do NOT override Thunder/WPEFramework core macros like SERVICE_REGISTRATION or the
+// interface-map macros (BEGIN_INTERFACE_MAP/INTERFACE_ENTRY/etc). They are required
+// by the SDK headers and by the plugin implementation headers in this repository.
+// Overriding them results in hard-to-debug parse errors in SDK headers (e.g. VirtualInput.h)
+// and breaks interface declarations.
+//
+// This compat header should only provide missing shims that are genuinely absent in the
+// isolated build environment (logging aliases, ErrorUtils, and callsign constants).
 
 // Callsign constants used by AppGateway sources in upstream builds.
 #ifndef APP_NOTIFICATIONS_CALLSIGN
