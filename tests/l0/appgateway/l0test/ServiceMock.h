@@ -340,6 +340,25 @@ namespace L0Test {
                 AddRef();
                 return static_cast<WPEFramework::PluginHost::IShell*>(this);
             }
+
+            // L0 HARNESS:
+            // Some test paths (and some Thunder builds) query interfaces directly on the
+            // IShell instance (e.g., via Aggregation patterns) instead of exclusively using
+            // COMLink()->Instantiate(). To keep the suite deterministic, always satisfy
+            // resolver/responder interface queries with our in-proc fakes when enabled.
+            if (id == WPEFramework::Exchange::IAppGatewayResolver::ID) {
+                if (_cfg.provideResolver) {
+                    return static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(new ResolverFake());
+                }
+                return nullptr;
+            }
+            if (id == WPEFramework::Exchange::IAppGatewayResponder::ID) {
+                if (_cfg.provideResponder) {
+                    return static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(new ResponderFake(_cfg.responderTransportAvailable));
+                }
+                return nullptr;
+            }
+
             return nullptr;
         }
 

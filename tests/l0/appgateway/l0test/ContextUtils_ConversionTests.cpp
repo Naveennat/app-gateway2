@@ -48,14 +48,21 @@ static std::string BuildResolveParamsJson(uint32_t requestId,
                                           const std::string& appId,
                                           const std::string& origin,
                                           const std::string& method,
-                                          const std::string& params = "{}") {
+                                          const std::string& params = "{}")
+{
+    // IMPORTANT:
+    // The JSON-RPC contract expects `params` to be a JSON value (object/null), not
+    // a JSON-encoded string. Quoting `{}` results in parsing failures in Thunder's
+    // JSON/Variant handling and produces cascading NotSupported/unknown-alias behavior.
+    const std::string effectiveParams = params.empty() ? "{}" : params;
+
     std::string json = "{";
     json += "\"requestId\": " + std::to_string(requestId) + ",";
     json += "\"connectionId\": " + std::to_string(connectionId) + ",";
     json += "\"appId\": \"" + appId + "\",";
     json += "\"origin\": \"" + origin + "\",";
     json += "\"method\": \"" + method + "\",";
-    json += "\"params\": \"" + params + "\"";
+    json += "\"params\": " + effectiveParams;
     json += "}";
     return json;
 }
