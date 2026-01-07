@@ -1,28 +1,39 @@
 #!/usr/bin/env bash
-# Capture L0 coverage artifacts produced by run_coverage.sh into a stable folder.
+# Capture L0 artifacts into the per-run directory created by run_l0.sh.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"  # -> app-gateway2
 
-COVERAGE_DIR="${ROOT}/tests/l0/appgateway/coverage"
-BUILD_DIR="${ROOT}/build/tests_l0_appgateway"
-ARTIFACTS_DIR="${ROOT}/tests/l0/appgateway/artifacts"
+# Args from run_l0.sh:
+#   $1: build directory
+#   $2: run directory
+BUILD_DIR="${1:-}"
+RUN_DIR="${2:-}"
 
-mkdir -p "${ARTIFACTS_DIR}"
+if [[ -z "${BUILD_DIR}" || -z "${RUN_DIR}" ]]; then
+  echo "Usage: $0 <build_dir> <run_dir>" >&2
+  exit 2
+fi
+
+COVERAGE_DIR="${ROOT}/tests/l0/appgateway/coverage"
+
+mkdir -p "${RUN_DIR}"
 
 # Copy coverage artifacts if present
 if [[ -d "${COVERAGE_DIR}" ]]; then
-  rm -rf "${ARTIFACTS_DIR}/coverage"
-  cp -a "${COVERAGE_DIR}" "${ARTIFACTS_DIR}/coverage"
+  cp -a "${COVERAGE_DIR}" "${RUN_DIR}/coverage"
 fi
 
 # Capture build dir metadata (useful for debugging missing gcda/gcno)
 if [[ -d "${BUILD_DIR}" ]]; then
-  rm -rf "${ARTIFACTS_DIR}/build_dir_snapshot"
-  mkdir -p "${ARTIFACTS_DIR}/build_dir_snapshot"
+  mkdir -p "${RUN_DIR}/build_dir_snapshot"
   # Keep only lightweight text outputs
-  (cd "${BUILD_DIR}" && find . -maxdepth 3 -type f \( -name "*.log" -o -name "CMakeCache.txt" -o -name "build.ninja" \) -print0 | xargs -0 -I{} bash -lc 'mkdir -p "'"${ARTIFACTS_DIR}"'/build_dir_snapshot/$(dirname "{}")"; cp -a "{}" "'"${ARTIFACTS_DIR}"'/build_dir_snapshot/{}"' || true
+  (
+    cd "${BUILD_DIR}"
+    find . -maxdepth 3 -type f \( -name "*.log" -o -name "CMakeCache.txt" -o -name "build.ninja" \) -print0 \
+      | xargs -0 -I{} bash -lc 'mkdir -p "'"${RUN_DIR}"'/build_dir_snapshot/$(dirname "{}")"; cp -a "{}" "'"${RUN_DIR}"'/build_dir_snapshot/{}"' || true
+  )
 fi
 
 # Record basic environment info for reproducibility
@@ -31,11 +42,12 @@ fi
   echo "root=${ROOT}"
   echo "coverage_dir=${COVERAGE_DIR}"
   echo "build_dir=${BUILD_DIR}"
+  echo "run_dir=${RUN_DIR}"
   echo "pwd=$(pwd)"
-} > "${ARTIFACTS_DIR}/meta.txt"
+} > "${RUN_DIR}/meta.txt"
 
 # Create tarball for convenience
-tar -C "${ARTIFACTS_DIR}" -czf "${ARTIFACTS_DIR}/artifacts.tgz" .
+tar -C "${RUN_DIR}" -czf "${RUN_DIR}/artifacts.tgz" .
 
-echo "${ARTIFACTS_DIR}"
-echo "${ARTIFACTS_DIR}/artifacts.tgz"
+echo "${RUN_DIR}"
+echo "${RUN_DIR}/artifacts.tgz"

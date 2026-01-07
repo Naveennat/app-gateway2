@@ -54,6 +54,9 @@ cmake -S "${REPO_ROOT}/app-gateway" -B "${BUILD_DIR}" \
 
 cmake --build "${BUILD_DIR}" -j"$(nproc)"
 
+# Ensure runtime can resolve Thunder/WPEFramework shared libraries.
+export LD_LIBRARY_PATH="${REPO_ROOT}/dependencies/install/lib:${LD_LIBRARY_PATH:-}"
+
 # Run tests; keep going to capture logs even on failure
 set +e
 ctest --test-dir "${BUILD_DIR}" --output-on-failure -V | tee "${RUN_DIR}/ctest_output.txt"
