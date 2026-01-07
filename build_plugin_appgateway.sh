@@ -125,6 +125,16 @@ if [[ ${#APPGATEWAY_EXTRA_INCLUDE_DIRS_RESOLVED[@]} -gt 0 ]]; then
   unset IFS
 fi
 
+# Pre-clean: if a previous run (or image layer) created root-owned files under the
+# install prefix, CMake's install step can fail when it tries to adjust permissions.
+# The most common offender is the resolution.base.json installed under etc/app-gateway.
+# Remove it proactively so install can recreate it as the current user.
+STALE_RESOLUTION_JSON="${SDK_PREFIX}/etc/app-gateway/resolution.base.json"
+if [[ -e "${STALE_RESOLUTION_JSON}" ]]; then
+  log "Removing stale installed file (may be root-owned): ${STALE_RESOLUTION_JSON}"
+  rm -f "${STALE_RESOLUTION_JSON}" || true
+fi
+
 # Try standards in order: C++11 -> C++14 -> C++17 (stop at first success).
 # IMPORTANT: Do not inject any compiler -std flags here; we only pass CMake cache vars.
 CXX_STANDARDS_TO_TRY=(11 14 17)
