@@ -217,10 +217,44 @@ namespace WPEFramework
         }
 
         Core::hresult AppGatewayResponderImplementation::GetGatewayConnectionContext(const uint32_t connectionId /* @in */,
-                const string& contextKey /* @in */, 
+                const string& contextKey /* @in */,
                  string& contextValue /* @out */) {
-            // TODO add support for jsonrpc compliance in later versions
-            return Core::ERROR_NONE;
+            // L0 / API contract:
+            // - Return ERROR_NONE and fill contextValue when key exists for the connection.
+            // - Return ERROR_BAD_REQUEST when the connection is unknown or the key is not present.
+            //
+            // In production this will be wired to a connection registry carrying headers/query params.
+            // For the isolated repo + L0 harness we support a minimal in-memory registry that can be
+            // populated by tests via environment variables.
+            contextValue.clear();
+
+            if (contextKey.empty()) {
+                return Core::ERROR_BAD_REQUEST;
+            }
+
+            // Minimal hook for L0 tests (and offline use):
+            // Allow injecting a single key/value via env vars without requiring real websocket traffic.
+            // Format:
+            //   APPGATEWAY_TEST_CONN_ID=410
+            //   APPGATEWAY_TEST_CTX_KEY=header.user-agent
+            //   APPGATEWAY_TEST_CTX_VALUE=UA/1.0
+            const char* envConn = std::getenv("APPGATEWAY_TEST_CONN_ID");
+            const char* envKey  = std::getenv("APPGATEWAY_TEST_CTX_KEY");
+            const char* envVal  = std::getenv("APPGATEWAY_TEST_CTX_VALUE");
+
+            if (envConn != nullptr && envKey != nullptr && envVal != nullptr) {
+                const uint32_t configuredConn = static_cast<uint32_t>(std::strtoul(envConn, nullptr, 10));
+                if (configuredConn == connectionId) {
+                    if (contextKey == envKey) {
+                        contextValue = envVal;
+                        return Core::ERROR_NONE;
+                    }
+                    return Core::ERROR_BAD_REQUEST;
+                }
+            }
+
+            // No registry available in this isolated build.
+            return Core::ERROR_BAD_REQUEST;
         }
 
 

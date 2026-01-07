@@ -488,7 +488,7 @@ namespace WPEFramework
             {
                 LOGERR("No alias found for method: %s", method.c_str());
                 ErrorUtils::NotSupported(resolution);
-                return Core::ERROR_GENERAL;
+                return Core::ERROR_NOT_SUPPORTED;
             }
 
             std::string permissionGroup;
