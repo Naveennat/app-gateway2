@@ -222,10 +222,6 @@ namespace WPEFramework
             // L0 / API contract:
             // - Return ERROR_NONE and fill contextValue when key exists for the connection.
             // - Return ERROR_BAD_REQUEST when the connection is unknown or the key is not present.
-            //
-            // In production this will be wired to a connection registry carrying headers/query params.
-            // For the isolated repo + L0 harness we support a minimal in-memory registry that can be
-            // populated by tests via environment variables.
             contextValue.clear();
 
             if (contextKey.empty()) {
@@ -234,23 +230,30 @@ namespace WPEFramework
 
             // Minimal hook for L0 tests (and offline use):
             // Allow injecting a single key/value via env vars without requiring real websocket traffic.
-            // Format:
-            //   APPGATEWAY_TEST_CONN_ID=410
-            //   APPGATEWAY_TEST_CTX_KEY=header.user-agent
-            //   APPGATEWAY_TEST_CTX_VALUE=UA/1.0
             const char* envConn = std::getenv("APPGATEWAY_TEST_CONN_ID");
             const char* envKey  = std::getenv("APPGATEWAY_TEST_CTX_KEY");
             const char* envVal  = std::getenv("APPGATEWAY_TEST_CTX_VALUE");
 
-            if (envConn != nullptr && envKey != nullptr && envVal != nullptr) {
-                const uint32_t configuredConn = static_cast<uint32_t>(std::strtoul(envConn, nullptr, 10));
-                if (configuredConn == connectionId) {
-                    if (contextKey == envKey) {
-                        contextValue = envVal;
-                        return Core::ERROR_NONE;
-                    }
+            // If any env var is set, enforce strict behavior against that injected record only.
+            // This makes L0 deterministic and prevents returning ERROR_NONE for unknown keys/connections.
+            if ((envConn != nullptr && *envConn != '\0') ||
+                (envKey  != nullptr && *envKey  != '\0') ||
+                (envVal  != nullptr && *envVal  != '\0')) {
+
+                if (envConn == nullptr || envKey == nullptr || envVal == nullptr ||
+                    *envConn == '\0' || *envKey == '\0') {
                     return Core::ERROR_BAD_REQUEST;
                 }
+
+                const uint32_t configuredConn = static_cast<uint32_t>(std::strtoul(envConn, nullptr, 10));
+                if (configuredConn != connectionId) {
+                    return Core::ERROR_BAD_REQUEST;
+                }
+                if (contextKey != envKey) {
+                    return Core::ERROR_BAD_REQUEST;
+                }
+                contextValue = envVal;
+                return Core::ERROR_NONE;
             }
 
             // No registry available in this isolated build.
