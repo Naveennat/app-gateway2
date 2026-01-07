@@ -15,6 +15,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+cmake_minimum_required(VERSION 3.16)
+
+# This plugin is configured as a standalone project by repo build scripts.
+# Add a local project() to avoid CMake dev warnings and hard-errors in newer CMake.
+project(WPEFrameworkAppGateway LANGUAGES CXX)
+
 set(PLUGIN_NAME AppGateway)
 set(MODULE_NAME ${NAMESPACE}${PLUGIN_NAME})
 
