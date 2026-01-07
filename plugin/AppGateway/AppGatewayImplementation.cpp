@@ -598,7 +598,20 @@ namespace WPEFramework
         }
 
         uint32_t AppGatewayImplementation::ProcessComRpcRequest(const Context &context, const string& alias, const string& method, const string& params, const string& origin, string &resolution) {
-            uint32_t result = Core::ERROR_GENERAL;
+            // L0/offline determinism:
+            // ----------------------
+            // The L0 harness runs without a full Thunder host and without other plugins providing
+            // COM-RPC handlers. If we attempt COM-RPC dispatch, it will either fail unpredictably
+            // or force dependencies that L0 explicitly avoids.
+            //
+            // When APPGATEWAY_L0_DISABLE_COMRPC is set, short-circuit with a deterministic
+            // "unavailable" response.
+            const char* disableComRpc = std::getenv("APPGATEWAY_L0_DISABLE_COMRPC");
+            if (disableComRpc != nullptr && *disableComRpc != '\0' && *disableComRpc != '0') {
+                LOGINFO("COM-RPC disabled for L0; rejecting COM-RPC request alias=%s method=%s", alias.c_str(), method.c_str());
+                ErrorUtils::NotAvailable(resolution);
+                return Core::ERROR_UNAVAILABLE;
+            }
 
             if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
                 LOGWARN("ProcessComRpcRequest called during shutdown; dropping");
@@ -612,21 +625,29 @@ namespace WPEFramework
                 return Core::ERROR_UNAVAILABLE;
             }
 
+            uint32_t result = Core::ERROR_UNAVAILABLE;
+
             Exchange::IAppGatewayRequestHandler *requestHandler = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(alias);
             if (requestHandler != nullptr) {
                 std::string finalParams = UpdateContext(context, method, params, origin, true);
-                if (Core::ERROR_NONE != requestHandler->HandleAppGatewayRequest(context, method, finalParams, resolution)) {
-                    LOGERR("HandleAppGatewayRequest failed for callsign: %s", alias.c_str());
-                    if (resolution.empty()){
+
+                const uint32_t hr = requestHandler->HandleAppGatewayRequest(context, method, finalParams, resolution);
+                if (hr != Core::ERROR_NONE) {
+                    LOGERR("HandleAppGatewayRequest failed for callsign: %s (hr=%u)", alias.c_str(), hr);
+                    if (resolution.empty()) {
                         ErrorUtils::CustomInternal("HandleAppGatewayRequest failed", resolution);
                     }
+                    result = hr;
                 } else {
                     result = Core::ERROR_NONE;
                 }
+
                 requestHandler->Release();
             } else {
-                LOGERR("Bad configuration %s Not available with COM RPC", alias.c_str());
+                // Missing handler: treat as unavailable in this environment.
+                LOGERR("RequestHandler not available for callsign: %s (COM-RPC)", alias.c_str());
                 ErrorUtils::NotAvailable(resolution);
+                result = Core::ERROR_UNAVAILABLE;
             }
 
             return result;

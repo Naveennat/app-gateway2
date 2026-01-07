@@ -22,6 +22,7 @@
 
 #include <mutex>
 #include <map>
+#include <unordered_map>
 
 using namespace WPEFramework;
 
@@ -197,8 +198,9 @@ class ErrorUtils {
     }
 
     static void NotPermitted(string& resolution) {
-        // Map NotPermitted -> Core privilege/denied error.
-        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_PRIVILEGED_REQUEST, "NotPermitted");
+        // Map NotPermitted -> Thunder "privileged request" error.
+        // NOTE: Thunder spells this constant as ERROR_PRIVILIGED_REQUEST (legacy spelling).
+        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_PRIVILIGED_REQUEST, "NotPermitted");
     }
 
     static void GrantDenied(string& resolution) {
@@ -222,11 +224,13 @@ class ErrorUtils {
     }
 
     static void CustomInternal(const string& message, string& resolution) {
-        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_BAD_REQUEST, message);
+        // "Internal error" should not be reported as a client-side bad request.
+        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_GENERAL, message);
     }
 
     static void CustomBadRequest(const string& message, string& resolution) {
-        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_INVALID_SIGNATURE, message);
+        // Use the canonical Thunder bad request code.
+        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_BAD_REQUEST, message);
     }
 
     static void CustomBadMethod(const string& message, string& resolution) {

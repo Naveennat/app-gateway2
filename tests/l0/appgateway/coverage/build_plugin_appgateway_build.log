@@ -1,5 +1,12 @@
-[0/1] Install the project...
--- Install configuration: "Debug"
--- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
--- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json
--- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/../etc/WPEFramework/plugins/AppGateway.json
+[1/3] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp
+In file included from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:30:
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp: In member function ‘WPEFramework::Core::hresult WPEFramework::Plugin::AppGatewayImplementation::FetchResolvedData(const WPEFramework::Plugin::Context&, const string&, const string&, const string&, string&)’:
+/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers/UtilsFirebolt.h:28:29: error: expected unqualified-id before ‘(’ token
+   28 | #define ERROR_NOT_SUPPORTED (-50100)
+      |                             ^
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:513:30: note: in expansion of macro ‘ERROR_NOT_SUPPORTED’
+  513 |                 return Core::ERROR_NOT_SUPPORTED;
+      |                              ^~~~~~~~~~~~~~~~~~~
+ninja: build stopped: subcommand failed.

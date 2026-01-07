@@ -1,0 +1,1 @@
+6:/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers/UtilsFirebolt.h:28:29: error: expected unqualified-id before ‘(’ token
