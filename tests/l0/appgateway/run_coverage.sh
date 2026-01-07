@@ -199,12 +199,27 @@ APPGATEWAY_L0_DISABLE_COMRPC=1 \
 
 log_section "Generate coverage"
 INFO_FILE="${COVERAGE_DIR}/coverage.info"
+FILTERED_INFO_FILE="${COVERAGE_DIR}/coverage.filtered.info"
 HTML_DIR="${COVERAGE_DIR}/html"
 
+# Capture everything produced by the build directory first, then strictly filter the report
+# to only the requested source roots.
 lcov -c -o "${INFO_FILE}" -d "${BUILD_DIR}" --ignore-errors empty
+
+# Restrict coverage to:
+#   - app-gateway2/plugin/AppGateway/**
+#   - app-gateway2/helpers/**
+# and exclude everything else (including SDK/vendor/framework/system headers).
+lcov -e "${INFO_FILE}" \
+  "${ROOT}/plugin/AppGateway/*" \
+  "${ROOT}/plugin/AppGateway/**" \
+  "${ROOT}/helpers/*" \
+  "${ROOT}/helpers/**" \
+  -o "${FILTERED_INFO_FILE}" --ignore-errors unused
+
 rm -rf "${HTML_DIR}"
 mkdir -p "${HTML_DIR}"
-genhtml -o "${HTML_DIR}" "${INFO_FILE}"
+genhtml -o "${HTML_DIR}" "${FILTERED_INFO_FILE}"
 
 log_section "Done"
 echo "${HTML_DIR}/index.html"
