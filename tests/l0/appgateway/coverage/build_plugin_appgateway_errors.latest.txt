@@ -1,1 +1,1 @@
-5:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:183:23: error: ‘Sleep’ is not a member of ‘WPEFramework::Core’
+6:/home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers/UtilsFirebolt.h:28:29: error: expected unqualified-id before ‘(’ token
