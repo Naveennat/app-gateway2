@@ -234,12 +234,14 @@ namespace WPEFramework
             const char* envKey  = std::getenv("APPGATEWAY_TEST_CTX_KEY");
             const char* envVal  = std::getenv("APPGATEWAY_TEST_CTX_VALUE");
 
-            // If any env var is set, enforce strict behavior against that injected record only.
-            // This makes L0 deterministic and prevents returning ERROR_NONE for unknown keys/connections.
-            if ((envConn != nullptr && *envConn != '\0') ||
+            const bool anyEnvSet =
+                (envConn != nullptr && *envConn != '\0') ||
                 (envKey  != nullptr && *envKey  != '\0') ||
-                (envVal  != nullptr && *envVal  != '\0')) {
+                (envVal  != nullptr && *envVal  != '\0');
 
+            // If any env var is set, enforce strict behavior against that injected record only.
+            // This makes L0 deterministic and ensures unknown keys/connections produce BAD_REQUEST.
+            if (anyEnvSet) {
                 if (envConn == nullptr || envKey == nullptr || envVal == nullptr ||
                     *envConn == '\0' || *envKey == '\0') {
                     return Core::ERROR_BAD_REQUEST;
@@ -252,11 +254,13 @@ namespace WPEFramework
                 if (contextKey != envKey) {
                     return Core::ERROR_BAD_REQUEST;
                 }
+
                 contextValue = envVal;
                 return Core::ERROR_NONE;
             }
 
-            // No registry available in this isolated build; be strict per API contract.
+            // In this isolated build we do not maintain a full connection context registry,
+            // so be strict per API contract.
             return Core::ERROR_BAD_REQUEST;
         }
 
