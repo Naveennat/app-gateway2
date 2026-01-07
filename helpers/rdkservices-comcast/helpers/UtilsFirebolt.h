@@ -25,13 +25,21 @@
 
 using namespace WPEFramework;
 
-#define ERROR_NOT_SUPPORTED (-50100)
-#define ERROR_NOT_AVAILABLE (-50200)
-#define ERROR_NOT_PERMITTED (-40300)
-#define ERROR_GRANT_DENIED (-40400)
-#define ERROR_UNGRANTED (-40401)
-#define ERROR_APP_NOT_IN_ACTIVE_STATE (-40402)
-#define ERROR_GRANT_PROVIDER_MISSING (-40403)
+/**
+ * Firebolt JSON-RPC error codes.
+ *
+ * IMPORTANT:
+ * Do NOT use generic macro names like ERROR_NOT_SUPPORTED because they collide with
+ * Thunder's Core::ERROR_NOT_SUPPORTED enum constant (and similar), breaking builds via
+ * macro expansion (e.g., Core::ERROR_NOT_SUPPORTED => Core::(-50100)).
+ */
+#define FIREBOLT_ERROR_NOT_SUPPORTED (-50100)
+#define FIREBOLT_ERROR_NOT_AVAILABLE (-50200)
+#define FIREBOLT_ERROR_NOT_PERMITTED (-40300)
+#define FIREBOLT_ERROR_GRANT_DENIED (-40400)
+#define FIREBOLT_ERROR_UNGRANTED (-40401)
+#define FIREBOLT_ERROR_APP_NOT_IN_ACTIVE_STATE (-40402)
+#define FIREBOLT_ERROR_GRANT_PROVIDER_MISSING (-40403)
 
 class JListenRequest: public Core::JSON::Container {
     public:
@@ -142,31 +150,31 @@ class ErrorUtils {
         Core::JSONRPC::Message::Info info;
         switch (error) {
             case FireboltError::NOT_SUPPORTED:
-                info.Code = ERROR_NOT_SUPPORTED;
+                info.Code = FIREBOLT_ERROR_NOT_SUPPORTED;
                 info.Text = "NotSupported";
                 break;
             case FireboltError::NOT_AVAILABLE:
-                info.Code = ERROR_NOT_AVAILABLE;
+                info.Code = FIREBOLT_ERROR_NOT_AVAILABLE;
                 info.Text = "NotAvailable";
                 break;
             case FireboltError::NOT_PERMITTED:
-                info.Code = ERROR_NOT_PERMITTED;
+                info.Code = FIREBOLT_ERROR_NOT_PERMITTED;
                 info.Text = "NotPermitted";
                 break;
             case FireboltError::GRANT_DENIED:
-                info.Code = ERROR_GRANT_DENIED;
+                info.Code = FIREBOLT_ERROR_GRANT_DENIED;
                 info.Text = "GrantDenied";
                 break;
             case FireboltError::UNGRANTED:
-                info.Code = ERROR_UNGRANTED;
+                info.Code = FIREBOLT_ERROR_UNGRANTED;
                 info.Text = "Ungranted";
                 break;
             case FireboltError::APP_NOT_IN_ACTIVE_STATE:
-                info.Code = ERROR_APP_NOT_IN_ACTIVE_STATE;
+                info.Code = FIREBOLT_ERROR_APP_NOT_IN_ACTIVE_STATE;
                 info.Text = "AppNotInActiveState";
                 break;
             case FireboltError::GRANT_PROVIDER_MISSING:
-                info.Code = ERROR_GRANT_PROVIDER_MISSING;
+                info.Code = FIREBOLT_ERROR_GRANT_PROVIDER_MISSING;
                 info.Text = "GrantProviderMissing";
                 break;
             default:
