@@ -22,15 +22,26 @@ namespace PluginHost {
 
 /**
  * Minimal dispatcher interface marker used by BEGIN_INTERFACE_MAP / INTERFACE_ENTRY in plugins.
- * In real Thunder this interface exposes Invoke/Exists/etc; for compilation we only need a type.
+ *
+ * In real Thunder this interface exposes Invoke/Exists/etc. For the isolated L0 build we only
+ * need a type that participates in the interface map and can act as a base for JSONRPC.
  */
-struct IDispatcher : virtual public Core::IUnknown {
+struct IDispatcherShim : virtual public Core::IUnknown {
     enum { ID = 0xFFFFFFFF };
 };
 
-// Compatibility alias: upstream Thunder uses PluginHost::IDispatcher.
-using IDispatcher = IDispatcher;
+/**
+ * PUBLIC_INTERFACE
+ * Compatibility type name: upstream Thunder uses PluginHost::IDispatcher.
+ */
+using IDispatcher = IDispatcherShim;
 
+/**
+ * Minimal JSONRPC class compatible with the small subset of APIs used by AppGateway:
+ *  - Register(method, lambda)
+ *  - Unregister(method)
+ *  - Method(method)->Exists(method)
+ */
 class JSONRPC : public IDispatcher {
 public:
     JSONRPC() = default;

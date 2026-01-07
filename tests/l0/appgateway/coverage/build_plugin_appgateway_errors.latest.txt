@@ -1,5 +1,14 @@
-7:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
-17:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
-26:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
-40:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
-54:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
+8:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:70:41: error: ‘WPEFramework::PluginHost::IDispatcher’ has not been declared
+11:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:70:41: error: ‘IDispatcher’ in namespace ‘WPEFramework::PluginHost’ does not name a type
+14:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:70:13: error: expected ‘>’ before ‘*’ token
+17:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:70:13: error: expected ‘(’ before ‘*’ token
+18:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:70:13: error: expected primary-expression before ‘>’ token
+21:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.h:70:13: error: expected ‘)’ before ‘;’ token
+28:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:35:20: error: ‘Metadata’ in namespace ‘WPEFramework::Plugin’ does not name a template type
+31:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:37:11: error: expected unqualified-id before ‘,’ token
+34:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:37:13: error: expected unqualified-id before ‘{’ token
+37:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:37:15: error: expected unqualified-id before ‘,’ token
+40:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:37:17: error: expected unqualified-id before ‘{’ token
+43:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:38:5: error: expected unqualified-id before ‘)’ token
+47:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:350:35: error: ‘class WPEFramework::Plugin::AppGateway’ has no member named ‘Method’
+51:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGateway.cpp:460:35: error: ‘class WPEFramework::Plugin::AppGateway’ has no member named ‘Method’

@@ -33,6 +33,12 @@
 #include <plugins/JSONRPC.h>
 #endif
 
+#if !defined(APPGATEWAY_L0_TEST) && !defined(APPGW_L0_TEST) && !defined(L0TEST)
+// Some build modes rely on include side-effects for these types; be explicit to avoid
+// compilation differences between the full Thunder SDK and the repo-local L0 shim.
+#include <plugins/IDispatcher.h>
+#endif
+
 #include <interfaces/IAppGateway.h>
 
 namespace WPEFramework {
