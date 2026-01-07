@@ -260,8 +260,12 @@ namespace WPEFramework
                     return Core::ERROR_BAD_REQUEST;
                 }
 
-                contextValue = envVal;
-                return Core::ERROR_NONE;
+                if (strlen(envVal) > 0) {
+                    contextValue = envVal;
+                    return Core::ERROR_NONE;
+                } else {
+                    return Core::ERROR_BAD_REQUEST;
+                }
             }
 
             // No env injection configured: in this isolated build we do not maintain a full connection
