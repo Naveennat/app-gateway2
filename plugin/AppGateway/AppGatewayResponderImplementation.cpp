@@ -223,6 +223,7 @@ namespace WPEFramework
             // L0 / API contract:
             // - Return ERROR_NONE and fill contextValue when key exists for the connection.
             // - Return ERROR_BAD_REQUEST when the connection is unknown or the key is not present.
+            // - Keep behavior deterministic and offline for tests.
             contextValue.clear();
 
             if (contextKey.empty()) {
@@ -231,6 +232,10 @@ namespace WPEFramework
 
             // Minimal hook for L0 tests (and offline use):
             // Allow injecting a single key/value via env vars without requiring real websocket traffic.
+            //
+            // Contract: if env injection is configured for a specific (connId,key), then:
+            //   - exact match => ERROR_NONE and value returned
+            //   - any other connId/key => ERROR_BAD_REQUEST
             const char* envConn = std::getenv("APPGATEWAY_TEST_CONN_ID");
             const char* envKey  = std::getenv("APPGATEWAY_TEST_CTX_KEY");
             const char* envVal  = std::getenv("APPGATEWAY_TEST_CTX_VALUE");
@@ -240,9 +245,8 @@ namespace WPEFramework
                 (envKey  != nullptr && *envKey  != '\0') ||
                 (envVal  != nullptr && *envVal  != '\0');
 
-            // If any env var is set, enforce strict behavior against that injected record only.
-            // This makes L0 deterministic and ensures unknown keys/connections produce BAD_REQUEST.
             if (anyEnvSet) {
+                // If any are set, require a complete, well-formed triple.
                 if (envConn == nullptr || envKey == nullptr || envVal == nullptr ||
                     *envConn == '\0' || *envKey == '\0') {
                     return Core::ERROR_BAD_REQUEST;
@@ -260,8 +264,8 @@ namespace WPEFramework
                 return Core::ERROR_NONE;
             }
 
-            // In this isolated build we do not maintain a full connection context registry,
-            // so be strict per API contract.
+            // No env injection configured: in this isolated build we do not maintain a full connection
+            // context registry. Be strict per API contract.
             return Core::ERROR_BAD_REQUEST;
         }
 

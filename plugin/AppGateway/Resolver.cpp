@@ -246,6 +246,10 @@ namespace WPEFramework
             // In production this alias would point at a real Thunder callsign/method, but in
             // this repo's isolated harness there is no such dispatcher. Short-circuiting here
             // ensures *all* call paths (including alias-mapped ones) remain offline and stable.
+            //
+            // IMPORTANT:
+            // Some paths parse the alias into callsign="dummy" and pluginMethod="method".
+            // Guard that as well, otherwise JSONRPCDirectLink will try to dispatch and fail.
             if (StringUtils::toLower(alias) == "dummy.method") {
                 response = "null";
                 return Core::ERROR_NONE;
@@ -266,6 +270,13 @@ namespace WPEFramework
 
             // Parse the alias to extract callsign and method
             ParseAlias(alias, callsign, pluginMethod);
+
+            // L0 determinism (additional guard):
+            // If alias parses into callsign "dummy" (e.g. alias "dummy.method"), keep it offline.
+            if (StringUtils::toLower(callsign) == "dummy") {
+                response = "null";
+                return Core::ERROR_NONE;
+            }
 
             if (callsign.empty()) {
                 LOGERR("Failed to parse callsign from alias: %s", alias.c_str());
