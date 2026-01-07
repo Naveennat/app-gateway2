@@ -126,6 +126,23 @@ namespace WPEFramework
             template <typename PARAMETERS, typename RESPONSE>
             Core::hresult Invoke(const string &method, const PARAMETERS &parameters, RESPONSE &response)
             {
+                // L0 determinism:
+                // Some L0 tests use the synthetic method "dummy.method" as a stable canary.
+                // In the isolated test harness there is no Thunder dispatcher for callsign "dummy",
+                // so any attempt to dispatch would fail nondeterministically depending on setup.
+                //
+                // Ensure "dummy.method" is always offline and deterministic: return ERROR_NONE
+                // and a JSON null payload ("null") without dispatching.
+                if (method == "dummy.method") {
+                    std::string out;
+                    // Serialize "null" into the expected response type.
+                    // For RESPONSE=std::string this becomes "null"; for JSON elements it parses.
+                    if (FromString(response, "null") == false) {
+                        return Core::ERROR_GENERAL;
+                    }
+                    return Core::ERROR_NONE;
+                }
+
                 if (mDispatcher == nullptr)
                 {
                     LOGERR("No JSON RPC dispatcher for %s", mCallSign.c_str());

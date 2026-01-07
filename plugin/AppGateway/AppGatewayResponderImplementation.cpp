@@ -18,6 +18,7 @@
  **/
 
 #include <string>
+#include <cstdlib>
 #include <plugins/JSONRPC.h>
 #include <plugins/IShell.h>
 #include "AppGatewayResponderImplementation.h"
