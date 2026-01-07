@@ -441,15 +441,13 @@ namespace L0Test {
             //   1) Parse an outer object { "root": "<string>" }
             //   2) If "root" is set, parse the *string contents* as another JSON object
             //
-            // In this L0 harness we always run in-proc and do not need out-of-process root
-            // configuration. Returning a "root" string can trigger a second parse and can
-            // fail depending on Thunder JSON implementation details, causing cascading
-            // plugin initialization failures.
+            // Some Thunder builds treat the "root" key as required in the first parse; returning
+            // "{}" can produce parsing errors like:
+            //   Expected new element, "}" found. At character 2: {}
             //
-            // Therefore, return a valid empty JSON object and do not set "root" at all.
-            // This prevents RootConfig from attempting the nested parse and stabilizes
-            // AppGateway::Initialize() for the offline tests.
-            return "{}";
+            // Provide the expected wrapper with a stable empty JSON object as the nested config.
+            // This keeps RootConfig quiet and deterministic even if any code path touches Root().
+            return "{\"root\":\"{}\"}";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 

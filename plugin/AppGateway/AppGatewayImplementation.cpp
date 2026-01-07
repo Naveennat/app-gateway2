@@ -495,14 +495,6 @@ namespace WPEFramework
             // This avoids spurious JSON parsing warnings and aligns with tests that send params as "" or "{}".
             const string normalizedParams = params.empty() ? "{}" : params;
 
-            // L0 determinism:
-            // The L0 suite relies on `dummy.method` resolving offline without invoking Thunder/COM-RPC.
-            // In production this method does not exist; in L0 it is used as a stable canary.
-            if (StringUtils::toLower(method) == "dummy.method") {
-                resolution = "null";
-                return Core::ERROR_NONE;
-            }
-
             // Resolve the alias from the method
             std::string alias = mResolverPtr->ResolveAlias(method);
 
@@ -521,12 +513,12 @@ namespace WPEFramework
                     if (Core::ERROR_NONE != mAuthenticator->CheckPermissionGroup(context.appId, permissionGroup, allowed)) {
                         LOGERR("Failed to check permission group '%s' for appId '%s'", permissionGroup.c_str(), context.appId.c_str());
                         ErrorUtils::NotPermitted(resolution);
-                        return Core::ERROR_GENERAL;
+                        return Core::ERROR_PRIVILIGED_REQUEST;
                     }
                     if (!allowed) {
                         LOGERR("AppId '%s' not allowed in permission group '%s'", context.appId.c_str(), permissionGroup.c_str());
                         ErrorUtils::NotPermitted(resolution);
-                        return Core::ERROR_GENERAL;
+                        return Core::ERROR_PRIVILIGED_REQUEST;
                     }
                 }
             }

@@ -25,6 +25,8 @@
 
 #include <core/JSON.h>
 
+#include <cstdlib>
+
 #define API_VERSION_NUMBER_MAJOR    APPGATEWAY_MAJOR_VERSION
 #define API_VERSION_NUMBER_MINOR    APPGATEWAY_MINOR_VERSION
 #define API_VERSION_NUMBER_PATCH    APPGATEWAY_PATCH_VERSION
@@ -368,21 +370,36 @@ namespace Plugin {
 
         LOGINFO("AppGateway::Initialize: PID=%u", getpid());
 
-        // Robust interface acquisition: Ensure failures can't cause crash/partial init
+        // Robust interface acquisition: Ensure failures can't cause crash/partial init.
         //
-        // L0 harness behavior note:
-        // Some isolated/offline test harnesses provide in-proc fake implementations via
-        // IShell::QueryInterface(), while IShell::Root() can fail depending on the
-        // underlying Thunder RootConfig parsing and process/COM setup.
+        // L0 determinism:
+        // The L0 runner exports APPGATEWAY_L0_DISABLE_COMRPC=1. In that mode we must NOT take the
+        // IShell::Root() path because it can:
+        //   - trigger Thunder RootConfig parsing (noisy parse errors in the harness)
+        //   - instantiate the real responder implementation (websocket/RPC), which breaks L0 isolation
         //
-        // Therefore: try Root() first (production path), then fall back to QueryInterface()
-        // for deterministic offline tests.
-        mAppGateway = service->Root<Exchange::IAppGatewayResolver>(mConnectionId, 2000, _T("AppGatewayImplementation"));
-        if (mAppGateway == nullptr) {
+        // Therefore:
+        //   - In L0 mode: use QueryInterface() only (ServiceMock serves cached fakes)
+        //   - Otherwise: prefer Root() (production), with QueryInterface() fallback
+        const auto isL0Mode = []() -> bool {
+            const char* v = std::getenv("APPGATEWAY_L0_DISABLE_COMRPC");
+            return (v != nullptr && *v != '\0' && *v != '0');
+        }();
+
+        if (isL0Mode) {
             void* qi = service->QueryInterface(Exchange::IAppGatewayResolver::ID);
             if (qi != nullptr) {
                 mAppGateway = reinterpret_cast<Exchange::IAppGatewayResolver*>(qi);
-                LOGINFO("AppGateway::Initialize: Root(IAppGatewayResolver) failed; using IShell::QueryInterface fallback");
+                LOGINFO("AppGateway::Initialize(L0): using IShell::QueryInterface resolver fake");
+            }
+        } else {
+            mAppGateway = service->Root<Exchange::IAppGatewayResolver>(mConnectionId, 2000, _T("AppGatewayImplementation"));
+            if (mAppGateway == nullptr) {
+                void* qi = service->QueryInterface(Exchange::IAppGatewayResolver::ID);
+                if (qi != nullptr) {
+                    mAppGateway = reinterpret_cast<Exchange::IAppGatewayResolver*>(qi);
+                    LOGINFO("AppGateway::Initialize: Root(IAppGatewayResolver) failed; using IShell::QueryInterface fallback");
+                }
             }
         }
 
@@ -410,12 +427,20 @@ namespace Plugin {
             mAppGateway = nullptr;
         }
 
-        mResponder = service->Root<Exchange::IAppGatewayResponder>(mConnectionId, 2000, _T("AppGatewayResponderImplementation"));
-        if (mResponder == nullptr) {
+        if (isL0Mode) {
             void* qi = service->QueryInterface(Exchange::IAppGatewayResponder::ID);
             if (qi != nullptr) {
                 mResponder = reinterpret_cast<Exchange::IAppGatewayResponder*>(qi);
-                LOGINFO("AppGateway::Initialize: Root(IAppGatewayResponder) failed; using IShell::QueryInterface fallback");
+                LOGINFO("AppGateway::Initialize(L0): using IShell::QueryInterface responder fake");
+            }
+        } else {
+            mResponder = service->Root<Exchange::IAppGatewayResponder>(mConnectionId, 2000, _T("AppGatewayResponderImplementation"));
+            if (mResponder == nullptr) {
+                void* qi = service->QueryInterface(Exchange::IAppGatewayResponder::ID);
+                if (qi != nullptr) {
+                    mResponder = reinterpret_cast<Exchange::IAppGatewayResponder*>(qi);
+                    LOGINFO("AppGateway::Initialize: Root(IAppGatewayResponder) failed; using IShell::QueryInterface fallback");
+                }
             }
         }
 
