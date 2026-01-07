@@ -91,14 +91,22 @@ else()
     message(WARNING "AppGateway l0test: interfaces/IAppGateway.h not found locally at ${APPGW_LOCAL_IFACE_HEADER} nor installed at ${APPGW_INSTALLED_IFACE_HEADER}. Building may fail; ensure a stub exists under app-gateway2/interfaces or adjust PREFIX/CMAKE_PREFIX_PATH.")
 endif()
 
-target_include_directories(appgateway_l0test PRIVATE
+# IMPORTANT:
+# Prefer local shim headers (plugins/*, core/*, com/*, interfaces/*) over SDK ones.
+# This prevents the build from accidentally including SDK headers that drag in heavy
+# websocket/messaging subsystems not needed for L0.
+target_include_directories(appgateway_l0test BEFORE PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}                                               # this folder (ServiceMock.h, ContextUtils.h, etc.)
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../                                   # repo root (so <interfaces/...> resolves)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../                                   # repo root (so <interfaces/...>, <plugins/...>, <core/...>, <com/...> resolve)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../plugin/AppGateway                  # Plugin headers (read-only, no sources copied into tests)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../helpers                           # helpers under app-gateway2 (as needed by test harness)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../helpers/rdkservices-comcast/helpers # provides UtilsLogging.h + StringUtils.h (required by plugin headers)
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces                        # repo interface stubs
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../../interfaces/json
+)
+
+# SDK include paths come AFTER local shims.
+target_include_directories(appgateway_l0test PRIVATE
     ${PREFIX}/include
     ${PREFIX}/include/WPEFramework
 )

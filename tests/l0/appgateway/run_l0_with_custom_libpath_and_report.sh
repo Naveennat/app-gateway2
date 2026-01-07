@@ -26,6 +26,9 @@ L0_SCRIPT="${BASE_DIR}/run_coverage.sh"
 LOG_FILE="${BASE_DIR}/l0_run_full.log"
 SUMMARY_FILE="${BASE_DIR}/l0_run_summary.txt"
 
+# Ensure artifacts and build directories are tied to the same per-run timestamp.
+export RUN_ID="${RUN_ID:-$(date -u +%Y%m%dT%H%M%SZ)}"
+
 echo "Running L0 tests with LD_LIBRARY_PATH: $LD_LIBRARY_PATH" > "$SUMMARY_FILE"
 echo "Invoking L0 test runner..." | tee -a "$SUMMARY_FILE"
 

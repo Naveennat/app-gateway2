@@ -21,6 +21,16 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"  # -> app-gateway2
 
+# --- L0 ARTIFACTS (per-run) ---
+# Each invocation must create a new artifacts directory and update LATEST_RUN.txt.
+ARTIFACTS_ROOT="${ROOT}/tests/l0/appgateway/artifacts"
+RUN_ID="${RUN_ID:-$(date -u +%Y%m%dT%H%M%SZ)}"
+RUN_ARTIFACTS_DIR="${ARTIFACTS_ROOT}/run_${RUN_ID}"
+LATEST_RUN_FILE="${ARTIFACTS_ROOT}/LATEST_RUN.txt"
+
+mkdir -p "${RUN_ARTIFACTS_DIR}"
+printf "run_%s\n" "${RUN_ID}" > "${LATEST_RUN_FILE}"
+
 DEPS_LIB="${ROOT}/dependencies/install/lib"
 PLUGINS_LIB="${DEPS_LIB}/plugins"
 # Vendored SDK layout includes lib/wpeframework (proxystubs) but may not include lib/wpeframework/plugins.
@@ -51,7 +61,8 @@ TEST_SRC_DIR="${ROOT}/tests/l0/appgateway/l0test"
 #   ${ROOT}/build/tests_l0_appgateway_runs/${RUN_ID}
 # and maintain a symlink:
 #   ${ROOT}/build/tests_l0_appgateway -> ${ROOT}/build/tests_l0_appgateway_runs/${RUN_ID}
-RUN_ID="${RUN_ID:-$(date -u +%Y%m%dT%H%M%SZ)}"
+#
+# NOTE: RUN_ID is defined earlier to also drive artifacts/run_<RUN_ID>.
 BUILD_DIR_PARENT="${ROOT}/build/tests_l0_appgateway_runs"
 BUILD_DIR="${BUILD_DIR_PARENT}/${RUN_ID}"
 STABLE_BUILD_DIR="${ROOT}/build/tests_l0_appgateway"
@@ -157,6 +168,11 @@ else
   rm -f "${STABLE_BUILD_DIR}" 2>/dev/null || true
 fi
 ln -s "${BUILD_DIR}" "${STABLE_BUILD_DIR}"
+
+# Snapshot build-dir pointer for this run (helps debugging and report linkage)
+mkdir -p "${RUN_ARTIFACTS_DIR}/build_dir_snapshot"
+printf "%s\n" "${BUILD_DIR}" > "${RUN_ARTIFACTS_DIR}/build_dir_snapshot/BUILD_DIR.txt"
+printf "%s\n" "${STABLE_BUILD_DIR}" > "${RUN_ARTIFACTS_DIR}/build_dir_snapshot/STABLE_BUILD_DIR.txt"
 
 log_section "Prepare Real-plugin link path (optional)"
 if [[ -f "${APPGATEWAY_PLUGIN_SO}" ]]; then
