@@ -49,7 +49,7 @@ namespace Plugin {
          */
 
         // PUBLIC_INTERFACE
-        std::vector<string> GetPermissions(const string& appId);
+        std::vector<std::string> GetPermissions(const std::string& appId);
         /** Get permissions for the specified appId.
          * Thread-safe. Returns a copy of the stored permissions vector.
          * @param appId Application identifier string.
@@ -57,7 +57,7 @@ namespace Plugin {
          */
 
         // PUBLIC_INTERFACE
-        void UpdateCache(const string& appId, const std::vector<string>& permissions);
+        void UpdateCache(const std::string& appId, const std::vector<std::string>& permissions);
         /** Replace the cached permissions for appId with the provided list.
          * Thread-safe. Overwrites any existing entry in memory and performs an idempotent,
          * atomic on-disk update:
@@ -69,7 +69,7 @@ namespace Plugin {
          */
 
         // PUBLIC_INTERFACE
-        void Invalidate(const string& appId);
+        void Invalidate(const std::string& appId);
         /** Remove any cached permissions for appId.
          * Thread-safe. No-op if appId is not present.
          * @param appId Application identifier string.
@@ -82,7 +82,7 @@ namespace Plugin {
          */
 
         // PUBLIC_INTERFACE
-        bool Has(const string& appId) const;
+        bool Has(const std::string& appId) const;
         /** Check if cache contains an entry for appId.
          * Thread-safe.
          * @param appId Application identifier string.
@@ -104,7 +104,7 @@ namespace Plugin {
         // mutable to allow locking in const methods
         mutable std::mutex _admin;
         // In-memory cache; updates are performed only from non-const methods after acquiring the lock
-        std::map<string, std::vector<string>> _cache;
+        std::map<std::string, std::vector<std::string>> _cache;
     };
 
 } // namespace Plugin

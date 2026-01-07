@@ -21,12 +21,36 @@ if (NOT DEFINED THUNDER_INCLUDE_DIR)
     set(THUNDER_INCLUDE_DIR "${THUNDER_INSTALL_PATH_ABS}/include/${NAMESPACE}")
 endif()
 
-# Find Thunder libs explicitly
-find_library(THUNDER_CORE_LIB NAMES WPEFrameworkCore HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
-find_library(THUNDER_PLUGINS_LIB NAMES WPEFrameworkPlugins HINTS "${THUNDER_LIBRARY_DIR}" NO_DEFAULT_PATH)
+# Find Thunder libs explicitly.
+# In this repo the Thunder SDK ships versioned shared libraries (e.g. libWPEFrameworkCore.so.1),
+# not unversioned libWPEFrameworkCore.so, so we need to accept the versioned names as well.
+find_library(
+    THUNDER_CORE_LIB
+    NAMES
+        WPEFrameworkCore
+        WPEFrameworkCore.so.1
+        libWPEFrameworkCore.so.1
+        WPEFrameworkCore.so.1.0.0
+        libWPEFrameworkCore.so.1.0.0
+    HINTS "${THUNDER_LIBRARY_DIR}"
+    NO_DEFAULT_PATH
+)
+find_library(
+    THUNDER_PLUGINS_LIB
+    NAMES
+        WPEFrameworkPlugins
+        WPEFrameworkPlugins.so.1
+        libWPEFrameworkPlugins.so.1
+        WPEFrameworkPlugins.so.1.0.0
+        libWPEFrameworkPlugins.so.1.0.0
+    HINTS "${THUNDER_LIBRARY_DIR}"
+    NO_DEFAULT_PATH
+)
 
 if (NOT THUNDER_CORE_LIB OR NOT THUNDER_PLUGINS_LIB)
-    message(FATAL_ERROR "WPEFramework libraries not found in ${THUNDER_LIBRARY_DIR}. Please ensure dependencies are installed.")
+    message(FATAL_ERROR
+        "WPEFramework libraries not found in ${THUNDER_LIBRARY_DIR}. "
+        "Expected versioned libs like libWPEFrameworkCore.so.1 and libWPEFrameworkPlugins.so.1.")
 endif()
 
 # Test executable
