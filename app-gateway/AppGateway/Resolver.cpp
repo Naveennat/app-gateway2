@@ -215,12 +215,30 @@ namespace WPEFramework
                     alias.c_str(), callsign.c_str(), pluginMethod.c_str());
         }
 
+        namespace {
+            // Strip surrounding quotes that may be present when Variant::String()
+            // returns a JSON-encoded string literal (e.g. "\"org.rdk.FbCommon\"").
+            static std::string UnquoteJsonString(const std::string& in)
+            {
+                if (in.size() >= 2) {
+                    const char first = in.front();
+                    const char last = in.back();
+                    if ((first == '"' && last == '"') || (first == '\'' && last == '\'')) {
+                        return in.substr(1, in.size() - 2);
+                    }
+                }
+                return in;
+            }
+        }
+
         std::string Resolver::ExtractStringField(const WPEFramework::Core::JSON::VariantContainer &obj, const char *fieldName)
         {
             WPEFramework::Core::JSON::Variant field = obj[fieldName];
             if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::STRING)
             {
-                return field.String();
+                // Thunder's Core::JSON::Variant::String() can return a JSON-encoded
+                // string literal (including quotes). Normalize to the raw value.
+                return UnquoteJsonString(field.String());
             }
             return "";
         }

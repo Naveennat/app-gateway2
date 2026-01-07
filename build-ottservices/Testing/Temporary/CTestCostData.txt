@@ -1,0 +1,6 @@
+AppGateway.Basic 0 0
+FbCommon.Resolutions 0 0
+OttPermissionCache.Idempotent 2 0.00140822
+---
+AppGateway.Basic
+FbCommon.Resolutions
