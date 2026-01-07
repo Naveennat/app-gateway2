@@ -97,7 +97,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"libs\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"AppGatewayProject\" \"Unspecified\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -185,6 +185,32 @@ WPEFrameworkAppGateway/fast:
 .PHONY : WPEFrameworkAppGateway/fast
 
 #=============================================================================
+# Target rules for targets named WPEFrameworkFbSettings
+
+# Build rule for target.
+WPEFrameworkFbSettings: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WPEFrameworkFbSettings
+.PHONY : WPEFrameworkFbSettings
+
+# fast build rule for target.
+WPEFrameworkFbSettings/fast:
+	$(MAKE) $(MAKESILENT) -f FbSettings/CMakeFiles/WPEFrameworkFbSettings.dir/build.make FbSettings/CMakeFiles/WPEFrameworkFbSettings.dir/build
+.PHONY : WPEFrameworkFbSettings/fast
+
+#=============================================================================
+# Target rules for targets named WPEFrameworkFbCommon
+
+# Build rule for target.
+WPEFrameworkFbCommon: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WPEFrameworkFbCommon
+.PHONY : WPEFrameworkFbCommon
+
+# fast build rule for target.
+WPEFrameworkFbCommon/fast:
+	$(MAKE) $(MAKESILENT) -f FbCommon/CMakeFiles/WPEFrameworkFbCommon.dir/build.make FbCommon/CMakeFiles/WPEFrameworkFbCommon.dir/build
+.PHONY : WPEFrameworkFbCommon/fast
+
+#=============================================================================
 # Target rules for targets named test_appgateway
 
 # Build rule for target.
@@ -196,6 +222,32 @@ test_appgateway: cmake_check_build_system
 test_appgateway/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_appgateway.dir/build.make tests/CMakeFiles/test_appgateway.dir/build
 .PHONY : test_appgateway/fast
+
+#=============================================================================
+# Target rules for targets named test_fbcommon
+
+# Build rule for target.
+test_fbcommon: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_fbcommon
+.PHONY : test_fbcommon
+
+# fast build rule for target.
+test_fbcommon/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_fbcommon.dir/build.make tests/CMakeFiles/test_fbcommon.dir/build
+.PHONY : test_fbcommon/fast
+
+#=============================================================================
+# Target rules for targets named test_ottpermissioncache
+
+# Build rule for target.
+test_ottpermissioncache: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_ottpermissioncache
+.PHONY : test_ottpermissioncache
+
+# fast build rule for target.
+test_ottpermissioncache/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_ottpermissioncache.dir/build.make tests/CMakeFiles/test_ottpermissioncache.dir/build
+.PHONY : test_ottpermissioncache/fast
 
 # Help Target
 help:
@@ -211,7 +263,11 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... WPEFrameworkAppGateway"
+	@echo "... WPEFrameworkFbCommon"
+	@echo "... WPEFrameworkFbSettings"
 	@echo "... test_appgateway"
+	@echo "... test_fbcommon"
+	@echo "... test_ottpermissioncache"
 .PHONY : help
 
 

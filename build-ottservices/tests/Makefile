@@ -97,7 +97,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"libs\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"AppGatewayProject\" \"Unspecified\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -185,6 +185,58 @@ test_appgateway/fast:
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_appgateway.dir/build.make tests/CMakeFiles/test_appgateway.dir/build
 .PHONY : test_appgateway/fast
 
+# Convenience name for target.
+tests/CMakeFiles/test_fbcommon.dir/rule:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_fbcommon.dir/rule
+.PHONY : tests/CMakeFiles/test_fbcommon.dir/rule
+
+# Convenience name for target.
+test_fbcommon: tests/CMakeFiles/test_fbcommon.dir/rule
+.PHONY : test_fbcommon
+
+# fast build rule for target.
+test_fbcommon/fast:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_fbcommon.dir/build.make tests/CMakeFiles/test_fbcommon.dir/build
+.PHONY : test_fbcommon/fast
+
+# Convenience name for target.
+tests/CMakeFiles/test_ottpermissioncache.dir/rule:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_ottpermissioncache.dir/rule
+.PHONY : tests/CMakeFiles/test_ottpermissioncache.dir/rule
+
+# Convenience name for target.
+test_ottpermissioncache: tests/CMakeFiles/test_ottpermissioncache.dir/rule
+.PHONY : test_ottpermissioncache
+
+# fast build rule for target.
+test_ottpermissioncache/fast:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_ottpermissioncache.dir/build.make tests/CMakeFiles/test_ottpermissioncache.dir/build
+.PHONY : test_ottpermissioncache/fast
+
+__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.o: __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.o
+.PHONY : __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.o
+
+# target to build an object file
+__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.o:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_ottpermissioncache.dir/build.make tests/CMakeFiles/test_ottpermissioncache.dir/__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.o
+.PHONY : __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.o
+
+__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.i: __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.i
+.PHONY : __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.i
+
+# target to preprocess a source file
+__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.i:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_ottpermissioncache.dir/build.make tests/CMakeFiles/test_ottpermissioncache.dir/__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.i
+.PHONY : __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.i
+
+__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.s: __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.s
+.PHONY : __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.s
+
+# target to generate assembly for a file
+__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.s:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_ottpermissioncache.dir/build.make tests/CMakeFiles/test_ottpermissioncache.dir/__/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.s
+.PHONY : __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.cpp.s
+
 test_appgateway.o: test_appgateway.cpp.o
 .PHONY : test_appgateway.o
 
@@ -209,6 +261,54 @@ test_appgateway.cpp.s:
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_appgateway.dir/build.make tests/CMakeFiles/test_appgateway.dir/test_appgateway.cpp.s
 .PHONY : test_appgateway.cpp.s
 
+test_fbcommon.o: test_fbcommon.cpp.o
+.PHONY : test_fbcommon.o
+
+# target to build an object file
+test_fbcommon.cpp.o:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_fbcommon.dir/build.make tests/CMakeFiles/test_fbcommon.dir/test_fbcommon.cpp.o
+.PHONY : test_fbcommon.cpp.o
+
+test_fbcommon.i: test_fbcommon.cpp.i
+.PHONY : test_fbcommon.i
+
+# target to preprocess a source file
+test_fbcommon.cpp.i:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_fbcommon.dir/build.make tests/CMakeFiles/test_fbcommon.dir/test_fbcommon.cpp.i
+.PHONY : test_fbcommon.cpp.i
+
+test_fbcommon.s: test_fbcommon.cpp.s
+.PHONY : test_fbcommon.s
+
+# target to generate assembly for a file
+test_fbcommon.cpp.s:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_fbcommon.dir/build.make tests/CMakeFiles/test_fbcommon.dir/test_fbcommon.cpp.s
+.PHONY : test_fbcommon.cpp.s
+
+test_ottpermissioncache.o: test_ottpermissioncache.cpp.o
+.PHONY : test_ottpermissioncache.o
+
+# target to build an object file
+test_ottpermissioncache.cpp.o:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_ottpermissioncache.dir/build.make tests/CMakeFiles/test_ottpermissioncache.dir/test_ottpermissioncache.cpp.o
+.PHONY : test_ottpermissioncache.cpp.o
+
+test_ottpermissioncache.i: test_ottpermissioncache.cpp.i
+.PHONY : test_ottpermissioncache.i
+
+# target to preprocess a source file
+test_ottpermissioncache.cpp.i:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_ottpermissioncache.dir/build.make tests/CMakeFiles/test_ottpermissioncache.dir/test_ottpermissioncache.cpp.i
+.PHONY : test_ottpermissioncache.cpp.i
+
+test_ottpermissioncache.s: test_ottpermissioncache.cpp.s
+.PHONY : test_ottpermissioncache.s
+
+# target to generate assembly for a file
+test_ottpermissioncache.cpp.s:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_ottpermissioncache.dir/build.make tests/CMakeFiles/test_ottpermissioncache.dir/test_ottpermissioncache.cpp.s
+.PHONY : test_ottpermissioncache.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -223,9 +323,20 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... test_appgateway"
+	@echo "... test_fbcommon"
+	@echo "... test_ottpermissioncache"
+	@echo "... __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.o"
+	@echo "... __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.i"
+	@echo "... __/OttServices/ProtoImplementations/ThorPermissions/OttPermissionCache.s"
 	@echo "... test_appgateway.o"
 	@echo "... test_appgateway.i"
 	@echo "... test_appgateway.s"
+	@echo "... test_fbcommon.o"
+	@echo "... test_fbcommon.i"
+	@echo "... test_fbcommon.s"
+	@echo "... test_ottpermissioncache.o"
+	@echo "... test_ottpermissioncache.i"
+	@echo "... test_ottpermissioncache.s"
 .PHONY : help
 
 

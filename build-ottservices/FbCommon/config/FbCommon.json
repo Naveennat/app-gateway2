@@ -1,0 +1,9 @@
+{
+ "locator":"libWPEFrameworkFbCommon.so",
+ "classname":"AppGatewayProject",
+ "autostart":false,
+ "precondition":[
+  "Platform"
+ ],
+ "callsign":"org.rdk.FbCommon"
+}

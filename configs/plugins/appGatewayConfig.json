@@ -1,0 +1,6 @@
+{
+  "paths": [
+    "app-gateway/resolution.base.json",
+    "app-gateway/resolution.integratedplayer.json"
+  ]
+}

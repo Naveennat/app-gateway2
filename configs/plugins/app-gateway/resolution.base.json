@@ -1,0 +1,15 @@
+{
+  "resolutions": {
+    "Lifecycle.ready": {
+      "alias": "org.rdk.LaunchDelegate.ready",
+      "includeContext": true
+    },
+    "device.name": {
+      "alias": "org.rdk.FbSettings.getDeviceName"
+    },
+    "badger.metricsHandler": {
+      "alias": "metricsHandler",
+      "useComRpc": true
+    }
+  }
+}

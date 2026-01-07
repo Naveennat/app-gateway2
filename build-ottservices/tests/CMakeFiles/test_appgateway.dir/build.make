@@ -92,7 +92,7 @@ test_appgateway_EXTERNAL_OBJECTS =
 
 tests/test_appgateway: tests/CMakeFiles/test_appgateway.dir/test_appgateway.cpp.o
 tests/test_appgateway: tests/CMakeFiles/test_appgateway.dir/build.make
-tests/test_appgateway: AppGateway/libAppGateway.so
+tests/test_appgateway: AppGateway/libWPEFrameworkAppGateway.so
 tests/test_appgateway: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkCore.so
 tests/test_appgateway: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkPlugins.so
 tests/test_appgateway: tests/CMakeFiles/test_appgateway.dir/link.txt

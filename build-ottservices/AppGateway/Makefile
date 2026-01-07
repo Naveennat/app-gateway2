@@ -97,7 +97,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"libs\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"AppGatewayProject\" \"Unspecified\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -209,77 +209,29 @@ AppGateway.cpp.s:
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.s
 .PHONY : AppGateway.cpp.s
 
-ConnectionRegistry.o: ConnectionRegistry.cpp.o
-.PHONY : ConnectionRegistry.o
+AppGatewayImplementation.o: AppGatewayImplementation.cpp.o
+.PHONY : AppGatewayImplementation.o
 
 # target to build an object file
-ConnectionRegistry.cpp.o:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o
-.PHONY : ConnectionRegistry.cpp.o
+AppGatewayImplementation.cpp.o:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o
+.PHONY : AppGatewayImplementation.cpp.o
 
-ConnectionRegistry.i: ConnectionRegistry.cpp.i
-.PHONY : ConnectionRegistry.i
-
-# target to preprocess a source file
-ConnectionRegistry.cpp.i:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.i
-.PHONY : ConnectionRegistry.cpp.i
-
-ConnectionRegistry.s: ConnectionRegistry.cpp.s
-.PHONY : ConnectionRegistry.s
-
-# target to generate assembly for a file
-ConnectionRegistry.cpp.s:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.s
-.PHONY : ConnectionRegistry.cpp.s
-
-GatewayClient.o: GatewayClient.cpp.o
-.PHONY : GatewayClient.o
-
-# target to build an object file
-GatewayClient.cpp.o:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o
-.PHONY : GatewayClient.cpp.o
-
-GatewayClient.i: GatewayClient.cpp.i
-.PHONY : GatewayClient.i
+AppGatewayImplementation.i: AppGatewayImplementation.cpp.i
+.PHONY : AppGatewayImplementation.i
 
 # target to preprocess a source file
-GatewayClient.cpp.i:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.i
-.PHONY : GatewayClient.cpp.i
+AppGatewayImplementation.cpp.i:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.i
+.PHONY : AppGatewayImplementation.cpp.i
 
-GatewayClient.s: GatewayClient.cpp.s
-.PHONY : GatewayClient.s
-
-# target to generate assembly for a file
-GatewayClient.cpp.s:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.s
-.PHONY : GatewayClient.cpp.s
-
-GatewayWebSocket.o: GatewayWebSocket.cpp.o
-.PHONY : GatewayWebSocket.o
-
-# target to build an object file
-GatewayWebSocket.cpp.o:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o
-.PHONY : GatewayWebSocket.cpp.o
-
-GatewayWebSocket.i: GatewayWebSocket.cpp.i
-.PHONY : GatewayWebSocket.i
-
-# target to preprocess a source file
-GatewayWebSocket.cpp.i:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.i
-.PHONY : GatewayWebSocket.cpp.i
-
-GatewayWebSocket.s: GatewayWebSocket.cpp.s
-.PHONY : GatewayWebSocket.s
+AppGatewayImplementation.s: AppGatewayImplementation.cpp.s
+.PHONY : AppGatewayImplementation.s
 
 # target to generate assembly for a file
-GatewayWebSocket.cpp.s:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.s
-.PHONY : GatewayWebSocket.cpp.s
+AppGatewayImplementation.cpp.s:
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.s
+.PHONY : AppGatewayImplementation.cpp.s
 
 Module.o: Module.cpp.o
 .PHONY : Module.o
@@ -329,30 +281,6 @@ RequestRouter.cpp.s:
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.s
 .PHONY : RequestRouter.cpp.s
 
-ResolutionStore.o: ResolutionStore.cpp.o
-.PHONY : ResolutionStore.o
-
-# target to build an object file
-ResolutionStore.cpp.o:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o
-.PHONY : ResolutionStore.cpp.o
-
-ResolutionStore.i: ResolutionStore.cpp.i
-.PHONY : ResolutionStore.i
-
-# target to preprocess a source file
-ResolutionStore.cpp.i:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.i
-.PHONY : ResolutionStore.cpp.i
-
-ResolutionStore.s: ResolutionStore.cpp.s
-.PHONY : ResolutionStore.s
-
-# target to generate assembly for a file
-ResolutionStore.cpp.s:
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices && $(MAKE) $(MAKESILENT) -f AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.s
-.PHONY : ResolutionStore.cpp.s
-
 Resolver.o: Resolver.cpp.o
 .PHONY : Resolver.o
 
@@ -394,24 +322,15 @@ help:
 	@echo "... AppGateway.o"
 	@echo "... AppGateway.i"
 	@echo "... AppGateway.s"
-	@echo "... ConnectionRegistry.o"
-	@echo "... ConnectionRegistry.i"
-	@echo "... ConnectionRegistry.s"
-	@echo "... GatewayClient.o"
-	@echo "... GatewayClient.i"
-	@echo "... GatewayClient.s"
-	@echo "... GatewayWebSocket.o"
-	@echo "... GatewayWebSocket.i"
-	@echo "... GatewayWebSocket.s"
+	@echo "... AppGatewayImplementation.o"
+	@echo "... AppGatewayImplementation.i"
+	@echo "... AppGatewayImplementation.s"
 	@echo "... Module.o"
 	@echo "... Module.i"
 	@echo "... Module.s"
 	@echo "... RequestRouter.o"
 	@echo "... RequestRouter.i"
 	@echo "... RequestRouter.s"
-	@echo "... ResolutionStore.o"
-	@echo "... ResolutionStore.i"
-	@echo "... ResolutionStore.s"
 	@echo "... Resolver.o"
 	@echo "... Resolver.i"
 	@echo "... Resolver.s"

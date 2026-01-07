@@ -1,5 +1,6 @@
 {
     "paths": [
+        "/etc/app-gateway/resolution.base.json",
         "/etc/app-gateway/resolution.integratedplayer.json"
     ]
 }

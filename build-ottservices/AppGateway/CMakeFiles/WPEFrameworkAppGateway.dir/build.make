@@ -69,24 +69,10 @@ include AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/progress.make
 # Include the compile flags for this target's objects.
 include AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
 
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.i"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp > CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.i
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.s"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.s
-
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/AppGateway.cpp
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o"
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/AppGateway.cpp
 
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.i: cmake_force
@@ -96,6 +82,20 @@ AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.i: cmake_force
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.s"
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/AppGateway.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.s
+
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/AppGatewayImplementation.cpp
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o"
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/AppGatewayImplementation.cpp
+
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.i"
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/AppGatewayImplementation.cpp > CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.i
+
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.s"
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/AppGatewayImplementation.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.s
 
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Resolver.cpp
@@ -111,24 +111,10 @@ AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.cpp.s"
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Resolver.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.cpp.s
 
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/ResolutionStore.cpp
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/ResolutionStore.cpp
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.i"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/ResolutionStore.cpp > CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.i
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.s"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/ResolutionStore.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.s
-
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/RequestRouter.cpp
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o"
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/RequestRouter.cpp
 
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.i: cmake_force
@@ -139,79 +125,50 @@ AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.s: cmake_forc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.s"
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/RequestRouter.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.s
 
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/ConnectionRegistry.cpp
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/ConnectionRegistry.cpp
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o"
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp
 
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.i"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/ConnectionRegistry.cpp > CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.i
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.i"
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp > CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.i
 
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.s"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/ConnectionRegistry.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.s
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/GatewayWebSocket.cpp
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/GatewayWebSocket.cpp
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.i"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/GatewayWebSocket.cpp > CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.i
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.s"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/GatewayWebSocket.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.s
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/flags.make
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o: /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/GatewayClient.cpp
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o -c /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/GatewayClient.cpp
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.i"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/GatewayClient.cpp > CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.i
-
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.s"
-	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/GatewayClient.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.s
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.s"
+	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kavia/workspace/code-generation/app-gateway2/app-gateway/AppGateway/Module.cpp -o CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.s
 
 # Object files for target WPEFrameworkAppGateway
 WPEFrameworkAppGateway_OBJECTS = \
-"CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o" \
 "CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o" \
+"CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o" \
 "CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.cpp.o" \
-"CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o" \
 "CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o" \
-"CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o" \
-"CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o" \
-"CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o"
+"CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o"
 
 # External object files for target WPEFrameworkAppGateway
 WPEFrameworkAppGateway_EXTERNAL_OBJECTS =
 
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.cpp.o
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ResolutionStore.cpp.o
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/ConnectionRegistry.cpp.o
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayWebSocket.cpp.o
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/GatewayClient.cpp.o
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make
-AppGateway/libAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkCore.so
-AppGateway/libAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkPlugins.so
-AppGateway/libAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX shared library libAppGateway.so"
+AppGateway/libWPEFrameworkAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o
+AppGateway/libWPEFrameworkAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.cpp.o
+AppGateway/libWPEFrameworkAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.cpp.o
+AppGateway/libWPEFrameworkAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/RequestRouter.cpp.o
+AppGateway/libWPEFrameworkAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/Module.cpp.o
+AppGateway/libWPEFrameworkAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build.make
+AppGateway/libWPEFrameworkAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkPlugins.so.1.0.0
+AppGateway/libWPEFrameworkAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkDefinitions.so.1.0.0
+AppGateway/libWPEFrameworkAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkCOM.so.1.0.0
+AppGateway/libWPEFrameworkAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkMessaging.so.1.0.0
+AppGateway/libWPEFrameworkAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkWebSocket.so.1.0.0
+AppGateway/libWPEFrameworkAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkCryptalgo.so.1.0.0
+AppGateway/libWPEFrameworkAppGateway.so: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/libWPEFrameworkCore.so.1.0.0
+AppGateway/libWPEFrameworkAppGateway.so: AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/kavia/workspace/code-generation/app-gateway2/build-ottservices/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared library libWPEFrameworkAppGateway.so"
 	cd /home/kavia/workspace/code-generation/app-gateway2/build-ottservices/AppGateway && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/WPEFrameworkAppGateway.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build: AppGateway/libAppGateway.so
+AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build: AppGateway/libWPEFrameworkAppGateway.so
 .PHONY : AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/build
 
 AppGateway/CMakeFiles/WPEFrameworkAppGateway.dir/clean:
