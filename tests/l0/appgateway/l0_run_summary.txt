@@ -3,6 +3,40 @@ Invoking L0 test runner...
 Test run complete. Exit code: 1
 
 == L0 Test Results Summary ==
+FAILED: CMakeFiles/appgateway_l0test.dir/Responder_BehaviorTests.cpp.o 
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../interfaces/IAppGateway.h:41:42: error: ‘IIteratorType’ in namespace ‘WPEFramework::RPC’ does not name a template type
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../interfaces/IAppGateway.h:47:45: error: ‘IStringIterator’ has not been declared
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:39:54: error: expected class-name before ‘,’ token
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:45: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:51:39: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:62:30: error: ‘WPEFramework::RPC::IRemoteConnection’ has not been declared
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:65:25: error: ‘IShell’ in namespace ‘WPEFramework::PluginHost’ does not name a type
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:34: error: ‘virtual const string WPEFramework::Plugin::AppGateway::Initialize(int*)’ marked ‘override’, but does not override
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:51:26: error: ‘virtual void WPEFramework::Plugin::AppGateway::Deinitialize(int*)’ marked ‘override’, but does not override
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:52:28: error: ‘virtual string WPEFramework::Plugin::AppGateway::Information() const’ marked ‘override’, but does not override
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ServiceMock.h:85:47: error: ‘IStringIterator’ has not been declared
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ServiceMock.h:514:43: error: invalid use of incomplete type ‘const class WPEFramework::RPC::Object’
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:38: error: ‘Service’ is not a member of ‘WPEFramework::Core’
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:56: error: expected primary-expression before ‘>’ token
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:59: error: ‘::Create’ has not been declared; did you mean ‘creat’?
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:73: error: expected primary-expression before ‘>’ token
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:75: error: expected primary-expression before ‘)’ token
+FAILED: CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o 
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:39:54: error: expected class-name before ‘,’ token
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:45: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:51:39: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:65:25: error: ‘IShell’ in namespace ‘WPEFramework::PluginHost’ does not name a type
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:34: error: ‘virtual const string WPEFramework::Plugin::AppGateway::Initialize(int*)’ marked ‘override’, but does not override
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:51:26: error: ‘virtual void WPEFramework::Plugin::AppGateway::Deinitialize(int*)’ marked ‘override’, but does not override
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:52:28: error: ‘virtual string WPEFramework::Plugin::AppGateway::Information() const’ marked ‘override’, but does not override
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ServiceMock.h:514:43: error: invalid use of incomplete type ‘const class WPEFramework::RPC::Object’
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils.h:79:29: error: ‘rfindInsensitive’ is not a member of ‘StringUtils’
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils.h:79:54: error: ‘APP_GATEWAY_CALLSIGN’ was not declared in this scope
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:38: error: ‘Service’ is not a member of ‘WPEFramework::Core’
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:56: error: expected primary-expression before ‘>’ token
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:59: error: ‘::Create’ has not been declared; did you mean ‘creat’?
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:73: error: expected primary-expression before ‘>’ token
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:75: error: expected primary-expression before ‘)’ token
 FAILED: CMakeFiles/appgateway_l0test.dir/AppGateway_JsonRpcResolveTests.cpp.o 
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:39:54: error: expected class-name before ‘,’ token
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:45: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
@@ -78,39 +112,5 @@ FAILED: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp:369:86: error: ‘::Create’ has not been declared; did you mean ‘creat’?
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp:369:136: error: expected primary-expression before ‘>’ token
 /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp:369:138: error: expected primary-expression before ‘)’ token
-FAILED: CMakeFiles/appgateway_l0test.dir/Responder_BehaviorTests.cpp.o 
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../interfaces/IAppGateway.h:41:42: error: ‘IIteratorType’ in namespace ‘WPEFramework::RPC’ does not name a template type
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../interfaces/IAppGateway.h:47:45: error: ‘IStringIterator’ has not been declared
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:39:54: error: expected class-name before ‘,’ token
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:45: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:51:39: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:62:30: error: ‘WPEFramework::RPC::IRemoteConnection’ has not been declared
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:65:25: error: ‘IShell’ in namespace ‘WPEFramework::PluginHost’ does not name a type
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:34: error: ‘virtual const string WPEFramework::Plugin::AppGateway::Initialize(int*)’ marked ‘override’, but does not override
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:51:26: error: ‘virtual void WPEFramework::Plugin::AppGateway::Deinitialize(int*)’ marked ‘override’, but does not override
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:52:28: error: ‘virtual string WPEFramework::Plugin::AppGateway::Information() const’ marked ‘override’, but does not override
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ServiceMock.h:85:47: error: ‘IStringIterator’ has not been declared
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ServiceMock.h:514:43: error: invalid use of incomplete type ‘const class WPEFramework::RPC::Object’
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:38: error: ‘Service’ is not a member of ‘WPEFramework::Core’
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:56: error: expected primary-expression before ‘>’ token
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:59: error: ‘::Create’ has not been declared; did you mean ‘creat’?
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:73: error: expected primary-expression before ‘>’ token
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:49:75: error: expected primary-expression before ‘)’ token
-FAILED: CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o 
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:39:54: error: expected class-name before ‘,’ token
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:45: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:51:39: error: ‘WPEFramework::PluginHost::IShell’ has not been declared
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:65:25: error: ‘IShell’ in namespace ‘WPEFramework::PluginHost’ does not name a type
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:50:34: error: ‘virtual const string WPEFramework::Plugin::AppGateway::Initialize(int*)’ marked ‘override’, but does not override
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:51:26: error: ‘virtual void WPEFramework::Plugin::AppGateway::Deinitialize(int*)’ marked ‘override’, but does not override
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/../../../../plugin/AppGateway/AppGateway.h:52:28: error: ‘virtual string WPEFramework::Plugin::AppGateway::Information() const’ marked ‘override’, but does not override
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ServiceMock.h:514:43: error: invalid use of incomplete type ‘const class WPEFramework::RPC::Object’
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils.h:79:29: error: ‘rfindInsensitive’ is not a member of ‘StringUtils’
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils.h:79:54: error: ‘APP_GATEWAY_CALLSIGN’ was not declared in this scope
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:38: error: ‘Service’ is not a member of ‘WPEFramework::Core’
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:56: error: expected primary-expression before ‘>’ token
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:59: error: ‘::Create’ has not been declared; did you mean ‘creat’?
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:73: error: expected primary-expression before ‘>’ token
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:69:75: error: expected primary-expression before ‘)’ token
 
 Full log is available at /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0_run_full.log

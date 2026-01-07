@@ -25,6 +25,7 @@
 #include <Module.h>
 
 #include <core/core.h>
+#include <com/com.h>
 #include <plugins/IShell.h>
 
 #include <interfaces/IAppGateway.h>
