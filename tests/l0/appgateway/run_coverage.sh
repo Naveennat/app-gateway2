@@ -72,6 +72,22 @@ log_section "Input checks"
 RESOLUTIONS_PATH="${APPGATEWAY_RESOLUTIONS_PATH:-${DEFAULT_RESOLUTIONS_PATH}}"
 [[ -f "${RESOLUTIONS_PATH}" ]] || die "Resolution base file not found: ${RESOLUTIONS_PATH}"
 
+log_section "Build AppGateway plugin (ensure up-to-date)"
+# The L0 harness links against the installed AppGateway plugin .so under dependencies/install.
+# If the plugin isn't rebuilt here, tests can run against a stale binary even when repo sources changed.
+# If the user explicitly provides APPGATEWAY_PLUGIN_SO, assume they manage the binary and skip rebuilding.
+if [[ -z "${APPGATEWAY_PLUGIN_SO:-}" ]]; then
+  if [[ -x "${ROOT}/scripts/build_plugin_appgateway.sh" ]]; then
+    "${ROOT}/scripts/build_plugin_appgateway.sh"
+  elif [[ -x "${ROOT}/build_plugin_appgateway.sh" ]]; then
+    "${ROOT}/build_plugin_appgateway.sh"
+  else
+    warn "No build_plugin_appgateway.sh found; continuing without rebuilding plugin. Tests may use a stale plugin binary."
+  fi
+else
+  log "APPGATEWAY_PLUGIN_SO is set; skipping plugin rebuild and using provided binary: ${APPGATEWAY_PLUGIN_SO}"
+fi
+
 APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO:-}"
 if [[ -z "${APPGATEWAY_PLUGIN_SO}" ]]; then
   if [[ -f "${PLUGIN_SO_WPE}" ]]; then

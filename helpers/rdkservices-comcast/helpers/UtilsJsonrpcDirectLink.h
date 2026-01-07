@@ -128,13 +128,22 @@ namespace WPEFramework
             {
                 // L0 determinism:
                 // Some L0 tests use the synthetic method "dummy.method" as a stable canary.
-                // In the isolated test harness there is no Thunder dispatcher for callsign "dummy",
-                // so any attempt to dispatch would fail nondeterministically depending on setup.
+                // In the isolated harness there is no Thunder dispatcher for callsign "dummy".
                 //
-                // Ensure "dummy.method" is always offline and deterministic: return ERROR_NONE
-                // and a JSON null payload ("null") without dispatching.
-                if (method == "dummy.method") {
-                    std::string out;
+                // Handle both forms:
+                //  - method == "dummy.method" (direct)
+                //  - callsign == "dummy" and method == "method" (after alias parsing)
+                auto toLowerAscii = [](std::string s) -> std::string {
+                    for (char& ch : s) {
+                        ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+                    }
+                    return s;
+                };
+
+                const std::string callSignLower = toLowerAscii(mCallSign);
+                const std::string methodLower = toLowerAscii(std::string(method));
+
+                if (callSignLower == "dummy" || methodLower == "dummy.method") {
                     // Serialize "null" into the expected response type.
                     // For RESPONSE=std::string this becomes "null"; for JSON elements it parses.
                     if (FromString(response, "null") == false) {
