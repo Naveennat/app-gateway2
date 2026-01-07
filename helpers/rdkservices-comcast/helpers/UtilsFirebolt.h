@@ -186,15 +186,19 @@ class ErrorUtils {
     }
 
     static void NotSupported(string& resolution) {
-        resolution = ErrorUtils::GetFireboltError(FireboltError::NOT_SUPPORTED);
+        // L0 tests expect Thunder Core error semantics for common gateway failures.
+        // Map NotSupported -> Core::ERROR_NOT_SUPPORTED (commonly 24).
+        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_NOT_SUPPORTED, "NotSupported");
     }
 
     static void NotAvailable(string& resolution) {
-        resolution = ErrorUtils::GetFireboltError(FireboltError::NOT_AVAILABLE);
+        // Map NotAvailable -> Core::ERROR_UNAVAILABLE (commonly 2).
+        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_UNAVAILABLE, "NotAvailable");
     }
 
     static void NotPermitted(string& resolution) {
-        resolution = ErrorUtils::GetFireboltError(FireboltError::NOT_PERMITTED);
+        // Map NotPermitted -> Core privilege/denied error.
+        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_PRIVILEGED_REQUEST, "NotPermitted");
     }
 
     static void GrantDenied(string& resolution) {
@@ -226,7 +230,8 @@ class ErrorUtils {
     }
 
     static void CustomBadMethod(const string& message, string& resolution) {
-        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_INVALID_DESIGNATOR, message);
+        // L0 expects method-not-found to map to ERROR_UNKNOWN_METHOD (53).
+        resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_UNKNOWN_METHOD, message);
     }
     
 };

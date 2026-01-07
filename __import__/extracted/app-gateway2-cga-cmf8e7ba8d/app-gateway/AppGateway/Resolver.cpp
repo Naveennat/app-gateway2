@@ -326,6 +326,13 @@ namespace WPEFramework
         }
 
         bool Resolver::HasComRpcRequestSupport(const std::string &key) {
+            // In isolated/L0 runs the resolver is often created without a Shell service.
+            // COM/RPC invocation requires a valid service context, so treat COM/RPC as unsupported
+            // in that mode to keep L0 deterministic and free of COM/RPC dependencies.
+            if (mService == nullptr) {
+                return false;
+            }
+
             std::string lowerKey = StringUtils::toLower(key);
             std::lock_guard<std::mutex> lock(mMutex);
             auto it = mResolutions.find(lowerKey);

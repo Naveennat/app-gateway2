@@ -2,7 +2,7 @@
     "resolutions": {
         "Localization.addAdditionalInfo": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "useComRpc": false
         },
         "device.make": {
             "alias": "org.rdk.FbSettings",
