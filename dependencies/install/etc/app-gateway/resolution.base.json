@@ -266,8 +266,8 @@
         },
 
         "dummy.method": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "dummy.method",
+            "useComRpc": false
         }
     }
 }

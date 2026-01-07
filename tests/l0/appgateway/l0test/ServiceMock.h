@@ -435,20 +435,22 @@ namespace L0Test {
 
         string ConfigLine() const override
         {
-            // L0 HARNESS NOTE:
-            // Plugin::Config::RootConfig (Thunder SDK) reads IShell::ConfigLine() using RootObject
-            // and then (optionally) parses a nested JSON string from the "root" field.
+            // L0 HARNESS NOTE (Thunder SDK RootConfig parsing):
+            // -------------------------------------------------
+            // Plugin::Config::RootConfig expects IShell::ConfigLine() to be a JSON OBJECT
+            // with an optional string field named "root":
+            //   { "root": "<JSON-string>" }
             //
-            // In this repo's isolated L0 harness, that nested parsing path has been observed to fail
-            // with errors like:
+            // It first parses the outer object, then (if "root" is present) parses the inner
+            // string contents as a RootConfig JSON object.
+            //
+            // Some earlier harness variants returned the inner JSON directly or returned a
+            // quoted JSON fragment, which makes the *outer* parse fail with:
             //   Invalid value. "null" or "{" expected. At character 1: "
-            // which prevents IShell::Root<T>() from proceeding and ultimately causes AppGateway
-            // Initialize() to fail and JSON-RPC resolve to return ERROR_UNKNOWN_METHOD (53).
             //
-            // For L0 tests we do not need any root/out-of-process configuration. Returning a minimal
-            // JSON object avoids the nested parse and still allows Root<T>() to route to COMLink()
-            // and instantiate our in-proc fakes deterministically.
-            return "{}";
+            // Keep the inner RootConfig minimal and strictly local/in-proc.
+            // NOTE: inner JSON must be escaped because it is stored as a JSON string.
+            return "{ \"root\": \"{\\\"mode\\\":\\\"LOCAL\\\"}\" }";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
