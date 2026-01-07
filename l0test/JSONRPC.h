@@ -28,6 +28,9 @@ struct IDispatcher : virtual public Core::IUnknown {
     enum { ID = 0xFFFFFFFF };
 };
 
+// Compatibility alias: upstream Thunder uses PluginHost::IDispatcher.
+using IDispatcher = IDispatcher;
+
 class JSONRPC : public IDispatcher {
 public:
     JSONRPC() = default;

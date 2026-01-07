@@ -1,5 +1,5 @@
-8:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:25:10: fatal error: core/core.h: No such file or directory
-17:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:25:10: fatal error: core/core.h: No such file or directory
-25:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Module.h:25:10: fatal error: core/core.h: No such file or directory
-38:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../dependencies/install/include/WPEFramework/com/Ids.h:22:10: fatal error: core/core.h: No such file or directory
-51:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../dependencies/install/include/WPEFramework/com/Ids.h:22:10: fatal error: core/core.h: No such file or directory
+7:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
+17:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
+26:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
+40:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
+54:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../../core/core.h:13:10: fatal error: ../dependencies/install/include/WPEFramework/core/core.h: No such file or directory
