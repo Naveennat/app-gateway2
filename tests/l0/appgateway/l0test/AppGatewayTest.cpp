@@ -585,6 +585,11 @@ int main()
         failures += f;
     }
 
+    // Ensure any remaining Thunder Core singletons are explicitly disposed before process exit.
+    // This reduces teardown log noise like:
+    //   [Singleton.cpp] ~SingletonList !!! singleton list is not empty !!!
+    WPEFramework::Core::Singleton::Dispose();
+
     if (failures == 0) {
         std::cout << "AppGateway l0test passed." << std::endl;
         return 0;

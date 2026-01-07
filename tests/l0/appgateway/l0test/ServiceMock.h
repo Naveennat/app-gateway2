@@ -437,20 +437,19 @@ namespace L0Test {
         {
             // L0 HARNESS NOTE (Thunder SDK RootConfig parsing):
             // -------------------------------------------------
-            // Plugin::Config::RootConfig expects IShell::ConfigLine() to be a JSON OBJECT
-            // with an optional string field named "root":
-            //   { "root": "<JSON-string>" }
+            // Thunder's Plugin::Config::RootConfig parses IShell::ConfigLine() as JSON:
+            //   1) Parse an outer object { "root": "<string>" }
+            //   2) If "root" is set, parse the *string contents* as another JSON object
             //
-            // It first parses the outer object, then (if "root" is present) parses the inner
-            // string contents as a RootConfig JSON object.
+            // In this L0 harness we always run in-proc and do not need out-of-process root
+            // configuration. Returning a "root" string can trigger a second parse and can
+            // fail depending on Thunder JSON implementation details, causing cascading
+            // plugin initialization failures.
             //
-            // Some earlier harness variants returned the inner JSON directly or returned a
-            // quoted JSON fragment, which makes the *outer* parse fail with:
-            //   Invalid value. "null" or "{" expected. At character 1: "
-            //
-            // Keep the inner RootConfig minimal and strictly local/in-proc.
-            // NOTE: inner JSON must be escaped because it is stored as a JSON string.
-            return "{ \"root\": \"{\\\"mode\\\":\\\"LOCAL\\\"}\" }";
+            // Therefore, return a valid empty JSON object and do not set "root" at all.
+            // This prevents RootConfig from attempting the nested parse and stabilizes
+            // AppGateway::Initialize() for the offline tests.
+            return "{}";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
