@@ -374,6 +374,9 @@ namespace L0Test {
             }
             if (id == WPEFramework::Exchange::IAppGatewayResponder::ID) {
                 if (_cfg.provideResponder) {
+                    // Always serve the cached responder fake for the lifetime of this ServiceMock.
+                    // L0 tests rely on shared responder state (connection contexts, notification list)
+                    // being preserved across QueryInterface()/Instantiate() calls.
                     if (_responderFake == nullptr) {
                         _responderFake = new ResponderFake(_cfg.responderTransportAvailable);
                     }

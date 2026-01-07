@@ -266,7 +266,7 @@
         },
 
         "dummy.method": {
-            "alias": "org.rdk.FbSettings.getDummy",
+            "alias": "org.rdk.OverridePlugin.getName",
             "useComRpc": false
         }
     }
