@@ -95,36 +95,54 @@ static void CheckResolutionsEnvOnce() {
 }
 
 // Build JSON parameters for the "resolve" method with fine-grained control over included fields.
-// paramsValue must be either JSON text or "" (empty string) encoded as a JSON string field value.
+//
+// IMPORTANT (test harness correctness):
+// `params` must be a JSON VALUE (object/array/null/number/bool), not a JSON-encoded string.
+// Sending "params":"{}" triggers parsing failures like:
+//   Invalid value. "null" or "{" expected.
+//
+// Therefore `paramsValue` must be JSON text for the value to embed (e.g. "{}", "null", "[]").
+// An empty string is treated as an empty object "{}".
 static std::string BuildResolveParamsJson(bool withRequestId,
-                                          bool withConnectionId,
-                                          bool withAppId,
-                                          bool withOrigin,
-                                          bool withMethod,
-                                          bool withParams,
-                                          const std::string& methodValue = "dummy.method",
-                                          const std::string& appIdValue = "com.example.test",
-                                          const std::string& originValue = "org.rdk.AppGateway",
-                                          const std::string& paramsValue = "{}") {
+                                         bool withConnectionId,
+                                         bool withAppId,
+                                         bool withOrigin,
+                                         bool withMethod,
+                                         bool withParams,
+                                         const std::string& methodValue = "dummy.method",
+                                         const std::string& appIdValue = "com.example.test",
+                                         const std::string& originValue = "org.rdk.AppGateway",
+                                         const std::string& paramsValue = "{}") {
     std::string json = "{";
     bool first = true;
-    auto addField = [&](const std::string& key, const std::string& value, bool isString, bool isNumber = false) {
+
+    auto addNumber = [&](const std::string& key, const std::string& value) {
         if (!first) { json += ","; }
-        if (isNumber) {
-            json += "\"" + key + "\":" + value;
-        } else if (isString) {
-            json += "\"" + key + "\":\"" + value + "\"";
-        } else {
-            json += "\"" + key + "\":" + value;
-        }
+        json += "\"" + key + "\":" + value;
         first = false;
     };
-    if (withRequestId)   { addField("requestId", "1001", false, true); }
-    if (withConnectionId){ addField("connectionId", "10",   false, true); }
-    if (withAppId)       { addField("appId", appIdValue, true); }
-    if (withOrigin)      { addField("origin", originValue, true); }
-    if (withMethod)      { addField("method", methodValue, true); }
-    if (withParams)      { addField("params", paramsValue, true); }
+    auto addString = [&](const std::string& key, const std::string& value) {
+        if (!first) { json += ","; }
+        json += "\"" + key + "\":\"" + value + "\"";
+        first = false;
+    };
+    auto addJsonValue = [&](const std::string& key, const std::string& jsonValueText) {
+        if (!first) { json += ","; }
+        json += "\"" + key + "\":" + jsonValueText;
+        first = false;
+    };
+
+    if (withRequestId)    { addNumber("requestId", "1001"); }
+    if (withConnectionId) { addNumber("connectionId", "10"); }
+    if (withAppId)        { addString("appId", appIdValue); }
+    if (withOrigin)       { addString("origin", originValue); }
+    if (withMethod)       { addString("method", methodValue); }
+
+    if (withParams) {
+        const std::string effectiveParams = paramsValue.empty() ? "{}" : paramsValue;
+        addJsonValue("params", effectiveParams);
+    }
+
     json += "}";
     return json;
 }
@@ -144,7 +162,9 @@ uint32_t Test_Resolve_HappyPath_JSONRPC() {
     auto dispatcher = ps.plugin->QueryInterface<IDispatcher>();
     ExpectTrue(tr, dispatcher != nullptr, "IDispatcher available");
     if (dispatcher != nullptr) {
-        const std::string paramsJson = BuildResolveParamsJson(true, true, true, true, true, true, "dummy.method", "com.example.test", "org.rdk.AppGateway", "{}");
+        const std::string paramsJson = BuildResolveParamsJson(true, true, true, true, true, true,
+                                                             "dummy.method", "com.example.test",
+                                                             "org.rdk.AppGateway", "{}");
 
         std::string jsonResponse;
         const uint32_t rc = dispatcher->Invoke(nullptr, 0, 0, "", "resolve", paramsJson, jsonResponse);
@@ -229,13 +249,15 @@ uint32_t Test_Resolve_ParamsEmpty_DefaultsToEmptyObject() {
     auto dispatcher = ps.plugin->QueryInterface<IDispatcher>();
     ExpectTrue(tr, dispatcher != nullptr, "IDispatcher available");
     if (dispatcher != nullptr) {
-        // Provide "params": "" explicitly; Registration treats it as "{}".
-        const std::string paramsJson = BuildResolveParamsJson(true, true, true, true, true, true, "dummy.method", "com.example.test", "org.rdk.AppGateway", "");
+        // Provide "params": {} explicitly by passing empty (helper maps empty => "{}").
+        const std::string paramsJson = BuildResolveParamsJson(true, true, true, true, true, true,
+                                                             "dummy.method", "com.example.test",
+                                                             "org.rdk.AppGateway", "");
 
         std::string jsonResponse;
         const uint32_t rc = dispatcher->Invoke(nullptr, 0, 0, "", "resolve", paramsJson, jsonResponse);
 
-        ExpectEqU32(tr, rc, ERROR_NONE, "Params empty string defaults to {} and succeeds");
+        ExpectEqU32(tr, rc, ERROR_NONE, "Params empty defaults to {} and succeeds");
         ExpectNotEmpty(tr, jsonResponse, "Response non-empty when method exists");
         dispatcher->Release();
     }
