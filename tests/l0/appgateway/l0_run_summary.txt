@@ -1,0 +1,56 @@
+Running L0 tests with LD_LIBRARY_PATH: /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/../../../dependencies/install/lib:/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/../../../dependencies/install/lib/plugins:/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/../../../dependencies/install/lib/wpeframework/plugins:
+Invoking L0 test runner...
+Test run complete. Exit code: 139
+
+== L0 Test Results Summary ==
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp: In function ‘uint32_t Test_Resolve_ImplementationError_Propagates()’:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Error_NotPermitted()’:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Error_NotSupported()’:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Error_NotAvailable()’:
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp: In function ‘uint32_t Test_JsonRpcResolve_Error_MalformedInput()’:
+FAIL: Resolve_HappyPath_JSONRPC returns ERROR_NONE expected=0 actual=1
+[  FAILED  ] Resolve_HappyPath_JSONRPC failures=1
+FAIL: Params empty string defaults to {} and succeeds expected=0 actual=1
+[  FAILED  ] Resolve_ParamsEmpty_DefaultsToEmptyObject failures=1
+[ RUN      ] Resolve_ImplementationError_Propagates
+FAIL: Implementation error NOT_AVAILABLE propagates as ERROR_UNAVAILABLE expected=2 actual=1
+FAIL: Implementation error NOT_SUPPORTED propagates as ERROR_NOT_SUPPORTED expected=44 actual=1
+[  FAILED  ] Resolve_ImplementationError_Propagates failures=2
+FAIL: JSON-RPC resolve returns ERROR_NONE expected=0 actual=1
+FAIL: JSON-RPC resolve response payload matches resolver result expected='null' actual='{"code":-50100,"message":"NotSupported"}'
+[  FAILED  ] JsonRpcResolve_Success failures=2
+FAIL: Direct Resolve() returns ERROR_NONE expected=0 actual=1
+FAIL: Direct Resolve() returns 'null' expected='null' actual='{"code":-50100,"message":"NotSupported"}'
+[  FAILED  ] DirectResolver_Success failures=2
+[ RUN      ] JsonRpcResolve_Error_NotPermitted
+FAIL: NotPermitted maps to ERROR_PRIVILIGED_REQUEST expected=24 actual=1
+[  FAILED  ] JsonRpcResolve_Error_NotPermitted failures=1
+[ RUN      ] JsonRpcResolve_Error_NotSupported
+FAIL: NotSupported maps to ERROR_NOT_SUPPORTED expected=44 actual=1
+[  FAILED  ] JsonRpcResolve_Error_NotSupported failures=1
+[ RUN      ] JsonRpcResolve_Error_NotAvailable
+FAIL: NotAvailable maps to ERROR_UNAVAILABLE expected=2 actual=1
+[  FAILED  ] JsonRpcResolve_Error_NotAvailable failures=1
+[ RUN      ] JsonRpcResolve_Error_MalformedInput
+[       OK ] JsonRpcResolve_Error_MalformedInput
+[ RUN      ] JsonRpcResolve_Error_MissingHandler_WhenResolverMissing
+FAIL: Initialize() fails when resolver/responder are missing (expected)
+FAIL: Missing resolve handler returns ERROR_UNKNOWN_METHOD expected=53 actual=1
+[  FAILED  ] JsonRpcResolve_Error_MissingHandler_WhenResolverMissing failures=2
+FAIL: Resolve known method returns ERROR_NONE expected=0 actual=1
+[  FAILED  ] Resolver_Configure_WithBaseOnly_LoadsOK failures=1
+[ RUN      ] Resolver_Configure_InvalidJson_ReturnsError
+[30732] ERROR [Resolver.cpp:80] LoadConfig:  - Error: Colon expected.
+[       OK ] Resolver_Configure_InvalidJson_ReturnsError
+FAIL: Responder is ResponderFake in l0test
+[  FAILED  ] Responder_Register_Unregister_Notifications failures=1
+FAIL: Responder is ResponderFake
+[  FAILED  ] Responder_Respond_Success_And_Unavailable failures=1
+FAIL: Responder is ResponderFake
+[  FAILED  ] Responder_Emit_Success_And_Unavailable failures=1
+FAIL: Responder is ResponderFake
+[  FAILED  ] Responder_Request_Success_And_Unavailable failures=1
+FAIL: Responder is ResponderFake
+/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/run_coverage.sh: line 213: 30732 Segmentation fault      (core dumped) APPGATEWAY_RESOLUTIONS_PATH="${RESOLUTIONS_PATH}" APPGATEWAY_PLUGIN_SO="${APPGATEWAY_PLUGIN_SO}" "${TEST_BIN}"
+
+Full log is available at /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0_run_full.log

@@ -1,56 +1,41 @@
 #!/usr/bin/env bash
+# Capture L0 coverage artifacts produced by run_coverage.sh into a stable folder.
 set -euo pipefail
 
-# Minimal artifact capture for L0 runs.
-#
-# Usage:
-#   capture_artifacts.sh <build_dir> <run_dir>
-#
-# Captures:
-#  - CMakeCache.txt
-#  - CTest logs (if present)
-#  - CTestTestfile.cmake files
-#  - test binaries (if present)
-#  - built shared libraries (if present)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"  # -> app-gateway2
 
-if [[ $# -ne 2 ]]; then
-  echo "Usage: $0 <build_dir> <run_dir>" >&2
-  exit 2
+COVERAGE_DIR="${ROOT}/tests/l0/appgateway/coverage"
+BUILD_DIR="${ROOT}/build/tests_l0_appgateway"
+ARTIFACTS_DIR="${ROOT}/tests/l0/appgateway/artifacts"
+
+mkdir -p "${ARTIFACTS_DIR}"
+
+# Copy coverage artifacts if present
+if [[ -d "${COVERAGE_DIR}" ]]; then
+  rm -rf "${ARTIFACTS_DIR}/coverage"
+  cp -a "${COVERAGE_DIR}" "${ARTIFACTS_DIR}/coverage"
 fi
 
-BUILD_DIR="$1"
-RUN_DIR="$2"
-
-mkdir -p "${RUN_DIR}"
-
-# Capture basic build metadata
-if [[ -f "${BUILD_DIR}/CMakeCache.txt" ]]; then
-  cp -f "${BUILD_DIR}/CMakeCache.txt" "${RUN_DIR}/" || true
+# Capture build dir metadata (useful for debugging missing gcda/gcno)
+if [[ -d "${BUILD_DIR}" ]]; then
+  rm -rf "${ARTIFACTS_DIR}/build_dir_snapshot"
+  mkdir -p "${ARTIFACTS_DIR}/build_dir_snapshot"
+  # Keep only lightweight text outputs
+  (cd "${BUILD_DIR}" && find . -maxdepth 3 -type f \( -name "*.log" -o -name "CMakeCache.txt" -o -name "build.ninja" \) -print0 | xargs -0 -I{} bash -lc 'mkdir -p "'"${ARTIFACTS_DIR}"'/build_dir_snapshot/$(dirname "{}")"; cp -a "{}" "'"${ARTIFACTS_DIR}"'/build_dir_snapshot/{}"' || true
 fi
 
-# Capture CTest logs
-if [[ -d "${BUILD_DIR}/Testing" ]]; then
-  mkdir -p "${RUN_DIR}/Testing"
-  cp -a "${BUILD_DIR}/Testing" "${RUN_DIR}/" || true
-fi
-
-# Capture generated CTestTestfile.cmake (helps diagnose discovery issues)
-mkdir -p "${RUN_DIR}/ctest_files"
-find "${BUILD_DIR}" -name "CTestTestfile.cmake" -maxdepth 6 -print -exec cp -f {} "${RUN_DIR}/ctest_files/" \; 2>/dev/null || true
-
-# Capture test binaries (common locations)
-mkdir -p "${RUN_DIR}/binaries"
-if [[ -d "${BUILD_DIR}/tests" ]]; then
-  find "${BUILD_DIR}/tests" -maxdepth 1 -type f -executable -print -exec cp -f {} "${RUN_DIR}/binaries/" \; 2>/dev/null || true
-fi
-
-# Capture shared libs if present
-mkdir -p "${RUN_DIR}/shared_libs"
-find "${BUILD_DIR}" -maxdepth 4 -type f \( -name "*.so" -o -name "*.so.*" \) -print -exec cp -f {} "${RUN_DIR}/shared_libs/" \; 2>/dev/null || true
-
-# Always write a short manifest
+# Record basic environment info for reproducibility
 {
+  echo "timestamp_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  echo "root=${ROOT}"
+  echo "coverage_dir=${COVERAGE_DIR}"
   echo "build_dir=${BUILD_DIR}"
-  echo "captured_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-  echo "uname=$(uname -a)"
-} > "${RUN_DIR}/manifest.txt"
+  echo "pwd=$(pwd)"
+} > "${ARTIFACTS_DIR}/meta.txt"
+
+# Create tarball for convenience
+tar -C "${ARTIFACTS_DIR}" -czf "${ARTIFACTS_DIR}/artifacts.tgz" .
+
+echo "${ARTIFACTS_DIR}"
+echo "${ARTIFACTS_DIR}/artifacts.tgz"

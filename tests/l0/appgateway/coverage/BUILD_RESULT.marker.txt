@@ -1,0 +1,13 @@
+RESULT: NOT_RUN_IN_THIS_PATCH
+NOTE: Repo layout was restructured:
+  - Plugin sources moved to: app-gateway2/plugin/AppGateway
+  - L0 tests moved to:       app-gateway2/tests/l0/appgateway/l0test
+  - Coverage runner is now:  app-gateway2/tests/l0/appgateway/run_coverage.sh
+  - Build script updated:    app-gateway2/scripts/build_plugin_appgateway.sh (uses plugin/AppGateway)
+
+EXPECTED ARTIFACTS AFTER RUNNING BUILD:
+  - dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
+  - dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so (symlink)
+
+EXPECTED ARTIFACTS AFTER RUNNING COVERAGE:
+  - tests/l0/appgateway/coverage/html/index.html

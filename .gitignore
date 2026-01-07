@@ -1,63 +1,36 @@
+# Kavia/agent metadata
+.kavia/
+.kavia_mirrored_ref
+.knowledge/
+.init/
 
-# Python ignorables
-logs/
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib64/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-pip-log.txt
-pip-delete-this-directory.txt
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-venv/
+# Local env
 .env
-.env.*
 
-# Ignore all directories containing pyvenv.cfg
-**/pyvenv.cfg
-**/*/pyvenv.cfg
-
-# Node.js ignorables
+# Node
 node_modules/
-npm-debug.log
-yarn-error.log
-.pnp/
-.pnp.js
-.env
-.env.test
-.cache/
-.next/
-.nuxt/
-.vuepress/dist
-.serverless/
-.fusebox/
-.dynamodb/
-.file_activity_report.json
-*.db
-core.*
-.core
+
+# Imports and zips
+__import__/
+*.zip
+
+# Dependencies are vendor trees (and include their own git repos)
+dependencies/
+
+# Build artifacts
+build/
+build_logs/
+**/build_*/
+
+# Test artifacts
+tests/l0/appgateway/artifacts/
+
+# Logs/results
 *.log
-post_process_status.lock
+*.result.txt
+
+# OS
+.DS_Store
+
+# Core dumps
+core.*
