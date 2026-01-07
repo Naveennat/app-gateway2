@@ -256,7 +256,7 @@ namespace WPEFramework
                 return Core::ERROR_NONE;
             }
 
-            // No registry available in this isolated build.
+            // No registry available in this isolated build; be strict per API contract.
             return Core::ERROR_BAD_REQUEST;
         }
 
