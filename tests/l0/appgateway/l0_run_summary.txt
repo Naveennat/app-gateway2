@@ -1,19 +1,9 @@
-Running L0 tests with LD_LIBRARY_PATH: /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/../../../dependencies/install/lib:/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/../../../dependencies/install/lib/plugins:/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/../../../dependencies/install/lib/wpeframework/plugins:
+Running L0 tests with LD_LIBRARY_PATH: /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/../../../dependencies/install/lib:/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/../../../dependencies/install/lib/wpeframework:
 Invoking L0 test runner...
 Test run complete. Exit code: 1
 
 == L0 Test Results Summary ==
-FAILED: CMakeFiles/appgateway_l0test.dir/AppGateway_Init_DeinitTests.cpp.o 
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_Init_DeinitTests.cpp:5:10: fatal error: core/core.h: No such file or directory
-FAILED: CMakeFiles/appgateway_l0test.dir/AppGatewayTest.cpp.o 
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGatewayTest.cpp:4:10: fatal error: core/core.h: No such file or directory
-FAILED: CMakeFiles/appgateway_l0test.dir/Responder_BehaviorTests.cpp.o 
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Responder_BehaviorTests.cpp:5:10: fatal error: core/core.h: No such file or directory
-FAILED: CMakeFiles/appgateway_l0test.dir/AppGateway_JsonRpcResolveTests.cpp.o 
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/AppGateway_JsonRpcResolveTests.cpp:5:10: fatal error: core/core.h: No such file or directory
-FAILED: CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o 
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/ContextUtils_ConversionTests.cpp:5:10: fatal error: core/core.h: No such file or directory
-FAILED: CMakeFiles/appgateway_l0test.dir/Resolver_Configure_And_ResolveTests.cpp.o 
-/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test/Resolver_Configure_And_ResolveTests.cpp:10:10: fatal error: core/core.h: No such file or directory
+CMake Error at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/cmake/WPEFrameworkPlugins/WPEFrameworkPluginsConfig.cmake:22 (find_package):
+-- Configuring incomplete, errors occurred!
 
 Full log is available at /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0_run_full.log
