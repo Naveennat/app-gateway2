@@ -18,6 +18,7 @@
  **/
 
 #include <string>
+#include <cstdlib>
 #include <plugins/JSONRPC.h>
 #include <plugins/IShell.h>
 #include "AppGatewayImplementation.h"
@@ -39,6 +40,28 @@ namespace WPEFramework
     namespace Plugin
     {
         SERVICE_REGISTRATION(AppGatewayImplementation, 1, 0, 0);
+
+        namespace {
+            // Keep helpers local to this translation unit to avoid changing public APIs.
+            static std::string TrimCopy(const std::string& in)
+            {
+                const auto first = in.find_first_not_of(" \t\r\n");
+                if (first == std::string::npos) {
+                    return "";
+                }
+                const auto last = in.find_last_not_of(" \t\r\n");
+                return in.substr(first, last - first + 1);
+            }
+
+            // Treat empty / "{}" / "null" as "no meaningful JSON config provided".
+            // This prevents noisy "Parsing failed: Expected new element" log spam when
+            // test harnesses provide an empty plugin config line like "{}".
+            static bool IsEffectivelyEmptyJson(const std::string& in)
+            {
+                const std::string t = TrimCopy(in);
+                return t.empty() || t == "{}" || t == "null";
+            }
+        } // namespace
 
         class ResolutionPaths : public Core::JSON::Container
         {
