@@ -2,8 +2,11 @@
 /*
  * Compatibility shim for legacy include layout: <messaging/messaging.h>
  *
- * The plugin build includes the repository root (app-gateway2/) in its include
- * paths. Provide this shim so vendored WPEFramework headers that include
- * <messaging/messaging.h> can be found without requiring extra include flags.
+ * In this repo, WPEFramework headers are vendored under:
+ *   dependencies/install/include/WPEFramework/...
+ *
+ * Some code (or transitive includes) may still include <messaging/messaging.h>.
+ * Provide this shim so those includes resolve correctly without requiring
+ * additional include flags or a full Thunder SDK layout.
  */
-#include "dependencies/install/include/messaging/messaging.h"
+#include "dependencies/install/include/WPEFramework/messaging/messaging.h"
