@@ -23,9 +23,15 @@ ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"  # -> app-gateway2
 
 DEPS_LIB="${ROOT}/dependencies/install/lib"
 PLUGINS_LIB="${DEPS_LIB}/plugins"
+# Vendored SDK layout includes lib/wpeframework (proxystubs) but may not include lib/wpeframework/plugins.
+WPEFRAMEWORK_LIB="${DEPS_LIB}/wpeframework"
 WPE_PLUGINS_LIB="${DEPS_LIB}/wpeframework/plugins"
 
-export LD_LIBRARY_PATH="${DEPS_LIB}:${PLUGINS_LIB}:${WPE_PLUGINS_LIB}:${LD_LIBRARY_PATH:-}"
+LD_PATH=("${DEPS_LIB}")
+[[ -d "${PLUGINS_LIB}" ]] && LD_PATH+=("${PLUGINS_LIB}")
+[[ -d "${WPEFRAMEWORK_LIB}" ]] && LD_PATH+=("${WPEFRAMEWORK_LIB}")
+[[ -d "${WPE_PLUGINS_LIB}" ]] && LD_PATH+=("${WPE_PLUGINS_LIB}")
+export LD_LIBRARY_PATH="$(IFS=:; echo "${LD_PATH[*]}"):${LD_LIBRARY_PATH:-}"
 
 log()        { echo "[run_coverage] $*"; }
 log_section(){ echo ""; echo "[run_coverage] ===== $* ====="; }
@@ -53,7 +59,9 @@ STABLE_BUILD_DIR="${ROOT}/build/tests_l0_appgateway"
 COVERAGE_DIR="${ROOT}/tests/l0/appgateway/coverage"
 INSTALL_PREFIX="${ROOT}/dependencies/install"
 
-# Plugin search paths (requested)
+# Plugin search paths:
+# - Some Thunder/WPEFramework environments use lib/wpeframework/plugins
+# - This repo's vendored SDK may only have lib/plugins (or none at all).
 PLUGIN_SO_WPE="${INSTALL_PREFIX}/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so"
 PLUGIN_SO_COMPAT="${INSTALL_PREFIX}/lib/plugins/libWPEFrameworkAppGateway.so"
 
@@ -198,6 +206,7 @@ PLUGIN_DIR="$(dirname "${APPGATEWAY_PLUGIN_SO}")"
 LD_PATH_EXTRA=(
   "${DEPS_LIB}"
   "${PLUGINS_LIB}"
+  "${WPEFRAMEWORK_LIB}"
   "${WPE_PLUGINS_LIB}"
   "${BUILD_DIR}"
   "${BUILD_DIR}/AppGateway"

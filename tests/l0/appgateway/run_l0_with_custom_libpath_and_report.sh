@@ -9,9 +9,18 @@ set -e
 BASE_DIR="$(dirname "$(readlink -f "$0")")"
 DEPS_LIB="${BASE_DIR}/../../../dependencies/install/lib"
 PLUGINS_LIB="${DEPS_LIB}/plugins"
+# In this repo's vendored SDK, the directory "lib/wpeframework/plugins" may not exist.
+# However "lib/wpeframework" (proxystubs) does exist and is relevant for runtime.
+WPEFRAMEWORK_LIB="${DEPS_LIB}/wpeframework"
 WPE_PLUGINS_LIB="${DEPS_LIB}/wpeframework/plugins"
 
-export LD_LIBRARY_PATH="${DEPS_LIB}:${PLUGINS_LIB}:${WPE_PLUGINS_LIB}:${LD_LIBRARY_PATH:-}"
+# Compose LD_LIBRARY_PATH with only directories that exist (avoid confusing loader warnings).
+LD_PATH=("${DEPS_LIB}")
+[[ -d "${PLUGINS_LIB}" ]] && LD_PATH+=("${PLUGINS_LIB}")
+[[ -d "${WPEFRAMEWORK_LIB}" ]] && LD_PATH+=("${WPEFRAMEWORK_LIB}")
+[[ -d "${WPE_PLUGINS_LIB}" ]] && LD_PATH+=("${WPE_PLUGINS_LIB}")
+
+export LD_LIBRARY_PATH="$(IFS=:; echo "${LD_PATH[*]}"):${LD_LIBRARY_PATH:-}"
 
 L0_SCRIPT="${BASE_DIR}/run_coverage.sh"
 LOG_FILE="${BASE_DIR}/l0_run_full.log"
