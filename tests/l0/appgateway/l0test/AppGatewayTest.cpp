@@ -47,6 +47,13 @@ extern uint32_t Test_Json_Boundary_RequestId_ConnectionId();
 extern uint32_t Test_Json_Params_Empty_Equals_EmptyObject();
 extern uint32_t Test_Json_EmptyAppId_BadRequest();
 
+// New AppGatewayImplementation branch tests
+extern uint32_t Test_AppGatewayImplementation_PermissionGroup_Denied();
+extern uint32_t Test_AppGatewayImplementation_PermissionGroup_Allowed_ComRpcDisabled();
+extern uint32_t Test_AppGatewayImplementation_EventListen_TriggersNotify();
+extern uint32_t Test_AppGatewayImplementation_IncludeContext_Path_Executes();
+extern uint32_t Test_AppGatewayImplementation_ComRpc_RequestHandler_ReceivesAdditionalContext();
+
 namespace {
 
 /*
@@ -570,6 +577,13 @@ int main()
         { "Json_Boundary_RequestId_ConnectionId", Test_Json_Boundary_RequestId_ConnectionId },
         { "Json_Params_Empty_Equals_EmptyObject", Test_Json_Params_Empty_Equals_EmptyObject },
         { "Json_EmptyAppId_BadRequest", Test_Json_EmptyAppId_BadRequest },
+
+        // New AppGatewayImplementation branch/coverage tests
+        { "AppGatewayImplementation_PermissionGroup_Denied", Test_AppGatewayImplementation_PermissionGroup_Denied },
+        { "AppGatewayImplementation_PermissionGroup_Allowed_ComRpcDisabled", Test_AppGatewayImplementation_PermissionGroup_Allowed_ComRpcDisabled },
+        { "AppGatewayImplementation_EventListen_TriggersNotify", Test_AppGatewayImplementation_EventListen_TriggersNotify },
+        { "AppGatewayImplementation_IncludeContext_Path_Executes", Test_AppGatewayImplementation_IncludeContext_Path_Executes },
+        { "AppGatewayImplementation_ComRpc_RequestHandler_ReceivesAdditionalContext", Test_AppGatewayImplementation_ComRpc_RequestHandler_ReceivesAdditionalContext },
     };
 
     uint32_t failures = 0;

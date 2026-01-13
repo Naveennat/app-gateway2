@@ -1,15 +1,17 @@
 #pragma once
 
 /*
- * CloudStore-style l0test ServiceMock:
- * - Implements PluginHost::IShell so the plugin can Initialize()/Deinitialize().
- * - Implements PluginHost::IShell::ICOMLink so IShell::Root<T>() can instantiate
- *   in-proc fakes via COMLink()->Instantiate(...).
+ * L0 test ServiceMock:
+ * - Implements PluginHost::IShell so plugins/services can Configure()/Initialize()/Deinitialize().
+ * - Implements PluginHost::IShell::ICOMLink so IShell::Root<T>() can instantiate in-proc fakes via COMLink()->Instantiate(...).
  *
- * Notes:
- * - This mock is aligned to the installed Thunder version found under
- *   dependencies/install/include/WPEFramework/plugins/IShell.h.
- * - We keep behavior deterministic and offline (no filesystem/network access).
+ * This mock is designed to keep behavior deterministic and offline:
+ *  - No sockets/network
+ *  - No dependency on other real Thunder plugins
+ *
+ * IMPORTANT:
+ * - By default, Release() does NOT delete 'this' to allow stack-allocated ServiceMock usage.
+ * - If constructed with selfDelete=true, Release(0) deletes the object (useful for heap-owned shells).
  */
 
 #include <atomic>
@@ -29,14 +31,18 @@
 
 #include <interfaces/IAppGateway.h>
 #include <interfaces/IConfiguration.h>
+#include <interfaces/IAppNotifications.h>
 
 namespace L0Test {
 
     using string = std::string;
 
-    // Test-only interface ID to safely obtain the concrete ResponderFake instance via QueryInterface
+    // Test-only interface IDs to safely obtain concrete fake instances via QueryInterface
     // without relying on dynamic_cast across shared-library boundaries.
-    static constexpr uint32_t ID_RESPONDER_FAKE = 0xF0F0F001;
+    static constexpr uint32_t ID_RESPONDER_FAKE       = 0xF0F0F001;
+    static constexpr uint32_t ID_AUTHENTICATOR_FAKE   = 0xF0F0F002;
+    static constexpr uint32_t ID_NOTIFICATIONS_FAKE   = 0xF0F0F003;
+    static constexpr uint32_t ID_REQUEST_HANDLER_FAKE = 0xF0F0F004;
 
     // A simple deterministic resolver fake with multiple error paths.
     class ResolverFake final : public WPEFramework::Exchange::IAppGatewayResolver,
@@ -81,14 +87,12 @@ namespace L0Test {
         // IConfiguration
         uint32_t Configure(WPEFramework::PluginHost::IShell* /*shell*/) override
         {
-            // No-op for offline tests.
             return WPEFramework::Core::ERROR_NONE;
         }
 
         // IAppGatewayResolver
         WPEFramework::Core::hresult Configure(IStringIterator* const& /*paths*/) override
         {
-            // Accept configuration in tests.
             return WPEFramework::Core::ERROR_NONE;
         }
 
@@ -99,8 +103,6 @@ namespace L0Test {
                                             string& result) override
         {
             // Deterministic error mapping controlled by method name.
-            // This allows l0tests to cover error-path behavior without needing the real
-            // AppGatewayImplementation filesystem-driven resolver configuration.
             if (method == "l0.notPermitted") {
                 result = "{\"error\":\"NotPermitted\"}";
                 return WPEFramework::Core::ERROR_PRIVILIGED_REQUEST;
@@ -114,7 +116,7 @@ namespace L0Test {
                 return WPEFramework::Core::ERROR_UNAVAILABLE;
             }
 
-            // Success path: return a JSON 'null' resolution (matches current tests).
+            // Success path: return a JSON 'null' resolution.
             result = "null";
             return WPEFramework::Core::ERROR_NONE;
         }
@@ -135,7 +137,6 @@ namespace L0Test {
 
         ~ResponderFake() override
         {
-            // Release all registered notifications
             for (auto* n : _notifications) {
                 if (n != nullptr) {
                     n->Release();
@@ -170,7 +171,6 @@ namespace L0Test {
                 AddRef();
                 return static_cast<WPEFramework::Exchange::IConfiguration*>(this);
             }
-            // L0 test helper: allow callers to retrieve the concrete fake type safely.
             if (id == ID_RESPONDER_FAKE) {
                 AddRef();
                 return this;
@@ -186,23 +186,31 @@ namespace L0Test {
 
         // IAppGatewayResponder
         WPEFramework::Core::hresult Respond(const WPEFramework::Exchange::GatewayContext& /*context*/,
-                                            const string& /*payload*/) override
+                                            const string& payload) override
         {
+            lastRespondPayload = payload;
+            respondCount++;
             return _transportEnabled ? WPEFramework::Core::ERROR_NONE : WPEFramework::Core::ERROR_UNAVAILABLE;
         }
 
         WPEFramework::Core::hresult Emit(const WPEFramework::Exchange::GatewayContext& /*context*/,
-                                         const string& /*method*/,
-                                         const string& /*payload*/) override
+                                         const string& method,
+                                         const string& payload) override
         {
+            lastEmitMethod = method;
+            lastEmitPayload = payload;
+            emitCount++;
             return _transportEnabled ? WPEFramework::Core::ERROR_NONE : WPEFramework::Core::ERROR_UNAVAILABLE;
         }
 
         WPEFramework::Core::hresult Request(const uint32_t /*connectionId*/,
                                             const uint32_t /*id*/,
-                                            const string& /*method*/,
-                                            const string& /*params*/) override
+                                            const string& method,
+                                            const string& params) override
         {
+            lastRequestMethod = method;
+            lastRequestParams = params;
+            requestCount++;
             return _transportEnabled ? WPEFramework::Core::ERROR_NONE : WPEFramework::Core::ERROR_UNAVAILABLE;
         }
 
@@ -228,7 +236,6 @@ namespace L0Test {
             if (notification == nullptr) {
                 return WPEFramework::Core::ERROR_GENERAL;
             }
-            // Avoid duplicate registrations
             if (std::find(_notifications.begin(), _notifications.end(), notification) == _notifications.end()) {
                 _notifications.push_back(notification);
                 notification->AddRef();
@@ -245,9 +252,7 @@ namespace L0Test {
             if (it != _notifications.end()) {
                 (*it)->Release();
                 _notifications.erase(it);
-                return WPEFramework::Core::ERROR_NONE;
             }
-            // Not found; keep behavior tolerant
             return WPEFramework::Core::ERROR_NONE;
         }
 
@@ -269,6 +274,15 @@ namespace L0Test {
             }
         }
 
+        uint32_t respondCount { 0 };
+        uint32_t emitCount { 0 };
+        uint32_t requestCount { 0 };
+        string lastRespondPayload;
+        string lastEmitMethod;
+        string lastEmitPayload;
+        string lastRequestMethod;
+        string lastRequestParams;
+
     private:
         mutable std::atomic<uint32_t> _refCount;
         bool _transportEnabled;
@@ -276,6 +290,239 @@ namespace L0Test {
 
         std::mutex _ctxMutex;
         std::unordered_map<uint32_t, std::unordered_map<string, string>> _contexts;
+    };
+
+    // Fake Authenticator (used by AppGatewayImplementation permission checks).
+    class AuthenticatorFake final : public WPEFramework::Exchange::IAppGatewayAuthenticator {
+    public:
+        explicit AuthenticatorFake(bool allowed = true, bool failCheck = false)
+            : _refCount(1)
+            , _allowed(allowed)
+            , _failCheck(failCheck)
+        {
+        }
+
+        ~AuthenticatorFake() override = default;
+
+        uint32_t AddRef() const override
+        {
+            return _refCount.fetch_add(1, std::memory_order_relaxed) + 1;
+        }
+
+        uint32_t Release() const override
+        {
+            const uint32_t newCount = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
+            if (newCount == 0) {
+                delete this;
+                return WPEFramework::Core::ERROR_DESTRUCTION_SUCCEEDED;
+            }
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        void* QueryInterface(const uint32_t id) override
+        {
+            if (id == WPEFramework::Exchange::IAppGatewayAuthenticator::ID) {
+                AddRef();
+                return static_cast<WPEFramework::Exchange::IAppGatewayAuthenticator*>(this);
+            }
+            if (id == ID_AUTHENTICATOR_FAKE) {
+                AddRef();
+                return this;
+            }
+            return nullptr;
+        }
+
+        WPEFramework::Core::hresult Authenticate(const string& /*sessionId*/, string& appId /* @out */) override
+        {
+            appId = "com.l0.authenticated";
+            authenticateCount++;
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        WPEFramework::Core::hresult GetSessionId(const string& /*appId*/, string& sessionId /* @out */) override
+        {
+            sessionId = "l0.session";
+            getSessionIdCount++;
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        WPEFramework::Core::hresult CheckPermissionGroup(const string& appId,
+                                                         const string& permissionGroup,
+                                                         bool& allowed /* @out */) override
+        {
+            lastAppId = appId;
+            lastPermissionGroup = permissionGroup;
+            checkPermissionCount++;
+
+            if (_failCheck) {
+                allowed = false;
+                return WPEFramework::Core::ERROR_GENERAL;
+            }
+
+            allowed = _allowed;
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        void SetAllowed(bool allowed) { _allowed = allowed; }
+        void SetFailCheck(bool fail) { _failCheck = fail; }
+
+        uint32_t authenticateCount { 0 };
+        uint32_t getSessionIdCount { 0 };
+        uint32_t checkPermissionCount { 0 };
+        string lastAppId;
+        string lastPermissionGroup;
+
+    private:
+        mutable std::atomic<uint32_t> _refCount;
+        bool _allowed;
+        bool _failCheck;
+    };
+
+    // Fake AppNotifications (used by AppGatewayImplementation event listen/notify path).
+    class AppNotificationsFake final : public WPEFramework::Exchange::IAppNotifications {
+    public:
+        AppNotificationsFake()
+            : _refCount(1)
+        {
+        }
+
+        ~AppNotificationsFake() override = default;
+
+        uint32_t AddRef() const override
+        {
+            return _refCount.fetch_add(1, std::memory_order_relaxed) + 1;
+        }
+
+        uint32_t Release() const override
+        {
+            const uint32_t newCount = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
+            if (newCount == 0) {
+                delete this;
+                return WPEFramework::Core::ERROR_DESTRUCTION_SUCCEEDED;
+            }
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        void* QueryInterface(const uint32_t id) override
+        {
+            if (id == WPEFramework::Exchange::IAppNotifications::ID) {
+                AddRef();
+                return static_cast<WPEFramework::Exchange::IAppNotifications*>(this);
+            }
+            if (id == ID_NOTIFICATIONS_FAKE) {
+                AddRef();
+                return this;
+            }
+            return nullptr;
+        }
+
+        WPEFramework::Core::hresult Notify(const string& event, const string& payload) override
+        {
+            lastEvent = event;
+            lastPayload = payload;
+            notifyCount++;
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        WPEFramework::Core::hresult Subscribe(const AppNotificationContext& /*context*/,
+                                              bool /*listen*/,
+                                              const string& /*module*/,
+                                              const string& /*event*/) override
+        {
+            // Not used in this repo's AppGatewayImplementation (kept for interface compatibility).
+            subscribeCount++;
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        WPEFramework::Core::hresult Emit(const string& /*event*/,
+                                         const string& /*payload*/,
+                                         const string& /*appId*/) override
+        {
+            emitCount++;
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        WPEFramework::Core::hresult Cleanup(const uint32_t /*connectionId*/, const string& /*origin*/) override
+        {
+            cleanupCount++;
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        uint32_t notifyCount { 0 };
+        uint32_t subscribeCount { 0 };
+        uint32_t emitCount { 0 };
+        uint32_t cleanupCount { 0 };
+        string lastEvent;
+        string lastPayload;
+
+    private:
+        mutable std::atomic<uint32_t> _refCount;
+    };
+
+    // Fake COM-RPC request handler (used by AppGatewayImplementation::ProcessComRpcRequest).
+    class RequestHandlerFake final : public WPEFramework::Exchange::IAppGatewayRequestHandler {
+    public:
+        explicit RequestHandlerFake(uint32_t rc = WPEFramework::Core::ERROR_NONE)
+            : _refCount(1)
+            , _rc(rc)
+        {
+        }
+
+        ~RequestHandlerFake() override = default;
+
+        uint32_t AddRef() const override
+        {
+            return _refCount.fetch_add(1, std::memory_order_relaxed) + 1;
+        }
+
+        uint32_t Release() const override
+        {
+            const uint32_t newCount = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
+            if (newCount == 0) {
+                delete this;
+                return WPEFramework::Core::ERROR_DESTRUCTION_SUCCEEDED;
+            }
+            return WPEFramework::Core::ERROR_NONE;
+        }
+
+        void* QueryInterface(const uint32_t id) override
+        {
+            if (id == WPEFramework::Exchange::IAppGatewayRequestHandler::ID) {
+                AddRef();
+                return static_cast<WPEFramework::Exchange::IAppGatewayRequestHandler*>(this);
+            }
+            if (id == ID_REQUEST_HANDLER_FAKE) {
+                AddRef();
+                return this;
+            }
+            return nullptr;
+        }
+
+        WPEFramework::Core::hresult HandleAppGatewayRequest(const WPEFramework::Exchange::GatewayContext& /*context*/,
+                                                            const string& method,
+                                                            const string& payload,
+                                                            string& result) override
+        {
+            lastMethod = method;
+            lastPayload = payload;
+            handleCount++;
+
+            if (_rc == WPEFramework::Core::ERROR_NONE) {
+                // A deterministic, simple response.
+                result = "null";
+            }
+            return _rc;
+        }
+
+        void SetReturnCode(uint32_t rc) { _rc = rc; }
+
+        uint32_t handleCount { 0 };
+        string lastMethod;
+        string lastPayload;
+
+    private:
+        mutable std::atomic<uint32_t> _refCount;
+        uint32_t _rc;
     };
 
     class ServiceMock final : public WPEFramework::PluginHost::IShell,
@@ -286,11 +533,25 @@ namespace L0Test {
             bool provideResponder;
             bool responderTransportAvailable;
 
+            bool provideAppNotifications;
+            bool provideAuthenticator;
+            bool authenticatorAllowed;
+            bool authenticatorFailCheck;
+
+            bool provideRequestHandler;
+            string requestHandlerCallsign; // e.g. "org.rdk.FbSettings"
+
             // PUBLIC_INTERFACE
             explicit Config(const bool resolver = true, const bool responder = true, const bool responderTransport = true)
                 : provideResolver(resolver)
                 , provideResponder(responder)
                 , responderTransportAvailable(responderTransport)
+                , provideAppNotifications(false)
+                , provideAuthenticator(false)
+                , authenticatorAllowed(true)
+                , authenticatorFailCheck(false)
+                , provideRequestHandler(false)
+                , requestHandlerCallsign("org.rdk.FbSettings")
             {
             }
         };
@@ -304,15 +565,15 @@ namespace L0Test {
             , _selfDelete(selfDelete)
             , _resolverFake(nullptr)
             , _responderFake(nullptr)
+            , _appNotificationsFake(nullptr)
+            , _authenticatorFake(nullptr)
+            , _requestHandlerFake(nullptr)
         {
-            // IMPORTANT (L0 behavior):
-            // Do NOT override _cfg here. Several L0 tests intentionally create ServiceMock with
-            // provideResolver/provideResponder=false to validate correct failure behavior.
+            // IMPORTANT: Do NOT override _cfg here; tests depend on explicit per-test configuration.
         }
 
         ~ServiceMock() override
         {
-            // Ensure cached fakes are released once per ServiceMock lifetime.
             if (_resolverFake != nullptr) {
                 _resolverFake->Release();
                 _resolverFake = nullptr;
@@ -320,6 +581,18 @@ namespace L0Test {
             if (_responderFake != nullptr) {
                 _responderFake->Release();
                 _responderFake = nullptr;
+            }
+            if (_appNotificationsFake != nullptr) {
+                _appNotificationsFake->Release();
+                _appNotificationsFake = nullptr;
+            }
+            if (_authenticatorFake != nullptr) {
+                _authenticatorFake->Release();
+                _authenticatorFake = nullptr;
+            }
+            if (_requestHandlerFake != nullptr) {
+                _requestHandlerFake->Release();
+                _requestHandlerFake = nullptr;
             }
         }
 
@@ -333,12 +606,7 @@ namespace L0Test {
         {
             const uint32_t newCount = _refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
             if (newCount == 0) {
-                // L0 test safety:
-                // Some tests use stack-allocated ServiceMock instances, but plugin code may AddRef/Release
-                // them (e.g., AppGatewayImplementation stores IShell* and releases it in destructor).
-                // Deleting a stack object causes heap corruption / SIGABRT.
-                //
-                // Default behavior in this repo's L0 tests is therefore: do NOT delete on Release(0).
+                // Default in this repo's L0 tests: do NOT delete on Release(0) to support stack allocation.
                 if (_selfDelete) {
                     delete this;
                 }
@@ -354,14 +622,7 @@ namespace L0Test {
                 return static_cast<WPEFramework::PluginHost::IShell*>(this);
             }
 
-            // L0 HARNESS:
-            // Some Thunder builds (and some test paths) query interfaces directly on the IShell
-            // instance rather than exclusively via COMLink()->Instantiate(). To keep behavior
-            // deterministic, we return *cached* in-proc fakes here.
-            //
-            // IMPORTANT: Do not allocate a new fake per QueryInterface call; tests rely on
-            // shared state (transport enabled flag, connection contexts, notifications) being
-            // preserved across calls.
+            // Some code paths query interfaces directly on IShell.
             if (id == WPEFramework::Exchange::IAppGatewayResolver::ID) {
                 if (_cfg.provideResolver) {
                     if (_resolverFake == nullptr) {
@@ -374,9 +635,6 @@ namespace L0Test {
             }
             if (id == WPEFramework::Exchange::IAppGatewayResponder::ID) {
                 if (_cfg.provideResponder) {
-                    // Always serve the cached responder fake for the lifetime of this ServiceMock.
-                    // L0 tests rely on shared responder state (connection contexts, notification list)
-                    // being preserved across QueryInterface()/Instantiate() calls.
                     if (_responderFake == nullptr) {
                         _responderFake = new ResponderFake(_cfg.responderTransportAvailable);
                     }
@@ -399,14 +657,10 @@ namespace L0Test {
         string WebPrefix() const override { return "/jsonrpc"; }
         string Locator() const override
         {
-            // Provide a real locator for PluginHost::IShell::Root() so Thunder can LoadLibrary().
-            // The runner script sets APPGATEWAY_PLUGIN_SO to the absolute path of libWPEFrameworkAppGateway.so.
             const char* soPath = std::getenv("APPGATEWAY_PLUGIN_SO");
             if (soPath != nullptr && *soPath != '\0') {
                 return string(soPath);
             }
-
-            // Fallback: a reasonable default name (may still resolve via Thunder search paths).
             return "libWPEFrameworkAppGateway.so";
         }
         string ClassName() const override { return _className; }
@@ -435,18 +689,7 @@ namespace L0Test {
 
         string ConfigLine() const override
         {
-            // L0 HARNESS NOTE (Thunder SDK RootConfig parsing):
-            // -------------------------------------------------
-            // Thunder's Plugin::Config::RootConfig parses IShell::ConfigLine() as JSON:
-            //   1) Parse an outer object { "root": "<string>" }
-            //   2) If "root" is set, parse the *string contents* as another JSON object
-            //
-            // Some Thunder builds treat the "root" key as required in the first parse; returning
-            // "{}" can produce parsing errors like:
-            //   Expected new element, "}" found. At character 2: {}
-            //
-            // Provide the expected wrapper with a stable empty JSON object as the nested config.
-            // This keeps RootConfig quiet and deterministic even if any code path touches Root().
+            // Thunder RootConfig parsing expects: { "root": "<json-string>" }
             return "{\"root\":\"{}\"}";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
@@ -468,9 +711,58 @@ namespace L0Test {
 
         state State() const override { return state::ACTIVATED; }
 
-        void* QueryInterfaceByCallsign(const uint32_t /*id*/, const string& /*name*/) override
+        void* QueryInterfaceByCallsign(const uint32_t id, const string& name) override
         {
-            // Not used by current l0tests; return nullptr for all.
+            // Provide per-callsign interfaces used by AppGatewayImplementation and other L0 code paths.
+            // NOTE: Return values follow COM semantics: pointer is returned AddRef'd.
+            if (id == WPEFramework::Exchange::IAppNotifications::ID) {
+                if (_cfg.provideAppNotifications && name == "org.rdk.AppNotifications") {
+                    if (_appNotificationsFake == nullptr) {
+                        _appNotificationsFake = new AppNotificationsFake();
+                    }
+                    _appNotificationsFake->AddRef();
+                    return static_cast<WPEFramework::Exchange::IAppNotifications*>(_appNotificationsFake);
+                }
+                return nullptr;
+            }
+
+            if (id == WPEFramework::Exchange::IAppGatewayAuthenticator::ID) {
+                if (_cfg.provideAuthenticator && name == "org.rdk.LaunchDelegate") {
+                    if (_authenticatorFake == nullptr) {
+                        _authenticatorFake = new AuthenticatorFake(_cfg.authenticatorAllowed, _cfg.authenticatorFailCheck);
+                    }
+                    _authenticatorFake->AddRef();
+                    return static_cast<WPEFramework::Exchange::IAppGatewayAuthenticator*>(_authenticatorFake);
+                }
+                return nullptr;
+            }
+
+            if (id == WPEFramework::Exchange::IAppGatewayResponder::ID) {
+                // INTERNAL_GATEWAY_CALLSIGN maps to org.rdk.LaunchDelegate in this repo's helpers/UtilsCallsign.h.
+                if (name == "org.rdk.LaunchDelegate") {
+                    // Reuse the responder fake as "internal responder" as well; tests can inspect call counters.
+                    if (_cfg.provideResponder) {
+                        if (_responderFake == nullptr) {
+                            _responderFake = new ResponderFake(_cfg.responderTransportAvailable);
+                        }
+                        _responderFake->AddRef();
+                        return static_cast<WPEFramework::Exchange::IAppGatewayResponder*>(_responderFake);
+                    }
+                }
+                return nullptr;
+            }
+
+            if (id == WPEFramework::Exchange::IAppGatewayRequestHandler::ID) {
+                if (_cfg.provideRequestHandler && name == _cfg.requestHandlerCallsign) {
+                    if (_requestHandlerFake == nullptr) {
+                        _requestHandlerFake = new RequestHandlerFake();
+                    }
+                    _requestHandlerFake->AddRef();
+                    return static_cast<WPEFramework::Exchange::IAppGatewayRequestHandler*>(_requestHandlerFake);
+                }
+                return nullptr;
+            }
+
             return nullptr;
         }
 
@@ -487,7 +779,6 @@ namespace L0Test {
 
         WPEFramework::PluginHost::IShell::ICOMLink* COMLink() override
         {
-            // Root<T>() will route to COMLink()->Instantiate(...) in main process context.
             return this;
         }
 
@@ -500,21 +791,11 @@ namespace L0Test {
 
         WPEFramework::RPC::IRemoteConnection* RemoteConnection(const uint32_t /*connectionId*/) override
         {
-            // In-proc l0tests do not create remote processes.
             return nullptr;
         }
 
         void* Instantiate(const WPEFramework::RPC::Object& object, const uint32_t /*waitTime*/, uint32_t& connectionId) override
         {
-            // AppGateway::Initialize() requests (via IShell::Root):
-            //  - "AppGatewayImplementation"          (Exchange::IAppGatewayResolver)
-            //  - "AppGatewayResponderImplementation" (Exchange::IAppGatewayResponder)
-            //
-            // In some Thunder builds, Object::ClassName() can be fully-qualified
-            // (e.g., "WPEFramework::Plugin::AppGatewayImplementation"). We match by suffix.
-            //
-            // IMPORTANT: We must return the same fake instances across Root<T>() and later
-            // QueryInterface() calls, otherwise test state is lost and expectations fail.
             connectionId = 1;
             _instantiateCount.fetch_add(1, std::memory_order_acq_rel);
 
@@ -527,7 +808,7 @@ namespace L0Test {
                 return s.compare(s.size() - suffix.size(), suffix.size(), suffix) == 0;
             };
 
-            // Resolver: accept multiple naming variants used by different Thunder/SDK builds.
+            // Resolver (aggregate)
             if (endsWith(className, "AppGatewayImplementation") ||
                 endsWith(className, "::AppGatewayImplementation") ||
                 endsWith(className, "AppGatewayResolver") ||
@@ -544,7 +825,7 @@ namespace L0Test {
                 return static_cast<WPEFramework::Exchange::IAppGatewayResolver*>(_resolverFake);
             }
 
-            // Responder: same robustness for the responder implementation.
+            // Responder (aggregate)
             if (endsWith(className, "AppGatewayResponderImplementation") ||
                 endsWith(className, "::AppGatewayResponderImplementation") ||
                 endsWith(className, "AppGatewayResponder") ||
@@ -564,9 +845,15 @@ namespace L0Test {
             return nullptr;
         }
 
-        // Helpers for tests
+        // Helpers for tests (non-interface)
         void Callsign(const std::string& cs) { _callsign = cs; }
         void ClassName(const std::string& cn) { _className = cn; }
+
+        ResponderFake* GetResponderFake() const { return _responderFake; }
+        ResolverFake* GetResolverFake() const { return _resolverFake; }
+        AppNotificationsFake* GetAppNotificationsFake() const { return _appNotificationsFake; }
+        AuthenticatorFake* GetAuthenticatorFake() const { return _authenticatorFake; }
+        RequestHandlerFake* GetRequestHandlerFake() const { return _requestHandlerFake; }
 
     private:
         mutable std::atomic<uint32_t> _refCount;
@@ -576,9 +863,12 @@ namespace L0Test {
         Config _cfg;
         const bool _selfDelete;
 
-        // Cached fakes so Root<T>() and QueryInterface() return the same objects.
         ResolverFake* _resolverFake;
         ResponderFake* _responderFake;
+
+        AppNotificationsFake* _appNotificationsFake;
+        AuthenticatorFake* _authenticatorFake;
+        RequestHandlerFake* _requestHandlerFake;
     };
 
 } // namespace L0Test

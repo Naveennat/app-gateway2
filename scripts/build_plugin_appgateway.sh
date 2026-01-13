@@ -85,6 +85,26 @@ fi
 : > "${ERRORS_LATEST}"
 
 # Configure
+# Optional: build plugin with gcov/coverage instrumentation.
+# This is used by the L0 coverage runner to include plugin/AppGateway/*.cpp in lcov output.
+COVERAGE_CXXFLAGS="${APPGATEWAY_COVERAGE_CXXFLAGS:-}"
+COVERAGE_LDFLAGS="${APPGATEWAY_COVERAGE_LDFLAGS:-}"
+if [[ "${APPGATEWAY_BUILD_WITH_COVERAGE:-0}" != "0" ]]; then
+  [[ -n "${COVERAGE_CXXFLAGS}" ]] || COVERAGE_CXXFLAGS="--coverage -O0 -g"
+  [[ -n "${COVERAGE_LDFLAGS}" ]] || COVERAGE_LDFLAGS="--coverage"
+  log "Coverage build enabled:"
+  log "  COVERAGE_CXXFLAGS=${COVERAGE_CXXFLAGS}"
+  log "  COVERAGE_LDFLAGS=${COVERAGE_LDFLAGS}"
+fi
+
+COMBINED_CXX_FLAGS=""
+if [[ -n "${EXTRA_CXX_FLAGS}" ]]; then
+  COMBINED_CXX_FLAGS="${EXTRA_CXX_FLAGS}"
+fi
+if [[ -n "${COVERAGE_CXXFLAGS}" ]]; then
+  COMBINED_CXX_FLAGS="${COMBINED_CXX_FLAGS}${COMBINED_CXX_FLAGS:+ }${COVERAGE_CXXFLAGS}"
+fi
+
 log "Configuring..."
 (
   set -o pipefail
@@ -93,7 +113,9 @@ log "Configuring..."
     -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}" \
     -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}" \
     -DCMAKE_MODULE_PATH="${THUNDER_MODULES_DIR}" \
-    ${EXTRA_CXX_FLAGS:+-DCMAKE_CXX_FLAGS="${EXTRA_CXX_FLAGS}"}
+    ${COMBINED_CXX_FLAGS:+-DCMAKE_CXX_FLAGS="${COMBINED_CXX_FLAGS}"} \
+    ${COVERAGE_LDFLAGS:+-DCMAKE_SHARED_LINKER_FLAGS="${COVERAGE_LDFLAGS}"} \
+    ${COVERAGE_LDFLAGS:+-DCMAKE_EXE_LINKER_FLAGS="${COVERAGE_LDFLAGS}"}
 ) 2>&1 | tee "${CONFIG_LOG}"
 
 # Build + install

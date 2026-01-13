@@ -72,11 +72,27 @@ log_section "Input checks"
 RESOLUTIONS_PATH="${APPGATEWAY_RESOLUTIONS_PATH:-${DEFAULT_RESOLUTIONS_PATH}}"
 [[ -f "${RESOLUTIONS_PATH}" ]] || die "Resolution base file not found: ${RESOLUTIONS_PATH}"
 
+log_section "Coverage flags"
+COVERAGE_CXXFLAGS="--coverage -O0 -g"
+COVERAGE_LDFLAGS="--coverage"
+
 log_section "Build AppGateway plugin (ensure up-to-date)"
 # The L0 harness links against the installed AppGateway plugin .so under dependencies/install.
 # If the plugin isn't rebuilt here, tests can run against a stale binary even when repo sources changed.
 # If the user explicitly provides APPGATEWAY_PLUGIN_SO, assume they manage the binary and skip rebuilding.
+#
+# IMPORTANT: For coverage we must build the plugin with --coverage and then collect .gcda from the
+# plugin build directory (not the install directory).
 if [[ -z "${APPGATEWAY_PLUGIN_SO:-}" ]]; then
+  export APPGATEWAY_BUILD_WITH_COVERAGE=1
+  export APPGATEWAY_COVERAGE_CXXFLAGS="${COVERAGE_CXXFLAGS}"
+  export APPGATEWAY_COVERAGE_LDFLAGS="${COVERAGE_LDFLAGS}"
+
+  if [[ -d "${ROOT}/build/plugin_appgateway" ]]; then
+    # Avoid stale counters from prior runs.
+    find "${ROOT}/build/plugin_appgateway" -type f -name "*.gcda" -delete 2>/dev/null || true
+  fi
+
   if [[ -x "${ROOT}/scripts/build_plugin_appgateway.sh" ]]; then
     "${ROOT}/scripts/build_plugin_appgateway.sh"
   elif [[ -x "${ROOT}/build_plugin_appgateway.sh" ]]; then
@@ -113,10 +129,6 @@ else
   warn "  - ${PLUGIN_SO_COMPAT}"
   warn "Continuing; tests may still build but can fail at runtime."
 fi
-
-log_section "Coverage flags"
-COVERAGE_CXXFLAGS="--coverage -O0 -g"
-COVERAGE_LDFLAGS="--coverage"
 
 export CMAKE_PREFIX_PATH="${INSTALL_PREFIX}${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}"
 export PKG_CONFIG_PATH="${INSTALL_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
@@ -204,7 +216,13 @@ HTML_DIR="${COVERAGE_DIR}/html"
 
 # Capture everything produced by the build directory first, then strictly filter the report
 # to only the requested source roots.
-lcov -c -o "${INFO_FILE}" -d "${BUILD_DIR}" --ignore-errors empty
+# Capture both:
+#  - L0 test executable build tree (.gcda from tests)
+#  - Plugin build tree (.gcda from libWPEFrameworkAppGateway.so objects)
+lcov -c -o "${INFO_FILE}" \
+  -d "${BUILD_DIR}" \
+  -d "${ROOT}/build/plugin_appgateway" \
+  --ignore-errors empty
 
 # Restrict coverage to:
 #   - app-gateway2/plugin/AppGateway/**

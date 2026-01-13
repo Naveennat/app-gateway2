@@ -46,6 +46,7 @@ set(APPGW_L0_SOURCES
     Resolver_Configure_And_ResolveTests.cpp
     Responder_BehaviorTests.cpp
     ContextUtils_ConversionTests.cpp
+    AppGatewayImplementation_BranchTests.cpp
 )
 
 add_executable(appgateway_l0test ${APPGW_L0_SOURCES})
