@@ -1,0 +1,1 @@
+genhtml -o /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/html /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/coverage.filtered.info
