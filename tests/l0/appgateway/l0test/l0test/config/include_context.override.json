@@ -1,0 +1,10 @@
+
+{
+  "resolutions": {
+    "test.withContext": {
+      "alias": "dummy.method",
+      "useComRpc": false,
+      "additionalContext": { "foo": "bar" }
+    }
+  }
+}

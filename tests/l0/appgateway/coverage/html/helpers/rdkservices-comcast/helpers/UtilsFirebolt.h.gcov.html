@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.filtered.info - helpers/rdkservices-comcast/helpers/UtilsFirebolt.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">helpers/rdkservices-comcast/helpers</a> - UtilsFirebolt.h<span style="font-size: 80%;"> (source / <a href="UtilsFirebolt.h.func-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.filtered.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryMed">76.9&nbsp;%</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntry">20</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-01-13 07:01:57</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryLo">71.4&nbsp;%</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntry">5</td>
+          </tr>
+                  <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /**</span>
+<span id="L2"><span class="lineNum">       2</span>              : * If not stated otherwise in this file or this component's LICENSE</span>
+<span id="L3"><span class="lineNum">       3</span>              : * file the following copyright and licenses apply:</span>
+<span id="L4"><span class="lineNum">       4</span>              : *</span>
+<span id="L5"><span class="lineNum">       5</span>              : * Copyright 2020 RDK Management</span>
+<span id="L6"><span class="lineNum">       6</span>              : *</span>
+<span id="L7"><span class="lineNum">       7</span>              : * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span id="L8"><span class="lineNum">       8</span>              : * you may not use this file except in compliance with the License.</span>
+<span id="L9"><span class="lineNum">       9</span>              : * You may obtain a copy of the License at</span>
+<span id="L10"><span class="lineNum">      10</span>              : *</span>
+<span id="L11"><span class="lineNum">      11</span>              : * http://www.apache.org/licenses/LICENSE-2.0</span>
+<span id="L12"><span class="lineNum">      12</span>              : *</span>
+<span id="L13"><span class="lineNum">      13</span>              : * Unless required by applicable law or agreed to in writing, software</span>
+<span id="L14"><span class="lineNum">      14</span>              : * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span id="L15"><span class="lineNum">      15</span>              : * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span id="L16"><span class="lineNum">      16</span>              : * See the License for the specific language governing permissions and</span>
+<span id="L17"><span class="lineNum">      17</span>              : * limitations under the License.</span>
+<span id="L18"><span class="lineNum">      18</span>              : **/</span>
+<span id="L19"><span class="lineNum">      19</span>              : </span>
+<span id="L20"><span class="lineNum">      20</span>              : #ifndef __UTILSFIREBOLT_H__</span>
+<span id="L21"><span class="lineNum">      21</span>              : #define __UTILSFIREBOLT_H__</span>
+<span id="L22"><span class="lineNum">      22</span>              : </span>
+<span id="L23"><span class="lineNum">      23</span>              : #include &lt;mutex&gt;</span>
+<span id="L24"><span class="lineNum">      24</span>              : #include &lt;map&gt;</span>
+<span id="L25"><span class="lineNum">      25</span>              : #include &lt;unordered_map&gt;</span>
+<span id="L26"><span class="lineNum">      26</span>              : </span>
+<span id="L27"><span class="lineNum">      27</span>              : using namespace WPEFramework;</span>
+<span id="L28"><span class="lineNum">      28</span>              : </span>
+<span id="L29"><span class="lineNum">      29</span>              : /**</span>
+<span id="L30"><span class="lineNum">      30</span>              :  * Firebolt JSON-RPC error codes.</span>
+<span id="L31"><span class="lineNum">      31</span>              :  *</span>
+<span id="L32"><span class="lineNum">      32</span>              :  * IMPORTANT:</span>
+<span id="L33"><span class="lineNum">      33</span>              :  * Do NOT use generic macro names like ERROR_NOT_SUPPORTED because they collide with</span>
+<span id="L34"><span class="lineNum">      34</span>              :  * Thunder's Core::ERROR_NOT_SUPPORTED enum constant (and similar), breaking builds via</span>
+<span id="L35"><span class="lineNum">      35</span>              :  * macro expansion (e.g., Core::ERROR_NOT_SUPPORTED =&gt; Core::(-50100)).</span>
+<span id="L36"><span class="lineNum">      36</span>              :  */</span>
+<span id="L37"><span class="lineNum">      37</span>              : #define FIREBOLT_ERROR_NOT_SUPPORTED (-50100)</span>
+<span id="L38"><span class="lineNum">      38</span>              : #define FIREBOLT_ERROR_NOT_AVAILABLE (-50200)</span>
+<span id="L39"><span class="lineNum">      39</span>              : #define FIREBOLT_ERROR_NOT_PERMITTED (-40300)</span>
+<span id="L40"><span class="lineNum">      40</span>              : #define FIREBOLT_ERROR_GRANT_DENIED (-40400)</span>
+<span id="L41"><span class="lineNum">      41</span>              : #define FIREBOLT_ERROR_UNGRANTED (-40401)</span>
+<span id="L42"><span class="lineNum">      42</span>              : #define FIREBOLT_ERROR_APP_NOT_IN_ACTIVE_STATE (-40402)</span>
+<span id="L43"><span class="lineNum">      43</span>              : #define FIREBOLT_ERROR_GRANT_PROVIDER_MISSING (-40403)</span>
+<span id="L44"><span class="lineNum">      44</span>              : </span>
+<span id="L45"><span class="lineNum">      45</span>              : class JListenRequest: public Core::JSON::Container {</span>
+<span id="L46"><span class="lineNum">      46</span>              :     public:</span>
+<span id="L47"><span class="lineNum">      47</span>              :         Core::JSON::Boolean listen;</span>
+<span id="L48"><span class="lineNum">      48</span>              :     </span>
+<span id="L49"><span class="lineNum">      49</span>              :     JListenRequest() : Core::JSON::Container()</span>
+<span id="L50"><span class="lineNum">      50</span>              :     {</span>
+<span id="L51"><span class="lineNum">      51</span>              :         Add(_T(&quot;listen&quot;), &amp;listen);</span>
+<span id="L52"><span class="lineNum">      52</span>              :     }</span>
+<span id="L53"><span class="lineNum">      53</span>              : </span>
+<span id="L54"><span class="lineNum">      54</span>              :     bool Get() const {</span>
+<span id="L55"><span class="lineNum">      55</span>              :         return listen.Value();</span>
+<span id="L56"><span class="lineNum">      56</span>              :     }</span>
+<span id="L57"><span class="lineNum">      57</span>              : };</span>
+<span id="L58"><span class="lineNum">      58</span>              : </span>
+<span id="L59"><span class="lineNum">      59</span>              : class JListenResponse: public Core::JSON::Container {</span>
+<span id="L60"><span class="lineNum">      60</span>              :     public:</span>
+<span id="L61"><span class="lineNum">      61</span>              :         Core::JSON::String event;</span>
+<span id="L62"><span class="lineNum">      62</span>              :         Core::JSON::Boolean listening;</span>
+<span id="L63"><span class="lineNum">      63</span>              :     </span>
+<span id="L64"><span class="lineNum">      64</span>              :     JListenResponse() : Core::JSON::Container()</span>
+<span id="L65"><span class="lineNum">      65</span>              :     {</span>
+<span id="L66"><span class="lineNum">      66</span>              :         Add(_T(&quot;event&quot;), &amp;event);</span>
+<span id="L67"><span class="lineNum">      67</span>              :         Add(_T(&quot;listening&quot;), &amp;listening);</span>
+<span id="L68"><span class="lineNum">      68</span>              :     }</span>
+<span id="L69"><span class="lineNum">      69</span>              :     </span>
+<span id="L70"><span class="lineNum">      70</span>              : };</span>
+<span id="L71"><span class="lineNum">      71</span>              : </span>
+<span id="L72"><span class="lineNum">      72</span>              : struct ProviderInfo{</span>
+<span id="L73"><span class="lineNum">      73</span>              :     uint32_t channelId{0};</span>
+<span id="L74"><span class="lineNum">      74</span>              :     uint32_t requestId{0};</span>
+<span id="L75"><span class="lineNum">      75</span>              : </span>
+<span id="L76"><span class="lineNum">      76</span>              :     static ProviderInfo create(uint32_t chId, uint32_t reqId) {</span>
+<span id="L77"><span class="lineNum">      77</span>              :         ProviderInfo info;</span>
+<span id="L78"><span class="lineNum">      78</span>              :         info.channelId = chId;</span>
+<span id="L79"><span class="lineNum">      79</span>              :         info.requestId = reqId;</span>
+<span id="L80"><span class="lineNum">      80</span>              :         return info;</span>
+<span id="L81"><span class="lineNum">      81</span>              :     }</span>
+<span id="L82"><span class="lineNum">      82</span>              : };</span>
+<span id="L83"><span class="lineNum">      83</span>              : </span>
+<span id="L84"><span class="lineNum">      84</span>              : class ProviderRegistry{</span>
+<span id="L85"><span class="lineNum">      85</span>              :     public:</span>
+<span id="L86"><span class="lineNum">      86</span>              :     void Add(const std::string&amp; key, uint32_t chId, uint32_t reqId) {</span>
+<span id="L87"><span class="lineNum">      87</span>              :         std::lock_guard&lt;std::mutex&gt; lock(mProviderMutex);</span>
+<span id="L88"><span class="lineNum">      88</span>              :         mProviderMap[key] = ProviderInfo::create(chId, reqId);</span>
+<span id="L89"><span class="lineNum">      89</span>              :     }</span>
+<span id="L90"><span class="lineNum">      90</span>              : </span>
+<span id="L91"><span class="lineNum">      91</span>              :     void Add(const std::string&amp; key, ProviderInfo provider) {</span>
+<span id="L92"><span class="lineNum">      92</span>              :         std::lock_guard&lt;std::mutex&gt; lock(mProviderMutex);</span>
+<span id="L93"><span class="lineNum">      93</span>              :         mProviderMap[key] = provider;</span>
+<span id="L94"><span class="lineNum">      94</span>              :     }</span>
+<span id="L95"><span class="lineNum">      95</span>              : </span>
+<span id="L96"><span class="lineNum">      96</span>              :     void Remove(const std::string&amp; key) {</span>
+<span id="L97"><span class="lineNum">      97</span>              :         std::lock_guard&lt;std::mutex&gt; lock(mProviderMutex);</span>
+<span id="L98"><span class="lineNum">      98</span>              :         mProviderMap.erase(key);</span>
+<span id="L99"><span class="lineNum">      99</span>              :     }</span>
+<span id="L100"><span class="lineNum">     100</span>              : </span>
+<span id="L101"><span class="lineNum">     101</span>              :     void CleanupByConnectionId(const uint32_t connectionId) {</span>
+<span id="L102"><span class="lineNum">     102</span>              :         std::lock_guard&lt;std::mutex&gt; lock(mProviderMutex);</span>
+<span id="L103"><span class="lineNum">     103</span>              :         for (auto it = mProviderMap.begin(); it != mProviderMap.end(); ) {</span>
+<span id="L104"><span class="lineNum">     104</span>              :             if (it-&gt;second.channelId == connectionId) {</span>
+<span id="L105"><span class="lineNum">     105</span>              :                 it = mProviderMap.erase(it);</span>
+<span id="L106"><span class="lineNum">     106</span>              :             } else {</span>
+<span id="L107"><span class="lineNum">     107</span>              :                 ++it;</span>
+<span id="L108"><span class="lineNum">     108</span>              :             }</span>
+<span id="L109"><span class="lineNum">     109</span>              :         }</span>
+<span id="L110"><span class="lineNum">     110</span>              :     }</span>
+<span id="L111"><span class="lineNum">     111</span>              : </span>
+<span id="L112"><span class="lineNum">     112</span>              :     ProviderInfo Get(const std::string&amp; key) {</span>
+<span id="L113"><span class="lineNum">     113</span>              :         ProviderInfo info;</span>
+<span id="L114"><span class="lineNum">     114</span>              :         std::lock_guard&lt;std::mutex&gt; lock(mProviderMutex);</span>
+<span id="L115"><span class="lineNum">     115</span>              :         auto it = mProviderMap.find(key);</span>
+<span id="L116"><span class="lineNum">     116</span>              :         if (it != mProviderMap.end()) {</span>
+<span id="L117"><span class="lineNum">     117</span>              :             info = it-&gt;second;</span>
+<span id="L118"><span class="lineNum">     118</span>              :         }</span>
+<span id="L119"><span class="lineNum">     119</span>              :         return info;</span>
+<span id="L120"><span class="lineNum">     120</span>              :     }</span>
+<span id="L121"><span class="lineNum">     121</span>              : </span>
+<span id="L122"><span class="lineNum">     122</span>              :       private:            </span>
+<span id="L123"><span class="lineNum">     123</span>              :         std::unordered_map&lt;std::string, ProviderInfo&gt; mProviderMap;</span>
+<span id="L124"><span class="lineNum">     124</span>              :         std::mutex mProviderMutex;</span>
+<span id="L125"><span class="lineNum">     125</span>              : };</span>
+<span id="L126"><span class="lineNum">     126</span>              : </span>
+<span id="L127"><span class="lineNum">     127</span>              : enum FireboltError {</span>
+<span id="L128"><span class="lineNum">     128</span>              :     NOT_SUPPORTED,</span>
+<span id="L129"><span class="lineNum">     129</span>              :     NOT_AVAILABLE,</span>
+<span id="L130"><span class="lineNum">     130</span>              :     NOT_PERMITTED,</span>
+<span id="L131"><span class="lineNum">     131</span>              :     GRANT_DENIED,</span>
+<span id="L132"><span class="lineNum">     132</span>              :     UNGRANTED,</span>
+<span id="L133"><span class="lineNum">     133</span>              :     APP_NOT_IN_ACTIVE_STATE,</span>
+<span id="L134"><span class="lineNum">     134</span>              :     GRANT_PROVIDER_MISSING</span>
+<span id="L135"><span class="lineNum">     135</span>              : };</span>
+<span id="L136"><span class="lineNum">     136</span>              : </span>
+<span id="L137"><span class="lineNum">     137</span>              : </span>
+<span id="L138"><span class="lineNum">     138</span>              : class ErrorUtils {</span>
+<span id="L139"><span class="lineNum">     139</span>              :     public:</span>
+<span id="L140"><span class="lineNum">     140</span> <span class="tlaGNC tlaBgGNC">           4 :     static std::string GetErrorMessageForFrameworkErrors(const uint32_t&amp; errorCode, const std::string&amp; message) {</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">           4 :         std::string errorMessage;</span></span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">           4 :         Core::JSONRPC::Message::Info info;</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaGNC">           4 :         info.SetError(errorCode);</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">           4 :         info.Text = message;</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">           4 :         info.ToString(errorMessage);</span></span>
+<span id="L146"><span class="lineNum">     146</span> <span class="tlaGNC">           8 :         return errorMessage;</span></span>
+<span id="L147"><span class="lineNum">     147</span> <span class="tlaGNC">           4 :     }</span></span>
+<span id="L148"><span class="lineNum">     148</span>              : </span>
+<span id="L149"><span class="lineNum">     149</span>              :     static std::string GetFireboltError(const FireboltError&amp; error) {</span>
+<span id="L150"><span class="lineNum">     150</span>              :         std::string errorMessage;</span>
+<span id="L151"><span class="lineNum">     151</span>              :         Core::JSONRPC::Message::Info info;</span>
+<span id="L152"><span class="lineNum">     152</span>              :         switch (error) {</span>
+<span id="L153"><span class="lineNum">     153</span>              :             case FireboltError::NOT_SUPPORTED:</span>
+<span id="L154"><span class="lineNum">     154</span>              :                 info.Code = FIREBOLT_ERROR_NOT_SUPPORTED;</span>
+<span id="L155"><span class="lineNum">     155</span>              :                 info.Text = &quot;NotSupported&quot;;</span>
+<span id="L156"><span class="lineNum">     156</span>              :                 break;</span>
+<span id="L157"><span class="lineNum">     157</span>              :             case FireboltError::NOT_AVAILABLE:</span>
+<span id="L158"><span class="lineNum">     158</span>              :                 info.Code = FIREBOLT_ERROR_NOT_AVAILABLE;</span>
+<span id="L159"><span class="lineNum">     159</span>              :                 info.Text = &quot;NotAvailable&quot;;</span>
+<span id="L160"><span class="lineNum">     160</span>              :                 break;</span>
+<span id="L161"><span class="lineNum">     161</span>              :             case FireboltError::NOT_PERMITTED:</span>
+<span id="L162"><span class="lineNum">     162</span>              :                 info.Code = FIREBOLT_ERROR_NOT_PERMITTED;</span>
+<span id="L163"><span class="lineNum">     163</span>              :                 info.Text = &quot;NotPermitted&quot;;</span>
+<span id="L164"><span class="lineNum">     164</span>              :                 break;</span>
+<span id="L165"><span class="lineNum">     165</span>              :             case FireboltError::GRANT_DENIED:</span>
+<span id="L166"><span class="lineNum">     166</span>              :                 info.Code = FIREBOLT_ERROR_GRANT_DENIED;</span>
+<span id="L167"><span class="lineNum">     167</span>              :                 info.Text = &quot;GrantDenied&quot;;</span>
+<span id="L168"><span class="lineNum">     168</span>              :                 break;</span>
+<span id="L169"><span class="lineNum">     169</span>              :             case FireboltError::UNGRANTED:</span>
+<span id="L170"><span class="lineNum">     170</span>              :                 info.Code = FIREBOLT_ERROR_UNGRANTED;</span>
+<span id="L171"><span class="lineNum">     171</span>              :                 info.Text = &quot;Ungranted&quot;;</span>
+<span id="L172"><span class="lineNum">     172</span>              :                 break;</span>
+<span id="L173"><span class="lineNum">     173</span>              :             case FireboltError::APP_NOT_IN_ACTIVE_STATE:</span>
+<span id="L174"><span class="lineNum">     174</span>              :                 info.Code = FIREBOLT_ERROR_APP_NOT_IN_ACTIVE_STATE;</span>
+<span id="L175"><span class="lineNum">     175</span>              :                 info.Text = &quot;AppNotInActiveState&quot;;</span>
+<span id="L176"><span class="lineNum">     176</span>              :                 break;</span>
+<span id="L177"><span class="lineNum">     177</span>              :             case FireboltError::GRANT_PROVIDER_MISSING:</span>
+<span id="L178"><span class="lineNum">     178</span>              :                 info.Code = FIREBOLT_ERROR_GRANT_PROVIDER_MISSING;</span>
+<span id="L179"><span class="lineNum">     179</span>              :                 info.Text = &quot;GrantProviderMissing&quot;;</span>
+<span id="L180"><span class="lineNum">     180</span>              :                 break;</span>
+<span id="L181"><span class="lineNum">     181</span>              :             default:</span>
+<span id="L182"><span class="lineNum">     182</span>              :                 errorMessage = &quot;UnknownError&quot;;</span>
+<span id="L183"><span class="lineNum">     183</span>              :                 break;</span>
+<span id="L184"><span class="lineNum">     184</span>              :         }</span>
+<span id="L185"><span class="lineNum">     185</span>              :         info.ToString(errorMessage);</span>
+<span id="L186"><span class="lineNum">     186</span>              :         return errorMessage;</span>
+<span id="L187"><span class="lineNum">     187</span>              :     }</span>
+<span id="L188"><span class="lineNum">     188</span>              : </span>
+<span id="L189"><span class="lineNum">     189</span> <span class="tlaGNC">           1 :     static void NotSupported(string&amp; resolution) {</span></span>
+<span id="L190"><span class="lineNum">     190</span>              :         // L0 tests expect Thunder Core error semantics for common gateway failures.</span>
+<span id="L191"><span class="lineNum">     191</span>              :         // Map NotSupported -&gt; Core::ERROR_NOT_SUPPORTED (commonly 24).</span>
+<span id="L192"><span class="lineNum">     192</span> <span class="tlaGNC">           1 :         resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_NOT_SUPPORTED, &quot;NotSupported&quot;);</span></span>
+<span id="L193"><span class="lineNum">     193</span> <span class="tlaGNC">           1 :     }</span></span>
+<span id="L194"><span class="lineNum">     194</span>              : </span>
+<span id="L195"><span class="lineNum">     195</span> <span class="tlaGNC">           1 :     static void NotAvailable(string&amp; resolution) {</span></span>
+<span id="L196"><span class="lineNum">     196</span>              :         // Map NotAvailable -&gt; Core::ERROR_UNAVAILABLE (commonly 2).</span>
+<span id="L197"><span class="lineNum">     197</span> <span class="tlaGNC">           1 :         resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_UNAVAILABLE, &quot;NotAvailable&quot;);</span></span>
+<span id="L198"><span class="lineNum">     198</span> <span class="tlaGNC">           1 :     }</span></span>
+<span id="L199"><span class="lineNum">     199</span>              : </span>
+<span id="L200"><span class="lineNum">     200</span> <span class="tlaGNC">           1 :     static void NotPermitted(string&amp; resolution) {</span></span>
+<span id="L201"><span class="lineNum">     201</span>              :         // Map NotPermitted -&gt; Thunder &quot;privileged request&quot; error.</span>
+<span id="L202"><span class="lineNum">     202</span>              :         // NOTE: Thunder spells this constant as ERROR_PRIVILIGED_REQUEST (legacy spelling).</span>
+<span id="L203"><span class="lineNum">     203</span> <span class="tlaGNC">           1 :         resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_PRIVILIGED_REQUEST, &quot;NotPermitted&quot;);</span></span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaGNC">           1 :     }</span></span>
+<span id="L205"><span class="lineNum">     205</span>              : </span>
+<span id="L206"><span class="lineNum">     206</span>              :     static void GrantDenied(string&amp; resolution) {</span>
+<span id="L207"><span class="lineNum">     207</span>              :         resolution = ErrorUtils::GetFireboltError(FireboltError::GRANT_DENIED);</span>
+<span id="L208"><span class="lineNum">     208</span>              :     }</span>
+<span id="L209"><span class="lineNum">     209</span>              : </span>
+<span id="L210"><span class="lineNum">     210</span>              :     static void Ungranted(string&amp; resolution) {</span>
+<span id="L211"><span class="lineNum">     211</span>              :         resolution = ErrorUtils::GetFireboltError(FireboltError::UNGRANTED);</span>
+<span id="L212"><span class="lineNum">     212</span>              :     }</span>
+<span id="L213"><span class="lineNum">     213</span>              : </span>
+<span id="L214"><span class="lineNum">     214</span>              :     static void AppNotInActiveState(string&amp; resolution) {</span>
+<span id="L215"><span class="lineNum">     215</span>              :         resolution = ErrorUtils::GetFireboltError(FireboltError::APP_NOT_IN_ACTIVE_STATE);</span>
+<span id="L216"><span class="lineNum">     216</span>              :     }</span>
+<span id="L217"><span class="lineNum">     217</span>              : </span>
+<span id="L218"><span class="lineNum">     218</span>              :     static void GrantProviderMissing(string&amp; resolution) {</span>
+<span id="L219"><span class="lineNum">     219</span>              :         resolution = ErrorUtils::GetFireboltError(FireboltError::GRANT_PROVIDER_MISSING);</span>
+<span id="L220"><span class="lineNum">     220</span>              :     }</span>
+<span id="L221"><span class="lineNum">     221</span>              : </span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaUNC tlaBgUNC">           0 :     static void CustomInitialize(const string&amp; message, string&amp; resolution) {</span></span>
+<span id="L223"><span class="lineNum">     223</span> <span class="tlaUNC">           0 :         resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_GENERAL, message);</span></span>
+<span id="L224"><span class="lineNum">     224</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L225"><span class="lineNum">     225</span>              : </span>
+<span id="L226"><span class="lineNum">     226</span> <span class="tlaUNC">           0 :     static void CustomInternal(const string&amp; message, string&amp; resolution) {</span></span>
+<span id="L227"><span class="lineNum">     227</span>              :         // &quot;Internal error&quot; should not be reported as a client-side bad request.</span>
+<span id="L228"><span class="lineNum">     228</span> <span class="tlaUNC">           0 :         resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_GENERAL, message);</span></span>
+<span id="L229"><span class="lineNum">     229</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L230"><span class="lineNum">     230</span>              : </span>
+<span id="L231"><span class="lineNum">     231</span> <span class="tlaGNC tlaBgGNC">           1 :     static void CustomBadRequest(const string&amp; message, string&amp; resolution) {</span></span>
+<span id="L232"><span class="lineNum">     232</span>              :         // Use the canonical Thunder bad request code.</span>
+<span id="L233"><span class="lineNum">     233</span> <span class="tlaGNC">           1 :         resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_BAD_REQUEST, message);</span></span>
+<span id="L234"><span class="lineNum">     234</span> <span class="tlaGNC">           1 :     }</span></span>
+<span id="L235"><span class="lineNum">     235</span>              : </span>
+<span id="L236"><span class="lineNum">     236</span>              :     static void CustomBadMethod(const string&amp; message, string&amp; resolution) {</span>
+<span id="L237"><span class="lineNum">     237</span>              :         // L0 expects method-not-found to map to ERROR_UNKNOWN_METHOD (53).</span>
+<span id="L238"><span class="lineNum">     238</span>              :         resolution = ErrorUtils::GetErrorMessageForFrameworkErrors(Core::ERROR_UNKNOWN_METHOD, message);</span>
+<span id="L239"><span class="lineNum">     239</span>              :     }</span>
+<span id="L240"><span class="lineNum">     240</span>              :     </span>
+<span id="L241"><span class="lineNum">     241</span>              : };</span>
+<span id="L242"><span class="lineNum">     242</span>              : </span>
+<span id="L243"><span class="lineNum">     243</span>              : #endif</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.0-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+
+{
+  "resolutions": {
+    "test.comrpc": {
+      "alias": "org.rdk.FbSettings",
+      "useComRpc": true,
+      "additionalContext": { "scope": "l0" }
+    }
+  }
+}
