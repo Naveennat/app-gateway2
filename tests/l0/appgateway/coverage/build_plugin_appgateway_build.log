@@ -1,15 +1,5 @@
-[1/4] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
-FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o 
-/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp
-/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:26:10: fatal error: ObjectUtils.h: No such file or directory
-   26 | #include "ObjectUtils.h"
-      |          ^~~~~~~~~~~~~~~
-compilation terminated.
-[2/4] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
-FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o 
-/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp
-/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp:27:10: fatal error: UtilsCallsign.h: No such file or directory
-   27 | #include "UtilsCallsign.h"
-      |          ^~~~~~~~~~~~~~~~~
-compilation terminated.
-ninja: build stopped: subcommand failed.
+[0/1] Install the project...
+-- Install configuration: "Debug"
+-- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
+-- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json
+-- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/../etc/WPEFramework/plugins/AppGateway.json

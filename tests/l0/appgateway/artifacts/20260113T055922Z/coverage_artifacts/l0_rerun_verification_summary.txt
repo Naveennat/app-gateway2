@@ -1,0 +1,27 @@
+Manifest-defined testCommand run exactly once
+=========================================
+
+Container: app-gateway2
+Manifest path: /home/kavia/workspace/code-generation/.project_manifest.yaml
+testCommand: ./tests/l0/appgateway/run_coverage.sh
+
+Result
+------
+Exit code: 1 (FAIL)
+
+Key log excerpts (from tests/l0/appgateway/coverage/run_coverage.latest.log)
+---------------------------------------------------------------------------
+FAILED: CMakeFiles/appgateway_l0test.dir/ContextUtils_ConversionTests.cpp.o
+... error: ‘ConvertAppGatewayToProviderContext’ is not a member of ‘ContextUtils’
+... error: ‘ConvertProviderToAppGatewayContext’ is not a member of ‘ContextUtils’
+
+FAILED: CMakeFiles/appgateway_l0test.dir/AppGatewayTest.cpp.o
+... error: ‘ConvertAppGatewayToProviderContext’ is not a member of ‘ContextUtils’
+... error: ‘ConvertProviderToAppGatewayContext’ is not a member of ‘ContextUtils’
+
+ninja: build stopped: subcommand failed.
+
+Segfault/crash verification
+---------------------------
+Not reached in this run (compile errors prevented executing the L0 test binary),
+so the previous segfault/double-free fix cannot be confirmed from these logs.

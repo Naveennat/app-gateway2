@@ -1,0 +1,9 @@
+[1/4] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
+[2/4] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
+[3/4] Linking CXX shared library libWPEFrameworkAppGateway.so
+[3/4] Install the project...
+-- Install configuration: "Debug"
+-- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
+-- Set non-toolchain portion of runtime path of "/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so" to ""
+-- Up-to-date: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/etc/app-gateway/resolution.base.json
+-- Installing: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/../etc/WPEFramework/plugins/AppGateway.json

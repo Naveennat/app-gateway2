@@ -1,0 +1,5 @@
+Rerun timestamp (UTC): 20260105T063724Z
+Combined log: build_logs/build_plugin_appgateway_20260105T063724Z.log
+Result marker: build_logs/build_plugin_appgateway_RESULT_20260105T063724Z.txt
+Configure log: tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+Build log: tests/l0/appgateway/coverage/build_plugin_appgateway_build.log

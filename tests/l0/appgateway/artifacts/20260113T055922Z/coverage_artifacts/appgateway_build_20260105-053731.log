@@ -1,0 +1,74 @@
+[build_plugin_appgateway] SCRIPT_DIR=/home/kavia/workspace/code-generation/app-gateway2
+[build_plugin_appgateway] ROOT=/home/kavia/workspace/code-generation/app-gateway2
+[build_plugin_appgateway] PLUGIN_SRC=/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway
+[build_plugin_appgateway] SDK_PREFIX=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260105_053731
+[build_plugin_appgateway] CONFIGURE_LOG=/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_configure.log
+[build_plugin_appgateway] BUILD_LOG=/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_build.log
+[build_plugin_appgateway] APPEND_LOG=/home/kavia/workspace/code-generation/app-gateway2/build_logs/build_plugin_appgateway_20260105_053731.log
+[build_plugin_appgateway] CMAKE_PREFIX_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install:/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/cmake
+[build_plugin_appgateway] PKG_CONFIG_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/pkgconfig
+[build_plugin_appgateway] Thunder CMake modules dir: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules
+[build_plugin_appgateway] Helper include (rdkservices-comcast): /home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers
+[build_plugin_appgateway] Helper include (entservices-infra): /home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers
+[build_plugin_appgateway] === CONFIGURE (timestamp 20260105_053731) ===
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) in CMakeLists.txt:
+  cmake_minimum_required() should be called prior to this top-level project()
+  call.  Please see the cmake-commands(7) manual for usage documentation of
+  both commands.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+Setup AppGateway v1.0.0
+CMake Error at CMakeLists.txt:36 (find_package):
+  By not providing "FindPlugins.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Plugins", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "Plugins" with any
+  of the following names:
+
+    PluginsConfig.cmake
+    plugins-config.cmake
+
+  Add the installation prefix of "Plugins" to CMAKE_PREFIX_PATH or set
+  "Plugins_DIR" to a directory containing one of the above files.  If
+  "Plugins" provides a separate development package or SDK, be sure it has
+  been installed.
+
+
+CMake Warning (dev) in CMakeLists.txt:
+  No cmake_minimum_required command is present.  A line of code such as
+
+    cmake_minimum_required(VERSION 3.28)
+
+  should be added at the top of the file.  The version specified may be lower
+  if you wish to support older CMake versions for this project.  For more
+  information run "cmake --help-policy CMP0000".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring incomplete, errors occurred!

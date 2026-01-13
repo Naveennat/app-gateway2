@@ -1,0 +1,22 @@
+Rebuild + L0 run summary (latest)
+
+1) Plugin rebuild
+- Command: app-gateway2/scripts/build_plugin_appgateway.sh
+- Result: SUCCESS (plugin installed)
+  - Installed: app-gateway2/dependencies/install/lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
+  - Compat symlink: app-gateway2/dependencies/install/lib/plugins/libWPEFrameworkAppGateway.so -> .../lib/wpeframework/plugins/libWPEFrameworkAppGateway.so
+
+2) L0 suite execution
+- Command: app-gateway2/tests/l0/appgateway/run_coverage.sh
+- Result: FAILED (process exit code 139 / SIGSEGV)
+- Crash artifacts:
+  - New core dump created in workspace root: core.38979
+  - Older core dumps still exist under tests/l0/appgateway/core.* (from earlier runs)
+
+3) JSONRPC teardown crash status (original issue: SIGABRT/assert on Unregister("resolve") during teardown)
+- The latest run did NOT show the prior SIGABRT/assertion signature related to JSONRPC Unregister("resolve") on a non-registered method.
+- However, the run still terminates abnormally due to a SIGSEGV, so teardown is not clean overall.
+
+4) Notes
+- gdb is not available in this environment ("gdb: command not found"), so a backtrace could not be captured here.
+- L0 still reports multiple test failures prior to the crash (notably Responder* tests failing due to ResponderFake, plus config parse error test behavior).

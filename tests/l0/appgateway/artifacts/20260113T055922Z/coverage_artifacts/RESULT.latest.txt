@@ -1,0 +1,208 @@
+timestamp_utc=2026-01-06T15:33:21Z
+command=./tests/l0/appgateway/run_coverage.sh
+prefix=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+rc=51
+
+--- key signature lines (first 80 matches) ---
+350:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+353:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+354:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+356:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+357:NOTE: Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+363:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+365:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+366:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+368:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+369:NOTE: Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+372:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+374:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+375:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+377:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+378:NOTE: Second Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+383:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+385:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+386:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+388:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+389:NOTE: Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+392:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+394:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+395:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+397:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+398:NOTE: Second Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+403:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+405:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+406:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+408:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+409:NOTE: Initialize() returned non-empty error string (accepted in isolated build): Could not retrieve the AppGateway interface.
+416:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+418:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+419:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+421:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+423:FAIL: Resolve_HappyPath_JSONRPC returns ERROR_NONE expected=0 actual=53
+429:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+431:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+432:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+434:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+436:FAIL: Missing requestId => ERROR_BAD_REQUEST expected=30 actual=53
+437:FAIL: Missing connectionId => ERROR_BAD_REQUEST expected=30 actual=53
+438:FAIL: Missing appId => ERROR_BAD_REQUEST expected=30 actual=53
+439:FAIL: Missing origin => ERROR_BAD_REQUEST expected=30 actual=53
+440:FAIL: Missing method => ERROR_BAD_REQUEST expected=30 actual=53
+445:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+447:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+448:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+450:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+452:FAIL: Params empty string defaults to {} and succeeds expected=0 actual=53
+458:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+460:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+461:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+463:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+465:FAIL: Implementation error NOT_AVAILABLE propagates as ERROR_UNAVAILABLE expected=2 actual=53
+466:FAIL: Implementation error NOT_SUPPORTED propagates as ERROR_NOT_SUPPORTED expected=44 actual=53
+471:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+473:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+474:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+476:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+477:FAIL: Initialize() happy path returns empty string expected='' actual='Could not retrieve the AppGateway interface.'
+482:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+484:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+485:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+487:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+488:FAIL: Initialize() succeeds for JSON-RPC resolve test expected='' actual='Could not retrieve the AppGateway interface.'
+489:FAIL: JSON-RPC resolve returns ERROR_NONE expected=0 actual=53
+495:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+497:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+498:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+500:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+501:FAIL: Initialize() succeeds for direct resolver test expected='' actual='Could not retrieve the AppGateway interface.'
+507:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+509:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+510:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+512:[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+513:FAIL: Initialize() succeeds for NotPermitted test expected='' actual='Could not retrieve the AppGateway interface.'
+514:FAIL: NotPermitted maps to ERROR_PRIVILIGED_REQUEST expected=24 actual=53
+519:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+521:[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+522:[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+
+--- tail(120) ---
+[13294] INFO [AppGatewayImplementation.cpp:397] InternalResolutionConfigure: Configuration complete. Final resolutions loaded with override priority (later paths take precedence)
+[13294] INFO [AppGatewayImplementation.cpp:333] Configure: Call AppGatewayImplementation::Configure
+[13294] INFO [AppGatewayImplementation.cpp:357] Configure: Found config path: l0test/config/invalid.resolutions.json
+[13294] INFO [AppGatewayImplementation.cpp:366] Configure: Processing 1 configuration paths in override order
+[13294] INFO [AppGatewayImplementation.cpp:377] InternalResolutionConfigure: Processing config path 1/1: l0test/config/invalid.resolutions.json
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Colon expected.
+At character 11: { invalid j
+[0m[13294] ERROR [Resolver.cpp:78] LoadConfig: [Resolver] Failed to parse JSON from: l0test/config/invalid.resolutions.json
+[13294] ERROR [Resolver.cpp:80] LoadConfig:  - Error: Colon expected.
+[13294] ERROR [AppGatewayImplementation.cpp:386] InternalResolutionConfigure: Failed to load configuration from: l0test/config/invalid.resolutions.json
+[13294] ERROR [AppGatewayImplementation.cpp:393] InternalResolutionConfigure: Failed to load configuration from any provided path
+[13294] INFO [AppGatewayImplementation.cpp:165] ~AppGatewayImplementation: AppGatewayImplementation destructor
+[13294] INFO [Resolver.cpp:53] ~Resolver: Call Resolver destructor
+[       OK ] Resolver_Configure_InvalidJson_ReturnsError
+[ RUN      ] Responder_Register_Unregister_Notifications
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds for responder register/unregister test expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_Register_Unregister_Notifications failures=2
+[ RUN      ] Responder_Respond_Success_And_Unavailable
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_Respond_Success_And_Unavailable failures=2
+[ RUN      ] Responder_Emit_Success_And_Unavailable
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_Emit_Success_And_Unavailable failures=2
+[ RUN      ] Responder_Request_Success_And_Unavailable
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_Request_Success_And_Unavailable failures=2
+[ RUN      ] Responder_GetGatewayConnectionContext_Known_And_Unknown
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeds expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: Responder interface available
+[  FAILED  ] Responder_GetGatewayConnectionContext_Known_And_Unknown failures=2
+[ RUN      ] ContextUtils_BoundaryValues_Conversions
+[       OK ] ContextUtils_BoundaryValues_Conversions
+[ RUN      ] Json_Boundary_RequestId_ConnectionId
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeded expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: resolve succeeds for requestId=0, connectionId=0 expected=0 actual=53
+FAIL: response for boundary zero expected='null' actual=''
+FAIL: resolve succeeds for requestId/connectionId UINT32_MAX expected=0 actual=53
+FAIL: response for boundary max expected='null' actual=''
+[  FAILED  ] Json_Boundary_RequestId_ConnectionId failures=5
+[ RUN      ] Json_Params_Empty_Equals_EmptyObject
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeded expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: resolve with params '' succeeds expected=0 actual=53
+FAIL: resolve with params '{}' succeeds expected=0 actual=53
+[  FAILED  ] Json_Params_Empty_Equals_EmptyObject failures=3
+[ RUN      ] Json_EmptyAppId_BadRequest
+[13294] INFO [AppGateway.cpp:324] AppGateway: AppGateway Constructor
+[13294] INFO [AppGateway.cpp:359] Initialize: AppGateway::Initialize: PID=13294
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:381] Initialize: Failed to initialise AppGatewayResolver plugin!
+[1;32m[JSON.h:154](FromString)<PID:13294><TID:13294><1>: Parsing failed: Invalid value."null" or "{" expected.
+At character 1: "
+[0m[13294] ERROR [AppGateway.cpp:392] Initialize: Failed to initialise AppGatewayResponder plugin!
+FAIL: Initialize() succeeded expected='' actual='Could not retrieve the AppGateway interface.'
+FAIL: empty appId yields ERROR_BAD_REQUEST expected=30 actual=53
+[  FAILED  ] Json_EmptyAppId_BadRequest failures=2
+AppGateway l0test total failures: 51
+[1;32m[Singleton.cpp:41](~SingletonList)<PID:13294><TID:13294><1>: ~SingletonList !!! singleton list is not empty !!!
+[0m[1;32m[Singleton.cpp:51](Dispose)<PID:13294><TID:13294><1>: Singleton destructing MessageUnit
+[0m
