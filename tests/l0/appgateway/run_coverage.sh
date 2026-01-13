@@ -219,18 +219,36 @@ HTML_DIR="${COVERAGE_DIR}/html"
 # Capture both:
 #  - L0 test executable build tree (.gcda from tests)
 #  - Plugin build tree (.gcda from libWPEFrameworkAppGateway.so objects)
-lcov -c -o "${INFO_FILE}" \
-  -d "${BUILD_DIR}" \
-  -d "${ROOT}/build/plugin_appgateway" \
-  --ignore-errors empty
+PLUGIN_BUILD_DIR=""
+if [[ -n "${APPGATEWAY_PLUGIN_BUILD_DIR:-}" && -d "${APPGATEWAY_PLUGIN_BUILD_DIR}" ]]; then
+  PLUGIN_BUILD_DIR="${APPGATEWAY_PLUGIN_BUILD_DIR}"
+elif [[ -d "${ROOT}/build/plugin_appgateway" ]]; then
+  PLUGIN_BUILD_DIR="${ROOT}/build/plugin_appgateway"
+else
+  # Fallback (older layouts): choose the newest plugin_appgateway_* build dir.
+  PLUGIN_BUILD_DIR="$(ls -dt "${ROOT}/build/plugin_appgateway_"* 2>/dev/null | head -n 1 || true)"
+fi
+
+if [[ -n "${PLUGIN_BUILD_DIR}" && -d "${PLUGIN_BUILD_DIR}" ]]; then
+  log "Capturing coverage from test build: ${BUILD_DIR} and plugin build: ${PLUGIN_BUILD_DIR}"
+  lcov -c -o "${INFO_FILE}" \
+    -d "${BUILD_DIR}" \
+    -d "${PLUGIN_BUILD_DIR}" \
+    --ignore-errors empty
+else
+  warn "No plugin build dir found; capturing coverage only from test build dir: ${BUILD_DIR}"
+  lcov -c -o "${INFO_FILE}" \
+    -d "${BUILD_DIR}" \
+    --ignore-errors empty
+fi
 
 # Restrict coverage to:
-#   - app-gateway2/plugin/AppGateway/**
-#   - app-gateway2/helpers/**
+#   - app-gateway2/plugin/** (all plugin code, headers and translation units)
+#   - app-gateway2/helpers/** (keep helpers as they're part of the repo's shipped logic)
 # and exclude everything else (including SDK/vendor/framework/system headers).
 lcov -e "${INFO_FILE}" \
-  "${ROOT}/plugin/AppGateway/*" \
-  "${ROOT}/plugin/AppGateway/**" \
+  "${ROOT}/plugin/*" \
+  "${ROOT}/plugin/**" \
   "${ROOT}/helpers/*" \
   "${ROOT}/helpers/**" \
   -o "${FILTERED_INFO_FILE}" --ignore-errors unused
