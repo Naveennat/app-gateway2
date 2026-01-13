@@ -1,0 +1,114 @@
+[run_coverage] ROOT=/home/kavia/workspace/code-generation/app-gateway2
+[run_coverage] TEST_SRC_DIR=/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/l0test
+[run_coverage] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/tests_l0_appgateway
+[run_coverage] INSTALL_PREFIX=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[run_coverage] COVERAGE_DIR=/home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage
+
+[run_coverage] ===== Tool checks =====
+
+[run_coverage] ===== Ensure runtime test configs =====
+[ensure_test_configs] Installed /etc/app-gateway/resolution.base.json from /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions/resolution.base.json
+
+[run_coverage] ===== Input checks =====
+
+[run_coverage] ===== Build AppGateway plugin (ensure up-to-date) =====
+[build_plugin_appgateway] ROOT=/home/kavia/workspace/code-generation/app-gateway2
+[build_plugin_appgateway] PLUGIN_SRC=/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway
+[build_plugin_appgateway] INSTALL_PREFIX=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] CMAKE_PREFIX_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install
+[build_plugin_appgateway] PKG_CONFIG_PATH=/home/kavia/workspace/code-generation/app-gateway2/dependencies/install/lib/pkgconfig
+[build_plugin_appgateway] Thunder CMake modules dir: /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules
+[build_plugin_appgateway] Extra helper include not found (continuing): /home/kavia/workspace/code-generation/app-gateway2/dependencies/entservices-infra/helpers
+[build_plugin_appgateway] Extra local helpers include: /home/kavia/workspace/code-generation/app-gateway2/helpers
+[build_plugin_appgateway] Configuring...
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) in CMakeLists.txt:
+  cmake_minimum_required() should be called prior to this top-level project()
+  call.  Please see the cmake-commands(7) manual for usage documentation of
+  both commands.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+Setup WPEFrameworkAppGateway v1.0.0
+CMake Warning (dev) at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
+  Syntax error in cmake code at
+
+    /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81
+
+  when parsing string
+
+    ======DEPRECATION=DETECTED==================================================\nPROPOSED FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" --> \"${_fix}\"\n\============================================================================
+
+  Invalid escape sequence \=
+
+  Policy CMP0010 is not set: Bad variable reference syntax is an error.  Run
+  "cmake --help-policy CMP0010" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  CMakeLists.txt:140 (write_config)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Deprecation Warning at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
+  
+  ======DEPRECATION=DETECTED==================================================\nPROPOSED
+  FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" -->
+  \"${_fix}\"\n\============================================================================
+Call Stack (most recent call first):
+  CMakeLists.txt:140 (write_config)
+
+
+-- Assuming:
+-- Plugin: AppGateway
+-- Classname: AppGateway
+-- Component: AppGateway
+-- Writing configuration for AppGateway using config_generator
+ConfigGenerator: Writing Config JSON
+CMake Warning (dev) in CMakeLists.txt:
+  No cmake_minimum_required command is present.  A line of code such as
+
+    cmake_minimum_required(VERSION 3.28)
+
+  should be added at the top of the file.  The version specified may be lower
+  if you wish to support older CMake versions for this project.  For more
+  information run "cmake --help-policy CMP0000".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway
+[build_plugin_appgateway] Building...
+[1/5] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/Resolver.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Resolver.cpp
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Resolver.cpp:25:10: fatal error: UtilsJsonrpcDirectLink.h: No such file or directory
+   25 | #include "UtilsJsonrpcDirectLink.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+[2/5] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayImplementation.cpp:26:10: fatal error: ObjectUtils.h: No such file or directory
+   26 | #include "ObjectUtils.h"
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+[3/5] Building CXX object CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o
+FAILED: CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o 
+/usr/bin/c++ -DAPPGATEWAY_MAJOR_VERSION=1 -DAPPGATEWAY_MINOR_VERSION=0 -DAPPGATEWAY_PATCH_VERSION=0 -DMODULE_NAME=Plugin_AppGateway -DWPEFrameworkAppGateway_EXPORTS -D__CORE_MESSAGING__ -D__CORE_NO_WCHAR_SUPPORT__ -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/resolutions -I/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/../.. -I/home/kavia/workspace/code-generation/app-gateway2/interfaces -isystem /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework -I/home/kavia/workspace/code-generation/app-gateway2/helpers -g -std=gnu++11 -fPIC -O0 -g -MD -MT CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -MF CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o.d -o CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o -c /home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp
+/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.cpp:26:10: fatal error: UtilsConnections.h: No such file or directory
+   26 | #include "UtilsConnections.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+[build_plugin_appgateway] Build failed; capturing first 50 lines of errors into /home/kavia/workspace/code-generation/app-gateway2/tests/l0/appgateway/coverage/build_plugin_appgateway_errors.latest.txt

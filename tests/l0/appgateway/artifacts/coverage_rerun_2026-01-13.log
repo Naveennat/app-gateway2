@@ -1,0 +1,17 @@
+The run output was captured to /tmp/appgateway_coverage_output.txt during execution.
+Key failure summary (from tests/l0/appgateway/coverage/build_plugin_appgateway_errors.latest.txt):
+- plugin/AppGateway/Resolver.h:24:10: fatal error: StringUtils.h: No such file or directory
+- plugin/AppGateway/AppGatewayResponderImplementation.h:26:10: fatal error: ContextUtils.h: No such file or directory
+
+Command executed:
+./tests/l0/appgateway/run_coverage.sh 2>&1 | tee /tmp/appgateway_coverage_output.txt
+
+Exit status:
+1
+`````
+
+Explanation: Save the build error artifact content into the artifacts folder for easier review alongside the rerun log.
+````write file="app-gateway2/tests/l0/appgateway/artifacts/build_plugin_appgateway_errors.latest.txt"
+5:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Resolver.h:24:10: fatal error: StringUtils.h: No such file or directory
+14:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/Resolver.h:24:10: fatal error: StringUtils.h: No such file or directory
+22:/home/kavia/workspace/code-generation/app-gateway2/plugin/AppGateway/AppGatewayResponderImplementation.h:26:10: fatal error: ContextUtils.h: No such file or directory
