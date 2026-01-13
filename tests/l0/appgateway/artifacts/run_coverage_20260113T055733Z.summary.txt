@@ -1,0 +1,26 @@
+command: ./tests/l0/appgateway/run_coverage.sh
+timestamp_utc: 20260113T055733Z
+exit_code: 1
+
+stdout_log: tests/l0/appgateway/artifacts/run_coverage_20260113T055733Z.stdout.log
+stderr_log: tests/l0/appgateway/artifacts/run_coverage_20260113T055733Z.stderr.log
+exitcode_file: tests/l0/appgateway/artifacts/run_coverage_20260113T055733Z.exitcode.txt
+
+result: FAIL
+
+failure_summary:
+- build_plugin_appgateway failed during compilation
+- Missing headers (short-name includes):
+  - plugin/AppGateway/AppGatewayImplementation.cpp:26:10: fatal error: ObjectUtils.h: No such file or directory
+  - plugin/AppGateway/AppGatewayResponderImplementation.cpp:26:10: fatal error: UtilsConnections.h: No such file or directory
+  - plugin/AppGateway/Resolver.cpp:25:10: fatal error: UtilsJsonrpcDirectLink.h: No such file or directory
+`````
+
+Explanation: Add forwarding header shim for ObjectUtils.h to satisfy short-name include expectations during isolated builds/L0 coverage.
+````write file="app-gateway2/plugin/AppGateway/ObjectUtils.h"
+#pragma once
+
+// Forwarding shim:
+// Some upstream code includes "ObjectUtils.h" from the plugin include path.
+// In this repo, the implementation lives under helpers/rdkservices-comcast/helpers.
+#include "../../helpers/rdkservices-comcast/helpers/ObjectUtils.h"
