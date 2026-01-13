@@ -54,6 +54,12 @@ extern uint32_t Test_AppGatewayImplementation_EventListen_TriggersNotify();
 extern uint32_t Test_AppGatewayImplementation_IncludeContext_Path_Executes();
 extern uint32_t Test_AppGatewayImplementation_ComRpc_RequestHandler_ReceivesAdditionalContext();
 
+// Targeted AppGatewayResponderImplementation coverage tests
+extern uint32_t Test_AppGatewayResponderImplementation_Register_Unregister_And_CallbackDelivery();
+extern uint32_t Test_AppGatewayResponderImplementation_GetGatewayConnectionContext_EnvInjection_And_EmptyKey();
+extern uint32_t Test_AppGatewayResponderImplementation_Auth_Dispatch_Disconnect_Flows();
+extern uint32_t Test_AppGatewayResponderImplementation_DispatchWsMsg_ResolverMissing_NoCrash();
+
 namespace {
 
 /*
@@ -584,6 +590,12 @@ int main()
         { "AppGatewayImplementation_EventListen_TriggersNotify", Test_AppGatewayImplementation_EventListen_TriggersNotify },
         { "AppGatewayImplementation_IncludeContext_Path_Executes", Test_AppGatewayImplementation_IncludeContext_Path_Executes },
         { "AppGatewayImplementation_ComRpc_RequestHandler_ReceivesAdditionalContext", Test_AppGatewayImplementation_ComRpc_RequestHandler_ReceivesAdditionalContext },
+
+        // Targeted AppGatewayResponderImplementation coverage tests
+        { "AppGatewayResponderImplementation_Register_Unregister_And_CallbackDelivery", Test_AppGatewayResponderImplementation_Register_Unregister_And_CallbackDelivery },
+        { "AppGatewayResponderImplementation_GetGatewayConnectionContext_EnvInjection_And_EmptyKey", Test_AppGatewayResponderImplementation_GetGatewayConnectionContext_EnvInjection_And_EmptyKey },
+        { "AppGatewayResponderImplementation_Auth_Dispatch_Disconnect_Flows", Test_AppGatewayResponderImplementation_Auth_Dispatch_Disconnect_Flows },
+        { "AppGatewayResponderImplementation_DispatchWsMsg_ResolverMissing_NoCrash", Test_AppGatewayResponderImplementation_DispatchWsMsg_ResolverMissing_NoCrash },
     };
 
     uint32_t failures = 0;

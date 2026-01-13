@@ -45,6 +45,7 @@ namespace L0Test {
     static constexpr uint32_t ID_REQUEST_HANDLER_FAKE = 0xF0F0F004;
 
     // A simple deterministic resolver fake with multiple error paths.
+    // Also records the last call so targeted responder tests can verify callsign/context routing.
     class ResolverFake final : public WPEFramework::Exchange::IAppGatewayResolver,
                                public WPEFramework::Exchange::IConfiguration {
     public:
@@ -54,6 +55,15 @@ namespace L0Test {
         }
 
         ~ResolverFake() override = default;
+
+        // Recorded state for assertions (test-only).
+        uint32_t resolveCount { 0 };
+        WPEFramework::Exchange::GatewayContext lastContext {};
+        string lastOrigin;
+        string lastMethod;
+        string lastParams;
+        string lastResult;
+        uint32_t lastRc { WPEFramework::Core::ERROR_NONE };
 
         // Core::IUnknown
         uint32_t AddRef() const override
@@ -96,29 +106,44 @@ namespace L0Test {
             return WPEFramework::Core::ERROR_NONE;
         }
 
-        WPEFramework::Core::hresult Resolve(const WPEFramework::Exchange::GatewayContext& /*context*/,
-                                            const string& /*origin*/,
+        WPEFramework::Core::hresult Resolve(const WPEFramework::Exchange::GatewayContext& context,
+                                            const string& origin,
                                             const string& method,
-                                            const string& /*params*/,
+                                            const string& params,
                                             string& result) override
         {
+            // Record call for assertions.
+            resolveCount++;
+            lastContext = context;
+            lastOrigin = origin;
+            lastMethod = method;
+            lastParams = params;
+
             // Deterministic error mapping controlled by method name.
             if (method == "l0.notPermitted") {
                 result = "{\"error\":\"NotPermitted\"}";
-                return WPEFramework::Core::ERROR_PRIVILIGED_REQUEST;
+                lastResult = result;
+                lastRc = WPEFramework::Core::ERROR_PRIVILIGED_REQUEST;
+                return lastRc;
             }
             if (method == "l0.notSupported") {
                 result = "{\"error\":\"NotSupported\"}";
-                return WPEFramework::Core::ERROR_NOT_SUPPORTED;
+                lastResult = result;
+                lastRc = WPEFramework::Core::ERROR_NOT_SUPPORTED;
+                return lastRc;
             }
             if (method == "l0.notAvailable") {
                 result = "{\"error\":\"NotAvailable\"}";
-                return WPEFramework::Core::ERROR_UNAVAILABLE;
+                lastResult = result;
+                lastRc = WPEFramework::Core::ERROR_UNAVAILABLE;
+                return lastRc;
             }
 
             // Success path: return a JSON 'null' resolution.
             result = "null";
-            return WPEFramework::Core::ERROR_NONE;
+            lastResult = result;
+            lastRc = WPEFramework::Core::ERROR_NONE;
+            return lastRc;
         }
 
     private:
@@ -541,6 +566,11 @@ namespace L0Test {
             bool provideRequestHandler;
             string requestHandlerCallsign; // e.g. "org.rdk.FbSettings"
 
+            // Test-only: override IShell::ConfigLine() output.
+            // When set to a JSON containing `"connector"`, AppGatewayResponderImplementation::InitializeWebsocket()
+            // will parse it and bind to that connector (we use port 0 for ephemeral ports in tests).
+            string configLineOverride;
+
             // PUBLIC_INTERFACE
             explicit Config(const bool resolver = true, const bool responder = true, const bool responderTransport = true)
                 : provideResolver(resolver)
@@ -552,6 +582,7 @@ namespace L0Test {
                 , authenticatorFailCheck(false)
                 , provideRequestHandler(false)
                 , requestHandlerCallsign("org.rdk.FbSettings")
+                , configLineOverride()
             {
             }
         };
@@ -689,7 +720,14 @@ namespace L0Test {
 
         string ConfigLine() const override
         {
+            // Default behavior (used by most existing L0 tests):
             // Thunder RootConfig parsing expects: { "root": "<json-string>" }
+            //
+            // Some targeted responder implementation tests need to pass the plugin's own websocket config
+            // (e.g. {"connector":"127.0.0.1:0"}). Allow a per-instance override.
+            if (_cfg.configLineOverride.empty() == false) {
+                return _cfg.configLineOverride;
+            }
             return "{\"root\":\"{}\"}";
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }

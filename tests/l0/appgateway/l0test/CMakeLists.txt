@@ -45,6 +45,7 @@ set(APPGW_L0_SOURCES
     AppGateway_JsonRpcResolveTests.cpp
     Resolver_Configure_And_ResolveTests.cpp
     Responder_BehaviorTests.cpp
+    AppGatewayResponderImplementation_Tests.cpp
     ContextUtils_ConversionTests.cpp
     AppGatewayImplementation_BranchTests.cpp
 )
