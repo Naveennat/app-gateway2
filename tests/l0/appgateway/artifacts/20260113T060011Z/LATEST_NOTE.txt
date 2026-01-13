@@ -1,0 +1,5 @@
+This folder (20260113T060011Z) contains a SUCCESS (exit code 0) L0 coverage run summary:
+- Lines: 85.7% (18/21)
+- Functions: 83.3% (5/6)
+- Branches: no data
+See SUMMARY.md for full details.
