@@ -34,3 +34,9 @@ Files listed in report:
 ## Notes
 - No failing compiler errors detected (run succeeded).
 - stderr contains `geninfo`/`lcov` warnings about JSON::PP performance and unused include patterns; these did not fail the run.
+
+## Verification
+- A follow-up verification run of `./tests/l0/appgateway/run_coverage.sh` was executed and also succeeded (exit code `0`).
+- Verification logs were captured under `tests/l0/appgateway/artifacts/` as:
+  - `coverage_verify_20260113T*.stdout.log`
+  - `coverage_verify_20260113T*.stderr.log`

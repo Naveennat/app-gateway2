@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-13 06:00:31</td>
+            <td class="headerValue">2026-01-13 06:06:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -89,18 +89,18 @@
 <span id="L27"><span class="lineNum">      27</span>              : using namespace std;</span>
 <span id="L28"><span class="lineNum">      28</span>              : class StringUtils {</span>
 <span id="L29"><span class="lineNum">      29</span>              :     public:</span>
-<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC tlaBgGNC">         402 :     static string toLower(const string&amp; input) {</span></span>
-<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">         402 :         string result = input;</span></span>
-<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">         402 :         transform(result.begin(), result.end(), result.begin(),</span></span>
-<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">       10500 :                   [](unsigned char c) { return tolower(c); });</span></span>
-<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">         402 :         return result;</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC tlaBgGNC">         404 :     static string toLower(const string&amp; input) {</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">         404 :         string result = input;</span></span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">         404 :         transform(result.begin(), result.end(), result.begin(),</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">       10536 :                   [](unsigned char c) { return tolower(c); });</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">         404 :         return result;</span></span>
 <span id="L35"><span class="lineNum">      35</span>              :     }</span>
 <span id="L36"><span class="lineNum">      36</span>              : </span>
-<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">           5 :     static bool rfindInsensitive(const string&amp; reference, const string&amp; key) {</span></span>
-<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">           5 :         string lowerRef = toLower(reference);</span></span>
-<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">           5 :         string lowerKey = toLower(key);</span></span>
-<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">          10 :         return lowerRef.rfind(lowerKey) != string::npos;</span></span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">           5 :     }</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">           6 :     static bool rfindInsensitive(const string&amp; reference, const string&amp; key) {</span></span>
+<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">           6 :         string lowerRef = toLower(reference);</span></span>
+<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">           6 :         string lowerKey = toLower(key);</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">          12 :         return lowerRef.rfind(lowerKey) != string::npos;</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">           6 :     }</span></span>
 <span id="L42"><span class="lineNum">      42</span>              : </span>
 <span id="L43"><span class="lineNum">      43</span>              :     static bool checkStartsWithCaseInsensitive(const string&amp; method, const string&amp; key) {</span>
 <span id="L44"><span class="lineNum">      44</span>              :         string lowerRef = toLower(method);</span>
