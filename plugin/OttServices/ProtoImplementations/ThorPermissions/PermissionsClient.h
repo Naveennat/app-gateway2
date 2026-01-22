@@ -37,6 +37,9 @@
 #include "permission_service.pb.h"
 #include "permission_service.grpc.pb.h"
 
+// OttServices-wide defaults for per-RPC deadlines and channel idle timeout.
+#include "../../Module.h"
+
 namespace WPEFramework {
 namespace Plugin {
 
@@ -51,8 +54,21 @@ namespace Plugin {
          * - endpoint: "host:port" of the remote gRPC permission service. Example: "thor-permission.svc.thor.comcast.com:443".
          * - useTls: If true, use TLS channel credentials. If false, use insecure channel credentials.
          */
+        /**
+         * PUBLIC_INTERFACE
+         * Construct a PermissionsClient that targets a permission service endpoint.
+         *
+         * Parameters:
+         * - endpoint: "host:port" of the remote gRPC permission service. Example: "thor-permission.svc.thor.comcast.com:443".
+         * - useTls: If true, use TLS channel credentials. If false, use insecure channel credentials.
+         * - grpcTimeoutMs: Per-RPC deadline in milliseconds (defaults to GRPC_TIMEOUT).
+         * - idleTimeoutMs: Channel idle timeout in milliseconds (defaults to IDLE_TIMEOUT).
+         */
         // PUBLIC_INTERFACE
-        explicit PermissionsClient(const std::string& endpoint, bool useTls = true);
+        explicit PermissionsClient(const std::string& endpoint,
+                                   bool useTls = true,
+                                   uint32_t grpcTimeoutMs = GRPC_TIMEOUT,
+                                   uint32_t idleTimeoutMs = IDLE_TIMEOUT);
 
         /**
          * PUBLIC_INTERFACE
@@ -61,9 +77,14 @@ namespace Plugin {
          * Parameters:
          * - endpoint: "host:port" of the remote gRPC permission service.
          * - creds: Prebuilt grpc::ChannelCredentials (e.g., grpc::SslCredentials or grpc::InsecureChannelCredentials()).
+         * - grpcTimeoutMs: Per-RPC deadline in milliseconds (defaults to GRPC_TIMEOUT).
+         * - idleTimeoutMs: Channel idle timeout in milliseconds (defaults to IDLE_TIMEOUT).
          */
         // PUBLIC_INTERFACE
-        PermissionsClient(const std::string& endpoint, std::shared_ptr<grpc::ChannelCredentials> creds);
+        PermissionsClient(const std::string& endpoint,
+                          std::shared_ptr<grpc::ChannelCredentials> creds,
+                          uint32_t grpcTimeoutMs = GRPC_TIMEOUT,
+                          uint32_t idleTimeoutMs = IDLE_TIMEOUT);
 
         // PUBLIC_INTERFACE
         ~PermissionsClient();
@@ -258,14 +279,22 @@ namespace Plugin {
         std::string Endpoint() const;
 
     private:
+        // Apply a per-RPC deadline to the given client context using the configured timeout.
+        static void ApplyDeadline(grpc::ClientContext& ctx, uint32_t grpcTimeoutMs);
+
         std::string _endpoint;
+
+        // Timeout configuration (milliseconds).
+        uint32_t _grpcTimeoutMs;
+        uint32_t _idleTimeoutMs;
 
         std::shared_ptr<grpc::Channel> _channel;
         std::unique_ptr<ottx::permission::AppPermissionsService::Stub> _stub;
 
-        static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint, bool useTls);
+        static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint, bool useTls, uint32_t idleTimeoutMs);
         static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint,
-                                                            const std::shared_ptr<grpc::ChannelCredentials>& creds);
+                                                            const std::shared_ptr<grpc::ChannelCredentials>& creds,
+                                                            uint32_t idleTimeoutMs);
     };
 
 } // namespace Plugin

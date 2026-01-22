@@ -28,17 +28,33 @@
 namespace WPEFramework {
 namespace Plugin {
 
-    namespace {
-        static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint, bool useTls) {
-            if (useTls) {
-                grpc::SslCredentialsOptions ssl_opts;
-                auto creds = grpc::SslCredentials(ssl_opts);
-                return grpc::CreateChannel(endpoint, creds);
-            } else {
-                return grpc::CreateChannel(endpoint, grpc::InsecureChannelCredentials());
-            }
+    void TokenClient::ApplyDeadline(grpc::ClientContext& ctx, const uint32_t grpcTimeoutMs)
+    {
+        if (grpcTimeoutMs == 0) {
+            return;
+        }
+        ctx.set_deadline(std::chrono::system_clock::now() + std::chrono::milliseconds(grpcTimeoutMs));
+    }
+
+    std::shared_ptr<grpc::Channel> TokenClient::CreateChannel(const std::string& endpoint,
+                                                              const bool useTls,
+                                                              const uint32_t idleTimeoutMs)
+    {
+        grpc::ChannelArguments args;
+        if (idleTimeoutMs != 0) {
+            args.SetInt(GRPC_ARG_CLIENT_IDLE_TIMEOUT_MS, static_cast<int>(idleTimeoutMs));
         }
 
+        if (useTls) {
+            grpc::SslCredentialsOptions ssl_opts;
+            auto creds = grpc::SslCredentials(ssl_opts);
+            return grpc::CreateCustomChannel(endpoint, creds, args);
+        } else {
+            return grpc::CreateCustomChannel(endpoint, grpc::InsecureChannelCredentials(), args);
+        }
+    }
+
+    namespace {
         static inline void SetSatAuth(grpc::ClientContext& ctx, const std::string& sat) {
             if (!sat.empty()) {
                 ctx.AddMetadata("authorization", std::string("Bearer ") + sat);
@@ -46,8 +62,14 @@ namespace Plugin {
         }
     } // namespace
 
-    TokenClient::TokenClient(const std::string& endpoint, bool useTls)
-        : _endpoint(endpoint), _useTls(useTls) {
+    TokenClient::TokenClient(const std::string& endpoint,
+                             const bool useTls,
+                             const uint32_t grpcTimeoutMs,
+                             const uint32_t idleTimeoutMs)
+        : _endpoint(endpoint)
+        , _useTls(useTls)
+        , _grpcTimeoutMs(grpcTimeoutMs)
+        , _idleTimeoutMs(idleTimeoutMs) {
     }
 
     TokenClient::~TokenClient() = default;
@@ -69,7 +91,7 @@ namespace Plugin {
             return false;
         }
 
-        auto channel = CreateChannel(_endpoint, _useTls);
+        auto channel = TokenClient::CreateChannel(_endpoint, _useTls, _idleTimeoutMs);
         auto stub = ottx::otttoken::OttTokenService::NewStub(channel);
 
         ottx::otttoken::PlatformTokenRequest request;
@@ -79,6 +101,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetSatAuth(ctx, sat);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::otttoken::PlatformTokenResponse response;
         grpc::Status status = stub->PlatformToken(&ctx, request, &response);
@@ -124,6 +147,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetSatAuth(ctx, sat);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::otttoken::AuthTokenResponse response;
         grpc::Status status = stub->AuthToken(&ctx, request, &response);

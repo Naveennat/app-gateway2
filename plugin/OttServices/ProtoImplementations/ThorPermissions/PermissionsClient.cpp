@@ -69,16 +69,36 @@ namespace Plugin {
         }
     } // namespace
 
-    PermissionsClient::PermissionsClient(const std::string& endpoint, bool useTls)
+    void PermissionsClient::ApplyDeadline(grpc::ClientContext& ctx, const uint32_t grpcTimeoutMs)
+    {
+        // Apply a per-RPC deadline (now + timeout).
+        // grpcTimeoutMs == 0 means "no deadline".
+        if (grpcTimeoutMs == 0) {
+            return;
+        }
+        ctx.set_deadline(std::chrono::system_clock::now() + std::chrono::milliseconds(grpcTimeoutMs));
+    }
+
+    PermissionsClient::PermissionsClient(const std::string& endpoint,
+                                         const bool useTls,
+                                         const uint32_t grpcTimeoutMs,
+                                         const uint32_t idleTimeoutMs)
         : _endpoint(endpoint)
-        , _channel(CreateChannel(endpoint, useTls))
+        , _grpcTimeoutMs(grpcTimeoutMs)
+        , _idleTimeoutMs(idleTimeoutMs)
+        , _channel(CreateChannel(endpoint, useTls, idleTimeoutMs))
         , _stub(ottx::permission::AppPermissionsService::NewStub(_channel))
     {
     }
 
-    PermissionsClient::PermissionsClient(const std::string& endpoint, std::shared_ptr<grpc::ChannelCredentials> creds)
+    PermissionsClient::PermissionsClient(const std::string& endpoint,
+                                         std::shared_ptr<grpc::ChannelCredentials> creds,
+                                         const uint32_t grpcTimeoutMs,
+                                         const uint32_t idleTimeoutMs)
         : _endpoint(endpoint)
-        , _channel(CreateChannel(endpoint, creds))
+        , _grpcTimeoutMs(grpcTimeoutMs)
+        , _idleTimeoutMs(idleTimeoutMs)
+        , _channel(CreateChannel(endpoint, std::move(creds), idleTimeoutMs))
         , _stub(ottx::permission::AppPermissionsService::NewStub(_channel))
     {
     }
@@ -89,19 +109,34 @@ namespace Plugin {
         return _endpoint;
     }
 
-    std::shared_ptr<grpc::Channel> PermissionsClient::CreateChannel(const std::string& endpoint, bool useTls) {
+    std::shared_ptr<grpc::Channel> PermissionsClient::CreateChannel(const std::string& endpoint,
+                                                                    const bool useTls,
+                                                                    const uint32_t idleTimeoutMs)
+    {
+        grpc::ChannelArguments args;
+        // Channel idle timeout is supported by gRPC core.
+        // Use milliseconds for consistency with GRPC_TIMEOUT.
+        if (idleTimeoutMs != 0) {
+            args.SetInt(GRPC_ARG_CLIENT_IDLE_TIMEOUT_MS, static_cast<int>(idleTimeoutMs));
+        }
+
         if (useTls) {
             grpc::SslCredentialsOptions ssl_opts;
             auto creds = grpc::SslCredentials(ssl_opts);
-            return grpc::CreateChannel(endpoint, creds);
+            return grpc::CreateCustomChannel(endpoint, creds, args);
         } else {
-            return grpc::CreateChannel(endpoint, grpc::InsecureChannelCredentials());
+            return grpc::CreateCustomChannel(endpoint, grpc::InsecureChannelCredentials(), args);
         }
     }
 
     std::shared_ptr<grpc::Channel> PermissionsClient::CreateChannel(
-        const std::string& endpoint, const std::shared_ptr<grpc::ChannelCredentials>& creds) {
-        return grpc::CreateChannel(endpoint, creds);
+        const std::string& endpoint, const std::shared_ptr<grpc::ChannelCredentials>& creds, const uint32_t idleTimeoutMs)
+    {
+        grpc::ChannelArguments args;
+        if (idleTimeoutMs != 0) {
+            args.SetInt(GRPC_ARG_CLIENT_IDLE_TIMEOUT_MS, static_cast<int>(idleTimeoutMs));
+        }
+        return grpc::CreateCustomChannel(endpoint, creds, args);
     }
 
     uint32_t PermissionsClient::EnumeratePermissions(const std::string& appId,
@@ -134,6 +169,7 @@ namespace Plugin {
         // Build context with required metadata. Redact secrets in logs!
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::EnumeratePermissionsResponse response;
         grpc::Status status = _stub->EnumeratePermissions(&ctx, request, &response);
@@ -176,6 +212,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::GetResponse response;
         grpc::Status status = _stub->Get(&ctx, request, &response);
@@ -224,6 +261,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::GrantResponse response;
         grpc::Status status = _stub->Grant(&ctx, request, &response);
@@ -273,6 +311,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::SetResponse response;
         grpc::Status status = _stub->Set(&ctx, request, &response);
@@ -317,6 +356,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::RevokeResponse response;
         grpc::Status status = _stub->Revoke(&ctx, request, &response);
@@ -351,6 +391,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::DeleteResponse response;
         grpc::Status status = _stub->Delete(&ctx, request, &response);
@@ -389,6 +430,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::AuthorizeResponse response;
         grpc::Status status = _stub->Authorize(&ctx, request, &response);
@@ -430,6 +472,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::GetAllForAppResponse response;
         grpc::Status status = _stub->GetAllForApp(&ctx, request, &response);
@@ -468,6 +511,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::GetAllAppKeysResponse response;
         grpc::Status status = _stub->GetAllAppKeys(&ctx, request, &response);
@@ -518,6 +562,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::GetThorTokenResponse response;
         grpc::Status status = _stub->GetThorToken(&ctx, request, &response);
@@ -552,6 +597,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::GetRegisteredPermissionsResponse response;
         grpc::Status status = _stub->GetRegisteredPermissions(&ctx, request, &response);
@@ -593,6 +639,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::RegisterPermissionsResponse response;
         grpc::Status status = _stub->RegisterPermissions(&ctx, request, &response);
@@ -624,6 +671,7 @@ namespace Plugin {
 
         grpc::ClientContext ctx;
         SetCommonMetadata(ctx, bearerToken, deviceId, accountId, partnerId);
+        ApplyDeadline(ctx, _grpcTimeoutMs);
 
         ottx::permission::DeleteRegisteredPermissionResponse response;
         grpc::Status status = _stub->DeleteRegisteredPermission(&ctx, request, &response);

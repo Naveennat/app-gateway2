@@ -33,17 +33,31 @@
 #include <cstdint>
 #include <string>
 
+#include <grpcpp/grpcpp.h>
+
+// OttServices-wide defaults for per-RPC deadlines and channel idle timeout.
+#include "../../Module.h"
+
 namespace WPEFramework {
 namespace Plugin {
 
     class TokenClient {
     public:
-        // PUBLIC_INTERFACE
-        TokenClient(const std::string& endpoint, bool useTls = true);
-        /** Construct a TokenClient.
-         *  endpoint: "host:port" gRPC endpoint
-         *  useTls: whether to use TLS credentials for the channel
+        /**
+         * PUBLIC_INTERFACE
+         * Construct a TokenClient.
+         *
+         * Parameters:
+         *  - endpoint: "host:port" gRPC endpoint
+         *  - useTls: whether to use TLS credentials for the channel
+         *  - grpcTimeoutMs: per-RPC deadline (milliseconds), defaults to GRPC_TIMEOUT
+         *  - idleTimeoutMs: channel idle timeout (milliseconds), defaults to IDLE_TIMEOUT
          */
+        // PUBLIC_INTERFACE
+        TokenClient(const std::string& endpoint,
+                    bool useTls = true,
+                    uint32_t grpcTimeoutMs = GRPC_TIMEOUT,
+                    uint32_t idleTimeoutMs = IDLE_TIMEOUT);
 
         // PUBLIC_INTERFACE
         ~TokenClient();
@@ -82,8 +96,14 @@ namespace Plugin {
         std::string Endpoint() const { return _endpoint; }
 
     private:
+        static void ApplyDeadline(grpc::ClientContext& ctx, uint32_t grpcTimeoutMs);
+        static std::shared_ptr<grpc::Channel> CreateChannel(const std::string& endpoint, bool useTls, uint32_t idleTimeoutMs);
+
         std::string _endpoint;
         bool _useTls;
+
+        uint32_t _grpcTimeoutMs;
+        uint32_t _idleTimeoutMs;
     };
 
 } // namespace Plugin
