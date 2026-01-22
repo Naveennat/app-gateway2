@@ -128,7 +128,12 @@ namespace {
         appIdOut = Trim(record.AppId.Value());
 
         permsOut.clear();
-        for (const auto& p : record.Permissions.Elements()) {
+
+        // Thunder Core::JSON ArrayType does not always support STL begin/end iteration.
+        // Use the Thunder iterator pattern: Elements().Next()/Current().
+        auto it = record.Permissions.Elements();
+        while (it.Next() == true) {
+            const auto& p = it.Current();
             permsOut.emplace_back(p.Value());
         }
     }
@@ -247,8 +252,9 @@ namespace {
                 PermissionRecord record;
                 EntryToRecord(kv.first, kv.second, record);
 
-                const std::string jsonLine = record.ToString();
-                if (jsonLine.empty()) {
+                std::string jsonLine;
+                const bool serialized = record.ToString(jsonLine);
+                if ((serialized == false) || jsonLine.empty()) {
                     LOGERR("OttPermissionCache: failed to serialize record for appId='%s'", kv.first.c_str());
                     return false;
                 }
