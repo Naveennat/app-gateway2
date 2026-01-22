@@ -1,0 +1,11 @@
+precondition = ["Platform"]
+callsign = "org.rdk.OttServices"
+startuporder = "@PLUGIN_OTTSERVICES_STARTUPORDER@"
+
+configuration = JSON()
+rootobject = JSON()
+
+rootobject.add("mode", "@PLUGIN_OTTSERVICES_MODE@")
+rootobject.add("locator", "lib@PLUGIN_IMPLEMENTATION@.so")
+
+configuration.add("root", rootobject)
