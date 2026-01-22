@@ -135,7 +135,7 @@ namespace Plugin {
             return false;
         }
 
-        auto channel = CreateChannel(_endpoint, _useTls);
+        auto channel = CreateChannel(_endpoint, _useTls, _idleTimeoutMs);
         auto stub = ottx::otttoken::OttTokenService::NewStub(channel);
 
         ottx::otttoken::AuthTokenRequest request;
