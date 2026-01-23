@@ -106,6 +106,10 @@ namespace Plugin {
         ottx::otttoken::PlatformTokenResponse response;
         grpc::Status status = stub->PlatformToken(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("TokenClient: DEADLINE_EXCEEDED (endpoint=%s, method=PlatformToken, deadlineMs=%u, appId=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, appId.c_str());
+            }
             errMsg = std::string("gRPC error: ") + status.error_message();
             LOGERR("TokenClient PlatformToken failed (code=%d, msg=%s)", static_cast<int>(status.error_code()), status.error_message().c_str());
             return false;
@@ -152,6 +156,10 @@ namespace Plugin {
         ottx::otttoken::AuthTokenResponse response;
         grpc::Status status = stub->AuthToken(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("TokenClient: DEADLINE_EXCEEDED (endpoint=%s, method=AuthToken, deadlineMs=%u, appId=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, appId.c_str());
+            }
             errMsg = std::string("gRPC error: ") + status.error_message();
             LOGERR("TokenClient AuthToken failed (code=%d, msg=%s)", static_cast<int>(status.error_code()), status.error_message().c_str());
             return false;

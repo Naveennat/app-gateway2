@@ -175,6 +175,10 @@ namespace Plugin {
         grpc::Status status = _stub->EnumeratePermissions(&ctx, request, &response);
 
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=EnumeratePermissions, deadlineMs=%u, app=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, appId.c_str());
+            }
             uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: EnumeratePermissions failed (endpoint=%s, app=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), appId.c_str(), static_cast<int>(status.error_code()),
@@ -217,6 +221,10 @@ namespace Plugin {
         ottx::permission::GetResponse response;
         grpc::Status status = _stub->Get(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=Get, deadlineMs=%u, app=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, appId.c_str());
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Get failed (endpoint=%s, app=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), appId.c_str(), static_cast<int>(status.error_code()),
@@ -266,6 +274,10 @@ namespace Plugin {
         ottx::permission::GrantResponse response;
         grpc::Status status = _stub->Grant(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=Grant, deadlineMs=%u, app=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, appId.c_str());
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Grant failed (endpoint=%s, app=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), appId.c_str(), static_cast<int>(status.error_code()),
@@ -316,6 +328,10 @@ namespace Plugin {
         ottx::permission::SetResponse response;
         grpc::Status status = _stub->Set(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=Set, deadlineMs=%u, app=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, appId.c_str());
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Set failed (endpoint=%s, app=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), appId.c_str(), static_cast<int>(status.error_code()),
@@ -361,6 +377,10 @@ namespace Plugin {
         ottx::permission::RevokeResponse response;
         grpc::Status status = _stub->Revoke(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=Revoke, deadlineMs=%u, app=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, appId.c_str());
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Revoke failed (endpoint=%s, app=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), appId.c_str(), static_cast<int>(status.error_code()),
@@ -396,6 +416,10 @@ namespace Plugin {
         ottx::permission::DeleteResponse response;
         grpc::Status status = _stub->Delete(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=Delete, deadlineMs=%u, app=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, appId.c_str());
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Delete failed (endpoint=%s, app=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), appId.c_str(), static_cast<int>(status.error_code()),
@@ -435,6 +459,10 @@ namespace Plugin {
         ottx::permission::AuthorizeResponse response;
         grpc::Status status = _stub->Authorize(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=Authorize, deadlineMs=%u)",
+                       _endpoint.c_str(), _grpcTimeoutMs);
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: Authorize failed (endpoint=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), static_cast<int>(status.error_code()),
@@ -477,6 +505,10 @@ namespace Plugin {
         ottx::permission::GetAllForAppResponse response;
         grpc::Status status = _stub->GetAllForApp(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=GetAllForApp, deadlineMs=%u, app=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, app.c_str());
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: GetAllForApp failed (endpoint=%s, app=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), app.c_str(), static_cast<int>(status.error_code()),
@@ -516,6 +548,10 @@ namespace Plugin {
         ottx::permission::GetAllAppKeysResponse response;
         grpc::Status status = _stub->GetAllAppKeys(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=GetAllAppKeys, deadlineMs=%u)",
+                       _endpoint.c_str(), _grpcTimeoutMs);
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: GetAllAppKeys failed (endpoint=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), static_cast<int>(status.error_code()),
@@ -567,6 +603,10 @@ namespace Plugin {
         ottx::permission::GetThorTokenResponse response;
         grpc::Status status = _stub->GetThorToken(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=GetThorToken, deadlineMs=%u, app=%s)",
+                       _endpoint.c_str(), _grpcTimeoutMs, app.c_str());
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: GetThorToken failed (endpoint=%s, app=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), app.c_str(), static_cast<int>(status.error_code()),
@@ -602,6 +642,10 @@ namespace Plugin {
         ottx::permission::GetRegisteredPermissionsResponse response;
         grpc::Status status = _stub->GetRegisteredPermissions(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=GetRegisteredPermissions, deadlineMs=%u)",
+                       _endpoint.c_str(), _grpcTimeoutMs);
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: GetRegisteredPermissions failed (endpoint=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), static_cast<int>(status.error_code()),
@@ -644,6 +688,10 @@ namespace Plugin {
         ottx::permission::RegisterPermissionsResponse response;
         grpc::Status status = _stub->RegisterPermissions(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=RegisterPermissions, deadlineMs=%u)",
+                       _endpoint.c_str(), _grpcTimeoutMs);
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: RegisterPermissions failed (endpoint=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), static_cast<int>(status.error_code()),
@@ -676,6 +724,10 @@ namespace Plugin {
         ottx::permission::DeleteRegisteredPermissionResponse response;
         grpc::Status status = _stub->DeleteRegisteredPermission(&ctx, request, &response);
         if (!status.ok()) {
+            if (status.error_code() == grpc::StatusCode::DEADLINE_EXCEEDED) {
+                LOGERR("PermissionsClient: DEADLINE_EXCEEDED (endpoint=%s, method=DeleteRegisteredPermission, deadlineMs=%u)",
+                       _endpoint.c_str(), _grpcTimeoutMs);
+            }
             const uint32_t rc = MapGrpcStatusToCore(status);
             LOGERR("PermissionsClient: DeleteRegisteredPermission failed (endpoint=%s, code=%d, msg=%s)",
                    _endpoint.c_str(), static_cast<int>(status.error_code()),
