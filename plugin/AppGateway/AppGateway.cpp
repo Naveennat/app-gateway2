@@ -370,6 +370,29 @@ namespace Plugin {
 
         LOGINFO("AppGateway::Initialize: PID=%u", getpid());
 
+        // DIAGNOSTIC: ConfigLine introspection (temporary).
+        // This is intentionally minimal and easy to remove/grep for ("DIAGNOSTIC_CONFIGLINE").
+        // The goal is to capture what IShell->ConfigLine() actually returns at runtime in the
+        // other build where JSON parsing fails at character 1.
+#if !defined(APPGATEWAY_DIAGNOSTIC_CONFIGLINE)
+#define APPGATEWAY_DIAGNOSTIC_CONFIGLINE 1
+#endif
+#if APPGATEWAY_DIAGNOSTIC_CONFIGLINE
+        {
+            const string cfgLine = service->ConfigLine();
+            const size_t cfgLen = cfgLine.size();
+            const size_t prefixLen = (cfgLen > 200 ? 200 : cfgLen);
+
+            // Print both via framework logging and stderr (some harnesses only capture one).
+            LOGINFO("DIAGNOSTIC_CONFIGLINE: service->ConfigLine() length=%zu, prefix(<=200)='%s'",
+                    cfgLen, cfgLine.substr(0, prefixLen).c_str());
+            fprintf(stderr,
+                    "DIAGNOSTIC_CONFIGLINE: service->ConfigLine() length=%zu, prefix(<=200)='%s'\n",
+                    cfgLen, cfgLine.substr(0, prefixLen).c_str());
+            fflush(stderr);
+        }
+#endif
+
         // Robust interface acquisition: Ensure failures can't cause crash/partial init.
         //
         // L0 determinism:
