@@ -1,4 +1,7 @@
 # ninja log v5
+6765	7036	1769549428832791426	libWPEFrameworkAppGateway.so	718102a14d0538a8
+5	6700	1767589558437909090	CMakeFiles/appgateway_l0test.dir/l0test/AppGateway_JsonRpcResolveTests.cpp.o	cc68f2045ec12a1a
+4	4768	1767589810932037865	CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o	5223af042cc418c6
 2	6765	1769549428556791570	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.o	2896d5b7a60a7e45
 5	6631	1767589558365909623	CMakeFiles/appgateway_l0test.dir/l0test/AppGateway_Init_DeinitTests.cpp.o	2e57b4747b0642a6
 2	5621	1769549427412792165	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayImplementation.o	4a734f33243ab872
@@ -8,11 +11,8 @@
 3	3861	1769549425660793076	CMakeFiles/WPEFrameworkAppGateway.dir/Module.o	11b6f84b90719931
 5	6144	1767589812304027732	CMakeFiles/appgateway_l0test.dir/l0test/Resolver_Configure_And_ResolveTests.cpp.o	b4035e21cf0556bc
 5	5529	1767589811692032252	CMakeFiles/appgateway_l0test.dir/l0test/ContextUtils_ConversionTests.cpp.o	faf4eeb3951f40fa
-7036	7060	0	CMakeFiles/install.util	d5c1111e3764413d
+4	15	0	CMakeFiles/install.util	d5c1111e3764413d
 4	5820	1767589811980030125	CMakeFiles/WPEFrameworkAppGateway.dir/AppGatewayResponderImplementation.cpp.o	237a7ae240980f16
 2	5224	1769549427016792371	CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.o	a910daf274cfd9dc
 6	6932	1767589558669907370	CMakeFiles/appgateway_l0test.dir/l0test/Responder_BehaviorTests.cpp.o	e4d8d4e1ac61ddff
-4	4768	1767589810932037865	CMakeFiles/WPEFrameworkAppGateway.dir/AppGateway.cpp.o	5223af042cc418c6
-5	6700	1767589558437909090	CMakeFiles/appgateway_l0test.dir/l0test/AppGateway_JsonRpcResolveTests.cpp.o	cc68f2045ec12a1a
-6765	7036	1769549428832791426	libWPEFrameworkAppGateway.so	718102a14d0538a8
 4	15	0	CMakeFiles/install.util	d5c1111e3764413d

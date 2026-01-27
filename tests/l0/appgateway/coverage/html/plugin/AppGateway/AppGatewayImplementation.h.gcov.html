@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-27 18:34:25</td>
+            <td class="headerValue">2026-01-27 21:32:22</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryMed">88.9&nbsp;%</td>
@@ -200,11 +200,11 @@
 <span id="L138"><span class="lineNum">     138</span>              : </span>
 <span id="L139"><span class="lineNum">     139</span>              :                 // If teardown has started, do not call back into the object.</span>
 <span id="L140"><span class="lineNum">     140</span> <span class="tlaGNC tlaBgGNC">           7 :                 if (mParent-&gt;mIsShuttingDown.load(std::memory_order_acquire) == true) {</span></span>
-<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">           5 :                     return;</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">           6 :                     return;</span></span>
 <span id="L142"><span class="lineNum">     142</span>              :                 }</span>
 <span id="L143"><span class="lineNum">     143</span>              : </span>
-<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">           2 :                 if (ContextUtils::IsOriginGateway(mDestination)) {</span></span>
-<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">           2 :                     mParent-&gt;ReturnMessageInSocket(mContext, mPayload);</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">           1 :                 if (ContextUtils::IsOriginGateway(mDestination)) {</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">           1 :                     mParent-&gt;ReturnMessageInSocket(mContext, mPayload);</span></span>
 <span id="L146"><span class="lineNum">     146</span>              :                 } else {</span>
 <span id="L147"><span class="lineNum">     147</span> <span class="tlaUNC tlaBgUNC">           0 :                     mParent-&gt;SendToLaunchDelegate(mContext, mPayload);</span></span>
 <span id="L148"><span class="lineNum">     148</span>              :                 }</span>
@@ -223,25 +223,25 @@
 <span id="L161"><span class="lineNum">     161</span>              : </span>
 <span id="L162"><span class="lineNum">     162</span>              :         Core::hresult HandleEvent(const Context &amp;context, const string &amp;alias, const string &amp;event, const string &amp;origin,  const bool listen);</span>
 <span id="L163"><span class="lineNum">     163</span>              :                 </span>
-<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC tlaBgGNC">           2 :         void ReturnMessageInSocket(const Context&amp; context, const string payload )</span></span>
+<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC tlaBgGNC">           1 :         void ReturnMessageInSocket(const Context&amp; context, const string payload )</span></span>
 <span id="L165"><span class="lineNum">     165</span>              :         {</span>
 <span id="L166"><span class="lineNum">     166</span>              :             // This method can be called from an async worker thread. If the plugin is</span>
 <span id="L167"><span class="lineNum">     167</span>              :             // shutting down, the service pointer may no longer be valid.</span>
-<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">           2 :             if (mService == nullptr) {</span></span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">           1 :             if (mService == nullptr) {</span></span>
 <span id="L169"><span class="lineNum">     169</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;AppGateway service not available (shutdown in progress); dropping response&quot;);</span></span>
 <span id="L170"><span class="lineNum">     170</span> <span class="tlaUNC">           0 :                 return;</span></span>
 <span id="L171"><span class="lineNum">     171</span>              :             }</span>
 <span id="L172"><span class="lineNum">     172</span>              : </span>
-<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC tlaBgGNC">           2 :             if (mAppGatewayResponder == nullptr) {</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC tlaBgGNC">           1 :             if (mAppGatewayResponder == nullptr) {</span></span>
 <span id="L174"><span class="lineNum">     174</span> <span class="tlaUNC tlaBgUNC">           0 :                 mAppGatewayResponder = mService-&gt;QueryInterface&lt;Exchange::IAppGatewayResponder&gt;();</span></span>
 <span id="L175"><span class="lineNum">     175</span>              :             }</span>
 <span id="L176"><span class="lineNum">     176</span>              : </span>
-<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC tlaBgGNC">           2 :             if (mAppGatewayResponder == nullptr) {</span></span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC tlaBgGNC">           1 :             if (mAppGatewayResponder == nullptr) {</span></span>
 <span id="L178"><span class="lineNum">     178</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;AppGateway Responder not available&quot;);</span></span>
 <span id="L179"><span class="lineNum">     179</span> <span class="tlaUNC">           0 :                 return;</span></span>
 <span id="L180"><span class="lineNum">     180</span>              :             }</span>
 <span id="L181"><span class="lineNum">     181</span>              : </span>
-<span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC tlaBgGNC">           2 :             if (Core::ERROR_NONE != mAppGatewayResponder-&gt;Respond(context, payload)) {</span></span>
+<span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC tlaBgGNC">           1 :             if (Core::ERROR_NONE != mAppGatewayResponder-&gt;Respond(context, payload)) {</span></span>
 <span id="L183"><span class="lineNum">     183</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;Failed to Respond in Gateway&quot;);</span></span>
 <span id="L184"><span class="lineNum">     184</span>              :             }</span>
 <span id="L185"><span class="lineNum">     185</span>              :         }</span>
