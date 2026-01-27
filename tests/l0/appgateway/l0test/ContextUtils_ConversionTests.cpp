@@ -10,6 +10,7 @@
 
 // Context conversion utilities: Supporting_Files path is added via CMake for tests
 #include <ContextUtils.h>
+#include "ContextConversionHelpers.h"
 
 using WPEFramework::Core::ERROR_BAD_REQUEST;
 using WPEFramework::Core::ERROR_NONE;

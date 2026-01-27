@@ -32,6 +32,7 @@
 #include <core/Time.h>
 #include <thread>
 #include <chrono>
+#include "ContextConversionHelpers.h"
 
 #define DEFAULT_CONFIG_PATH "/etc/app-gateway/resolution.base.json"
 #define RESOLUTIONS_PATH_CFG "/etc/app-gateway/resolutions.json"

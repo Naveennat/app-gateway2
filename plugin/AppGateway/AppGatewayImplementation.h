@@ -25,6 +25,7 @@
 #include <interfaces/IConfiguration.h>
 #include <interfaces/IAppNotifications.h>
 #include "ContextUtils.h"
+#include "ContextConversionHelpers.h"
 #include <com/com.h>
 #include <core/core.h>
 #include <atomic>
