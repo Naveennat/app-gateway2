@@ -31,18 +31,18 @@
             <td class="headerValue">coverage.filtered.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntryLo">37.5&nbsp;%</td>
             <td class="headerCovTableEntry">168</td>
-            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">63</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-13 07:01:57</td>
+            <td class="headerValue">2026-01-27 17:54:41</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntryLo">33.3&nbsp;%</td>
             <td class="headerCovTableEntry">18</td>
-            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">6</td>
           </tr>
                   <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
                 </table>
@@ -100,15 +100,15 @@
 <span id="L38"><span class="lineNum">      38</span>              :     {</span>
 <span id="L39"><span class="lineNum">      39</span>              :         SERVICE_REGISTRATION(AppGatewayResponderImplementation, 1, 0, 0);</span>
 <span id="L40"><span class="lineNum">      40</span>              : </span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaUNC tlaBgUNC">           0 :         AppGatewayResponderImplementation::AppGatewayResponderImplementation()</span></span>
-<span id="L42"><span class="lineNum">      42</span> <span class="tlaUNC">           0 :             : mService(nullptr),</span></span>
-<span id="L43"><span class="lineNum">      43</span> <span class="tlaUNC">           0 :             mWsManager(),</span></span>
-<span id="L44"><span class="lineNum">      44</span> <span class="tlaUNC">           0 :             mAuthenticator(nullptr),</span></span>
-<span id="L45"><span class="lineNum">      45</span> <span class="tlaUNC">           0 :             mResolver(nullptr),</span></span>
-<span id="L46"><span class="lineNum">      46</span> <span class="tlaUNC">           0 :             mConnectionStatusImplLock(),</span></span>
-<span id="L47"><span class="lineNum">      47</span> <span class="tlaUNC">           0 :             mEnhancedLoggingEnabled(false)</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC tlaBgGNC">           2 :         AppGatewayResponderImplementation::AppGatewayResponderImplementation()</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">           2 :             : mService(nullptr),</span></span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">           2 :             mWsManager(),</span></span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">           2 :             mAuthenticator(nullptr),</span></span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">           2 :             mResolver(nullptr),</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">           2 :             mConnectionStatusImplLock(),</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">           4 :             mEnhancedLoggingEnabled(false)</span></span>
 <span id="L48"><span class="lineNum">      48</span>              :         {</span>
-<span id="L49"><span class="lineNum">      49</span> <span class="tlaUNC">           0 :             LOGINFO(&quot;AppGatewayResponderImplementation constructor&quot;);</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">           2 :             LOGINFO(&quot;AppGatewayResponderImplementation constructor&quot;);</span></span>
 <span id="L50"><span class="lineNum">      50</span>              : #ifdef ENABLE_APP_GATEWAY_AUTOMATION</span>
 <span id="L51"><span class="lineNum">      51</span>              :         #ifdef APP_GATEWAY_ENHANCED_LOGGING_INDICATOR</span>
 <span id="L52"><span class="lineNum">      52</span>              :             struct stat buffer;</span>
@@ -116,32 +116,32 @@
 <span id="L54"><span class="lineNum">      54</span>              :             LOGINFO(&quot;Enhanced logging enabled: %s (indicator: %s)&quot;, mEnhancedLoggingEnabled ? &quot;true&quot; : &quot;false&quot;, APP_GATEWAY_ENHANCED_LOGGING_INDICATOR);</span>
 <span id="L55"><span class="lineNum">      55</span>              :         #endif</span>
 <span id="L56"><span class="lineNum">      56</span>              : #endif</span>
-<span id="L57"><span class="lineNum">      57</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">           2 :         }</span></span>
 <span id="L58"><span class="lineNum">      58</span>              : </span>
-<span id="L59"><span class="lineNum">      59</span> <span class="tlaUNC">           0 :         AppGatewayResponderImplementation::~AppGatewayResponderImplementation()</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">           2 :         AppGatewayResponderImplementation::~AppGatewayResponderImplementation()</span></span>
 <span id="L60"><span class="lineNum">      60</span>              :         {</span>
-<span id="L61"><span class="lineNum">      61</span> <span class="tlaUNC">           0 :             LOGINFO(&quot;AppGatewayResponderImplementation destructor&quot;);</span></span>
-<span id="L62"><span class="lineNum">      62</span> <span class="tlaUNC">           0 :             if (nullptr != mService)</span></span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">           2 :             LOGINFO(&quot;AppGatewayResponderImplementation destructor&quot;);</span></span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">           2 :             if (nullptr != mService)</span></span>
 <span id="L63"><span class="lineNum">      63</span>              :             {</span>
-<span id="L64"><span class="lineNum">      64</span> <span class="tlaUNC">           0 :                 mService-&gt;Release();</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaUNC tlaBgUNC">           0 :                 mService-&gt;Release();</span></span>
 <span id="L65"><span class="lineNum">      65</span> <span class="tlaUNC">           0 :                 mService = nullptr;</span></span>
 <span id="L66"><span class="lineNum">      66</span>              :             }</span>
 <span id="L67"><span class="lineNum">      67</span>              : </span>
-<span id="L68"><span class="lineNum">      68</span> <span class="tlaUNC">           0 :             if (nullptr != mResolver)</span></span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC tlaBgGNC">           2 :             if (nullptr != mResolver)</span></span>
 <span id="L69"><span class="lineNum">      69</span>              :             {</span>
-<span id="L70"><span class="lineNum">      70</span> <span class="tlaUNC">           0 :                 mResolver-&gt;Release();</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaUNC tlaBgUNC">           0 :                 mResolver-&gt;Release();</span></span>
 <span id="L71"><span class="lineNum">      71</span> <span class="tlaUNC">           0 :                 mResolver = nullptr;</span></span>
 <span id="L72"><span class="lineNum">      72</span>              :             }</span>
 <span id="L73"><span class="lineNum">      73</span>              : </span>
-<span id="L74"><span class="lineNum">      74</span> <span class="tlaUNC">           0 :             if (nullptr != mAuthenticator)</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC tlaBgGNC">           2 :             if (nullptr != mAuthenticator)</span></span>
 <span id="L75"><span class="lineNum">      75</span>              :             {</span>
-<span id="L76"><span class="lineNum">      76</span> <span class="tlaUNC">           0 :                 mAuthenticator-&gt;Release();</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaUNC tlaBgUNC">           0 :                 mAuthenticator-&gt;Release();</span></span>
 <span id="L77"><span class="lineNum">      77</span> <span class="tlaUNC">           0 :                 mAuthenticator = nullptr;</span></span>
 <span id="L78"><span class="lineNum">      78</span>              :             }</span>
 <span id="L79"><span class="lineNum">      79</span>              : </span>
-<span id="L80"><span class="lineNum">      80</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC tlaBgGNC">           2 :         }</span></span>
 <span id="L81"><span class="lineNum">      81</span>              : </span>
-<span id="L82"><span class="lineNum">      82</span> <span class="tlaUNC">           0 :         uint32_t AppGatewayResponderImplementation::Configure(PluginHost::IShell *shell)</span></span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaUNC tlaBgUNC">           0 :         uint32_t AppGatewayResponderImplementation::Configure(PluginHost::IShell *shell)</span></span>
 <span id="L83"><span class="lineNum">      83</span>              :         {</span>
 <span id="L84"><span class="lineNum">      84</span> <span class="tlaUNC">           0 :             LOGINFO(&quot;Configuring AppGatewayResponderImplementation&quot;);</span></span>
 <span id="L85"><span class="lineNum">      85</span> <span class="tlaUNC">           0 :             uint32_t result = Core::ERROR_NONE;</span></span>
@@ -279,17 +279,17 @@
 <span id="L217"><span class="lineNum">     217</span> <span class="tlaUNC">           0 :             return Core::ERROR_NONE;</span></span>
 <span id="L218"><span class="lineNum">     218</span>              :         }</span>
 <span id="L219"><span class="lineNum">     219</span>              : </span>
-<span id="L220"><span class="lineNum">     220</span> <span class="tlaUNC">           0 :         Core::hresult AppGatewayResponderImplementation::GetGatewayConnectionContext(const uint32_t connectionId /* @in */,</span></span>
+<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC tlaBgGNC">           4 :         Core::hresult AppGatewayResponderImplementation::GetGatewayConnectionContext(const uint32_t connectionId /* @in */,</span></span>
 <span id="L221"><span class="lineNum">     221</span>              :                 const string&amp; contextKey /* @in */,</span>
 <span id="L222"><span class="lineNum">     222</span>              :                  string&amp; contextValue /* @out */) {</span>
 <span id="L223"><span class="lineNum">     223</span>              :             // L0 / API contract:</span>
 <span id="L224"><span class="lineNum">     224</span>              :             // - Return ERROR_NONE and fill contextValue when key exists for the connection.</span>
 <span id="L225"><span class="lineNum">     225</span>              :             // - Return ERROR_BAD_REQUEST when the connection is unknown or the key is not present.</span>
 <span id="L226"><span class="lineNum">     226</span>              :             // - Keep behavior deterministic and offline for tests.</span>
-<span id="L227"><span class="lineNum">     227</span> <span class="tlaUNC">           0 :             contextValue.clear();</span></span>
+<span id="L227"><span class="lineNum">     227</span> <span class="tlaGNC">           4 :             contextValue.clear();</span></span>
 <span id="L228"><span class="lineNum">     228</span>              : </span>
-<span id="L229"><span class="lineNum">     229</span> <span class="tlaUNC">           0 :             if (contextKey.empty()) {</span></span>
-<span id="L230"><span class="lineNum">     230</span> <span class="tlaUNC">           0 :                 return Core::ERROR_BAD_REQUEST;</span></span>
+<span id="L229"><span class="lineNum">     229</span> <span class="tlaGNC">           4 :             if (contextKey.empty()) {</span></span>
+<span id="L230"><span class="lineNum">     230</span> <span class="tlaGNC">           1 :                 return Core::ERROR_BAD_REQUEST;</span></span>
 <span id="L231"><span class="lineNum">     231</span>              :             }</span>
 <span id="L232"><span class="lineNum">     232</span>              : </span>
 <span id="L233"><span class="lineNum">     233</span>              :             // Minimal hook for L0 tests (and offline use):</span>
@@ -298,35 +298,35 @@
 <span id="L236"><span class="lineNum">     236</span>              :             // Contract: if env injection is configured for a specific (connId,key), then:</span>
 <span id="L237"><span class="lineNum">     237</span>              :             //   - exact match =&gt; ERROR_NONE and value returned</span>
 <span id="L238"><span class="lineNum">     238</span>              :             //   - any other connId/key =&gt; ERROR_BAD_REQUEST</span>
-<span id="L239"><span class="lineNum">     239</span> <span class="tlaUNC">           0 :             const char* envConn = std::getenv(&quot;APPGATEWAY_TEST_CONN_ID&quot;);</span></span>
-<span id="L240"><span class="lineNum">     240</span> <span class="tlaUNC">           0 :             const char* envKey  = std::getenv(&quot;APPGATEWAY_TEST_CTX_KEY&quot;);</span></span>
-<span id="L241"><span class="lineNum">     241</span> <span class="tlaUNC">           0 :             const char* envVal  = std::getenv(&quot;APPGATEWAY_TEST_CTX_VALUE&quot;);</span></span>
+<span id="L239"><span class="lineNum">     239</span> <span class="tlaGNC">           3 :             const char* envConn = std::getenv(&quot;APPGATEWAY_TEST_CONN_ID&quot;);</span></span>
+<span id="L240"><span class="lineNum">     240</span> <span class="tlaGNC">           3 :             const char* envKey  = std::getenv(&quot;APPGATEWAY_TEST_CTX_KEY&quot;);</span></span>
+<span id="L241"><span class="lineNum">     241</span> <span class="tlaGNC">           3 :             const char* envVal  = std::getenv(&quot;APPGATEWAY_TEST_CTX_VALUE&quot;);</span></span>
 <span id="L242"><span class="lineNum">     242</span>              : </span>
-<span id="L243"><span class="lineNum">     243</span> <span class="tlaUNC">           0 :             const bool anyEnvSet =</span></span>
-<span id="L244"><span class="lineNum">     244</span> <span class="tlaUNC">           0 :                 (envConn != nullptr &amp;&amp; *envConn != '\0') ||</span></span>
-<span id="L245"><span class="lineNum">     245</span> <span class="tlaUNC">           0 :                 (envKey  != nullptr &amp;&amp; *envKey  != '\0') ||</span></span>
-<span id="L246"><span class="lineNum">     246</span> <span class="tlaUNC">           0 :                 (envVal  != nullptr &amp;&amp; *envVal  != '\0');</span></span>
+<span id="L243"><span class="lineNum">     243</span> <span class="tlaGNC">           3 :             const bool anyEnvSet =</span></span>
+<span id="L244"><span class="lineNum">     244</span> <span class="tlaGNC">           3 :                 (envConn != nullptr &amp;&amp; *envConn != '\0') ||</span></span>
+<span id="L245"><span class="lineNum">     245</span> <span class="tlaGNC">           6 :                 (envKey  != nullptr &amp;&amp; *envKey  != '\0') ||</span></span>
+<span id="L246"><span class="lineNum">     246</span> <span class="tlaUNC tlaBgUNC">           0 :                 (envVal  != nullptr &amp;&amp; *envVal  != '\0');</span></span>
 <span id="L247"><span class="lineNum">     247</span>              : </span>
-<span id="L248"><span class="lineNum">     248</span> <span class="tlaUNC">           0 :             if (anyEnvSet) {</span></span>
+<span id="L248"><span class="lineNum">     248</span> <span class="tlaGNC tlaBgGNC">           3 :             if (anyEnvSet) {</span></span>
 <span id="L249"><span class="lineNum">     249</span>              :                 // If any are set, require a complete, well-formed triple.</span>
-<span id="L250"><span class="lineNum">     250</span> <span class="tlaUNC">           0 :                 if (envConn == nullptr || envKey == nullptr || envVal == nullptr ||</span></span>
-<span id="L251"><span class="lineNum">     251</span> <span class="tlaUNC">           0 :                     *envConn == '\0' || *envKey == '\0') {</span></span>
-<span id="L252"><span class="lineNum">     252</span> <span class="tlaUNC">           0 :                     return Core::ERROR_BAD_REQUEST;</span></span>
+<span id="L250"><span class="lineNum">     250</span> <span class="tlaGNC">           3 :                 if (envConn == nullptr || envKey == nullptr || envVal == nullptr ||</span></span>
+<span id="L251"><span class="lineNum">     251</span> <span class="tlaGNC">           3 :                     *envConn == '\0' || *envKey == '\0') {</span></span>
+<span id="L252"><span class="lineNum">     252</span> <span class="tlaUNC tlaBgUNC">           0 :                     return Core::ERROR_BAD_REQUEST;</span></span>
 <span id="L253"><span class="lineNum">     253</span>              :                 }</span>
 <span id="L254"><span class="lineNum">     254</span>              : </span>
-<span id="L255"><span class="lineNum">     255</span> <span class="tlaUNC">           0 :                 const uint32_t configuredConn = static_cast&lt;uint32_t&gt;(std::strtoul(envConn, nullptr, 10));</span></span>
-<span id="L256"><span class="lineNum">     256</span> <span class="tlaUNC">           0 :                 if (configuredConn != connectionId) {</span></span>
-<span id="L257"><span class="lineNum">     257</span> <span class="tlaUNC">           0 :                     return Core::ERROR_BAD_REQUEST;</span></span>
+<span id="L255"><span class="lineNum">     255</span> <span class="tlaGNC tlaBgGNC">           3 :                 const uint32_t configuredConn = static_cast&lt;uint32_t&gt;(std::strtoul(envConn, nullptr, 10));</span></span>
+<span id="L256"><span class="lineNum">     256</span> <span class="tlaGNC">           3 :                 if (configuredConn != connectionId) {</span></span>
+<span id="L257"><span class="lineNum">     257</span> <span class="tlaGNC">           1 :                     return Core::ERROR_BAD_REQUEST;</span></span>
 <span id="L258"><span class="lineNum">     258</span>              :                 }</span>
-<span id="L259"><span class="lineNum">     259</span> <span class="tlaUNC">           0 :                 if (contextKey != envKey) {</span></span>
-<span id="L260"><span class="lineNum">     260</span> <span class="tlaUNC">           0 :                     return Core::ERROR_BAD_REQUEST;</span></span>
+<span id="L259"><span class="lineNum">     259</span> <span class="tlaGNC">           2 :                 if (contextKey != envKey) {</span></span>
+<span id="L260"><span class="lineNum">     260</span> <span class="tlaGNC">           1 :                     return Core::ERROR_BAD_REQUEST;</span></span>
 <span id="L261"><span class="lineNum">     261</span>              :                 }</span>
 <span id="L262"><span class="lineNum">     262</span>              : </span>
-<span id="L263"><span class="lineNum">     263</span> <span class="tlaUNC">           0 :                 if (strlen(envVal) &gt; 0) {</span></span>
-<span id="L264"><span class="lineNum">     264</span> <span class="tlaUNC">           0 :                     contextValue = envVal;</span></span>
-<span id="L265"><span class="lineNum">     265</span> <span class="tlaUNC">           0 :                     return Core::ERROR_NONE;</span></span>
+<span id="L263"><span class="lineNum">     263</span> <span class="tlaGNC">           1 :                 if (strlen(envVal) &gt; 0) {</span></span>
+<span id="L264"><span class="lineNum">     264</span> <span class="tlaGNC">           1 :                     contextValue = envVal;</span></span>
+<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">           1 :                     return Core::ERROR_NONE;</span></span>
 <span id="L266"><span class="lineNum">     266</span>              :                 } else {</span>
-<span id="L267"><span class="lineNum">     267</span> <span class="tlaUNC">           0 :                     return Core::ERROR_BAD_REQUEST;</span></span>
+<span id="L267"><span class="lineNum">     267</span> <span class="tlaUNC tlaBgUNC">           0 :                     return Core::ERROR_BAD_REQUEST;</span></span>
 <span id="L268"><span class="lineNum">     268</span>              :                 }</span>
 <span id="L269"><span class="lineNum">     269</span>              :             }</span>
 <span id="L270"><span class="lineNum">     270</span>              : </span>
@@ -377,61 +377,61 @@
 <span id="L315"><span class="lineNum">     315</span> <span class="tlaUNC">           0 :         }</span></span>
 <span id="L316"><span class="lineNum">     316</span>              : </span>
 <span id="L317"><span class="lineNum">     317</span>              : </span>
-<span id="L318"><span class="lineNum">     318</span> <span class="tlaUNC">           0 :         Core::hresult AppGatewayResponderImplementation::Register(Exchange::IAppGatewayResponder::INotification *notification)</span></span>
+<span id="L318"><span class="lineNum">     318</span> <span class="tlaGNC tlaBgGNC">           1 :         Core::hresult AppGatewayResponderImplementation::Register(Exchange::IAppGatewayResponder::INotification *notification)</span></span>
 <span id="L319"><span class="lineNum">     319</span>              :         {</span>
-<span id="L320"><span class="lineNum">     320</span> <span class="tlaUNC">           0 :             ASSERT (nullptr != notification);</span></span>
+<span id="L320"><span class="lineNum">     320</span> <span class="tlaGNC">           1 :             ASSERT (nullptr != notification);</span></span>
 <span id="L321"><span class="lineNum">     321</span>              : </span>
-<span id="L322"><span class="lineNum">     322</span> <span class="tlaUNC">           0 :             Core::SafeSyncType&lt;Core::CriticalSection&gt; lock(mConnectionStatusImplLock);</span></span>
+<span id="L322"><span class="lineNum">     322</span> <span class="tlaGNC">           1 :             Core::SafeSyncType&lt;Core::CriticalSection&gt; lock(mConnectionStatusImplLock);</span></span>
 <span id="L323"><span class="lineNum">     323</span>              : </span>
 <span id="L324"><span class="lineNum">     324</span>              :             /* Make sure we can't register the same notification callback multiple times */</span>
-<span id="L325"><span class="lineNum">     325</span> <span class="tlaUNC">           0 :             if (std::find(mConnectionStatusNotification.begin(), mConnectionStatusNotification.end(), notification) == mConnectionStatusNotification.end())</span></span>
+<span id="L325"><span class="lineNum">     325</span> <span class="tlaGNC">           1 :             if (std::find(mConnectionStatusNotification.begin(), mConnectionStatusNotification.end(), notification) == mConnectionStatusNotification.end())</span></span>
 <span id="L326"><span class="lineNum">     326</span>              :             {</span>
-<span id="L327"><span class="lineNum">     327</span> <span class="tlaUNC">           0 :                 LOGINFO(&quot;Register notification&quot;);</span></span>
-<span id="L328"><span class="lineNum">     328</span> <span class="tlaUNC">           0 :                 mConnectionStatusNotification.push_back(notification);</span></span>
-<span id="L329"><span class="lineNum">     329</span> <span class="tlaUNC">           0 :                 notification-&gt;AddRef();</span></span>
+<span id="L327"><span class="lineNum">     327</span> <span class="tlaGNC">           1 :                 LOGINFO(&quot;Register notification&quot;);</span></span>
+<span id="L328"><span class="lineNum">     328</span> <span class="tlaGNC">           1 :                 mConnectionStatusNotification.push_back(notification);</span></span>
+<span id="L329"><span class="lineNum">     329</span> <span class="tlaGNC">           1 :                 notification-&gt;AddRef();</span></span>
 <span id="L330"><span class="lineNum">     330</span>              :             }</span>
 <span id="L331"><span class="lineNum">     331</span>              : </span>
-<span id="L332"><span class="lineNum">     332</span> <span class="tlaUNC">           0 :             return Core::ERROR_NONE;</span></span>
-<span id="L333"><span class="lineNum">     333</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L332"><span class="lineNum">     332</span> <span class="tlaGNC">           1 :             return Core::ERROR_NONE;</span></span>
+<span id="L333"><span class="lineNum">     333</span> <span class="tlaGNC">           1 :         }</span></span>
 <span id="L334"><span class="lineNum">     334</span>              : </span>
-<span id="L335"><span class="lineNum">     335</span> <span class="tlaUNC">           0 :         Core::hresult AppGatewayResponderImplementation::Unregister(Exchange::IAppGatewayResponder::INotification *notification )</span></span>
+<span id="L335"><span class="lineNum">     335</span> <span class="tlaGNC">           2 :         Core::hresult AppGatewayResponderImplementation::Unregister(Exchange::IAppGatewayResponder::INotification *notification )</span></span>
 <span id="L336"><span class="lineNum">     336</span>              :         {</span>
-<span id="L337"><span class="lineNum">     337</span> <span class="tlaUNC">           0 :             Core::hresult status = Core::ERROR_GENERAL;</span></span>
+<span id="L337"><span class="lineNum">     337</span> <span class="tlaGNC">           2 :             Core::hresult status = Core::ERROR_GENERAL;</span></span>
 <span id="L338"><span class="lineNum">     338</span>              : </span>
-<span id="L339"><span class="lineNum">     339</span> <span class="tlaUNC">           0 :             ASSERT (nullptr != notification);</span></span>
+<span id="L339"><span class="lineNum">     339</span> <span class="tlaGNC">           2 :             ASSERT (nullptr != notification);</span></span>
 <span id="L340"><span class="lineNum">     340</span>              : </span>
-<span id="L341"><span class="lineNum">     341</span> <span class="tlaUNC">           0 :             Core::SafeSyncType&lt;Core::CriticalSection&gt; lock(mConnectionStatusImplLock);</span></span>
+<span id="L341"><span class="lineNum">     341</span> <span class="tlaGNC">           2 :             Core::SafeSyncType&lt;Core::CriticalSection&gt; lock(mConnectionStatusImplLock);</span></span>
 <span id="L342"><span class="lineNum">     342</span>              : </span>
 <span id="L343"><span class="lineNum">     343</span>              :             /* Make sure we can't unregister the same notification callback multiple times */</span>
-<span id="L344"><span class="lineNum">     344</span> <span class="tlaUNC">           0 :             auto itr = std::find(mConnectionStatusNotification.begin(), mConnectionStatusNotification.end(), notification);</span></span>
-<span id="L345"><span class="lineNum">     345</span> <span class="tlaUNC">           0 :             if (itr != mConnectionStatusNotification.end())</span></span>
+<span id="L344"><span class="lineNum">     344</span> <span class="tlaGNC">           2 :             auto itr = std::find(mConnectionStatusNotification.begin(), mConnectionStatusNotification.end(), notification);</span></span>
+<span id="L345"><span class="lineNum">     345</span> <span class="tlaGNC">           2 :             if (itr != mConnectionStatusNotification.end())</span></span>
 <span id="L346"><span class="lineNum">     346</span>              :             {</span>
-<span id="L347"><span class="lineNum">     347</span> <span class="tlaUNC">           0 :                 (*itr)-&gt;Release();</span></span>
-<span id="L348"><span class="lineNum">     348</span> <span class="tlaUNC">           0 :                 LOGINFO(&quot;Unregister notification&quot;);</span></span>
-<span id="L349"><span class="lineNum">     349</span> <span class="tlaUNC">           0 :                 mConnectionStatusNotification.erase(itr);</span></span>
-<span id="L350"><span class="lineNum">     350</span> <span class="tlaUNC">           0 :                 status = Core::ERROR_NONE;</span></span>
+<span id="L347"><span class="lineNum">     347</span> <span class="tlaGNC">           1 :                 (*itr)-&gt;Release();</span></span>
+<span id="L348"><span class="lineNum">     348</span> <span class="tlaGNC">           1 :                 LOGINFO(&quot;Unregister notification&quot;);</span></span>
+<span id="L349"><span class="lineNum">     349</span> <span class="tlaGNC">           1 :                 mConnectionStatusNotification.erase(itr);</span></span>
+<span id="L350"><span class="lineNum">     350</span> <span class="tlaGNC">           1 :                 status = Core::ERROR_NONE;</span></span>
 <span id="L351"><span class="lineNum">     351</span>              :             }</span>
 <span id="L352"><span class="lineNum">     352</span>              :             else</span>
 <span id="L353"><span class="lineNum">     353</span>              :             {</span>
-<span id="L354"><span class="lineNum">     354</span> <span class="tlaUNC">           0 :                 LOGERR(&quot;notification not found&quot;);</span></span>
+<span id="L354"><span class="lineNum">     354</span> <span class="tlaGNC">           1 :                 LOGERR(&quot;notification not found&quot;);</span></span>
 <span id="L355"><span class="lineNum">     355</span>              :             }</span>
 <span id="L356"><span class="lineNum">     356</span>              : </span>
-<span id="L357"><span class="lineNum">     357</span> <span class="tlaUNC">           0 :             return status;</span></span>
-<span id="L358"><span class="lineNum">     358</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L357"><span class="lineNum">     357</span> <span class="tlaGNC">           2 :             return status;</span></span>
+<span id="L358"><span class="lineNum">     358</span> <span class="tlaGNC">           2 :         }</span></span>
 <span id="L359"><span class="lineNum">     359</span>              : </span>
-<span id="L360"><span class="lineNum">     360</span> <span class="tlaUNC">           0 :         void AppGatewayResponderImplementation::OnConnectionStatusChanged(const string&amp; appId, const uint32_t connectionId, const bool connected)</span></span>
+<span id="L360"><span class="lineNum">     360</span> <span class="tlaGNC">           2 :         void AppGatewayResponderImplementation::OnConnectionStatusChanged(const string&amp; appId, const uint32_t connectionId, const bool connected)</span></span>
 <span id="L361"><span class="lineNum">     361</span>              :         {</span>
-<span id="L362"><span class="lineNum">     362</span> <span class="tlaUNC">           0 :             Core::SafeSyncType&lt;Core::CriticalSection&gt; lock(mConnectionStatusImplLock);</span></span>
-<span id="L363"><span class="lineNum">     363</span> <span class="tlaUNC">           0 :             for (auto&amp; notification : mConnectionStatusNotification)</span></span>
+<span id="L362"><span class="lineNum">     362</span> <span class="tlaGNC">           2 :             Core::SafeSyncType&lt;Core::CriticalSection&gt; lock(mConnectionStatusImplLock);</span></span>
+<span id="L363"><span class="lineNum">     363</span> <span class="tlaGNC">           3 :             for (auto&amp; notification : mConnectionStatusNotification)</span></span>
 <span id="L364"><span class="lineNum">     364</span>              :             {</span>
-<span id="L365"><span class="lineNum">     365</span> <span class="tlaUNC">           0 :                 notification-&gt;OnAppConnectionChanged(appId, connectionId, connected);</span></span>
+<span id="L365"><span class="lineNum">     365</span> <span class="tlaGNC">           1 :                 notification-&gt;OnAppConnectionChanged(appId, connectionId, connected);</span></span>
 <span id="L366"><span class="lineNum">     366</span>              :             }</span>
 <span id="L367"><span class="lineNum">     367</span>              : </span>
 <span id="L368"><span class="lineNum">     368</span>              :             #ifdef ENABLE_APP_GATEWAY_AUTOMATION</span>
 <span id="L369"><span class="lineNum">     369</span>              :             // Notify automation server of connection status change</span>
 <span id="L370"><span class="lineNum">     370</span>              :             mWsManager.UpdateConnection(connectionId, appId, connected);</span>
 <span id="L371"><span class="lineNum">     371</span>              :             #endif</span>
-<span id="L372"><span class="lineNum">     372</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L372"><span class="lineNum">     372</span> <span class="tlaGNC">           2 :         }</span></span>
 <span id="L373"><span class="lineNum">     373</span>              : </span>
 <span id="L374"><span class="lineNum">     374</span>              :     } // namespace Plugin</span>
 <span id="L375"><span class="lineNum">     375</span>              : } // namespace WPEFramework</span>
