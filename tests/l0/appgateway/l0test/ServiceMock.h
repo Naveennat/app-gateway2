@@ -725,10 +725,32 @@ namespace L0Test {
             //
             // Some targeted responder implementation tests need to pass the plugin's own websocket config
             // (e.g. {"connector":"127.0.0.1:0"}). Allow a per-instance override.
-            if (_cfg.configLineOverride.empty() == false) {
-                return _cfg.configLineOverride;
-            }
-            return "{\"root\":\"{}\"}";
+
+            const string out = (_cfg.configLineOverride.empty() == false) ? _cfg.configLineOverride : "{\"root\":\"{}\"}";
+
+            // Minimal logging: print the *exact* ConfigLine string returned at runtime, including size.
+            // This helps diagnose “invalid/empty JSON” issues seen in other build systems.
+            auto EscapeForLog = [](const string& in) -> string {
+                string s;
+                s.reserve(in.size());
+                for (const char c : in) {
+                    switch (c) {
+                    case '\n': s += "\\n"; break;
+                    case '\r': s += "\\r"; break;
+                    case '\t': s += "\\t"; break;
+                    default:   s += c; break;
+                    }
+                }
+                return s;
+            };
+
+            const string escaped = EscapeForLog(out);
+            TRACE(Trace::Information, (_T("L0 ServiceMock::ConfigLine() callsign='%s' size=%u value='%s'"),
+                _callsign.c_str(),
+                static_cast<unsigned>(out.size()),
+                escaped.c_str()));
+
+            return out;
         }
         WPEFramework::Core::hresult ConfigLine(const string& /*config*/) override { return WPEFramework::Core::ERROR_NONE; }
 
