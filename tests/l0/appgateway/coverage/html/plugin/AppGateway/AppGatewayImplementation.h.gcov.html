@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-27 17:54:41</td>
+            <td class="headerValue">2026-01-27 18:34:25</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryMed">88.9&nbsp;%</td>
@@ -87,186 +87,185 @@
 <span id="L25"><span class="lineNum">      25</span>              : #include &lt;interfaces/IConfiguration.h&gt;</span>
 <span id="L26"><span class="lineNum">      26</span>              : #include &lt;interfaces/IAppNotifications.h&gt;</span>
 <span id="L27"><span class="lineNum">      27</span>              : #include &quot;ContextUtils.h&quot;</span>
-<span id="L28"><span class="lineNum">      28</span>              : #include &quot;ContextConversionHelpers.h&quot;</span>
-<span id="L29"><span class="lineNum">      29</span>              : #include &lt;com/com.h&gt;</span>
-<span id="L30"><span class="lineNum">      30</span>              : #include &lt;core/core.h&gt;</span>
-<span id="L31"><span class="lineNum">      31</span>              : #include &lt;atomic&gt;</span>
-<span id="L32"><span class="lineNum">      32</span>              : #include &lt;map&gt;</span>
+<span id="L28"><span class="lineNum">      28</span>              : #include &lt;com/com.h&gt;</span>
+<span id="L29"><span class="lineNum">      29</span>              : #include &lt;core/core.h&gt;</span>
+<span id="L30"><span class="lineNum">      30</span>              : #include &lt;atomic&gt;</span>
+<span id="L31"><span class="lineNum">      31</span>              : #include &lt;map&gt;</span>
+<span id="L32"><span class="lineNum">      32</span>              : </span>
 <span id="L33"><span class="lineNum">      33</span>              : </span>
-<span id="L34"><span class="lineNum">      34</span>              : </span>
-<span id="L35"><span class="lineNum">      35</span>              : namespace WPEFramework {</span>
-<span id="L36"><span class="lineNum">      36</span>              : namespace Plugin {</span>
-<span id="L37"><span class="lineNum">      37</span>              :     using Context = Exchange::GatewayContext;</span>
-<span id="L38"><span class="lineNum">      38</span>              :     class AppGatewayImplementation : public Exchange::IAppGatewayResolver, public Exchange::IConfiguration</span>
-<span id="L39"><span class="lineNum">      39</span>              :     {</span>
-<span id="L40"><span class="lineNum">      40</span>              : </span>
-<span id="L41"><span class="lineNum">      41</span>              :     public:</span>
-<span id="L42"><span class="lineNum">      42</span>              :         AppGatewayImplementation();</span>
-<span id="L43"><span class="lineNum">      43</span>              :         ~AppGatewayImplementation() override;</span>
-<span id="L44"><span class="lineNum">      44</span>              : </span>
-<span id="L45"><span class="lineNum">      45</span>              :         // We do not allow this plugin to be copied !!</span>
-<span id="L46"><span class="lineNum">      46</span>              :         AppGatewayImplementation(const AppGatewayImplementation&amp;) = delete;</span>
-<span id="L47"><span class="lineNum">      47</span>              :         AppGatewayImplementation&amp; operator=(const AppGatewayImplementation&amp;) = delete;</span>
-<span id="L48"><span class="lineNum">      48</span>              : </span>
-<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC tlaBgGNC">          16 :         BEGIN_INTERFACE_MAP(AppGatewayImplementation)</span></span>
-<span id="L50"><span class="lineNum">      50</span> <span class="tlaGNC">          16 :         INTERFACE_ENTRY(Exchange::IConfiguration)</span></span>
-<span id="L51"><span class="lineNum">      51</span> <span class="tlaGNC">           8 :         INTERFACE_ENTRY(Exchange::IAppGatewayResolver)</span></span>
-<span id="L52"><span class="lineNum">      52</span> <span class="tlaUNC tlaBgUNC">           0 :         END_INTERFACE_MAP</span></span>
-<span id="L53"><span class="lineNum">      53</span>              : </span>
-<span id="L54"><span class="lineNum">      54</span>              :     public:</span>
-<span id="L55"><span class="lineNum">      55</span>              :         Core::hresult Configure(Exchange::IAppGatewayResolver::IStringIterator *const &amp;paths) override;</span>
-<span id="L56"><span class="lineNum">      56</span>              :         Core::hresult Resolve(const Context&amp; context, const string&amp; origin ,const string&amp; method, const string&amp; params, string&amp; result) override;</span>
-<span id="L57"><span class="lineNum">      57</span>              : </span>
-<span id="L58"><span class="lineNum">      58</span>              :         // IConfiguration interface</span>
-<span id="L59"><span class="lineNum">      59</span>              :         uint32_t Configure(PluginHost::IShell* service) override;</span>
-<span id="L60"><span class="lineNum">      60</span>              : </span>
-<span id="L61"><span class="lineNum">      61</span>              :     private:</span>
-<span id="L62"><span class="lineNum">      62</span>              :         // Tracks whether we are shutting down. Any async dispatch should early-return once true.</span>
-<span id="L63"><span class="lineNum">      63</span>              :         std::atomic&lt;bool&gt; mIsShuttingDown{ false };</span>
-<span id="L64"><span class="lineNum">      64</span>              : </span>
-<span id="L65"><span class="lineNum">      65</span>              :         // Tracks number of queued/in-flight async jobs that may call back into this instance.</span>
-<span id="L66"><span class="lineNum">      66</span>              :         std::atomic&lt;uint32_t&gt; mInFlightJobs{ 0 };</span>
-<span id="L67"><span class="lineNum">      67</span>              : </span>
-<span id="L68"><span class="lineNum">      68</span>              :         // Small helper to ensure we decrement the job counter on all paths.</span>
-<span id="L69"><span class="lineNum">      69</span>              :         class JobTracker final {</span>
-<span id="L70"><span class="lineNum">      70</span>              :         public:</span>
-<span id="L71"><span class="lineNum">      71</span>              :             JobTracker() = delete;</span>
-<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC tlaBgGNC">           7 :             explicit JobTracker(std::atomic&lt;uint32_t&gt;&amp; counter)</span></span>
-<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">           7 :                 : mCounter(counter)</span></span>
-<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">           7 :                 , mArmed(true)</span></span>
-<span id="L75"><span class="lineNum">      75</span>              :             {</span>
-<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">           7 :                 mCounter.fetch_add(1, std::memory_order_acq_rel);</span></span>
-<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">           7 :             }</span></span>
-<span id="L78"><span class="lineNum">      78</span>              :             JobTracker(const JobTracker&amp;) = delete;</span>
-<span id="L79"><span class="lineNum">      79</span>              :             JobTracker&amp; operator=(const JobTracker&amp;) = delete;</span>
-<span id="L80"><span class="lineNum">      80</span>              : </span>
-<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC">           7 :             ~JobTracker()</span></span>
-<span id="L82"><span class="lineNum">      82</span>              :             {</span>
-<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">           7 :                 if (mArmed) {</span></span>
-<span id="L84"><span class="lineNum">      84</span> <span class="tlaGNC">           7 :                     mCounter.fetch_sub(1, std::memory_order_acq_rel);</span></span>
-<span id="L85"><span class="lineNum">      85</span>              :                 }</span>
-<span id="L86"><span class="lineNum">      86</span> <span class="tlaGNC">           7 :             }</span></span>
-<span id="L87"><span class="lineNum">      87</span>              : </span>
-<span id="L88"><span class="lineNum">      88</span>              :             void Disarm() { mArmed = false; }</span>
-<span id="L89"><span class="lineNum">      89</span>              : </span>
-<span id="L90"><span class="lineNum">      90</span>              :         private:</span>
-<span id="L91"><span class="lineNum">      91</span>              :             std::atomic&lt;uint32_t&gt;&amp; mCounter;</span>
-<span id="L92"><span class="lineNum">      92</span>              :             bool mArmed;</span>
-<span id="L93"><span class="lineNum">      93</span>              :         };</span>
-<span id="L94"><span class="lineNum">      94</span>              : </span>
-<span id="L95"><span class="lineNum">      95</span>              :         class EXTERNAL RespondJob : public Core::IDispatch</span>
-<span id="L96"><span class="lineNum">      96</span>              :         {</span>
-<span id="L97"><span class="lineNum">      97</span>              :         public:</span>
-<span id="L98"><span class="lineNum">      98</span>              :             RespondJob() = delete;</span>
-<span id="L99"><span class="lineNum">      99</span>              :             RespondJob(const RespondJob&amp;) = delete;</span>
-<span id="L100"><span class="lineNum">     100</span>              :             RespondJob&amp; operator=(const RespondJob&amp;) = delete;</span>
-<span id="L101"><span class="lineNum">     101</span>              : </span>
-<span id="L102"><span class="lineNum">     102</span> <span class="tlaGNC">           7 :             RespondJob(AppGatewayImplementation* parent,</span></span>
-<span id="L103"><span class="lineNum">     103</span>              :                        const Context&amp; context,</span>
-<span id="L104"><span class="lineNum">     104</span>              :                        const std::string&amp; payload,</span>
-<span id="L105"><span class="lineNum">     105</span>              :                        const std::string&amp; destination)</span>
-<span id="L106"><span class="lineNum">     106</span> <span class="tlaGNC">          14 :                 : mParent(parent)</span></span>
-<span id="L107"><span class="lineNum">     107</span> <span class="tlaGNC">           7 :                 , mPayload(payload)</span></span>
-<span id="L108"><span class="lineNum">     108</span> <span class="tlaGNC">           7 :                 , mContext(context)</span></span>
-<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">           7 :                 , mDestination(destination)</span></span>
-<span id="L110"><span class="lineNum">     110</span> <span class="tlaGNC">          14 :                 , mTracker((parent != nullptr) ? parent-&gt;mInFlightJobs : mDummyCounter)</span></span>
-<span id="L111"><span class="lineNum">     111</span>              :             {</span>
-<span id="L112"><span class="lineNum">     112</span>              :                 // IMPORTANT:</span>
-<span id="L113"><span class="lineNum">     113</span>              :                 // Do NOT AddRef/Release mParent here.</span>
-<span id="L114"><span class="lineNum">     114</span>              :                 // In L0/in-proc tests, AppGatewayImplementation can be stack-allocated, and</span>
-<span id="L115"><span class="lineNum">     115</span>              :                 // COM-style refcounting would cause delete-this on stack memory (UB/SIGSEGV).</span>
-<span id="L116"><span class="lineNum">     116</span>              :                 //</span>
-<span id="L117"><span class="lineNum">     117</span>              :                 // Instead:</span>
-<span id="L118"><span class="lineNum">     118</span>              :                 // - Count in-flight jobs (best-effort drain during teardown)</span>
-<span id="L119"><span class="lineNum">     119</span>              :                 // - Gate execution on mIsShuttingDown and on mService/responder availability.</span>
-<span id="L120"><span class="lineNum">     120</span> <span class="tlaGNC">           7 :             }</span></span>
-<span id="L121"><span class="lineNum">     121</span>              : </span>
-<span id="L122"><span class="lineNum">     122</span> <span class="tlaGNC">           7 :             ~RespondJob() override = default;</span></span>
-<span id="L123"><span class="lineNum">     123</span>              : </span>
-<span id="L124"><span class="lineNum">     124</span>              :         public:</span>
-<span id="L125"><span class="lineNum">     125</span> <span class="tlaGNC">           7 :             static Core::ProxyType&lt;Core::IDispatch&gt; Create(AppGatewayImplementation* parent,</span></span>
-<span id="L126"><span class="lineNum">     126</span>              :                                                           const Context&amp; context,</span>
-<span id="L127"><span class="lineNum">     127</span>              :                                                           const std::string&amp; payload,</span>
-<span id="L128"><span class="lineNum">     128</span>              :                                                           const std::string&amp; origin)</span>
-<span id="L129"><span class="lineNum">     129</span>              :             {</span>
-<span id="L130"><span class="lineNum">     130</span>              :                 return Core::ProxyType&lt;Core::IDispatch&gt;(</span>
-<span id="L131"><span class="lineNum">     131</span> <span class="tlaGNC">           7 :                     Core::ProxyType&lt;RespondJob&gt;::Create(parent, context, payload, origin));</span></span>
-<span id="L132"><span class="lineNum">     132</span>              :             }</span>
-<span id="L133"><span class="lineNum">     133</span>              : </span>
-<span id="L134"><span class="lineNum">     134</span> <span class="tlaGNC">           7 :             void Dispatch() override</span></span>
-<span id="L135"><span class="lineNum">     135</span>              :             {</span>
-<span id="L136"><span class="lineNum">     136</span> <span class="tlaGNC">           7 :                 if (mParent == nullptr) {</span></span>
-<span id="L137"><span class="lineNum">     137</span> <span class="tlaUNC tlaBgUNC">           0 :                     return;</span></span>
-<span id="L138"><span class="lineNum">     138</span>              :                 }</span>
-<span id="L139"><span class="lineNum">     139</span>              : </span>
-<span id="L140"><span class="lineNum">     140</span>              :                 // If teardown has started, do not call back into the object.</span>
-<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC tlaBgGNC">           7 :                 if (mParent-&gt;mIsShuttingDown.load(std::memory_order_acquire) == true) {</span></span>
-<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">           6 :                     return;</span></span>
-<span id="L143"><span class="lineNum">     143</span>              :                 }</span>
-<span id="L144"><span class="lineNum">     144</span>              : </span>
-<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">           1 :                 if (ContextUtils::IsOriginGateway(mDestination)) {</span></span>
-<span id="L146"><span class="lineNum">     146</span> <span class="tlaGNC">           1 :                     mParent-&gt;ReturnMessageInSocket(mContext, mPayload);</span></span>
-<span id="L147"><span class="lineNum">     147</span>              :                 } else {</span>
-<span id="L148"><span class="lineNum">     148</span> <span class="tlaUNC tlaBgUNC">           0 :                     mParent-&gt;SendToLaunchDelegate(mContext, mPayload);</span></span>
-<span id="L149"><span class="lineNum">     149</span>              :                 }</span>
-<span id="L150"><span class="lineNum">     150</span>              :             }</span>
-<span id="L151"><span class="lineNum">     151</span>              : </span>
-<span id="L152"><span class="lineNum">     152</span>              :         private:</span>
-<span id="L153"><span class="lineNum">     153</span>              :             AppGatewayImplementation* mParent;</span>
-<span id="L154"><span class="lineNum">     154</span>              :             std::string mPayload;</span>
-<span id="L155"><span class="lineNum">     155</span>              :             Context mContext;</span>
-<span id="L156"><span class="lineNum">     156</span>              :             std::string mDestination;</span>
-<span id="L157"><span class="lineNum">     157</span>              : </span>
-<span id="L158"><span class="lineNum">     158</span>              :             // If constructed with null parent, keep a dummy counter reference (never used).</span>
-<span id="L159"><span class="lineNum">     159</span>              :             static std::atomic&lt;uint32_t&gt; mDummyCounter;</span>
-<span id="L160"><span class="lineNum">     160</span>              :             JobTracker mTracker;</span>
-<span id="L161"><span class="lineNum">     161</span>              :         };</span>
-<span id="L162"><span class="lineNum">     162</span>              : </span>
-<span id="L163"><span class="lineNum">     163</span>              :         Core::hresult HandleEvent(const Context &amp;context, const string &amp;alias, const string &amp;event, const string &amp;origin,  const bool listen);</span>
-<span id="L164"><span class="lineNum">     164</span>              :                 </span>
-<span id="L165"><span class="lineNum">     165</span> <span class="tlaGNC tlaBgGNC">           1 :         void ReturnMessageInSocket(const Context&amp; context, const string payload )</span></span>
-<span id="L166"><span class="lineNum">     166</span>              :         {</span>
-<span id="L167"><span class="lineNum">     167</span>              :             // This method can be called from an async worker thread. If the plugin is</span>
-<span id="L168"><span class="lineNum">     168</span>              :             // shutting down, the service pointer may no longer be valid.</span>
-<span id="L169"><span class="lineNum">     169</span> <span class="tlaGNC">           1 :             if (mService == nullptr) {</span></span>
-<span id="L170"><span class="lineNum">     170</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;AppGateway service not available (shutdown in progress); dropping response&quot;);</span></span>
-<span id="L171"><span class="lineNum">     171</span> <span class="tlaUNC">           0 :                 return;</span></span>
-<span id="L172"><span class="lineNum">     172</span>              :             }</span>
-<span id="L173"><span class="lineNum">     173</span>              : </span>
-<span id="L174"><span class="lineNum">     174</span> <span class="tlaGNC tlaBgGNC">           1 :             if (mAppGatewayResponder == nullptr) {</span></span>
-<span id="L175"><span class="lineNum">     175</span> <span class="tlaUNC tlaBgUNC">           0 :                 mAppGatewayResponder = mService-&gt;QueryInterface&lt;Exchange::IAppGatewayResponder&gt;();</span></span>
-<span id="L176"><span class="lineNum">     176</span>              :             }</span>
-<span id="L177"><span class="lineNum">     177</span>              : </span>
-<span id="L178"><span class="lineNum">     178</span> <span class="tlaGNC tlaBgGNC">           1 :             if (mAppGatewayResponder == nullptr) {</span></span>
-<span id="L179"><span class="lineNum">     179</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;AppGateway Responder not available&quot;);</span></span>
-<span id="L180"><span class="lineNum">     180</span> <span class="tlaUNC">           0 :                 return;</span></span>
-<span id="L181"><span class="lineNum">     181</span>              :             }</span>
-<span id="L182"><span class="lineNum">     182</span>              : </span>
-<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC tlaBgGNC">           1 :             if (Core::ERROR_NONE != mAppGatewayResponder-&gt;Respond(context, payload)) {</span></span>
-<span id="L184"><span class="lineNum">     184</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;Failed to Respond in Gateway&quot;);</span></span>
-<span id="L185"><span class="lineNum">     185</span>              :             }</span>
-<span id="L186"><span class="lineNum">     186</span>              :         }</span>
-<span id="L187"><span class="lineNum">     187</span>              : </span>
-<span id="L188"><span class="lineNum">     188</span>              :         PluginHost::IShell* mService;</span>
-<span id="L189"><span class="lineNum">     189</span>              :         ResolverPtr mResolverPtr;</span>
-<span id="L190"><span class="lineNum">     190</span>              :         Exchange::IAppNotifications *mAppNotifications; // Shared pointer to AppNotifications</span>
-<span id="L191"><span class="lineNum">     191</span>              :         Exchange::IAppGatewayResponder *mAppGatewayResponder;</span>
-<span id="L192"><span class="lineNum">     192</span>              :         Exchange::IAppGatewayResponder *mInternalGatewayResponder; // Shared pointer to InternalGatewayResponder</span>
-<span id="L193"><span class="lineNum">     193</span>              :         Exchange::IAppGatewayAuthenticator *mAuthenticator; // Shared pointer to Authenticator</span>
-<span id="L194"><span class="lineNum">     194</span>              :         uint32_t InitializeResolver();</span>
-<span id="L195"><span class="lineNum">     195</span>              :         uint32_t InitializeWebsocket();</span>
-<span id="L196"><span class="lineNum">     196</span>              :         uint32_t ProcessComRpcRequest(const Context &amp;context, const string&amp; alias, const string&amp; method, const string&amp; params, const string&amp; origin, string &amp;resolution);</span>
-<span id="L197"><span class="lineNum">     197</span>              :         uint32_t PreProcessEvent(const Context &amp;context, const string&amp; alias, const string &amp;method, const string&amp; origin, const string&amp; params, string &amp;resolution);</span>
-<span id="L198"><span class="lineNum">     198</span>              :         string UpdateContext(const Context &amp;context, const string&amp; method, const string&amp; params, const string&amp; origin, const bool&amp; onlyAdditionalContext = false);</span>
-<span id="L199"><span class="lineNum">     199</span>              :         Core::hresult InternalResolve(const Context &amp;context, const string &amp;method, const string &amp;params, const string &amp;origin, string&amp; resolution);</span>
-<span id="L200"><span class="lineNum">     200</span>              :         Core::hresult FetchResolvedData(const Context &amp;context, const string &amp;method, const string &amp;params, const string &amp;origin, string&amp; resolution);</span>
-<span id="L201"><span class="lineNum">     201</span>              :         Core::hresult InternalResolutionConfigure(std::vector&lt;std::string&gt;&amp;&amp; configPaths);</span>
-<span id="L202"><span class="lineNum">     202</span>              :         bool SetupAppGatewayAuthenticator();</span>
-<span id="L203"><span class="lineNum">     203</span>              :         void SendToLaunchDelegate(const Context&amp; context, const string&amp; payload);</span>
-<span id="L204"><span class="lineNum">     204</span>              :         std::string ReadCountryFromConfigFile();</span>
-<span id="L205"><span class="lineNum">     205</span>              :     };</span>
-<span id="L206"><span class="lineNum">     206</span>              : } // namespace Plugin</span>
-<span id="L207"><span class="lineNum">     207</span>              : } // namespace WPEFramework</span>
+<span id="L34"><span class="lineNum">      34</span>              : namespace WPEFramework {</span>
+<span id="L35"><span class="lineNum">      35</span>              : namespace Plugin {</span>
+<span id="L36"><span class="lineNum">      36</span>              :     using Context = Exchange::GatewayContext;</span>
+<span id="L37"><span class="lineNum">      37</span>              :     class AppGatewayImplementation : public Exchange::IAppGatewayResolver, public Exchange::IConfiguration</span>
+<span id="L38"><span class="lineNum">      38</span>              :     {</span>
+<span id="L39"><span class="lineNum">      39</span>              : </span>
+<span id="L40"><span class="lineNum">      40</span>              :     public:</span>
+<span id="L41"><span class="lineNum">      41</span>              :         AppGatewayImplementation();</span>
+<span id="L42"><span class="lineNum">      42</span>              :         ~AppGatewayImplementation() override;</span>
+<span id="L43"><span class="lineNum">      43</span>              : </span>
+<span id="L44"><span class="lineNum">      44</span>              :         // We do not allow this plugin to be copied !!</span>
+<span id="L45"><span class="lineNum">      45</span>              :         AppGatewayImplementation(const AppGatewayImplementation&amp;) = delete;</span>
+<span id="L46"><span class="lineNum">      46</span>              :         AppGatewayImplementation&amp; operator=(const AppGatewayImplementation&amp;) = delete;</span>
+<span id="L47"><span class="lineNum">      47</span>              : </span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC tlaBgGNC">          16 :         BEGIN_INTERFACE_MAP(AppGatewayImplementation)</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">          16 :         INTERFACE_ENTRY(Exchange::IConfiguration)</span></span>
+<span id="L50"><span class="lineNum">      50</span> <span class="tlaGNC">           8 :         INTERFACE_ENTRY(Exchange::IAppGatewayResolver)</span></span>
+<span id="L51"><span class="lineNum">      51</span> <span class="tlaUNC tlaBgUNC">           0 :         END_INTERFACE_MAP</span></span>
+<span id="L52"><span class="lineNum">      52</span>              : </span>
+<span id="L53"><span class="lineNum">      53</span>              :     public:</span>
+<span id="L54"><span class="lineNum">      54</span>              :         Core::hresult Configure(Exchange::IAppGatewayResolver::IStringIterator *const &amp;paths) override;</span>
+<span id="L55"><span class="lineNum">      55</span>              :         Core::hresult Resolve(const Context&amp; context, const string&amp; origin ,const string&amp; method, const string&amp; params, string&amp; result) override;</span>
+<span id="L56"><span class="lineNum">      56</span>              : </span>
+<span id="L57"><span class="lineNum">      57</span>              :         // IConfiguration interface</span>
+<span id="L58"><span class="lineNum">      58</span>              :         uint32_t Configure(PluginHost::IShell* service) override;</span>
+<span id="L59"><span class="lineNum">      59</span>              : </span>
+<span id="L60"><span class="lineNum">      60</span>              :     private:</span>
+<span id="L61"><span class="lineNum">      61</span>              :         // Tracks whether we are shutting down. Any async dispatch should early-return once true.</span>
+<span id="L62"><span class="lineNum">      62</span>              :         std::atomic&lt;bool&gt; mIsShuttingDown{ false };</span>
+<span id="L63"><span class="lineNum">      63</span>              : </span>
+<span id="L64"><span class="lineNum">      64</span>              :         // Tracks number of queued/in-flight async jobs that may call back into this instance.</span>
+<span id="L65"><span class="lineNum">      65</span>              :         std::atomic&lt;uint32_t&gt; mInFlightJobs{ 0 };</span>
+<span id="L66"><span class="lineNum">      66</span>              : </span>
+<span id="L67"><span class="lineNum">      67</span>              :         // Small helper to ensure we decrement the job counter on all paths.</span>
+<span id="L68"><span class="lineNum">      68</span>              :         class JobTracker final {</span>
+<span id="L69"><span class="lineNum">      69</span>              :         public:</span>
+<span id="L70"><span class="lineNum">      70</span>              :             JobTracker() = delete;</span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC tlaBgGNC">           7 :             explicit JobTracker(std::atomic&lt;uint32_t&gt;&amp; counter)</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">           7 :                 : mCounter(counter)</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">           7 :                 , mArmed(true)</span></span>
+<span id="L74"><span class="lineNum">      74</span>              :             {</span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">           7 :                 mCounter.fetch_add(1, std::memory_order_acq_rel);</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">           7 :             }</span></span>
+<span id="L77"><span class="lineNum">      77</span>              :             JobTracker(const JobTracker&amp;) = delete;</span>
+<span id="L78"><span class="lineNum">      78</span>              :             JobTracker&amp; operator=(const JobTracker&amp;) = delete;</span>
+<span id="L79"><span class="lineNum">      79</span>              : </span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">           7 :             ~JobTracker()</span></span>
+<span id="L81"><span class="lineNum">      81</span>              :             {</span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaGNC">           7 :                 if (mArmed) {</span></span>
+<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">           7 :                     mCounter.fetch_sub(1, std::memory_order_acq_rel);</span></span>
+<span id="L84"><span class="lineNum">      84</span>              :                 }</span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">           7 :             }</span></span>
+<span id="L86"><span class="lineNum">      86</span>              : </span>
+<span id="L87"><span class="lineNum">      87</span>              :             void Disarm() { mArmed = false; }</span>
+<span id="L88"><span class="lineNum">      88</span>              : </span>
+<span id="L89"><span class="lineNum">      89</span>              :         private:</span>
+<span id="L90"><span class="lineNum">      90</span>              :             std::atomic&lt;uint32_t&gt;&amp; mCounter;</span>
+<span id="L91"><span class="lineNum">      91</span>              :             bool mArmed;</span>
+<span id="L92"><span class="lineNum">      92</span>              :         };</span>
+<span id="L93"><span class="lineNum">      93</span>              : </span>
+<span id="L94"><span class="lineNum">      94</span>              :         class EXTERNAL RespondJob : public Core::IDispatch</span>
+<span id="L95"><span class="lineNum">      95</span>              :         {</span>
+<span id="L96"><span class="lineNum">      96</span>              :         public:</span>
+<span id="L97"><span class="lineNum">      97</span>              :             RespondJob() = delete;</span>
+<span id="L98"><span class="lineNum">      98</span>              :             RespondJob(const RespondJob&amp;) = delete;</span>
+<span id="L99"><span class="lineNum">      99</span>              :             RespondJob&amp; operator=(const RespondJob&amp;) = delete;</span>
+<span id="L100"><span class="lineNum">     100</span>              : </span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaGNC">           7 :             RespondJob(AppGatewayImplementation* parent,</span></span>
+<span id="L102"><span class="lineNum">     102</span>              :                        const Context&amp; context,</span>
+<span id="L103"><span class="lineNum">     103</span>              :                        const std::string&amp; payload,</span>
+<span id="L104"><span class="lineNum">     104</span>              :                        const std::string&amp; destination)</span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">          14 :                 : mParent(parent)</span></span>
+<span id="L106"><span class="lineNum">     106</span> <span class="tlaGNC">           7 :                 , mPayload(payload)</span></span>
+<span id="L107"><span class="lineNum">     107</span> <span class="tlaGNC">           7 :                 , mContext(context)</span></span>
+<span id="L108"><span class="lineNum">     108</span> <span class="tlaGNC">           7 :                 , mDestination(destination)</span></span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">          14 :                 , mTracker((parent != nullptr) ? parent-&gt;mInFlightJobs : mDummyCounter)</span></span>
+<span id="L110"><span class="lineNum">     110</span>              :             {</span>
+<span id="L111"><span class="lineNum">     111</span>              :                 // IMPORTANT:</span>
+<span id="L112"><span class="lineNum">     112</span>              :                 // Do NOT AddRef/Release mParent here.</span>
+<span id="L113"><span class="lineNum">     113</span>              :                 // In L0/in-proc tests, AppGatewayImplementation can be stack-allocated, and</span>
+<span id="L114"><span class="lineNum">     114</span>              :                 // COM-style refcounting would cause delete-this on stack memory (UB/SIGSEGV).</span>
+<span id="L115"><span class="lineNum">     115</span>              :                 //</span>
+<span id="L116"><span class="lineNum">     116</span>              :                 // Instead:</span>
+<span id="L117"><span class="lineNum">     117</span>              :                 // - Count in-flight jobs (best-effort drain during teardown)</span>
+<span id="L118"><span class="lineNum">     118</span>              :                 // - Gate execution on mIsShuttingDown and on mService/responder availability.</span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaGNC">           7 :             }</span></span>
+<span id="L120"><span class="lineNum">     120</span>              : </span>
+<span id="L121"><span class="lineNum">     121</span> <span class="tlaGNC">           7 :             ~RespondJob() override = default;</span></span>
+<span id="L122"><span class="lineNum">     122</span>              : </span>
+<span id="L123"><span class="lineNum">     123</span>              :         public:</span>
+<span id="L124"><span class="lineNum">     124</span> <span class="tlaGNC">           7 :             static Core::ProxyType&lt;Core::IDispatch&gt; Create(AppGatewayImplementation* parent,</span></span>
+<span id="L125"><span class="lineNum">     125</span>              :                                                           const Context&amp; context,</span>
+<span id="L126"><span class="lineNum">     126</span>              :                                                           const std::string&amp; payload,</span>
+<span id="L127"><span class="lineNum">     127</span>              :                                                           const std::string&amp; origin)</span>
+<span id="L128"><span class="lineNum">     128</span>              :             {</span>
+<span id="L129"><span class="lineNum">     129</span>              :                 return Core::ProxyType&lt;Core::IDispatch&gt;(</span>
+<span id="L130"><span class="lineNum">     130</span> <span class="tlaGNC">           7 :                     Core::ProxyType&lt;RespondJob&gt;::Create(parent, context, payload, origin));</span></span>
+<span id="L131"><span class="lineNum">     131</span>              :             }</span>
+<span id="L132"><span class="lineNum">     132</span>              : </span>
+<span id="L133"><span class="lineNum">     133</span> <span class="tlaGNC">           7 :             void Dispatch() override</span></span>
+<span id="L134"><span class="lineNum">     134</span>              :             {</span>
+<span id="L135"><span class="lineNum">     135</span> <span class="tlaGNC">           7 :                 if (mParent == nullptr) {</span></span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaUNC tlaBgUNC">           0 :                     return;</span></span>
+<span id="L137"><span class="lineNum">     137</span>              :                 }</span>
+<span id="L138"><span class="lineNum">     138</span>              : </span>
+<span id="L139"><span class="lineNum">     139</span>              :                 // If teardown has started, do not call back into the object.</span>
+<span id="L140"><span class="lineNum">     140</span> <span class="tlaGNC tlaBgGNC">           7 :                 if (mParent-&gt;mIsShuttingDown.load(std::memory_order_acquire) == true) {</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">           5 :                     return;</span></span>
+<span id="L142"><span class="lineNum">     142</span>              :                 }</span>
+<span id="L143"><span class="lineNum">     143</span>              : </span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">           2 :                 if (ContextUtils::IsOriginGateway(mDestination)) {</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">           2 :                     mParent-&gt;ReturnMessageInSocket(mContext, mPayload);</span></span>
+<span id="L146"><span class="lineNum">     146</span>              :                 } else {</span>
+<span id="L147"><span class="lineNum">     147</span> <span class="tlaUNC tlaBgUNC">           0 :                     mParent-&gt;SendToLaunchDelegate(mContext, mPayload);</span></span>
+<span id="L148"><span class="lineNum">     148</span>              :                 }</span>
+<span id="L149"><span class="lineNum">     149</span>              :             }</span>
+<span id="L150"><span class="lineNum">     150</span>              : </span>
+<span id="L151"><span class="lineNum">     151</span>              :         private:</span>
+<span id="L152"><span class="lineNum">     152</span>              :             AppGatewayImplementation* mParent;</span>
+<span id="L153"><span class="lineNum">     153</span>              :             std::string mPayload;</span>
+<span id="L154"><span class="lineNum">     154</span>              :             Context mContext;</span>
+<span id="L155"><span class="lineNum">     155</span>              :             std::string mDestination;</span>
+<span id="L156"><span class="lineNum">     156</span>              : </span>
+<span id="L157"><span class="lineNum">     157</span>              :             // If constructed with null parent, keep a dummy counter reference (never used).</span>
+<span id="L158"><span class="lineNum">     158</span>              :             static std::atomic&lt;uint32_t&gt; mDummyCounter;</span>
+<span id="L159"><span class="lineNum">     159</span>              :             JobTracker mTracker;</span>
+<span id="L160"><span class="lineNum">     160</span>              :         };</span>
+<span id="L161"><span class="lineNum">     161</span>              : </span>
+<span id="L162"><span class="lineNum">     162</span>              :         Core::hresult HandleEvent(const Context &amp;context, const string &amp;alias, const string &amp;event, const string &amp;origin,  const bool listen);</span>
+<span id="L163"><span class="lineNum">     163</span>              :                 </span>
+<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC tlaBgGNC">           2 :         void ReturnMessageInSocket(const Context&amp; context, const string payload )</span></span>
+<span id="L165"><span class="lineNum">     165</span>              :         {</span>
+<span id="L166"><span class="lineNum">     166</span>              :             // This method can be called from an async worker thread. If the plugin is</span>
+<span id="L167"><span class="lineNum">     167</span>              :             // shutting down, the service pointer may no longer be valid.</span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">           2 :             if (mService == nullptr) {</span></span>
+<span id="L169"><span class="lineNum">     169</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;AppGateway service not available (shutdown in progress); dropping response&quot;);</span></span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaUNC">           0 :                 return;</span></span>
+<span id="L171"><span class="lineNum">     171</span>              :             }</span>
+<span id="L172"><span class="lineNum">     172</span>              : </span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC tlaBgGNC">           2 :             if (mAppGatewayResponder == nullptr) {</span></span>
+<span id="L174"><span class="lineNum">     174</span> <span class="tlaUNC tlaBgUNC">           0 :                 mAppGatewayResponder = mService-&gt;QueryInterface&lt;Exchange::IAppGatewayResponder&gt;();</span></span>
+<span id="L175"><span class="lineNum">     175</span>              :             }</span>
+<span id="L176"><span class="lineNum">     176</span>              : </span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC tlaBgGNC">           2 :             if (mAppGatewayResponder == nullptr) {</span></span>
+<span id="L178"><span class="lineNum">     178</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;AppGateway Responder not available&quot;);</span></span>
+<span id="L179"><span class="lineNum">     179</span> <span class="tlaUNC">           0 :                 return;</span></span>
+<span id="L180"><span class="lineNum">     180</span>              :             }</span>
+<span id="L181"><span class="lineNum">     181</span>              : </span>
+<span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC tlaBgGNC">           2 :             if (Core::ERROR_NONE != mAppGatewayResponder-&gt;Respond(context, payload)) {</span></span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGERR(&quot;Failed to Respond in Gateway&quot;);</span></span>
+<span id="L184"><span class="lineNum">     184</span>              :             }</span>
+<span id="L185"><span class="lineNum">     185</span>              :         }</span>
+<span id="L186"><span class="lineNum">     186</span>              : </span>
+<span id="L187"><span class="lineNum">     187</span>              :         PluginHost::IShell* mService;</span>
+<span id="L188"><span class="lineNum">     188</span>              :         ResolverPtr mResolverPtr;</span>
+<span id="L189"><span class="lineNum">     189</span>              :         Exchange::IAppNotifications *mAppNotifications; // Shared pointer to AppNotifications</span>
+<span id="L190"><span class="lineNum">     190</span>              :         Exchange::IAppGatewayResponder *mAppGatewayResponder;</span>
+<span id="L191"><span class="lineNum">     191</span>              :         Exchange::IAppGatewayResponder *mInternalGatewayResponder; // Shared pointer to InternalGatewayResponder</span>
+<span id="L192"><span class="lineNum">     192</span>              :         Exchange::IAppGatewayAuthenticator *mAuthenticator; // Shared pointer to Authenticator</span>
+<span id="L193"><span class="lineNum">     193</span>              :         uint32_t InitializeResolver();</span>
+<span id="L194"><span class="lineNum">     194</span>              :         uint32_t InitializeWebsocket();</span>
+<span id="L195"><span class="lineNum">     195</span>              :         uint32_t ProcessComRpcRequest(const Context &amp;context, const string&amp; alias, const string&amp; method, const string&amp; params, const string&amp; origin, string &amp;resolution);</span>
+<span id="L196"><span class="lineNum">     196</span>              :         uint32_t PreProcessEvent(const Context &amp;context, const string&amp; alias, const string &amp;method, const string&amp; origin, const string&amp; params, string &amp;resolution);</span>
+<span id="L197"><span class="lineNum">     197</span>              :         string UpdateContext(const Context &amp;context, const string&amp; method, const string&amp; params, const string&amp; origin, const bool&amp; onlyAdditionalContext = false);</span>
+<span id="L198"><span class="lineNum">     198</span>              :         Core::hresult InternalResolve(const Context &amp;context, const string &amp;method, const string &amp;params, const string &amp;origin, string&amp; resolution);</span>
+<span id="L199"><span class="lineNum">     199</span>              :         Core::hresult FetchResolvedData(const Context &amp;context, const string &amp;method, const string &amp;params, const string &amp;origin, string&amp; resolution);</span>
+<span id="L200"><span class="lineNum">     200</span>              :         Core::hresult InternalResolutionConfigure(std::vector&lt;std::string&gt;&amp;&amp; configPaths);</span>
+<span id="L201"><span class="lineNum">     201</span>              :         bool SetupAppGatewayAuthenticator();</span>
+<span id="L202"><span class="lineNum">     202</span>              :         void SendToLaunchDelegate(const Context&amp; context, const string&amp; payload);</span>
+<span id="L203"><span class="lineNum">     203</span>              :         std::string ReadCountryFromConfigFile();</span>
+<span id="L204"><span class="lineNum">     204</span>              :     };</span>
+<span id="L205"><span class="lineNum">     205</span>              : } // namespace Plugin</span>
+<span id="L206"><span class="lineNum">     206</span>              : } // namespace WPEFramework</span>
         </pre>
               </td>
             </tr>
