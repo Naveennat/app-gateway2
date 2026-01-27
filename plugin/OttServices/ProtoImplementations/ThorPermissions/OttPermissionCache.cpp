@@ -310,49 +310,15 @@ OttPermissionCache& OttPermissionCache::Instance()
 // PUBLIC_INTERFACE
 std::vector<string> OttPermissionCache::GetPermissions(const string& appId)
 {
-    // Copy under lock into a local result to prevent reading shared state without protection
-    std::vector<string> result;
-    {
-        std::lock_guard<std::mutex> lock(_admin);
-        auto it = _cache.find(appId);
-        if (it != _cache.end()) {
-            result = it->second; // copy while holding the lock
-        }
-    }
-    if (!result.empty()) {
-        return result;
+    // Policy: memory-only reads. We preload from disk once in Instance() when the singleton is empty,
+    // and we persist during UpdateCache(). GetPermissions() never reloads from disk on cache misses.
+    std::lock_guard<std::mutex> lock(_admin);
+    const auto it = _cache.find(appId);
+    if (it != _cache.end()) {
+        return it->second; // copy
     }
 
-    // If not found, try to refresh from disk (no lock held while doing I/O)
-    std::map<std::string, std::vector<std::string>> onDisk;
-    if (LoadLatestFromFile(onDisk)) {
-        auto found = onDisk.find(appId);
-        if (found != onDisk.end()) {
-            // Store into cache under lock and return a local copy
-            result = found->second;
-            const size_t count = result.size();
-            {
-                std::lock_guard<std::mutex> lock(_admin);
-                _cache[appId] = result;
-            }
-            LOGINFO("OttPermissionCache: cache miss recovered from %s for appId='%s' (count=%zu)",
-                PermsFilePath().c_str(), appId.c_str(), count);
-            return result;
-        }
-
-        // Optionally, merge all onDisk to _cache for broader warmup under lock
-        {
-            std::lock_guard<std::mutex> lock(_admin);
-            for (auto& kv : onDisk) {
-                _cache.emplace(kv.first, std::move(kv.second));
-            }
-        }
-        LOGWARN("OttPermissionCache: appId '%s' not present in %s after reload", appId.c_str(), PermsFilePath().c_str());
-    } else {
-        LOGWARN("OttPermissionCache: unable to load cache from %s (file missing or empty)", PermsFilePath().c_str());
-    }
-
-    return result; // empty when not found
+    return {}; // cache miss => empty
 }
 
 // PUBLIC_INTERFACE

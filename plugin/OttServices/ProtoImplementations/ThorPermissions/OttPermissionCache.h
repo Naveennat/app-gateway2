@@ -26,6 +26,12 @@
 // - GetPermissions(appId) to retrieve cached permissions.
 // - Invalidate(appId) to drop cached entry for an app.
 // - Clear() to drop all cached entries (maintenance utility).
+//
+// Cache policy:
+// - Reads are strictly in-memory: GetPermissions() never consults disk.
+// - Disk is only used for:
+//    (1) one-time preload when the singleton is first used (Instance() when Size()==0)
+//    (2) persistence during UpdateCache() (read-modify-write to preserve other apps).
 
 #include <core/core.h>
 
