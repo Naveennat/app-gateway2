@@ -38,6 +38,17 @@ set(PREFIX "${PREFIX}" CACHE STRING "Install prefix to locate Thunder/WPEFramewo
 
 message(STATUS "Using PREFIX='${PREFIX}'")
 
+# Shared L0 common helper library (usable across multiple plugin L0 tests)
+add_library(l0test_common STATIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../common/L0Bootstrap.cpp
+)
+
+target_include_directories(l0test_common PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/../..  # tests/l0 (so "common/..." includes work)
+    ${PREFIX}/include
+    ${PREFIX}/include/WPEFramework
+)
+
 # Sources for the L0 test executable (relative paths from this l0test directory)
 set(APPGW_L0_SOURCES
     AppGatewayTest.cpp
@@ -157,6 +168,7 @@ else()
 endif()
 
 target_link_libraries(appgateway_l0test PRIVATE
+    l0test_common
     Threads::Threads
     m
     dl
