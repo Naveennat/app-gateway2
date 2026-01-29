@@ -1,39 +1,102 @@
 {
     "resolutions": {
+        "AcknowledgeChallenge.onRequestChallenge": {
+            "alias": "org.rdk.App2AppProvider.registerProvider",
+            "providerCapability": "AcknowledgeChallenge.challenge"
+        },
+        "Discovery.onNavigateTo": {
+            "alias": "org.rdk.LaunchDelegate",
+            "event": "Discovery.onNavigateTo"
+        },
         "Localization.addAdditionalInfo": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.addAdditionalInfo"
+        },
+        "PinChallenge.onRequestChallenge": {
+            "alias": "org.rdk.App2AppProvider.registerProvider",
+            "providerCapability": "PinChallenge.challenge"
+        },
+        "Keyboard.onRequestPassword": {
+            "alias": "org.rdk.App2AppProvider.registerProvider",
+            "providerCapability": "Keyboard.password"
+        },
+        "Keyboard.onRequestEmail": {
+            "alias": "org.rdk.App2AppProvider.registerProvider",
+            "providerCapability": "Keyboard.email"
+        },
+        "Keyboard.onRequestStandard": {
+            "alias": "org.rdk.App2AppProvider.registerProvider",
+            "providerCapability": "Keyboard.standard"
+        },
+        "Advertising.advertisingId": {
+            "alias": "org.rdk.FbAdvertising.advertisingId",
+            "includeContext": true
+        },
+        "Lifecycle.ready": {
+            "alias": "org.rdk.LaunchDelegate.ready",
+            "includeContext": true
+        },
+        "Lifecycle.close": {
+            "alias": "org.rdk.LaunchDelegate.close",
+            "includeContext": true
+        },
+        "Lifecycle.finished": {
+            "alias": "org.rdk.LaunchDelegate.finished",
+            "includeContext": true
+        },
+        "Lifecycle.state": {
+            "alias": "org.rdk.LaunchDelegate.state",
+            "includeContext": true
+        },
+        "Parameters.initialization": {
+            "alias": "org.rdk.LaunchDelegate.Initialization",
+            "includeContext": true
+        },
+        "Lifecycle.onForeground": {
+            "alias": "org.rdk.LaunchDelegate",
+            "event": "Lifecycle.onForeground"
+        },
+        "Lifecycle.onBackground": {
+            "alias": "org.rdk.LaunchDelegate",
+            "event": "Lifecycle.onBackground"
+        },
+        "Lifecycle.onInactive": {
+            "alias": "org.rdk.LaunchDelegate",
+            "event": "Lifecycle.onInactive"
+        },
+        "Lifecycle.onSuspended": {
+            "alias": "org.rdk.LaunchDelegate",
+            "event": "Lifecycle.onSuspended"
+        },
+        "Lifecycle.onUnloading": {
+            "alias": "org.rdk.LaunchDelegate",
+            "event": "Lifecycle.onUnloading"
         },
         "device.make": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getDeviceMake"
         },
         "device.name": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getDeviceName"
         },
         "device.setName": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "alias": "org.rdk.FbSettings.setDeviceName"
+        },
+        "device.sku": {
+            "alias": "org.rdk.FbSettings.getDeviceSku"
         },
         "localization.countryCode": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getCountryCode"
         },
         "localization.setCountryCode": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "alias": "org.rdk.FbSettings.setCountryCode"
         },
         "localization.timeZone": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
+            "alias": "org.rdk.FbSettings.getTimeZone"
         },
         "localization.setTimeZone": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "alias": "org.rdk.FbSettings.setTimeZone"
+        },
+        "secondscreen.friendlyName": {
+            "alias": "org.rdk.FbSettings.getSecondScreenFriendlyName"
         },
         "localization.language": {
             "alias": "org.rdk.FbSettings",
@@ -45,8 +108,7 @@
         },
         "localization.setLocale": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "localization.preferredAudioLanguages": {
             "alias": "org.rdk.FbSettings",
@@ -54,28 +116,17 @@
         },
         "localization.setPreferredAudioLanguages": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "voiceguidance.setEnabled": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "voiceguidance.setSpeed": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "accessibility.audioDescriptionSettings": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
-        },
-        "accessibility.closedCaptions": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
-        },
-        "accessibility.closedCaptionsSettings": {
             "alias": "org.rdk.FbSettings",
             "useComRpc": true
         },
@@ -85,8 +136,7 @@
         },
         "audiodescriptions.setEnabled": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "accessibility.highContrastUI": {
             "alias": "org.rdk.FbSettings",
@@ -98,8 +148,7 @@
         },
         "closedcaptions.setEnabled": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "closedcaptions.preferredLanguages": {
             "alias": "org.rdk.FbSettings",
@@ -107,8 +156,7 @@
         },
         "closedcaptions.setPreferredLanguages": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "voiceguidance.navigationHints": {
             "alias": "org.rdk.FbSettings",
@@ -116,8 +164,7 @@
         },
         "voiceguidance.setNavigationHints": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "voiceguidance.rate": {
             "alias": "org.rdk.FbSettings",
@@ -125,8 +172,7 @@
         },
         "voiceguidance.setRate": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": true,
-            "permissionGroup": "org.rdk.permission.group.enhanced"
+            "useComRpc": true
         },
         "voiceguidance.enabled": {
             "alias": "org.rdk.FbSettings",
@@ -140,11 +186,23 @@
             "alias": "org.rdk.FbSettings",
             "useComRpc": true
         },
-        "accessibility.voiceGuidance": {
+        "device.network": {
             "alias": "org.rdk.FbSettings",
             "useComRpc": true
         },
-        "device.network": {
+        "device.videoresolution": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
+        },
+        "device.screenresolution": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
+        },
+        "device.hdr": {
+            "alias": "org.rdk.FbSettings",
+            "useComRpc": true
+        },
+        "device.hdcp": {
             "alias": "org.rdk.FbSettings",
             "useComRpc": true
         },
@@ -207,35 +265,7 @@
         "device.onNetworkChanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.onInternetStatusChange"
-        },
-        "device.version": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
-        },
-        "Localization.onCountryCodeChanged": {
-            "alias": "org.rdk.FbSettings",
-            "event": "org.rdk.FbSettings.onCountryCodeChanged"
-        },
-        "device.screenResolution": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
-        },
-        "device.videoResolution": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
-        },
-        "device.hdr": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
-        },
-        "device.hdcp": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
-        },
-        "device.audio": {
-            "alias": "org.rdk.FbSettings",
-            "useComRpc": true
-        },
+        },        
         "device.onhdrchanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.onDisplayConnectionChanged"
@@ -251,20 +281,7 @@
         "device.onscreenresolutionchanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.resolutionChanged"
-        },
-        "device.onaudiochanged": {
-            "alias": "org.rdk.FbSettings",
-            "event": "org.rdk.FbSettings.audioFormatChanged"
-        },
-        "device.ondevicenamechanged": {
-            "alias": "org.rdk.FbSettings",
-            "event": "org.rdk.FbSettings.onFriendlyNameChanged"
-        },
-        "device.onnamechanged": {
-            "alias": "org.rdk.FbSettings",
-            "event": "org.rdk.FbSettings.onFriendlyNameChanged"
         }
     }
 }
-
 

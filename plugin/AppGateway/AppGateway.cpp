@@ -19,8 +19,8 @@
 
 #include "AppGateway.h"
 #include <interfaces/IConfiguration.h>
-#include <interfaces/json/JsonData_AppGatewayResolver.h>
-#include <interfaces/json/JAppGatewayResolver.h>
+#include <interfaces/json/JsonData_AppGateway.h>
+#include <interfaces/json/JAppGateway.h>
 #include "UtilsLogging.h"
 
 
@@ -48,7 +48,7 @@ namespace Plugin {
     SERVICE_REGISTRATION(AppGateway, API_VERSION_NUMBER_MAJOR, API_VERSION_NUMBER_MINOR, API_VERSION_NUMBER_PATCH);
 
     AppGateway::AppGateway()
-            : PluginHost::JSONRPC(), mService(nullptr), mAppGateway(nullptr), mResponder(nullptr), mConnectionId(0)
+            : PluginHost::JSONRPC(), mService(nullptr), mAppGateway(nullptr), mConnectionId(0)
         {
 
         LOGINFO("AppGateway Constructor");
@@ -62,14 +62,13 @@ namespace Plugin {
     {
         ASSERT(service != nullptr);
         ASSERT(mAppGateway == nullptr);
-        ASSERT(mResponder == nullptr);
 
         LOGINFO("AppGateway::Initialize: PID=%u", getpid());
 
         mService = service;
         mService->AddRef();
-        mAppGateway = service->Root<Exchange::IAppGatewayResolver>(mConnectionId, 2000, _T("AppGatewayImplementation"));
-       
+        mAppGateway = service->Root<Exchange::IAppGateway>(mConnectionId, 2000, _T("AppGatewayImplementation"));
+
         if (mAppGateway != nullptr) {
             auto configConnection = mAppGateway->QueryInterface<Exchange::IConfiguration>();
             if (configConnection != nullptr) {
@@ -78,29 +77,16 @@ namespace Plugin {
             }
 
             //Invoking Plugin API register to wpeframework
-            Exchange::JAppGatewayResolver::Register(*this, mAppGateway);
+            Exchange::JAppGateway::Register(*this, mAppGateway);
         }
         else
         {
-            LOGERR("Failed to initialise AppGatewayResolver plugin!");
-        }
-
-        mResponder = service->Root<Exchange::IAppGatewayResponder>(mConnectionId, 2000, _T("AppGatewayResponderImplementation"));
-        if (mResponder != nullptr) {
-            auto configConnectionResponder = mResponder->QueryInterface<Exchange::IConfiguration>();
-            if (configConnectionResponder != nullptr) {
-                configConnectionResponder->Configure(service);
-                configConnectionResponder->Release();
-            }
-        }
-        else
-        {
-            LOGERR("Failed to initialise AppGatewayResponder plugin!");
+            LOGERR("Failed to initialise AppGateway plugin!");
         }
    
             
         // On success return empty, to indicate there is no error text.
-        return ((mAppGateway != nullptr) && (mResponder != nullptr))
+        return ((mAppGateway != nullptr))
             ? EMPTY_STRING
             : _T("Could not retrieve the AppGateway interface.");
     }
@@ -109,43 +95,27 @@ namespace Plugin {
     {
         ASSERT(service == mService);
 
-        RPC::IRemoteConnection *connection = nullptr;
-        VARIABLE_IS_NOT_USED uint32_t result = Core::ERROR_NONE;
-
-        if ((mAppGateway != nullptr) || (mResponder != nullptr)) {
-            connection = service->RemoteConnection(mConnectionId);
-        }
-
-        if (mResponder != nullptr) {
-            result = mResponder->Release();
-            mResponder = nullptr;
-
-            // It should have been the last reference we are releasing,
-            // so it should end up in a DESTRUCTION_SUCCEEDED, if not we
-            // are leaking...
-            ASSERT(result == Core::ERROR_DESTRUCTION_SUCCEEDED);
-        }
-
         if (mAppGateway != nullptr) {
-            Exchange::JAppGatewayResolver::Unregister(*this);
-            result = mAppGateway->Release();
+            Exchange::JAppGateway::Unregister(*this);
+            RPC::IRemoteConnection *connection(service->RemoteConnection(mConnectionId));
+            VARIABLE_IS_NOT_USED uint32_t result = mAppGateway->Release();
             mAppGateway = nullptr;
 
             // It should have been the last reference we are releasing,
-            // so it should end up in a DESTRUCTION_SUCCEEDED, if not we
+            // so it should end up in a DESCRUCTION_SUCCEEDED, if not we
             // are leaking...
             ASSERT(result == Core::ERROR_DESTRUCTION_SUCCEEDED);
-        }
 
-        // If this was running in a (container) process...
-        if (connection != nullptr)
-        {
-            // Lets trigger a cleanup sequence for
-            // out-of-process code. Which will guard
-            // that unwilling processes, get shot if
-            // not stopped friendly :~)
-            connection->Terminate();
-            connection->Release();
+            // If this was running in a (container) process...
+            if (connection != nullptr)
+            {
+                // Lets trigger a cleanup sequence for
+                // out-of-process code. Which will guard
+                // that unwilling processes, get shot if
+                // not stopped friendly :~)
+                connection->Terminate();
+                connection->Release();
+            }
         }
 
         mConnectionId = 0;
@@ -165,3 +135,4 @@ namespace Plugin {
 
 } // namespace Plugin
 } // namespace WPEFramework
+

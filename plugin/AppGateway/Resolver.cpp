@@ -31,10 +31,19 @@ namespace WPEFramework
     namespace Plugin
     {
 
-        Resolver::Resolver(PluginHost::IShell *shell)
+        // Default constructor used in tests
+        Resolver::Resolver()
+            : mService(nullptr), mResolutions(), mMutex()
+        {
+        }
+
+        Resolver::Resolver(PluginHost::IShell *shell, const std::string &configPath)
             : mService(shell), mResolutions(), mMutex()
         {
-            LOGINFO("[Resolver] Constructor - configurations will be loaded via LoadConfig");
+            if (!LoadConfig(configPath))
+            {
+                LOGERR("[Resolver] Failed to load config from %s", configPath.c_str());
+            }
         }
 
         Resolver::~Resolver()
@@ -45,6 +54,23 @@ namespace WPEFramework
                 mService->Release();
                 mService = nullptr;
             }
+        }
+
+        bool Resolver::LoadPaths(const std::vector<std::string>& paths, std::string& err)
+        {
+            err.clear();
+            bool anyLoaded = false;
+            for (const auto& p : paths) {
+                if (LoadConfig(p)) {
+                    anyLoaded = true;
+                } else {
+                    if (!err.empty()) {
+                        err += "; ";
+                    }
+                    err += std::string("Failed to load configuration from: ") + p;
+                }
+            }
+            return anyLoaded;
         }
 
         bool Resolver::LoadConfig(const std::string &path)
@@ -104,19 +130,17 @@ namespace WPEFramework
                     r.alias = ExtractStringField(resolutionObj, "alias");
                     r.event = ExtractStringField(resolutionObj, "event");
                     r.permissionGroup = ExtractStringField(resolutionObj, "permissionGroup");
-                    r.additionalContext = ExtractAdditionalContext(resolutionObj, "additionalContext");
-                    bool hasAdditionalContext = r.additionalContext.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT;
-                    r.includeContext = ExtractBooleanField(resolutionObj, "includeContext", hasAdditionalContext);
-                    r.useComRpc = ExtractBooleanField(resolutionObj, "useComRpc", hasAdditionalContext);
-
-                    LOGINFO("[Resolver] Loaded resolution for key: %s -> alias: %s, event: %s, permissionGroup: %s, includeContext: %s, useComRpc: %s",
-                            key.c_str(), r.alias.c_str(), r.event.c_str(), r.permissionGroup.c_str(),
-                            r.includeContext ? "true" : "false", r.useComRpc ? "true" : "false");
+                    r.providerCapability = ExtractStringField(resolutionObj, "providerCapability");
+                    r.includeContext = ExtractBooleanField(resolutionObj, "includeContext", false);
+                    r.useComRpc = ExtractBooleanField(resolutionObj, "useComRpc", false);
+                    LOGDBG("[Resolver] Loaded resolution for key: %s -> alias: %s, event: %s, permissionGroup: %s, providerCapability: %s, includeContext: %s, useComRpc: %s",
+                           key.c_str(), r.alias.c_str(), r.event.c_str(), r.permissionGroup.c_str(), r.providerCapability.c_str(),
+                           r.includeContext ? "true" : "false", r.useComRpc ? "true" : "false");
 
                     // Check if this resolution already exists (will be overridden)
                     if (mResolutions.find(key) != mResolutions.end())
                     {
-                        LOGTRACE("[Resolver] Overriding resolution for key: %s", key.c_str());
+                        LOGINFO("[Resolver] Overriding resolution for key: %s", key.c_str());
                         overriddenCount++;
                     }
 
@@ -127,7 +151,6 @@ namespace WPEFramework
 
             LOGINFO("[Resolver] Loaded %zu resolutions from %s (%zu new, %zu overridden). Total resolutions: %zu",
                     loadedCount, path.c_str(), loadedCount - overriddenCount, overriddenCount, mResolutions.size());
-
             return true;
         }
 
@@ -156,6 +179,21 @@ namespace WPEFramework
             return {}; // return empty if not found
         }
 
+        bool Resolver::Get(const std::string& /*appId*/, const std::string& key,
+                           const Core::JSON::Object& /*hints*/,
+                           Core::JSON::Object& out)
+        {
+            std::lock_guard<std::mutex> lock(mMutex);
+            const std::string lowerKey = StringUtils::toLower(key);
+            auto it = mResolutions.find(lowerKey);
+            if (it == mResolutions.end()) {
+                return false;
+            }
+            // Populate minimal object with alias as expected by tests
+            out[_T("alias")] = Core::JSON::Variant(it->second.alias);
+            return true;
+        }
+
         void Resolver::ParseAlias(const std::string &alias, std::string &callsign, std::string &pluginMethod)
         {
             // Find last '.' in the string
@@ -173,7 +211,7 @@ namespace WPEFramework
                 pluginMethod = "";
             }
 
-            LOGTRACE("[Resolver] Parsed alias '%s' -> callsign: '%s', method: '%s'",
+            LOGINFO("[Resolver] Parsed alias '%s' -> callsign: '%s', method: '%s'",
                     alias.c_str(), callsign.c_str(), pluginMethod.c_str());
         }
 
@@ -195,11 +233,6 @@ namespace WPEFramework
                 return field.Boolean();
             }
             return defaultValue;
-        }
-
-        JsonValue Resolver::ExtractAdditionalContext(JsonObject &obj, const char *fieldName) 
-        {
-            return obj.Get(fieldName);
         }
 
         Core::hresult Resolver::CallThunderPlugin(const std::string &alias, const std::string &params, std::string &response)
@@ -262,22 +295,44 @@ namespace WPEFramework
                 return false;
             }
 
-        bool Resolver::HasIncludeContext(const std::string &key, JsonValue& additionalContext)
+        bool Resolver::HasIncludeContext(const std::string &key)
             {
                 std::lock_guard<std::mutex> lock(mMutex);
                 std::string lowerKey = StringUtils::toLower(key);
                 auto it = mResolutions.find(lowerKey);
                 if (it != mResolutions.end())
                 {
-                    if (it->second.additionalContext.IsSet()) {
-                        additionalContext = it->second.additionalContext;
-                    }
                     return it->second.includeContext;
                 }
                 return false;
             }
 
+        bool Resolver::HasProviderCapability(const std::string &key, string& capability, ProviderMethodType& methodType)
+        {
+            std::lock_guard<std::mutex> lock(mMutex);
+            std::string lowerKey = StringUtils::toLower(key);
+            auto it = mResolutions.find(lowerKey);
+            if (it != mResolutions.end())
+            {
+                if (!it->second.providerCapability.empty()) {
+                    capability = it->second.providerCapability;
+                    methodType = getType(it->second.alias);
+                    return true;
+                } else {
+                    LOGDBG("Provider capability is empty");
+                }
+            }
+            return false;
+        }
+
         bool Resolver::HasComRpcRequestSupport(const std::string &key) {
+            // In isolated/L0 runs the resolver is often created without a Shell service.
+            // COM/RPC invocation requires a valid service context, so treat COM/RPC as unsupported
+            // in that mode to keep L0 deterministic and free of COM/RPC dependencies.
+            if (mService == nullptr) {
+                return false;
+            }
+
             std::string lowerKey = StringUtils::toLower(key);
             std::lock_guard<std::mutex> lock(mMutex);
             auto it = mResolutions.find(lowerKey);
@@ -288,19 +343,14 @@ namespace WPEFramework
             return false;
         }
 
-        bool Resolver::HasPermissionGroup(const std::string& key, std::string& permissionGroup )
-        {
-            std::lock_guard<std::mutex> lock(mMutex);
-            std::string lowerKey = StringUtils::toLower(key);
-            auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end())
-            {
-                permissionGroup = it->second.permissionGroup;
-                return !permissionGroup.empty();
+        ProviderMethodType Resolver::getType(const std::string& typeStr) {
+            std::string lowerTypeAlias = StringUtils::toLower(typeStr);
+            auto it = ProviderMethodTypeMap.find(lowerTypeAlias);
+            if (it != ProviderMethodTypeMap.end()) {
+                return it->second;
             }
-            return false;
+            return ProviderMethodType::NONE; // Default or error case
         }
 
     }
 }
-

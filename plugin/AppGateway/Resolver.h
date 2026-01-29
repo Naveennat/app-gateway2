@@ -24,7 +24,9 @@
 #include "StringUtils.h"
 #include <unordered_map>
 #include <mutex>
+#include <vector>
 #include <core/Enumerate.h>
+#include "../helpers/JsonCompat.h"
 
 namespace WPEFramework
 {
@@ -47,13 +49,30 @@ namespace WPEFramework
             WPEFramework::Core::JSON::VariantContainer Resolutions;
         };
 
+        enum ProviderMethodType: uint8_t
+        {
+            NONE,
+            REGISTER,
+            INVOKE,
+            RESULT,
+            ERROR
+        };
+
+        static const std::unordered_map<std::string, ProviderMethodType> ProviderMethodTypeMap = {
+            {"", ProviderMethodType::NONE},
+            {"org.rdk.app2appprovider.registerprovider", ProviderMethodType::REGISTER},
+            {"org.rdk.app2appprovider.invokeprovider", ProviderMethodType::INVOKE},
+            {"org.rdk.app2appprovider.invokeproviderresponse", ProviderMethodType::RESULT},
+            {"org.rdk.app2appprovider.invokeprovidererror", ProviderMethodType::ERROR}
+        };
+
         // Struct holding resolution info
         struct Resolution
         {
             std::string alias;
             std::string event;
             std::string permissionGroup;
-            JsonValue additionalContext;
+            std::string providerCapability;
             bool includeContext = false;
             bool useComRpc = false;
         };
@@ -64,7 +83,9 @@ namespace WPEFramework
         class Resolver
         {
         public:
-            Resolver(PluginHost::IShell *shell);
+            // Default constructor used by unit tests
+            Resolver();
+            Resolver(PluginHost::IShell *shell, const std::string &configPath);
             ~Resolver();
 
             // Load resolutions from a JSON config file
@@ -76,8 +97,17 @@ namespace WPEFramework
             // Check if resolver has been properly configured
             bool IsConfigured();
 
+            // Compatibility methods for existing unit tests
+            bool LoadPaths(const std::vector<std::string>& paths, std::string& err);
+            bool Get(const std::string& appId, const std::string& key,
+                     const Core::JSON::Object& /*hints*/,
+                     Core::JSON::Object& out);
+
             std::string ResolveAlias(const std::string &request);
             Core::hresult CallThunderPlugin(const std::string &alias, const std::string &params, std::string &response);
+
+            // New Method to check if Provider Capability exists for a given key
+            bool HasProviderCapability(const std::string &key, string& capability, ProviderMethodType& methodType);
 
             // New Method to check if given method has ComRPC request ability
             bool HasComRpcRequestSupport(const std::string &key);
@@ -86,10 +116,7 @@ namespace WPEFramework
             bool HasEvent(const std::string &key);
 
             // New method to check if includeContext is enabled for a given key
-            bool HasIncludeContext(const std::string &key, JsonValue& additionalContext);
-
-            // New method to check permission group is enabled
-            bool HasPermissionGroup(const std::string& key, std::string& permissionGroup );
+            bool HasIncludeContext(const std::string &key);
 
         private:
             void ParseAlias(const std::string &alias, std::string &callsign, std::string &pluginMethod);
@@ -99,16 +126,14 @@ namespace WPEFramework
 
             // Helper function to extract boolean field from JSON variant with type checking
             static bool ExtractBooleanField(const WPEFramework::Core::JSON::VariantContainer &obj, const char *fieldName, bool defaultValue = false);
-            JsonValue ExtractAdditionalContext(JsonObject &obj, const char *fieldName);
-            
-            
+
             PluginHost::IShell *mService;
             std::unordered_map<std::string, Resolution> mResolutions;
             std::mutex mMutex;
+            ProviderMethodType getType(const std::string& typeStr);
         };
 
         using ResolverPtr = std::shared_ptr<Resolver>;
 
     } // namespace Plugin
 } // namespace WPEFramework
-
