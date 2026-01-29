@@ -461,6 +461,7 @@ namespace WPEFramework
         }
         
 
+
         uint32_t AppGatewayImplementation::PreProcessEvent(const Context &context, const string& alias, const string &method, const string& origin, const string& params,
         string &resolution) {
             JsonObject params_obj;

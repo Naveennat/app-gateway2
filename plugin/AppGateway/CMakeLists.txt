@@ -44,13 +44,15 @@ add_library(${MODULE_NAME} SHARED
         RequestRouter.cpp
         Module.cpp)
 
-# Include helper headers, resolution configs, and this repo's top-level headers.
+# Include helper headers, resolution configs, top-level interfaces, and shared Supporting_Files
 target_include_directories(${MODULE_NAME} PRIVATE ../helpers)
 target_include_directories(${MODULE_NAME} PRIVATE ./resolutions)
 
-# For this repository layout, interfaces live at ${PROJECT_SOURCE_DIR}/interfaces,
-# and upstream sources include them as <interfaces/...>.
+# This repo's interfaces are available under ${PROJECT_SOURCE_DIR}/interfaces and are included as <interfaces/...>
 target_include_directories(${MODULE_NAME} PRIVATE "${PROJECT_SOURCE_DIR}")
+
+# Upstream expects Supporting_Files available from sibling of the plugin root; keep for compatibility.
+target_include_directories(${MODULE_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/../Supporting_Files")
 
 set_target_properties(${MODULE_NAME} PROPERTIES
         CXX_STANDARD 11
@@ -58,7 +60,7 @@ set_target_properties(${MODULE_NAME} PROPERTIES
 
 target_compile_definitions(${MODULE_NAME} PRIVATE MODULE_NAME=Plugin_${PLUGIN_NAME})
 
-target_link_libraries(${MODULE_NAME}
+target_link_libraries(${MODULE_NAME} 
         PRIVATE
         CompileSettingsDebug::CompileSettingsDebug
         ${NAMESPACE}Plugins::${NAMESPACE}Plugins
@@ -72,7 +74,7 @@ install(TARGETS ${MODULE_NAME}
 
 # define PLUGIN_PRODUCT_CFG
 target_compile_definitions(${MODULE_NAME} PRIVATE
-    PLUGIN_PRODUCT_CFG="${PRODUCT_CONFIG_DIR}/appGatewayConfig.json")
+	PLUGIN_PRODUCT_CFG="${PRODUCT_CONFIG_DIR}/appGatewayConfig.json")
 
 # TODO: temporary install gateway.config.json - should be added by Platform
 install(FILES appGatewayConfig.json
