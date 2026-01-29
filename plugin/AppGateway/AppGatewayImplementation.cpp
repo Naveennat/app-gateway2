@@ -29,9 +29,6 @@
 #include "UtilsCallsign.h"
 #include "UtilsFirebolt.h"
 #include "StringUtils.h"
-#include <core/Time.h>
-#include <thread>
-#include <chrono>
 
 #define DEFAULT_CONFIG_PATH "/etc/app-gateway/resolution.base.json"
 #define RESOLUTIONS_PATH_CFG "/etc/app-gateway/resolutions.json"
@@ -152,12 +149,9 @@ namespace WPEFramework
             Core::JSON::ArrayType<Region> regions;
         };
 
-        // Static member definition for RespondJob
-        std::atomic<uint32_t> AppGatewayImplementation::RespondJob::mDummyCounter{ 0 };
-
         AppGatewayImplementation::AppGatewayImplementation()
             : mService(nullptr),
-            mResolverPtr(nullptr),
+            mResolverPtr(nullptr), 
             mAppNotifications(nullptr),
             mAppGatewayResponder(nullptr),
             mInternalGatewayResponder(nullptr),
@@ -169,81 +163,48 @@ namespace WPEFramework
         AppGatewayImplementation::~AppGatewayImplementation()
         {
             LOGINFO("AppGatewayImplementation destructor");
-
-            // Begin teardown gate: no new async dispatch should run past this point.
-            mIsShuttingDown.store(true, std::memory_order_release);
-
-            // Best-effort drain for already queued workerpool jobs:
-            // We cannot reliably "join" the global worker pool, but we can wait for the
-            // jobs we scheduled (tracked by mInFlightJobs) to complete.
-            // Keep this bounded so teardown can't hang indefinitely.
-            constexpr uint32_t kMaxWaitMs = 2000;
-            constexpr uint32_t kSleepMs = 5;
-
-            uint32_t waited = 0;
-            while (mInFlightJobs.load(std::memory_order_acquire) != 0 && waited < kMaxWaitMs) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(kSleepMs)); // Use cross-platform millisecond sleep
-                waited += kSleepMs;
-            }
-
-            // After this point we assume no job will call back into this instance.
-            // Clear service pointer first so any late job will early-return on null checks.
-            if (nullptr != mService) {
+            if (nullptr != mService)
+            {
                 mService->Release();
                 mService = nullptr;
             }
 
-            if (nullptr != mAppNotifications) {
+            if (nullptr != mAppNotifications)
+            {
                 mAppNotifications->Release();
                 mAppNotifications = nullptr;
             }
 
-            if (nullptr != mInternalGatewayResponder) {
+            if (nullptr != mInternalGatewayResponder)
+            {
                 mInternalGatewayResponder->Release();
                 mInternalGatewayResponder = nullptr;
             }
 
-            if (nullptr != mAppGatewayResponder) {
+            if (nullptr != mAppGatewayResponder)
+            {
                 mAppGatewayResponder->Release();
                 mAppGatewayResponder = nullptr;
             }
 
-            if (nullptr != mAuthenticator) {
+            if (nullptr != mAuthenticator)
+            {
                 mAuthenticator->Release();
                 mAuthenticator = nullptr;
             }
+            
 
             // Shared pointer will automatically clean up
             mResolverPtr.reset();
-
-            // Defensive: force in-flight job count to zero so late jobs (if any due to scheduler delays) can't call back
-            mInFlightJobs.store(0, std::memory_order_release);
         }
 
         uint32_t AppGatewayImplementation::Configure(PluginHost::IShell *shell)
         {
             LOGINFO("Configuring AppGateway");
-
-            if (shell == nullptr) {
-                LOGERR("AppGatewayImplementation::Configure called with nullptr shell");
-                return Core::ERROR_BAD_REQUEST;
-            }
-
-            // If we are already in teardown, do not accept new configuration.
-            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
-                LOGWARN("Configure called while shutting down; ignoring");
-                return Core::ERROR_UNAVAILABLE;
-            }
-
             uint32_t result = Core::ERROR_NONE;
+            ASSERT(shell != nullptr);
             mService = shell;
             mService->AddRef();
-
-            // Cache the gateway responder interface early if it is available.
-            // IMPORTANT: QueryInterface is allowed to return nullptr in the L0 harness.
-            if (mAppGatewayResponder == nullptr && mService != nullptr) {
-                mAppGatewayResponder = mService->QueryInterface<Exchange::IAppGatewayResponder>();
-            }
 
             result = InitializeResolver();
             if (Core::ERROR_NONE != result) {
@@ -259,29 +220,6 @@ namespace WPEFramework
             } catch (const std::bad_alloc& e) {
                 LOGERR("Failed to create Resolver instance: %s", e.what());
                 return Core::ERROR_GENERAL;
-            }
-
-            // L0 harness support:
-            // The test runner exports APPGATEWAY_RESOLUTIONS_PATH pointing at the repo-local
-            // resolution.base.json. Prefer this path to avoid reliance on /etc/app-gateway/*.
-            const char* l0BasePath = std::getenv("APPGATEWAY_RESOLUTIONS_PATH");
-            if (l0BasePath != nullptr && *l0BasePath != '\0') {
-                std::ifstream baseFile(l0BasePath);
-                if (baseFile.is_open()) {
-                    baseFile.close();
-                    std::vector<std::string> paths = { std::string(l0BasePath) };
-                    LOGINFO("Using APPGATEWAY_RESOLUTIONS_PATH for initial resolver config: %s", l0BasePath);
-
-                    const Core::hresult configResult = InternalResolutionConfigure(std::move(paths));
-                    if (configResult == Core::ERROR_NONE) {
-                        return Core::ERROR_NONE;
-                    }
-
-                    LOGERR("Failed to configure resolutions from APPGATEWAY_RESOLUTIONS_PATH: %s", l0BasePath);
-                    // Continue to legacy /etc-based behavior as a fallback.
-                } else {
-                    LOGWARN("APPGATEWAY_RESOLUTIONS_PATH set but file not readable: %s", l0BasePath);
-                }
             }
 
             // Read country from build config
@@ -440,26 +378,7 @@ namespace WPEFramework
             Core::hresult result = FetchResolvedData(context, method, params, origin, resolution);
             if (!resolution.empty()) {
                 LOGTRACE("Final resolution: %s", resolution.c_str());
-
-                const bool isGatewayOrigin = ContextUtils::IsOriginGateway(origin);
-
-                // Only schedule an async response if we have a responder to deliver it to.
-                // In the L0 harness, direct tests can instantiate AppGatewayImplementation on the stack,
-                // and scheduling a job that AddRef/Release's 'this' can cause delete-this on stack memory.
-                if (isGatewayOrigin) {
-                    if (mAppGatewayResponder != nullptr) {
-                        Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context, resolution, origin));
-                    } else {
-                        LOGINFO("No gateway responder available; skipping async response dispatch (origin=%s)", origin.c_str());
-                    }
-                } else {
-                    // For non-gateway origins, we need the internal responder to forward to LaunchDelegate.
-                    if (mInternalGatewayResponder != nullptr) {
-                        Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context, resolution, origin));
-                    } else {
-                        LOGINFO("No internal responder available; skipping async response dispatch (origin=%s)", origin.c_str());
-                    }
-                }
+                Core::IWorkerPool::Instance().Submit(RespondJob::Create(this, context, resolution, origin));
             }
             return result;
         }
@@ -467,7 +386,6 @@ namespace WPEFramework
         Core::hresult AppGatewayImplementation::FetchResolvedData(const Context &context, const string &method, const string &params, const string &origin, string& resolution) {
             JsonObject params_obj;
             Core::hresult result = Core::ERROR_NONE;
-
             if (mResolverPtr == nullptr)
             {
                 LOGERR("Resolver not initialized");
@@ -482,19 +400,6 @@ namespace WPEFramework
                 ErrorUtils::CustomInitialize("Resolver not configured", resolution);
                 return Core::ERROR_GENERAL;
             }
-
-            // L0 determinism:
-            // The L0 suite relies on `dummy.method` resolving offline without invoking Thunder/COM-RPC.
-            // In production this method does not exist; in L0 it is used as a stable canary.
-            if (StringUtils::toLower(method) == "dummy.method") {
-                resolution = "null";
-                return Core::ERROR_NONE;
-            }
-
-            // Normalize params: treat empty string as empty JSON object for consistent semantics.
-            // This avoids spurious JSON parsing warnings and aligns with tests that send params as "" or "{}".
-            const string normalizedParams = params.empty() ? "{}" : params;
-
             // Resolve the alias from the method
             std::string alias = mResolverPtr->ResolveAlias(method);
 
@@ -502,7 +407,7 @@ namespace WPEFramework
             {
                 LOGERR("No alias found for method: %s", method.c_str());
                 ErrorUtils::NotSupported(resolution);
-                return Core::ERROR_NOT_SUPPORTED;
+                return Core::ERROR_GENERAL;
             }
 
             std::string permissionGroup;
@@ -513,25 +418,24 @@ namespace WPEFramework
                     if (Core::ERROR_NONE != mAuthenticator->CheckPermissionGroup(context.appId, permissionGroup, allowed)) {
                         LOGERR("Failed to check permission group '%s' for appId '%s'", permissionGroup.c_str(), context.appId.c_str());
                         ErrorUtils::NotPermitted(resolution);
-                        return Core::ERROR_PRIVILIGED_REQUEST;
+                        return Core::ERROR_GENERAL;
                     }
                     if (!allowed) {
                         LOGERR("AppId '%s' not allowed in permission group '%s'", context.appId.c_str(), permissionGroup.c_str());
                         ErrorUtils::NotPermitted(resolution);
-                        return Core::ERROR_PRIVILIGED_REQUEST;
+                        return Core::ERROR_GENERAL;
                     }
                 }
             }
-            LOGTRACE("Resolved method '%s' to alias '%s'", method.c_str(), alias.c_str());
-
+            LOGTRACE("Resolved method '%s' to alias '%s'", method.c_str(), alias.c_str());            
             // Check if the given method is an event
             if (mResolverPtr->HasEvent(method)) {
-                result = PreProcessEvent(context, alias, method, origin, normalizedParams, resolution);
+                result = PreProcessEvent(context, alias, method, origin, params, resolution);
             } else if(mResolverPtr->HasComRpcRequestSupport(method)) {
-                result = ProcessComRpcRequest(context, alias, method, normalizedParams, origin, resolution);
+                result = ProcessComRpcRequest(context, alias, method, params, origin, resolution);
             } else {
                 // Check if includeContext is enabled for this method
-                std::string finalParams = UpdateContext(context, method, normalizedParams, origin);
+                std::string finalParams = UpdateContext(context, method, params, origin);
                 LOGTRACE("Final Request params alias=%s Params = %s", alias.c_str(), finalParams.c_str());
 
                 result = mResolverPtr->CallThunderPlugin(alias, finalParams, resolution);
@@ -549,23 +453,16 @@ namespace WPEFramework
 
         string AppGatewayImplementation::UpdateContext(const Context &context, const string& method, const string& params, const string& origin, const bool& onlyAdditionalContext) {
             // Check if includeContext is enabled for this method
-            std::string finalParams = params.empty() ? "{}" : params;
-
+            std::string finalParams = params;
             JsonValue additionalContext;
             if (mResolverPtr->HasIncludeContext(method, additionalContext)) {
                 LOGTRACE("Method '%s' requires context inclusion", method.c_str());
-
-                // Params are optional in JSON-RPC. Treat empty as {} and only warn if a non-empty string is malformed.
                 JsonObject paramsObj;
-                const std::string parseTarget = finalParams;
-                if (!paramsObj.FromString(parseTarget))
+                if (!paramsObj.FromString(params))
                 {
-                    if (!parseTarget.empty() && parseTarget != "{}") {
-                        LOGWARN("Failed to parse original params as JSON: %s", parseTarget.c_str());
-                    }
-                    // Keep paramsObj as empty object for downstream composition.
+                    // In json rpc params are optional
+                    LOGWARN("Failed to parse original params as JSON: %s", params.c_str());
                 }
-
                 if (onlyAdditionalContext) {
                     if (additionalContext.Content() == WPEFramework::Core::JSON::Variant::type::OBJECT) {
                         JsonObject contextWithOrigin = additionalContext.Object();
@@ -584,62 +481,28 @@ namespace WPEFramework
                     contextObj["requestId"] = context.requestId;
                     paramsObj["context"] = contextObj;
                     paramsObj.ToString(finalParams);
-                }
+                }                
             }
             return finalParams;
         }
 
         uint32_t AppGatewayImplementation::ProcessComRpcRequest(const Context &context, const string& alias, const string& method, const string& params, const string& origin, string &resolution) {
-            // L0/offline determinism:
-            // ----------------------
-            // The L0 harness runs without a full Thunder host and without other plugins providing
-            // COM-RPC handlers. If we attempt COM-RPC dispatch, it will either fail unpredictably
-            // or force dependencies that L0 explicitly avoids.
-            //
-            // When APPGATEWAY_L0_DISABLE_COMRPC is set, short-circuit with a deterministic
-            // "unavailable" response.
-            const char* disableComRpc = std::getenv("APPGATEWAY_L0_DISABLE_COMRPC");
-            if (disableComRpc != nullptr && *disableComRpc != '\0' && *disableComRpc != '0') {
-                LOGINFO("COM-RPC disabled for L0; rejecting COM-RPC request alias=%s method=%s", alias.c_str(), method.c_str());
-                ErrorUtils::NotAvailable(resolution);
-                return Core::ERROR_UNAVAILABLE;
-            }
-
-            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
-                LOGWARN("ProcessComRpcRequest called during shutdown; dropping");
-                ErrorUtils::NotAvailable(resolution);
-                return Core::ERROR_UNAVAILABLE;
-            }
-
-            if (mService == nullptr) {
-                LOGERR("Service not available in ProcessComRpcRequest");
-                ErrorUtils::NotAvailable(resolution);
-                return Core::ERROR_UNAVAILABLE;
-            }
-
-            uint32_t result = Core::ERROR_UNAVAILABLE;
-
+            uint32_t result = Core::ERROR_GENERAL;
             Exchange::IAppGatewayRequestHandler *requestHandler = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayRequestHandler>(alias);
             if (requestHandler != nullptr) {
                 std::string finalParams = UpdateContext(context, method, params, origin, true);
-
-                const uint32_t hr = requestHandler->HandleAppGatewayRequest(context, method, finalParams, resolution);
-                if (hr != Core::ERROR_NONE) {
-                    LOGERR("HandleAppGatewayRequest failed for callsign: %s (hr=%u)", alias.c_str(), hr);
-                    if (resolution.empty()) {
+                if (Core::ERROR_NONE != requestHandler->HandleAppGatewayRequest(context, method, finalParams, resolution)) {
+                    LOGERR("HandleAppGatewayRequest failed for callsign: %s", alias.c_str());
+                    if (resolution.empty()){
                         ErrorUtils::CustomInternal("HandleAppGatewayRequest failed", resolution);
                     }
-                    result = hr;
                 } else {
                     result = Core::ERROR_NONE;
                 }
-
                 requestHandler->Release();
             } else {
-                // Missing handler: treat as unavailable in this environment.
-                LOGERR("RequestHandler not available for callsign: %s (COM-RPC)", alias.c_str());
+                LOGERR("Bad configuration %s Not available with COM RPC", alias.c_str());
                 ErrorUtils::NotAvailable(resolution);
-                result = Core::ERROR_UNAVAILABLE;
             }
 
             return result;
@@ -673,58 +536,20 @@ namespace WPEFramework
         }
 
         Core::hresult AppGatewayImplementation::HandleEvent(const Context &context, const string &alias,  const string &event, const string &origin, const bool listen) {
-            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
-                LOGWARN("HandleEvent called during shutdown; ignoring");
-                return Core::ERROR_NONE;
-            }
-
-            if (mService == nullptr) {
-                LOGWARN("Service not available; ignoring event listen=%s for %s", listen ? "true" : "false", event.c_str());
-                return Core::ERROR_NONE;
-            }
-
-            // NOTE: In this SDK, IAppNotifications only exposes Notify(eventName, payload).
-            // Older AppNotifications implementations offered Subscribe/Cleanup; we keep
-            // build compatibility by sending a best-effort notification.
             if (mAppNotifications == nullptr) {
                 mAppNotifications = mService->QueryInterfaceByCallsign<Exchange::IAppNotifications>(APP_NOTIFICATIONS_CALLSIGN);
                 if (mAppNotifications == nullptr) {
-                    LOGWARN("IAppNotifications interface not available; ignoring event listen=%s for %s", listen ? "true" : "false", event.c_str());
-                    return Core::ERROR_NONE;
+                    LOGERR("IAppNotifications interface not available");
+                    return Core::ERROR_GENERAL;
                 }
             }
 
-            JsonObject payload;
-            payload["listen"] = listen;
-            payload["alias"] = alias;
-            payload["event"] = event;
-            payload["origin"] = origin;
-
-            // Provide gateway context (if AppNotifications chooses to use it in payload)
-            JsonObject ctx;
-            ctx["requestId"] = context.requestId;
-            ctx["connectionId"] = context.connectionId;
-            ctx["appId"] = context.appId;
-            payload["context"] = ctx;
-
-            std::string payloadStr;
-            payload.ToString(payloadStr);
-
-            return mAppNotifications->Notify(_T("appgateway.event.listen"), payloadStr);
+            return mAppNotifications->Subscribe(ContextUtils::ConvertAppGatewayToNotificationContext(context,origin), listen, alias, event);
         }
 
         void AppGatewayImplementation::SendToLaunchDelegate(const Context& context, const string& payload)
         {
-            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
-                return;
-            }
-
-            if (mService == nullptr) {
-                LOGERR("Service not available; cannot forward to LaunchDelegate");
-                return;
-            }
-
-            if (mInternalGatewayResponder == nullptr) {
+            if ( mInternalGatewayResponder==nullptr ) {
                 mInternalGatewayResponder = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayResponder>(INTERNAL_GATEWAY_CALLSIGN);
                 if (mInternalGatewayResponder == nullptr) {
                     LOGERR("Internal Responder not available Not available");
@@ -733,19 +558,11 @@ namespace WPEFramework
             }
 
             mInternalGatewayResponder->Respond(context, payload);
+
         }
 
         bool AppGatewayImplementation::SetupAppGatewayAuthenticator() {
-            if (mIsShuttingDown.load(std::memory_order_acquire) == true) {
-                return false;
-            }
-
-            if (mService == nullptr) {
-                LOGERR("Service not available; cannot setup authenticator");
-                return false;
-            }
-
-            if (mAuthenticator == nullptr) {
+            if ( mAuthenticator==nullptr ) {
                 mAuthenticator = mService->QueryInterfaceByCallsign<Exchange::IAppGatewayAuthenticator>(INTERNAL_GATEWAY_CALLSIGN);
                 if (mAuthenticator == nullptr) {
                     LOGERR("AppGateway Authenticator not available");

@@ -150,7 +150,7 @@ for STD in "${CXX_STANDARDS_TO_TRY[@]}"; do
     log "=== CONFIGURE (timestamp ${TS}) (C++${STD}) ==="
     log "BUILD_DIR=${BUILD_DIR}"
     log "APPGATEWAY_EXTRA_INCLUDE_DIRS=${APPGATEWAY_EXTRA_INCLUDE_LIST}"
-    cmake -G Ninja -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
+    cmake -G "Unix Makefiles" -S "${PLUGIN_SRC}" -B "${BUILD_DIR}" \
       -DCMAKE_BUILD_TYPE=Debug \
       -DNAMESPACE=WPEFramework \
       -DCMAKE_INSTALL_PREFIX="${SDK_PREFIX}" \

@@ -27,7 +27,6 @@
 #include "ContextUtils.h"
 #include <com/com.h>
 #include <core/core.h>
-#include <atomic>
 #include <map>
 
 
@@ -58,119 +57,54 @@ namespace Plugin {
         uint32_t Configure(PluginHost::IShell* service) override;
 
     private:
-        // Tracks whether we are shutting down. Any async dispatch should early-return once true.
-        std::atomic<bool> mIsShuttingDown{ false };
-
-        // Tracks number of queued/in-flight async jobs that may call back into this instance.
-        std::atomic<uint32_t> mInFlightJobs{ 0 };
-
-        // Small helper to ensure we decrement the job counter on all paths.
-        class JobTracker final {
-        public:
-            JobTracker() = delete;
-            explicit JobTracker(std::atomic<uint32_t>& counter)
-                : mCounter(counter)
-                , mArmed(true)
-            {
-                mCounter.fetch_add(1, std::memory_order_acq_rel);
-            }
-            JobTracker(const JobTracker&) = delete;
-            JobTracker& operator=(const JobTracker&) = delete;
-
-            ~JobTracker()
-            {
-                if (mArmed) {
-                    mCounter.fetch_sub(1, std::memory_order_acq_rel);
-                }
-            }
-
-            void Disarm() { mArmed = false; }
-
-        private:
-            std::atomic<uint32_t>& mCounter;
-            bool mArmed;
-        };
 
         class EXTERNAL RespondJob : public Core::IDispatch
         {
+        protected:
+            RespondJob(AppGatewayImplementation *parent, 
+            const Context& context,
+            const std::string& payload,
+            const std::string& destination
+            )
+                : mParent(*parent), mPayload(payload), mContext(context), mDestination(destination)
+            {
+            }
+
         public:
             RespondJob() = delete;
-            RespondJob(const RespondJob&) = delete;
-            RespondJob& operator=(const RespondJob&) = delete;
-
-            RespondJob(AppGatewayImplementation* parent,
-                       const Context& context,
-                       const std::string& payload,
-                       const std::string& destination)
-                : mParent(parent)
-                , mPayload(payload)
-                , mContext(context)
-                , mDestination(destination)
-                , mTracker((parent != nullptr) ? parent->mInFlightJobs : mDummyCounter)
+        RespondJob(const RespondJob &) = delete;
+            RespondJob &operator=(const RespondJob &) = delete;
+            ~RespondJob()
             {
-                // IMPORTANT:
-                // Do NOT AddRef/Release mParent here.
-                // In L0/in-proc tests, AppGatewayImplementation can be stack-allocated, and
-                // COM-style refcounting would cause delete-this on stack memory (UB/SIGSEGV).
-                //
-                // Instead:
-                // - Count in-flight jobs (best-effort drain during teardown)
-                // - Gate execution on mIsShuttingDown and on mService/responder availability.
             }
-
-            ~RespondJob() override = default;
 
         public:
-            static Core::ProxyType<Core::IDispatch> Create(AppGatewayImplementation* parent,
-                                                          const Context& context,
-                                                          const std::string& payload,
-                                                          const std::string& origin)
+            static Core::ProxyType<Core::IDispatch> Create(AppGatewayImplementation *parent,
+                const Context& context, const std::string& payload, const std::string& origin)
             {
-                return Core::ProxyType<Core::IDispatch>(
-                    Core::ProxyType<RespondJob>::Create(parent, context, payload, origin));
+                return (Core::ProxyType<Core::IDispatch>(Core::ProxyType<RespondJob>::Create(parent, context, payload, origin)));
             }
-
-            void Dispatch() override
+            virtual void Dispatch()
             {
-                if (mParent == nullptr) {
-                    return;
-                }
-
-                // If teardown has started, do not call back into the object.
-                if (mParent->mIsShuttingDown.load(std::memory_order_acquire) == true) {
-                    return;
-                }
-
-                if (ContextUtils::IsOriginGateway(mDestination)) {
-                    mParent->ReturnMessageInSocket(mContext, mPayload);
+                if(ContextUtils::IsOriginGateway(mDestination)) {
+                    mParent.ReturnMessageInSocket(mContext, std::move(mPayload));
                 } else {
-                    mParent->SendToLaunchDelegate(mContext, mPayload);
+                    mParent.SendToLaunchDelegate(mContext, std::move(mPayload));
                 }
+                
             }
 
         private:
-            AppGatewayImplementation* mParent;
-            std::string mPayload;
-            Context mContext;
-            std::string mDestination;
-
-            // If constructed with null parent, keep a dummy counter reference (never used).
-            static std::atomic<uint32_t> mDummyCounter;
-            JobTracker mTracker;
+            AppGatewayImplementation &mParent;
+            const std::string mPayload;
+            const Context mContext;
+            const std::string mDestination;
         };
 
         Core::hresult HandleEvent(const Context &context, const string &alias, const string &event, const string &origin,  const bool listen);
                 
-        void ReturnMessageInSocket(const Context& context, const string payload )
-        {
-            // This method can be called from an async worker thread. If the plugin is
-            // shutting down, the service pointer may no longer be valid.
-            if (mService == nullptr) {
-                LOGERR("AppGateway service not available (shutdown in progress); dropping response");
-                return;
-            }
-
-            if (mAppGatewayResponder == nullptr) {
+        void ReturnMessageInSocket(const Context& context, const string payload ) {
+            if (mAppGatewayResponder==nullptr) {
                 mAppGatewayResponder = mService->QueryInterface<Exchange::IAppGatewayResponder>();
             }
 
@@ -178,7 +112,6 @@ namespace Plugin {
                 LOGERR("AppGateway Responder not available");
                 return;
             }
-
             if (Core::ERROR_NONE != mAppGatewayResponder->Respond(context, payload)) {
                 LOGERR("Failed to Respond in Gateway");
             }

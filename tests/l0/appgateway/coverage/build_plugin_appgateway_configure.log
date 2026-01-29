@@ -1,3 +1,6 @@
+[build_plugin_appgateway] === CONFIGURE (timestamp 20260129_123803) (C++11) ===
+[build_plugin_appgateway] BUILD_DIR=/home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway_20260129_123803_cxx11
+[build_plugin_appgateway] APPGATEWAY_EXTRA_INCLUDE_DIRS=/home/kavia/workspace/code-generation/app-gateway2/helpers/rdkservices-comcast/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers/entservices-infra/helpers;/home/kavia/workspace/code-generation/app-gateway2/helpers;/home/kavia/workspace/code-generation/app-gateway2/interfaces
 CMake Warning (dev) in CMakeLists.txt:
   No project() command is present.  The top-level CMakeLists.txt file must
   contain a literal, direct call to the project() command.  Add a line of
@@ -17,40 +20,9 @@ CMake Warning (dev) in CMakeLists.txt:
   both commands.
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
-Setup WPEFrameworkAppGateway v1.0.0
-CMake Warning (dev) at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
-  Syntax error in cmake code at
-
-    /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81
-
-  when parsing string
-
-    ======DEPRECATION=DETECTED==================================================\nPROPOSED FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" --> \"${_fix}\"\n\============================================================================
-
-  Invalid escape sequence \=
-
-  Policy CMP0010 is not set: Bad variable reference syntax is an error.  Run
-  "cmake --help-policy CMP0010" for policy details.  Use the cmake_policy
-  command to set the policy and suppress this warning.
-Call Stack (most recent call first):
-  CMakeLists.txt:140 (write_config)
-This warning is for project developers.  Use -Wno-dev to suppress it.
-
-CMake Deprecation Warning at /home/kavia/workspace/code-generation/app-gateway2/dependencies/install/include/WPEFramework/Modules/FindConfigGenerator.cmake:81 (message):
-  
-  ======DEPRECATION=DETECTED==================================================\nPROPOSED
-  FIX:\n${CMAKE_CURRENT_LIST_FILE}\n\"write_config(${ARGN})\" -->
-  \"${_fix}\"\n\============================================================================
-Call Stack (most recent call first):
-  CMakeLists.txt:140 (write_config)
-
-
--- Assuming:
--- Plugin: AppGateway
--- Classname: AppGateway
--- Component: AppGateway
--- Writing configuration for AppGateway using config_generator
-ConfigGenerator: Writing Config JSON
+CMake Error: CMake was unable to find a build program corresponding to "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.
+CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
 CMake Warning (dev) in CMakeLists.txt:
   No cmake_minimum_required command is present.  A line of code such as
 
@@ -61,6 +33,4 @@ CMake Warning (dev) in CMakeLists.txt:
   information run "cmake --help-policy CMP0000".
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Configuring done (0.1s)
--- Generating done (0.0s)
--- Build files have been written to: /home/kavia/workspace/code-generation/app-gateway2/build/plugin_appgateway
+-- Configuring incomplete, errors occurred!

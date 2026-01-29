@@ -2,7 +2,7 @@
     "resolutions": {
         "Localization.addAdditionalInfo": {
             "alias": "org.rdk.FbSettings",
-            "useComRpc": false
+            "useComRpc": true
         },
         "device.make": {
             "alias": "org.rdk.FbSettings",
@@ -263,11 +263,6 @@
         "device.onnamechanged": {
             "alias": "org.rdk.FbSettings",
             "event": "org.rdk.FbSettings.onFriendlyNameChanged"
-        },
-
-        "dummy.method": {
-            "alias": "dummy.method",
-            "useComRpc": false
         }
     }
 }

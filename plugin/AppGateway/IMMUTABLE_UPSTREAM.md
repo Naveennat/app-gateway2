@@ -5,7 +5,7 @@ This directory **MUST remain byte-for-byte identical** to the upstream directory
 - Upstream repo: https://github.com/rdkcentral/entservices-infra
 - Branch: `develop`
 - Path: `AppGateway/`
-- Synced commit: `fbfd9f55a7a9c5b2723f5f05f4d8d1cae4722dd9`
+- Synced commit: `8922525fa476300484b7c62a89b91706c9a4a4d8`
 
 ## Rules
 

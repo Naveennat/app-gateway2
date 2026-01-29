@@ -18,7 +18,6 @@
  **/
 
 #include <string>
-#include <cstdlib>
 #include <plugins/JSONRPC.h>
 #include <plugins/IShell.h>
 #include "AppGatewayResponderImplementation.h"
@@ -94,25 +93,13 @@ namespace WPEFramework
         uint32_t AppGatewayResponderImplementation::InitializeWebsocket(){
             // Initialize WebSocket server
             WebSocketConnectionManager::Config config(APPGATEWAY_SOCKET_ADDRESS);
-            const std::string configLine = (mService != nullptr ? mService->ConfigLine() : std::string());
-
-            // L0 test note:
-            // The in-proc ServiceMock::ConfigLine() is tailored for IShell::Root() / RootConfig parsing
-            // and may not represent this plugin's own configuration schema (e.g., it can contain only
-            // a `root` object). Parsing such JSON with WebSocketConnectionManager::Config can fail.
-            //
-            // Therefore: only parse if the config line appears to contain websocket configuration.
-            if (!configLine.empty() && (configLine.find("\"connector\"") != std::string::npos)) {
-                Core::OptionalType<Core::JSON::Error> error;
-                if (config.FromString(configLine, error) == false) {
-                    LOGWARN("ConfigLine is present but not websocket-config compatible; using default connector '%s'. Parse error: '%s'. ConfigLine='%s'",
-                            config.Connector.Value().c_str(),
-                            (error.IsSet() ? error.Value().Message().c_str() : "Unknown"),
-                            configLine.c_str());
-                }
-            } else {
-                LOGINFO("Using default websocket connector '%s' (ConfigLine did not contain connector config).",
-                        config.Connector.Value().c_str());
+            std::string configLine = mService->ConfigLine();
+            Core::OptionalType<Core::JSON::Error> error;
+            if (config.FromString(configLine, error) == false)
+            {
+                LOGERR("Failed to parse config line, error: '%s', config line: '%s'.",
+                       (error.IsSet() ? error.Value().Message().c_str() : "Unknown"),
+                       configLine.c_str());
             }
 
             LOGINFO("Connector: %s", config.Connector.Value().c_str());
@@ -180,16 +167,9 @@ namespace WPEFramework
                     mAppIdRegistry.Remove(connectionId);
                     Exchange::IAppNotifications* appNotifications = mService->QueryInterfaceByCallsign<Exchange::IAppNotifications>(APP_NOTIFICATIONS_CALLSIGN);
                     if (appNotifications != nullptr) {
-                        // NOTE: current SDK's IAppNotifications does not expose Cleanup().
-                        // Best-effort: notify about disconnect so AppNotifications can react if desired.
-                        JsonObject payload;
-                        payload["connectionId"] = connectionId;
-                        payload["origin"] = APP_GATEWAY_CALLSIGN;
-
-                        std::string payloadStr;
-                        payload.ToString(payloadStr);
-
-                        (void)appNotifications->Notify(_T("appgateway.connection.cleanup"), payloadStr);
+                        if (Core::ERROR_NONE != appNotifications->Cleanup(connectionId, APP_GATEWAY_CALLSIGN)) {
+                            LOGERR("AppNotifications Cleanup failed for connectionId: %d", connectionId);
+                        }
                         appNotifications->Release();
                         appNotifications = nullptr;
                     }
@@ -218,59 +198,10 @@ namespace WPEFramework
         }
 
         Core::hresult AppGatewayResponderImplementation::GetGatewayConnectionContext(const uint32_t connectionId /* @in */,
-                const string& contextKey /* @in */,
+                const string& contextKey /* @in */, 
                  string& contextValue /* @out */) {
-            // L0 / API contract:
-            // - Return ERROR_NONE and fill contextValue when key exists for the connection.
-            // - Return ERROR_BAD_REQUEST when the connection is unknown or the key is not present.
-            // - Keep behavior deterministic and offline for tests.
-            contextValue.clear();
-
-            if (contextKey.empty()) {
-                return Core::ERROR_BAD_REQUEST;
-            }
-
-            // Minimal hook for L0 tests (and offline use):
-            // Allow injecting a single key/value via env vars without requiring real websocket traffic.
-            //
-            // Contract: if env injection is configured for a specific (connId,key), then:
-            //   - exact match => ERROR_NONE and value returned
-            //   - any other connId/key => ERROR_BAD_REQUEST
-            const char* envConn = std::getenv("APPGATEWAY_TEST_CONN_ID");
-            const char* envKey  = std::getenv("APPGATEWAY_TEST_CTX_KEY");
-            const char* envVal  = std::getenv("APPGATEWAY_TEST_CTX_VALUE");
-
-            const bool anyEnvSet =
-                (envConn != nullptr && *envConn != '\0') ||
-                (envKey  != nullptr && *envKey  != '\0') ||
-                (envVal  != nullptr && *envVal  != '\0');
-
-            if (anyEnvSet) {
-                // If any are set, require a complete, well-formed triple.
-                if (envConn == nullptr || envKey == nullptr || envVal == nullptr ||
-                    *envConn == '\0' || *envKey == '\0') {
-                    return Core::ERROR_BAD_REQUEST;
-                }
-
-                const uint32_t configuredConn = static_cast<uint32_t>(std::strtoul(envConn, nullptr, 10));
-                if (configuredConn != connectionId) {
-                    return Core::ERROR_BAD_REQUEST;
-                }
-                if (contextKey != envKey) {
-                    return Core::ERROR_BAD_REQUEST;
-                }
-
-                if (strlen(envVal) > 0) {
-                    contextValue = envVal;
-                    return Core::ERROR_NONE;
-                } else {
-                    return Core::ERROR_BAD_REQUEST;
-                }
-            }
-
-            // No env injection configured: in this isolated build we do not maintain a full connection
-            // context registry. Be strict per API contract.
-            return Core::ERROR_BAD_REQUEST;
+            // TODO add support for jsonrpc compliance in later versions
+            return Core::ERROR_NONE;
         }
 
 

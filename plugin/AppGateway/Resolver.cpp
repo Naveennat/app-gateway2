@@ -1,4 +1,4 @@
- /**
+/**
  * If not stated otherwise in this file or this component's LICENSE
  * file the following copyright and licenses apply:
  *
@@ -25,33 +25,23 @@
 #include "UtilsJsonrpcDirectLink.h"
 #include <core/JSON.h>
 
+
 namespace WPEFramework
 {
     namespace Plugin
     {
 
         Resolver::Resolver(PluginHost::IShell *shell)
-            : mService(shell)
-            , mResolutions()
-            , mMutex()
+            : mService(shell), mResolutions(), mMutex()
         {
             LOGINFO("[Resolver] Constructor - configurations will be loaded via LoadConfig");
-
-            // The resolver stores the IShell pointer for later Thunder calls. Since our destructor
-            // releases it, we must AddRef here to keep ownership balanced.
-            //
-            // This is critical for the L0 harness where some tests use a stack-allocated ServiceMock:
-            // without AddRef(), Resolver::~Resolver() would Release() a pointer it didn't own, possibly
-            // dropping refcount to 0 and triggering delete-this on stack memory (heap corruption / SIGABRT).
-            if (mService != nullptr) {
-                mService->AddRef();
-            }
         }
 
         Resolver::~Resolver()
         {
             LOGINFO("Call Resolver destructor");
-            if (nullptr != mService) {
+            if (nullptr != mService)
+            {
                 mService->Release();
                 mService = nullptr;
             }
@@ -60,7 +50,8 @@ namespace WPEFramework
         bool Resolver::LoadConfig(const std::string &path)
         {
             std::ifstream file(path);
-            if (!file.is_open()) {
+            if (!file.is_open())
+            {
                 LOGERR("[Resolver] Failed to open config file: %s", path.c_str());
                 return false;
             }
@@ -74,16 +65,19 @@ namespace WPEFramework
                                     std::istreambuf_iterator<char>());
             file.close();
 
-            if (!config.IElement::FromString(jsonContent, error)) {
+            if (!config.IElement::FromString(jsonContent, error))
+            {
                 LOGERR("[Resolver] Failed to parse JSON from: %s", path.c_str());
-                if (error.IsSet()) {
+                if (error.IsSet())
+                {
                     LOGERR(" - Error: %s", error.Value().Message().c_str());
                 }
                 return false;
             }
 
             // Direct access to resolutions via ConfigContainer
-            if (!config.Resolutions.IsSet()) {
+            if (!config.Resolutions.IsSet())
+            {
                 LOGERR("[Resolver] No 'resolutions' object in config file: %s", path.c_str());
                 return false;
             }
@@ -95,11 +89,13 @@ namespace WPEFramework
 
             // Iterate through all resolution entries with optimized parsing
             WPEFramework::Core::JSON::VariantContainer::Iterator it = config.Resolutions.Variants();
-            while (it.Next()) {
+            while (it.Next())
+            {
                 const std::string &key = StringUtils::toLower(it.Label());
                 WPEFramework::Core::JSON::Variant resolutionVariant = it.Current();
 
-                if (resolutionVariant.IsSet() && !resolutionVariant.IsNull()) {
+                if (resolutionVariant.IsSet() && !resolutionVariant.IsNull())
+                {
                     // Create Resolution struct and populate using helper functions
                     Resolution r;
                     WPEFramework::Core::JSON::VariantContainer resolutionObj = resolutionVariant.Object();
@@ -118,7 +114,8 @@ namespace WPEFramework
                             r.includeContext ? "true" : "false", r.useComRpc ? "true" : "false");
 
                     // Check if this resolution already exists (will be overridden)
-                    if (mResolutions.find(key) != mResolutions.end()) {
+                    if (mResolutions.find(key) != mResolutions.end())
+                    {
                         LOGTRACE("[Resolver] Overriding resolution for key: %s", key.c_str());
                         overriddenCount++;
                     }
@@ -152,7 +149,8 @@ namespace WPEFramework
             std::string lowerKey = StringUtils::toLower(key);
             std::lock_guard<std::mutex> lock(mMutex);
             auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end()) {
+            if (it != mResolutions.end())
+            {
                 return it->second.alias;
             }
             return {}; // return empty if not found
@@ -163,64 +161,28 @@ namespace WPEFramework
             // Find last '.' in the string
             size_t dotPos = alias.rfind('.');
 
-            if (dotPos != std::string::npos) {
+            if (dotPos != std::string::npos)
+            {
                 callsign = alias.substr(0, dotPos);      // "org.rdk.UserSettings"
                 pluginMethod = alias.substr(dotPos + 1); // "getAudioDescription"
-            } else {
+            }
+            else
+            {
                 // Fallback: no dot found
                 callsign = alias;
                 pluginMethod = "";
             }
 
             LOGTRACE("[Resolver] Parsed alias '%s' -> callsign: '%s', method: '%s'",
-                     alias.c_str(), callsign.c_str(), pluginMethod.c_str());
+                    alias.c_str(), callsign.c_str(), pluginMethod.c_str());
         }
 
         std::string Resolver::ExtractStringField(const WPEFramework::Core::JSON::VariantContainer &obj, const char *fieldName)
         {
             WPEFramework::Core::JSON::Variant field = obj[fieldName];
-            if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::STRING) {
-
-                // Depending on Thunder SDK/version and JSON::Variant behavior, strings can be observed as:
-                //   - raw:                 org.rdk.OverridePlugin.getName
-                //   - JSON-fragment:       "org.rdk.OverridePlugin.getName"
-                //   - escaped JSON-string: \"org.rdk.OverridePlugin.getName\"
-                //
-                // Normalize to a raw, trimmed value so L0 comparisons (override precedence) remain stable.
-                std::string value = field.Value();
-
-                auto trimAscii = [](std::string s) -> std::string {
-                    const auto isSpace = [](const char c) -> bool {
-                        return (c == ' ') || (c == '\t') || (c == '\n') || (c == '\r');
-                    };
-                    while (!s.empty() && isSpace(s.front())) {
-                        s.erase(s.begin());
-                    }
-                    while (!s.empty() && isSpace(s.back())) {
-                        s.pop_back();
-                    }
-                    return s;
-                };
-
-                value = trimAscii(value);
-
-                // Unescape occurrences of \" -> " (repeat until stable to also handle \\\" sequences).
-                for (;;) {
-                    const std::size_t pos = value.find("\\\"");
-                    if (pos == std::string::npos) {
-                        break;
-                    }
-                    value.replace(pos, 2, "\"");
-                }
-
-                value = trimAscii(value);
-
-                // Strip wrapping quotes if present.
-                if (value.size() >= 2 && value.front() == '\"' && value.back() == '\"') {
-                    value = value.substr(1, value.size() - 2);
-                }
-
-                return trimAscii(value);
+            if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::STRING)
+            {
+                return field.String();
             }
             return "";
         }
@@ -228,39 +190,28 @@ namespace WPEFramework
         bool Resolver::ExtractBooleanField(const WPEFramework::Core::JSON::VariantContainer &obj, const char *fieldName, bool defaultValue)
         {
             WPEFramework::Core::JSON::Variant field = obj[fieldName];
-            if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::BOOLEAN) {
+            if (field.IsSet() && !field.IsNull() && field.Content() == WPEFramework::Core::JSON::Variant::type::BOOLEAN)
+            {
                 return field.Boolean();
             }
             return defaultValue;
         }
 
-        JsonValue Resolver::ExtractAdditionalContext(JsonObject &obj, const char *fieldName)
+        JsonValue Resolver::ExtractAdditionalContext(JsonObject &obj, const char *fieldName) 
         {
             return obj.Get(fieldName);
         }
 
         Core::hresult Resolver::CallThunderPlugin(const std::string &alias, const std::string &params, std::string &response)
         {
-            // L0 determinism:
-            // The L0 suite uses the synthetic method `dummy.method` as a stable canary.
-            // In production this alias would point at a real Thunder callsign/method, but in
-            // this repo's isolated harness there is no such dispatcher. Short-circuiting here
-            // ensures *all* call paths (including alias-mapped ones) remain offline and stable.
-            //
-            // IMPORTANT:
-            // Some paths parse the alias into callsign="dummy" and pluginMethod="method".
-            // Guard that as well, otherwise JSONRPCDirectLink will try to dispatch and fail.
-            if (StringUtils::toLower(alias) == "dummy.method") {
-                response = "null";
-                return Core::ERROR_NONE;
-            }
-
-            if (mService == nullptr) {
+            if (mService == nullptr)
+            {
                 LOGERR("Shell service not set. Call setShell() first.");
                 return Core::ERROR_GENERAL;
             }
 
-            if (alias.empty()) {
+            if (alias.empty())
+            {
                 LOGERR("Empty alias provided");
                 return Core::ERROR_GENERAL;
             }
@@ -271,31 +222,28 @@ namespace WPEFramework
             // Parse the alias to extract callsign and method
             ParseAlias(alias, callsign, pluginMethod);
 
-            // L0 determinism (additional guard):
-            // If alias parses into callsign "dummy" (e.g. alias "dummy.method"), keep it offline.
-            if (StringUtils::toLower(callsign) == "dummy") {
-                response = "null";
-                return Core::ERROR_NONE;
-            }
-
-            if (callsign.empty()) {
+            if (callsign.empty())
+            {
                 LOGERR("Failed to parse callsign from alias: %s", alias.c_str());
                 return Core::ERROR_GENERAL;
             }
 
-            if (pluginMethod.empty()) {
+            if (pluginMethod.empty())
+            {
                 LOGERR("No method found in alias: %s", alias.c_str());
                 return Core::ERROR_GENERAL;
             }
 
             auto thunderLink = Utils::GetThunderControllerClient(mService, callsign);
-            if (!thunderLink) {
+            if (!thunderLink)
+            {
                 LOGERR("Failed to create JSONRPCDirectLink for callsign: %s", callsign.c_str());
                 return Core::ERROR_GENERAL;
             }
 
             Core::hresult result = thunderLink->Invoke<std::string, std::string>(pluginMethod, params, response);
-            if (result != Core::ERROR_NONE) {
+            if (result != Core::ERROR_NONE)
+            {
                 LOGERR("Invoke failed for %s.%s, error code: %u",
                        callsign.c_str(), pluginMethod.c_str(), result);
             }
@@ -303,47 +251,50 @@ namespace WPEFramework
         }
 
         bool Resolver::HasEvent(const std::string &key)
-        {
-            std::lock_guard<std::mutex> lock(mMutex);
-            std::string lowerKey = StringUtils::toLower(key);
-            auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end()) {
-                return !it->second.event.empty();
-            }
-            return false;
-        }
-
-        bool Resolver::HasIncludeContext(const std::string &key, JsonValue &additionalContext)
-        {
-            std::lock_guard<std::mutex> lock(mMutex);
-            std::string lowerKey = StringUtils::toLower(key);
-            auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end()) {
-                if (it->second.additionalContext.IsSet()) {
-                    additionalContext = it->second.additionalContext;
+            {
+                std::lock_guard<std::mutex> lock(mMutex);
+                std::string lowerKey = StringUtils::toLower(key);
+                auto it = mResolutions.find(lowerKey);
+                if (it != mResolutions.end())
+                {
+                    return !it->second.event.empty();
                 }
-                return it->second.includeContext;
+                return false;
             }
-            return false;
-        }
 
-        bool Resolver::HasComRpcRequestSupport(const std::string &key)
-        {
+        bool Resolver::HasIncludeContext(const std::string &key, JsonValue& additionalContext)
+            {
+                std::lock_guard<std::mutex> lock(mMutex);
+                std::string lowerKey = StringUtils::toLower(key);
+                auto it = mResolutions.find(lowerKey);
+                if (it != mResolutions.end())
+                {
+                    if (it->second.additionalContext.IsSet()) {
+                        additionalContext = it->second.additionalContext;
+                    }
+                    return it->second.includeContext;
+                }
+                return false;
+            }
+
+        bool Resolver::HasComRpcRequestSupport(const std::string &key) {
             std::string lowerKey = StringUtils::toLower(key);
             std::lock_guard<std::mutex> lock(mMutex);
             auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end()) {
+            if (it != mResolutions.end())
+            {
                 return it->second.useComRpc;
             }
             return false;
         }
 
-        bool Resolver::HasPermissionGroup(const std::string &key, std::string &permissionGroup)
+        bool Resolver::HasPermissionGroup(const std::string& key, std::string& permissionGroup )
         {
             std::lock_guard<std::mutex> lock(mMutex);
             std::string lowerKey = StringUtils::toLower(key);
             auto it = mResolutions.find(lowerKey);
-            if (it != mResolutions.end()) {
+            if (it != mResolutions.end())
+            {
                 permissionGroup = it->second.permissionGroup;
                 return !permissionGroup.empty();
             }
@@ -352,3 +303,4 @@ namespace WPEFramework
 
     }
 }
+

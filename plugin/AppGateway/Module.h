@@ -25,10 +25,5 @@
 #include <plugins/plugins.h>
 #include <tracing/tracing.h>
 
-// Pull in the repo's interface IDs (e.g., ID_APP_GATEWAY*) via normal include paths.
-// The build config adds app-gateway2/interfaces to the include dirs, so this resolves to
-// app-gateway2/interfaces/Ids.h (not the SDK one).
-#include <Ids.h>
-
 #undef EXTERNAL
 #define EXTERNAL
