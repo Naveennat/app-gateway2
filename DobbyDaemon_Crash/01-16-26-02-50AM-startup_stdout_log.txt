@@ -1,0 +1,14 @@
+List of profiles in Apparmor-enforce mode:10 : IARMDaemonMain,mfrMgrMain,dsMgrMain,sysMgrMain,parodus,lighttpd,audiocapturemgr,dnsmasq,tr69hostif,bluetoothd,
+2025-12-03T08:38:52.910Z apparmor_parse.sh[2674]:  systemd_apparmor is a function
+2025-12-03T08:38:52.910Z apparmor_parse.sh[2674]:  systemd_apparmor ()
+2025-12-03T08:38:52.910Z apparmor_parse.sh[2674]:  {
+2025-12-03T08:38:52.910Z apparmor_parse.sh[2674]:      /bin/systemd-notify --ready --status="apparmor profiles loaded"
+2025-12-03T08:38:52.910Z apparmor_parse.sh[2674]:  }
+2025-12-03T08:38:53.004Z apparmor_parse.sh[2674]:  apparmor_telemetry is a function
+2025-12-03T08:38:53.004Z apparmor_parse.sh[2674]:  apparmor_telemetry ()
+2025-12-03T08:38:53.004Z apparmor_parse.sh[2674]:  {
+2025-12-03T08:38:53.004Z apparmor_parse.sh[2674]:      if [ -f /etc/apparmor/aar_telemetry.sh ]; then
+2025-12-03T08:38:53.004Z apparmor_parse.sh[2674]:          /etc/apparmor/aar_telemetry.sh &
+2025-12-03T08:38:53.004Z apparmor_parse.sh[2674]:      fi
+2025-12-03T08:38:53.004Z apparmor_parse.sh[2674]:  }
+2025-12-03T08:38:53.149Z apparmor_parse.sh[2674]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File

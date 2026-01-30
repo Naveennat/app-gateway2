@@ -1,0 +1,129 @@
+2026-01-15T02:46:36.187Z MaintenanceManager[3847]:  ERROR [MaintenanceManager.cpp:573] isWhoAmIEnabled: Failed to read WHOAMI_SUPPORT property
+2026-01-15T02:46:36.187Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1473] Initialize: WhoAmI feature is disabled
+2026-01-15T02:46:36.187Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1538] maintenanceManagerOnBootup: Triggering Maintenance on bootup
+2026-01-15T02:46:36.187Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1553] maintenanceManagerOnBootup: OptOut Value Found as: NONE
+2026-01-15T02:46:36.187Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2675] onMaintenanceStatusChange: Notify onMaintenanceStatusChange {"maintenanceStatus":"MAINTENANCE_IDLE"}
+2026-01-15T02:46:36.187Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1485] Initialize: Signal Handler registered for Timer
+2026-01-15T02:46:36.196Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:360] task_execution_thread: Executing Maintenance tasks
+2026-01-15T02:46:36.197Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2675] onMaintenanceStatusChange: Notify onMaintenanceStatusChange {"maintenanceStatus":"MAINTENANCE_STARTED"}
+2026-01-15T02:46:36.197Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1339] isDeviceOnline: Checking device has network connectivity
+2026-01-15T02:46:36.198Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1253] checkNetwork: Network plugin is active
+2026-01-15T02:46:36.198Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:949] subscribeForInternetStatusEvent: Attempting to subscribe for onInternetStatusChange events
+2026-01-15T02:46:36.199Z MaintenanceManager[3847]:  ERROR [MaintenanceManager.cpp:692] getThunderPluginHandle: No security agent
+2026-01-15T02:46:36.207Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1261] checkNetwork: MaintenanceManager subscribed for onInternetStatusChange event
+2026-01-15T02:46:36.208Z MaintenanceManager[3847]:  ERROR [MaintenanceManager.cpp:1296] checkNetwork: No security agent
+2026-01-15T02:46:36.456Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1316] checkNetwork: connectedToInternet status true
+2026-01-15T02:46:36.456Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:433] task_execution_thread: WhoAmI feature is disabled
+2026-01-15T02:46:36.456Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:461] task_execution_thread: Reboot_Pending :false
+2026-01-15T02:46:36.456Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:462] task_execution_thread: ---------------UNSOLICITED_MAINTENANCE--------------
+2026-01-15T02:46:36.457Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:492] task_execution_thread: Starting Timer for /lib/rdk/Start_MaintenanceTasks.sh RFC
+2026-01-15T02:46:36.457Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:749] task_startTimer: Timer has not been created already, create a new Timer.
+2026-01-15T02:46:36.457Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:728] maintenance_initTimer: Timer created successfully.
+2026-01-15T02:46:36.457Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:768] task_startTimer: Timer started for 3600 seconds for /lib/rdk/Start_MaintenanceTasks.sh RFC
+2026-01-15T02:46:36.457Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:498] task_execution_thread: Starting Task /lib/rdk/Start_MaintenanceTasks.sh RFC &
+2026-01-15T02:46:36.564Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:537] task_execution_thread: Waiting to unlock.. [1/3]
+2026-01-15T02:46:40.691Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_STARTED","LastSuccessfulCompletionTime":1768530727,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-15T02:46:40.730Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_STARTED","LastSuccessfulCompletionTime":1768530727,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T02:35:07.140Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_STARTED","LastSuccessfulCompletionTime":1768530727,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T02:35:09.498Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:988] internetStatusChangeEventHandler: Received onInternetStatusChange event: [FULLY_CONNECTED:3]
+2026-01-16T02:35:15.540Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2209] getMaintenanceMode: Invoke getMaintenanceMode
+2026-01-16T02:35:15.540Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2231] getMaintenanceMode: Successfully read OptOut value from /opt/maintenance_mgr_record.conf
+2026-01-16T02:35:15.540Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2242] getMaintenanceMode: Valid OptOut Value = NONE
+2026-01-16T02:35:15.541Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2266] getMaintenanceMode: response={"maintenanceMode":"FOREGROUND","triggerMode":"","optOut":"NONE","success":true}
+2026-01-16T02:35:17.002Z MaintenanceManager[3847]:  WARN [MaintenanceManager.cpp:1577] _MaintenanceMgrEventHandler: IARM event Received with 0 !
+2026-01-16T02:35:17.003Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1602] iarmEventHandler: Maintenance Event-ID = 0
+2026-01-16T02:35:17.003Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1609] iarmEventHandler: MaintMGR Status 2
+2026-01-16T02:35:17.003Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1611] iarmEventHandler: MaintMGR Status MAINTENANCE_RFC_COMPLETE
+2026-01-16T02:35:17.003Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1740] iarmEventHandler:  BITFIELD Status : 3
+2026-01-16T02:35:17.003Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1789] iarmEventHandler: Tasks are not completed!!!!
+2026-01-16T02:35:17.003Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:800] task_stopTimer: Timer stopped for /lib/rdk/Start_MaintenanceTasks.sh RFC
+2026-01-16T02:35:17.004Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:543] task_execution_thread: Stopped Timer Successfully
+2026-01-16T02:35:17.004Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:492] task_execution_thread: Starting Timer for /lib/rdk/Start_MaintenanceTasks.sh SWUPDATE
+2026-01-16T02:35:17.004Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:745] task_startTimer: Timer has already been created, start the Timer
+2026-01-16T02:35:17.004Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:768] task_startTimer: Timer started for 3600 seconds for /lib/rdk/Start_MaintenanceTasks.sh SWUPDATE
+2026-01-16T02:35:17.004Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:498] task_execution_thread: Starting Task /lib/rdk/Start_MaintenanceTasks.sh SWUPDATE &
+2026-01-16T02:35:17.051Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:537] task_execution_thread: Waiting to unlock.. [2/3]
+2026-01-16T02:35:17.406Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2209] getMaintenanceMode: Invoke getMaintenanceMode
+2026-01-16T02:35:17.407Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2231] getMaintenanceMode: Successfully read OptOut value from /opt/maintenance_mgr_record.conf
+2026-01-16T02:35:17.407Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2242] getMaintenanceMode: Valid OptOut Value = NONE
+2026-01-16T02:35:17.407Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2266] getMaintenanceMode: response={"maintenanceMode":"FOREGROUND","triggerMode":"","optOut":"NONE","success":true}
+2026-01-16T02:35:20.476Z MaintenanceManager[3847]:  WARN [MaintenanceManager.cpp:1577] _MaintenanceMgrEventHandler: IARM event Received with 0 !
+2026-01-16T02:35:20.476Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1602] iarmEventHandler: Maintenance Event-ID = 0
+2026-01-16T02:35:20.477Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1609] iarmEventHandler: MaintMGR Status 8
+2026-01-16T02:35:20.477Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1611] iarmEventHandler: MaintMGR Status MAINTENANCE_FWDOWNLOAD_COMPLETE
+2026-01-16T02:35:20.477Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1740] iarmEventHandler:  BITFIELD Status : 33
+2026-01-16T02:35:20.477Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1789] iarmEventHandler: Tasks are not completed!!!!
+2026-01-16T02:35:20.477Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:800] task_stopTimer: Timer stopped for /lib/rdk/Start_MaintenanceTasks.sh SWUPDATE
+2026-01-16T02:35:20.477Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:543] task_execution_thread: Stopped Timer Successfully
+2026-01-16T02:35:20.477Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:492] task_execution_thread: Starting Timer for /lib/rdk/Start_MaintenanceTasks.sh LOGUPLOAD
+2026-01-16T02:35:20.478Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:745] task_startTimer: Timer has already been created, start the Timer
+2026-01-16T02:35:20.478Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:768] task_startTimer: Timer started for 3600 seconds for /lib/rdk/Start_MaintenanceTasks.sh LOGUPLOAD
+2026-01-16T02:35:20.478Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:498] task_execution_thread: Starting Task /lib/rdk/Start_MaintenanceTasks.sh LOGUPLOAD &
+2026-01-16T02:35:20.534Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:537] task_execution_thread: Waiting to unlock.. [3/3]
+2026-01-16T02:35:32.922Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2209] getMaintenanceMode: Invoke getMaintenanceMode
+2026-01-16T02:35:32.922Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2231] getMaintenanceMode: Successfully read OptOut value from /opt/maintenance_mgr_record.conf
+2026-01-16T02:35:32.922Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2242] getMaintenanceMode: Valid OptOut Value = NONE
+2026-01-16T02:35:32.922Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2266] getMaintenanceMode: response={"maintenanceMode":"FOREGROUND","triggerMode":"","optOut":"NONE","success":true}
+2026-01-16T02:35:32.984Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2209] getMaintenanceMode: Invoke getMaintenanceMode
+2026-01-16T02:35:32.984Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2231] getMaintenanceMode: Successfully read OptOut value from /opt/maintenance_mgr_record.conf
+2026-01-16T02:35:32.984Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2242] getMaintenanceMode: Valid OptOut Value = NONE
+2026-01-16T02:35:32.985Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2266] getMaintenanceMode: response={"maintenanceMode":"FOREGROUND","triggerMode":"","optOut":"NONE","success":true}
+2026-01-16T02:35:32.986Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2283] setMaintenanceMode: Invoke setMaintenanceMode
+2026-01-16T02:35:32.986Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2312] setMaintenanceMode: setMaintenanceMode called: maintenanceMode=FOREGROUND, optOut=NONE, triggerMode=
+2026-01-16T02:35:32.986Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2337] setMaintenanceMode: SetMaintenanceMode new_mode = FOREGROUND
+2026-01-16T02:35:32.986Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2340] setMaintenanceMode: setMaintenanceMode rfc is true and mode:1
+2026-01-16T02:35:32.987Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2345] setMaintenanceMode: IARM_Bus_BroadcastEvent is success and value=1
+2026-01-16T02:35:32.996Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2365] setMaintenanceMode: SetMaintenanceMode optOut = NONE
+2026-01-16T02:35:32.996Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2372] setMaintenanceMode: Valid optOut = NONE
+2026-01-16T02:35:32.996Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2391] setMaintenanceMode: response={"success":true}
+2026-01-16T02:35:34.253Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2209] getMaintenanceMode: Invoke getMaintenanceMode
+2026-01-16T02:35:34.254Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2231] getMaintenanceMode: Successfully read OptOut value from /opt/maintenance_mgr_record.conf
+2026-01-16T02:35:34.254Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2242] getMaintenanceMode: Valid OptOut Value = NONE
+2026-01-16T02:35:34.254Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2266] getMaintenanceMode: response={"maintenanceMode":"FOREGROUND","triggerMode":"","optOut":"NONE","success":true}
+2026-01-16T02:35:51.348Z MaintenanceManager[3847]:  WARN [MaintenanceManager.cpp:1577] _MaintenanceMgrEventHandler: IARM event Received with 0 !
+2026-01-16T02:35:51.348Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1602] iarmEventHandler: Maintenance Event-ID = 0
+2026-01-16T02:35:51.348Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1609] iarmEventHandler: MaintMGR Status 16
+2026-01-16T02:35:51.349Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1611] iarmEventHandler: MaintMGR Status MAINTENANCE_EMPTY
+2026-01-16T02:35:51.349Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1727] iarmEventHandler:  LOGUPLOAD already IN PROGRESS -> setting m_task_map of LOGUPLOAD to true
+2026-01-16T02:35:51.349Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1740] iarmEventHandler:  BITFIELD Status : 33
+2026-01-16T02:35:51.349Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1789] iarmEventHandler: Tasks are not completed!!!!
+2026-01-16T02:42:27.686Z MaintenanceManager[3847]:  WARN [MaintenanceManager.cpp:1577] _MaintenanceMgrEventHandler: IARM event Received with 0 !
+2026-01-16T02:42:27.687Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1602] iarmEventHandler: Maintenance Event-ID = 0
+2026-01-16T02:42:27.687Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1609] iarmEventHandler: MaintMGR Status 4
+2026-01-16T02:42:27.687Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1611] iarmEventHandler: MaintMGR Status MAINTENANCE_LOGUPLOAD_COMPLETE
+2026-01-16T02:42:27.687Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1740] iarmEventHandler:  BITFIELD Status : 3f
+2026-01-16T02:42:27.688Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1747] iarmEventHandler: Maintenance Successfully Completed!!
+2026-01-16T02:42:27.688Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:800] task_stopTimer: Timer stopped for /lib/rdk/Start_MaintenanceTasks.sh LOGUPLOAD
+2026-01-16T02:42:27.688Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:543] task_execution_thread: Stopped Timer Successfully
+2026-01-16T02:42:27.688Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:565] task_execution_thread: Worker Thread Completed
+2026-01-16T02:42:27.689Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1754] iarmEventHandler: last succesful time is :1768531347
+2026-01-16T02:42:27.690Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1774] iarmEventHandler: ENDING MAINTENANCE CYCLE
+2026-01-16T02:42:27.690Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1778] iarmEventHandler: Thread joined successfully
+2026-01-16T02:42:27.690Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2675] onMaintenanceStatusChange: Notify onMaintenanceStatusChange {"maintenanceStatus":"MAINTENANCE_COMPLETE"}
+2026-01-16T02:42:27.696Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T02:42:27.760Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T02:42:27.762Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T02:44:29.971Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T02:47:31.625Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T02:47:31.678Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T05:36:07.172Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T05:36:08.592Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T05:36:08.640Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T08:14:42.748Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T08:14:42.774Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T08:14:42.835Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T08:35:54.559Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T08:35:54.565Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T08:35:54.650Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T09:19:46.939Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T09:19:47.047Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T09:19:47.098Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T09:34:38.141Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T09:34:38.147Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T09:34:38.242Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T10:28:49.011Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T10:28:49.015Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T10:28:49.069Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T12:54:22.686Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:1903] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T12:54:22.690Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2083] CalculateStartTime: TimeZone is in Local time
+2026-01-16T12:54:22.827Z MaintenanceManager[3847]:  INFO [MaintenanceManager.cpp:2135] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}

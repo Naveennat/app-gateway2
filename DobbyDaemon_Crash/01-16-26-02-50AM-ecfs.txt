@@ -1,0 +1,9 @@
+2025-12-03T08:38:50.366Z "ecfsmount"[1399]:  Entered ecfs_init
+2025-12-03T08:38:50.370Z "ecfsmount"[1399]:  cpc directory not mounted
+2025-12-03T08:38:50.375Z "ecfsmount"[1399]:  Exiting ecfs_init
+2025-12-03T08:38:50.435Z "ecfsmount"[1408]:  Entered ecfs_mount
+2025-12-03T08:38:50.887Z "ecfsmount"[1408]:  1af2ca62215cea59a0cdf1e0fcd2a13bfc3c8047e18d02cf08b31ddf51632fe8 /tmp/fwGS.bin
+2025-12-03T08:38:51.702Z "ecfsmount"[1408]:  preapre_opt_tree : Mounting /opt/secure
+2025-12-03T08:38:51.727Z "ecfsmount"[1408]:  Mounted cpc directory successfully
+2025-12-03T08:38:51.752Z "ecfsmount"[1408]:  Exiting ecfs_mount
+2025-12-03T08:38:52.492Z "ecfsmount"[2651]:  ecfs init completed

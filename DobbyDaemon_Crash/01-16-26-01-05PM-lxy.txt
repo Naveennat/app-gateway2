@@ -1,0 +1,13 @@
+2025-12-03T08:38:50.741Z sh[1391]:  rdk_dyn_log_initg_dl_socket = 3 __progname = lxybin
+2025-12-03T08:38:50.750Z sh[1391]:  Conf file /etc/debug.ini open success
+2025-12-03T08:38:50.751Z sh[1391]:  251203-08:38:50.741655 [mod=LXY, lvl=INFO] [tid=1391] lxyinit : dl dir is /opt/dl/lxy
+2025-12-03T08:38:50.826Z sh[1391]:  251203-08:38:50.826559 [mod=LXY, lvl=INFO] [tid=1391] lxyinit : extract_tar() Successfully extracted /etc/lxybundl.bz2 to /opt/lxy
+2025-12-03T08:38:51.080Z sh[1391]:  Logging to /opt/logs/xpkicertsupdate.log
+2025-12-03T08:38:51.318Z sh[1391]:  mv: can't rename '/opt/lxy/mamjwwgtfwpa*': No such file or directory
+2025-12-03T08:38:51.675Z sh[1391]:  Certificate will not expire
+2025-12-03T08:38:51.699Z sh[1391]:  mv: can't rename '/opt/lxy/evcdkjnofwvy*': No such file or directory
+2025-12-03T08:38:51.704Z sh[1391]:  mv: can't rename '/opt/lxy/dcfrlbhnflpg*': No such file or directory
+2025-12-03T08:38:51.796Z sh[1391]:  Certificate will not expire
+2025-12-03T08:38:51.816Z sh[1391]:  mkdir: can't create directory '/media/apps/etc/': Read-only file system
+2025-12-03T08:38:51.820Z sh[1391]:  cp: can't stat '/etc/certs/*.json': No such file or directory
+2025-12-03T08:38:51.828Z sh[1391]:  awk: /media/apps/etc/certs//SKXI11ADS-xpki-certs-update-bundle_package.json: No such file or directory

@@ -1,0 +1,4 @@
+2025-12-03T08:38:51.907Z "rtrouted"[2434]:  rdk_dyn_log_initg_dl_socket = 4 __progname = rtrouted
+2026-01-16T02:37:17.470Z "rtrouted"[2434]:  Conf file /etc/debug.ini open success
+2026-01-16T02:37:17.470Z "rtrouted"[2434]:  260116-02:37:17.469780 [mod=RTMESSAGE, lvl=WARN] [tid=2451] read:Connection reset by peer
+2026-01-16T02:37:17.470Z "rtrouted"[2434]:  260116-02:37:17.470062 [mod=RTMESSAGE, lvl=WARN] [tid=2451] client identity:unix://:0/18 name:rbus.telemetry2_0_client.INBOX.8835

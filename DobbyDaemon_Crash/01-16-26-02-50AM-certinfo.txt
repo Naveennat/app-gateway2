@@ -1,0 +1,27 @@
+2026-01-16T02:23:05.517Z : /lib/rdk/cert-monitoring.sh: Openssl is supported.
+2026-01-16T02:23:05.624Z : /lib/rdk/cert-monitoring.sh: ############### DEVICE_XPKI_STATIC_CERT ###############
+2026-01-16T02:23:05.722Z : /lib/rdk/cert-monitoring.sh:  start date notBefore=Jun 25 01:28:18 2024 GMT
+2026-01-16T02:23:05.736Z : /lib/rdk/cert-monitoring.sh:  end date notAfter=Jun 25 03:28:18 2029 GMT
+2026-01-16T02:23:05.750Z : /lib/rdk/cert-monitoring.sh:  fingerprint  59:CA:CB:1A:D0:49:21:6E:21:24:D9:2F:68:92:BD:0B:6A:E2:70:2D
+2026-01-16T02:23:05.764Z : /lib/rdk/cert-monitoring.sh:  issuer  Sky RDK Device Issuing ECC ICA
+2026-01-16T02:23:05.777Z : /lib/rdk/cert-monitoring.sh:  key length  (256 bit)
+2026-01-16T02:23:05.796Z : /lib/rdk/cert-monitoring.sh: ############### DEVICE_XPKI_SEED_CERT ###############
+2026-01-16T02:23:06.483Z : /lib/rdk/cert-monitoring.sh:  start date notBefore=Jun 25 01:25:32 2024 GMT
+2026-01-16T02:23:06.505Z : /lib/rdk/cert-monitoring.sh:  end date notAfter=Jun 24 03:25:32 2029 GMT
+2026-01-16T02:23:06.525Z : /lib/rdk/cert-monitoring.sh:  fingerprint  6B:F5:19:4A:63:B5:D8:C3:D5:7A:04:8F:7B:6B:E6:C5:B1:51:3D:7F
+2026-01-16T02:23:06.538Z : /lib/rdk/cert-monitoring.sh:  issuer  Sky RDK Device Issuing ECC ICA
+2026-01-16T02:23:06.552Z : /lib/rdk/cert-monitoring.sh:  key length  (256 bit)
+2026-01-16T02:23:06.759Z : /lib/rdk/cert-monitoring.sh: ############### DEVICE_XPKI_DYNAMIC_CERT1 ###############
+2026-01-16T02:23:06.949Z : /lib/rdk/cert-monitoring.sh:  start date notBefore=Sep 17 22:04:59 2025 GMT
+2026-01-16T02:23:06.964Z : /lib/rdk/cert-monitoring.sh:  end date notAfter=Sep 18 00:04:59 2026 GMT
+2026-01-16T02:23:06.998Z : /lib/rdk/cert-monitoring.sh:  fingerprint  92:92:5C:E6:E4:AD:DD:31:5E:E7:0F:A2:E9:37:B6:90:E6:2E:9D:3B
+2026-01-16T02:23:07.014Z : /lib/rdk/cert-monitoring.sh:  issuer  Sky RDK Device Issuing ECC ICA
+2026-01-16T02:23:07.034Z : /lib/rdk/cert-monitoring.sh:  key length  (256 bit)
+2026-01-16T02:23:07.055Z : /lib/rdk/cert-monitoring.sh: ############### STATE_RED_STATIC_CERT ###############
+2026-01-16T02:23:07.181Z : /lib/rdk/cert-monitoring.sh:  start date notBefore=Apr 16 02:52:36 2024 GMT
+2026-01-16T02:23:07.202Z : /lib/rdk/cert-monitoring.sh:  end date notAfter=Apr 11 02:52:35 2044 GMT
+2026-01-16T02:23:07.218Z : /lib/rdk/cert-monitoring.sh:  fingerprint  B8:83:29:8A:57:A4:46:19:19:70:1C:69:61:22:01:7B:1A:F9:16:E9
+2026-01-16T02:23:07.246Z : /lib/rdk/cert-monitoring.sh:  issuer  Comcast RDK Red Recovery ECC ICA
+2026-01-16T02:23:07.273Z : /lib/rdk/cert-monitoring.sh:  key length  (256 bit)
+2026-01-16T02:23:07.338Z : /lib/rdk/cert-monitoring.sh: ###############  SNMP_V3_STATIC_CERT  ###############
+2026-01-16T02:23:07.382Z : /lib/rdk/cert-monitoring.sh:  SNMP_V3_STATIC_CERT : /etc/ssl/certs/snmp/tls/certs//rdk-snmpv3-snmpd-xpki-v1.p12 not found

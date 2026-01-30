@@ -1,0 +1,4 @@
+2025-12-03T08:39:01.940Z bash[4376]:  Checking for configuration files...
+2025-12-03T08:39:01.941Z bash[4376]:  Config file found: /var/sky/build/vendorConfig.json
+2025-12-03T08:39:02.015Z bash[4376]:  Extracted country from vendor config: uk
+2025-12-03T08:39:02.015Z bash[4376]:  Disabling Badger service.

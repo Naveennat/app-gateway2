@@ -1,0 +1,1260 @@
+2026-01-15T02:46:39.472Z sh[4928]:  rdk_dyn_log_initg_dl_socket = 3 __progname = btMgrBus
+2026-01-15T02:46:39.473Z sh[4928]:  Hci0 is not yet up
+2026-01-15T02:46:39.473Z sh[4928]:  Hci0 is not yet up
+2026-01-15T02:46:39.473Z sh[4928]:  Hci0 is up
+2026-01-15T02:46:39.473Z sh[4928]:  Conf file /etc/debug.ini open success
+2026-01-15T02:46:39.473Z sh[4928]:  260115-02:46:39.472055 [mod=BTRCORE, lvl=INFO] [tid=4928] 3184	: BTRCore_Init - BTRCore_Init
+2026-01-15T02:46:39.484Z sh[4928]:  260115-02:46:39.482979 [mod=BTRCORE, lvl=INFO] [tid=4928] 3071	: BtrCore_BTInitGetConnection - DBus Debug DBus Connection Name :1.82
+2026-01-15T02:46:39.504Z sh[4928]:  260115-02:46:39.504432 [mod=BTRCORE, lvl=INFO] [tid=4928] 3203	: BtrCore_BTGetAgentPath - Agent Path: /org/bluez/agent_4928
+2026-01-15T02:46:39.511Z sh[4928]:  260115-02:46:39.511500 [mod=BTRCORE, lvl=WARN] [tid=4928] 636	: btrCore_BTGetDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-15T02:46:39.511Z sh[4928]:  260115-02:46:39.511560 [mod=BTRCORE, lvl=WARN] [tid=4928] 3570	: BtrCore_BTGetAdapterPath - Got Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-15T02:46:39.511Z sh[4928]:  260115-02:46:39.511583 [mod=BTRCORE, lvl=WARN] [tid=4928] 3596	: BtrCore_BTGetAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-15T02:46:39.539Z sh[4928]:  260115-02:46:39.539614 [mod=BTRCORE, lvl=WARN] [tid=4928] 906	: BTRCore_LE_Init - BTRCore_LE_Init
+2026-01-15T02:46:39.543Z sh[4928]:  260115-02:46:39.543002 [mod=BTRCORE, lvl=INFO] [tid=5388] 2074	: btrCore_RunTask - RunTask Started
+2026-01-15T02:46:39.543Z sh[4928]:  260115-02:46:39.543451 [mod=BTRCORE, lvl=INFO] [tid=5388] 2099	: btrCore_RunTask - enBTRCoreTaskOpStart
+2026-01-15T02:46:39.564Z sh[4928]:  260115-02:46:39.564319 [mod=BTRCORE, lvl=INFO] [tid=5388] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-15T02:46:39.564Z sh[4928]:  260115-02:46:39.564401 [mod=BTRCORE, lvl=INFO] [tid=5388] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-15T02:46:39.584Z sh[4928]:  260115-02:46:39.584729 [mod=BTRCORE, lvl=INFO] [tid=5388] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-15T02:46:39.584Z sh[4928]:  260115-02:46:39.584794 [mod=BTRCORE, lvl=INFO] [tid=5388] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-15T02:46:39.588Z sh[4928]:  260115-02:46:39.588744 [mod=BTRCORE, lvl=INFO] [tid=4928] 4099	: BTRCore_GetVersionInfo - Out:  Bluez-5.48
+2026-01-15T02:46:39.588Z sh[4928]:  260115-02:46:39.588818 [mod=BTRMGR, lvl=INFO] [tid=4928] 3856	: BTRMGR_Init - BTR Bluetooth Version: Bluez-5.48
+2026-01-15T02:46:39.596Z sh[4928]:  260115-02:46:39.596046 [mod=BTRMGR, lvl=INFO] [tid=4928] 3861	: BTRMGR_Init - Number of Adapters found are = 1
+2026-01-15T02:46:39.596Z sh[4928]:  260115-02:46:39.596319 [mod=RFCAPI, lvl=INFO] [tid=4928] getRFCParameter: http server is ready
+2026-01-15T02:46:39.598Z sh[4928]:  260115-02:46:39.598651 [mod=RFCAPI, lvl=INFO] [tid=4928] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable"]}, datalen = 83
+2026-01-15T02:46:39.601Z sh[4928]:  260115-02:46:39.601655 [mod=RFCAPI, lvl=INFO] [tid=4928] curl response : 0 http response code: 200
+2026-01-15T02:46:39.601Z sh[4928]:  260115-02:46:39.601878 [mod=RFCAPI, lvl=INFO] [tid=4928] Curl response: {
+2026-01-15T02:46:39.602Z sh[4928]:  	"parameters":	[{
+2026-01-15T02:46:39.602Z sh[4928]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable",
+2026-01-15T02:46:39.602Z sh[4928]:  			"value":	"false",
+2026-01-15T02:46:39.602Z sh[4928]:  			"dataType":	3,
+2026-01-15T02:46:39.602Z sh[4928]:  			"parameterCount":	1,
+2026-01-15T02:46:39.602Z sh[4928]:  			"message":	"Default Value"
+2026-01-15T02:46:39.602Z sh[4928]:  		}],
+2026-01-15T02:46:39.602Z sh[4928]:  	"statusCode":	38
+2026-01-15T02:46:39.602Z sh[4928]:  }
+2026-01-15T02:46:39.602Z sh[4928]:  260115-02:46:39.602018 [mod=BTRMGR, lvl=INFO] [tid=4928] 754	: btrMgr_CheckDebugModeAvailability - getRFCParameter : Default value
+2026-01-15T02:46:39.602Z sh[4928]:  260115-02:46:39.602537 [mod=BTRMGR, lvl=INFO] [tid=4928] 764	: btrMgr_CheckDebugModeAvailability - BTR Debug Mode will not be available.
+2026-01-15T02:46:39.602Z sh[4928]:  260115-02:46:39.602566 [mod=BTRCORE, lvl=INFO] [tid=4928] 6769	: BTRCore_RegisterStatusCb - BT Status Callback Registered Successfully
+2026-01-15T02:46:39.603Z sh[4928]:  260115-02:46:39.602589 [mod=BTRCORE, lvl=INFO] [tid=4928] 6741	: BTRCore_RegisterDiscoveryCb - Device Discovery Callback Registered Successfully
+2026-01-15T02:46:39.603Z sh[4928]:  260115-02:46:39.602611 [mod=BTRCORE, lvl=INFO] [tid=4928] 6827	: BTRCore_RegisterConnectionIntimationCb - BT Conn In Intimation Callback Registered Successfully
+2026-01-15T02:46:39.603Z sh[4928]:  260115-02:46:39.602632 [mod=BTRCORE, lvl=INFO] [tid=4928] 6857	: BTRCore_RegisterConnectionAuthenticationCb - BT Conn Auth Callback Registered Successfully
+2026-01-15T02:46:39.604Z sh[4928]:  260115-02:46:39.602652 [mod=BTRCORE, lvl=INFO] [tid=4928] 6797	: BTRCore_RegisterMediaStatusCb - BT Media Status Callback Registered Successfully
+2026-01-15T02:46:39.604Z sh[4928]:  260115-02:46:39.602670 [mod=BTRMGR, lvl=INFO] [tid=4928] 3903	: BTRMGR_Init - Activate agent
+2026-01-15T02:46:39.605Z sh[4928]:  260115-02:46:39.605144 [mod=BTRCORE, lvl=INFO] [tid=5388] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-15T02:46:39.605Z sh[4928]:  260115-02:46:39.605199 [mod=BTRCORE, lvl=INFO] [tid=5388] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-15T02:46:39.621Z sh[4928]:  260115-02:46:39.621624 [mod=BTRMGR, lvl=INFO] [tid=4928] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 0 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-15T02:46:39.621Z sh[4928]:  260115-02:46:39.621799 [mod=RFCAPI, lvl=INFO] [tid=4928] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable"]}, datalen = 81
+2026-01-15T02:46:39.625Z sh[4928]:  260115-02:46:39.625075 [mod=RFCAPI, lvl=INFO] [tid=4928] curl response : 0 http response code: 200
+2026-01-15T02:46:39.626Z sh[4928]:  260115-02:46:39.626596 [mod=RFCAPI, lvl=INFO] [tid=4928] Curl response: {
+2026-01-15T02:46:39.626Z sh[4928]:  	"parameters":	[{
+2026-01-15T02:46:39.626Z sh[4928]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable",
+2026-01-15T02:46:39.626Z sh[4928]:  			"value":	"",
+2026-01-15T02:46:39.627Z sh[4928]:  			"dataType":	3,
+2026-01-15T02:46:39.627Z sh[4928]:  			"parameterCount":	1,
+2026-01-15T02:46:39.627Z sh[4928]:  			"message":	"Parameter value field is not available"
+2026-01-15T02:46:39.627Z sh[4928]:  		}],
+2026-01-15T02:46:39.627Z sh[4928]:  	"message":	"Parameter value field is not available",
+2026-01-15T02:46:39.627Z sh[4928]:  	"statusCode":	22
+2026-01-15T02:46:39.627Z sh[4928]:  }
+2026-01-15T02:46:39.627Z sh[4928]:  260115-02:46:39.626746 [mod=BTRMGR, lvl=ERROR] [tid=4928] 699	: btrMgr_CheckAudioInServiceAvailability - getRFCParameter Failed :  Value is Empty
+2026-01-15T02:46:39.627Z sh[4928]:  260115-02:46:39.626788 [mod=RFCAPI, lvl=INFO] [tid=4928] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable"]}, datalen = 81
+2026-01-15T02:46:39.631Z sh[4928]:  260115-02:46:39.631111 [mod=RFCAPI, lvl=INFO] [tid=4928] curl response : 0 http response code: 200
+2026-01-15T02:46:39.633Z sh[4928]:  260115-02:46:39.633195 [mod=RFCAPI, lvl=INFO] [tid=4928] Curl response: {
+2026-01-15T02:46:39.633Z sh[4928]:  	"parameters":	[{
+2026-01-15T02:46:39.633Z sh[4928]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable",
+2026-01-15T02:46:39.633Z sh[4928]:  			"value":	"true",
+2026-01-15T02:46:39.633Z sh[4928]:  			"dataType":	3,
+2026-01-15T02:46:39.633Z sh[4928]:  			"parameterCount":	1,
+2026-01-15T02:46:39.633Z sh[4928]:  			"message":	"Default Value"
+2026-01-15T02:46:39.633Z sh[4928]:  		}],
+2026-01-15T02:46:39.633Z sh[4928]:  	"statusCode":	38
+2026-01-15T02:46:39.633Z sh[4928]:  }
+2026-01-15T02:46:39.634Z sh[4928]:  260115-02:46:39.633302 [mod=BTRMGR, lvl=INFO] [tid=4928] 721	: btrMgr_CheckHidGamePadServiceAvailability - getRFCParameter : Default value
+2026-01-15T02:46:39.634Z sh[4928]:  260115-02:46:39.633327 [mod=BTRMGR, lvl=INFO] [tid=4928] 727	: btrMgr_CheckHidGamePadServiceAvailability - BTR HidGamePad Serivce will be available.
+2026-01-15T02:46:39.659Z sh[4928]:  I-ARM BTMgr Bus: BTRMgr_BeginIARMMode Thu Jan 15 02:46:39 2026
+2026-01-15T02:46:39.659Z sh[4928]:  260115-02:46:39.658888 [mod=BTRMGR, lvl=INFO] [tid=4928] 2147	: BTRMgr_BeginIARMMode - Entering
+2026-01-15T02:46:39.660Z sh[4928]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = BTRMgrBus
+2026-01-15T02:46:39.660Z sh[4928]:  260115-02:46:39.660323 [mod=BTRMGR, lvl=INFO] [tid=5406] 8914	: btrMgr_g_main_loop_Task - GMainLoop Running - 0x7e640 - 0x7e640
+2026-01-15T02:46:39.721Z sh[4928]:  setting init done
+2026-01-15T02:46:39.721Z sh[4928]:  Registering BTRMgrBus
+2026-01-15T02:46:39.721Z sh[4928]:  260115-02:46:39.721002 [mod=BTRMGR, lvl=INFO] [tid=4928] 2154	: BTRMgr_BeginIARMMode - IARM Interface Initializing
+2026-01-15T02:46:39.721Z sh[4928]:  260115-02:46:39.721377 [mod=BTRMGR, lvl=INFO] [tid=4928] 8895	: BTRMGR_RegisterEventCallback - BTRMGR_RegisterEventCallback : Success
+2026-01-15T02:46:39.721Z sh[4928]:  260115-02:46:39.721421 [mod=BTRMGR, lvl=INFO] [tid=4928] 2220	: BTRMgr_BeginIARMMode - IARM Interface Inited Successfully
+2026-01-15T02:46:39.721Z sh[4928]:  260115-02:46:39.721461 [mod=BTRMGR, lvl=INFO] [tid=4928] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-15T02:46:39.721Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-15T02:46:39.721Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-15T02:46:39.721Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-15T02:46:40.157Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-15T02:46:40.157Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-15T02:46:40.157Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-15T02:46:40.159Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-15T02:46:40.159Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3847
+2026-01-15T02:46:40.159Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-15T02:46:40.159Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-15T02:46:40.159Z sh[4928]:  260115-02:46:40.157558 [mod=BTRMGR, lvl=INFO] [tid=4928] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-15T02:46:40.168Z sh[4928]:  [PowerController][5453] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-15T02:46:40.168Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[2], Current[2]
+2026-01-15T02:46:40.168Z sh[4928]:  260115-02:46:40.168524 [mod=BTRMGR, lvl=WARN] [tid=4928] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :2 - standby
+2026-01-15T02:46:40.190Z sh[4928]:  260115-02:46:40.190383 [mod=BTRMGR, lvl=ERROR] [tid=4928] 6069	: BTRMGR_StartAudioStreamingOut_StartUp - Power state is standby no need to try connecting device as it will connect once ON
+2026-01-15T02:46:40.190Z sh[4928]:  BTRMGR_StartAudioStreamingOut_StartUp - -1
+2026-01-15T02:46:40.190Z sh[4928]:  260115-02:46:40.190446 [mod=BTRMGR, lvl=INFO] [tid=4928] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-15T02:46:40.190Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-15T02:46:40.190Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-15T02:46:40.191Z sh[4928]:  260115-02:46:40.190482 [mod=BTRMGR, lvl=INFO] [tid=4928] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-15T02:46:40.201Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[2], Current[2]
+2026-01-15T02:46:40.201Z sh[4928]:  260115-02:46:40.201050 [mod=BTRMGR, lvl=WARN] [tid=4928] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :2 - standby
+2026-01-15T02:46:40.202Z sh[4928]:  260115-02:46:40.201081 [mod=BTRMGR, lvl=ERROR] [tid=4928] 5970	: BTRMGR_ConnectGamepads_StartUp - Power state is standby no need to try connecting device as it will connect once ON
+2026-01-15T02:46:40.202Z sh[4928]:  BTRMGR_ConnectGamepads_StartUp - -1
+2026-01-16T02:35:09.784Z sh[4928]:  260116-02:35:09.783907 [mod=BTRCORE, lvl=INFO] [tid=5388] 8127	: btrCore_BTDBusConnectionFilterCb - Device MAC address 20:44:41:02:DC:C0
+2026-01-16T02:35:09.784Z sh[4928]:  260116-02:35:09.783958 [mod=BTRCORE, lvl=INFO] [tid=5388] 8136	: btrCore_BTDBusConnectionFilterCb - org.bluez.Device1 received event <Connected>
+2026-01-16T02:35:09.784Z sh[4928]:  260116-02:35:09.783985 [mod=BTRCORE, lvl=INFO] [tid=5388] 8151	: btrCore_BTDBusConnectionFilterCb - bConnected = 1
+2026-01-16T02:35:09.784Z sh[4928]:  260116-02:35:09.784159 [mod=BTRCORE, lvl=INFO] [tid=5387] 1789	: btrCore_BTParseDeviceState - Current State of this connection is @@connected@@
+2026-01-16T02:35:09.784Z sh[4928]:  260116-02:35:09.784397 [mod=BTRMGR, lvl=INFO] [tid=5387] 9429	: btrMgr_DeviceStatusCb -  Received status callback device type 21 PrevState 2 State 5
+2026-01-16T02:35:09.785Z sh[4928]:  260116-02:35:09.784425 [mod=BTRMGR, lvl=WARN] [tid=5387] 1579	: btrMgr_SetDevConnected - Setting = 35477520571584 - 	Connected = 1
+2026-01-16T02:35:09.785Z sh[4928]:  260116-02:35:09.784672 [mod=BTRMGR, lvl=INFO] [tid=5387] 9628	: btrMgr_DeviceStatusCb - Device Found event posted Device Type - 21 p_StatusCB->eDeviceType - 5
+2026-01-16T02:35:10.790Z sh[4928]:  260116-02:35:09.784885 [mod=BTRCORE, lvl=INFO] [tid=6103] 3097	: btrCore_BatteryLevelThread - Battery thread started260116-02:35:10.790003 [mod=BTRCORE, lvl=INFO] [tid=6103] 2016	: btrCore_updateBatteryLevelsForConnectedDevices - updating battery level for device mac,level: 20:44:41:02:DC:C0,70
+2026-01-16T02:35:10.799Z sh[4928]:  260116-02:35:10.799458 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 512
+2026-01-16T02:35:10.799Z sh[4928]:  260116-02:35:10.799698 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a05-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:10.820Z sh[4928]:  260116-02:35:10.819940 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:10.836Z sh[4928]:  260116-02:35:10.836898 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 0
+2026-01-16T02:35:10.865Z sh[4928]:  260116-02:35:10.865101 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:10.865Z sh[4928]:  260116-02:35:10.865145 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002b29-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:10.896Z sh[4928]:  260116-02:35:10.896380 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:10.896Z sh[4928]:  260116-02:35:10.896430 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002b2a-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:10.956Z sh[4928]:  260116-02:35:10.956526 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:10.957Z sh[4928]:  260116-02:35:10.956574 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a29-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:10.988Z sh[4928]:  260116-02:35:10.988044 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:10.988Z sh[4928]:  260116-02:35:10.988088 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a23-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:11.016Z sh[4928]:  260116-02:35:11.016754 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:11.016Z sh[4928]:  260116-02:35:11.016798 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a24-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:11.045Z sh[4928]:  260116-02:35:11.045638 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:11.045Z sh[4928]:  260116-02:35:11.045702 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a25-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:11.074Z sh[4928]:  260116-02:35:11.074112 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:11.074Z sh[4928]:  260116-02:35:11.074177 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a26-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:11.103Z sh[4928]:  260116-02:35:11.103216 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:11.103Z sh[4928]:  260116-02:35:11.103262 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a27-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:11.132Z sh[4928]:  260116-02:35:11.132050 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:11.132Z sh[4928]:  260116-02:35:11.132097 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a28-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:11.161Z sh[4928]:  260116-02:35:11.161473 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 1
+2026-01-16T02:35:11.161Z sh[4928]:  260116-02:35:11.161522 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a50-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:11.217Z sh[4928]:  260116-02:35:11.216988 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 257
+2026-01-16T02:35:11.217Z sh[4928]:  260116-02:35:11.217046 [mod=BTRCORE, lvl=INFO] [tid=5388] 1998	: btrCore_LE_GattInfoCb -  Notify characteristics added UUID - 00002a19-0000-1000-8000-00805f9b34fb aBtdevAddr 20:44:41:02:DC:C0
+2026-01-16T02:35:11.217Z sh[4928]:  260116-02:35:11.217072 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:11.217Z sh[4928]:  260116-02:35:11.217091 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:11.217Z sh[4928]:  260116-02:35:11.217109 [mod=BTRCORE, lvl=INFO] [tid=5388] 2005	: btrCore_LE_GattInfoCb - Added Characteristic 00002a19-0000-1000-8000-00805f9b34fb Successfully.
+2026-01-16T02:35:11.237Z sh[4928]:  260116-02:35:11.237354 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.247Z sh[4928]:  260116-02:35:11.247327 [mod=BTRCORE, lvl=INFO] [tid=5388] 618	: btrCore_LE_GetAllowedGattFlagValues - - 0
+2026-01-16T02:35:11.280Z sh[4928]:  260116-02:35:11.280630 [mod=BTRCORE, lvl=WARN] [tid=5388] 1959	: btrCore_LE_GattInfoCb - Service Not Supported | UUID : e0262760-08c2-11e1-9073-0e8ac72e1001
+2026-01-16T02:35:11.307Z sh[4928]:  260116-02:35:11.307676 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200 not found.
+2026-01-16T02:35:11.328Z sh[4928]:  260116-02:35:11.328124 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.338Z sh[4928]:  260116-02:35:11.338588 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200.
+2026-01-16T02:35:11.363Z sh[4928]:  260116-02:35:11.363527 [mod=BTRCORE, lvl=WARN] [tid=5388] 1959	: btrCore_LE_GattInfoCb - Service Not Supported | UUID : 0000f800-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:11.390Z sh[4928]:  260116-02:35:11.390082 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700 not found.
+2026-01-16T02:35:11.418Z sh[4928]:  260116-02:35:11.418065 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700 not found.
+2026-01-16T02:35:11.444Z sh[4928]:  260116-02:35:11.444443 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700 not found.
+2026-01-16T02:35:11.471Z sh[4928]:  260116-02:35:11.471440 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700 not found.
+2026-01-16T02:35:11.491Z sh[4928]:  260116-02:35:11.491707 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.500Z sh[4928]:  260116-02:35:11.500108 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700.
+2026-01-16T02:35:11.524Z sh[4928]:  260116-02:35:11.524611 [mod=BTRCORE, lvl=WARN] [tid=5388] 1959	: btrCore_LE_GattInfoCb - Service Not Supported | UUID : 0000f801-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:11.550Z sh[4928]:  260116-02:35:11.550902 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:11.581Z sh[4928]:  260116-02:35:11.580895 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:11.609Z sh[4928]:  260116-02:35:11.609120 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:11.629Z sh[4928]:  260116-02:35:11.629395 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.637Z sh[4928]:  260116-02:35:11.637275 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.657Z sh[4928]:  260116-02:35:11.657567 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.666Z sh[4928]:  260116-02:35:11.666343 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.693Z sh[4928]:  260116-02:35:11.693835 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:11.714Z sh[4928]:  260116-02:35:11.714102 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.722Z sh[4928]:  260116-02:35:11.722149 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.742Z sh[4928]:  260116-02:35:11.742417 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.750Z sh[4928]:  260116-02:35:11.750034 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.776Z sh[4928]:  260116-02:35:11.776532 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:11.798Z sh[4928]:  260116-02:35:11.796796 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.805Z sh[4928]:  260116-02:35:11.805200 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.825Z sh[4928]:  260116-02:35:11.825482 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.834Z sh[4928]:  260116-02:35:11.834511 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.861Z sh[4928]:  260116-02:35:11.861163 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:11.881Z sh[4928]:  260116-02:35:11.881433 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.889Z sh[4928]:  260116-02:35:11.889501 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.910Z sh[4928]:  260116-02:35:11.909953 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.918Z sh[4928]:  260116-02:35:11.918134 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.944Z sh[4928]:  260116-02:35:11.944710 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:11.965Z sh[4928]:  260116-02:35:11.964988 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:11.973Z sh[4928]:  260116-02:35:11.973145 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:11.993Z sh[4928]:  260116-02:35:11.993419 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.001Z sh[4928]:  260116-02:35:12.001594 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.028Z sh[4928]:  260116-02:35:12.028029 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:12.048Z sh[4928]:  260116-02:35:12.048331 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.057Z sh[4928]:  260116-02:35:12.057172 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.077Z sh[4928]:  260116-02:35:12.077680 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.085Z sh[4928]:  260116-02:35:12.085609 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.113Z sh[4928]:  260116-02:35:12.112282 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:12.133Z sh[4928]:  260116-02:35:12.132584 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.143Z sh[4928]:  260116-02:35:12.143347 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.163Z sh[4928]:  260116-02:35:12.163617 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.171Z sh[4928]:  260116-02:35:12.171793 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.201Z sh[4928]:  260116-02:35:12.201182 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:12.221Z sh[4928]:  260116-02:35:12.221450 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.237Z sh[4928]:  260116-02:35:12.237301 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.257Z sh[4928]:  260116-02:35:12.257586 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.265Z sh[4928]:  260116-02:35:12.265366 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.291Z sh[4928]:  260116-02:35:12.291652 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:12.312Z sh[4928]:  260116-02:35:12.311926 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.319Z sh[4928]:  260116-02:35:12.319857 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.340Z sh[4928]:  260116-02:35:12.340158 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.349Z sh[4928]:  260116-02:35:12.348952 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.376Z sh[4928]:  260116-02:35:12.376422 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:12.397Z sh[4928]:  260116-02:35:12.396701 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.409Z sh[4928]:  260116-02:35:12.409638 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.432Z sh[4928]:  260116-02:35:12.431492 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.439Z sh[4928]:  260116-02:35:12.439282 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710.
+2026-01-16T02:35:12.465Z sh[4928]:  260116-02:35:12.465619 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:12.504Z sh[4928]:  260116-02:35:12.504159 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:12.537Z sh[4928]:  260116-02:35:12.537714 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 not found.
+2026-01-16T02:35:12.562Z sh[4928]:  260116-02:35:12.562432 [mod=BTRCORE, lvl=WARN] [tid=5388] 1959	: btrCore_LE_GattInfoCb - Service Not Supported | UUID : 0000f802-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:12.591Z sh[4928]:  260116-02:35:12.590403 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750 not found.
+2026-01-16T02:35:12.616Z sh[4928]:  260116-02:35:12.616715 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750 not found.
+2026-01-16T02:35:12.637Z sh[4928]:  260116-02:35:12.636981 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.657Z sh[4928]:  260116-02:35:12.657066 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750.
+2026-01-16T02:35:12.678Z sh[4928]:  260116-02:35:12.678151 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.686Z sh[4928]:  260116-02:35:12.686140 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750.
+2026-01-16T02:35:12.711Z sh[4928]:  260116-02:35:12.710991 [mod=BTRCORE, lvl=WARN] [tid=5388] 1959	: btrCore_LE_GattInfoCb - Service Not Supported | UUID : 0000f803-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:12.737Z sh[4928]:  260116-02:35:12.737492 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 not found.
+2026-01-16T02:35:12.757Z sh[4928]:  260116-02:35:12.757766 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.766Z sh[4928]:  260116-02:35:12.766309 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780.
+2026-01-16T02:35:12.788Z sh[4928]:  260116-02:35:12.787738 [mod=BTRMGR, lvl=WARN] [tid=5406] 2330	: btrMgr_EventCallback - Post External Device Found Back event
+2026-01-16T02:35:12.810Z sh[4928]:  260116-02:35:12.809657 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 not found.
+2026-01-16T02:35:12.830Z sh[4928]:  260116-02:35:12.829960 [mod=BTRCORE, lvl=INFO] [tid=5388] 9403	: btrCore_BTDBusConnectionFilterCb - InterfacesAdded : org.bluez.GattDescriptor1
+2026-01-16T02:35:12.839Z sh[4928]:  260116-02:35:12.839289 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2081	: btrCore_LE_GattInfoCb - Gatt Service not found for Desc /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780.
+2026-01-16T02:35:12.865Z sh[4928]:  260116-02:35:12.865653 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 not found.
+2026-01-16T02:35:12.900Z sh[4928]:  260116-02:35:12.899968 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 not found.
+2026-01-16T02:35:12.941Z sh[4928]:  260116-02:35:12.940880 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 not found.
+2026-01-16T02:35:12.967Z sh[4928]:  260116-02:35:12.967496 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 not found.
+2026-01-16T02:35:12.992Z sh[4928]:  260116-02:35:12.992222 [mod=BTRCORE, lvl=WARN] [tid=5388] 1959	: btrCore_LE_GattInfoCb - Service Not Supported | UUID : 00001802-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:13.019Z sh[4928]:  260116-02:35:13.019122 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2016	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010 not found.
+2026-01-16T02:35:13.042Z sh[4928]:  260116-02:35:13.042145 [mod=BTRCORE, lvl=INFO] [tid=5388] 8127	: btrCore_BTDBusConnectionFilterCb - Device MAC address 20:44:41:02:DC:C0
+2026-01-16T02:35:13.042Z sh[4928]:  260116-02:35:13.042197 [mod=BTRCORE, lvl=INFO] [tid=5388] 8136	: btrCore_BTDBusConnectionFilterCb - org.bluez.Device1 received event <ServicesResolved>
+2026-01-16T02:35:13.042Z sh[4928]:  260116-02:35:13.042225 [mod=BTRCORE, lvl=INFO] [tid=5388] 8158	: btrCore_BTDBusConnectionFilterCb - bServicesResolved = 1
+2026-01-16T02:35:13.042Z sh[4928]:  260116-02:35:13.042256 [mod=BTRCORE, lvl=INFO] [tid=5388] 8136	: btrCore_BTDBusConnectionFilterCb - org.bluez.Device1 received event <Paired>
+2026-01-16T02:35:13.042Z sh[4928]:  260116-02:35:13.042281 [mod=BTRCORE, lvl=INFO] [tid=5388] 8144	: btrCore_BTDBusConnectionFilterCb - bPaired = 1
+2026-01-16T02:35:13.042Z sh[4928]:  260116-02:35:13.042309 [mod=BTRCORE, lvl=INFO] [tid=5388] 8267	: btrCore_BTDBusConnectionFilterCb - Parsing Property Changed event figured that its pairing change..
+2026-01-16T02:35:13.043Z sh[4928]:  260116-02:35:13.042424 [mod=BTRCORE, lvl=INFO] [tid=5387] 1789	: btrCore_BTParseDeviceState - Current State of this connection is @@paired@@
+2026-01-16T02:35:17.800Z sh[4928]:  260116-02:35:17.781371 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:17.812Z sh[4928]:  260116-02:35:17.812448 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:35:17.832Z sh[4928]:  260116-02:35:17.832657 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:17.850Z sh[4928]:  260116-02:35:17.850870 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:35:17.912Z sh[4928]:  260116-02:35:17.912345 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:17.928Z sh[4928]:  260116-02:35:17.928472 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:35:17.969Z sh[4928]:  260116-02:35:17.969687 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:17.974Z sh[4928]:  260116-02:35:17.974614 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:35:18.016Z sh[4928]:  260116-02:35:18.015175 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.037Z sh[4928]:  260116-02:35:18.037291 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.037Z sh[4928]:  260116-02:35:18.037331 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:18.057Z sh[4928]:  260116-02:35:18.057545 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.085Z sh[4928]:  260116-02:35:18.074326 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.085Z sh[4928]:  260116-02:35:18.081116 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:18.102Z sh[4928]:  260116-02:35:18.102410 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.116Z sh[4928]:  260116-02:35:18.115900 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.116Z sh[4928]:  260116-02:35:18.115949 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:18.161Z sh[4928]:  260116-02:35:18.161041 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.187Z sh[4928]:  260116-02:35:18.187172 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.187Z sh[4928]:  260116-02:35:18.187223 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:18.207Z sh[4928]:  260116-02:35:18.207420 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.228Z sh[4928]:  260116-02:35:18.228060 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.228Z sh[4928]:  260116-02:35:18.228111 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:18.249Z sh[4928]:  260116-02:35:18.248895 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.263Z sh[4928]:  260116-02:35:18.263272 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.263Z sh[4928]:  260116-02:35:18.263320 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:18.283Z sh[4928]:  260116-02:35:18.283571 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.290Z sh[4928]:  260116-02:35:18.290731 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.291Z sh[4928]:  260116-02:35:18.290780 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:18.335Z sh[4928]:  260116-02:35:18.335831 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.344Z sh[4928]:  260116-02:35:18.343686 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.344Z sh[4928]:  260116-02:35:18.343722 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:18.364Z sh[4928]:  260116-02:35:18.364132 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.371Z sh[4928]:  260116-02:35:18.371363 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:35:18.412Z sh[4928]:  260116-02:35:18.411911 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.417Z sh[4928]:  260116-02:35:18.417103 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:35:18.464Z sh[4928]:  260116-02:35:18.463694 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.481Z sh[4928]:  260116-02:35:18.481297 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:35:18.509Z sh[4928]:  260116-02:35:18.509456 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:18.547Z sh[4928]:  260116-02:35:18.547001 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:18.547Z sh[4928]:  260116-02:35:18.547048 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:19.992Z sh[4928]:  260116-02:35:19.989235 [mod=BTRMGR, lvl=INFO] [tid=5411] 4370	: BTRMGR_SetAdapterPowerStatus - Set Successfully
+2026-01-16T02:35:20.093Z sh[4928]:  260116-02:35:20.091984 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:35:20.183Z sh[4928]:  260116-02:35:20.183067 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:35:23.525Z sh[4928]:  260116-02:35:23.518380 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:23.550Z sh[4928]:  260116-02:35:23.549634 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:35:23.550Z sh[4928]:  260116-02:35:23.549675 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:35:23.581Z sh[4928]:  260116-02:35:23.572526 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:23.581Z sh[4928]:  260116-02:35:23.580843 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700 Not Found
+2026-01-16T02:35:28.557Z sh[4928]:  260116-02:35:28.557323 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:28.562Z sh[4928]:  260116-02:35:28.561908 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700 Not Found
+2026-01-16T02:35:28.602Z sh[4928]:  260116-02:35:28.602370 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:28.606Z sh[4928]:  260116-02:35:28.606894 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 Not Found
+2026-01-16T02:35:28.647Z sh[4928]:  260116-02:35:28.647369 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:35:28.653Z sh[4928]:  260116-02:35:28.653791 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 Not Found
+2026-01-16T02:35:33.717Z sh[4928]:  260116-02:35:33.716624 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:33.757Z sh[4928]:  260116-02:35:33.757158 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:33.797Z sh[4928]:  260116-02:35:33.797694 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:33.838Z sh[4928]:  260116-02:35:33.838806 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:33.884Z sh[4928]:  260116-02:35:33.884379 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:33.928Z sh[4928]:  260116-02:35:33.928244 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:33.973Z sh[4928]:  260116-02:35:33.973662 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:34.018Z sh[4928]:  260116-02:35:34.018401 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:34.062Z sh[4928]:  260116-02:35:34.062533 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:34.107Z sh[4928]:  260116-02:35:34.107574 [mod=BTRCORE, lvl=INFO] [tid=5388] 9091	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattDescriptor1
+2026-01-16T02:35:55.590Z sh[4928]:  260116-02:35:55.589255 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:35:55.652Z sh[4928]:  260116-02:35:55.652620 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:35:55.709Z sh[4928]:  260116-02:35:55.709264 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:36:56.120Z sh[4928]:  260116-02:36:56.119544 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:36:56.203Z sh[4928]:  260116-02:36:56.203578 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:36:56.255Z sh[4928]:  260116-02:36:56.255755 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:37:56.663Z sh[4928]:  260116-02:37:56.662356 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:37:56.758Z sh[4928]:  260116-02:37:56.758573 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:37:56.836Z sh[4928]:  260116-02:37:56.836679 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:38:57.207Z sh[4928]:  260116-02:38:57.206147 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:38:57.279Z sh[4928]:  260116-02:38:57.279796 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:38:57.320Z sh[4928]:  260116-02:38:57.319852 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:39:57.860Z sh[4928]:  260116-02:39:57.859930 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:39:57.906Z sh[4928]:  260116-02:39:57.906367 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:39:57.975Z sh[4928]:  260116-02:39:57.975202 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:40:58.452Z sh[4928]:  260116-02:40:58.451949 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:40:58.503Z sh[4928]:  260116-02:40:58.503716 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:40:58.573Z sh[4928]:  260116-02:40:58.573618 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:41:59.074Z sh[4928]:  260116-02:41:59.072932 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:41:59.130Z sh[4928]:  260116-02:41:59.130731 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:41:59.224Z sh[4928]:  260116-02:41:59.224702 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:42:59.717Z sh[4928]:  260116-02:42:59.715393 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:42:59.792Z sh[4928]:  260116-02:42:59.792451 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:42:59.846Z sh[4928]:  260116-02:42:59.845274 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:44:00.328Z sh[4928]:  260116-02:44:00.327258 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:44:00.404Z sh[4928]:  260116-02:44:00.404369 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:44:00.457Z sh[4928]:  260116-02:44:00.457791 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:45:00.955Z sh[4928]:  260116-02:45:00.954835 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:45:01.024Z sh[4928]:  260116-02:45:01.024654 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:45:01.119Z sh[4928]:  260116-02:45:01.119489 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:46:01.579Z sh[4928]:  260116-02:46:01.578282 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:46:01.679Z sh[4928]:  260116-02:46:01.678870 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:46:01.757Z sh[4928]:  260116-02:46:01.757353 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:47:02.246Z sh[4928]:  260116-02:47:02.245694 [mod=BTRMGR, lvl=WARN] [tid=5411] 4898	: BTRMGR_GetDiscoveredDevices_Internal - No Device is found yet
+2026-01-16T02:47:02.322Z sh[4928]:  260116-02:47:02.322628 [mod=BTRMGR, lvl=INFO] [tid=5411] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 1 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T02:47:02.405Z sh[4928]:  260116-02:47:02.405595 [mod=BTRMGR, lvl=WARN] [tid=5411] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:47:31.858Z sh[4928]:  260116-02:47:31.841985 [mod=BTRMGR, lvl=WARN] [tid=5416] 817	: btrMgr_SysDiag_powerModeChangeCb - new State: 5
+2026-01-16T02:47:31.859Z sh[4928]:  260116-02:47:31.842067 [mod=BTRMGR, lvl=INFO] [tid=5416] 821	: btrMgr_SysDiag_powerModeChangeCb - gpstSDHandle is not NULL
+2026-01-16T02:47:31.859Z sh[4928]:  260116-02:47:31.842098 [mod=BTRMGR, lvl=WARN] [tid=5416] 840	: btrMgr_SysDiag_powerModeChangeCb - BTRMGR_SYS_DIAG_POWERSTATE - Device is being suspended: stby_deep_sleep
+2026-01-16T02:47:31.909Z sh[4928]:  260116-02:47:31.872952 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:47:31.960Z sh[4928]:  260116-02:47:31.960377 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:47:31.980Z sh[4928]:  260116-02:47:31.980641 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:47:32.015Z sh[4928]:  260116-02:47:32.015137 [mod=BTRCORE, lvl=ERROR] [tid=5388] 2185	: btrCore_LE_GattInfoCb - Gatt Service /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 Not Found
+2026-01-16T02:47:32.035Z sh[4928]:  260116-02:47:32.035410 [mod=BTRCORE, lvl=INFO] [tid=5388] 9074	: btrCore_BTDBusConnectionFilterCb - Property Changed! : org.bluez.GattCharacteristic1
+2026-01-16T02:47:32.043Z sh[4928]:  260116-02:47:32.043850 [mod=BTRCORE, lvl=ERROR] [tid=5388] 1512	: btrCore_GetDeviceInfo - There is no device paried/scanned for this adapter
+2026-01-16T02:47:32.044Z sh[4928]:  260116-02:47:32.043911 [mod=BTRCORE, lvl=ERROR] [tid=5388] 7496	: btrCore_BTLeStatusUpdateCb - Failed to find Device in ScannedList!
+2026-01-16T02:47:35.743Z sh[4928]:  260116-02:47:35.742291 [mod=BTRCORE, lvl=INFO] [tid=5388] 8127	: btrCore_BTDBusConnectionFilterCb - Device MAC address 20:44:41:02:DC:C0
+2026-01-16T02:47:35.743Z sh[4928]:  260116-02:47:35.742345 [mod=BTRCORE, lvl=INFO] [tid=5388] 8136	: btrCore_BTDBusConnectionFilterCb - org.bluez.Device1 received event <ServicesResolved>
+2026-01-16T02:47:35.743Z sh[4928]:  260116-02:47:35.742371 [mod=BTRCORE, lvl=INFO] [tid=5388] 8158	: btrCore_BTDBusConnectionFilterCb - bServicesResolved = 0
+2026-01-16T02:47:35.743Z sh[4928]:  260116-02:47:35.742526 [mod=BTRCORE, lvl=INFO] [tid=5387] 1789	: btrCore_BTParseDeviceState - Current State of this connection is @@disconnected@@
+2026-01-16T02:47:35.743Z sh[4928]:  260116-02:47:35.742566 [mod=BTRCORE, lvl=INFO] [tid=5387] 2592	: btrCore_OutTask - leBTDevState = 7 lenBTRCoreDevType =7
+2026-01-16T02:47:35.743Z sh[4928]:  260116-02:47:35.742622 [mod=BTRMGR, lvl=INFO] [tid=5387] 9429	: btrMgr_DeviceStatusCb -  Received status callback device type 21 PrevState 5 State 9
+2026-01-16T02:47:35.756Z sh[4928]:  Received SIGNAL 15 = Terminated - Fri Jan 16 02:47:35 2026
+2026-01-16T02:47:35.756Z sh[4928]:  260116-02:47:35.754200 [mod=BTRMGR, lvl=INFO] [tid=4928] 2685	: btrMgr_StopPacketCapture - Pcaps are not being captured
+2026-01-16T02:47:35.756Z sh[4928]:  260116-02:47:35.754225 [mod=BTRMGR, lvl=INFO] [tid=4928] 2724	: btrMgr_StopHidEventMonitor - hid events are not being captured
+2026-01-16T02:47:35.784Z sh[4928]:  260116-02:47:35.784050 [mod=BTRCORE, lvl=INFO] [tid=5388] 8127	: btrCore_BTDBusConnectionFilterCb - Device MAC address 20:44:41:02:DC:C0
+2026-01-16T02:47:35.784Z sh[4928]:  260116-02:47:35.784302 [mod=BTRCORE, lvl=INFO] [tid=5388] 8136	: btrCore_BTDBusConnectionFilterCb - org.bluez.Device1 received event <Connected>
+2026-01-16T02:47:35.784Z sh[4928]:  260116-02:47:35.784502 [mod=BTRCORE, lvl=INFO] [tid=5388] 8151	: btrCore_BTDBusConnectionFilterCb - bConnected = 0
+2026-01-16T02:47:35.785Z sh[4928]:  260116-02:47:35.785417 [mod=BTRMGR, lvl=WARN] [tid=5387] 2266	: btrMgr_EventCallback - Post Device Out of Range event
+2026-01-16T02:47:35.800Z sh[4928]:  260116-02:47:35.799938 [mod=BTRMGR, lvl=WARN] [tid=4928] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T02:47:35.800Z sh[4928]:  260116-02:47:35.800103 [mod=BTRMGR, lvl=INFO] [tid=5406] 8916	: btrMgr_g_main_loop_Task - GMainLoop Quitting - 0x7e640 - 0x7e640
+2026-01-16T02:47:35.800Z sh[4928]:  260116-02:47:35.800623 [mod=BTRMGR, lvl=WARN] [tid=5387] 1579	: btrMgr_SetDevConnected - Setting = 35477520571584 - 	Connected = 0
+2026-01-16T02:47:35.801Z sh[4928]:  260116-02:47:35.801605 [mod=BTRMGR, lvl=INFO] [tid=4928] 262	: BTRMgr_SD_DeInit - BTRMgr_SD_DeInit SUCCESS
+2026-01-16T02:47:35.801Z sh[4928]:  260116-02:47:35.801750 [mod=BTRMGR, lvl=ERROR] [tid=4928] 4111	: BTRMGR_DeInit - SD Module DeInited = 4
+2026-01-16T02:47:35.802Z sh[4928]:  260116-02:47:35.801792 [mod=BTRMGR, lvl=INFO] [tid=4928] 157	: BTRMgr_PI_DeInit - BTRMgr_PI_DeInit SUCCESS
+2026-01-16T02:47:35.802Z sh[4928]:  260116-02:47:35.801812 [mod=BTRMGR, lvl=ERROR] [tid=4928] 4117	: BTRMGR_DeInit - PI Module DeInited = 4
+2026-01-16T02:47:35.802Z sh[4928]:  260116-02:47:35.801837 [mod=BTRCORE, lvl=INFO] [tid=4928] 3358	: BTRCore_DeInit - hBTRCore   =   0xb6033008
+2026-01-16T02:47:35.802Z sh[4928]:  260116-02:47:35.802317 [mod=BTRCORE, lvl=INFO] [tid=5388] 2122	: btrCore_RunTask - enBTRCoreTaskOpExit
+2026-01-16T02:47:35.802Z sh[4928]:  260116-02:47:35.802353 [mod=BTRCORE, lvl=INFO] [tid=5388] 2177	: btrCore_RunTask - RunTask Exiting
+2026-01-16T02:47:35.802Z sh[4928]:  260116-02:47:35.802629 [mod=BTRCORE, lvl=INFO] [tid=4928] 3375	: BTRCore_DeInit - BTRCore_DeInit - RunTask Exiting BTRCore - 8
+2026-01-16T02:47:35.802Z sh[4928]:  260116-02:47:35.802887 [mod=BTRCORE, lvl=INFO] [tid=5387] 2268	: btrCore_OutTask - enBTRCoreTaskOpExit
+2026-01-16T02:47:35.803Z sh[4928]:  260116-02:47:35.802923 [mod=BTRCORE, lvl=INFO] [tid=5387] 3081	: btrCore_OutTask - OutTask Exiting
+2026-01-16T02:47:35.803Z sh[4928]:  260116-02:47:35.803641 [mod=BTRCORE, lvl=INFO] [tid=4928] 3400	: BTRCore_DeInit - BTRCore_DeInit - OutTask Exiting BTRCore - 8
+2026-01-16T02:47:35.804Z sh[4928]:  260116-02:47:35.804078 [mod=BTRCORE, lvl=INFO] [tid=6103] 3151	: btrCore_BatteryLevelThread - Thread exited due to modeule deInit
+2026-01-16T02:47:35.805Z sh[4928]:  260116-02:47:35.805298 [mod=BTRCORE, lvl=WARN] [tid=4928] 648	: btrCore_BTReleaseDefaultAdapterPath - Adapter Addr is : D4:52:EE:59:E3:E9 - 0x72048
+2026-01-16T02:47:35.805Z sh[4928]:  260116-02:47:35.805342 [mod=BTRCORE, lvl=WARN] [tid=4928] 654	: btrCore_BTReleaseDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T02:47:35.805Z sh[4928]:  260116-02:47:35.805364 [mod=BTRCORE, lvl=WARN] [tid=4928] 3618	: BtrCore_BTReleaseAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T02:47:35.805Z sh[4928]:  260116-02:47:35.805382 [mod=BTRCORE, lvl=ERROR] [tid=4928] 3620	: BtrCore_BTReleaseAdapterPath - ERROR: Looks like Adapter path has been changed by User
+2026-01-16T02:47:35.805Z sh[4928]:  260116-02:47:35.805401 [mod=BTRCORE, lvl=WARN] [tid=4928] 3627	: BtrCore_BTReleaseAdapterPath - Freed Adapter
+2026-01-16T02:47:35.807Z sh[4928]:  260116-02:47:35.807759 [mod=BTRCORE, lvl=INFO] [tid=4928] 3493	: BTRCore_DeInit - Exit Status = 8
+2026-01-16T02:47:35.807Z sh[4928]:  260116-02:47:35.807798 [mod=BTRMGR, lvl=ERROR] [tid=4928] 4124	: BTRMGR_DeInit - BTRCore DeInited; Now will we exit the app = 8
+2026-01-16T02:47:35.808Z sh[4928]:  BTRMGR_DeInit 0 - Fri Jan 16 02:47:35 2026
+2026-01-16T02:47:35.808Z sh[4928]:  260116-02:47:35.807890 [mod=BTRMGR, lvl=INFO] [tid=4928] 2233	: BTRMgr_TermIARMMode - Entering
+2026-01-16T02:47:35.808Z sh[4928]:  260116-02:47:35.807909 [mod=BTRMGR, lvl=INFO] [tid=4928] 2236	: BTRMgr_TermIARMMode - IARM Interface Being terminated
+2026-01-16T02:47:36.304Z sh[4928]:  term start init 1
+2026-01-16T02:47:36.304Z sh[4928]:  260116-02:47:36.304222 [mod=BTRMGR, lvl=INFO] [tid=4928] 2241	: BTRMgr_TermIARMMode - PowerController_Term started in internal
+2026-01-16T02:47:36.304Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:951] Term: Entering ...
+2026-01-16T02:47:36.304Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:896] Disconnect: Entering ...
+2026-01-16T02:47:36.304Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:901] Disconnect: Closing COM-RPC channel ...
+2026-01-16T02:47:36.307Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 0
+2026-01-16T02:47:36.408Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:907] Disconnect: COM-RPC channel closed
+2026-01-16T02:47:36.408Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:914] Disconnect: Exiting ... status[0]
+2026-01-16T02:47:36.408Z sh[4928]:  [PowerController][4928] INFO  [power_controller.cpp:631] ~PIDFileMonitor: destructor
+2026-01-16T05:36:10.874Z sh[14393]:  rdk_dyn_log_initg_dl_socket = 3 __progname = btMgrBus
+2026-01-16T05:36:10.875Z sh[14393]:  Hci0 is up
+2026-01-16T05:36:10.875Z sh[14393]:  Conf file /etc/debug.ini open success
+2026-01-16T05:36:10.875Z sh[14393]:  260116-05:36:10.874585 [mod=BTRCORE, lvl=INFO] [tid=14393] 3184	: BTRCore_Init - BTRCore_Init
+2026-01-16T05:36:10.883Z sh[14393]:  260116-05:36:10.882885 [mod=BTRCORE, lvl=INFO] [tid=14393] 3071	: BtrCore_BTInitGetConnection - DBus Debug DBus Connection Name :1.150
+2026-01-16T05:36:10.888Z sh[14393]:  260116-05:36:10.888119 [mod=BTRCORE, lvl=INFO] [tid=14393] 3203	: BtrCore_BTGetAgentPath - Agent Path: /org/bluez/agent_14393
+2026-01-16T05:36:10.888Z sh[14393]:  260116-05:36:10.888792 [mod=BTRCORE, lvl=INFO] [tid=14397] 2074	: btrCore_RunTask - RunTask Started
+2026-01-16T05:36:10.888Z sh[14393]:  260116-05:36:10.888842 [mod=BTRCORE, lvl=INFO] [tid=14397] 2099	: btrCore_RunTask - enBTRCoreTaskOpStart
+2026-01-16T05:36:10.910Z sh[14393]:  260116-05:36:10.910774 [mod=BTRCORE, lvl=WARN] [tid=14393] 636	: btrCore_BTGetDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T05:36:10.910Z sh[14393]:  260116-05:36:10.910823 [mod=BTRCORE, lvl=WARN] [tid=14393] 3570	: BtrCore_BTGetAdapterPath - Got Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T05:36:10.911Z sh[14393]:  260116-05:36:10.910845 [mod=BTRCORE, lvl=WARN] [tid=14393] 3596	: BtrCore_BTGetAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T05:36:10.945Z sh[14393]:  260116-05:36:10.945368 [mod=BTRCORE, lvl=WARN] [tid=14393] 906	: BTRCore_LE_Init - BTRCore_LE_Init
+2026-01-16T05:36:10.955Z sh[14393]:  260116-05:36:10.955822 [mod=BTRCORE, lvl=INFO] [tid=14397] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T05:36:10.956Z sh[14393]:  260116-05:36:10.955901 [mod=BTRCORE, lvl=INFO] [tid=14397] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T05:36:10.976Z sh[14393]:  260116-05:36:10.976180 [mod=BTRCORE, lvl=INFO] [tid=14397] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T05:36:10.977Z sh[14393]:  260116-05:36:10.976944 [mod=BTRCORE, lvl=INFO] [tid=14397] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T05:36:10.997Z sh[14393]:  260116-05:36:10.997409 [mod=BTRCORE, lvl=INFO] [tid=14397] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T05:36:10.997Z sh[14393]:  260116-05:36:10.997476 [mod=BTRCORE, lvl=INFO] [tid=14397] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T05:36:11.001Z sh[14393]:  260116-05:36:11.001402 [mod=BTRCORE, lvl=INFO] [tid=14393] 4099	: BTRCore_GetVersionInfo - Out:  Bluez-5.48
+2026-01-16T05:36:11.001Z sh[14393]:  260116-05:36:11.001461 [mod=BTRMGR, lvl=INFO] [tid=14393] 3856	: BTRMGR_Init - BTR Bluetooth Version: Bluez-5.48
+2026-01-16T05:36:11.048Z sh[14393]:  260116-05:36:11.047937 [mod=BTRMGR, lvl=INFO] [tid=14393] 3861	: BTRMGR_Init - Number of Adapters found are = 1
+2026-01-16T05:36:11.048Z sh[14393]:  260116-05:36:11.048250 [mod=RFCAPI, lvl=INFO] [tid=14393] getRFCParameter: http server is ready
+2026-01-16T05:36:11.051Z sh[14393]:  260116-05:36:11.051368 [mod=RFCAPI, lvl=INFO] [tid=14393] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable"]}, datalen = 83
+2026-01-16T05:36:11.059Z sh[14393]:  260116-05:36:11.059596 [mod=RFCAPI, lvl=INFO] [tid=14393] curl response : 0 http response code: 200
+2026-01-16T05:36:11.059Z sh[14393]:  260116-05:36:11.059902 [mod=RFCAPI, lvl=INFO] [tid=14393] Curl response: {
+2026-01-16T05:36:11.060Z sh[14393]:  	"parameters":	[{
+2026-01-16T05:36:11.060Z sh[14393]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable",
+2026-01-16T05:36:11.060Z sh[14393]:  			"value":	"false",
+2026-01-16T05:36:11.060Z sh[14393]:  			"dataType":	3,
+2026-01-16T05:36:11.060Z sh[14393]:  			"parameterCount":	1,
+2026-01-16T05:36:11.060Z sh[14393]:  			"message":	"Default Value"
+2026-01-16T05:36:11.060Z sh[14393]:  		}],
+2026-01-16T05:36:11.060Z sh[14393]:  	"statusCode":	38
+2026-01-16T05:36:11.061Z sh[14393]:  }
+2026-01-16T05:36:11.061Z sh[14393]:  260116-05:36:11.060067 [mod=BTRMGR, lvl=INFO] [tid=14393] 754	: btrMgr_CheckDebugModeAvailability - getRFCParameter : Default value
+2026-01-16T05:36:11.061Z sh[14393]:  260116-05:36:11.060109 [mod=BTRMGR, lvl=INFO] [tid=14393] 764	: btrMgr_CheckDebugModeAvailability - BTR Debug Mode will not be available.
+2026-01-16T05:36:11.061Z sh[14393]:  260116-05:36:11.060143 [mod=BTRCORE, lvl=INFO] [tid=14393] 6769	: BTRCore_RegisterStatusCb - BT Status Callback Registered Successfully
+2026-01-16T05:36:11.061Z sh[14393]:  260116-05:36:11.060173 [mod=BTRCORE, lvl=INFO] [tid=14393] 6741	: BTRCore_RegisterDiscoveryCb - Device Discovery Callback Registered Successfully
+2026-01-16T05:36:11.061Z sh[14393]:  260116-05:36:11.060203 [mod=BTRCORE, lvl=INFO] [tid=14393] 6827	: BTRCore_RegisterConnectionIntimationCb - BT Conn In Intimation Callback Registered Successfully
+2026-01-16T05:36:11.061Z sh[14393]:  260116-05:36:11.060233 [mod=BTRCORE, lvl=INFO] [tid=14393] 6857	: BTRCore_RegisterConnectionAuthenticationCb - BT Conn Auth Callback Registered Successfully
+2026-01-16T05:36:11.061Z sh[14393]:  260116-05:36:11.060261 [mod=BTRCORE, lvl=INFO] [tid=14393] 6797	: BTRCore_RegisterMediaStatusCb - BT Media Status Callback Registered Successfully
+2026-01-16T05:36:11.066Z sh[14393]:  260116-05:36:11.060288 [mod=BTRMGR, lvl=INFO] [tid=14393] 3903	: BTRMGR_Init - Activate agent
+2026-01-16T05:36:11.161Z sh[14393]:  260116-05:36:11.161498 [mod=BTRMGR, lvl=INFO] [tid=14393] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 0 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T05:36:11.161Z sh[14393]:  260116-05:36:11.161685 [mod=RFCAPI, lvl=INFO] [tid=14393] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable"]}, datalen = 81
+2026-01-16T05:36:11.164Z sh[14393]:  260116-05:36:11.164366 [mod=RFCAPI, lvl=INFO] [tid=14393] curl response : 0 http response code: 200
+2026-01-16T05:36:11.164Z sh[14393]:  260116-05:36:11.164648 [mod=RFCAPI, lvl=INFO] [tid=14393] Curl response: {
+2026-01-16T05:36:11.164Z sh[14393]:  	"parameters":	[{
+2026-01-16T05:36:11.164Z sh[14393]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable",
+2026-01-16T05:36:11.165Z sh[14393]:  			"value":	"",
+2026-01-16T05:36:11.165Z sh[14393]:  			"dataType":	3,
+2026-01-16T05:36:11.165Z sh[14393]:  			"parameterCount":	1,
+2026-01-16T05:36:11.165Z sh[14393]:  			"message":	"Parameter value field is not available"
+2026-01-16T05:36:11.165Z sh[14393]:  		}],
+2026-01-16T05:36:11.165Z sh[14393]:  	"message":	"Parameter value field is not available",
+2026-01-16T05:36:11.165Z sh[14393]:  	"statusCode":	22
+2026-01-16T05:36:11.165Z sh[14393]:  }
+2026-01-16T05:36:11.165Z sh[14393]:  260116-05:36:11.164787 [mod=BTRMGR, lvl=ERROR] [tid=14393] 699	: btrMgr_CheckAudioInServiceAvailability - getRFCParameter Failed :  Value is Empty
+2026-01-16T05:36:11.165Z sh[14393]:  260116-05:36:11.164836 [mod=RFCAPI, lvl=INFO] [tid=14393] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable"]}, datalen = 81
+2026-01-16T05:36:11.169Z sh[14393]:  260116-05:36:11.169593 [mod=RFCAPI, lvl=INFO] [tid=14393] curl response : 0 http response code: 200
+2026-01-16T05:36:11.169Z sh[14393]:  260116-05:36:11.169831 [mod=RFCAPI, lvl=INFO] [tid=14393] Curl response: {
+2026-01-16T05:36:11.170Z sh[14393]:  	"parameters":	[{
+2026-01-16T05:36:11.170Z sh[14393]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable",
+2026-01-16T05:36:11.170Z sh[14393]:  			"value":	"true",
+2026-01-16T05:36:11.170Z sh[14393]:  			"dataType":	3,
+2026-01-16T05:36:11.170Z sh[14393]:  			"parameterCount":	1,
+2026-01-16T05:36:11.170Z sh[14393]:  			"message":	"Default Value"
+2026-01-16T05:36:11.170Z sh[14393]:  		}],
+2026-01-16T05:36:11.170Z sh[14393]:  	"statusCode":	38
+2026-01-16T05:36:11.170Z sh[14393]:  }
+2026-01-16T05:36:11.170Z sh[14393]:  260116-05:36:11.169929 [mod=BTRMGR, lvl=INFO] [tid=14393] 721	: btrMgr_CheckHidGamePadServiceAvailability - getRFCParameter : Default value
+2026-01-16T05:36:11.170Z sh[14393]:  260116-05:36:11.169962 [mod=BTRMGR, lvl=INFO] [tid=14393] 727	: btrMgr_CheckHidGamePadServiceAvailability - BTR HidGamePad Serivce will be available.
+2026-01-16T05:36:11.215Z sh[14393]:  I-ARM BTMgr Bus: BTRMgr_BeginIARMMode Fri Jan 16 05:36:11 2026
+2026-01-16T05:36:11.215Z sh[14393]:  260116-05:36:11.215676 [mod=BTRMGR, lvl=INFO] [tid=14405] 8914	: btrMgr_g_main_loop_Task - GMainLoop Running - 0x7cbb8 - 0x7cbb8
+2026-01-16T05:36:11.216Z sh[14393]:  260116-05:36:11.215690 [mod=BTRMGR, lvl=INFO] [tid=14393] 2147	: BTRMgr_BeginIARMMode - Entering
+2026-01-16T05:36:11.246Z sh[14393]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = BTRMgrBus
+2026-01-16T05:36:11.246Z sh[14393]:  setting init done
+2026-01-16T05:36:11.246Z sh[14393]:  Registering BTRMgrBus
+2026-01-16T05:36:11.247Z sh[14393]:  260116-05:36:11.246531 [mod=BTRMGR, lvl=INFO] [tid=14393] 2154	: BTRMgr_BeginIARMMode - IARM Interface Initializing
+2026-01-16T05:36:11.247Z sh[14393]:  260116-05:36:11.246989 [mod=BTRMGR, lvl=INFO] [tid=14393] 8895	: BTRMGR_RegisterEventCallback - BTRMGR_RegisterEventCallback : Success
+2026-01-16T05:36:11.247Z sh[14393]:  260116-05:36:11.247022 [mod=BTRMGR, lvl=INFO] [tid=14393] 2220	: BTRMgr_BeginIARMMode - IARM Interface Inited Successfully
+2026-01-16T05:36:11.247Z sh[14393]:  260116-05:36:11.247066 [mod=BTRMGR, lvl=INFO] [tid=14393] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T05:36:11.247Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T05:36:11.247Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-16T05:36:11.247Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-16T05:36:11.374Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T05:36:11.374Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T05:36:11.374Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-16T05:36:11.374Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-16T05:36:11.374Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3847
+2026-01-16T05:36:11.374Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T05:36:11.375Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T05:36:11.375Z sh[14393]:  [PowerController][14409] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-16T05:36:11.375Z sh[14393]:  260116-05:36:11.374612 [mod=BTRMGR, lvl=INFO] [tid=14393] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T05:36:11.375Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T05:36:11.376Z sh[14393]:  260116-05:36:11.375844 [mod=BTRMGR, lvl=WARN] [tid=14393] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T05:36:11.376Z sh[14393]:  260116-05:36:11.376700 [mod=BTRMGR, lvl=ERROR] [tid=14393] 6069	: BTRMGR_StartAudioStreamingOut_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T05:36:11.376Z sh[14393]:  BTRMGR_StartAudioStreamingOut_StartUp - -1
+2026-01-16T05:36:11.377Z sh[14393]:  260116-05:36:11.376759 [mod=BTRMGR, lvl=INFO] [tid=14393] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T05:36:11.377Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T05:36:11.377Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T05:36:11.377Z sh[14393]:  260116-05:36:11.376811 [mod=BTRMGR, lvl=INFO] [tid=14393] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T05:36:11.377Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T05:36:11.378Z sh[14393]:  260116-05:36:11.377776 [mod=BTRMGR, lvl=WARN] [tid=14393] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T05:36:11.378Z sh[14393]:  260116-05:36:11.377816 [mod=BTRMGR, lvl=ERROR] [tid=14393] 5970	: BTRMGR_ConnectGamepads_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T05:36:11.378Z sh[14393]:  BTRMGR_ConnectGamepads_StartUp - -1
+2026-01-16T05:36:12.221Z sh[14393]:  260116-05:36:12.203971 [mod=BTRMGR, lvl=WARN] [tid=14407] 817	: btrMgr_SysDiag_powerModeChangeCb - new State: 5
+2026-01-16T05:36:12.221Z sh[14393]:  260116-05:36:12.204027 [mod=BTRMGR, lvl=INFO] [tid=14407] 821	: btrMgr_SysDiag_powerModeChangeCb - gpstSDHandle is not NULL
+2026-01-16T05:36:12.221Z sh[14393]:  260116-05:36:12.204067 [mod=BTRMGR, lvl=WARN] [tid=14407] 840	: btrMgr_SysDiag_powerModeChangeCb - BTRMGR_SYS_DIAG_POWERSTATE - Device is being suspended: stby_deep_sleep
+2026-01-16T05:36:13.414Z sh[14393]:  Received SIGNAL 15 = Terminated - Fri Jan 16 05:36:13 2026
+2026-01-16T05:36:13.414Z sh[14393]:  260116-05:36:13.413490 [mod=BTRMGR, lvl=INFO] [tid=14393] 2685	: btrMgr_StopPacketCapture - Pcaps are not being captured
+2026-01-16T05:36:13.414Z sh[14393]:  260116-05:36:13.413519 [mod=BTRMGR, lvl=INFO] [tid=14393] 2724	: btrMgr_StopHidEventMonitor - hid events are not being captured
+2026-01-16T05:36:14.443Z sh[14393]:  260116-05:36:14.442954 [mod=BTRMGR, lvl=WARN] [tid=14393] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T05:36:14.443Z sh[14393]:  260116-05:36:14.443074 [mod=BTRMGR, lvl=INFO] [tid=14405] 8916	: btrMgr_g_main_loop_Task - GMainLoop Quitting - 0x7cbb8 - 0x7cbb8
+2026-01-16T05:36:14.444Z sh[14393]:  260116-05:36:14.444355 [mod=BTRMGR, lvl=INFO] [tid=14393] 262	: BTRMgr_SD_DeInit - BTRMgr_SD_DeInit SUCCESS
+2026-01-16T05:36:14.444Z sh[14393]:  260116-05:36:14.444400 [mod=BTRMGR, lvl=ERROR] [tid=14393] 4111	: BTRMGR_DeInit - SD Module DeInited = 4
+2026-01-16T05:36:14.444Z sh[14393]:  260116-05:36:14.444436 [mod=BTRMGR, lvl=INFO] [tid=14393] 157	: BTRMgr_PI_DeInit - BTRMgr_PI_DeInit SUCCESS
+2026-01-16T05:36:14.444Z sh[14393]:  260116-05:36:14.444456 [mod=BTRMGR, lvl=ERROR] [tid=14393] 4117	: BTRMGR_DeInit - PI Module DeInited = 4
+2026-01-16T05:36:14.444Z sh[14393]:  260116-05:36:14.444480 [mod=BTRCORE, lvl=INFO] [tid=14393] 3358	: BTRCore_DeInit - hBTRCore   =   0xb5f63008
+2026-01-16T05:36:14.444Z sh[14393]:  260116-05:36:14.444544 [mod=BTRCORE, lvl=INFO] [tid=14397] 2122	: btrCore_RunTask - enBTRCoreTaskOpExit
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.444573 [mod=BTRCORE, lvl=INFO] [tid=14397] 2177	: btrCore_RunTask - RunTask Exiting
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.444693 [mod=BTRCORE, lvl=INFO] [tid=14393] 3375	: BTRCore_DeInit - BTRCore_DeInit - RunTask Exiting BTRCore - 8
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.444774 [mod=BTRCORE, lvl=INFO] [tid=14396] 2268	: btrCore_OutTask - enBTRCoreTaskOpExit
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.444800 [mod=BTRCORE, lvl=INFO] [tid=14396] 3081	: btrCore_OutTask - OutTask Exiting
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.444890 [mod=BTRCORE, lvl=INFO] [tid=14393] 3400	: BTRCore_DeInit - BTRCore_DeInit - OutTask Exiting BTRCore - 8
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.445583 [mod=BTRCORE, lvl=WARN] [tid=14393] 648	: btrCore_BTReleaseDefaultAdapterPath - Adapter Addr is : D4:52:EE:59:E3:E9 - 0x72048
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.445641 [mod=BTRCORE, lvl=WARN] [tid=14393] 654	: btrCore_BTReleaseDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.445665 [mod=BTRCORE, lvl=WARN] [tid=14393] 3618	: BtrCore_BTReleaseAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.445684 [mod=BTRCORE, lvl=ERROR] [tid=14393] 3620	: BtrCore_BTReleaseAdapterPath - ERROR: Looks like Adapter path has been changed by User
+2026-01-16T05:36:14.445Z sh[14393]:  260116-05:36:14.445703 [mod=BTRCORE, lvl=WARN] [tid=14393] 3627	: BtrCore_BTReleaseAdapterPath - Freed Adapter
+2026-01-16T05:36:14.449Z sh[14393]:  260116-05:36:14.449312 [mod=BTRCORE, lvl=INFO] [tid=14393] 3493	: BTRCore_DeInit - Exit Status = 8
+2026-01-16T05:36:14.449Z sh[14393]:  260116-05:36:14.449359 [mod=BTRMGR, lvl=ERROR] [tid=14393] 4124	: BTRMGR_DeInit - BTRCore DeInited; Now will we exit the app = 8
+2026-01-16T05:36:14.449Z sh[14393]:  BTRMGR_DeInit 0 - Fri Jan 16 05:36:14 2026
+2026-01-16T05:36:14.449Z sh[14393]:  260116-05:36:14.449444 [mod=BTRMGR, lvl=INFO] [tid=14393] 2233	: BTRMgr_TermIARMMode - Entering
+2026-01-16T05:36:14.449Z sh[14393]:  260116-05:36:14.449463 [mod=BTRMGR, lvl=INFO] [tid=14393] 2236	: BTRMgr_TermIARMMode - IARM Interface Being terminated
+2026-01-16T05:36:14.921Z sh[14393]:  term start init 1
+2026-01-16T05:36:14.922Z sh[14393]:  260116-05:36:14.921020 [mod=BTRMGR, lvl=INFO] [tid=14393] 2241	: BTRMgr_TermIARMMode - PowerController_Term started in internal
+2026-01-16T05:36:14.922Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:951] Term: Entering ...
+2026-01-16T05:36:14.922Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:896] Disconnect: Entering ...
+2026-01-16T05:36:14.922Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:901] Disconnect: Closing COM-RPC channel ...
+2026-01-16T05:36:14.934Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 0
+2026-01-16T05:36:15.030Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:907] Disconnect: COM-RPC channel closed
+2026-01-16T05:36:15.030Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:914] Disconnect: Exiting ... status[0]
+2026-01-16T05:36:15.030Z sh[14393]:  [PowerController][14393] INFO  [power_controller.cpp:631] ~PIDFileMonitor: destructor
+2026-01-16T08:14:46.021Z sh[15063]:  rdk_dyn_log_initg_dl_socket = 3 __progname = btMgrBus
+2026-01-16T08:14:46.021Z sh[15063]:  Hci0 is up
+2026-01-16T08:14:46.021Z sh[15063]:  Conf file /etc/debug.ini open success
+2026-01-16T08:14:46.021Z sh[15063]:  260116-08:14:46.021178 [mod=BTRCORE, lvl=INFO] [tid=15063] 3184	: BTRCore_Init - BTRCore_Init
+2026-01-16T08:14:46.033Z sh[15063]:  260116-08:14:46.033008 [mod=BTRCORE, lvl=INFO] [tid=15063] 3071	: BtrCore_BTInitGetConnection - DBus Debug DBus Connection Name :1.168
+2026-01-16T08:14:46.041Z sh[15063]:  260116-08:14:46.041380 [mod=BTRCORE, lvl=INFO] [tid=15063] 3203	: BtrCore_BTGetAgentPath - Agent Path: /org/bluez/agent_15063
+2026-01-16T08:14:46.042Z sh[15063]:  260116-08:14:46.042147 [mod=BTRCORE, lvl=INFO] [tid=15071] 2074	: btrCore_RunTask - RunTask Started
+2026-01-16T08:14:46.042Z sh[15063]:  260116-08:14:46.042421 [mod=BTRCORE, lvl=INFO] [tid=15071] 2099	: btrCore_RunTask - enBTRCoreTaskOpStart
+2026-01-16T08:14:46.075Z sh[15063]:  260116-08:14:46.075329 [mod=BTRCORE, lvl=WARN] [tid=15063] 636	: btrCore_BTGetDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T08:14:46.075Z sh[15063]:  260116-08:14:46.075393 [mod=BTRCORE, lvl=WARN] [tid=15063] 3570	: BtrCore_BTGetAdapterPath - Got Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T08:14:46.075Z sh[15063]:  260116-08:14:46.075423 [mod=BTRCORE, lvl=WARN] [tid=15063] 3596	: BtrCore_BTGetAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T08:14:46.088Z sh[15063]:  260116-08:14:46.088551 [mod=BTRCORE, lvl=WARN] [tid=15063] 906	: BTRCore_LE_Init - BTRCore_LE_Init
+2026-01-16T08:14:46.090Z sh[15063]:  260116-08:14:46.090159 [mod=BTRCORE, lvl=INFO] [tid=15071] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T08:14:46.090Z sh[15063]:  260116-08:14:46.090252 [mod=BTRCORE, lvl=INFO] [tid=15071] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T08:14:46.110Z sh[15063]:  260116-08:14:46.110637 [mod=BTRCORE, lvl=INFO] [tid=15071] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T08:14:46.110Z sh[15063]:  260116-08:14:46.110704 [mod=BTRCORE, lvl=INFO] [tid=15071] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T08:14:46.131Z sh[15063]:  260116-08:14:46.130981 [mod=BTRCORE, lvl=INFO] [tid=15071] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T08:14:46.131Z sh[15063]:  260116-08:14:46.131042 [mod=BTRCORE, lvl=INFO] [tid=15071] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T08:14:46.151Z sh[15063]:  260116-08:14:46.151420 [mod=BTRCORE, lvl=INFO] [tid=15071] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T08:14:46.151Z sh[15063]:  260116-08:14:46.151492 [mod=BTRCORE, lvl=INFO] [tid=15071] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T08:14:46.167Z sh[15063]:  260116-08:14:46.166902 [mod=BTRCORE, lvl=INFO] [tid=15063] 4099	: BTRCore_GetVersionInfo - Out:  Bluez-5.48
+2026-01-16T08:14:46.167Z sh[15063]:  260116-08:14:46.166980 [mod=BTRMGR, lvl=INFO] [tid=15063] 3856	: BTRMGR_Init - BTR Bluetooth Version: Bluez-5.48
+2026-01-16T08:14:46.236Z sh[15063]:  260116-08:14:46.236658 [mod=BTRMGR, lvl=INFO] [tid=15063] 3861	: BTRMGR_Init - Number of Adapters found are = 1
+2026-01-16T08:14:46.237Z sh[15063]:  260116-08:14:46.236984 [mod=RFCAPI, lvl=INFO] [tid=15063] getRFCParameter: http server is ready
+2026-01-16T08:14:46.240Z sh[15063]:  260116-08:14:46.240594 [mod=RFCAPI, lvl=INFO] [tid=15063] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable"]}, datalen = 83
+2026-01-16T08:14:46.244Z sh[15063]:  260116-08:14:46.243692 [mod=RFCAPI, lvl=INFO] [tid=15063] curl response : 0 http response code: 200
+2026-01-16T08:14:46.244Z sh[15063]:  260116-08:14:46.243930 [mod=RFCAPI, lvl=INFO] [tid=15063] Curl response: {
+2026-01-16T08:14:46.244Z sh[15063]:  	"parameters":	[{
+2026-01-16T08:14:46.244Z sh[15063]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable",
+2026-01-16T08:14:46.244Z sh[15063]:  			"value":	"false",
+2026-01-16T08:14:46.244Z sh[15063]:  			"dataType":	3,
+2026-01-16T08:14:46.244Z sh[15063]:  			"parameterCount":	1,
+2026-01-16T08:14:46.245Z sh[15063]:  			"message":	"Default Value"
+2026-01-16T08:14:46.245Z sh[15063]:  		}],
+2026-01-16T08:14:46.245Z sh[15063]:  	"statusCode":	38
+2026-01-16T08:14:46.245Z sh[15063]:  }
+2026-01-16T08:14:46.245Z sh[15063]:  260116-08:14:46.244072 [mod=BTRMGR, lvl=INFO] [tid=15063] 754	: btrMgr_CheckDebugModeAvailability - getRFCParameter : Default value
+2026-01-16T08:14:46.245Z sh[15063]:  260116-08:14:46.244111 [mod=BTRMGR, lvl=INFO] [tid=15063] 764	: btrMgr_CheckDebugModeAvailability - BTR Debug Mode will not be available.
+2026-01-16T08:14:46.245Z sh[15063]:  260116-08:14:46.244144 [mod=BTRCORE, lvl=INFO] [tid=15063] 6769	: BTRCore_RegisterStatusCb - BT Status Callback Registered Successfully
+2026-01-16T08:14:46.245Z sh[15063]:  260116-08:14:46.244174 [mod=BTRCORE, lvl=INFO] [tid=15063] 6741	: BTRCore_RegisterDiscoveryCb - Device Discovery Callback Registered Successfully
+2026-01-16T08:14:46.245Z sh[15063]:  260116-08:14:46.244204 [mod=BTRCORE, lvl=INFO] [tid=15063] 6827	: BTRCore_RegisterConnectionIntimationCb - BT Conn In Intimation Callback Registered Successfully
+2026-01-16T08:14:46.245Z sh[15063]:  260116-08:14:46.244233 [mod=BTRCORE, lvl=INFO] [tid=15063] 6857	: BTRCore_RegisterConnectionAuthenticationCb - BT Conn Auth Callback Registered Successfully
+2026-01-16T08:14:46.246Z sh[15063]:  260116-08:14:46.244261 [mod=BTRCORE, lvl=INFO] [tid=15063] 6797	: BTRCore_RegisterMediaStatusCb - BT Media Status Callback Registered Successfully
+2026-01-16T08:14:46.246Z sh[15063]:  260116-08:14:46.244286 [mod=BTRMGR, lvl=INFO] [tid=15063] 3903	: BTRMGR_Init - Activate agent
+2026-01-16T08:14:46.321Z sh[15063]:  260116-08:14:46.320973 [mod=BTRMGR, lvl=INFO] [tid=15063] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 0 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T08:14:46.322Z sh[15063]:  260116-08:14:46.321161 [mod=RFCAPI, lvl=INFO] [tid=15063] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable"]}, datalen = 81
+2026-01-16T08:14:46.324Z sh[15063]:  260116-08:14:46.324623 [mod=RFCAPI, lvl=INFO] [tid=15063] curl response : 0 http response code: 200
+2026-01-16T08:14:46.324Z sh[15063]:  260116-08:14:46.324859 [mod=RFCAPI, lvl=INFO] [tid=15063] Curl response: {
+2026-01-16T08:14:46.325Z sh[15063]:  	"parameters":	[{
+2026-01-16T08:14:46.325Z sh[15063]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable",
+2026-01-16T08:14:46.325Z sh[15063]:  			"value":	"",
+2026-01-16T08:14:46.325Z sh[15063]:  			"dataType":	3,
+2026-01-16T08:14:46.325Z sh[15063]:  			"parameterCount":	1,
+2026-01-16T08:14:46.325Z sh[15063]:  			"message":	"Parameter value field is not available"
+2026-01-16T08:14:46.325Z sh[15063]:  		}],
+2026-01-16T08:14:46.325Z sh[15063]:  	"message":	"Parameter value field is not available",
+2026-01-16T08:14:46.325Z sh[15063]:  	"statusCode":	22
+2026-01-16T08:14:46.326Z sh[15063]:  }
+2026-01-16T08:14:46.326Z sh[15063]:  260116-08:14:46.324974 [mod=BTRMGR, lvl=ERROR] [tid=15063] 699	: btrMgr_CheckAudioInServiceAvailability - getRFCParameter Failed :  Value is Empty
+2026-01-16T08:14:46.326Z sh[15063]:  260116-08:14:46.325020 [mod=RFCAPI, lvl=INFO] [tid=15063] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable"]}, datalen = 81
+2026-01-16T08:14:46.327Z sh[15063]:  260116-08:14:46.327425 [mod=RFCAPI, lvl=INFO] [tid=15063] curl response : 0 http response code: 200
+2026-01-16T08:14:46.327Z sh[15063]:  260116-08:14:46.327657 [mod=RFCAPI, lvl=INFO] [tid=15063] Curl response: {
+2026-01-16T08:14:46.327Z sh[15063]:  	"parameters":	[{
+2026-01-16T08:14:46.327Z sh[15063]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable",
+2026-01-16T08:14:46.328Z sh[15063]:  			"value":	"true",
+2026-01-16T08:14:46.328Z sh[15063]:  			"dataType":	3,
+2026-01-16T08:14:46.328Z sh[15063]:  			"parameterCount":	1,
+2026-01-16T08:14:46.328Z sh[15063]:  			"message":	"Default Value"
+2026-01-16T08:14:46.328Z sh[15063]:  		}],
+2026-01-16T08:14:46.328Z sh[15063]:  	"statusCode":	38
+2026-01-16T08:14:46.328Z sh[15063]:  }
+2026-01-16T08:14:46.328Z sh[15063]:  260116-08:14:46.327751 [mod=BTRMGR, lvl=INFO] [tid=15063] 721	: btrMgr_CheckHidGamePadServiceAvailability - getRFCParameter : Default value
+2026-01-16T08:14:46.328Z sh[15063]:  260116-08:14:46.327785 [mod=BTRMGR, lvl=INFO] [tid=15063] 727	: btrMgr_CheckHidGamePadServiceAvailability - BTR HidGamePad Serivce will be available.
+2026-01-16T08:14:46.375Z sh[15063]:  I-ARM BTMgr Bus: BTRMgr_BeginIARMMode Fri Jan 16 08:14:46 2026
+2026-01-16T08:14:46.375Z sh[15063]:  260116-08:14:46.375457 [mod=BTRMGR, lvl=INFO] [tid=15075] 8914	: btrMgr_g_main_loop_Task - GMainLoop Running - 0x7cf18 - 0x7cf18
+2026-01-16T08:14:46.375Z sh[15063]:  260116-08:14:46.375475 [mod=BTRMGR, lvl=INFO] [tid=15063] 2147	: BTRMgr_BeginIARMMode - Entering
+2026-01-16T08:14:46.403Z sh[15063]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = BTRMgrBus
+2026-01-16T08:14:46.403Z sh[15063]:  setting init done
+2026-01-16T08:14:46.403Z sh[15063]:  Registering BTRMgrBus
+2026-01-16T08:14:46.403Z sh[15063]:  260116-08:14:46.403209 [mod=BTRMGR, lvl=INFO] [tid=15063] 2154	: BTRMgr_BeginIARMMode - IARM Interface Initializing
+2026-01-16T08:14:46.403Z sh[15063]:  260116-08:14:46.403669 [mod=BTRMGR, lvl=INFO] [tid=15063] 8895	: BTRMGR_RegisterEventCallback - BTRMGR_RegisterEventCallback : Success
+2026-01-16T08:14:46.403Z sh[15063]:  260116-08:14:46.403703 [mod=BTRMGR, lvl=INFO] [tid=15063] 2220	: BTRMgr_BeginIARMMode - IARM Interface Inited Successfully
+2026-01-16T08:14:46.404Z sh[15063]:  260116-08:14:46.403748 [mod=BTRMGR, lvl=INFO] [tid=15063] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T08:14:46.404Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T08:14:46.404Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-16T08:14:46.404Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-16T08:14:46.520Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T08:14:46.520Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T08:14:46.520Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-16T08:14:46.521Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-16T08:14:46.521Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3847
+2026-01-16T08:14:46.521Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T08:14:46.521Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T08:14:46.521Z sh[15063]:  260116-08:14:46.521066 [mod=BTRMGR, lvl=INFO] [tid=15063] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T08:14:46.521Z sh[15063]:  [PowerController][15079] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-16T08:14:46.522Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T08:14:46.522Z sh[15063]:  260116-08:14:46.522190 [mod=BTRMGR, lvl=WARN] [tid=15063] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T08:14:46.523Z sh[15063]:  260116-08:14:46.523006 [mod=BTRMGR, lvl=ERROR] [tid=15063] 6069	: BTRMGR_StartAudioStreamingOut_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T08:14:46.523Z sh[15063]:  BTRMGR_StartAudioStreamingOut_StartUp - -1
+2026-01-16T08:14:46.523Z sh[15063]:  260116-08:14:46.523061 [mod=BTRMGR, lvl=INFO] [tid=15063] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T08:14:46.523Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T08:14:46.523Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T08:14:46.523Z sh[15063]:  260116-08:14:46.523110 [mod=BTRMGR, lvl=INFO] [tid=15063] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T08:14:46.524Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T08:14:46.524Z sh[15063]:  260116-08:14:46.524057 [mod=BTRMGR, lvl=WARN] [tid=15063] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T08:14:46.524Z sh[15063]:  260116-08:14:46.524122 [mod=BTRMGR, lvl=ERROR] [tid=15063] 5970	: BTRMGR_ConnectGamepads_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T08:14:46.524Z sh[15063]:  BTRMGR_ConnectGamepads_StartUp - -1
+2026-01-16T08:14:47.666Z sh[15063]:  260116-08:14:47.662024 [mod=BTRMGR, lvl=WARN] [tid=15077] 817	: btrMgr_SysDiag_powerModeChangeCb - new State: 5
+2026-01-16T08:14:47.666Z sh[15063]:  260116-08:14:47.662087 [mod=BTRMGR, lvl=INFO] [tid=15077] 821	: btrMgr_SysDiag_powerModeChangeCb - gpstSDHandle is not NULL
+2026-01-16T08:14:47.666Z sh[15063]:  260116-08:14:47.662126 [mod=BTRMGR, lvl=WARN] [tid=15077] 840	: btrMgr_SysDiag_powerModeChangeCb - BTRMGR_SYS_DIAG_POWERSTATE - Device is being suspended: stby_deep_sleep
+2026-01-16T08:14:48.909Z sh[15063]:  Received SIGNAL 15 = Terminated - Fri Jan 16 08:14:48 2026
+2026-01-16T08:14:48.909Z sh[15063]:  260116-08:14:48.908659 [mod=BTRMGR, lvl=INFO] [tid=15063] 2685	: btrMgr_StopPacketCapture - Pcaps are not being captured
+2026-01-16T08:14:48.909Z sh[15063]:  260116-08:14:48.908697 [mod=BTRMGR, lvl=INFO] [tid=15063] 2724	: btrMgr_StopHidEventMonitor - hid events are not being captured
+2026-01-16T08:14:48.979Z sh[15063]:  260116-08:14:48.978480 [mod=BTRMGR, lvl=WARN] [tid=15063] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T08:14:48.979Z sh[15063]:  260116-08:14:48.978624 [mod=BTRMGR, lvl=INFO] [tid=15075] 8916	: btrMgr_g_main_loop_Task - GMainLoop Quitting - 0x7cf18 - 0x7cf18
+2026-01-16T08:14:48.980Z sh[15063]:  260116-08:14:48.979984 [mod=BTRMGR, lvl=INFO] [tid=15063] 262	: BTRMgr_SD_DeInit - BTRMgr_SD_DeInit SUCCESS
+2026-01-16T08:14:48.980Z sh[15063]:  260116-08:14:48.980041 [mod=BTRMGR, lvl=ERROR] [tid=15063] 4111	: BTRMGR_DeInit - SD Module DeInited = 4
+2026-01-16T08:14:48.980Z sh[15063]:  260116-08:14:48.980087 [mod=BTRMGR, lvl=INFO] [tid=15063] 157	: BTRMgr_PI_DeInit - BTRMgr_PI_DeInit SUCCESS
+2026-01-16T08:14:48.980Z sh[15063]:  260116-08:14:48.980116 [mod=BTRMGR, lvl=ERROR] [tid=15063] 4117	: BTRMGR_DeInit - PI Module DeInited = 4
+2026-01-16T08:14:48.980Z sh[15063]:  260116-08:14:48.980148 [mod=BTRCORE, lvl=INFO] [tid=15063] 3358	: BTRCore_DeInit - hBTRCore   =   0xb5f83008
+2026-01-16T08:14:49.001Z sh[15063]:  260116-08:14:49.001419 [mod=BTRCORE, lvl=INFO] [tid=15071] 2122	: btrCore_RunTask - enBTRCoreTaskOpExit
+2026-01-16T08:14:49.001Z sh[15063]:  260116-08:14:49.001478 [mod=BTRCORE, lvl=INFO] [tid=15071] 2177	: btrCore_RunTask - RunTask Exiting
+2026-01-16T08:14:49.001Z sh[15063]:  260116-08:14:49.001656 [mod=BTRCORE, lvl=INFO] [tid=15063] 3375	: BTRCore_DeInit - BTRCore_DeInit - RunTask Exiting BTRCore - 8
+2026-01-16T08:14:49.002Z sh[15063]:  260116-08:14:49.001806 [mod=BTRCORE, lvl=INFO] [tid=15070] 2268	: btrCore_OutTask - enBTRCoreTaskOpExit
+2026-01-16T08:14:49.002Z sh[15063]:  260116-08:14:49.001845 [mod=BTRCORE, lvl=INFO] [tid=15070] 3081	: btrCore_OutTask - OutTask Exiting
+2026-01-16T08:14:49.002Z sh[15063]:  260116-08:14:49.002009 [mod=BTRCORE, lvl=INFO] [tid=15063] 3400	: BTRCore_DeInit - BTRCore_DeInit - OutTask Exiting BTRCore - 8
+2026-01-16T08:14:49.003Z sh[15063]:  260116-08:14:49.002902 [mod=BTRCORE, lvl=WARN] [tid=15063] 648	: btrCore_BTReleaseDefaultAdapterPath - Adapter Addr is : D4:52:EE:59:E3:E9 - 0x72048
+2026-01-16T08:14:49.003Z sh[15063]:  260116-08:14:49.002962 [mod=BTRCORE, lvl=WARN] [tid=15063] 654	: btrCore_BTReleaseDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T08:14:49.003Z sh[15063]:  260116-08:14:49.002996 [mod=BTRCORE, lvl=WARN] [tid=15063] 3618	: BtrCore_BTReleaseAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T08:14:49.003Z sh[15063]:  260116-08:14:49.003025 [mod=BTRCORE, lvl=ERROR] [tid=15063] 3620	: BtrCore_BTReleaseAdapterPath - ERROR: Looks like Adapter path has been changed by User
+2026-01-16T08:14:49.003Z sh[15063]:  260116-08:14:49.003055 [mod=BTRCORE, lvl=WARN] [tid=15063] 3627	: BtrCore_BTReleaseAdapterPath - Freed Adapter
+2026-01-16T08:14:49.007Z sh[15063]:  260116-08:14:49.007189 [mod=BTRCORE, lvl=INFO] [tid=15063] 3493	: BTRCore_DeInit - Exit Status = 8
+2026-01-16T08:14:49.007Z sh[15063]:  260116-08:14:49.007240 [mod=BTRMGR, lvl=ERROR] [tid=15063] 4124	: BTRMGR_DeInit - BTRCore DeInited; Now will we exit the app = 8
+2026-01-16T08:14:49.007Z sh[15063]:  BTRMGR_DeInit 0 - Fri Jan 16 08:14:49 2026
+2026-01-16T08:14:49.007Z sh[15063]:  260116-08:14:49.007362 [mod=BTRMGR, lvl=INFO] [tid=15063] 2233	: BTRMgr_TermIARMMode - Entering
+2026-01-16T08:14:49.007Z sh[15063]:  260116-08:14:49.007394 [mod=BTRMGR, lvl=INFO] [tid=15063] 2236	: BTRMgr_TermIARMMode - IARM Interface Being terminated
+2026-01-16T08:14:49.210Z sh[15063]:  term start init 1
+2026-01-16T08:14:49.210Z sh[15063]:  260116-08:14:49.210116 [mod=BTRMGR, lvl=INFO] [tid=15063] 2241	: BTRMgr_TermIARMMode - PowerController_Term started in internal
+2026-01-16T08:14:49.210Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:951] Term: Entering ...
+2026-01-16T08:14:49.210Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:896] Disconnect: Entering ...
+2026-01-16T08:14:49.210Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:901] Disconnect: Closing COM-RPC channel ...
+2026-01-16T08:14:49.211Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 0
+2026-01-16T08:14:49.313Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:907] Disconnect: COM-RPC channel closed
+2026-01-16T08:14:49.313Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:914] Disconnect: Exiting ... status[0]
+2026-01-16T08:14:49.313Z sh[15063]:  [PowerController][15063] INFO  [power_controller.cpp:631] ~PIDFileMonitor: destructor
+2026-01-16T08:35:58.073Z sh[15435]:  rdk_dyn_log_initg_dl_socket = 3 __progname = btMgrBus
+2026-01-16T08:35:58.073Z sh[15435]:  Hci0 is up
+2026-01-16T08:35:58.073Z sh[15435]:  Conf file /etc/debug.ini open success
+2026-01-16T08:35:58.073Z sh[15435]:  260116-08:35:58.073008 [mod=BTRCORE, lvl=INFO] [tid=15435] 3184	: BTRCore_Init - BTRCore_Init
+2026-01-16T08:35:58.085Z sh[15435]:  260116-08:35:58.085592 [mod=BTRCORE, lvl=INFO] [tid=15435] 3071	: BtrCore_BTInitGetConnection - DBus Debug DBus Connection Name :1.179
+2026-01-16T08:35:58.089Z sh[15435]:  260116-08:35:58.089407 [mod=BTRCORE, lvl=INFO] [tid=15435] 3203	: BtrCore_BTGetAgentPath - Agent Path: /org/bluez/agent_15435
+2026-01-16T08:35:58.090Z sh[15435]:  260116-08:35:58.090080 [mod=BTRCORE, lvl=INFO] [tid=15439] 2074	: btrCore_RunTask - RunTask Started
+2026-01-16T08:35:58.090Z sh[15435]:  260116-08:35:58.090185 [mod=BTRCORE, lvl=INFO] [tid=15439] 2099	: btrCore_RunTask - enBTRCoreTaskOpStart
+2026-01-16T08:35:58.126Z sh[15435]:  260116-08:35:58.126738 [mod=BTRCORE, lvl=WARN] [tid=15435] 636	: btrCore_BTGetDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T08:35:58.127Z sh[15435]:  260116-08:35:58.126833 [mod=BTRCORE, lvl=WARN] [tid=15435] 3570	: BtrCore_BTGetAdapterPath - Got Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T08:35:58.127Z sh[15435]:  260116-08:35:58.126868 [mod=BTRCORE, lvl=WARN] [tid=15435] 3596	: BtrCore_BTGetAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T08:35:58.141Z sh[15435]:  260116-08:35:58.141392 [mod=BTRCORE, lvl=INFO] [tid=15439] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T08:35:58.142Z sh[15435]:  260116-08:35:58.141969 [mod=BTRCORE, lvl=WARN] [tid=15435] 906	: BTRCore_LE_Init - BTRCore_LE_Init
+2026-01-16T08:35:58.162Z sh[15435]:  260116-08:35:58.162224 [mod=BTRCORE, lvl=INFO] [tid=15439] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T08:35:58.162Z sh[15435]:  260116-08:35:58.162336 [mod=BTRCORE, lvl=INFO] [tid=15439] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T08:35:58.182Z sh[15435]:  260116-08:35:58.182632 [mod=BTRCORE, lvl=INFO] [tid=15439] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T08:35:58.182Z sh[15435]:  260116-08:35:58.182704 [mod=BTRCORE, lvl=INFO] [tid=15439] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T08:35:58.203Z sh[15435]:  260116-08:35:58.203236 [mod=BTRCORE, lvl=INFO] [tid=15439] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T08:35:58.203Z sh[15435]:  260116-08:35:58.203314 [mod=BTRCORE, lvl=INFO] [tid=15439] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T08:35:58.229Z sh[15435]:  260116-08:35:58.229041 [mod=BTRCORE, lvl=INFO] [tid=15435] 4099	: BTRCore_GetVersionInfo - Out:  Bluez-5.48
+2026-01-16T08:35:58.229Z sh[15435]:  260116-08:35:58.229121 [mod=BTRMGR, lvl=INFO] [tid=15435] 3856	: BTRMGR_Init - BTR Bluetooth Version: Bluez-5.48
+2026-01-16T08:35:58.298Z sh[15435]:  260116-08:35:58.298369 [mod=BTRMGR, lvl=INFO] [tid=15435] 3861	: BTRMGR_Init - Number of Adapters found are = 1
+2026-01-16T08:35:58.298Z sh[15435]:  260116-08:35:58.298709 [mod=RFCAPI, lvl=INFO] [tid=15435] getRFCParameter: http server is ready
+2026-01-16T08:35:58.302Z sh[15435]:  260116-08:35:58.302624 [mod=RFCAPI, lvl=INFO] [tid=15435] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable"]}, datalen = 83
+2026-01-16T08:35:58.306Z sh[15435]:  260116-08:35:58.305569 [mod=RFCAPI, lvl=INFO] [tid=15435] curl response : 0 http response code: 200
+2026-01-16T08:35:58.306Z sh[15435]:  260116-08:35:58.305827 [mod=RFCAPI, lvl=INFO] [tid=15435] Curl response: {
+2026-01-16T08:35:58.306Z sh[15435]:  	"parameters":	[{
+2026-01-16T08:35:58.307Z sh[15435]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable",
+2026-01-16T08:35:58.307Z sh[15435]:  			"value":	"false",
+2026-01-16T08:35:58.307Z sh[15435]:  			"dataType":	3,
+2026-01-16T08:35:58.307Z sh[15435]:  			"parameterCount":	1,
+2026-01-16T08:35:58.307Z sh[15435]:  			"message":	"Default Value"
+2026-01-16T08:35:58.307Z sh[15435]:  		}],
+2026-01-16T08:35:58.307Z sh[15435]:  	"statusCode":	38
+2026-01-16T08:35:58.307Z sh[15435]:  }
+2026-01-16T08:35:58.307Z sh[15435]:  260116-08:35:58.305981 [mod=BTRMGR, lvl=INFO] [tid=15435] 754	: btrMgr_CheckDebugModeAvailability - getRFCParameter : Default value
+2026-01-16T08:35:58.308Z sh[15435]:  260116-08:35:58.306023 [mod=BTRMGR, lvl=INFO] [tid=15435] 764	: btrMgr_CheckDebugModeAvailability - BTR Debug Mode will not be available.
+2026-01-16T08:35:58.308Z sh[15435]:  260116-08:35:58.306059 [mod=BTRCORE, lvl=INFO] [tid=15435] 6769	: BTRCore_RegisterStatusCb - BT Status Callback Registered Successfully
+2026-01-16T08:35:58.308Z sh[15435]:  260116-08:35:58.306093 [mod=BTRCORE, lvl=INFO] [tid=15435] 6741	: BTRCore_RegisterDiscoveryCb - Device Discovery Callback Registered Successfully
+2026-01-16T08:35:58.308Z sh[15435]:  260116-08:35:58.306125 [mod=BTRCORE, lvl=INFO] [tid=15435] 6827	: BTRCore_RegisterConnectionIntimationCb - BT Conn In Intimation Callback Registered Successfully
+2026-01-16T08:35:58.308Z sh[15435]:  260116-08:35:58.306156 [mod=BTRCORE, lvl=INFO] [tid=15435] 6857	: BTRCore_RegisterConnectionAuthenticationCb - BT Conn Auth Callback Registered Successfully
+2026-01-16T08:35:58.308Z sh[15435]:  260116-08:35:58.306187 [mod=BTRCORE, lvl=INFO] [tid=15435] 6797	: BTRCore_RegisterMediaStatusCb - BT Media Status Callback Registered Successfully
+2026-01-16T08:35:58.308Z sh[15435]:  260116-08:35:58.306215 [mod=BTRMGR, lvl=INFO] [tid=15435] 3903	: BTRMGR_Init - Activate agent
+2026-01-16T08:35:58.403Z sh[15435]:  260116-08:35:58.403231 [mod=BTRMGR, lvl=INFO] [tid=15435] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 0 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T08:35:58.403Z sh[15435]:  260116-08:35:58.403405 [mod=RFCAPI, lvl=INFO] [tid=15435] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable"]}, datalen = 81
+2026-01-16T08:35:58.406Z sh[15435]:  260116-08:35:58.406423 [mod=RFCAPI, lvl=INFO] [tid=15435] curl response : 0 http response code: 200
+2026-01-16T08:35:58.406Z sh[15435]:  260116-08:35:58.406651 [mod=RFCAPI, lvl=INFO] [tid=15435] Curl response: {
+2026-01-16T08:35:58.406Z sh[15435]:  	"parameters":	[{
+2026-01-16T08:35:58.407Z sh[15435]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable",
+2026-01-16T08:35:58.407Z sh[15435]:  			"value":	"",
+2026-01-16T08:35:58.407Z sh[15435]:  			"dataType":	3,
+2026-01-16T08:35:58.407Z sh[15435]:  			"parameterCount":	1,
+2026-01-16T08:35:58.407Z sh[15435]:  			"message":	"Parameter value field is not available"
+2026-01-16T08:35:58.407Z sh[15435]:  		}],
+2026-01-16T08:35:58.407Z sh[15435]:  	"message":	"Parameter value field is not available",
+2026-01-16T08:35:58.407Z sh[15435]:  	"statusCode":	22
+2026-01-16T08:35:58.407Z sh[15435]:  }
+2026-01-16T08:35:58.407Z sh[15435]:  260116-08:35:58.406764 [mod=BTRMGR, lvl=ERROR] [tid=15435] 699	: btrMgr_CheckAudioInServiceAvailability - getRFCParameter Failed :  Value is Empty
+2026-01-16T08:35:58.408Z sh[15435]:  260116-08:35:58.406855 [mod=RFCAPI, lvl=INFO] [tid=15435] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable"]}, datalen = 81
+2026-01-16T08:35:58.409Z sh[15435]:  260116-08:35:58.409196 [mod=RFCAPI, lvl=INFO] [tid=15435] curl response : 0 http response code: 200
+2026-01-16T08:35:58.409Z sh[15435]:  260116-08:35:58.409408 [mod=RFCAPI, lvl=INFO] [tid=15435] Curl response: {
+2026-01-16T08:35:58.409Z sh[15435]:  	"parameters":	[{
+2026-01-16T08:35:58.409Z sh[15435]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable",
+2026-01-16T08:35:58.409Z sh[15435]:  			"value":	"true",
+2026-01-16T08:35:58.409Z sh[15435]:  			"dataType":	3,
+2026-01-16T08:35:58.409Z sh[15435]:  			"parameterCount":	1,
+2026-01-16T08:35:58.410Z sh[15435]:  			"message":	"Default Value"
+2026-01-16T08:35:58.410Z sh[15435]:  		}],
+2026-01-16T08:35:58.410Z sh[15435]:  	"statusCode":	38
+2026-01-16T08:35:58.411Z sh[15435]:  }
+2026-01-16T08:35:58.411Z sh[15435]:  260116-08:35:58.409502 [mod=BTRMGR, lvl=INFO] [tid=15435] 721	: btrMgr_CheckHidGamePadServiceAvailability - getRFCParameter : Default value
+2026-01-16T08:35:58.411Z sh[15435]:  260116-08:35:58.409535 [mod=BTRMGR, lvl=INFO] [tid=15435] 727	: btrMgr_CheckHidGamePadServiceAvailability - BTR HidGamePad Serivce will be available.
+2026-01-16T08:35:58.481Z sh[15435]:  I-ARM BTMgr Bus: BTRMgr_BeginIARMMode Fri Jan 16 08:35:58 2026
+2026-01-16T08:35:58.481Z sh[15435]:  260116-08:35:58.481474 [mod=BTRMGR, lvl=INFO] [tid=15441] 8914	: btrMgr_g_main_loop_Task - GMainLoop Running - 0x7ce80 - 0x7ce80
+2026-01-16T08:35:58.482Z sh[15435]:  260116-08:35:58.481494 [mod=BTRMGR, lvl=INFO] [tid=15435] 2147	: BTRMgr_BeginIARMMode - Entering
+2026-01-16T08:35:58.508Z sh[15435]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = BTRMgrBus
+2026-01-16T08:35:58.509Z sh[15435]:  setting init done
+2026-01-16T08:35:58.509Z sh[15435]:  Registering BTRMgrBus
+2026-01-16T08:35:58.509Z sh[15435]:  260116-08:35:58.508808 [mod=BTRMGR, lvl=INFO] [tid=15435] 2154	: BTRMgr_BeginIARMMode - IARM Interface Initializing
+2026-01-16T08:35:58.509Z sh[15435]:  260116-08:35:58.509262 [mod=BTRMGR, lvl=INFO] [tid=15435] 8895	: BTRMGR_RegisterEventCallback - BTRMGR_RegisterEventCallback : Success
+2026-01-16T08:35:58.509Z sh[15435]:  260116-08:35:58.509296 [mod=BTRMGR, lvl=INFO] [tid=15435] 2220	: BTRMgr_BeginIARMMode - IARM Interface Inited Successfully
+2026-01-16T08:35:58.509Z sh[15435]:  260116-08:35:58.509339 [mod=BTRMGR, lvl=INFO] [tid=15435] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T08:35:58.509Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T08:35:58.509Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-16T08:35:58.510Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-16T08:35:58.629Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T08:35:58.629Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T08:35:58.629Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-16T08:35:58.629Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-16T08:35:58.629Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3847
+2026-01-16T08:35:58.629Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T08:35:58.629Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T08:35:58.630Z sh[15435]:  260116-08:35:58.629420 [mod=BTRMGR, lvl=INFO] [tid=15435] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T08:35:58.630Z sh[15435]:  [PowerController][15445] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-16T08:35:58.630Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T08:35:58.631Z sh[15435]:  260116-08:35:58.631033 [mod=BTRMGR, lvl=WARN] [tid=15435] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T08:35:58.632Z sh[15435]:  260116-08:35:58.632094 [mod=BTRMGR, lvl=ERROR] [tid=15435] 6069	: BTRMGR_StartAudioStreamingOut_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T08:35:58.632Z sh[15435]:  BTRMGR_StartAudioStreamingOut_StartUp - -1
+2026-01-16T08:35:58.632Z sh[15435]:  260116-08:35:58.632210 [mod=BTRMGR, lvl=INFO] [tid=15435] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T08:35:58.632Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T08:35:58.632Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T08:35:58.632Z sh[15435]:  260116-08:35:58.632266 [mod=BTRMGR, lvl=INFO] [tid=15435] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T08:35:58.634Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T08:35:58.634Z sh[15435]:  260116-08:35:58.634015 [mod=BTRMGR, lvl=WARN] [tid=15435] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T08:35:58.634Z sh[15435]:  260116-08:35:58.634054 [mod=BTRMGR, lvl=ERROR] [tid=15435] 5970	: BTRMGR_ConnectGamepads_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T08:35:58.634Z sh[15435]:  BTRMGR_ConnectGamepads_StartUp - -1
+2026-01-16T08:35:59.559Z sh[15435]:  260116-08:35:59.554664 [mod=BTRMGR, lvl=WARN] [tid=15443] 817	: btrMgr_SysDiag_powerModeChangeCb - new State: 5
+2026-01-16T08:35:59.559Z sh[15435]:  260116-08:35:59.554723 [mod=BTRMGR, lvl=INFO] [tid=15443] 821	: btrMgr_SysDiag_powerModeChangeCb - gpstSDHandle is not NULL
+2026-01-16T08:35:59.559Z sh[15435]:  260116-08:35:59.554763 [mod=BTRMGR, lvl=WARN] [tid=15443] 840	: btrMgr_SysDiag_powerModeChangeCb - BTRMGR_SYS_DIAG_POWERSTATE - Device is being suspended: stby_deep_sleep
+2026-01-16T08:36:00.806Z sh[15435]:  Received SIGNAL 15 = Terminated - Fri Jan 16 08:36:00 2026
+2026-01-16T08:36:00.807Z sh[15435]:  260116-08:36:00.805989 [mod=BTRMGR, lvl=INFO] [tid=15435] 2685	: btrMgr_StopPacketCapture - Pcaps are not being captured
+2026-01-16T08:36:00.807Z sh[15435]:  260116-08:36:00.806028 [mod=BTRMGR, lvl=INFO] [tid=15435] 2724	: btrMgr_StopHidEventMonitor - hid events are not being captured
+2026-01-16T08:36:00.904Z sh[15435]:  260116-08:36:00.904135 [mod=BTRMGR, lvl=WARN] [tid=15435] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T08:36:00.904Z sh[15435]:  260116-08:36:00.904281 [mod=BTRMGR, lvl=INFO] [tid=15441] 8916	: btrMgr_g_main_loop_Task - GMainLoop Quitting - 0x7ce80 - 0x7ce80
+2026-01-16T08:36:00.905Z sh[15435]:  260116-08:36:00.905789 [mod=BTRMGR, lvl=INFO] [tid=15435] 262	: BTRMgr_SD_DeInit - BTRMgr_SD_DeInit SUCCESS
+2026-01-16T08:36:00.906Z sh[15435]:  260116-08:36:00.905846 [mod=BTRMGR, lvl=ERROR] [tid=15435] 4111	: BTRMGR_DeInit - SD Module DeInited = 4
+2026-01-16T08:36:00.906Z sh[15435]:  260116-08:36:00.905896 [mod=BTRMGR, lvl=INFO] [tid=15435] 157	: BTRMgr_PI_DeInit - BTRMgr_PI_DeInit SUCCESS
+2026-01-16T08:36:00.906Z sh[15435]:  260116-08:36:00.905926 [mod=BTRMGR, lvl=ERROR] [tid=15435] 4117	: BTRMGR_DeInit - PI Module DeInited = 4
+2026-01-16T08:36:00.906Z sh[15435]:  260116-08:36:00.905960 [mod=BTRCORE, lvl=INFO] [tid=15435] 3358	: BTRCore_DeInit - hBTRCore   =   0xb5f43008
+2026-01-16T08:36:00.906Z sh[15435]:  260116-08:36:00.906045 [mod=BTRCORE, lvl=INFO] [tid=15439] 2122	: btrCore_RunTask - enBTRCoreTaskOpExit
+2026-01-16T08:36:00.906Z sh[15435]:  260116-08:36:00.906087 [mod=BTRCORE, lvl=INFO] [tid=15439] 2177	: btrCore_RunTask - RunTask Exiting
+2026-01-16T08:36:00.907Z sh[15435]:  260116-08:36:00.906257 [mod=BTRCORE, lvl=INFO] [tid=15435] 3375	: BTRCore_DeInit - BTRCore_DeInit - RunTask Exiting BTRCore - 8
+2026-01-16T08:36:00.907Z sh[15435]:  260116-08:36:00.906375 [mod=BTRCORE, lvl=INFO] [tid=15438] 2268	: btrCore_OutTask - enBTRCoreTaskOpExit
+2026-01-16T08:36:00.907Z sh[15435]:  260116-08:36:00.906454 [mod=BTRCORE, lvl=INFO] [tid=15438] 3081	: btrCore_OutTask - OutTask Exiting
+2026-01-16T08:36:00.907Z sh[15435]:  260116-08:36:00.906592 [mod=BTRCORE, lvl=INFO] [tid=15435] 3400	: BTRCore_DeInit - BTRCore_DeInit - OutTask Exiting BTRCore - 8
+2026-01-16T08:36:00.920Z sh[15435]:  260116-08:36:00.910034 [mod=BTRCORE, lvl=WARN] [tid=15435] 648	: btrCore_BTReleaseDefaultAdapterPath - Adapter Addr is : D4:52:EE:59:E3:E9 - 0x72048
+2026-01-16T08:36:00.920Z sh[15435]:  260116-08:36:00.910108 [mod=BTRCORE, lvl=WARN] [tid=15435] 654	: btrCore_BTReleaseDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T08:36:00.920Z sh[15435]:  260116-08:36:00.910142 [mod=BTRCORE, lvl=WARN] [tid=15435] 3618	: BtrCore_BTReleaseAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T08:36:00.921Z sh[15435]:  260116-08:36:00.910171 [mod=BTRCORE, lvl=ERROR] [tid=15435] 3620	: BtrCore_BTReleaseAdapterPath - ERROR: Looks like Adapter path has been changed by User
+2026-01-16T08:36:00.921Z sh[15435]:  260116-08:36:00.910200 [mod=BTRCORE, lvl=WARN] [tid=15435] 3627	: BtrCore_BTReleaseAdapterPath - Freed Adapter
+2026-01-16T08:36:00.921Z sh[15435]:  260116-08:36:00.914116 [mod=BTRCORE, lvl=INFO] [tid=15435] 3493	: BTRCore_DeInit - Exit Status = 8
+2026-01-16T08:36:00.921Z sh[15435]:  260116-08:36:00.914167 [mod=BTRMGR, lvl=ERROR] [tid=15435] 4124	: BTRMGR_DeInit - BTRCore DeInited; Now will we exit the app = 8
+2026-01-16T08:36:00.921Z sh[15435]:  BTRMGR_DeInit 0 - Fri Jan 16 08:36:00 2026
+2026-01-16T08:36:00.921Z sh[15435]:  260116-08:36:00.914290 [mod=BTRMGR, lvl=INFO] [tid=15435] 2233	: BTRMgr_TermIARMMode - Entering
+2026-01-16T08:36:00.921Z sh[15435]:  260116-08:36:00.914320 [mod=BTRMGR, lvl=INFO] [tid=15435] 2236	: BTRMgr_TermIARMMode - IARM Interface Being terminated
+2026-01-16T08:36:00.938Z sh[15435]:  term start init 1
+2026-01-16T08:36:00.938Z sh[15435]:  260116-08:36:00.938399 [mod=BTRMGR, lvl=INFO] [tid=15435] 2241	: BTRMgr_TermIARMMode - PowerController_Term started in internal
+2026-01-16T08:36:00.939Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:951] Term: Entering ...
+2026-01-16T08:36:00.939Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:896] Disconnect: Entering ...
+2026-01-16T08:36:00.939Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:901] Disconnect: Closing COM-RPC channel ...
+2026-01-16T08:36:00.944Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 0
+2026-01-16T08:36:01.048Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:907] Disconnect: COM-RPC channel closed
+2026-01-16T08:36:01.048Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:914] Disconnect: Exiting ... status[0]
+2026-01-16T08:36:01.048Z sh[15435]:  [PowerController][15435] INFO  [power_controller.cpp:631] ~PIDFileMonitor: destructor
+2026-01-16T09:19:51.332Z sh[16395]:  rdk_dyn_log_initg_dl_socket = 3 __progname = btMgrBus
+2026-01-16T09:19:51.332Z sh[16395]:  Hci0 is up
+2026-01-16T09:19:51.332Z sh[16395]:  Conf file /etc/debug.ini open success
+2026-01-16T09:19:51.332Z sh[16395]:  260116-09:19:51.332081 [mod=BTRCORE, lvl=INFO] [tid=16395] 3184	: BTRCore_Init - BTRCore_Init
+2026-01-16T09:19:51.341Z sh[16395]:  260116-09:19:51.341181 [mod=BTRCORE, lvl=INFO] [tid=16395] 3071	: BtrCore_BTInitGetConnection - DBus Debug DBus Connection Name :1.191
+2026-01-16T09:19:51.343Z sh[16395]:  260116-09:19:51.343417 [mod=BTRCORE, lvl=INFO] [tid=16395] 3203	: BtrCore_BTGetAgentPath - Agent Path: /org/bluez/agent_16395
+2026-01-16T09:19:51.344Z sh[16395]:  260116-09:19:51.344163 [mod=BTRCORE, lvl=INFO] [tid=16487] 2074	: btrCore_RunTask - RunTask Started
+2026-01-16T09:19:51.344Z sh[16395]:  260116-09:19:51.344217 [mod=BTRCORE, lvl=INFO] [tid=16487] 2099	: btrCore_RunTask - enBTRCoreTaskOpStart
+2026-01-16T09:19:51.369Z sh[16395]:  260116-09:19:51.368430 [mod=BTRCORE, lvl=WARN] [tid=16395] 636	: btrCore_BTGetDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T09:19:51.369Z sh[16395]:  260116-09:19:51.368476 [mod=BTRCORE, lvl=WARN] [tid=16395] 3570	: BtrCore_BTGetAdapterPath - Got Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T09:19:51.369Z sh[16395]:  260116-09:19:51.368497 [mod=BTRCORE, lvl=WARN] [tid=16395] 3596	: BtrCore_BTGetAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T09:19:51.421Z sh[16395]:  260116-09:19:51.416444 [mod=BTRCORE, lvl=INFO] [tid=16487] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T09:19:51.421Z sh[16395]:  260116-09:19:51.416952 [mod=BTRCORE, lvl=WARN] [tid=16395] 906	: BTRCore_LE_Init - BTRCore_LE_Init
+2026-01-16T09:19:51.437Z sh[16395]:  260116-09:19:51.436785 [mod=BTRCORE, lvl=INFO] [tid=16487] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T09:19:51.438Z sh[16395]:  260116-09:19:51.436860 [mod=BTRCORE, lvl=INFO] [tid=16487] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T09:19:51.457Z sh[16395]:  260116-09:19:51.457142 [mod=BTRCORE, lvl=INFO] [tid=16487] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T09:19:51.457Z sh[16395]:  260116-09:19:51.457214 [mod=BTRCORE, lvl=INFO] [tid=16487] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T09:19:51.543Z sh[16395]:  260116-09:19:51.543410 [mod=BTRCORE, lvl=INFO] [tid=16395] 4099	: BTRCore_GetVersionInfo - Out:  Bluez-5.48
+2026-01-16T09:19:51.544Z sh[16395]:  260116-09:19:51.543480 [mod=BTRMGR, lvl=INFO] [tid=16395] 3856	: BTRMGR_Init - BTR Bluetooth Version: Bluez-5.48
+2026-01-16T09:19:51.555Z sh[16395]:  260116-09:19:51.555482 [mod=BTRCORE, lvl=INFO] [tid=16487] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T09:19:51.555Z sh[16395]:  260116-09:19:51.555545 [mod=BTRCORE, lvl=INFO] [tid=16487] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T09:19:51.592Z sh[16395]:  260116-09:19:51.592119 [mod=BTRMGR, lvl=INFO] [tid=16395] 3861	: BTRMGR_Init - Number of Adapters found are = 1
+2026-01-16T09:19:51.592Z sh[16395]:  260116-09:19:51.592581 [mod=RFCAPI, lvl=INFO] [tid=16395] getRFCParameter: http server is ready
+2026-01-16T09:19:51.595Z sh[16395]:  260116-09:19:51.595450 [mod=RFCAPI, lvl=INFO] [tid=16395] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable"]}, datalen = 83
+2026-01-16T09:19:51.600Z sh[16395]:  260116-09:19:51.600104 [mod=RFCAPI, lvl=INFO] [tid=16395] curl response : 0 http response code: 200
+2026-01-16T09:19:51.601Z sh[16395]:  260116-09:19:51.601104 [mod=RFCAPI, lvl=INFO] [tid=16395] Curl response: {
+2026-01-16T09:19:51.601Z sh[16395]:  	"parameters":	[{
+2026-01-16T09:19:51.601Z sh[16395]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable",
+2026-01-16T09:19:51.601Z sh[16395]:  			"value":	"false",
+2026-01-16T09:19:51.601Z sh[16395]:  			"dataType":	3,
+2026-01-16T09:19:51.601Z sh[16395]:  			"parameterCount":	1,
+2026-01-16T09:19:51.601Z sh[16395]:  			"message":	"Default Value"
+2026-01-16T09:19:51.601Z sh[16395]:  		}],
+2026-01-16T09:19:51.601Z sh[16395]:  	"statusCode":	38
+2026-01-16T09:19:51.602Z sh[16395]:  }
+2026-01-16T09:19:51.602Z sh[16395]:  260116-09:19:51.602269 [mod=BTRMGR, lvl=INFO] [tid=16395] 754	: btrMgr_CheckDebugModeAvailability - getRFCParameter : Default value
+2026-01-16T09:19:51.602Z sh[16395]:  260116-09:19:51.602488 [mod=BTRMGR, lvl=INFO] [tid=16395] 764	: btrMgr_CheckDebugModeAvailability - BTR Debug Mode will not be available.
+2026-01-16T09:19:51.602Z sh[16395]:  260116-09:19:51.602695 [mod=BTRCORE, lvl=INFO] [tid=16395] 6769	: BTRCore_RegisterStatusCb - BT Status Callback Registered Successfully
+2026-01-16T09:19:51.602Z sh[16395]:  260116-09:19:51.602863 [mod=BTRCORE, lvl=INFO] [tid=16395] 6741	: BTRCore_RegisterDiscoveryCb - Device Discovery Callback Registered Successfully
+2026-01-16T09:19:51.603Z sh[16395]:  260116-09:19:51.603026 [mod=BTRCORE, lvl=INFO] [tid=16395] 6827	: BTRCore_RegisterConnectionIntimationCb - BT Conn In Intimation Callback Registered Successfully
+2026-01-16T09:19:51.603Z sh[16395]:  260116-09:19:51.603258 [mod=BTRCORE, lvl=INFO] [tid=16395] 6857	: BTRCore_RegisterConnectionAuthenticationCb - BT Conn Auth Callback Registered Successfully
+2026-01-16T09:19:51.603Z sh[16395]:  260116-09:19:51.603424 [mod=BTRCORE, lvl=INFO] [tid=16395] 6797	: BTRCore_RegisterMediaStatusCb - BT Media Status Callback Registered Successfully
+2026-01-16T09:19:51.603Z sh[16395]:  260116-09:19:51.603614 [mod=BTRMGR, lvl=INFO] [tid=16395] 3903	: BTRMGR_Init - Activate agent
+2026-01-16T09:19:51.654Z sh[16395]:  260116-09:19:51.654002 [mod=BTRMGR, lvl=INFO] [tid=16395] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 0 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T09:19:51.660Z sh[16395]:  260116-09:19:51.660288 [mod=RFCAPI, lvl=INFO] [tid=16395] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable"]}, datalen = 81
+2026-01-16T09:19:51.669Z sh[16395]:  260116-09:19:51.668733 [mod=RFCAPI, lvl=INFO] [tid=16395] curl response : 0 http response code: 200
+2026-01-16T09:19:51.669Z sh[16395]:  260116-09:19:51.669452 [mod=RFCAPI, lvl=INFO] [tid=16395] Curl response: {
+2026-01-16T09:19:51.669Z sh[16395]:  	"parameters":	[{
+2026-01-16T09:19:51.670Z sh[16395]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable",
+2026-01-16T09:19:51.670Z sh[16395]:  			"value":	"",
+2026-01-16T09:19:51.670Z sh[16395]:  			"dataType":	3,
+2026-01-16T09:19:51.670Z sh[16395]:  			"parameterCount":	1,
+2026-01-16T09:19:51.670Z sh[16395]:  			"message":	"Parameter value field is not available"
+2026-01-16T09:19:51.670Z sh[16395]:  		}],
+2026-01-16T09:19:51.670Z sh[16395]:  	"message":	"Parameter value field is not available",
+2026-01-16T09:19:51.670Z sh[16395]:  	"statusCode":	22
+2026-01-16T09:19:51.670Z sh[16395]:  }
+2026-01-16T09:19:51.670Z sh[16395]:  260116-09:19:51.669558 [mod=BTRMGR, lvl=ERROR] [tid=16395] 699	: btrMgr_CheckAudioInServiceAvailability - getRFCParameter Failed :  Value is Empty
+2026-01-16T09:19:51.670Z sh[16395]:  260116-09:19:51.669601 [mod=RFCAPI, lvl=INFO] [tid=16395] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable"]}, datalen = 81
+2026-01-16T09:19:51.673Z sh[16395]:  260116-09:19:51.672532 [mod=RFCAPI, lvl=INFO] [tid=16395] curl response : 0 http response code: 200
+2026-01-16T09:19:51.673Z sh[16395]:  260116-09:19:51.673156 [mod=RFCAPI, lvl=INFO] [tid=16395] Curl response: {
+2026-01-16T09:19:51.673Z sh[16395]:  	"parameters":	[{
+2026-01-16T09:19:51.673Z sh[16395]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable",
+2026-01-16T09:19:51.674Z sh[16395]:  			"value":	"true",
+2026-01-16T09:19:51.674Z sh[16395]:  			"dataType":	3,
+2026-01-16T09:19:51.674Z sh[16395]:  			"parameterCount":	1,
+2026-01-16T09:19:51.674Z sh[16395]:  			"message":	"Default Value"
+2026-01-16T09:19:51.674Z sh[16395]:  		}],
+2026-01-16T09:19:51.674Z sh[16395]:  	"statusCode":	38
+2026-01-16T09:19:51.674Z sh[16395]:  }
+2026-01-16T09:19:51.674Z sh[16395]:  260116-09:19:51.673258 [mod=BTRMGR, lvl=INFO] [tid=16395] 721	: btrMgr_CheckHidGamePadServiceAvailability - getRFCParameter : Default value
+2026-01-16T09:19:51.674Z sh[16395]:  260116-09:19:51.673283 [mod=BTRMGR, lvl=INFO] [tid=16395] 727	: btrMgr_CheckHidGamePadServiceAvailability - BTR HidGamePad Serivce will be available.
+2026-01-16T09:19:51.734Z sh[16395]:  260116-09:19:51.734494 [mod=BTRMGR, lvl=INFO] [tid=16552] 8914	: btrMgr_g_main_loop_Task - GMainLoop Running - 0x7cf48 - 0x7cf48
+2026-01-16T09:19:51.741Z sh[16395]:  I-ARM BTMgr Bus: BTRMgr_BeginIARMMode Fri Jan 16 09:19:51 2026
+2026-01-16T09:19:51.741Z sh[16395]:  260116-09:19:51.741604 [mod=BTRMGR, lvl=INFO] [tid=16395] 2147	: BTRMgr_BeginIARMMode - Entering
+2026-01-16T09:19:51.822Z sh[16395]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = BTRMgrBus
+2026-01-16T09:19:51.822Z sh[16395]:  setting init done
+2026-01-16T09:19:51.822Z sh[16395]:  Registering BTRMgrBus
+2026-01-16T09:19:51.822Z sh[16395]:  260116-09:19:51.770774 [mod=BTRMGR, lvl=INFO] [tid=16395] 2154	: BTRMgr_BeginIARMMode - IARM Interface Initializing
+2026-01-16T09:19:51.822Z sh[16395]:  260116-09:19:51.771194 [mod=BTRMGR, lvl=INFO] [tid=16395] 8895	: BTRMGR_RegisterEventCallback - BTRMGR_RegisterEventCallback : Success
+2026-01-16T09:19:51.822Z sh[16395]:  260116-09:19:51.771229 [mod=BTRMGR, lvl=INFO] [tid=16395] 2220	: BTRMgr_BeginIARMMode - IARM Interface Inited Successfully
+2026-01-16T09:19:51.822Z sh[16395]:  260116-09:19:51.771264 [mod=BTRMGR, lvl=INFO] [tid=16395] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T09:19:51.823Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T09:19:51.823Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-16T09:19:51.823Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-16T09:19:51.944Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T09:19:51.944Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T09:19:51.944Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-16T09:19:51.944Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-16T09:19:51.944Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3847
+2026-01-16T09:19:51.944Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T09:19:51.944Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T09:19:51.944Z sh[16395]:  [PowerController][16570] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-16T09:19:51.945Z sh[16395]:  260116-09:19:51.944146 [mod=BTRMGR, lvl=INFO] [tid=16395] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T09:19:52.007Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[4], Current[5]
+2026-01-16T09:19:52.007Z sh[16395]:  260116-09:19:52.005890 [mod=BTRMGR, lvl=WARN] [tid=16395] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :5 - stby_deep_sleep
+2026-01-16T09:19:52.007Z sh[16395]:  260116-09:19:52.006627 [mod=BTRMGR, lvl=ERROR] [tid=16395] 6069	: BTRMGR_StartAudioStreamingOut_StartUp - Power state is stby_deep_sleep no need to try connecting device as it will connect once ON
+2026-01-16T09:19:52.007Z sh[16395]:  BTRMGR_StartAudioStreamingOut_StartUp - -1
+2026-01-16T09:19:52.007Z sh[16395]:  260116-09:19:52.006673 [mod=BTRMGR, lvl=INFO] [tid=16395] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T09:19:52.007Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T09:19:52.007Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T09:19:52.007Z sh[16395]:  260116-09:19:52.006708 [mod=BTRMGR, lvl=INFO] [tid=16395] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T09:19:52.007Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[4], Current[5]
+2026-01-16T09:19:52.007Z sh[16395]:  260116-09:19:52.007455 [mod=BTRMGR, lvl=WARN] [tid=16395] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :5 - stby_deep_sleep
+2026-01-16T09:19:52.007Z sh[16395]:  260116-09:19:52.007482 [mod=BTRMGR, lvl=ERROR] [tid=16395] 5970	: BTRMGR_ConnectGamepads_StartUp - Power state is stby_deep_sleep no need to try connecting device as it will connect once ON
+2026-01-16T09:19:52.007Z sh[16395]:  BTRMGR_ConnectGamepads_StartUp - -1
+2026-01-16T09:19:53.214Z sh[16395]:  Received SIGNAL 15 = Terminated - Fri Jan 16 09:19:53 2026
+2026-01-16T09:19:53.214Z sh[16395]:  260116-09:19:53.213745 [mod=BTRMGR, lvl=INFO] [tid=16395] 2685	: btrMgr_StopPacketCapture - Pcaps are not being captured
+2026-01-16T09:19:53.214Z sh[16395]:  260116-09:19:53.213773 [mod=BTRMGR, lvl=INFO] [tid=16395] 2724	: btrMgr_StopHidEventMonitor - hid events are not being captured
+2026-01-16T09:19:53.272Z sh[16395]:  260116-09:19:53.272394 [mod=BTRMGR, lvl=WARN] [tid=16395] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T09:19:53.272Z sh[16395]:  260116-09:19:53.272509 [mod=BTRMGR, lvl=INFO] [tid=16552] 8916	: btrMgr_g_main_loop_Task - GMainLoop Quitting - 0x7cf48 - 0x7cf48
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.273979 [mod=BTRMGR, lvl=INFO] [tid=16395] 262	: BTRMgr_SD_DeInit - BTRMgr_SD_DeInit SUCCESS
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274021 [mod=BTRMGR, lvl=ERROR] [tid=16395] 4111	: BTRMGR_DeInit - SD Module DeInited = 4
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274057 [mod=BTRMGR, lvl=INFO] [tid=16395] 157	: BTRMgr_PI_DeInit - BTRMgr_PI_DeInit SUCCESS
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274077 [mod=BTRMGR, lvl=ERROR] [tid=16395] 4117	: BTRMGR_DeInit - PI Module DeInited = 4
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274103 [mod=BTRCORE, lvl=INFO] [tid=16395] 3358	: BTRCore_DeInit - hBTRCore   =   0xb5fc3008
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274163 [mod=BTRCORE, lvl=INFO] [tid=16487] 2122	: btrCore_RunTask - enBTRCoreTaskOpExit
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274192 [mod=BTRCORE, lvl=INFO] [tid=16487] 2177	: btrCore_RunTask - RunTask Exiting
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274304 [mod=BTRCORE, lvl=INFO] [tid=16395] 3375	: BTRCore_DeInit - BTRCore_DeInit - RunTask Exiting BTRCore - 8
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274394 [mod=BTRCORE, lvl=INFO] [tid=16486] 2268	: btrCore_OutTask - enBTRCoreTaskOpExit
+2026-01-16T09:19:53.274Z sh[16395]:  260116-09:19:53.274420 [mod=BTRCORE, lvl=INFO] [tid=16486] 3081	: btrCore_OutTask - OutTask Exiting
+2026-01-16T09:19:53.285Z sh[16395]:  260116-09:19:53.274520 [mod=BTRCORE, lvl=INFO] [tid=16395] 3400	: BTRCore_DeInit - BTRCore_DeInit - OutTask Exiting BTRCore - 8
+2026-01-16T09:19:53.285Z sh[16395]:  260116-09:19:53.275168 [mod=BTRCORE, lvl=WARN] [tid=16395] 648	: btrCore_BTReleaseDefaultAdapterPath - Adapter Addr is : D4:52:EE:59:E3:E9 - 0x72048
+2026-01-16T09:19:53.285Z sh[16395]:  260116-09:19:53.275198 [mod=BTRCORE, lvl=WARN] [tid=16395] 654	: btrCore_BTReleaseDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T09:19:53.285Z sh[16395]:  260116-09:19:53.275220 [mod=BTRCORE, lvl=WARN] [tid=16395] 3618	: BtrCore_BTReleaseAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T09:19:53.286Z sh[16395]:  260116-09:19:53.275240 [mod=BTRCORE, lvl=ERROR] [tid=16395] 3620	: BtrCore_BTReleaseAdapterPath - ERROR: Looks like Adapter path has been changed by User
+2026-01-16T09:19:53.286Z sh[16395]:  260116-09:19:53.275261 [mod=BTRCORE, lvl=WARN] [tid=16395] 3627	: BtrCore_BTReleaseAdapterPath - Freed Adapter
+2026-01-16T09:19:53.286Z sh[16395]:  260116-09:19:53.277958 [mod=BTRCORE, lvl=INFO] [tid=16395] 3493	: BTRCore_DeInit - Exit Status = 8
+2026-01-16T09:19:53.291Z sh[16395]:  260116-09:19:53.277989 [mod=BTRMGR, lvl=ERROR] [tid=16395] 4124	: BTRMGR_DeInit - BTRCore DeInited; Now will we exit the app = 8
+2026-01-16T09:19:53.291Z sh[16395]:  BTRMGR_DeInit 0 - Fri Jan 16 09:19:53 2026
+2026-01-16T09:19:53.291Z sh[16395]:  260116-09:19:53.278080 [mod=BTRMGR, lvl=INFO] [tid=16395] 2233	: BTRMgr_TermIARMMode - Entering
+2026-01-16T09:19:53.291Z sh[16395]:  260116-09:19:53.278101 [mod=BTRMGR, lvl=INFO] [tid=16395] 2236	: BTRMgr_TermIARMMode - IARM Interface Being terminated
+2026-01-16T09:19:53.508Z sh[16395]:  term start init 1
+2026-01-16T09:19:53.508Z sh[16395]:  260116-09:19:53.508754 [mod=BTRMGR, lvl=INFO] [tid=16395] 2241	: BTRMgr_TermIARMMode - PowerController_Term started in internal
+2026-01-16T09:19:53.509Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:951] Term: Entering ...
+2026-01-16T09:19:53.509Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:896] Disconnect: Entering ...
+2026-01-16T09:19:53.509Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:901] Disconnect: Closing COM-RPC channel ...
+2026-01-16T09:19:53.509Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 0
+2026-01-16T09:19:53.611Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:907] Disconnect: COM-RPC channel closed
+2026-01-16T09:19:53.611Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:914] Disconnect: Exiting ... status[0]
+2026-01-16T09:19:53.611Z sh[16395]:  [PowerController][16395] INFO  [power_controller.cpp:631] ~PIDFileMonitor: destructor
+2026-01-16T09:34:41.537Z sh[19165]:  rdk_dyn_log_initg_dl_socket = 3 __progname = btMgrBus
+2026-01-16T09:34:41.537Z sh[19165]:  Hci0 is up
+2026-01-16T09:34:41.538Z sh[19165]:  Conf file /etc/debug.ini open success
+2026-01-16T09:34:41.538Z sh[19165]:  260116-09:34:41.537331 [mod=BTRCORE, lvl=INFO] [tid=19165] 3184	: BTRCore_Init - BTRCore_Init
+2026-01-16T09:34:41.548Z sh[19165]:  260116-09:34:41.548743 [mod=BTRCORE, lvl=INFO] [tid=19165] 3071	: BtrCore_BTInitGetConnection - DBus Debug DBus Connection Name :1.221
+2026-01-16T09:34:41.551Z sh[19165]:  260116-09:34:41.551809 [mod=BTRCORE, lvl=INFO] [tid=19165] 3203	: BtrCore_BTGetAgentPath - Agent Path: /org/bluez/agent_19165
+2026-01-16T09:34:41.552Z sh[19165]:  260116-09:34:41.552387 [mod=BTRCORE, lvl=INFO] [tid=19169] 2074	: btrCore_RunTask - RunTask Started
+2026-01-16T09:34:41.552Z sh[19165]:  260116-09:34:41.552487 [mod=BTRCORE, lvl=INFO] [tid=19169] 2099	: btrCore_RunTask - enBTRCoreTaskOpStart
+2026-01-16T09:34:41.585Z sh[19165]:  260116-09:34:41.585815 [mod=BTRCORE, lvl=WARN] [tid=19165] 636	: btrCore_BTGetDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T09:34:41.586Z sh[19165]:  260116-09:34:41.585877 [mod=BTRCORE, lvl=WARN] [tid=19165] 3570	: BtrCore_BTGetAdapterPath - Got Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T09:34:41.586Z sh[19165]:  260116-09:34:41.585906 [mod=BTRCORE, lvl=WARN] [tid=19165] 3596	: BtrCore_BTGetAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T09:34:41.599Z sh[19165]:  260116-09:34:41.599043 [mod=BTRCORE, lvl=WARN] [tid=19165] 906	: BTRCore_LE_Init - BTRCore_LE_Init
+2026-01-16T09:34:41.600Z sh[19165]:  260116-09:34:41.599958 [mod=BTRCORE, lvl=INFO] [tid=19169] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T09:34:41.600Z sh[19165]:  260116-09:34:41.600053 [mod=BTRCORE, lvl=INFO] [tid=19169] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T09:34:41.620Z sh[19165]:  260116-09:34:41.620402 [mod=BTRCORE, lvl=INFO] [tid=19169] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T09:34:41.620Z sh[19165]:  260116-09:34:41.620468 [mod=BTRCORE, lvl=INFO] [tid=19169] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T09:34:41.640Z sh[19165]:  260116-09:34:41.640751 [mod=BTRCORE, lvl=INFO] [tid=19169] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T09:34:41.641Z sh[19165]:  260116-09:34:41.640815 [mod=BTRCORE, lvl=INFO] [tid=19169] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T09:34:41.661Z sh[19165]:  260116-09:34:41.661431 [mod=BTRCORE, lvl=INFO] [tid=19169] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T09:34:41.661Z sh[19165]:  260116-09:34:41.661502 [mod=BTRCORE, lvl=INFO] [tid=19169] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T09:34:41.675Z sh[19165]:  260116-09:34:41.675095 [mod=BTRCORE, lvl=INFO] [tid=19165] 4099	: BTRCore_GetVersionInfo - Out:  Bluez-5.48
+2026-01-16T09:34:41.675Z sh[19165]:  260116-09:34:41.675200 [mod=BTRMGR, lvl=INFO] [tid=19165] 3856	: BTRMGR_Init - BTR Bluetooth Version: Bluez-5.48
+2026-01-16T09:34:41.744Z sh[19165]:  260116-09:34:41.744133 [mod=BTRMGR, lvl=INFO] [tid=19165] 3861	: BTRMGR_Init - Number of Adapters found are = 1
+2026-01-16T09:34:41.744Z sh[19165]:  260116-09:34:41.744448 [mod=RFCAPI, lvl=INFO] [tid=19165] getRFCParameter: http server is ready
+2026-01-16T09:34:41.747Z sh[19165]:  260116-09:34:41.747509 [mod=RFCAPI, lvl=INFO] [tid=19165] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable"]}, datalen = 83
+2026-01-16T09:34:41.750Z sh[19165]:  260116-09:34:41.750266 [mod=RFCAPI, lvl=INFO] [tid=19165] curl response : 0 http response code: 200
+2026-01-16T09:34:41.751Z sh[19165]:  260116-09:34:41.750528 [mod=RFCAPI, lvl=INFO] [tid=19165] Curl response: {
+2026-01-16T09:34:41.751Z sh[19165]:  	"parameters":	[{
+2026-01-16T09:34:41.751Z sh[19165]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable",
+2026-01-16T09:34:41.751Z sh[19165]:  			"value":	"false",
+2026-01-16T09:34:41.751Z sh[19165]:  			"dataType":	3,
+2026-01-16T09:34:41.751Z sh[19165]:  			"parameterCount":	1,
+2026-01-16T09:34:41.751Z sh[19165]:  			"message":	"Default Value"
+2026-01-16T09:34:41.751Z sh[19165]:  		}],
+2026-01-16T09:34:41.751Z sh[19165]:  	"statusCode":	38
+2026-01-16T09:34:41.751Z sh[19165]:  }
+2026-01-16T09:34:41.752Z sh[19165]:  260116-09:34:41.750858 [mod=BTRMGR, lvl=INFO] [tid=19165] 754	: btrMgr_CheckDebugModeAvailability - getRFCParameter : Default value
+2026-01-16T09:34:41.752Z sh[19165]:  260116-09:34:41.750903 [mod=BTRMGR, lvl=INFO] [tid=19165] 764	: btrMgr_CheckDebugModeAvailability - BTR Debug Mode will not be available.
+2026-01-16T09:34:41.752Z sh[19165]:  260116-09:34:41.750958 [mod=BTRCORE, lvl=INFO] [tid=19165] 6769	: BTRCore_RegisterStatusCb - BT Status Callback Registered Successfully
+2026-01-16T09:34:41.752Z sh[19165]:  260116-09:34:41.751157 [mod=BTRCORE, lvl=INFO] [tid=19165] 6741	: BTRCore_RegisterDiscoveryCb - Device Discovery Callback Registered Successfully
+2026-01-16T09:34:41.752Z sh[19165]:  260116-09:34:41.751211 [mod=BTRCORE, lvl=INFO] [tid=19165] 6827	: BTRCore_RegisterConnectionIntimationCb - BT Conn In Intimation Callback Registered Successfully
+2026-01-16T09:34:41.752Z sh[19165]:  260116-09:34:41.751325 [mod=BTRCORE, lvl=INFO] [tid=19165] 6857	: BTRCore_RegisterConnectionAuthenticationCb - BT Conn Auth Callback Registered Successfully
+2026-01-16T09:34:41.752Z sh[19165]:  260116-09:34:41.751357 [mod=BTRCORE, lvl=INFO] [tid=19165] 6797	: BTRCore_RegisterMediaStatusCb - BT Media Status Callback Registered Successfully
+2026-01-16T09:34:41.752Z sh[19165]:  260116-09:34:41.751384 [mod=BTRMGR, lvl=INFO] [tid=19165] 3903	: BTRMGR_Init - Activate agent
+2026-01-16T09:34:41.803Z sh[19165]:  260116-09:34:41.802925 [mod=BTRMGR, lvl=INFO] [tid=19165] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 0 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T09:34:41.803Z sh[19165]:  260116-09:34:41.803104 [mod=RFCAPI, lvl=INFO] [tid=19165] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable"]}, datalen = 81
+2026-01-16T09:34:41.805Z sh[19165]:  260116-09:34:41.805824 [mod=RFCAPI, lvl=INFO] [tid=19165] curl response : 0 http response code: 200
+2026-01-16T09:34:41.806Z sh[19165]:  260116-09:34:41.806053 [mod=RFCAPI, lvl=INFO] [tid=19165] Curl response: {
+2026-01-16T09:34:41.806Z sh[19165]:  	"parameters":	[{
+2026-01-16T09:34:41.806Z sh[19165]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable",
+2026-01-16T09:34:41.806Z sh[19165]:  			"value":	"",
+2026-01-16T09:34:41.806Z sh[19165]:  			"dataType":	3,
+2026-01-16T09:34:41.806Z sh[19165]:  			"parameterCount":	1,
+2026-01-16T09:34:41.806Z sh[19165]:  			"message":	"Parameter value field is not available"
+2026-01-16T09:34:41.806Z sh[19165]:  		}],
+2026-01-16T09:34:41.806Z sh[19165]:  	"message":	"Parameter value field is not available",
+2026-01-16T09:34:41.806Z sh[19165]:  	"statusCode":	22
+2026-01-16T09:34:41.807Z sh[19165]:  }
+2026-01-16T09:34:41.807Z sh[19165]:  260116-09:34:41.806166 [mod=BTRMGR, lvl=ERROR] [tid=19165] 699	: btrMgr_CheckAudioInServiceAvailability - getRFCParameter Failed :  Value is Empty
+2026-01-16T09:34:41.807Z sh[19165]:  260116-09:34:41.806211 [mod=RFCAPI, lvl=INFO] [tid=19165] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable"]}, datalen = 81
+2026-01-16T09:34:41.808Z sh[19165]:  260116-09:34:41.808564 [mod=RFCAPI, lvl=INFO] [tid=19165] curl response : 0 http response code: 200
+2026-01-16T09:34:41.808Z sh[19165]:  260116-09:34:41.808784 [mod=RFCAPI, lvl=INFO] [tid=19165] Curl response: {
+2026-01-16T09:34:41.808Z sh[19165]:  	"parameters":	[{
+2026-01-16T09:34:41.809Z sh[19165]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable",
+2026-01-16T09:34:41.809Z sh[19165]:  			"value":	"true",
+2026-01-16T09:34:41.809Z sh[19165]:  			"dataType":	3,
+2026-01-16T09:34:41.809Z sh[19165]:  			"parameterCount":	1,
+2026-01-16T09:34:41.809Z sh[19165]:  			"message":	"Default Value"
+2026-01-16T09:34:41.809Z sh[19165]:  		}],
+2026-01-16T09:34:41.809Z sh[19165]:  	"statusCode":	38
+2026-01-16T09:34:41.809Z sh[19165]:  }
+2026-01-16T09:34:41.809Z sh[19165]:  260116-09:34:41.808880 [mod=BTRMGR, lvl=INFO] [tid=19165] 721	: btrMgr_CheckHidGamePadServiceAvailability - getRFCParameter : Default value
+2026-01-16T09:34:41.810Z sh[19165]:  260116-09:34:41.808913 [mod=BTRMGR, lvl=INFO] [tid=19165] 727	: btrMgr_CheckHidGamePadServiceAvailability - BTR HidGamePad Serivce will be available.
+2026-01-16T09:34:41.871Z sh[19165]:  I-ARM BTMgr Bus: BTRMgr_BeginIARMMode Fri Jan 16 09:34:41 2026
+2026-01-16T09:34:41.871Z sh[19165]:  260116-09:34:41.871544 [mod=BTRMGR, lvl=INFO] [tid=19171] 8914	: btrMgr_g_main_loop_Task - GMainLoop Running - 0x7cc60 - 0x7cc60
+2026-01-16T09:34:41.871Z sh[19165]:  260116-09:34:41.871577 [mod=BTRMGR, lvl=INFO] [tid=19165] 2147	: BTRMgr_BeginIARMMode - Entering
+2026-01-16T09:34:41.898Z sh[19165]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = BTRMgrBus
+2026-01-16T09:34:41.898Z sh[19165]:  setting init done
+2026-01-16T09:34:41.899Z sh[19165]:  Registering BTRMgrBus
+2026-01-16T09:34:41.899Z sh[19165]:  260116-09:34:41.898668 [mod=BTRMGR, lvl=INFO] [tid=19165] 2154	: BTRMgr_BeginIARMMode - IARM Interface Initializing
+2026-01-16T09:34:41.899Z sh[19165]:  260116-09:34:41.899123 [mod=BTRMGR, lvl=INFO] [tid=19165] 8895	: BTRMGR_RegisterEventCallback - BTRMGR_RegisterEventCallback : Success
+2026-01-16T09:34:41.899Z sh[19165]:  260116-09:34:41.899156 [mod=BTRMGR, lvl=INFO] [tid=19165] 2220	: BTRMgr_BeginIARMMode - IARM Interface Inited Successfully
+2026-01-16T09:34:41.899Z sh[19165]:  260116-09:34:41.899199 [mod=BTRMGR, lvl=INFO] [tid=19165] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T09:34:41.899Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T09:34:41.899Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-16T09:34:41.899Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-16T09:34:42.018Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T09:34:42.018Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T09:34:42.019Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-16T09:34:42.019Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-16T09:34:42.019Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3847
+2026-01-16T09:34:42.019Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T09:34:42.019Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T09:34:42.019Z sh[19165]:  [PowerController][19175] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-16T09:34:42.019Z sh[19165]:  260116-09:34:42.019093 [mod=BTRMGR, lvl=INFO] [tid=19165] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T09:34:42.020Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T09:34:42.020Z sh[19165]:  260116-09:34:42.020027 [mod=BTRMGR, lvl=WARN] [tid=19165] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T09:34:42.020Z sh[19165]:  260116-09:34:42.020756 [mod=BTRMGR, lvl=ERROR] [tid=19165] 6069	: BTRMGR_StartAudioStreamingOut_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T09:34:42.021Z sh[19165]:  BTRMGR_StartAudioStreamingOut_StartUp - -1
+2026-01-16T09:34:42.021Z sh[19165]:  260116-09:34:42.020807 [mod=BTRMGR, lvl=INFO] [tid=19165] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T09:34:42.021Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T09:34:42.021Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T09:34:42.021Z sh[19165]:  260116-09:34:42.020858 [mod=BTRMGR, lvl=INFO] [tid=19165] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T09:34:42.022Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T09:34:42.022Z sh[19165]:  260116-09:34:42.021911 [mod=BTRMGR, lvl=WARN] [tid=19165] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T09:34:42.022Z sh[19165]:  260116-09:34:42.021945 [mod=BTRMGR, lvl=ERROR] [tid=19165] 5970	: BTRMGR_ConnectGamepads_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T09:34:42.022Z sh[19165]:  BTRMGR_ConnectGamepads_StartUp - -1
+2026-01-16T09:34:43.112Z sh[19165]:  260116-09:34:43.098969 [mod=BTRMGR, lvl=WARN] [tid=19173] 817	: btrMgr_SysDiag_powerModeChangeCb - new State: 5
+2026-01-16T09:34:43.113Z sh[19165]:  260116-09:34:43.099027 [mod=BTRMGR, lvl=INFO] [tid=19173] 821	: btrMgr_SysDiag_powerModeChangeCb - gpstSDHandle is not NULL
+2026-01-16T09:34:43.113Z sh[19165]:  260116-09:34:43.099066 [mod=BTRMGR, lvl=WARN] [tid=19173] 840	: btrMgr_SysDiag_powerModeChangeCb - BTRMGR_SYS_DIAG_POWERSTATE - Device is being suspended: stby_deep_sleep
+2026-01-16T09:34:44.353Z sh[19165]:  Received SIGNAL 15 = Terminated - Fri Jan 16 09:34:44 2026
+2026-01-16T09:34:44.354Z sh[19165]:  260116-09:34:44.353015 [mod=BTRMGR, lvl=INFO] [tid=19165] 2685	: btrMgr_StopPacketCapture - Pcaps are not being captured
+2026-01-16T09:34:44.354Z sh[19165]:  260116-09:34:44.353095 [mod=BTRMGR, lvl=INFO] [tid=19165] 2724	: btrMgr_StopHidEventMonitor - hid events are not being captured
+2026-01-16T09:34:44.432Z sh[19165]:  260116-09:34:44.432078 [mod=BTRMGR, lvl=WARN] [tid=19165] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T09:34:44.432Z sh[19165]:  260116-09:34:44.432212 [mod=BTRMGR, lvl=INFO] [tid=19171] 8916	: btrMgr_g_main_loop_Task - GMainLoop Quitting - 0x7cc60 - 0x7cc60
+2026-01-16T09:34:44.433Z sh[19165]:  260116-09:34:44.433559 [mod=BTRMGR, lvl=INFO] [tid=19165] 262	: BTRMgr_SD_DeInit - BTRMgr_SD_DeInit SUCCESS
+2026-01-16T09:34:44.433Z sh[19165]:  260116-09:34:44.433614 [mod=BTRMGR, lvl=ERROR] [tid=19165] 4111	: BTRMGR_DeInit - SD Module DeInited = 4
+2026-01-16T09:34:44.433Z sh[19165]:  260116-09:34:44.433662 [mod=BTRMGR, lvl=INFO] [tid=19165] 157	: BTRMgr_PI_DeInit - BTRMgr_PI_DeInit SUCCESS
+2026-01-16T09:34:44.434Z sh[19165]:  260116-09:34:44.433692 [mod=BTRMGR, lvl=ERROR] [tid=19165] 4117	: BTRMGR_DeInit - PI Module DeInited = 4
+2026-01-16T09:34:44.434Z sh[19165]:  260116-09:34:44.433726 [mod=BTRCORE, lvl=INFO] [tid=19165] 3358	: BTRCore_DeInit - hBTRCore   =   0xb5f83008
+2026-01-16T09:34:44.434Z sh[19165]:  260116-09:34:44.433814 [mod=BTRCORE, lvl=INFO] [tid=19169] 2122	: btrCore_RunTask - enBTRCoreTaskOpExit
+2026-01-16T09:34:44.434Z sh[19165]:  260116-09:34:44.433858 [mod=BTRCORE, lvl=INFO] [tid=19169] 2177	: btrCore_RunTask - RunTask Exiting
+2026-01-16T09:34:44.434Z sh[19165]:  260116-09:34:44.434015 [mod=BTRCORE, lvl=INFO] [tid=19165] 3375	: BTRCore_DeInit - BTRCore_DeInit - RunTask Exiting BTRCore - 8
+2026-01-16T09:34:44.434Z sh[19165]:  260116-09:34:44.434191 [mod=BTRCORE, lvl=INFO] [tid=19168] 2268	: btrCore_OutTask - enBTRCoreTaskOpExit
+2026-01-16T09:34:44.435Z sh[19165]:  260116-09:34:44.434231 [mod=BTRCORE, lvl=INFO] [tid=19168] 3081	: btrCore_OutTask - OutTask Exiting
+2026-01-16T09:34:44.435Z sh[19165]:  260116-09:34:44.434409 [mod=BTRCORE, lvl=INFO] [tid=19165] 3400	: BTRCore_DeInit - BTRCore_DeInit - OutTask Exiting BTRCore - 8
+2026-01-16T09:34:44.435Z sh[19165]:  260116-09:34:44.435277 [mod=BTRCORE, lvl=WARN] [tid=19165] 648	: btrCore_BTReleaseDefaultAdapterPath - Adapter Addr is : D4:52:EE:59:E3:E9 - 0x72048
+2026-01-16T09:34:44.435Z sh[19165]:  260116-09:34:44.435319 [mod=BTRCORE, lvl=WARN] [tid=19165] 654	: btrCore_BTReleaseDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T09:34:44.435Z sh[19165]:  260116-09:34:44.435352 [mod=BTRCORE, lvl=WARN] [tid=19165] 3618	: BtrCore_BTReleaseAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T09:34:44.435Z sh[19165]:  260116-09:34:44.435380 [mod=BTRCORE, lvl=ERROR] [tid=19165] 3620	: BtrCore_BTReleaseAdapterPath - ERROR: Looks like Adapter path has been changed by User
+2026-01-16T09:34:44.435Z sh[19165]:  260116-09:34:44.435409 [mod=BTRCORE, lvl=WARN] [tid=19165] 3627	: BtrCore_BTReleaseAdapterPath - Freed Adapter
+2026-01-16T09:34:44.439Z sh[19165]:  260116-09:34:44.439328 [mod=BTRCORE, lvl=INFO] [tid=19165] 3493	: BTRCore_DeInit - Exit Status = 8
+2026-01-16T09:34:44.439Z sh[19165]:  260116-09:34:44.439388 [mod=BTRMGR, lvl=ERROR] [tid=19165] 4124	: BTRMGR_DeInit - BTRCore DeInited; Now will we exit the app = 8
+2026-01-16T09:34:44.439Z sh[19165]:  BTRMGR_DeInit 0 - Fri Jan 16 09:34:44 2026
+2026-01-16T09:34:44.439Z sh[19165]:  260116-09:34:44.439510 [mod=BTRMGR, lvl=INFO] [tid=19165] 2233	: BTRMgr_TermIARMMode - Entering
+2026-01-16T09:34:44.440Z sh[19165]:  260116-09:34:44.439540 [mod=BTRMGR, lvl=INFO] [tid=19165] 2236	: BTRMgr_TermIARMMode - IARM Interface Being terminated
+2026-01-16T09:34:44.481Z sh[19165]:  term start init 1
+2026-01-16T09:34:44.482Z sh[19165]:  260116-09:34:44.481772 [mod=BTRMGR, lvl=INFO] [tid=19165] 2241	: BTRMgr_TermIARMMode - PowerController_Term started in internal
+2026-01-16T09:34:44.482Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:951] Term: Entering ...
+2026-01-16T09:34:44.482Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:896] Disconnect: Entering ...
+2026-01-16T09:34:44.482Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:901] Disconnect: Closing COM-RPC channel ...
+2026-01-16T09:34:44.482Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 0
+2026-01-16T09:34:44.584Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:907] Disconnect: COM-RPC channel closed
+2026-01-16T09:34:44.585Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:914] Disconnect: Exiting ... status[0]
+2026-01-16T09:34:44.585Z sh[19165]:  [PowerController][19165] INFO  [power_controller.cpp:631] ~PIDFileMonitor: destructor
+2026-01-16T10:28:52.327Z sh[19599]:  rdk_dyn_log_initg_dl_socket = 3 __progname = btMgrBus
+2026-01-16T10:28:52.327Z sh[19599]:  Hci0 is up
+2026-01-16T10:28:52.327Z sh[19599]:  Conf file /etc/debug.ini open success
+2026-01-16T10:28:52.327Z sh[19599]:  260116-10:28:52.326732 [mod=BTRCORE, lvl=INFO] [tid=19599] 3184	: BTRCore_Init - BTRCore_Init
+2026-01-16T10:28:52.336Z sh[19599]:  260116-10:28:52.336678 [mod=BTRCORE, lvl=INFO] [tid=19599] 3071	: BtrCore_BTInitGetConnection - DBus Debug DBus Connection Name :1.232
+2026-01-16T10:28:52.339Z sh[19599]:  260116-10:28:52.339334 [mod=BTRCORE, lvl=INFO] [tid=19599] 3203	: BtrCore_BTGetAgentPath - Agent Path: /org/bluez/agent_19599
+2026-01-16T10:28:52.340Z sh[19599]:  260116-10:28:52.340011 [mod=BTRCORE, lvl=INFO] [tid=19609] 2074	: btrCore_RunTask - RunTask Started
+2026-01-16T10:28:52.340Z sh[19599]:  260116-10:28:52.340084 [mod=BTRCORE, lvl=INFO] [tid=19609] 2099	: btrCore_RunTask - enBTRCoreTaskOpStart
+2026-01-16T10:28:52.369Z sh[19599]:  260116-10:28:52.369566 [mod=BTRCORE, lvl=WARN] [tid=19599] 636	: btrCore_BTGetDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T10:28:52.369Z sh[19599]:  260116-10:28:52.369626 [mod=BTRCORE, lvl=WARN] [tid=19599] 3570	: BtrCore_BTGetAdapterPath - Got Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T10:28:52.369Z sh[19599]:  260116-10:28:52.369654 [mod=BTRCORE, lvl=WARN] [tid=19599] 3596	: BtrCore_BTGetAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T10:28:52.382Z sh[19599]:  260116-10:28:52.382528 [mod=BTRCORE, lvl=WARN] [tid=19599] 906	: BTRCore_LE_Init - BTRCore_LE_Init
+2026-01-16T10:28:52.384Z sh[19599]:  260116-10:28:52.384447 [mod=BTRCORE, lvl=INFO] [tid=19609] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T10:28:52.384Z sh[19599]:  260116-10:28:52.384537 [mod=BTRCORE, lvl=INFO] [tid=19609] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T10:28:52.408Z sh[19599]:  260116-10:28:52.408627 [mod=BTRCORE, lvl=INFO] [tid=19609] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T10:28:52.408Z sh[19599]:  260116-10:28:52.408689 [mod=BTRCORE, lvl=INFO] [tid=19609] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T10:28:52.429Z sh[19599]:  260116-10:28:52.429083 [mod=BTRCORE, lvl=INFO] [tid=19609] 8087	: btrCore_BTDBusConnectionFilterCb - Adapter Stopped Discovering | 0
+2026-01-16T10:28:52.429Z sh[19599]:  260116-10:28:52.429144 [mod=BTRCORE, lvl=INFO] [tid=19609] 6893	: btrCore_BTAdapterStatusUpdateCb - adapter number = 0, path = /org/bluez/hci0, discovering = 0
+2026-01-16T10:28:52.453Z sh[19599]:  260116-10:28:52.453165 [mod=BTRCORE, lvl=INFO] [tid=19599] 4099	: BTRCore_GetVersionInfo - Out:  Bluez-5.48
+2026-01-16T10:28:52.453Z sh[19599]:  260116-10:28:52.453237 [mod=BTRMGR, lvl=INFO] [tid=19599] 3856	: BTRMGR_Init - BTR Bluetooth Version: Bluez-5.48
+2026-01-16T10:28:52.526Z sh[19599]:  260116-10:28:52.525947 [mod=BTRMGR, lvl=INFO] [tid=19599] 3861	: BTRMGR_Init - Number of Adapters found are = 1
+2026-01-16T10:28:52.526Z sh[19599]:  260116-10:28:52.526225 [mod=RFCAPI, lvl=INFO] [tid=19599] getRFCParameter: http server is ready
+2026-01-16T10:28:52.529Z sh[19599]:  260116-10:28:52.529355 [mod=RFCAPI, lvl=INFO] [tid=19599] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable"]}, datalen = 83
+2026-01-16T10:28:52.532Z sh[19599]:  260116-10:28:52.532333 [mod=RFCAPI, lvl=INFO] [tid=19599] curl response : 0 http response code: 200
+2026-01-16T10:28:52.532Z sh[19599]:  260116-10:28:52.532549 [mod=RFCAPI, lvl=INFO] [tid=19599] Curl response: {
+2026-01-16T10:28:52.532Z sh[19599]:  	"parameters":	[{
+2026-01-16T10:28:52.532Z sh[19599]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.DebugMode.Enable",
+2026-01-16T10:28:52.532Z sh[19599]:  			"value":	"false",
+2026-01-16T10:28:52.532Z sh[19599]:  			"dataType":	3,
+2026-01-16T10:28:52.533Z sh[19599]:  			"parameterCount":	1,
+2026-01-16T10:28:52.533Z sh[19599]:  			"message":	"Default Value"
+2026-01-16T10:28:52.533Z sh[19599]:  		}],
+2026-01-16T10:28:52.533Z sh[19599]:  	"statusCode":	38
+2026-01-16T10:28:52.533Z sh[19599]:  }
+2026-01-16T10:28:52.533Z sh[19599]:  260116-10:28:52.532684 [mod=BTRMGR, lvl=INFO] [tid=19599] 754	: btrMgr_CheckDebugModeAvailability - getRFCParameter : Default value
+2026-01-16T10:28:52.533Z sh[19599]:  260116-10:28:52.532718 [mod=BTRMGR, lvl=INFO] [tid=19599] 764	: btrMgr_CheckDebugModeAvailability - BTR Debug Mode will not be available.
+2026-01-16T10:28:52.533Z sh[19599]:  260116-10:28:52.532748 [mod=BTRCORE, lvl=INFO] [tid=19599] 6769	: BTRCore_RegisterStatusCb - BT Status Callback Registered Successfully
+2026-01-16T10:28:52.533Z sh[19599]:  260116-10:28:52.532775 [mod=BTRCORE, lvl=INFO] [tid=19599] 6741	: BTRCore_RegisterDiscoveryCb - Device Discovery Callback Registered Successfully
+2026-01-16T10:28:52.533Z sh[19599]:  260116-10:28:52.532802 [mod=BTRCORE, lvl=INFO] [tid=19599] 6827	: BTRCore_RegisterConnectionIntimationCb - BT Conn In Intimation Callback Registered Successfully
+2026-01-16T10:28:52.533Z sh[19599]:  260116-10:28:52.532827 [mod=BTRCORE, lvl=INFO] [tid=19599] 6857	: BTRCore_RegisterConnectionAuthenticationCb - BT Conn Auth Callback Registered Successfully
+2026-01-16T10:28:52.534Z sh[19599]:  260116-10:28:52.532852 [mod=BTRCORE, lvl=INFO] [tid=19599] 6797	: BTRCore_RegisterMediaStatusCb - BT Media Status Callback Registered Successfully
+2026-01-16T10:28:52.534Z sh[19599]:  260116-10:28:52.532875 [mod=BTRMGR, lvl=INFO] [tid=19599] 3903	: BTRMGR_Init - Activate agent
+2026-01-16T10:28:52.609Z sh[19599]:  260116-10:28:52.609037 [mod=BTRMGR, lvl=INFO] [tid=19599] 5344	: BTRMGR_GetPairedDevices - Paired Device ID = 35477520571584 Connected = 0 Dev Address = 20:44:41:02:DC:C0 Dev Type = 21
+2026-01-16T10:28:52.609Z sh[19599]:  260116-10:28:52.609210 [mod=RFCAPI, lvl=INFO] [tid=19599] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable"]}, datalen = 81
+2026-01-16T10:28:52.612Z sh[19599]:  260116-10:28:52.612002 [mod=RFCAPI, lvl=INFO] [tid=19599] curl response : 0 http response code: 200
+2026-01-16T10:28:52.612Z sh[19599]:  260116-10:28:52.612247 [mod=RFCAPI, lvl=INFO] [tid=19599] Curl response: {
+2026-01-16T10:28:52.613Z sh[19599]:  	"parameters":	[{
+2026-01-16T10:28:52.613Z sh[19599]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.AudioIn.Enable",
+2026-01-16T10:28:52.613Z sh[19599]:  			"value":	"",
+2026-01-16T10:28:52.613Z sh[19599]:  			"dataType":	3,
+2026-01-16T10:28:52.613Z sh[19599]:  			"parameterCount":	1,
+2026-01-16T10:28:52.613Z sh[19599]:  			"message":	"Parameter value field is not available"
+2026-01-16T10:28:52.613Z sh[19599]:  		}],
+2026-01-16T10:28:52.613Z sh[19599]:  	"message":	"Parameter value field is not available",
+2026-01-16T10:28:52.613Z sh[19599]:  	"statusCode":	22
+2026-01-16T10:28:52.613Z sh[19599]:  }
+2026-01-16T10:28:52.614Z sh[19599]:  260116-10:28:52.612473 [mod=BTRMGR, lvl=ERROR] [tid=19599] 699	: btrMgr_CheckAudioInServiceAvailability - getRFCParameter Failed :  Value is Empty
+2026-01-16T10:28:52.614Z sh[19599]:  260116-10:28:52.612526 [mod=RFCAPI, lvl=INFO] [tid=19599] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable"]}, datalen = 81
+2026-01-16T10:28:52.615Z sh[19599]:  260116-10:28:52.614937 [mod=RFCAPI, lvl=INFO] [tid=19599] curl response : 0 http response code: 200
+2026-01-16T10:28:52.615Z sh[19599]:  260116-10:28:52.615164 [mod=RFCAPI, lvl=INFO] [tid=19599] Curl response: {
+2026-01-16T10:28:52.615Z sh[19599]:  	"parameters":	[{
+2026-01-16T10:28:52.616Z sh[19599]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.BTR.GamePad.Enable",
+2026-01-16T10:28:52.616Z sh[19599]:  			"value":	"true",
+2026-01-16T10:28:52.616Z sh[19599]:  			"dataType":	3,
+2026-01-16T10:28:52.616Z sh[19599]:  			"parameterCount":	1,
+2026-01-16T10:28:52.616Z sh[19599]:  			"message":	"Default Value"
+2026-01-16T10:28:52.616Z sh[19599]:  		}],
+2026-01-16T10:28:52.616Z sh[19599]:  	"statusCode":	38
+2026-01-16T10:28:52.616Z sh[19599]:  }
+2026-01-16T10:28:52.617Z sh[19599]:  260116-10:28:52.615259 [mod=BTRMGR, lvl=INFO] [tid=19599] 721	: btrMgr_CheckHidGamePadServiceAvailability - getRFCParameter : Default value
+2026-01-16T10:28:52.617Z sh[19599]:  260116-10:28:52.615292 [mod=BTRMGR, lvl=INFO] [tid=19599] 727	: btrMgr_CheckHidGamePadServiceAvailability - BTR HidGamePad Serivce will be available.
+2026-01-16T10:28:52.662Z sh[19599]:  I-ARM BTMgr Bus: BTRMgr_BeginIARMMode Fri Jan 16 10:28:52 2026
+2026-01-16T10:28:52.662Z sh[19599]:  260116-10:28:52.662314 [mod=BTRMGR, lvl=INFO] [tid=19611] 8914	: btrMgr_g_main_loop_Task - GMainLoop Running - 0x7cf58 - 0x7cf58
+2026-01-16T10:28:52.662Z sh[19599]:  260116-10:28:52.662332 [mod=BTRMGR, lvl=INFO] [tid=19599] 2147	: BTRMgr_BeginIARMMode - Entering
+2026-01-16T10:28:52.689Z sh[19599]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = BTRMgrBus
+2026-01-16T10:28:52.690Z sh[19599]:  setting init done
+2026-01-16T10:28:52.690Z sh[19599]:  Registering BTRMgrBus
+2026-01-16T10:28:52.690Z sh[19599]:  260116-10:28:52.689792 [mod=BTRMGR, lvl=INFO] [tid=19599] 2154	: BTRMgr_BeginIARMMode - IARM Interface Initializing
+2026-01-16T10:28:52.690Z sh[19599]:  260116-10:28:52.690254 [mod=BTRMGR, lvl=INFO] [tid=19599] 8895	: BTRMGR_RegisterEventCallback - BTRMGR_RegisterEventCallback : Success
+2026-01-16T10:28:52.690Z sh[19599]:  260116-10:28:52.690313 [mod=BTRMGR, lvl=INFO] [tid=19599] 2220	: BTRMgr_BeginIARMMode - IARM Interface Inited Successfully
+2026-01-16T10:28:52.690Z sh[19599]:  260116-10:28:52.690357 [mod=BTRMGR, lvl=INFO] [tid=19599] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T10:28:52.690Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T10:28:52.690Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-16T10:28:52.690Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-16T10:28:52.806Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T10:28:52.806Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T10:28:52.806Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-16T10:28:52.806Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-16T10:28:52.807Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3847
+2026-01-16T10:28:52.807Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T10:28:52.807Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T10:28:52.807Z sh[19599]:  [PowerController][19615] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-16T10:28:52.807Z sh[19599]:  260116-10:28:52.807023 [mod=BTRMGR, lvl=INFO] [tid=19599] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T10:28:52.808Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T10:28:52.808Z sh[19599]:  260116-10:28:52.807945 [mod=BTRMGR, lvl=WARN] [tid=19599] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T10:28:52.809Z sh[19599]:  260116-10:28:52.809216 [mod=BTRMGR, lvl=ERROR] [tid=19599] 6069	: BTRMGR_StartAudioStreamingOut_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T10:28:52.809Z sh[19599]:  BTRMGR_StartAudioStreamingOut_StartUp - -1
+2026-01-16T10:28:52.809Z sh[19599]:  260116-10:28:52.809265 [mod=BTRMGR, lvl=INFO] [tid=19599] 630	: BTRMGR_SD_GetData - PowerInit started
+2026-01-16T10:28:52.809Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T10:28:52.809Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T10:28:52.809Z sh[19599]:  260116-10:28:52.809312 [mod=BTRMGR, lvl=INFO] [tid=19599] 632	: BTRMGR_SD_GetData - PowerInit ended
+2026-01-16T10:28:52.810Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:978] GetPowerState: result[0], Prev[5], Current[4]
+2026-01-16T10:28:52.810Z sh[19599]:  260116-10:28:52.810205 [mod=BTRMGR, lvl=WARN] [tid=19599] 654	: BTRMGR_SD_GetData - BTRMGR_SYS_DIAG_POWERSTATE PWRMGR :4 - stby_light_sleep
+2026-01-16T10:28:52.810Z sh[19599]:  260116-10:28:52.810240 [mod=BTRMGR, lvl=ERROR] [tid=19599] 5970	: BTRMGR_ConnectGamepads_StartUp - Power state is stby_light_sleep no need to try connecting device as it will connect once ON
+2026-01-16T10:28:52.810Z sh[19599]:  BTRMGR_ConnectGamepads_StartUp - -1
+2026-01-16T10:28:54.051Z sh[19599]:  260116-10:28:54.050555 [mod=BTRMGR, lvl=WARN] [tid=19613] 817	: btrMgr_SysDiag_powerModeChangeCb - new State: 5
+2026-01-16T10:28:54.051Z sh[19599]:  260116-10:28:54.050655 [mod=BTRMGR, lvl=INFO] [tid=19613] 821	: btrMgr_SysDiag_powerModeChangeCb - gpstSDHandle is not NULL
+2026-01-16T10:28:54.051Z sh[19599]:  260116-10:28:54.050683 [mod=BTRMGR, lvl=WARN] [tid=19613] 840	: btrMgr_SysDiag_powerModeChangeCb - BTRMGR_SYS_DIAG_POWERSTATE - Device is being suspended: stby_deep_sleep
+2026-01-16T10:28:55.289Z sh[19599]:  Received SIGNAL 15 = Terminated - Fri Jan 16 10:28:55 2026
+2026-01-16T10:28:55.289Z sh[19599]:  260116-10:28:55.288844 [mod=BTRMGR, lvl=INFO] [tid=19599] 2685	: btrMgr_StopPacketCapture - Pcaps are not being captured
+2026-01-16T10:28:55.289Z sh[19599]:  260116-10:28:55.288884 [mod=BTRMGR, lvl=INFO] [tid=19599] 2724	: btrMgr_StopHidEventMonitor - hid events are not being captured
+2026-01-16T10:28:55.365Z sh[19599]:  260116-10:28:55.365162 [mod=BTRMGR, lvl=WARN] [tid=19599] 5733	: BTRMGR_GetConnectedDevices - No Device in scan list
+2026-01-16T10:28:55.365Z sh[19599]:  260116-10:28:55.365322 [mod=BTRMGR, lvl=INFO] [tid=19611] 8916	: btrMgr_g_main_loop_Task - GMainLoop Quitting - 0x7cf58 - 0x7cf58
+2026-01-16T10:28:55.366Z sh[19599]:  260116-10:28:55.366730 [mod=BTRMGR, lvl=INFO] [tid=19599] 262	: BTRMgr_SD_DeInit - BTRMgr_SD_DeInit SUCCESS
+2026-01-16T10:28:55.366Z sh[19599]:  260116-10:28:55.366786 [mod=BTRMGR, lvl=ERROR] [tid=19599] 4111	: BTRMGR_DeInit - SD Module DeInited = 4
+2026-01-16T10:28:55.367Z sh[19599]:  260116-10:28:55.366833 [mod=BTRMGR, lvl=INFO] [tid=19599] 157	: BTRMgr_PI_DeInit - BTRMgr_PI_DeInit SUCCESS
+2026-01-16T10:28:55.367Z sh[19599]:  260116-10:28:55.366863 [mod=BTRMGR, lvl=ERROR] [tid=19599] 4117	: BTRMGR_DeInit - PI Module DeInited = 4
+2026-01-16T10:28:55.367Z sh[19599]:  260116-10:28:55.366898 [mod=BTRCORE, lvl=INFO] [tid=19599] 3358	: BTRCore_DeInit - hBTRCore   =   0xb6003008
+2026-01-16T10:28:55.367Z sh[19599]:  260116-10:28:55.367014 [mod=BTRCORE, lvl=INFO] [tid=19609] 2122	: btrCore_RunTask - enBTRCoreTaskOpExit
+2026-01-16T10:28:55.367Z sh[19599]:  260116-10:28:55.367055 [mod=BTRCORE, lvl=INFO] [tid=19609] 2177	: btrCore_RunTask - RunTask Exiting
+2026-01-16T10:28:55.367Z sh[19599]:  260116-10:28:55.367195 [mod=BTRCORE, lvl=INFO] [tid=19599] 3375	: BTRCore_DeInit - BTRCore_DeInit - RunTask Exiting BTRCore - 8
+2026-01-16T10:28:55.368Z sh[19599]:  260116-10:28:55.367323 [mod=BTRCORE, lvl=INFO] [tid=19608] 2268	: btrCore_OutTask - enBTRCoreTaskOpExit
+2026-01-16T10:28:55.368Z sh[19599]:  260116-10:28:55.367363 [mod=BTRCORE, lvl=INFO] [tid=19608] 3081	: btrCore_OutTask - OutTask Exiting
+2026-01-16T10:28:55.368Z sh[19599]:  260116-10:28:55.367520 [mod=BTRCORE, lvl=INFO] [tid=19599] 3400	: BTRCore_DeInit - BTRCore_DeInit - OutTask Exiting BTRCore - 8
+2026-01-16T10:28:55.368Z sh[19599]:  260116-10:28:55.368531 [mod=BTRCORE, lvl=WARN] [tid=19599] 648	: btrCore_BTReleaseDefaultAdapterPath - Adapter Addr is : D4:52:EE:59:E3:E9 - 0x72048
+2026-01-16T10:28:55.368Z sh[19599]:  260116-10:28:55.368590 [mod=BTRCORE, lvl=WARN] [tid=19599] 654	: btrCore_BTReleaseDefaultAdapterPath - Default Adapter Path is : /org/bluez/hci0 - 0x72358
+2026-01-16T10:28:55.368Z sh[19599]:  260116-10:28:55.368624 [mod=BTRCORE, lvl=WARN] [tid=19599] 3618	: BtrCore_BTReleaseAdapterPath - Adapter Path is : /org/bluez/hci0 - 0x72128
+2026-01-16T10:28:55.369Z sh[19599]:  260116-10:28:55.368653 [mod=BTRCORE, lvl=ERROR] [tid=19599] 3620	: BtrCore_BTReleaseAdapterPath - ERROR: Looks like Adapter path has been changed by User
+2026-01-16T10:28:55.369Z sh[19599]:  260116-10:28:55.368683 [mod=BTRCORE, lvl=WARN] [tid=19599] 3627	: BtrCore_BTReleaseAdapterPath - Freed Adapter
+2026-01-16T10:28:55.373Z sh[19599]:  260116-10:28:55.372986 [mod=BTRCORE, lvl=INFO] [tid=19599] 3493	: BTRCore_DeInit - Exit Status = 8
+2026-01-16T10:28:55.373Z sh[19599]:  260116-10:28:55.373052 [mod=BTRMGR, lvl=ERROR] [tid=19599] 4124	: BTRMGR_DeInit - BTRCore DeInited; Now will we exit the app = 8
+2026-01-16T10:28:55.373Z sh[19599]:  BTRMGR_DeInit 0 - Fri Jan 16 10:28:55 2026
+2026-01-16T10:28:55.373Z sh[19599]:  260116-10:28:55.373173 [mod=BTRMGR, lvl=INFO] [tid=19599] 2233	: BTRMgr_TermIARMMode - Entering
+2026-01-16T10:28:55.373Z sh[19599]:  260116-10:28:55.373203 [mod=BTRMGR, lvl=INFO] [tid=19599] 2236	: BTRMgr_TermIARMMode - IARM Interface Being terminated
+2026-01-16T10:28:55.505Z sh[19599]:  term start init 1
+2026-01-16T10:28:55.505Z sh[19599]:  260116-10:28:55.505362 [mod=BTRMGR, lvl=INFO] [tid=19599] 2241	: BTRMgr_TermIARMMode - PowerController_Term started in internal
+2026-01-16T10:28:55.505Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:951] Term: Entering ...
+2026-01-16T10:28:55.506Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:896] Disconnect: Entering ...
+2026-01-16T10:28:55.506Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:901] Disconnect: Closing COM-RPC channel ...
+2026-01-16T10:28:55.513Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 0
+2026-01-16T10:28:55.615Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:907] Disconnect: COM-RPC channel closed
+2026-01-16T10:28:55.616Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:914] Disconnect: Exiting ... status[0]
+2026-01-16T10:28:55.616Z sh[19599]:  [PowerController][19599] INFO  [power_controller.cpp:631] ~PIDFileMonitor: destructor

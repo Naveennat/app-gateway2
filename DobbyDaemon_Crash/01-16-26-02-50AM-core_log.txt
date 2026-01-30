@@ -1,0 +1,884 @@
+               total        used        free      shared  buff/cache   available
+Mem:         3691156     1025736     2297284      188092      368136     2411940
+Swap:        1845568           0     1845568
+top - 02:26:48 up 45 min,  0 users,  load average: 3.37, 1.74, 0.94
+Tasks: 295 total,   2 running, 288 sleeping,   0 stopped,   5 zombie
+%Cpu(s): 11.3 us, 28.9 sy,  0.0 ni, 39.2 id, 19.6 wa,  0.0 hi,  1.0 si,  0.0 st
+MiB Mem :   3604.6 total,   2242.1 free,   1002.3 used,    360.3 buff/cache
+MiB Swap:   1802.3 total,   1802.3 free,      0.0 used.   2355.2 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+ 3831 root      20   0  618104  50032  35800 S  54.8   1.4   1:55.59 WPEFramew+
+16623 root     -11   0    3796   1972   1488 R   9.7   0.1   0:00.05 top
+ 3248 redis    -24   0   29216   3648   2532 S   3.2   0.1   0:26.17 redis-ser+
+ 3431 root     -31   0   96696   4380   3880 S   3.2   0.1   0:05.62 HdmiServi+
+ 3561 root     -36   0  107516   5512   4940 S   3.2   0.1   0:19.44 RtkAudioS+
+ 3795 root      20   0  159164  15560  11644 S   3.2   0.4   0:05.41 tr69hostif
+ 4297 root     -31   0  174420  10788   9208 S   3.2   0.3   0:29.67 dsMgrMain
+16609 root      20   0    2288   1596   1492 D   3.2   0.0   0:00.04 uploadDum+
+    1 root      20   0    5180   4108   2460 S   0.0   0.1   0:07.35 systemd
+    2 root      20   0       0      0      0 S   0.0   0.0   0:00.01 kthreadd
+    3 root     -50   0       0      0      0 S   0.0   0.0   0:00.31 ksoftirqd+
+    5 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+    7 root      20   0       0      0      0 S   0.0   0.0   0:03.33 rcu_preem+
+    8 root      20   0       0      0      0 S   0.0   0.0   0:00.03 rcu_sched
+    9 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_bh
+   10 root      rt   0       0      0      0 S   0.0   0.0   0:00.02 migration+
+   11 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 lru-add-d+
+   12 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+   13 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+   14 root      rt   0       0      0      0 S   0.0   0.0   0:00.01 migration+
+   15 root     -50   0       0      0      0 S   0.0   0.0   0:00.32 ksoftirqd+
+   17 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/1+
+   18 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+   19 root      rt   0       0      0      0 S   0.0   0.0   0:00.02 migration+
+   20 root     -50   0       0      0      0 S   0.0   0.0   0:00.33 ksoftirqd+
+   22 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/2+
+   23 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/3
+   24 root      rt   0       0      0      0 S   0.0   0.0   0:00.02 migration+
+   25 root     -50   0       0      0      0 S   0.0   0.0   0:00.35 ksoftirqd+
+   27 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/3+
+   28 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs
+   29 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 netns
+  520 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper
+  521 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 writeback
+  523 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kcompactd0
+  524 root     -11   0       0      0      0 S   0.0   0.0   0:00.21 kworker/0+
+  525 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 crypto
+  526 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  528 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kblockd
+  532 root     -11   0       0      0      0 S   0.0   0.0   0:01.35 kworker/u+
+  541 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ata_sff
+  560 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 devfreq_wq
+  577 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 cfg80211
+  586 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 rtk_usb_m+
+  588 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 watchdogd
+  675 root      20   0       0      0      0 S   0.0   0.0   0:00.00 System
+  677 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 rpciod
+  678 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 xprtiod
+  722 root      20   0       0      0      0 S   0.0   0.0   0:00.42 kswapd0
+  723 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 vmstat
+  725 root      20   0       0      0      0 S   0.0   0.0   0:00.00 ecryptfs-+
+  726 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 nfsiod
+  727 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 cifsiod
+  728 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 cifsoploc+
+  768 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  769 root      -2   0       0      0      0 D   0.0   0.0   0:10.93 mmcqd/0
+  770 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  771 root      -2   0       0      0      0 S   0.0   0.0   0:00.00 mmcqd/0bo+
+  772 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  773 root      -2   0       0      0      0 S   0.0   0.0   0:00.00 mmcqd/0bo+
+  774 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  775 root      -2   0       0      0      0 S   0.0   0.0   0:00.00 mmcqd/0rp+
+  816 root      20   0       0      0      0 S   0.0   0.0   0:00.00 acpu_r_pr+
+  817 root      20   0       0      0      0 S   0.0   0.0   0:00.00 vcpu_r_pr+
+  818 root      20   0       0      0      0 S   0.0   0.0   0:00.03 rpc-1
+  819 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rpc-3
+  845 root      20   0       0      0      0 S   0.0   0.0   0:01.90 buflock_r+
+  865 root      20   0       0      0      0 S   0.0   0.0   0:00.00 hwrng
+  868 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  869 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  870 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  871 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  872 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  873 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  874 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  875 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  876 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  877 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  878 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  879 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  880 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  881 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  882 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  883 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  917 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  920 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  923 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  926 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  929 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  932 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  935 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  938 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  941 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 memory_wq
+  953 root      25   5       0      0      0 S   0.0   0.0   0:00.00 eth0-link+
+  954 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/1+
+ 1010 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/25-98+
+ 1028 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 hdcp
+ 1045 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 fei_kt
+ 1071 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 dm_bufio_+
+ 1074 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 cfinterac+
+ 1178 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ipv6_addr+
+ 1185 root      10 -10       0      0      0 S   0.0   0.0   0:00.00 krfcommd
+ 1202 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 rtk_post_+
+ 1203 root      rt   0       0      0      0 S   0.0   0.0   0:01.71 rtk_compl+
+ 1268 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kdmflush
+ 1269 root     -36 -20       0      0      0 S   0.0   0.0   0:00.10 kworker/0+
+ 1270 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 1271 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kverityd
+ 1272 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 1276 root     -36 -20       0      0      0 S   0.0   0.0   0:00.10 kworker/1+
+ 1277 root     -36 -20       0      0      0 S   0.0   0.0   0:00.02 kworker/3+
+ 1278 root     -36 -20       0      0      0 S   0.0   0.0   0:00.04 kworker/2+
+ 1308 root      20   0       0      0      0 S   0.0   0.0   0:01.19 vblank co+
+ 1310 root      20   0   24848   3848   3360 S   0.0   0.1   0:10.05 systemd-j+
+ 1312 root      20   0       0      0      0 S   0.0   0.0   0:00.10 mali-simp+
+ 1313 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_job+
+ 1318 root     -36 -20       0      0      0 S   0.0   0.0   0:00.06 kworker/u+
+ 1321 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 rtk_crtc +
+ 1327 root     -75   0       0      0      0 S   0.0   0.0   0:02.62 vblank th+
+ 1330 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kauditd
+ 1357 root     -11   0       0      0      0 S   0.0   0.0   0:00.22 kworker/2+
+ 1358 root      20   0    1560    580    516 S   0.0   0.0   0:00.02 logbackup
+ 1362 root      20   0       0      0      0 S   0.0   0.0   0:00.22 jbd2/mmcb+
+ 1363 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 1369 root      20   0       0      0      0 S   0.0   0.0   0:00.15 jbd2/mmcb+
+ 1370 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 1740 root      20   0    3108   2216   1792 S   0.0   0.1   0:00.59 systemd-u+
+ 2333 root     -11   0       0      0      0 S   0.0   0.0   0:01.21 kworker/u+
+ 2396 root      20   0    5344   1956   1232 S   0.0   0.1   0:00.40 rtrouted
+ 2424 message+ -31   0    5476   4292   2180 S   0.0   0.1   0:09.58 dbus-daem+
+ 2439 root      20   0       0      0      0 S   0.0   0.0   0:00.23 GPIO_FP_B+
+ 2470 root      20   0   12656   1344   1208 S   0.0   0.0   0:00.11 ermgr
+ 2540 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 msm_ipc_r+
+ 2547 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 MHI_XPRT1+
+ 2594 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 qmi_svc_e+
+ 2597 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 diag_mhi_+
+ 2646 root      20   0   20800    988    844 S   0.0   0.0   0:00.01 rbus_sess+
+ 2660 root      20   0   34936   5736   4124 S   0.0   0.2   0:00.18 DBStoreEXE
+ 2711 root      20   0   34628   5252   4216 S   0.0   0.1   0:00.38 skymwloca+
+ 2733 root      20   0   16516   5924   5020 S   0.0   0.2   0:00.07 SkyMwConf+
+ 2766 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 SkyMwConf+
+ 2775 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 SkyMwConf+
+ 2779 root      20   0   50988   7812   6068 S   0.0   0.2   0:13.44 syslog-ng
+ 2781 root      20   0    2256   1732   1580 S   0.0   0.0   0:00.09 aar_telem+
+ 2785 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 SkyMwConf+
+ 2788 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 SkyMwConf+
+ 2805 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 cds_recov+
+ 2807 root      20   0       0      0      0 S   0.0   0.0   0:00.04 wlan_logg+
+ 2815 root      20   0 1752352  11888   4760 S   0.0   0.3   0:01.96 asproxy
+ 2832 root      20   0       0      0      0 S   0.0   0.0   0:00.06 jbd2/mmcb+
+ 2833 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 3046 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 IPCRTR_MH+
+ 3049 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 qmi_hndl0+
+ 3070 root      18  -2       0      0      0 S   0.0   0.0   0:01.00 scheduler+
+ 3071 root      19  -1       0      0      0 S   0.0   0.0   0:00.00 cds_ol_rx+
+ 3074 root      20   0   51996  10616   8648 S   0.0   0.3   0:02.02 NetworkMa+
+ 3078 root      19  -1       0      0      0 S   0.0   0.0   0:01.31 dp_rx_thr+
+ 3079 root      19  -1       0      0      0 S   0.0   0.0   0:00.00 dp_rx_thr+
+ 3080 root      19  -1       0      0      0 S   0.0   0.0   0:00.00 dp_rx_thr+
+ 3081 root      19  -1       0      0      0 S   0.0   0.0   0:00.00 dp_rx_thr+
+ 3194 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 hci0
+ 3195 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 hci0
+ 3199 root      20   0    1640     80      0 S   0.0   0.0   0:00.00 hciattach
+ 3245 root      20   0    8912   6528   5704 S   0.0   0.2   0:00.52 wpa_suppl+
+ 3246 root      20   0   34192   4316   3844 S   0.0   0.1   0:00.18 nfrtool
+ 3255 root      20   0    1680    640    568 S   0.0   0.0   0:00.02 smcrouted
+ 3277 root      20   0    5832   2708   2076 S   0.0   0.1   0:00.09 lighttpd
+ 3341 root      20   0    3640   2828   1672 S   0.0   0.1   0:02.16 mdnsd
+ 3376 root      20   0   28408    544    452 S   0.0   0.0   0:00.35 tee-suppl+
+ 3410 root      20   0    6520   4152   3464 S   0.0   0.1   0:01.93 bluetoothd
+ 3458 root      20   0    3604   1976   1828 S   0.0   0.1   0:00.05 tee_log_s+
+ 3468 root      20   0   13824   1628   1316 S   0.0   0.0   0:00.38 memcr
+ 3476 root      20   0    2256   1712   1580 S   0.0   0.0   0:00.01 sh
+ 3508 root      20   0    2156    712    640 S   0.0   0.0   0:00.04 cat
+ 3509 root      20   0    2156    712    640 S   0.0   0.0   0:00.03 cat
+ 3512 root      20   0  100172   8028   6144 S   0.0   0.2   0:01.07 DobbyDaem+
+ 3515 root      20   0    3784   1420   1292 S   0.0   0.0   0:00.03 audio_fir+
+ 3534 root       0 -20   76528   1404   1200 S   0.0   0.0   0:00.28 audio_fir+
+ 3565 root      20   0   15240   2104   1692 S   0.0   0.1   0:00.33 IARMDaemo+
+ 3576 root      20   0   21592   7496   6324 S   0.0   0.2   0:00.84 mfrMgrMain
+ 3588 root      20   0   91032   6004   4912 S   0.0   0.2   0:00.36 storageMg+
+ 3590 root      20   0   21396   5576   4736 S   0.0   0.2   0:00.27 sysMgrMain
+ 3615 root      20   0       0      0      0 S   0.0   0.0   0:00.00 jbd2/mmcb+
+ 3616 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 3914 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 drmfb_wq
+ 3959 root      20   0   26472   4128   3604 S   0.0   0.1   0:00.01 thunderHa+
+ 3979 root      20   0   83548  16564  13628 S   0.0   0.4   0:00.18 TextToSpe+
+ 3994 root      20   0  145176  17920  14816 S   0.0   0.5   0:01.12 NWMgrPlug+
+ 4001 root      20   0   71960   4404   2812 S   0.0   0.1   0:01.95 webconfig
+ 4015 root      20   0   53512   2992   1928 S   0.0   0.1   0:00.24 dcmd
+ 4049 root      20   0  111996   9144   7908 S   0.0   0.2   0:00.29 remotedeb+
+ 4112 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 4123 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 4131 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 4141 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 4161 non-root  20   0  136056   8068   5100 S   0.0   0.2   0:04.17 telemetry+
+ 4249 root      20   0  125324  35744  26784 S   0.0   1.0   0:07.20 MediaRite
+ 4285 root      20   0   91712  19548  17040 S   0.0   0.5   0:01.05 CloudStore
+ 4287 root      20   0   81732  13884  12024 S   0.0   0.4   0:00.11 WifiMetri+
+ 4342 non-root  20   0   29764   7028   6168 S   0.0   0.2   0:00.24 audiocapt+
+ 4349 root      20   0  113664   9628   8324 S   0.0   0.3   0:00.35 sysTimeMgr
+ 4388 root      20   0   64092   9512   8316 S   0.0   0.3   0:00.68 fogcli
+ 4524 root      20   0  154796  17304  12428 S   0.0   0.5   0:18.87 controlMgr
+ 4546 root      20   0   92428  17628  15404 S   0.0   0.5   0:00.58 Xcast
+ 4550 root      20   0  385132  63632  42628 S   0.0   1.7   0:26.98 appsservi+
+ 4551 root      20   0   59008  17204  14352 S   0.0   0.5   0:00.11 SystemAud+
+ 4577 nobody    20   0    4876   2936   2632 S   0.0   0.1   0:00.27 dnsmasq
+ 4669 root      20   0   62460   5128   4348 S   0.0   0.1   0:00.09 ASNetwork+
+ 5101 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_eve+
+ 5210 root      20   0  190772  28408  22824 S   0.0   0.8   0:01.12 RialtoSer+
+ 5320 root     -36 -20       0      0      0 S   0.0   0.0   0:00.06 kworker/u+
+ 5335 non-root  20   0  100844   7352   5920 S   0.0   0.2   0:00.72 parodus
+ 5359 root      20   0  219644  12832   9916 S   0.0   0.3   0:01.85 ASSystemS+
+ 5381 root      20   0  126232  23600  18812 S   0.0   0.6   0:01.53 OCDM
+ 5760 root      20   0    1988    100      0 S   0.0   0.0   0:00.00 dropbear
+ 6161 root      20   0  170980  26152  21288 S   0.0   0.7   0:00.94 RialtoSer+
+ 6166 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 loop0
+ 6171 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 6193 app-93    20   0    3328    564    496 S   0.0   0.0   0:00.02 DobbyInit
+ 6213 root     -11   0       0      0      0 S   0.0   0.0   0:00.15 kworker/3+
+ 6266 app-93    20   0  217312  35836  31028 S   0.0   1.0   0:02.64 SkyBrowse+
+ 6275 root      20   0   70672  16500  13748 S   0.0   0.4   0:00.15 RialtoSer+
+ 6280 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 loop1
+ 6284 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 6302 app-89    20   0    3328    564    496 S   0.0   0.0   0:00.02 DobbyInit
+ 6353 app-89    20   0  218480  37936  32796 S   0.0   1.0   0:01.81 SkyBrowse+
+ 6461 root      20   0   76084  11056   7632 S   0.0   0.3   0:09.28 ASAnalyti+
+ 6471 app-89    20   0  229420  37104  31120 S   0.0   1.0   0:00.51 WPENetwor+
+ 6472 app-93    20   0  243488  32856  28100 S   0.0   0.9   0:00.40 WPENetwor+
+ 6500 root      20   0  143200  26592  22704 S   0.0   0.7   0:00.36 TextTrack
+ 6538 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 ASSystemS+
+ 6552 root      20   0  342952  22224  11952 S   0.0   0.6   0:02.97 asrdkplay+
+ 6553 app-89    20   0  356748  66904  52932 S   0.0   1.8   0:02.06 WPEWebPro+
+ 6554 app-93    20   0  311632  92528  51340 S   0.0   2.5   0:05.26 WPEWebPro+
+ 6581 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_eve+
+ 6783 root      20   0   81512   5460   4668 S   0.0   0.1   0:00.10 ASPeriphe+
+ 6785 root      20   0   79912   7856   5732 S   0.0   0.2   0:00.16 VoiceSear+
+ 6790 root      20   0   88304   5624   4612 S   0.0   0.2   0:00.15 ASBridgeS+
+ 6844 root      20   0  222352  34512  29672 S   0.0   0.9   0:00.93 JSPP
+ 6896 root      20   0  245568  32948  27880 S   0.0   0.9   0:00.37 WPENetwor+
+ 6897 root      20   0  455488 131696  85944 S   0.0   3.6   0:08.77 JSPPWebPr+
+ 6934 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_eve+
+ 7060 root       0 -20       0      0      0 S   0.0   0.0   0:00.09 loop2
+ 7063 root      20   0       0      0      0 S   0.0   0.0   0:00.02 jbd2/loop+
+ 7064 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 7078 app-3     20   0    3328    564    496 S   0.0   0.0   0:00.03 DobbyInit
+ 7154 app-3     20   0  732068 115252  68004 S   0.0   3.1   0:39.92 epg_ui
+ 7186 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_eve+
+ 8028 root      20   0    1988    112      0 S   0.0   0.0   0:00.00 dropbear
+ 8593 root      20   0    2156    712    640 S   0.0   0.0   0:00.00 sleep
+10083 root       0 -20       0      0      0 S   0.0   0.0   0:00.02 loop3
+10087 root      20   0   19132   4064   3448 S   0.0   0.1   0:00.04 shipd
+10089 root      20   0       0      0      0 S   0.0   0.0   0:00.00 jbd2/loop+
+10090 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+10106 app-8     20   0    3328    564    496 S   0.0   0.0   0:00.04 DobbyInit
+10156 app-8     26   6  363500  63316  46100 S   0.0   1.7   0:02.90 netflix
+10164 app-8     20   0    2168   1064    920 S   0.0   0.0   0:00.00 run-netfl+
+10166 app-8     20   0    3328    564    496 S   0.0   0.0   0:00.04 ethanlog-+
+10511 root       0 -20       0      0      0 S   0.0   0.0   0:00.12 loop4
+10514 root      20   0       0      0      0 S   0.0   0.0   0:00.00 jbd2/loop+
+10515 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+10527 app-85    20   0    3328    564    496 S   0.0   0.0   0:00.04 DobbyInit
+10541 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/2+
+10579 app-85    20   0  333004 188336  23468 S   0.0   5.1   0:10.83 AmazonPri+
+10592 app-85    20   0    2168   1068    920 S   0.0   0.0   0:00.00 run-prime+
+10593 app-85    20   0    3328    564    496 S   0.0   0.0   0:00.03 ethanlog-+
+10817 root     -11   0       0      0      0 S   0.0   0.0   0:02.40 kworker/0+
+10818 root     -11   0       0      0      0 S   0.0   0.0   0:00.69 kworker/3+
+10857 root     -11   0       0      0      0 S   0.0   0.0   0:00.25 kworker/1+
+13157 root     -11   0       0      0      0 S   0.0   0.0   0:00.10 kworker/u+
+13474 root     -11   0       0      0      0 D   0.0   0.0   0:01.00 kworker/2+
+13640 root     -11   0       0      0      0 S   0.0   0.0   0:00.87 kworker/1+
+13848 root     -11   0       0      0      0 S   0.0   0.0   0:01.45 kworker/0+
+14210 root     -11   0       0      0      0 S   0.0   0.0   0:00.41 kworker/u+
+14211 root     -11   0       0      0      0 S   0.0   0.0   0:00.14 kworker/u+
+14323 root     -11   0       0      0      0 S   0.0   0.0   0:00.46 kworker/u+
+14386 root     -11   0       0      0      0 S   0.0   0.0   0:00.16 kworker/u+
+14387 root     -11   0       0      0      0 S   0.0   0.0   0:00.05 kworker/u+
+14388 root     -11   0       0      0      0 S   0.0   0.0   0:00.39 kworker/u+
+14389 root     -11   0       0      0      0 S   0.0   0.0   0:00.06 kworker/u+
+14390 root     -11   0       0      0      0 S   0.0   0.0   0:00.36 kworker/u+
+14391 root     -11   0       0      0      0 S   0.0   0.0   0:00.08 kworker/u+
+14392 root     -11   0       0      0      0 S   0.0   0.0   0:00.42 kworker/u+
+14393 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/u+
+14394 root     -11   0       0      0      0 S   0.0   0.0   0:01.41 kworker/3+
+14469 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/u+
+15403 root      20   0   47180   7116   6180 S   0.0   0.2   0:00.38 rdm
+15730 root      20   0   38984   7116   6180 S   0.0   0.2   0:00.38 rdm
+15928 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+15975 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+16281 root      20   0   38984   7120   6184 S   0.0   0.2   0:00.15 rdm
+16429 systemd+  20   0   11732   1636   1472 S   0.0   0.0   0:00.19 systemd-t+
+16614 root     -11   0    2256   1768   1576 S   0.0   0.0   0:00.05 core_shel+
+16634 root     -11   0       0      0      0 D   0.0   0.0   0:00.00 kworker/2+
+16647 non-root  20   0    3024    876    752 R   0.0   0.0   0:00.00 pidof
+Filesystem           1K-blocks      Used Available Use% Mounted on
+none                   1377244         0   1377244   0% /dev
+/dev/dm-0               187392    187392         0 100% /
+tmpfs                  1845576        48   1845528   0% /dev/shm
+tmpfs                  1845576    182028   1663548  10% /run
+tmpfs                  1845576         0   1845576   0% /sys/fs/cgroup
+tmpfs                  1845576    182028   1663548  10% /etc/machine-id
+tmpfs                  1845576      2616   1842960   0% /tmp
+tmpfs                  1845576      2616   1842960   0% /etc/systemd/timesyncd.conf
+/dev/mmcblk0p3          498900     56732    405472  12% /opt
+/dev/mmcblk0p4           56037     14605     36846  28% /mnt/critical
+/dev/mmcblk0p4           56037     14605     36846  28% /opt/persistent
+/dev/mmcblk0p4           56037     14605     36846  28% /opt/www
+/dev/mmcblk0p4           56037     14605     36846  28% /opt/drm
+/dev/mmcblk0p4           56037     14605     36846  28% /opt/gp
+tmpfs                   589824         0    589824   0% /opt/CDL
+tmpfs                     5120         0      5120   0% /opt/oem
+tmpfs                   131072         0    131072   0% /mnt/memory
+/dev/mmcblk0p3          498900     56732    405472  12% /nvram
+/dev/mmcblk0p4           56037     14605     36846  28% /etc/timezone
+/dev/mmcblk0p3          498900     56732    405472  12% /var/lib
+tmpfs                  1845576        36   1845540   0% /var/volatile
+tmpfs                  1845576        36   1845540   0% /var/spool/cron
+tmpfs                  1845576        36   1845540   0% /etc/resolv.conf
+tmpfs                  1845576        36   1845540   0% /etc/hosts
+tmpfs                  1845576        36   1845540   0% /etc/asound.conf
+tmpfs                  1845576        36   1845540   0% /etc/xupnp
+tmpfs                  1845576        36   1845540   0% /etc/hostname
+tmpfs                  1845576        36   1845540   0% /www
+/opt/secure             498900     56732    405472  12% /opt/secure
+/opt/secure             498900     56732    405472  12% /nvram/secure
+/opt/secure             498900     56732    405472  12% /var/lib/secure
+/dev/mmcblk0p2         1349972    392328    870812  31% /media/apps
+/opt/drm                 56037     14605     36846  28% /opt/drm
+/opt/drm                 56037     14605     36846  28% /mnt/critical/drm
+/dev/mmcblk0p1         5809432       364   5493064   0% /tmp/data
+tmpfs                  1845576      2616   1842960   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.comcast.viper_ipa
+tmpfs                  1845576      2616   1842960   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.xumo.ipa
+tmpfs                  1845576      2616   1842960   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.bskyb.epgui
+tmpfs                  1845576      2616   1842960   0% /tmp/.hostmnttunnel-com.sky.as.apps_Netflix
+tmpfs                  1845576      2616   1842960   0% /tmp/.hostmnttunnel-com.sky.as.apps_prime.video
+2026-01-16T02:26:48.344Z process crashed = DobbyDaemon
+2026-01-16T02:26:48.632Z signal causing dump = 6
+2026-01-16T02:26:48.864Z time of dump = 1768530407
+2026-01-16T02:26:48.878Z Process ID = 3512
+2026-01-16T02:26:48.892Z Thread ID within process = 3512
+2026-01-16T02:26:48.913Z DobbyDaemon crash and uploading the cores
+2026-01-16T02:26:48.927Z corename = 1768530407_core.prog_DobbyDaemon.signal_6.gz
+2026-01-16T02:26:48.929Z [CRASH_UPLOAD] [PID:16609]: starting minidump processing
+2026-01-16T02:26:48.942Z processing_corename = 1768530407_core_prog_DobbyDaemon.signal_6.gz.tmp
+2026-01-16T02:26:48.955Z core-shell core started pid : 16614
+2026-01-16T02:26:49.174Z [CRASH_UPLOAD] [PID:16721]: starting coredump processing
+2026-01-16T02:26:49.207Z [CRASH_UPLOAD] [PID:16721]: Check Network status count 1
+2026-01-16T02:26:49.229Z [CRASH_UPLOAD] [PID:16721]: Route is Available break the loop
+2026-01-16T02:26:49.248Z [CRASH_UPLOAD] [PID:16721]: IP acquistion completed, Testing the system time is received
+2026-01-16T02:26:49.266Z [CRASH_UPLOAD] [PID:16721]: Received /tmp/stt_received flag
+2026-01-16T02:26:49.307Z [CRASH_UPLOAD] [PID:16721]: Waiting for Coredump Completion
+2026-01-16T02:26:53.409Z core-shell core created pid : 16614
+2026-01-16T02:26:54.096Z [CRASH_UPLOAD] [PID:16609]: Check Network status count 1
+2026-01-16T02:26:54.125Z [CRASH_UPLOAD] [PID:16609]: Route is Available break the loop
+2026-01-16T02:26:54.154Z [CRASH_UPLOAD] [PID:16609]: IP acquistion completed, Testing the system time is received
+2026-01-16T02:26:54.210Z [CRASH_UPLOAD] [PID:16609]: Received /tmp/stt_received flag
+2026-01-16T02:26:54.255Z [CRASH_UPLOAD] [PID:16609]: Mac address is D4DACDCB2D79
+2026-01-16T02:26:54.284Z [CRASH_UPLOAD] [PID:16609]: Cleanup minidump directory /opt/secure/minidumps
+2026-01-16T02:26:54.310Z [CRASH_UPLOAD] [PID:16609]: Deleting unfinished files: 
+2026-01-16T02:26:54.329Z [CRASH_UPLOAD] [PID:16609]: Deleting non-dump files : 
+2026-01-16T02:26:54.354Z [CRASH_UPLOAD] [PID:16609]: Portal URL: crashportal.stb.r53.xcal.tv
+2026-01-16T02:26:54.852Z [CRASH_UPLOAD] [PID:16609]: buildID is 7dacc377aa770fbbf2ccf2935c5b3d9be0e7fce2
+2026-01-16T02:26:54.979Z [PID:16609]: [utils.sh] flushLogger is called
+2026-01-16T02:26:55.122Z [CRASH_UPLOAD] [PID:16609]: Processing the crash telemetry info
+2026-01-16T02:26:56.562Z [CRASH_UPLOAD] [PID:16609]: Process crashed = DobbyDaemon
+2026-01-16T02:26:56.600Z [CRASH_UPLOAD] [PID:16609]: Crashed process log file(s): 
+2026-01-16T02:26:56.615Z [CRASH_UPLOAD] [PID:16609]: Appname, Process_Crashed = 89536955, DobbyDaemon
+2026-01-16T02:26:56.673Z [CRASH_UPLOAD] [PID:16609]: Size of the file: -rw-------    1 root     root        125688 Jan 16 02:26 macD4DACDCB2D79_dat2026-01-16-02-26-48_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp
+2026-01-16T02:26:56.702Z [CRASH_UPLOAD] [PID:16609]: macD4DACDCB2D79_dat2026-01-16-02-26-48_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp
+2026-01-16T02:26:56.718Z [CRASH_UPLOAD] [PID:16609]: version.txt
+2026-01-16T02:26:56.734Z [CRASH_UPLOAD] [PID:16609]: tar: removing leading '/' from member names
+2026-01-16T02:26:56.750Z [CRASH_UPLOAD] [PID:16609]: opt/logs/core_log.txt
+2026-01-16T02:26:56.767Z [CRASH_UPLOAD] [PID:16609]: Success Compressing the files, macD4DACDCB2D79_dat2026-01-16-02-26-48_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz macD4DACDCB2D79_dat2026-01-16-02-26-48_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp version.txt /opt/logs/core_log.txt 
+2026-01-16T02:26:57.548Z [CRASH_UPLOAD] [PID:16609]: Size of the compressed file: -rw-r--r--    1 root     root         25412 Jan 16 02:26 macD4DACDCB2D79_dat2026-01-16-02-26-48_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:26:57.580Z [CRASH_UPLOAD] [PID:16609]: Removing /opt/secure/minidumps/version.txt
+2026-01-16T02:26:57.615Z [CRASH_UPLOAD] [PID:16609]: [INFO] : getPrivacyControlMode : Entering
+2026-01-16T02:26:57.635Z [CRASH_UPLOAD] [PID:16609]: [WARN] : getPrivacyControlMode : WPEFrameworkSecurityUtility failed to get token; status = 127
+2026-01-16T02:26:57.649Z [CRASH_UPLOAD] [PID:16609]: [WARN] : getPrivacyControlMode : WPEFrameworkSecurityUtility Token is empty
+2026-01-16T02:26:58.042Z [CRASH_UPLOAD] [PID:16609]: [INFO] : getPrivacyControlMode : END : 2.0
+2026-01-16T02:26:58.095Z [CRASH_UPLOAD] [PID:16609]: [/lib/rdk/uploadDumps.sh]: 1: minidump S3 Upload 
+2026-01-16T02:26:58.203Z [CRASH_UPLOAD] [PID:16609]: DEBUG Original File Name : macD4DACDCB2D79_dat2026-01-16-02-26-48_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:26:58.217Z [CRASH_UPLOAD] [PID:16609]: DEBUG Value Required for Check : mac
+2026-01-16T02:26:58.232Z [CRASH_UPLOAD] [PID:16609]: uploadToS3 macD4DACDCB2D79_dat2026-01-16-02-26-48_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz and partnerId=
+2026-01-16T02:26:58.252Z [CRASH_UPLOAD] [PID:16609]: DEBUG minidump file timestamp (2,4) received to uploadToS3: 2026-01-16-02-26-48
+2026-01-16T02:26:58.270Z [CRASH_UPLOAD] [PID:16609]: minidump file timestamp before upload: 2026-01-16-02-26-58
+2026-01-16T02:26:58.291Z [CRASH_UPLOAD] [PID:16609]: DEBUG minidump file to be uploaded: macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:26:58.305Z [CRASH_UPLOAD] [PID:16609]: DEBUG Renaming the minidump file under /opt/secure/minidumps
+2026-01-16T02:26:58.319Z [CRASH_UPLOAD] [PID:16609]: DEBUG mv /opt/secure/minidumps/macD4DACDCB2D79_dat2026-01-16-02-26-48_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz /opt/secure/minidumps/macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:26:58.341Z [CRASH_UPLOAD] [PID:16609]: DEBUG S3 File Name : macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:26:58.402Z [CRASH_UPLOAD] [PID:16609]: [/lib/rdk/uploadDumps.sh]: S3 Amazon Signing URL: https://ssr.ccp.xcal.tv/cgi-bin/upload_dump.cgi
+2026-01-16T02:26:58.508Z [CRASH_UPLOAD] [PID:16609]: RFC_EncryptCloudUpload_Enable:
+2026-01-16T02:26:58.524Z [CRASH_UPLOAD] [PID:16609]: mediaclient/SKXI11ADS MTLS Crashdump upload
+2026-01-16T02:26:58.560Z [CRASH_UPLOAD] [PID:16609]: Overriding the S3 Amazon SIgning URL: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-upload_dump.cgi
+2026-01-16T02:26:58.577Z [CRASH_UPLOAD] [PID:16609]: Using Xpki cert for CrashdumpUpload
+2026-01-16T02:26:58.599Z [CRASH_UPLOAD] [PID:16609]: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T02:27:00.383Z [CRASH_UPLOAD] [PID:16609]: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -s --tlsv1.2 -o /tmp/signed_url_16609 -w "%{http_code} %{remote_ip}" --data-urlencode filename="macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz"                --data-urlencode firmwareVersion=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG                --data-urlencode env=prod                --data-urlencode model=SKXI11ADS                --data-urlencode type=minidump                                 https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-upload_dump.cgi
+2026-01-16T02:27:03.511Z [CRASH_UPLOAD] [PID:16609]: Curl Connected to ssr.xdp.eu-1.xcal.tv (184.120.34.124) port 
+2026-01-16T02:27:03.530Z [CRASH_UPLOAD] [PID:16609]: [/lib/rdk/uploadDumps.sh]: Curl return code : 0, HTTP SIGN URL Response: 200
+2026-01-16T02:27:03.577Z [CRASH_UPLOAD] [PID:16609]: Safe params: macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz --  -- 
+2026-01-16T02:27:03.595Z [CRASH_UPLOAD] [PID:16609]: Attempting TLS1.2 connection to Amazon S3
+2026-01-16T02:27:03.620Z [CRASH_UPLOAD] [PID:16609]: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T02:27:03.843Z [CRASH_UPLOAD] [PID:16609]: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -v -fgL --tlsv1.2 -T "macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz" -w "%{http_code} %{remote_ip}" "https://eu-ccp-stbcrashes.s3.dualstack.eu-west-1.amazonaws.com/minidump/2026/1/16/2/SKXI11ADS/SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG/prod/macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZUIKWRPZFXPVQJLS%2F20260116%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260116T022703Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=bdb9b681ec6a310b862e560af28a6a1057722e29ff6381c68cec1ffe1f985164"
+2026-01-16T02:27:05.891Z [CRASH_UPLOAD] [PID:16609]: curl connection failed with ret=6 http_code=000
+2026-01-16T02:27:05.959Z [CRASH_UPLOAD] [PID:16609]: Curl Connected to eu-ccp-stbcrashes.s3.dualstack.eu-west-1.amazonaws.com () port 
+2026-01-16T02:27:05.984Z [CRASH_UPLOAD] [PID:16609]: Curl return code: 6 HTTP Response code: 000
+2026-01-16T02:27:06.333Z [CRASH_UPLOAD] [PID:16609]: Curl finished unsuccessfully! Error code: 6
+2026-01-16T02:27:06.374Z [CRASH_UPLOAD] [PID:16609]: [/lib/rdk/uploadDumps.sh]: Execution Status: 6, S3 Amazon Upload of minidump Failed
+2026-01-16T02:27:06.395Z [CRASH_UPLOAD] [PID:16609]: [/lib/rdk/uploadDumps.sh]: 2: (Retry), minidump S3 Upload
+2026-01-16T02:27:09.590Z [CRASH_UPLOAD] [PID:16609]: DEBUG Original File Name : macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:27:09.656Z [CRASH_UPLOAD] [PID:16609]: DEBUG Value Required for Check : mac
+2026-01-16T02:27:09.678Z [CRASH_UPLOAD] [PID:16609]: uploadToS3 macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz and partnerId=
+2026-01-16T02:27:09.718Z [CRASH_UPLOAD] [PID:16609]: DEBUG minidump file timestamp (2,4) received to uploadToS3: 2026-01-16-02-26-58
+2026-01-16T02:27:09.737Z [CRASH_UPLOAD] [PID:16609]: minidump file timestamp before upload: 2026-01-16-02-27-09
+2026-01-16T02:27:09.778Z [CRASH_UPLOAD] [PID:16609]: DEBUG minidump file to be uploaded: macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:27:09.804Z [CRASH_UPLOAD] [PID:16609]: DEBUG Renaming the minidump file under /opt/secure/minidumps
+2026-01-16T02:27:09.841Z [CRASH_UPLOAD] [PID:16609]: DEBUG mv /opt/secure/minidumps/macD4DACDCB2D79_dat2026-01-16-02-26-58_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz /opt/secure/minidumps/macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:27:09.868Z [CRASH_UPLOAD] [PID:16609]: DEBUG S3 File Name : macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:27:10.135Z [CRASH_UPLOAD] [PID:16609]: [/lib/rdk/uploadDumps.sh]: S3 Amazon Signing URL: https://ssr.ccp.xcal.tv/cgi-bin/upload_dump.cgi
+2026-01-16T02:27:10.192Z [CRASH_UPLOAD] [PID:16609]: RFC_EncryptCloudUpload_Enable:
+2026-01-16T02:27:10.212Z [CRASH_UPLOAD] [PID:16609]: mediaclient/SKXI11ADS MTLS Crashdump upload
+2026-01-16T02:27:10.257Z [CRASH_UPLOAD] [PID:16609]: Overriding the S3 Amazon SIgning URL: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-upload_dump.cgi
+2026-01-16T02:27:10.278Z [CRASH_UPLOAD] [PID:16609]: Using Xpki cert for CrashdumpUpload
+2026-01-16T02:27:10.308Z [CRASH_UPLOAD] [PID:16609]: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T02:27:10.374Z [CRASH_UPLOAD] [PID:16721]: Mac address is D4DACDCB2D79
+2026-01-16T02:27:10.488Z [CRASH_UPLOAD] [PID:16721]: Cleanup coredump directory /opt/secure/corefiles
+2026-01-16T02:27:10.524Z [CRASH_UPLOAD] [PID:16721]: Deleting unfinished files: 
+2026-01-16T02:27:10.546Z [CRASH_UPLOAD] [PID:16721]: Deleting non-dump files : 
+2026-01-16T02:27:10.579Z [CRASH_UPLOAD] [PID:16721]: Portal URL: crashportal.stb.r53.xcal.tv
+2026-01-16T02:27:11.291Z [CRASH_UPLOAD] [PID:16721]: buildID is 7dacc377aa770fbbf2ccf2935c5b3d9be0e7fce2
+2026-01-16T02:27:11.346Z [PID:16721]: [utils.sh] flushLogger is called
+2026-01-16T02:27:11.455Z [CRASH_UPLOAD] [PID:16609]: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -s --tlsv1.2 -o /tmp/signed_url_16609 -w "%{http_code} %{remote_ip}" --data-urlencode filename="macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz"                --data-urlencode firmwareVersion=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG                --data-urlencode env=prod                --data-urlencode model=SKXI11ADS                --data-urlencode type=minidump                                 https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-upload_dump.cgi
+2026-01-16T02:27:11.603Z [CRASH_UPLOAD] [PID:16721]: Size of the file: -rw-rw-rw-    1 root     root        580901 Jan 16 02:26 macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz
+2026-01-16T02:27:11.663Z [CRASH_UPLOAD] [PID:16721]: Compression with nice
+2026-01-16T02:27:12.201Z [CRASH_UPLOAD] [PID:16721]: macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz
+2026-01-16T02:27:12.219Z [CRASH_UPLOAD] [PID:16721]: version.txt
+2026-01-16T02:27:12.250Z [CRASH_UPLOAD] [PID:16721]: tar: removing leading '/' from member names
+2026-01-16T02:27:12.525Z [CRASH_UPLOAD] [PID:16721]: opt/logs/core_log.txt
+2026-01-16T02:27:12.554Z [CRASH_UPLOAD] [PID:16721]: Success Compressing the files, macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz  
+2026-01-16T02:27:12.575Z [CRASH_UPLOAD] [PID:16609]: Curl Connected to ssr.xdp.eu-1.xcal.tv (184.120.150.245) port 
+2026-01-16T02:27:12.598Z [CRASH_UPLOAD] [PID:16721]: Size of the compressed file: -rw-r--r--    1 root     root        504888 Jan 16 02:27 macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz
+2026-01-16T02:27:12.610Z [CRASH_UPLOAD] [PID:16609]: [/lib/rdk/uploadDumps.sh]: Curl return code : 0, HTTP SIGN URL Response: 200
+2026-01-16T02:27:12.676Z [CRASH_UPLOAD] [PID:16721]: Coredump File ./macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz
+2026-01-16T02:27:12.760Z [CRASH_UPLOAD] [PID:16721]: [INFO] : getPrivacyControlMode : Entering
+2026-01-16T02:27:12.776Z [CRASH_UPLOAD] [PID:16609]: Safe params: macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz --  -- 
+2026-01-16T02:27:12.806Z [CRASH_UPLOAD] [PID:16609]: Attempting TLS1.2 connection to Amazon S3
+2026-01-16T02:27:12.858Z [CRASH_UPLOAD] [PID:16721]: [WARN] : getPrivacyControlMode : WPEFrameworkSecurityUtility failed to get token; status = 127
+2026-01-16T02:27:12.868Z [CRASH_UPLOAD] [PID:16609]: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T02:27:12.888Z [CRASH_UPLOAD] [PID:16721]: [WARN] : getPrivacyControlMode : WPEFrameworkSecurityUtility Token is empty
+2026-01-16T02:27:12.948Z [CRASH_UPLOAD] [PID:16721]: [INFO] : getPrivacyControlMode : END : 2.0
+2026-01-16T02:27:12.990Z [CRASH_UPLOAD] [PID:16609]: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -v -fgL --tlsv1.2 -T "macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz" -w "%{http_code} %{remote_ip}" "https://eu-ccp-stbcrashes.s3.dualstack.eu-west-1.amazonaws.com/minidump/2026/1/16/2/SKXI11ADS/SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG/prod/macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZUIKWRPZFXPVQJLS%2F20260116%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260116T022712Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=37004dc41133cee7e197af18eec262b25348765b161626726102dc0296e39375"
+2026-01-16T02:27:12.994Z [CRASH_UPLOAD] [PID:16721]: [/lib/rdk/uploadDumps.sh]: 1: coredump S3 Upload 
+2026-01-16T02:27:13.196Z [CRASH_UPLOAD] [PID:16721]: DEBUG Original File Name : macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz
+2026-01-16T02:27:13.247Z [CRASH_UPLOAD] [PID:16721]: DEBUG Value Required for Check : mac
+2026-01-16T02:27:13.274Z [CRASH_UPLOAD] [PID:16721]: uploadToS3 macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz and partnerId=
+2026-01-16T02:27:13.338Z [CRASH_UPLOAD] [PID:16721]: DEBUG coredump file timestamp (2,4) received to uploadToS3: 2026-01-16-02-26-49
+2026-01-16T02:27:13.384Z [CRASH_UPLOAD] [PID:16721]: coredump file timestamp before upload: 2026-01-16-02-27-13
+2026-01-16T02:27:13.439Z [CRASH_UPLOAD] [PID:16721]: DEBUG coredump file to be uploaded: macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz
+2026-01-16T02:27:13.468Z [CRASH_UPLOAD] [PID:16721]: DEBUG Renaming the coredump file under /opt/secure/corefiles
+2026-01-16T02:27:13.485Z [CRASH_UPLOAD] [PID:16721]: DEBUG mv /opt/secure/corefiles/macD4DACDCB2D79_dat2026-01-16-02-26-49_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz /opt/secure/corefiles/macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz
+2026-01-16T02:27:13.504Z [CRASH_UPLOAD] [PID:16721]: DEBUG S3 File Name : macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz
+2026-01-16T02:27:13.576Z [CRASH_UPLOAD] [PID:16721]: [/lib/rdk/uploadDumps.sh]: S3 Amazon Signing URL: https://ssr.ccp.xcal.tv/cgi-bin/upload_dump.cgi
+2026-01-16T02:27:13.647Z [CRASH_UPLOAD] [PID:16721]: RFC_EncryptCloudUpload_Enable:
+2026-01-16T02:27:13.665Z [CRASH_UPLOAD] [PID:16721]: mediaclient/SKXI11ADS MTLS Crashdump upload
+2026-01-16T02:27:13.712Z [CRASH_UPLOAD] [PID:16721]: Overriding the S3 Amazon SIgning URL: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-upload_dump.cgi
+2026-01-16T02:27:13.730Z [CRASH_UPLOAD] [PID:16721]: Using Xpki cert for CrashdumpUpload
+2026-01-16T02:27:13.755Z [CRASH_UPLOAD] [PID:16721]: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T02:27:13.819Z [CRASH_UPLOAD] [PID:16721]: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -s --tlsv1.2 -o /tmp/signed_url_16721 -w "%{http_code} %{remote_ip}" --data-urlencode filename="macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz"                --data-urlencode firmwareVersion=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG                --data-urlencode env=prod                --data-urlencode model=SKXI11ADS                --data-urlencode type=coredump                                 https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-upload_dump.cgi
+2026-01-16T02:27:14.215Z [CRASH_UPLOAD] [PID:16609]: Curl Connected to eu-ccp-stbcrashes.s3.dualstack.eu-west-1.amazonaws.com (3.5.71.204) port 
+2026-01-16T02:27:14.278Z [CRASH_UPLOAD] [PID:16609]: Curl return code: 0 HTTP Response code: 200
+2026-01-16T02:27:14.340Z [CRASH_UPLOAD] [PID:16609]: S3 minidump Upload is successful with TLS1.2
+2026-01-16T02:27:14.384Z [CRASH_UPLOAD] [PID:16609]: Removing uploaded minidump file macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:27:14.409Z [CRASH_UPLOAD] [PID:16609]: [/lib/rdk/uploadDumps.sh]: minidump uploadToS3 SUCESS: status: 0
+2026-01-16T02:27:14.440Z [CRASH_UPLOAD] [PID:16609]: Removing file macD4DACDCB2D79_dat2026-01-16-02-27-09_boxXiOne_modSKXI11ADS_DobbyDaemon_89536955-0424-4fe5-eb2a9c92-b6157154.dmp.tgz
+2026-01-16T02:27:14.519Z [CRASH_UPLOAD] [PID:16609]: WORKING_DIR is empty!!!
+2026-01-16T02:27:14.579Z [CRASH_UPLOAD] [PID:16609]: WORKING_DIR is empty!!!
+2026-01-16T02:27:14.739Z [CRASH_UPLOAD] [PID:16721]: Curl Connected to ssr.xdp.eu-1.xcal.tv (184.120.23.231) port 
+2026-01-16T02:27:14.756Z [CRASH_UPLOAD] [PID:16721]: [/lib/rdk/uploadDumps.sh]: Curl return code : 0, HTTP SIGN URL Response: 200
+2026-01-16T02:27:14.798Z [CRASH_UPLOAD] [PID:16721]: Safe params: macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz --  -- 
+2026-01-16T02:27:14.813Z [CRASH_UPLOAD] [PID:16721]: Attempting TLS1.2 connection to Amazon S3
+2026-01-16T02:27:14.838Z [CRASH_UPLOAD] [PID:16721]: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T02:27:14.903Z [CRASH_UPLOAD] [PID:16721]: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -v -fgL --tlsv1.2 -T "macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz" -w "%{http_code} %{remote_ip}" "https://eu-ccp-stbcrashes.s3.dualstack.eu-west-1.amazonaws.com/coredump/2026/1/16/2/SKXI11ADS/SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG/prod/macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZUIKWRPZFXPVQJLS%2F20260116%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260116T022714Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=d9b36828db1abf89fbcbf122d72ca9048c74f3b04e03ee89e201d71a239d09b2"
+2026-01-16T02:27:15.959Z [CRASH_UPLOAD] [PID:16721]: Curl Connected to eu-ccp-stbcrashes.s3.dualstack.eu-west-1.amazonaws.com (3.5.71.204) port 
+2026-01-16T02:27:15.986Z [CRASH_UPLOAD] [PID:16721]: Curl return code: 0 HTTP Response code: 200
+2026-01-16T02:27:16.020Z [CRASH_UPLOAD] [PID:16721]: S3 coredump Upload is successful with TLS1.2
+2026-01-16T02:27:16.074Z [CRASH_UPLOAD] [PID:16721]: Removing uploaded coredump file macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz
+2026-01-16T02:30:09.058Z [CRASH_UPLOAD] [PID:16721]: [/lib/rdk/uploadDumps.sh]: coredump uploadToS3 SUCESS: status: 0
+2026-01-16T02:30:09.080Z [CRASH_UPLOAD] [PID:16721]: Removing file macD4DACDCB2D79_dat2026-01-16-02-27-13_boxXiOne_modSKXI11ADS_1768530407_core.prog_DobbyDaemon.signal_6.gz.core.tgz
+2026-01-16T02:30:09.157Z [CRASH_UPLOAD] [PID:16721]: Cleanup coredump directory /opt/secure/corefiles
+2026-01-16T02:30:09.196Z [CRASH_UPLOAD] [PID:16721]: WORKING_DIR is empty!!!
+               total        used        free      shared  buff/cache   available
+Mem:         3691156      686296     2755500       80504      249360     2860052
+Swap:        1845568           0     1845568
+top - 02:43:39 up 53 min,  0 users,  load average: 4.85, 3.13, 1.64
+Tasks: 274 total,   4 running, 265 sleeping,   0 stopped,   5 zombie
+%Cpu(s): 15.6 us, 28.1 sy,  0.0 ni, 21.9 id, 34.4 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3604.6 total,   2688.5 free,    672.3 used,    243.8 buff/cache
+MiB Swap:   1802.3 total,   1802.3 free,      0.0 used.   2791.0 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+17356 root     -11   0       0      0      0 R 100.0   0.0   0:03.05 kworker/1+
+19539 root     -11   0    3796   1972   1488 R  17.6   0.1   0:00.08 top
+    7 root      20   0       0      0      0 S   5.9   0.0   0:03.57 rcu_preem+
+ 2424 message+ -31   0    5476   4292   2180 S   5.9   0.1   0:11.20 dbus-daem+
+ 3248 redis    -24   0   29216   3656   2532 S   5.9   0.1   0:27.73 redis-ser+
+ 3831 root      20   0  619288  50640  35816 S   5.9   1.4   3:51.83 WPEFramew+
+19505 root      20   0    2288   1596   1492 R   5.9   0.0   0:00.03 uploadDum+
+19548 root      20   0   23500   5836   4948 R   5.9   0.2   0:00.01 cat
+    1 root      20   0    5180   4112   2460 S   0.0   0.1   0:08.21 systemd
+    2 root      20   0       0      0      0 S   0.0   0.0   0:00.01 kthreadd
+    3 root     -50   0       0      0      0 S   0.0   0.0   0:00.37 ksoftirqd+
+    5 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+    8 root      20   0       0      0      0 S   0.0   0.0   0:00.04 rcu_sched
+    9 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_bh
+   10 root      rt   0       0      0      0 S   0.0   0.0   0:00.04 migration+
+   11 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 lru-add-d+
+   12 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+   13 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+   14 root      rt   0       0      0      0 S   0.0   0.0   0:00.02 migration+
+   15 root     -50   0       0      0      0 S   0.0   0.0   0:00.38 ksoftirqd+
+   17 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/1+
+   18 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+   19 root      rt   0       0      0      0 S   0.0   0.0   0:00.05 migration+
+   20 root     -50   0       0      0      0 S   0.0   0.0   0:00.40 ksoftirqd+
+   22 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/2+
+   23 root      20   0       0      0      0 S   0.0   0.0   0:00.01 cpuhp/3
+   24 root      rt   0       0      0      0 S   0.0   0.0   0:00.03 migration+
+   25 root     -50   0       0      0      0 S   0.0   0.0   0:00.42 ksoftirqd+
+   27 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/3+
+   28 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs
+   29 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 netns
+  520 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper
+  521 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 writeback
+  523 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kcompactd0
+  524 root     -11   0       0      0      0 S   0.0   0.0   0:00.21 kworker/0+
+  525 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 crypto
+  526 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  528 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kblockd
+  532 root     -11   0       0      0      0 S   0.0   0.0   0:01.35 kworker/u+
+  541 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ata_sff
+  560 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 devfreq_wq
+  577 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 cfg80211
+  586 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 rtk_usb_m+
+  588 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 watchdogd
+  675 root      20   0       0      0      0 S   0.0   0.0   0:00.00 System
+  677 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 rpciod
+  678 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 xprtiod
+  722 root      20   0       0      0      0 S   0.0   0.0   0:00.42 kswapd0
+  723 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 vmstat
+  725 root      20   0       0      0      0 S   0.0   0.0   0:00.00 ecryptfs-+
+  726 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 nfsiod
+  727 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 cifsiod
+  728 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 cifsoploc+
+  768 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  769 root      -2   0       0      0      0 D   0.0   0.0   0:11.58 mmcqd/0
+  770 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  771 root      -2   0       0      0      0 S   0.0   0.0   0:00.00 mmcqd/0bo+
+  772 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  773 root      -2   0       0      0      0 S   0.0   0.0   0:00.00 mmcqd/0bo+
+  774 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  775 root      -2   0       0      0      0 S   0.0   0.0   0:00.00 mmcqd/0rp+
+  816 root      20   0       0      0      0 S   0.0   0.0   0:00.00 acpu_r_pr+
+  817 root      20   0       0      0      0 S   0.0   0.0   0:00.00 vcpu_r_pr+
+  818 root      20   0       0      0      0 S   0.0   0.0   0:00.04 rpc-1
+  819 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rpc-3
+  845 root      20   0       0      0      0 S   0.0   0.0   0:02.06 buflock_r+
+  865 root      20   0       0      0      0 S   0.0   0.0   0:00.00 hwrng
+  868 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  869 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  870 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  871 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  872 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  873 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  874 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  875 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  876 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  877 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  878 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  879 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  880 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  881 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  882 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  883 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  917 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  920 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  923 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  926 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  929 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  932 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  935 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  938 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+  941 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 memory_wq
+  953 root      25   5       0      0      0 S   0.0   0.0   0:00.00 eth0-link+
+  954 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/1+
+ 1010 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/25-98+
+ 1028 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 hdcp
+ 1045 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 fei_kt
+ 1071 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 dm_bufio_+
+ 1074 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 cfinterac+
+ 1178 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ipv6_addr+
+ 1185 root      10 -10       0      0      0 S   0.0   0.0   0:00.00 krfcommd
+ 1202 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 rtk_post_+
+ 1203 root      rt   0       0      0      0 S   0.0   0.0   0:01.93 rtk_compl+
+ 1268 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kdmflush
+ 1269 root     -36 -20       0      0      0 S   0.0   0.0   0:00.12 kworker/0+
+ 1270 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 1271 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kverityd
+ 1272 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 1276 root     -36 -20       0      0      0 S   0.0   0.0   0:00.12 kworker/1+
+ 1277 root     -36 -20       0      0      0 S   0.0   0.0   0:00.03 kworker/3+
+ 1278 root     -36 -20       0      0      0 S   0.0   0.0   0:00.05 kworker/2+
+ 1308 root      20   0       0      0      0 S   0.0   0.0   0:01.29 vblank co+
+ 1310 root      20   0   21772   4108   3592 S   0.0   0.1   0:11.66 systemd-j+
+ 1312 root      20   0       0      0      0 S   0.0   0.0   0:00.11 mali-simp+
+ 1313 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_job+
+ 1318 root     -36 -20       0      0      0 S   0.0   0.0   0:00.07 kworker/u+
+ 1321 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 rtk_crtc +
+ 1327 root     -75   0       0      0      0 S   0.0   0.0   0:02.87 vblank th+
+ 1330 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kauditd
+ 1357 root     -11   0       0      0      0 S   0.0   0.0   0:00.22 kworker/2+
+ 1358 root      20   0    1560    580    516 S   0.0   0.0   0:00.02 logbackup
+ 1362 root      20   0       0      0      0 S   0.0   0.0   0:00.28 jbd2/mmcb+
+ 1363 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 1369 root      20   0       0      0      0 S   0.0   0.0   0:00.18 jbd2/mmcb+
+ 1370 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 1740 root      20   0    3108   2216   1792 S   0.0   0.1   0:00.69 systemd-u+
+ 2333 root     -11   0       0      0      0 S   0.0   0.0   0:01.32 kworker/u+
+ 2396 root      20   0    5480   1956   1232 S   0.0   0.1   0:00.48 rtrouted
+ 2439 root      20   0       0      0      0 S   0.0   0.0   0:00.25 GPIO_FP_B+
+ 2470 root      20   0   12656   1344   1208 S   0.0   0.0   0:00.11 ermgr
+ 2540 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 msm_ipc_r+
+ 2547 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 MHI_XPRT1+
+ 2594 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 qmi_svc_e+
+ 2597 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 diag_mhi_+
+ 2646 root      20   0   20800    988    844 S   0.0   0.0   0:00.01 rbus_sess+
+ 2660 root      20   0   34936   5736   4124 S   0.0   0.2   0:00.18 DBStoreEXE
+ 2711 root      20   0   34628   5252   4216 S   0.0   0.1   0:00.46 skymwloca+
+ 2733 root      20   0   16516   5924   5020 S   0.0   0.2   0:00.07 SkyMwConf+
+ 2766 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 SkyMwConf+
+ 2775 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 SkyMwConf+
+ 2779 root      20   0   50992   8732   6932 S   0.0   0.2   0:15.60 syslog-ng
+ 2781 root      20   0    2256   1732   1580 S   0.0   0.0   0:00.09 aar_telem+
+ 2785 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 SkyMwConf+
+ 2788 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 SkyMwConf+
+ 2805 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 cds_recov+
+ 2807 root      20   0       0      0      0 S   0.0   0.0   0:00.04 wlan_logg+
+ 2815 root      20   0 1678588  11816   4760 S   0.0   0.3   0:02.05 asproxy
+ 2832 root      20   0       0      0      0 S   0.0   0.0   0:00.07 jbd2/mmcb+
+ 2833 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 3046 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 IPCRTR_MH+
+ 3049 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 qmi_hndl0+
+ 3070 root      18  -2       0      0      0 S   0.0   0.0   0:04.33 scheduler+
+ 3071 root      19  -1       0      0      0 S   0.0   0.0   0:00.00 cds_ol_rx+
+ 3074 root      20   0   51996  10616   8648 S   0.0   0.3   0:02.12 NetworkMa+
+ 3078 root      19  -1       0      0      0 S   0.0   0.0   0:01.66 dp_rx_thr+
+ 3079 root      19  -1       0      0      0 S   0.0   0.0   0:00.00 dp_rx_thr+
+ 3080 root      19  -1       0      0      0 S   0.0   0.0   0:00.00 dp_rx_thr+
+ 3081 root      19  -1       0      0      0 S   0.0   0.0   0:00.00 dp_rx_thr+
+ 3194 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 hci0
+ 3195 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 hci0
+ 3199 root      20   0    1640     80      0 S   0.0   0.0   0:00.00 hciattach
+ 3245 root      20   0    8912   6528   5704 S   0.0   0.2   0:00.54 wpa_suppl+
+ 3246 root      20   0   34192   4316   3844 S   0.0   0.1   0:00.18 nfrtool
+ 3255 root      20   0    1680    640    568 S   0.0   0.0   0:00.02 smcrouted
+ 3277 root      20   0    5832   2708   2076 S   0.0   0.1   0:00.09 lighttpd
+ 3341 root      20   0    3220   2664   1672 S   0.0   0.1   0:04.77 mdnsd
+ 3376 root      20   0   28408    544    452 S   0.0   0.0   0:00.38 tee-suppl+
+ 3410 root      20   0    6520   4152   3464 S   0.0   0.1   0:02.44 bluetoothd
+ 3431 root     -31   0   96696   4380   3880 S   0.0   0.1   0:06.02 HdmiServi+
+ 3458 root      20   0    3604   1976   1828 S   0.0   0.1   0:00.05 tee_log_s+
+ 3468 root      20   0   13824   1628   1316 S   0.0   0.0   0:00.41 memcr
+ 3476 root      20   0    2256   1712   1580 S   0.0   0.0   0:00.01 sh
+ 3508 root      20   0    2156    712    640 S   0.0   0.0   0:00.05 cat
+ 3509 root      20   0    2156    712    640 S   0.0   0.0   0:00.03 cat
+ 3515 root      20   0    3784   1420   1292 S   0.0   0.0   0:00.03 audio_fir+
+ 3534 root       0 -20   76528   1404   1200 S   0.0   0.0   0:00.29 audio_fir+
+ 3561 root     -36   0  107516   5512   4940 S   0.0   0.1   0:20.62 RtkAudioS+
+ 3565 root      20   0   15244   2108   1692 S   0.0   0.1   0:00.37 IARMDaemo+
+ 3576 root      20   0   21596   7500   6324 S   0.0   0.2   0:00.88 mfrMgrMain
+ 3588 root      20   0   91032   6012   4912 S   0.0   0.2   0:00.40 storageMg+
+ 3590 root      20   0   21400   5580   4736 S   0.0   0.2   0:00.30 sysMgrMain
+ 3615 root      20   0       0      0      0 S   0.0   0.0   0:00.00 jbd2/mmcb+
+ 3616 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 ext4-rsv-+
+ 3795 root      20   0  159164  15768  11828 S   0.0   0.4   0:05.75 tr69hostif
+ 3914 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 drmfb_wq
+ 3959 root      20   0   26472   4128   3604 S   0.0   0.1   0:00.01 thunderHa+
+ 3979 root      20   0   83548  16564  13628 S   0.0   0.4   0:00.18 TextToSpe+
+ 3994 root      20   0  145176  17920  14816 S   0.0   0.5   0:01.19 NWMgrPlug+
+ 4001 root      20   0   71960   4416   2812 S   0.0   0.1   0:02.55 webconfig
+ 4015 root      20   0   53512   2992   1928 S   0.0   0.1   0:00.25 dcmd
+ 4049 root      20   0  112000   9148   7908 S   0.0   0.2   0:00.33 remotedeb+
+ 4112 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 4123 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 4131 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 4141 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 bioset
+ 4161 non-root  20   0  136056   8228   5228 S   0.0   0.2   0:04.47 telemetry+
+ 4249 root      20   0  125324  35744  26784 S   0.0   1.0   0:07.73 MediaRite
+ 4285 root      20   0   91712  19548  17040 S   0.0   0.5   0:01.06 CloudStore
+ 4287 root      20   0   81732  13884  12024 S   0.0   0.4   0:00.12 WifiMetri+
+ 4297 root     -31   0  174420  10788   9208 S   0.0   0.3   0:31.59 dsMgrMain
+ 4342 non-root  20   0   29768   7032   6168 S   0.0   0.2   0:00.25 audiocapt+
+ 4349 root      20   0  113668   9632   8324 S   0.0   0.3   0:00.38 sysTimeMgr
+ 4388 root      20   0   64096   9516   8316 S   0.0   0.3   0:00.81 fogcli
+ 4524 root      20   0  155820  18620  12428 S   0.0   0.5   0:19.31 controlMgr
+ 4546 root      20   0   92428  17628  15404 S   0.0   0.5   0:00.62 Xcast
+ 4550 root      20   0  360340  64420  42512 S   0.0   1.7   0:30.76 appsservi+
+ 4551 root      20   0   59008  17204  14352 S   0.0   0.5   0:00.11 SystemAud+
+ 4577 nobody    20   0    4876   2936   2632 S   0.0   0.1   0:00.35 dnsmasq
+ 4669 root      20   0   62460   5128   4348 S   0.0   0.1   0:00.09 ASNetwork+
+ 5101 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_eve+
+ 5210 root      20   0  190772  28408  22824 S   0.0   0.8   0:01.16 RialtoSer+
+ 5320 root     -36 -20       0      0      0 S   0.0   0.0   0:00.08 kworker/u+
+ 5335 non-root  20   0  100964   7812   6100 S   0.0   0.2   0:01.96 parodus
+ 5359 root      20   0  219644  12832   9916 S   0.0   0.3   0:01.91 ASSystemS+
+ 5381 root      20   0  126232  23600  18812 S   0.0   0.6   0:01.56 OCDM
+ 5760 root      20   0    1988    100      0 S   0.0   0.0   0:00.00 dropbear
+ 6161 root      20   0  170980  26152  21288 S   0.0   0.7   0:00.98 RialtoSer+
+ 6213 root     -11   0       0      0      0 S   0.0   0.0   0:00.15 kworker/3+
+ 6275 root      20   0   70672  16500  13748 S   0.0   0.4   0:00.15 RialtoSer+
+ 6461 root      20   0   76084  11056   7632 S   0.0   0.3   0:11.62 ASAnalyti+
+ 6500 root      20   0  143200  26592  22704 S   0.0   0.7   0:00.36 TextTrack
+ 6538 root      20   0       0      0      0 Z   0.0   0.0   0:00.00 ASSystemS+
+ 6552 root      20   0  342952  22224  11952 S   0.0   0.6   0:03.05 asrdkplay+
+ 6581 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_eve+
+ 6783 root      20   0   81512   5460   4668 S   0.0   0.1   0:00.11 ASPeriphe+
+ 6785 root      20   0   79912   7856   5732 S   0.0   0.2   0:00.16 VoiceSear+
+ 6790 root      20   0   88304   5624   4612 S   0.0   0.2   0:00.15 ASBridgeS+
+ 6844 root      20   0  222352  34508  29672 S   0.0   0.9   0:00.97 JSPP
+ 6896 root      20   0  245568  32948  27880 S   0.0   0.9   0:00.40 WPENetwor+
+ 6897 root      20   0  455488 131608  85944 S   0.0   3.6   0:09.16 JSPPWebPr+
+ 6934 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 kbase_eve+
+ 8028 root      20   0    1988    112      0 S   0.0   0.0   0:00.00 dropbear
+ 8593 root      20   0    2156    712    640 S   0.0   0.0   0:00.00 sleep
+10087 root      20   0   19132   4064   3448 S   0.0   0.1   0:00.04 shipd
+10541 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/2+
+10817 root     -11   0       0      0      0 S   0.0   0.0   0:10.95 kworker/0+
+10818 root     -11   0       0      0      0 S   0.0   0.0   0:00.70 kworker/3+
+10857 root     -11   0       0      0      0 S   0.0   0.0   0:00.43 kworker/1+
+13157 root     -11   0       0      0      0 S   0.0   0.0   0:01.23 kworker/u+
+13474 root     -11   0       0      0      0 S   0.0   0.0   0:01.01 kworker/2+
+13640 root     -11   0       0      0      0 S   0.0   0.0   0:01.43 kworker/1+
+13848 root     -11   0       0      0      0 S   0.0   0.0   0:02.12 kworker/0+
+14210 root     -11   0       0      0      0 S   0.0   0.0   0:00.92 kworker/u+
+14211 root     -11   0       0      0      0 S   0.0   0.0   0:00.15 kworker/u+
+14323 root     -11   0       0      0      0 S   0.0   0.0   0:00.52 kworker/u+
+14386 root     -11   0       0      0      0 S   0.0   0.0   0:00.16 kworker/u+
+14387 root     -11   0       0      0      0 S   0.0   0.0   0:00.49 kworker/u+
+14388 root     -11   0       0      0      0 S   0.0   0.0   0:00.45 kworker/u+
+14389 root     -11   0       0      0      0 S   0.0   0.0   0:00.06 kworker/u+
+14390 root     -11   0       0      0      0 S   0.0   0.0   0:00.90 kworker/u+
+14391 root     -11   0       0      0      0 S   0.0   0.0   0:00.11 kworker/u+
+14392 root     -11   0       0      0      0 S   0.0   0.0   0:00.46 kworker/u+
+14393 root     -11   0       0      0      0 S   0.0   0.0   0:00.11 kworker/u+
+14394 root     -11   0       0      0      0 S   0.0   0.0   0:02.86 kworker/3+
+14469 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/u+
+15928 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+15975 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+16634 root     -11   0       0      0      0 S   0.0   0.0   0:10.66 kworker/2+
+16825 root      20   0   97556   6156   5208 D   0.0   0.2   0:00.40 DobbyDaem+
+17355 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/1+
+17649 root     -11   0       0      0      0 S   0.0   0.0   0:00.01 kworker/3+
+18794 root      20   0   38984   7136   6184 S   0.0   0.2   0:00.15 rdm
+19174 root      20   0   38984   7128   6184 S   0.0   0.2   0:00.34 rdm
+19402 systemd+  20   0   11732   1632   1468 S   0.0   0.0   0:00.09 systemd-t+
+19501 root      20   0    2256   1732   1580 S   0.0   0.0   0:00.00 GetServic+
+19502 root      20   0    2256   1732   1580 S   0.0   0.0   0:00.01 GetServic+
+19511 root      20   0  619288  50640  35816 S   0.0   1.4   0:00.00 WorkerPoo+
+19512 root      20   0   23788   9136   8064 S   0.0   0.2   0:00.03 rebootNow+
+19515 root      20   0   15128   1944   1712 S   0.0   0.1   0:00.06 IARM_even+
+19516 root     -11   0    2256   1772   1580 S   0.0   0.0   0:00.06 core_shel+
+19525 root      20   0    2256   1732   1580 S   0.0   0.0   0:00.00 configpar+
+19526 root      20   0    2256   1732   1580 S   0.0   0.0   0:00.00 configpar+
+19534 root      20   0    6028   1832   1480 D   0.0   0.0   0:00.06 cpgu
+19535 root      20   0    5896   1832   1480 S   0.0   0.0   0:00.02 cpgu
+Filesystem           1K-blocks      Used Available Use% Mounted on
+none                   1377244         0   1377244   0% /dev
+/dev/dm-0               187392    187392         0 100% /
+tmpfs                  1845576        48   1845528   0% /dev/shm
+tmpfs                  1845576     75228   1770348   4% /run
+tmpfs                  1845576         0   1845576   0% /sys/fs/cgroup
+tmpfs                  1845576     75228   1770348   4% /etc/machine-id
+tmpfs                  1845576      2288   1843288   0% /tmp
+tmpfs                  1845576      2288   1843288   0% /etc/systemd/timesyncd.conf
+/dev/mmcblk0p3          498900     58016    404188  13% /opt
+/dev/mmcblk0p4           56037     14621     36830  28% /mnt/critical
+/dev/mmcblk0p4           56037     14621     36830  28% /opt/persistent
+/dev/mmcblk0p4           56037     14621     36830  28% /opt/www
+/dev/mmcblk0p4           56037     14621     36830  28% /opt/drm
+/dev/mmcblk0p4           56037     14621     36830  28% /opt/gp
+tmpfs                   589824         0    589824   0% /opt/CDL
+tmpfs                     5120         0      5120   0% /opt/oem
+tmpfs                   131072         0    131072   0% /mnt/memory
+/dev/mmcblk0p3          498900     58016    404188  13% /nvram
+/dev/mmcblk0p4           56037     14621     36830  28% /etc/timezone
+/dev/mmcblk0p3          498900     58016    404188  13% /var/lib
+tmpfs                  1845576        36   1845540   0% /var/volatile
+tmpfs                  1845576        36   1845540   0% /var/spool/cron
+tmpfs                  1845576        36   1845540   0% /etc/resolv.conf
+tmpfs                  1845576        36   1845540   0% /etc/hosts
+tmpfs                  1845576        36   1845540   0% /etc/asound.conf
+tmpfs                  1845576        36   1845540   0% /etc/xupnp
+tmpfs                  1845576        36   1845540   0% /etc/hostname
+tmpfs                  1845576        36   1845540   0% /www
+/opt/secure             498900     58016    404188  13% /opt/secure
+/opt/secure             498900     58016    404188  13% /nvram/secure
+/opt/secure             498900     58016    404188  13% /var/lib/secure
+/dev/mmcblk0p2         1349972    392336    870804  31% /media/apps
+/opt/drm                 56037     14621     36830  28% /opt/drm
+/opt/drm                 56037     14621     36830  28% /mnt/critical/drm
+/dev/mmcblk0p1         5809432       364   5493064   0% /tmp/data
+2026-01-16T02:43:39.452Z process crashed = AI_DOBBY_TIMER
+2026-01-16T02:43:39.472Z signal causing dump = 6
+2026-01-16T02:43:39.487Z time of dump = 1768531416
+2026-01-16T02:43:39.500Z Process ID = 16825
+2026-01-16T02:43:39.513Z Thread ID within process = 16863
+2026-01-16T02:43:39.535Z AI_DOBBY_TIMER process is not listed to upload, we are not processing the core file
+2026-01-16T02:43:40.300Z [CRASH_UPLOAD] [PID:19505]: starting minidump processing
+2026-01-16T02:43:45.351Z [CRASH_UPLOAD] [PID:19505]: Check Network status count 1
+2026-01-16T02:43:45.372Z [CRASH_UPLOAD] [PID:19505]: Route is Available break the loop
+2026-01-16T02:43:45.389Z [CRASH_UPLOAD] [PID:19505]: IP acquistion completed, Testing the system time is received
+2026-01-16T02:43:45.405Z [CRASH_UPLOAD] [PID:19505]: Received /tmp/stt_received flag
+2026-01-16T02:43:45.451Z [CRASH_UPLOAD] [PID:19505]: Mac address is D4DACDCB2D79
+2026-01-16T02:43:45.478Z [CRASH_UPLOAD] [PID:19505]: Cleanup minidump directory /opt/secure/minidumps
+2026-01-16T02:43:45.502Z [CRASH_UPLOAD] [PID:19505]: Portal URL: crashportal.stb.r53.xcal.tv
+2026-01-16T02:43:45.741Z [CRASH_UPLOAD] [PID:19505]: buildID is 7dacc377aa770fbbf2ccf2935c5b3d9be0e7fce2
+2026-01-16T02:43:45.794Z [PID:19505]: [utils.sh] flushLogger is called
+2026-01-16T02:43:45.869Z [CRASH_UPLOAD] [PID:19505]: Processing the crash telemetry info
+2026-01-16T02:43:45.967Z [CRASH_UPLOAD] [PID:19505]: Process crashed = DobbyDaemon
+2026-01-16T02:43:46.020Z [CRASH_UPLOAD] [PID:19505]: Crashed process log file(s): 
+2026-01-16T02:43:46.037Z [CRASH_UPLOAD] [PID:19505]: Appname, Process_Crashed = 006c65dd, DobbyDaemon
+2026-01-16T02:43:46.108Z [CRASH_UPLOAD] [PID:19505]: Size of the file: -rw-------    1 root     root        125352 Jan 16 02:43 macD4DACDCB2D79_dat2026-01-16-02-43-40_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp
+2026-01-16T02:43:46.154Z [CRASH_UPLOAD] [PID:19505]: macD4DACDCB2D79_dat2026-01-16-02-43-40_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp
+2026-01-16T02:43:46.171Z [CRASH_UPLOAD] [PID:19505]: version.txt
+2026-01-16T02:43:46.193Z [CRASH_UPLOAD] [PID:19505]: tar: removing leading '/' from member names
+2026-01-16T02:43:46.211Z [CRASH_UPLOAD] [PID:19505]: opt/logs/core_log.txt
+2026-01-16T02:43:46.229Z [CRASH_UPLOAD] [PID:19505]: Success Compressing the files, macD4DACDCB2D79_dat2026-01-16-02-43-40_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz macD4DACDCB2D79_dat2026-01-16-02-43-40_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp version.txt /opt/logs/core_log.txt 
+2026-01-16T02:43:46.251Z [CRASH_UPLOAD] [PID:19505]: Size of the compressed file: -rw-r--r--    1 root     root         31518 Jan 16 02:43 macD4DACDCB2D79_dat2026-01-16-02-43-40_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz
+2026-01-16T02:43:46.280Z [CRASH_UPLOAD] [PID:19505]: Removing /opt/secure/minidumps/version.txt
+2026-01-16T02:43:46.320Z [CRASH_UPLOAD] [PID:19505]: [INFO] : getPrivacyControlMode : Entering
+2026-01-16T02:43:46.344Z [CRASH_UPLOAD] [PID:19505]: [WARN] : getPrivacyControlMode : WPEFrameworkSecurityUtility failed to get token; status = 127
+2026-01-16T02:43:46.359Z [CRASH_UPLOAD] [PID:19505]: [WARN] : getPrivacyControlMode : WPEFrameworkSecurityUtility Token is empty
+2026-01-16T02:43:46.416Z [CRASH_UPLOAD] [PID:19505]: [INFO] : getPrivacyControlMode : END : 2.0
+2026-01-16T02:43:46.442Z [CRASH_UPLOAD] [PID:19505]: [/lib/rdk/uploadDumps.sh]: 1: minidump S3 Upload 
+2026-01-16T02:43:46.546Z [CRASH_UPLOAD] [PID:19505]: DEBUG Original File Name : macD4DACDCB2D79_dat2026-01-16-02-43-40_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz
+2026-01-16T02:43:46.564Z [CRASH_UPLOAD] [PID:19505]: DEBUG Value Required for Check : mac
+2026-01-16T02:43:46.582Z [CRASH_UPLOAD] [PID:19505]: uploadToS3 macD4DACDCB2D79_dat2026-01-16-02-43-40_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz and partnerId=
+2026-01-16T02:43:46.606Z [CRASH_UPLOAD] [PID:19505]: DEBUG minidump file timestamp (2,4) received to uploadToS3: 2026-01-16-02-43-40
+2026-01-16T02:43:46.630Z [CRASH_UPLOAD] [PID:19505]: minidump file timestamp before upload: 2026-01-16-02-43-46
+2026-01-16T02:43:46.657Z [CRASH_UPLOAD] [PID:19505]: DEBUG minidump file to be uploaded: macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz
+2026-01-16T02:43:46.676Z [CRASH_UPLOAD] [PID:19505]: DEBUG Renaming the minidump file under /opt/secure/minidumps
+2026-01-16T02:43:46.696Z [CRASH_UPLOAD] [PID:19505]: DEBUG mv /opt/secure/minidumps/macD4DACDCB2D79_dat2026-01-16-02-43-40_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz /opt/secure/minidumps/macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz
+2026-01-16T02:43:46.720Z [CRASH_UPLOAD] [PID:19505]: DEBUG S3 File Name : macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz
+2026-01-16T02:43:46.773Z [CRASH_UPLOAD] [PID:19505]: [/lib/rdk/uploadDumps.sh]: S3 Amazon Signing URL: https://ssr.ccp.xcal.tv/cgi-bin/upload_dump.cgi
+2026-01-16T02:43:46.808Z [CRASH_UPLOAD] [PID:19505]: RFC_EncryptCloudUpload_Enable:
+2026-01-16T02:43:46.827Z [CRASH_UPLOAD] [PID:19505]: mediaclient/SKXI11ADS MTLS Crashdump upload
+2026-01-16T02:43:46.872Z [CRASH_UPLOAD] [PID:19505]: Overriding the S3 Amazon SIgning URL: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-upload_dump.cgi
+2026-01-16T02:43:46.894Z [CRASH_UPLOAD] [PID:19505]: Using Xpki cert for CrashdumpUpload
+2026-01-16T02:43:46.923Z [CRASH_UPLOAD] [PID:19505]: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T02:43:47.069Z [CRASH_UPLOAD] [PID:19505]: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -s --tlsv1.2 -o /tmp/signed_url_19505 -w "%{http_code} %{remote_ip}" --data-urlencode filename="macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz"                --data-urlencode firmwareVersion=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG                --data-urlencode env=prod                --data-urlencode model=SKXI11ADS                --data-urlencode type=minidump                                 https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-upload_dump.cgi
+2026-01-16T02:43:47.926Z [CRASH_UPLOAD] [PID:19505]: Curl Connected to ssr.xdp.eu-1.xcal.tv (184.120.150.216) port 
+2026-01-16T02:43:47.942Z [CRASH_UPLOAD] [PID:19505]: [/lib/rdk/uploadDumps.sh]: Curl return code : 0, HTTP SIGN URL Response: 200
+2026-01-16T02:43:47.983Z [CRASH_UPLOAD] [PID:19505]: Safe params: macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz --  -- 
+2026-01-16T02:43:47.999Z [CRASH_UPLOAD] [PID:19505]: Attempting TLS1.2 connection to Amazon S3
+2026-01-16T02:43:48.026Z [CRASH_UPLOAD] [PID:19505]: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T02:43:48.099Z [CRASH_UPLOAD] [PID:19505]: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -v -fgL --tlsv1.2 -T "macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz" -w "%{http_code} %{remote_ip}" "https://eu-ccp-stbcrashes.s3.dualstack.eu-west-1.amazonaws.com/minidump/2026/1/16/2/SKXI11ADS/SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG/prod/macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZUIKWRPZFXPVQJLS%2F20260116%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260116T024347Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=1f6484f1ecd58eef2e3cd19bc2e2c31ba1116e7c82fe77bf73e9ef50af5332cb"
+2026-01-16T02:43:49.140Z [CRASH_UPLOAD] [PID:19505]: Curl Connected to eu-ccp-stbcrashes.s3.dualstack.eu-west-1.amazonaws.com (52.92.20.74) port 
+2026-01-16T02:43:49.165Z [CRASH_UPLOAD] [PID:19505]: Curl return code: 0 HTTP Response code: 200
+2026-01-16T02:43:49.195Z [CRASH_UPLOAD] [PID:19505]: S3 minidump Upload is successful with TLS1.2
+2026-01-16T02:43:49.229Z [CRASH_UPLOAD] [PID:19505]: Removing uploaded minidump file macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz
+2026-01-16T02:43:49.272Z [CRASH_UPLOAD] [PID:19505]: [/lib/rdk/uploadDumps.sh]: minidump uploadToS3 SUCESS: status: 0
+2026-01-16T02:43:49.297Z [CRASH_UPLOAD] [PID:19505]: Removing file macD4DACDCB2D79_dat2026-01-16-02-43-46_boxXiOne_modSKXI11ADS_DobbyDaemon_006c65dd-6249-4170-f96448a5-386b1274.dmp.tgz
+2026-01-16T02:43:49.353Z [CRASH_UPLOAD] [PID:19505]: WORKING_DIR is empty!!!
+2026-01-16T02:43:49.380Z [CRASH_UPLOAD] [PID:19505]: WORKING_DIR is empty!!!
+2025-12-03T08:38:51.423Z [/lib/rdk/disk_threshold_check.sh]:[SECUREDUMP] Enabled. Dump location changed to /opt/secure.

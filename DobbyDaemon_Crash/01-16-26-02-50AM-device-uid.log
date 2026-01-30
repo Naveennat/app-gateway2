@@ -1,0 +1,2 @@
+2026-01-16T01:31:50.594Z: /lib/rdk/boot_duid.sh: Starting Device UID Migration
+2026-01-16T01:31:50.682Z: /lib/rdk/boot_duid.sh: top priority app list json file /etc/migration/entos_apps_migration.json is not present. so skipping device-uid migration since this script is not intended for this Device model SKXI11ADS

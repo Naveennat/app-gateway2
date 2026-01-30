@@ -1,0 +1,793 @@
+2025-12-03T08:38:56.267Z HdmiService[3431]:  [1;32mHdmiService: [0mstarting in debug mode
+2025-12-03T08:38:56.267Z HdmiService[3431]:  [1;32mHdmiService: [0mmutex_init start ------------>
+2025-12-03T08:38:56.267Z HdmiService[3431]:  [1;32mHdmiService: [0mmutex_init end ------------>
+2025-12-03T08:38:56.267Z HdmiService[3431]:  [1;32mHdmiService: [0mcreate /tmp/HdmiRequest
+2025-12-03T08:38:56.267Z HdmiService[3431]:  [1;32mHdmiService: [0mStart HdmiService with DV supported
+2025-12-03T08:38:56.267Z HdmiService[3431]:  [CP][+]RealtekDVControlPathService init!
+2025-12-03T08:38:56.278Z HdmiService[3431]:  register rpc node: 0x3a2b8
+2025-12-03T08:38:56.278Z HdmiService[3431]:  register rpc node: 0x3a2d0
+2025-12-03T08:38:56.278Z HdmiService[3431]:  register rpc node: 0x3a2e8
+2025-12-03T08:38:56.281Z HdmiService[3431]:  [CP]check_DV_ControlPath_secureID custid:121 121
+2025-12-03T08:38:56.281Z HdmiService[3431]:  [DVCP][+]check_DV_ControlPath_secureID result:0!
+2025-12-03T08:38:56.281Z HdmiService[3431]:  [CP]Rtk_DV_Control_Path_Init initialization.processcount:0
+2025-12-03T08:38:56.281Z HdmiService[3431]:  [+][CP]Rtk_DV_Control_Path_RPC_to_VO_Sink_Cap_Share_Mem: 0x785b000
+2025-12-03T08:38:56.282Z HdmiService[3431]:  [-][CP]Rtk_DV_Control_Path_RPC_to_VO_Sink_Cap_Share_Mem
+2025-12-03T08:38:56.282Z HdmiService[3431]:  [CP]DVCP_CA_Init[+]
+2025-12-03T08:38:56.282Z HdmiService[3431]:  @@DVCP_CA_InitializeContext  0
+2025-12-03T08:38:56.356Z HdmiService[3431]:  @@@@DVCP_TEEC_OpenSession  session0
+2025-12-03T08:38:56.356Z HdmiService[3431]:  @@ DVCP_CA_Init buf b6fb7000
+2025-12-03T08:38:56.356Z HdmiService[3431]:  @@DVCP_SVS_CP_INIT  invok res:0 ori:4
+2025-12-03T08:38:56.358Z sh[3537]:  OK
+2025-12-03T08:38:56.364Z HdmiService[3431]:  Rtk_DV_checkBonding_SecureID
+2025-12-03T08:38:56.364Z HdmiService[3431]:  [CP]DVCP_CA_Init[-]
+2025-12-03T08:38:56.364Z HdmiService[3431]:  [CP][-]RealtekDVControlPathService init!
+2025-12-03T08:38:56.364Z HdmiService[3431]:  [1;32mHdmiService: [0mcreate HDMIServiceCore ----------->
+2025-12-03T08:38:56.386Z sh[3543]:  OK
+2025-12-03T08:38:56.391Z HdmiService[3431]:  mEdidInfoPath : /sys/devices/platform/9800d000.hdmitx/edid_info.
+2025-12-03T08:38:56.391Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2025-12-03T08:38:56.391Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2025-12-03T08:38:56.405Z sh[3552]:  OK
+2025-12-03T08:38:57.097Z HdmiService[3431]:  [1;32mHdmiService: [0m[HdmiService.cpp 889] connect fail!!(path=/tmp/HdmiNotify)
+2025-12-03T08:38:57.097Z HdmiService[3431]:  -----TV EDID information-----
+2025-12-03T08:38:57.097Z HdmiService[3431]:    Hdmi Version: 1.0
+2025-12-03T08:38:57.098Z HdmiService[3431]:    Manufacturer: HEC
+2025-12-03T08:38:57.098Z HdmiService[3431]:    Product Code: 00 30
+2025-12-03T08:38:57.098Z HdmiService[3431]:    Serial: 1
+2025-12-03T08:38:57.098Z HdmiService[3431]:    Manufacture Year: 2017
+2025-12-03T08:38:57.098Z HdmiService[3431]:    Manufacture Week: 36
+2025-12-03T08:38:57.098Z HdmiService[3431]:    Monitor:HISENSE
+2025-12-03T08:38:57.098Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2025-12-03T08:38:57.098Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2025-12-03T08:38:57.099Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2025-12-03T08:38:57.099Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2025-12-03T08:38:57.099Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2025-12-03T08:38:57.099Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2025-12-03T08:38:57.099Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2025-12-03T08:38:57.099Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2025-12-03T08:38:57.099Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2025-12-03T08:38:57.099Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2025-12-03T08:38:57.099Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2025-12-03T08:38:57.099Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2025-12-03T08:38:57.100Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2025-12-03T08:38:57.100Z HdmiService[3431]:  m_isCustomCecEnable ----------> 0 -
+2025-12-03T08:38:57.100Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2025-12-03T08:38:57.100Z HdmiService[3431]:  [1;32mHdmiService: [0mSETTING vic : 31, freq_shift : 1, color [ANY 8] hdr : 2 LLMode : 1 preferColr: 0 contentType 0 scanMode 0
+2025-12-03T08:38:57.100Z HdmiService[3431]:  [1;32mHdmiService: [0mThis vic not support frequence shift
+2025-12-03T08:38:57.100Z HdmiService[3431]:  [1;32mHdmiService: [0mcheckHDR result: 2[SDR]
+2025-12-03T08:38:57.100Z HdmiService[3431]:  [1;32mHdmiService: [0mThis vic not support frequence shift
+2025-12-03T08:38:57.100Z HdmiService[3431]:  [1;32mHdmiService: [0mfind color [YUV444 12]
+2025-12-03T08:38:57.100Z HdmiService[3431]:  [1;32mHdmiService: [0mThis vic not support frequence shift
+2025-12-03T08:38:57.100Z HdmiService[3431]:  [1;32mHdmiService: [0mOUTPUT vic : 31, freq_shift : 0, color[YUV444 8] hdr : SDR misc: 0
+2025-12-03T08:38:57.100Z HdmiService[3431]:  [1;32mHdmiService: [0mturn_off_hdmi_hdcp ----------->
+2025-12-03T08:38:57.338Z HdmiService[3431]:  [1;32mHdmiService: [0mturn_on_hdmi_hdcp ----------->
+2025-12-03T08:38:57.338Z HdmiService[3431]:  [1;32mHdmiService: [0mColorSpaceSetting ----> auto
+2025-12-03T08:38:57.338Z HdmiService[3431]:  [1;32mHdmiService: [0mRxSense -1 => 0
+2025-12-03T08:38:57.338Z HdmiService[3431]:  [1;32mHdmiService: [0mthread_suspend():enter.....
+2025-12-03T08:38:57.338Z HdmiService[3431]:  [1;32mHdmiService::HDCPController: [0mHDCPController::HDCPController()
+2025-12-03T08:38:57.338Z HdmiService[3431]:  Open hdcp successfully!  fd: 18
+2025-12-03T08:38:57.338Z HdmiService[3431]:  [1;32mHdmiService: [0mthread_hdcp():enter.....
+2025-12-03T08:38:57.338Z HdmiService[3431]:  [1;32mHdmiService: [0mthread_retry_hdcp():enter.....
+2025-12-03T08:38:57.834Z RtkAudioService[3561]:  [SystemSoundPlayer][WARN] [AVR] HDMI hotplug -1->1
+2025-12-03T08:38:57.835Z RtkAudioService[3561]:  [SystemSoundPlayer][INFO] SystemSoundPlayer::setupTrsenc[+]
+2025-12-03T08:38:57.835Z RtkAudioService[3561]:  [SystemSoundPlayer][INFO] output_type & avr_caps are the same. Skip reconstruct encoder
+2025-12-03T08:38:57.835Z RtkAudioService[3561]:  [SystemSoundPlayer][INFO] SystemSoundPlayer::setupTrsenc[-]
+2025-12-03T08:38:57.835Z RtkAudioService[3561]:  [SystemSoundPlayer][INFO] setOutputMode: AO_WRAP_AUDIO_DIGITAL_LPCM_DUAL_CH
+2025-12-03T08:38:57.836Z RtkAudioService[3561]:  [SystemSoundPlayer][INFO] user_prefer=1, Current_reencode_type=0
+2025-12-03T08:38:57.842Z HdmiService[3431]:  [1;32mHdmiService: [0m[HdmiService.cpp 889] connect fail!!(path=/tmp/HdmiNotify)
+2025-12-03T08:38:57.915Z RtkAudioService[3561]:  register rpc node: 0xac2c0
+2025-12-03T08:38:57.915Z RtkAudioService[3561]:  register rpc node: 0xac068
+2025-12-03T08:38:57.915Z RtkAudioService[3561]:  register rpc node: 0xabe10
+2025-12-03T08:38:57.915Z RtkAudioService[3561]:  [TEE_API_Initialize:210][pid:0xde9 tid:0xde9][mInit:0] Create session
+2025-12-03T08:38:57.945Z RtkAudioService[3561]:  [SystemSoundPlayer][INFO] Start PCM Player with Trsenc
+2025-12-03T08:38:57.946Z RtkAudioService[3561]:  [SystemSoundPlayer][INFO] OutputTypeMonitor start
+2025-12-03T08:38:57.960Z RtkAudioService[3561]:  [RpcServer][INFO] Server running.
+2025-12-03T08:39:01.686Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 0, len = 12, command_id 18 = HDMI_WRAP_SET_SERVICE_INFO
+2025-12-03T08:39:01.686Z HdmiService[3431]:  [1;32mHdmiService: [0mservice_info.bEableHotplugAction ----> 1
+2025-12-03T08:39:01.686Z HdmiService[3431]:  [1;32mHdmiService: [0mm_HdmiService_isEableHotplugAction(1)
+2025-12-03T08:39:01.686Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2025-12-03T08:39:01.687Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2025-12-03T08:39:01.687Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2025-12-03T08:39:01.687Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2025-12-03T08:39:01.687Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2025-12-03T08:39:01.687Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 4, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2025-12-03T08:39:01.716Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 5, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2025-12-03T08:39:01.716Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 6, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2025-12-03T08:39:01.716Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 7, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2025-12-03T08:39:01.734Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 9, len = 32, command_id 36 = HDMI_WRAP_SET_SPD_INFOFRAME
+2025-12-03T08:39:01.851Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 14, len = 0, command_id 14 = HDMI_WRAP_GET_TV_SYSTEM_SETTING
+2025-12-03T08:39:01.851Z HdmiService[3431]:  [1;32mHdmiService: [0mmain : resolution_vic(31), colorspace(0) hdr(2) LLMode(1) preferColor(0) contentType 0 scanMode 0 len 40
+2025-12-03T08:39:01.851Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 15, len = 36, command_id 1 = HDMI_WRAP_SET_TV_SYSTEM
+2025-12-03T08:39:01.851Z HdmiService[3431]:  [1;32mHdmiService: [0mvic = 0, color = b12(0 2), bFreqShift = 1 hdr = SDR LLMode = 1 preferColor = 0 contentType = 0 scanMode = 0 bSave =0
+2025-12-03T08:39:01.851Z HdmiService[3431]:  [1;32mHdmiService: [0mcache vic = 31, color = b12, bFreqShift = 1 hdr = SDR LLMode = 1 preferColor = 0 contentType = 0 scanMode = 0 bSave =0
+2025-12-03T08:39:01.851Z HdmiService[3431]:  HDMI_WRAP_SET_TV_SYSTEM m_HdmiService_Mutex +
+2025-12-03T08:39:01.851Z HdmiService[3431]:  [1;32mHdmiService: [0mSETTING vic : 31, freq_shift : 1, color [ANY 12] hdr : 2 LLMode : 1 preferColr: 0 contentType 0 scanMode 0
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mThis vic not support frequence shift
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mcheckHDR result: 2[SDR]
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mThis vic not support frequence shift
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mfind color [YUV444 12]
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mThis vic not support frequence shift
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mOUTPUT vic : 31, freq_shift : 0, color[YUV444 8] hdr : SDR misc: 0
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mcuurentOutputFormat.mode 2
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mcuurentOutputFormat.vic 31 (31)
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mcuurentOutputFormat.freq_shift 0 (0)
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mcuurentOutputFormat.color 2 (2)
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mcuurentOutputFormat.color_depth 8 (8)
+2025-12-03T08:39:01.852Z HdmiService[3431]:  [1;32mHdmiService: [0mcuurentOutputFormat.hdr 2 (2)
+2025-12-03T08:39:01.853Z HdmiService[3431]:  [1;32mHdmiService: [0mcuurentOutputFormat.misc 0 (0)
+2025-12-03T08:39:01.853Z HdmiService[3431]:  [1;32mHdmiService: [0mturn_off_hdmi_hdcp ----------->
+2025-12-03T08:39:02.144Z HdmiService[3431]:  [1;32mHdmiService: [0mturn_on_hdmi_hdcp ----------->
+2025-12-03T08:39:02.144Z HdmiService[3431]:  HDMI_WRAP_SET_TV_SYSTEM m_HdmiService_Mutex -
+2026-01-16T01:31:48.031Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 16, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T01:31:48.031Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T01:31:48.050Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T01:31:48.102Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 17, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T01:31:48.102Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T01:31:48.806Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 19, len = 12, command_id 12 = HDMI_WRAP_SET_HDCP
+2026-01-16T01:31:48.806Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:31:48.806Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:31:48.806Z HdmiService[3431]:  [1;32mHdmiService: [0mmain : HDMI_WRAP_SET_HDCP 0 10 1---->end
+2026-01-16T01:31:49.681Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T01:31:49.682Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T01:31:49.682Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T01:31:49.683Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T01:31:49.683Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T01:31:50.055Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 0, len = 4, command_id 21 = HDMI_WRAP_CEC_INIT
+2026-01-16T01:31:50.055Z HdmiService[3431]:  SetHW CEC_ENABLE = 0
+2026-01-16T01:31:50.055Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T01:31:50.055Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T01:31:50.055Z HdmiService[3431]:  mFD:20, cec message send fail: errno(5), Input/output error
+2026-01-16T01:31:50.055Z HdmiService[3431]:  mFD:20, cec message send fail: errno(5), Input/output error
+2026-01-16T01:31:50.055Z HdmiService[3431]:  mFD:20, cec message send fail: errno(5), Input/output error
+2026-01-16T01:31:50.055Z HdmiService[3431]:  mFD:20, cec message send fail: errno(5), Input/output error
+2026-01-16T01:31:50.055Z HdmiService[3431]:  mFD:20, cec message send fail: errno(5), Input/output error
+2026-01-16T01:31:50.055Z HdmiService[3431]:  [0;32m In cecEnable:218 cecEnable : 0 [m
+2026-01-16T01:31:50.055Z HdmiService[3431]:  SetHW CEC_ENABLE = 0
+2026-01-16T01:31:50.072Z HdmiService[3431]:  disable cec -------------------------->
+2026-01-16T01:31:50.072Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1, len = 8, command_id 23 = HDMI_WRAP_CEC_CECENABLE
+2026-01-16T01:31:50.072Z HdmiService[3431]:  enable_callback : 0, mode : 1
+2026-01-16T01:31:50.073Z HdmiService[3431]:  [0;32m In cecEnable:218 cecEnable : 1 [m
+2026-01-16T01:31:50.073Z HdmiService[3431]:  SetHW CEC_ENABLE = 1
+2026-01-16T01:31:50.073Z HdmiService[3431]:  enable cec ----------------------->
+2026-01-16T01:31:50.073Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 2, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:50.112Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:50.112Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 3, len = 8, command_id 25 = HDMI_WRAP_CEC_ADDLOGICALADDRESS
+2026-01-16T01:31:50.112Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T01:31:50.112Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T01:31:50.113Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T01:31:50.113Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T01:31:50.113Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T01:31:50.113Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 5, len = 8, command_id 30 = HDMI_WRAP_CEC_SETPHYSICALADDRESS
+2026-01-16T01:31:50.217Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T01:31:50.218Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T01:31:50.218Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T01:31:50.218Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T01:31:50.218Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T01:31:50.219Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 8, len = 0, command_id 53 = **Unknown**
+2026-01-16T01:31:50.240Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 9, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:50.336Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:50.390Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 11, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:50.443Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 13, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:50.596Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 9 times
+2026-01-16T01:31:50.596Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:31:50.599Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:31:50.599Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:31:50.631Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 15, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:50.728Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:50.729Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 17, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:50.837Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:50.839Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 19, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:50.950Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:50.950Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 21, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.058Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.060Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 23, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.169Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.171Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 25, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.278Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.283Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 27, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.389Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.391Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 29, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.500Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.501Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 31, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.610Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.612Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 33, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.721Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.723Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 35, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.843Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.845Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 37, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:51.942Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:51.945Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 39, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:52.061Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:52.098Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 8 times
+2026-01-16T01:31:52.098Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:31:52.112Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:31:52.112Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:31:52.121Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 41, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:52.211Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:53.629Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 7 times
+2026-01-16T01:31:53.630Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:31:53.630Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:31:53.630Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:31:53.645Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 27, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T01:31:53.645Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T01:31:53.645Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 68, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:53.738Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:53.738Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 70, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:53.823Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:53.823Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 72, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:53.932Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:53.935Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 74, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.045Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.057Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 76, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.153Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.155Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 78, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.264Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.265Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 80, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.374Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.376Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 82, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.485Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.487Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 84, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.602Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.602Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 86, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.706Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.708Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 88, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.819Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.872Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 90, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:54.971Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:54.971Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 92, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:55.085Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:55.104Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 6 times
+2026-01-16T01:31:55.105Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:31:55.105Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:31:55.105Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:31:55.136Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 94, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-16T01:31:55.231Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T01:31:56.608Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 5 times
+2026-01-16T01:31:56.608Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:31:56.608Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:31:56.608Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:38:42.198Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 4 times
+2026-01-16T01:38:42.198Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:38:42.198Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:38:42.199Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:38:43.700Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 3 times
+2026-01-16T01:38:43.700Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:38:43.700Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:38:43.700Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:38:45.200Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 2 times
+2026-01-16T01:38:45.200Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:38:45.200Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:38:45.201Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:38:46.701Z HdmiService[3431]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 1 times
+2026-01-16T01:38:46.702Z HdmiService[3431]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T01:38:46.702Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T01:38:46.702Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:38:55.522Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T01:38:55.522Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T01:38:55.523Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T01:38:55.523Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T01:38:55.523Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T01:43:15.386Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T01:43:15.386Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T01:43:15.386Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T01:43:15.386Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T01:43:15.386Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T01:43:44.802Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T01:43:44.802Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T01:43:44.803Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T01:43:44.803Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T01:43:44.803Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T01:43:44.969Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T01:43:44.970Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T01:43:44.970Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T01:43:44.970Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T01:43:44.970Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T01:51:06.930Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 957, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T01:51:06.930Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T01:51:06.930Z HdmiService[3431]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T01:51:06.931Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T01:51:06.931Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 958, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T01:51:06.931Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:02:41.161Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 49
+2026-01-16T02:02:41.161Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:02:41.161Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:02:42.875Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:02:42.875Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:02:42.875Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:02:42.875Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:02:42.875Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:02:42.875Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:02:42.875Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:02:42.875Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:02:42.875Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:02:42.875Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:02:42.875Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:02:42.876Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:02:42.876Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:02:42.876Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:02:42.876Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:02:42.876Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:02:42.876Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:02:42.876Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:02:42.876Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:02:42.876Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:02:42.876Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:02:42.876Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:02:42.876Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:02:42.876Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:02:42.896Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:02:42.896Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:02:42.897Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:02:42.897Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:02:42.897Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:02:42.897Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 982, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:02:42.927Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 983, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:02:42.927Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 984, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:02:42.927Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 985, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:02:42.970Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:02:42.970Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:02:42.970Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:02:42.970Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:02:43.417Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 988, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:02:43.417Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:02:43.422Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:02:43.423Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 989, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:02:43.423Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:02:48.598Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 995, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:02:48.598Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:02:48.598Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:02:48.599Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 996, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:02:48.599Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:06:03.713Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 50
+2026-01-16T02:06:03.713Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:06:03.713Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:06:04.069Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 0, len = 0, command_id 0 = **Unknown**
+2026-01-16T02:06:04.069Z HdmiService[3431]:  [1;32mHdmiService: [0mNot support this command 0
+2026-01-16T02:06:05.405Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:06:05.405Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:06:05.405Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:06:05.406Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:06:05.406Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:06:05.406Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:06:05.406Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:06:05.406Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:06:05.406Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:06:05.406Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:06:05.407Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:06:05.407Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:06:05.407Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:06:05.407Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:06:05.407Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:06:05.407Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:06:05.407Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:06:05.407Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:06:05.408Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:06:05.408Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:06:05.408Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:06:05.408Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:06:05.408Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:06:05.408Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:06:05.454Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:06:05.454Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:06:05.454Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:06:05.454Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:06:05.454Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:06:05.454Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1013, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:06:05.484Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1014, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:06:05.485Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1015, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:06:05.485Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1016, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:06:05.505Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:06:05.505Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:06:05.505Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:06:05.505Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:06:05.804Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1017, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:06:05.804Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:06:05.809Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:06:05.809Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1019, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:06:05.809Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:06:10.953Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1026, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:06:10.953Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:06:10.953Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:06:10.953Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1027, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:06:10.954Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:12:47.213Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 51
+2026-01-16T02:12:47.213Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:12:47.214Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:12:48.880Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:12:48.880Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:12:48.880Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:12:48.880Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:12:48.880Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:12:48.880Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:12:48.880Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:12:48.880Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:12:48.880Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:12:48.881Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:12:48.881Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:12:48.881Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:12:48.881Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:12:48.881Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:12:48.881Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:12:48.881Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:12:48.881Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:12:48.881Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:12:48.882Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:12:48.882Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:12:48.882Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:12:48.882Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:12:48.882Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:12:48.882Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:12:48.917Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:12:48.917Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:12:48.918Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:12:48.918Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:12:48.918Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:12:48.918Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1044, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:12:48.962Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1045, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:12:48.963Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1046, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:12:48.963Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1047, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:12:48.975Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:12:48.975Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:12:48.975Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:12:48.975Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:12:49.231Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1050, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:12:49.231Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:12:49.231Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:12:49.285Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1051, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:12:49.285Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:12:54.388Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1057, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:12:54.389Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:12:54.389Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:12:54.389Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1058, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:12:54.389Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:13:07.370Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 52
+2026-01-16T02:13:07.370Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:13:07.370Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:13:09.089Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:13:09.089Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:13:09.090Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:13:09.090Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:13:09.090Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:13:09.090Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:13:09.090Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:13:09.090Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:13:09.090Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:13:09.090Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:13:09.090Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:13:09.090Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:13:09.091Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:13:09.091Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:13:09.092Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:13:09.092Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:13:09.093Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:13:09.093Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:13:09.093Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:13:09.093Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:13:09.093Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:13:09.093Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:13:09.093Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:13:09.093Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:13:09.128Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:13:09.128Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:13:09.128Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:13:09.128Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:13:09.129Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:13:09.129Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1075, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:13:09.159Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1076, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:13:09.160Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1077, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:13:09.160Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1078, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:13:09.183Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:13:09.184Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:13:09.184Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:13:09.184Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:13:09.437Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1081, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:13:09.437Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:13:09.438Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:13:09.438Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1082, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:13:09.439Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:13:14.594Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1088, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:13:14.594Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:13:14.594Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:13:14.595Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1089, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:13:14.595Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:19:32.710Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 53
+2026-01-16T02:19:32.711Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:19:32.711Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:19:34.458Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:19:34.458Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:19:34.458Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:19:34.458Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:19:34.458Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:19:34.458Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:19:34.458Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:19:34.458Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:19:34.458Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:19:34.458Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:19:34.459Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:19:34.459Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:19:34.459Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:19:34.459Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:19:34.459Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:19:34.459Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:19:34.459Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:19:34.459Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:19:34.459Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:19:34.459Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:19:34.459Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:19:34.459Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:19:34.460Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:19:34.460Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:19:34.489Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:19:34.489Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:19:34.489Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:19:34.490Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:19:34.490Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:19:34.490Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1106, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:19:34.550Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:19:34.550Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:19:34.551Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:19:34.551Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:19:34.573Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1107, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:19:34.573Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1108, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:19:34.573Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1109, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:19:34.957Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1112, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:19:34.958Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:19:34.958Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:19:34.958Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1113, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:19:34.958Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:19:40.163Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1119, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:19:40.163Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:19:40.164Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:19:40.164Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1120, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:19:40.164Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:22:55.730Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 54
+2026-01-16T02:22:55.730Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:22:55.730Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:22:56.687Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:22:56.687Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:22:56.687Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:22:56.687Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:22:56.687Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:22:56.688Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:22:56.688Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:22:56.688Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:22:56.688Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:22:56.688Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:22:56.688Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:22:56.688Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:22:56.688Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:22:56.688Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:22:56.689Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:22:56.689Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:22:56.689Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:22:56.689Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:22:56.689Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:22:56.689Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:22:56.689Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:22:56.689Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:22:56.689Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:22:56.689Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:22:56.710Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:22:56.710Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:22:56.710Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:22:56.710Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:22:56.710Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:22:56.710Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1137, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:22:56.742Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1138, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:22:56.742Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1139, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:22:56.742Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1140, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:22:56.788Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:22:56.788Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:22:56.788Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:22:56.789Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:23:07.283Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1153, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:23:07.283Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:23:07.283Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:23:07.283Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1154, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:23:07.287Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:23:12.498Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1162, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:23:12.498Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:23:12.499Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:23:12.500Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1163, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:23:12.500Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:26:45.889Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 55
+2026-01-16T02:26:45.889Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:26:45.889Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:26:48.911Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:26:48.913Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:26:48.913Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:26:48.913Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:26:48.914Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:26:48.914Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:26:48.914Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:26:48.914Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:26:48.914Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:26:48.915Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:26:48.922Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:26:48.923Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:26:48.923Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:26:48.923Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:26:48.923Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:26:48.923Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:26:48.923Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:26:48.923Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:26:48.923Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:26:48.923Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:26:48.925Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:26:48.925Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:26:48.926Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:26:48.926Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:26:48.945Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:26:48.946Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:26:48.946Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:26:48.946Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:26:48.946Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:26:48.946Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1182, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:26:48.976Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1183, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:26:48.976Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1184, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:26:48.976Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1185, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:26:48.993Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:26:48.993Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:26:48.993Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:26:48.993Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:26:53.875Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1191, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:26:53.875Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:26:53.875Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:26:53.875Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1192, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:26:53.875Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:27:00.324Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1201, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:27:00.324Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:27:00.324Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:27:00.356Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1203, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:27:00.357Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:30:09.008Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 56
+2026-01-16T02:30:09.008Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:30:09.008Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:30:09.038Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:30:09.038Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:30:09.038Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:30:09.038Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:30:09.038Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:30:09.038Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:30:09.038Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:30:09.038Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:30:09.038Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:30:09.038Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:30:09.038Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:30:09.038Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:30:09.039Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:30:09.039Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:30:09.039Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:30:09.039Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:30:09.039Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:30:09.039Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:30:09.039Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:30:09.039Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:30:09.039Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:30:09.039Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:30:09.039Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:30:09.039Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:30:09.044Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:30:09.044Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:30:09.044Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:30:09.044Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:30:09.044Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:30:09.097Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1225, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:30:09.128Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1226, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:30:09.128Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1227, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:30:09.128Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1228, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:30:09.129Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:30:09.129Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:30:09.129Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:30:09.130Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:30:16.872Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1237, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:30:16.872Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:30:16.873Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:30:16.873Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1238, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:30:16.873Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:30:22.100Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1246, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:30:22.100Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:30:22.100Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:30:22.104Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1247, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:30:22.104Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:33:31.465Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 57
+2026-01-16T02:33:31.465Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:33:31.466Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:33:31.466Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 0, len = 0, command_id 0 = **Unknown**
+2026-01-16T02:33:31.466Z HdmiService[3431]:  [1;32mHdmiService: [0mNot support this command 0
+2026-01-16T02:33:32.868Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:33:32.868Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:33:32.868Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:33:32.868Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:33:32.868Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:33:32.868Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:33:32.868Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:33:32.868Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:33:32.868Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:33:32.869Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:33:32.869Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:33:32.869Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:33:32.869Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:33:32.869Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:33:32.869Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:33:32.869Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:33:32.869Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:33:32.869Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:33:32.869Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:33:32.869Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:33:32.869Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:33:32.869Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:33:32.870Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:33:32.870Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:33:32.890Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:33:32.890Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:33:32.891Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:33:32.891Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:33:32.891Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:33:32.891Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1264, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:33:32.921Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1265, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:33:32.921Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1266, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:33:32.921Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1267, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:33:32.962Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:33:32.962Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:33:32.962Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:33:32.962Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:33:39.578Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1275, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:33:39.578Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:33:39.579Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:33:39.632Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1276, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:33:39.633Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:33:44.758Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1284, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:33:44.758Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:33:44.758Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:33:44.758Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1285, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:33:44.758Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:43:36.386Z HdmiService[3431]:  [1;32mHdmiService: [0mResume from suspend status 49
+2026-01-16T02:43:36.386Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T02:43:36.386Z HdmiService[3431]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 1
+2026-01-16T02:43:38.166Z HdmiService[3431]:  -----TV EDID information-----
+2026-01-16T02:43:38.167Z HdmiService[3431]:    Hdmi Version: 1.0
+2026-01-16T02:43:38.167Z HdmiService[3431]:    Manufacturer: HEC
+2026-01-16T02:43:38.167Z HdmiService[3431]:    Product Code: 00 30
+2026-01-16T02:43:38.167Z HdmiService[3431]:    Serial: 1
+2026-01-16T02:43:38.167Z HdmiService[3431]:    Manufacture Year: 2017
+2026-01-16T02:43:38.167Z HdmiService[3431]:    Manufacture Week: 36
+2026-01-16T02:43:38.167Z HdmiService[3431]:    Monitor:HISENSE
+2026-01-16T02:43:38.167Z HdmiService[3431]:    Screen Size: 1150x650 mm
+2026-01-16T02:43:38.167Z HdmiService[3431]:  VIC: RGB444  YUV422  YUV444  YUV420  3D FS
+2026-01-16T02:43:38.167Z HdmiService[3431]:  002  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:43:38.168Z HdmiService[3431]:  004  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:43:38.168Z HdmiService[3431]:  005  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:43:38.168Z HdmiService[3431]:  016  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:43:38.168Z HdmiService[3431]:  017  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:43:38.168Z HdmiService[3431]:  019  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:43:38.168Z HdmiService[3431]:  020  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:43:38.168Z HdmiService[3431]:  031  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:43:38.168Z HdmiService[3431]:  032  8/10/12 8/10/12 8/10/12 -/--/--  N  Y
+2026-01-16T02:43:38.168Z HdmiService[3431]:  033  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:43:38.168Z HdmiService[3431]:  034  8/10/12 8/10/12 8/10/12 -/--/--  N  N
+2026-01-16T02:43:38.168Z HdmiService[3431]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T02:43:38.168Z HdmiService[3431]:  cec_set_hotplug ------------------> 1
+2026-01-16T02:43:38.168Z HdmiService[3431]:  polling_logical_address ------------------>
+2026-01-16T02:43:38.187Z HdmiService[3431]:  [1;32mHdmiService: [0mDV Info: mHasDV 0, mVersion 0, mSupport2160p60Hz 0, mSupportYUV422_12bit 0, mLowLatency 0, mInterfaceType 0, mSupports10b12b444 0
+2026-01-16T02:43:38.188Z HdmiService[3431]:  [1;32mHdmiService: [0mADB Info: length 3
+2026-01-16T02:43:38.188Z HdmiService[3431]:  [1;32mHdmiService: [0mHDMI2.1: intSocSupportVRR 1, intTVSupportVRR 0, intTVSupportALLM 0, intSocSupportQMS 1, intTVSupportQMS 0
+2026-01-16T02:43:38.188Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:43:38.191Z HdmiService[3431]:  [1;32mHdmiService: [0mcap.hdmiVersion (1 0) monitor: HEC 2017 - HISENSE
+2026-01-16T02:43:38.191Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1305, len = 0, command_id 6 = HDMI_WRAP_GET_SUPPORTED_TVSYSTEM
+2026-01-16T02:43:38.218Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1306, len = 4, command_id 7 = HDMI_WRAP_GET_SUPPORTED_COLORSPACE
+2026-01-16T02:43:38.219Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1307, len = 0, command_id 52 = HDMI_WRAP_GET_ExtEDID_BlockNum
+2026-01-16T02:43:38.219Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1308, len = 8, command_id 10 = HDMI_WRAP_GET_EDID
+2026-01-16T02:43:38.261Z HdmiService[3431]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-16T02:43:38.261Z HdmiService[3431]:  Set 4 to logicalAddresses
+2026-01-16T02:43:38.261Z HdmiService[3431]:  CECController::cec_set_hotplug ------------>
+2026-01-16T02:43:38.261Z HdmiService[3431]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T02:43:44.044Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1316, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:43:44.044Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:43:44.044Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:43:44.044Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1317, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:43:44.044Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T02:43:49.261Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1325, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:43:49.262Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:43:49.262Z HdmiService[3431]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:43:49.262Z HdmiService[3431]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1326, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:43:49.262Z HdmiService[3431]:  [1;32mHdmiService: [0maudio mute 1

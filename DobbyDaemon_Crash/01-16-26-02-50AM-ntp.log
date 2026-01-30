@@ -1,0 +1,835 @@
+2026-01-16T01:31:50.400Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T01:31:50.679Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T01:31:50.938Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T01:31:51.126Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T01:31:51.347Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T01:31:51.613Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T01:31:56.639Z timesyncd-conf-update.sh[4691]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T01:31:56.722Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T01:31:56.914Z : /lib/rdk/timesyncd-conf-update.sh: Update the timesyncd configuration with URL updateHostname=devicetime1.sky.com devicetime2.sky.com defaultHostName=time.google.com
+2026-01-16T01:31:57.179Z timesyncd-conf-update.sh[4691]:  cp: '/etc/systemd/timesyncd.conf' and '/tmp/timesyncd.conf' are the same file
+2026-01-16T01:31:57.616Z systemd-timesyncd[5785]:  System clock time unset or jumped backwards, Skipping resetting time. restoring from recorded timestamp: Fri 2026-01-16 01:36:30 GMT
+2026-01-16T01:31:57.621Z systemd-timesyncd[5785]:  NTP Client process started at 25940 ms
+2026-01-16T01:31:57.622Z systemd-timesyncd[5785]:  Selected server devicetime1.sky.com.
+2026-01-16T01:31:57.678Z systemd-timesyncd[5785]:  Resolved address 90.207.243.129:123 for devicetime1.sky.com.
+2026-01-16T01:31:57.678Z systemd-timesyncd[5785]:  Selected address 90.207.243.129:123 of server devicetime1.sky.com.
+2026-01-16T01:31:57.678Z systemd-timesyncd[5785]:  Connecting to time server 90.207.243.129:123 (devicetime1.sky.com).
+2026-01-16T01:31:57.679Z systemd-timesyncd[5785]:  Sent NTP request to 90.207.243.129:123 (devicetime1.sky.com) at 25998 ms.
+2026-01-16T01:38:41.787Z systemd-timesyncd[5785]:  NTP Response received at 26017 ms
+2026-01-16T01:38:41.787Z systemd-timesyncd[5785]:  NTP response:
+2026-01-16T01:38:41.791Z systemd-timesyncd[5785]:    leap         : 0
+2026-01-16T01:38:41.793Z systemd-timesyncd[5785]:    version      : 4
+2026-01-16T01:38:41.793Z systemd-timesyncd[5785]:    mode         : 4
+2026-01-16T01:38:41.793Z systemd-timesyncd[5785]:    stratum      : 2
+2026-01-16T01:38:41.794Z systemd-timesyncd[5785]:    precision    : 0.000000 sec (-23)
+2026-01-16T01:38:41.794Z systemd-timesyncd[5785]:    root distance: 0.016922 sec
+2026-01-16T01:38:41.794Z systemd-timesyncd[5785]:    reference    : n/a
+2026-01-16T01:38:41.795Z systemd-timesyncd[5785]:    origin       : 1768527117.678
+2026-01-16T01:38:41.795Z systemd-timesyncd[5785]:    receive      : 1768527521.777
+2026-01-16T01:38:41.795Z systemd-timesyncd[5785]:    transmit     : 1768527521.777
+2026-01-16T01:38:41.795Z systemd-timesyncd[5785]:    dest         : 1768527117.698
+2026-01-16T01:38:41.796Z systemd-timesyncd[5785]:    offset       : +404.089 sec
+2026-01-16T01:38:41.796Z systemd-timesyncd[5785]:    delay        : +0.020 sec
+2026-01-16T01:38:41.796Z systemd-timesyncd[5785]:    packet count : 1
+2026-01-16T01:38:41.797Z systemd-timesyncd[5785]:    jitter       : 0.000
+2026-01-16T01:38:41.797Z systemd-timesyncd[5785]:    poll interval: 16
+2026-01-16T01:38:41.798Z systemd-timesyncd[5785]:    adjust (jump): +404.089 sec
+2026-01-16T01:38:41.798Z systemd-timesyncd[5785]:  Time response event, set the event flag
+2026-01-16T01:38:41.799Z systemd-timesyncd[5785]:    status       : 8192 sync
+2026-01-16T01:38:41.799Z systemd-timesyncd[5785]:    time now     : 1768527521.787
+2026-01-16T01:38:41.800Z systemd-timesyncd[5785]:    constant     : 2
+2026-01-16T01:38:41.800Z systemd-timesyncd[5785]:    offset       : +0.000 sec
+2026-01-16T01:38:41.800Z systemd-timesyncd[5785]:    freq offset  : +0 (0 ppm)
+2026-01-16T01:38:41.800Z systemd-timesyncd[5785]:  interval/delta/delay/jitter/drift 16s/+404.089s/0.020s/0.000s/+0ppm
+2026-01-16T01:38:41.801Z systemd-timesyncd[5785]:  Synchronized to time server 90.207.243.129:123 (devicetime1.sky.com) at 26021 ms.
+2026-01-16T01:38:57.794Z systemd-timesyncd[5785]:  Sent NTP request to 90.207.243.129:123 (devicetime1.sky.com) at 42024 ms.
+2026-01-16T01:38:57.821Z systemd-timesyncd[5785]:  NTP Response received at 42045 ms
+2026-01-16T01:38:57.826Z systemd-timesyncd[5785]:  NTP response:
+2026-01-16T01:38:57.828Z systemd-timesyncd[5785]:    leap         : 0
+2026-01-16T01:38:57.828Z systemd-timesyncd[5785]:    version      : 4
+2026-01-16T01:38:57.830Z systemd-timesyncd[5785]:    mode         : 4
+2026-01-16T01:38:57.830Z systemd-timesyncd[5785]:    stratum      : 2
+2026-01-16T01:38:57.832Z systemd-timesyncd[5785]:    precision    : 0.000000 sec (-23)
+2026-01-16T01:38:57.833Z systemd-timesyncd[5785]:    root distance: 0.017166 sec
+2026-01-16T01:38:57.834Z systemd-timesyncd[5785]:    reference    : n/a
+2026-01-16T01:38:57.834Z systemd-timesyncd[5785]:    origin       : 1768527537.794
+2026-01-16T01:38:57.835Z systemd-timesyncd[5785]:    receive      : 1768527537.802
+2026-01-16T01:38:57.835Z systemd-timesyncd[5785]:    transmit     : 1768527537.802
+2026-01-16T01:38:57.836Z systemd-timesyncd[5785]:    dest         : 1768527537.814
+2026-01-16T01:38:57.837Z systemd-timesyncd[5785]:    offset       : -0.002 sec
+2026-01-16T01:38:57.837Z systemd-timesyncd[5785]:    delay        : +0.020 sec
+2026-01-16T01:38:57.837Z systemd-timesyncd[5785]:    packet count : 2
+2026-01-16T01:38:57.838Z systemd-timesyncd[5785]:    jitter       : 0.001
+2026-01-16T01:38:57.838Z systemd-timesyncd[5785]:    poll interval: 32
+2026-01-16T01:38:57.838Z systemd-timesyncd[5785]:    adjust (slew): -0.002 sec
+2026-01-16T01:38:57.838Z systemd-timesyncd[5785]:  Time response event, set the event flag
+2026-01-16T01:38:57.838Z systemd-timesyncd[5785]:    status       : 8193 sync
+2026-01-16T01:38:57.839Z systemd-timesyncd[5785]:    time now     : 1768527537.814
+2026-01-16T01:38:57.839Z systemd-timesyncd[5785]:    constant     : 1
+2026-01-16T01:38:57.839Z systemd-timesyncd[5785]:    offset       : -0.002 sec
+2026-01-16T01:38:57.839Z systemd-timesyncd[5785]:    freq offset  : +0 (0 ppm)
+2026-01-16T01:38:57.839Z systemd-timesyncd[5785]:  interval/delta/delay/jitter/drift 32s/-0.002s/0.020s/0.001s/+0ppm
+2026-01-16T01:39:30.045Z systemd-timesyncd[5785]:  Sent NTP request to 90.207.243.129:123 (devicetime1.sky.com) at 74276 ms.
+2026-01-16T01:39:30.059Z systemd-timesyncd[5785]:  NTP Response received at 74292 ms
+2026-01-16T01:39:30.059Z systemd-timesyncd[5785]:  NTP response:
+2026-01-16T01:39:30.059Z systemd-timesyncd[5785]:    leap         : 0
+2026-01-16T01:39:30.060Z systemd-timesyncd[5785]:    version      : 4
+2026-01-16T01:39:30.061Z systemd-timesyncd[5785]:    mode         : 4
+2026-01-16T01:39:30.061Z systemd-timesyncd[5785]:    stratum      : 2
+2026-01-16T01:39:30.062Z systemd-timesyncd[5785]:    precision    : 0.000000 sec (-23)
+2026-01-16T01:39:30.062Z systemd-timesyncd[5785]:    root distance: 0.017670 sec
+2026-01-16T01:39:30.062Z systemd-timesyncd[5785]:    reference    : n/a
+2026-01-16T01:39:30.062Z systemd-timesyncd[5785]:    origin       : 1768527570.044
+2026-01-16T01:39:30.062Z systemd-timesyncd[5785]:    receive      : 1768527570.051
+2026-01-16T01:39:30.062Z systemd-timesyncd[5785]:    transmit     : 1768527570.051
+2026-01-16T01:39:30.063Z systemd-timesyncd[5785]:    dest         : 1768527570.059
+2026-01-16T01:39:30.063Z systemd-timesyncd[5785]:    offset       : -0.000 sec
+2026-01-16T01:39:30.063Z systemd-timesyncd[5785]:    delay        : +0.015 sec
+2026-01-16T01:39:30.063Z systemd-timesyncd[5785]:    packet count : 3
+2026-01-16T01:39:30.063Z systemd-timesyncd[5785]:    jitter       : 0.001
+2026-01-16T01:39:30.064Z systemd-timesyncd[5785]:    poll interval: 64
+2026-01-16T01:39:30.064Z systemd-timesyncd[5785]:    adjust (slew): -0.000 sec
+2026-01-16T01:39:30.064Z systemd-timesyncd[5785]:  Time response event, set the event flag
+2026-01-16T01:39:30.064Z systemd-timesyncd[5785]:    status       : 8193 sync
+2026-01-16T01:39:30.064Z systemd-timesyncd[5785]:    time now     : 1768527570.059
+2026-01-16T01:39:30.065Z systemd-timesyncd[5785]:    constant     : 2
+2026-01-16T01:39:30.065Z systemd-timesyncd[5785]:    offset       : -0.000 sec
+2026-01-16T01:39:30.065Z systemd-timesyncd[5785]:    freq offset  : -170531 (-2 ppm)
+2026-01-16T01:39:30.065Z systemd-timesyncd[5785]:  interval/delta/delay/jitter/drift 64s/-0.000s/0.015s/0.001s/-2ppm
+2026-01-16T01:40:34.294Z systemd-timesyncd[5785]:  Sent NTP request to 90.207.243.129:123 (devicetime1.sky.com) at 138527 ms.
+2026-01-16T01:40:34.325Z systemd-timesyncd[5785]:  NTP Response received at 138558 ms
+2026-01-16T01:40:34.325Z systemd-timesyncd[5785]:  NTP response:
+2026-01-16T01:40:34.325Z systemd-timesyncd[5785]:    leap         : 0
+2026-01-16T01:40:34.326Z systemd-timesyncd[5785]:    version      : 4
+2026-01-16T01:40:34.327Z systemd-timesyncd[5785]:    mode         : 4
+2026-01-16T01:40:34.328Z systemd-timesyncd[5785]:    stratum      : 2
+2026-01-16T01:40:34.328Z systemd-timesyncd[5785]:    precision    : 0.000000 sec (-23)
+2026-01-16T01:40:34.328Z systemd-timesyncd[5785]:    root distance: 0.018616 sec
+2026-01-16T01:40:34.328Z systemd-timesyncd[5785]:    reference    : n/a
+2026-01-16T01:40:34.328Z systemd-timesyncd[5785]:    origin       : 1768527634.294
+2026-01-16T01:40:34.329Z systemd-timesyncd[5785]:    receive      : 1768527634.318
+2026-01-16T01:40:34.329Z systemd-timesyncd[5785]:    transmit     : 1768527634.318
+2026-01-16T01:40:34.329Z systemd-timesyncd[5785]:    dest         : 1768527634.325
+2026-01-16T01:40:34.329Z systemd-timesyncd[5785]:    offset       : +0.008 sec
+2026-01-16T01:40:34.330Z systemd-timesyncd[5785]:    delay        : +0.031 sec
+2026-01-16T01:40:34.330Z systemd-timesyncd[5785]:    packet count : 4
+2026-01-16T01:40:34.330Z systemd-timesyncd[5785]:    jitter       : 0.003 spike
+2026-01-16T01:40:34.330Z systemd-timesyncd[5785]:    poll interval: 128
+2026-01-16T01:40:34.330Z systemd-timesyncd[5785]:  interval/delta/delay/jitter/drift 128s/+0.008s/0.031s/0.003s/-2ppm (ignored)
+2026-01-16T01:42:42.544Z systemd-timesyncd[5785]:  Sent NTP request to 90.207.243.129:123 (devicetime1.sky.com) at 266777 ms.
+2026-01-16T01:42:42.571Z systemd-timesyncd[5785]:  NTP Response received at 266804 ms
+2026-01-16T01:42:42.571Z systemd-timesyncd[5785]:  NTP response:
+2026-01-16T01:42:42.571Z systemd-timesyncd[5785]:    leap         : 0
+2026-01-16T01:42:42.571Z systemd-timesyncd[5785]:    version      : 4
+2026-01-16T01:42:42.573Z systemd-timesyncd[5785]:    mode         : 4
+2026-01-16T01:42:42.573Z systemd-timesyncd[5785]:    stratum      : 2
+2026-01-16T01:42:42.574Z systemd-timesyncd[5785]:    precision    : 0.000000 sec (-23)
+2026-01-16T01:42:42.574Z systemd-timesyncd[5785]:    root distance: 0.020538 sec
+2026-01-16T01:42:42.574Z systemd-timesyncd[5785]:    reference    : n/a
+2026-01-16T01:42:42.574Z systemd-timesyncd[5785]:    origin       : 1768527762.544
+2026-01-16T01:42:42.574Z systemd-timesyncd[5785]:    receive      : 1768527762.563
+2026-01-16T01:42:42.575Z systemd-timesyncd[5785]:    transmit     : 1768527762.564
+2026-01-16T01:42:42.575Z systemd-timesyncd[5785]:    dest         : 1768527762.571
+2026-01-16T01:42:42.575Z systemd-timesyncd[5785]:    offset       : +0.006 sec
+2026-01-16T01:42:42.575Z systemd-timesyncd[5785]:    delay        : +0.027 sec
+2026-01-16T01:42:42.576Z systemd-timesyncd[5785]:    packet count : 5
+2026-01-16T01:42:42.576Z systemd-timesyncd[5785]:    jitter       : 0.004
+2026-01-16T01:42:42.576Z systemd-timesyncd[5785]:    poll interval: 256
+2026-01-16T01:42:42.576Z systemd-timesyncd[5785]:    adjust (slew): +0.006 sec
+2026-01-16T01:42:42.576Z systemd-timesyncd[5785]:  Time response event, set the event flag
+2026-01-16T01:42:42.577Z systemd-timesyncd[5785]:    status       : 8193 sync
+2026-01-16T01:42:42.577Z systemd-timesyncd[5785]:    time now     : 1768527762.571
+2026-01-16T01:42:42.577Z systemd-timesyncd[5785]:    constant     : 4
+2026-01-16T01:42:42.577Z systemd-timesyncd[5785]:    offset       : +0.006 sec
+2026-01-16T01:42:42.578Z systemd-timesyncd[5785]:    freq offset  : +614593 (9 ppm)
+2026-01-16T01:42:42.578Z systemd-timesyncd[5785]:  interval/delta/delay/jitter/drift 256s/+0.006s/0.027s/0.004s/+9ppm
+2026-01-16T01:46:58.795Z systemd-timesyncd[5785]:  Sent NTP request to 90.207.243.129:123 (devicetime1.sky.com) at 523019 ms.
+2026-01-16T01:46:58.820Z systemd-timesyncd[5785]:  NTP Response received at 523045 ms
+2026-01-16T01:46:58.820Z systemd-timesyncd[5785]:  NTP response:
+2026-01-16T01:46:58.821Z systemd-timesyncd[5785]:    leap         : 0
+2026-01-16T01:46:58.823Z systemd-timesyncd[5785]:    version      : 4
+2026-01-16T01:46:58.823Z systemd-timesyncd[5785]:    mode         : 4
+2026-01-16T01:46:58.823Z systemd-timesyncd[5785]:    stratum      : 2
+2026-01-16T01:46:58.823Z systemd-timesyncd[5785]:    precision    : 0.000000 sec (-23)
+2026-01-16T01:46:58.824Z systemd-timesyncd[5785]:    root distance: 0.024384 sec
+2026-01-16T01:46:58.824Z systemd-timesyncd[5785]:    reference    : n/a
+2026-01-16T01:46:58.824Z systemd-timesyncd[5785]:    origin       : 1768528018.794
+2026-01-16T01:46:58.824Z systemd-timesyncd[5785]:    receive      : 1768528018.803
+2026-01-16T01:46:58.825Z systemd-timesyncd[5785]:    transmit     : 1768528018.803
+2026-01-16T01:46:58.825Z systemd-timesyncd[5785]:    dest         : 1768528018.820
+2026-01-16T01:46:58.825Z systemd-timesyncd[5785]:    offset       : -0.004 sec
+2026-01-16T01:46:58.825Z systemd-timesyncd[5785]:    delay        : +0.026 sec
+2026-01-16T01:46:58.826Z systemd-timesyncd[5785]:    packet count : 6
+2026-01-16T01:46:58.826Z systemd-timesyncd[5785]:    jitter       : 0.004
+2026-01-16T01:46:58.826Z systemd-timesyncd[5785]:    poll interval: 512
+2026-01-16T01:46:58.826Z systemd-timesyncd[5785]:    adjust (slew): -0.004 sec
+2026-01-16T01:46:58.827Z systemd-timesyncd[5785]:  Time response event, set the event flag
+2026-01-16T01:46:58.827Z systemd-timesyncd[5785]:    status       : 8193 sync
+2026-01-16T01:46:58.827Z systemd-timesyncd[5785]:    time now     : 1768528018.820
+2026-01-16T01:46:58.827Z systemd-timesyncd[5785]:    constant     : 5
+2026-01-16T01:46:58.827Z systemd-timesyncd[5785]:    offset       : -0.004 sec
+2026-01-16T01:46:58.828Z systemd-timesyncd[5785]:    freq offset  : +360092 (5 ppm)
+2026-01-16T01:46:58.828Z systemd-timesyncd[5785]:  interval/delta/delay/jitter/drift 512s/-0.004s/0.026s/0.004s/+5ppm
+2026-01-16T02:02:41.164Z systemd-timesyncd[5785]:  Sent NTP request to 90.207.243.129:123 (devicetime1.sky.com) at 789608 ms.
+2026-01-16T02:02:41.167Z systemd-timesyncd[5785]:  NTP Response received at 789703 ms
+2026-01-16T02:02:41.172Z systemd-timesyncd[5785]:  NTP response:
+2026-01-16T02:02:41.175Z systemd-timesyncd[5785]:    leap         : 0
+2026-01-16T02:02:41.175Z systemd-timesyncd[5785]:    version      : 4
+2026-01-16T02:02:41.175Z systemd-timesyncd[5785]:    mode         : 4
+2026-01-16T02:02:41.175Z systemd-timesyncd[5785]:    stratum      : 2
+2026-01-16T02:02:41.175Z systemd-timesyncd[5785]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:02:41.175Z systemd-timesyncd[5785]:    root distance: 0.023048 sec
+2026-01-16T02:02:41.175Z systemd-timesyncd[5785]:    reference    : n/a
+2026-01-16T02:02:41.175Z systemd-timesyncd[5785]:    origin       : 1768528961.701
+2026-01-16T02:02:41.176Z systemd-timesyncd[5785]:    receive      : 1768528961.065
+2026-01-16T02:02:41.176Z systemd-timesyncd[5785]:    transmit     : 1768528961.065
+2026-01-16T02:02:41.176Z systemd-timesyncd[5785]:    dest         : 1768528961.796
+2026-01-16T02:02:41.176Z systemd-timesyncd[5785]:    offset       : -0.684 sec
+2026-01-16T02:02:41.176Z systemd-timesyncd[5785]:    delay        : +0.095 sec
+2026-01-16T02:02:41.176Z systemd-timesyncd[5785]:    packet count : 7
+2026-01-16T02:02:41.176Z systemd-timesyncd[5785]:    jitter       : 0.258
+2026-01-16T02:02:41.176Z systemd-timesyncd[5785]:    poll interval: 16
+2026-01-16T02:02:41.177Z systemd-timesyncd[5785]:    adjust (jump): -0.684 sec
+2026-01-16T02:02:41.782Z systemd-timesyncd[5785]:  Time response event, set the event flag
+2026-01-16T02:02:41.782Z systemd-timesyncd[5785]:    status       : 8192 sync
+2026-01-16T02:02:41.782Z systemd-timesyncd[5785]:    time now     : 1768528961.146
+2026-01-16T02:02:41.782Z systemd-timesyncd[5785]:    constant     : 5
+2026-01-16T02:02:41.782Z systemd-timesyncd[5785]:    offset       : +0.000 sec
+2026-01-16T02:02:41.783Z systemd-timesyncd[5785]:    freq offset  : +360092 (5 ppm)
+2026-01-16T02:02:41.783Z systemd-timesyncd[5785]:  interval/delta/delay/jitter/drift 16s/-0.684s/0.095s/0.258s/+5ppm
+2026-01-16T02:02:43.727Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:02:43.792Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:02:43.839Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:02:43.884Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:02:43.931Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:02:43.978Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:02:49.019Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:02:49.092Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:02:48.991Z timesyncd-conf-update.sh[14471]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:02:49.264Z systemd-timesyncd[14577]:  NTP Client process started at 797853 ms
+2026-01-16T02:02:49.264Z systemd-timesyncd[14577]:  Selected server devicetime1.sky.com.
+2026-01-16T02:02:49.301Z systemd-timesyncd[14577]:  Resolved address 90.207.241.193:123 for devicetime1.sky.com.
+2026-01-16T02:02:49.301Z systemd-timesyncd[14577]:  Selected address 90.207.241.193:123 of server devicetime1.sky.com.
+2026-01-16T02:02:49.301Z systemd-timesyncd[14577]:  Connecting to time server 90.207.241.193:123 (devicetime1.sky.com).
+2026-01-16T02:02:49.301Z systemd-timesyncd[14577]:  Sent NTP request to 90.207.241.193:123 (devicetime1.sky.com) at 797891 ms.
+2026-01-16T02:02:49.317Z systemd-timesyncd[14577]:  NTP Response received at 797907 ms
+2026-01-16T02:02:49.317Z systemd-timesyncd[14577]:  NTP response:
+2026-01-16T02:02:49.317Z systemd-timesyncd[14577]:    leap         : 0
+2026-01-16T02:02:49.317Z systemd-timesyncd[14577]:    version      : 4
+2026-01-16T02:02:49.318Z systemd-timesyncd[14577]:    mode         : 4
+2026-01-16T02:02:49.318Z systemd-timesyncd[14577]:    stratum      : 2
+2026-01-16T02:02:49.318Z systemd-timesyncd[14577]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:02:49.318Z systemd-timesyncd[14577]:    root distance: 0.028229 sec
+2026-01-16T02:02:49.318Z systemd-timesyncd[14577]:    reference    : n/a
+2026-01-16T02:02:49.318Z systemd-timesyncd[14577]:    origin       : 1768528969.301
+2026-01-16T02:02:49.319Z systemd-timesyncd[14577]:    receive      : 1768528969.339
+2026-01-16T02:02:49.319Z systemd-timesyncd[14577]:    transmit     : 1768528969.339
+2026-01-16T02:02:49.319Z systemd-timesyncd[14577]:    dest         : 1768528969.317
+2026-01-16T02:02:49.319Z systemd-timesyncd[14577]:    offset       : +0.030 sec
+2026-01-16T02:02:49.319Z systemd-timesyncd[14577]:    delay        : +0.015 sec
+2026-01-16T02:02:49.319Z systemd-timesyncd[14577]:    packet count : 1
+2026-01-16T02:02:49.320Z systemd-timesyncd[14577]:    jitter       : 0.000
+2026-01-16T02:02:49.320Z systemd-timesyncd[14577]:    poll interval: 32
+2026-01-16T02:02:49.320Z systemd-timesyncd[14577]:    adjust (slew): +0.030 sec
+2026-01-16T02:02:49.320Z systemd-timesyncd[14577]:  Time response event, set the event flag
+2026-01-16T02:02:49.320Z systemd-timesyncd[14577]:    status       : 8193 sync
+2026-01-16T02:02:49.320Z systemd-timesyncd[14577]:    time now     : 1768528969.317
+2026-01-16T02:02:49.321Z systemd-timesyncd[14577]:    constant     : 1
+2026-01-16T02:02:49.321Z systemd-timesyncd[14577]:    offset       : +0.030 sec
+2026-01-16T02:02:49.321Z systemd-timesyncd[14577]:    freq offset  : +360092 (5 ppm)
+2026-01-16T02:02:49.321Z systemd-timesyncd[14577]:  interval/delta/delay/jitter/drift 32s/+0.030s/0.015s/0.000s/+5ppm
+2026-01-16T02:02:49.321Z systemd-timesyncd[14577]:  Synchronized to time server 90.207.241.193:123 (devicetime1.sky.com) at 797908 ms.
+2026-01-16T02:06:03.717Z systemd-timesyncd[14577]:  Sent NTP request to 90.207.241.193:123 (devicetime1.sky.com) at 809832 ms.
+2026-01-16T02:06:03.725Z systemd-timesyncd[14577]:  NTP Response received at 809909 ms
+2026-01-16T02:06:03.725Z systemd-timesyncd[14577]:  NTP response:
+2026-01-16T02:06:03.725Z systemd-timesyncd[14577]:    leap         : 0
+2026-01-16T02:06:03.725Z systemd-timesyncd[14577]:    version      : 4
+2026-01-16T02:06:03.725Z systemd-timesyncd[14577]:    mode         : 4
+2026-01-16T02:06:03.725Z systemd-timesyncd[14577]:    stratum      : 2
+2026-01-16T02:06:03.725Z systemd-timesyncd[14577]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:06:03.725Z systemd-timesyncd[14577]:    root distance: 0.022949 sec
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    reference    : n/a
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    origin       : 1768529164.614
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    receive      : 1768529163.643
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    transmit     : 1768529163.644
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    dest         : 1768529164.690
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    offset       : -1.009 sec
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    delay        : +0.076 sec
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    packet count : 2
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    jitter       : 0.381
+2026-01-16T02:06:03.726Z systemd-timesyncd[14577]:    poll interval: 16
+2026-01-16T02:06:03.727Z systemd-timesyncd[14577]:    adjust (jump): -1.009 sec
+2026-01-16T02:06:05.356Z systemd-timesyncd[14577]:  Time response event, set the event flag
+2026-01-16T02:06:05.357Z systemd-timesyncd[14577]:    status       : 8192 sync
+2026-01-16T02:06:05.357Z systemd-timesyncd[14577]:    time now     : 1768529163.683
+2026-01-16T02:06:05.357Z systemd-timesyncd[14577]:    constant     : 1
+2026-01-16T02:06:05.357Z systemd-timesyncd[14577]:    offset       : +0.000 sec
+2026-01-16T02:06:05.357Z systemd-timesyncd[14577]:    freq offset  : +360092 (5 ppm)
+2026-01-16T02:06:05.357Z systemd-timesyncd[14577]:  interval/delta/delay/jitter/drift 16s/-1.009s/0.076s/0.381s/+5ppm
+2026-01-16T02:06:06.244Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:06:06.364Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:06:06.412Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:06:06.454Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:06:06.496Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:06:06.538Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:06:11.569Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:06:11.627Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:06:11.548Z timesyncd-conf-update.sh[14785]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:06:11.782Z systemd-timesyncd[14890]:  NTP Client process started at 818008 ms
+2026-01-16T02:06:11.782Z systemd-timesyncd[14890]:  Selected server devicetime1.sky.com.
+2026-01-16T02:06:11.823Z systemd-timesyncd[14890]:  Resolved address 90.207.243.193:123 for devicetime1.sky.com.
+2026-01-16T02:06:11.823Z systemd-timesyncd[14890]:  Selected address 90.207.243.193:123 of server devicetime1.sky.com.
+2026-01-16T02:06:11.824Z systemd-timesyncd[14890]:  Connecting to time server 90.207.243.193:123 (devicetime1.sky.com).
+2026-01-16T02:06:11.824Z systemd-timesyncd[14890]:  Sent NTP request to 90.207.243.193:123 (devicetime1.sky.com) at 818051 ms.
+2026-01-16T02:06:11.836Z systemd-timesyncd[14890]:  NTP Response received at 818063 ms
+2026-01-16T02:06:11.836Z systemd-timesyncd[14890]:  NTP response:
+2026-01-16T02:06:11.837Z systemd-timesyncd[14890]:    leap         : 0
+2026-01-16T02:06:11.837Z systemd-timesyncd[14890]:    version      : 4
+2026-01-16T02:06:11.837Z systemd-timesyncd[14890]:    mode         : 4
+2026-01-16T02:06:11.837Z systemd-timesyncd[14890]:    stratum      : 2
+2026-01-16T02:06:11.838Z systemd-timesyncd[14890]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:06:11.838Z systemd-timesyncd[14890]:    root distance: 0.022232 sec
+2026-01-16T02:06:11.838Z systemd-timesyncd[14890]:    reference    : n/a
+2026-01-16T02:06:11.838Z systemd-timesyncd[14890]:    origin       : 1768529171.824
+2026-01-16T02:06:11.839Z systemd-timesyncd[14890]:    receive      : 1768529171.855
+2026-01-16T02:06:11.839Z systemd-timesyncd[14890]:    transmit     : 1768529171.855
+2026-01-16T02:06:11.839Z systemd-timesyncd[14890]:    dest         : 1768529171.836
+2026-01-16T02:06:11.839Z systemd-timesyncd[14890]:    offset       : +0.025 sec
+2026-01-16T02:06:11.839Z systemd-timesyncd[14890]:    delay        : +0.012 sec
+2026-01-16T02:06:11.840Z systemd-timesyncd[14890]:    packet count : 1
+2026-01-16T02:06:11.840Z systemd-timesyncd[14890]:    jitter       : 0.000
+2026-01-16T02:06:11.840Z systemd-timesyncd[14890]:    poll interval: 32
+2026-01-16T02:06:11.840Z systemd-timesyncd[14890]:    adjust (slew): +0.025 sec
+2026-01-16T02:06:11.840Z systemd-timesyncd[14890]:  Time response event, set the event flag
+2026-01-16T02:06:11.840Z systemd-timesyncd[14890]:    status       : 8193 sync
+2026-01-16T02:06:11.841Z systemd-timesyncd[14890]:    time now     : 1768529171.837
+2026-01-16T02:06:11.841Z systemd-timesyncd[14890]:    constant     : 1
+2026-01-16T02:06:11.841Z systemd-timesyncd[14890]:    offset       : +0.025 sec
+2026-01-16T02:06:11.841Z systemd-timesyncd[14890]:    freq offset  : +360092 (5 ppm)
+2026-01-16T02:06:11.841Z systemd-timesyncd[14890]:  interval/delta/delay/jitter/drift 32s/+0.025s/0.012s/0.000s/+5ppm
+2026-01-16T02:06:11.842Z systemd-timesyncd[14890]:  Synchronized to time server 90.207.243.193:123 (devicetime1.sky.com) at 818064 ms.
+2026-01-16T02:12:47.225Z systemd-timesyncd[14890]:  Sent NTP request to 90.207.243.193:123 (devicetime1.sky.com) at 830673 ms.
+2026-01-16T02:12:47.233Z systemd-timesyncd[14890]:  NTP Response received at 830760 ms
+2026-01-16T02:12:47.233Z systemd-timesyncd[14890]:  NTP response:
+2026-01-16T02:12:47.233Z systemd-timesyncd[14890]:    leap         : 0
+2026-01-16T02:12:47.233Z systemd-timesyncd[14890]:    version      : 4
+2026-01-16T02:12:47.234Z systemd-timesyncd[14890]:    mode         : 4
+2026-01-16T02:12:47.234Z systemd-timesyncd[14890]:    stratum      : 2
+2026-01-16T02:12:47.234Z systemd-timesyncd[14890]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:12:47.234Z systemd-timesyncd[14890]:    root distance: 0.023079 sec
+2026-01-16T02:12:47.234Z systemd-timesyncd[14890]:    reference    : n/a
+2026-01-16T02:12:47.234Z systemd-timesyncd[14890]:    origin       : 1768529567.615
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    receive      : 1768529567.115
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    transmit     : 1768529567.115
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    dest         : 1768529567.702
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    offset       : -0.544 sec
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    delay        : +0.086 sec
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    packet count : 2
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    jitter       : 0.206
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    poll interval: 16
+2026-01-16T02:12:47.235Z systemd-timesyncd[14890]:    adjust (jump): -0.544 sec
+2026-01-16T02:12:48.820Z systemd-timesyncd[14890]:  Time response event, set the event flag
+2026-01-16T02:12:48.820Z systemd-timesyncd[14890]:    status       : 8192 sync
+2026-01-16T02:12:48.820Z systemd-timesyncd[14890]:    time now     : 1768529567.158
+2026-01-16T02:12:48.820Z systemd-timesyncd[14890]:    constant     : 1
+2026-01-16T02:12:48.820Z systemd-timesyncd[14890]:    offset       : +0.000 sec
+2026-01-16T02:12:48.821Z systemd-timesyncd[14890]:    freq offset  : +360092 (5 ppm)
+2026-01-16T02:12:48.821Z systemd-timesyncd[14890]:  interval/delta/delay/jitter/drift 16s/-0.544s/0.086s/0.206s/+5ppm
+2026-01-16T02:12:49.613Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:12:49.748Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:12:49.795Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:12:49.844Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:12:49.887Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:12:49.931Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:12:54.965Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:12:55.029Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:12:54.940Z timesyncd-conf-update.sh[15040]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:12:55.206Z systemd-timesyncd[15149]:  NTP Client process started at 838807 ms
+2026-01-16T02:12:55.206Z systemd-timesyncd[15149]:  Selected server devicetime1.sky.com.
+2026-01-16T02:12:55.244Z systemd-timesyncd[15149]:  Resolved address 90.207.243.129:123 for devicetime1.sky.com.
+2026-01-16T02:12:55.244Z systemd-timesyncd[15149]:  Selected address 90.207.243.129:123 of server devicetime1.sky.com.
+2026-01-16T02:12:55.244Z systemd-timesyncd[15149]:  Connecting to time server 90.207.243.129:123 (devicetime1.sky.com).
+2026-01-16T02:12:55.244Z systemd-timesyncd[15149]:  Sent NTP request to 90.207.243.129:123 (devicetime1.sky.com) at 838846 ms.
+2026-01-16T02:12:55.264Z systemd-timesyncd[15149]:  NTP Response received at 838866 ms
+2026-01-16T02:12:55.264Z systemd-timesyncd[15149]:  NTP response:
+2026-01-16T02:12:55.265Z systemd-timesyncd[15149]:    leap         : 0
+2026-01-16T02:12:55.265Z systemd-timesyncd[15149]:    version      : 4
+2026-01-16T02:12:55.265Z systemd-timesyncd[15149]:    mode         : 4
+2026-01-16T02:12:55.265Z systemd-timesyncd[15149]:    stratum      : 2
+2026-01-16T02:12:55.266Z systemd-timesyncd[15149]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:12:55.266Z systemd-timesyncd[15149]:    root distance: 0.016556 sec
+2026-01-16T02:12:55.266Z systemd-timesyncd[15149]:    reference    : n/a
+2026-01-16T02:12:55.266Z systemd-timesyncd[15149]:    origin       : 1768529575.244
+2026-01-16T02:12:55.266Z systemd-timesyncd[15149]:    receive      : 1768529575.280
+2026-01-16T02:12:55.266Z systemd-timesyncd[15149]:    transmit     : 1768529575.280
+2026-01-16T02:12:55.267Z systemd-timesyncd[15149]:    dest         : 1768529575.264
+2026-01-16T02:12:55.267Z systemd-timesyncd[15149]:    offset       : +0.026 sec
+2026-01-16T02:12:55.267Z systemd-timesyncd[15149]:    delay        : +0.020 sec
+2026-01-16T02:12:55.267Z systemd-timesyncd[15149]:    packet count : 1
+2026-01-16T02:12:55.267Z systemd-timesyncd[15149]:    jitter       : 0.000
+2026-01-16T02:12:55.267Z systemd-timesyncd[15149]:    poll interval: 32
+2026-01-16T02:12:55.268Z systemd-timesyncd[15149]:    adjust (slew): +0.026 sec
+2026-01-16T02:12:55.268Z systemd-timesyncd[15149]:  Time response event, set the event flag
+2026-01-16T02:12:55.268Z systemd-timesyncd[15149]:    status       : 8193 sync
+2026-01-16T02:12:55.268Z systemd-timesyncd[15149]:    time now     : 1768529575.265
+2026-01-16T02:12:55.268Z systemd-timesyncd[15149]:    constant     : 1
+2026-01-16T02:12:55.268Z systemd-timesyncd[15149]:    offset       : +0.026 sec
+2026-01-16T02:12:55.269Z systemd-timesyncd[15149]:    freq offset  : +360092 (5 ppm)
+2026-01-16T02:12:55.269Z systemd-timesyncd[15149]:  interval/delta/delay/jitter/drift 32s/+0.026s/0.020s/0.000s/+5ppm
+2026-01-16T02:12:55.269Z systemd-timesyncd[15149]:  Synchronized to time server 90.207.243.129:123 (devicetime1.sky.com) at 838867 ms.
+2026-01-16T02:13:09.876Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:13:09.996Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:13:10.045Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:13:10.090Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:13:10.135Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:13:10.180Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:13:15.210Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:13:15.260Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:13:15.192Z timesyncd-conf-update.sh[15410]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:13:15.450Z systemd-timesyncd[15520]:  NTP Client process started at 859027 ms
+2026-01-16T02:13:15.450Z systemd-timesyncd[15520]:  Selected server devicetime1.sky.com.
+2026-01-16T02:13:15.489Z systemd-timesyncd[15520]:  Resolved address 90.207.243.193:123 for devicetime1.sky.com.
+2026-01-16T02:13:15.489Z systemd-timesyncd[15520]:  Selected address 90.207.243.193:123 of server devicetime1.sky.com.
+2026-01-16T02:13:15.489Z systemd-timesyncd[15520]:  Connecting to time server 90.207.243.193:123 (devicetime1.sky.com).
+2026-01-16T02:13:15.489Z systemd-timesyncd[15520]:  Sent NTP request to 90.207.243.193:123 (devicetime1.sky.com) at 859067 ms.
+2026-01-16T02:13:15.502Z systemd-timesyncd[15520]:  NTP Response received at 859081 ms
+2026-01-16T02:13:15.502Z systemd-timesyncd[15520]:  NTP response:
+2026-01-16T02:13:15.503Z systemd-timesyncd[15520]:    leap         : 0
+2026-01-16T02:16:17.980Z systemd-timesyncd[15520]:    version      : 4
+2026-01-16T02:16:17.980Z systemd-timesyncd[15520]:    mode         : 4
+2026-01-16T02:16:17.981Z systemd-timesyncd[15520]:    stratum      : 2
+2026-01-16T02:16:17.981Z systemd-timesyncd[15520]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:16:17.981Z systemd-timesyncd[15520]:    root distance: 0.031326 sec
+2026-01-16T02:16:17.981Z systemd-timesyncd[15520]:    reference    : n/a
+2026-01-16T02:16:17.981Z systemd-timesyncd[15520]:    origin       : 1768529595.489
+2026-01-16T02:16:17.981Z systemd-timesyncd[15520]:    receive      : 1768529777.973
+2026-01-16T02:16:17.982Z systemd-timesyncd[15520]:    transmit     : 1768529777.973
+2026-01-16T02:16:17.982Z systemd-timesyncd[15520]:    dest         : 1768529595.502
+2026-01-16T02:16:17.982Z systemd-timesyncd[15520]:    offset       : +182.477 sec
+2026-01-16T02:16:17.982Z systemd-timesyncd[15520]:    delay        : +0.013 sec
+2026-01-16T02:16:17.982Z systemd-timesyncd[15520]:    packet count : 1
+2026-01-16T02:16:17.983Z systemd-timesyncd[15520]:    jitter       : 0.000
+2026-01-16T02:16:17.983Z systemd-timesyncd[15520]:    poll interval: 16
+2026-01-16T02:16:17.983Z systemd-timesyncd[15520]:    adjust (jump): +182.477 sec
+2026-01-16T02:16:17.983Z systemd-timesyncd[15520]:  Time response event, set the event flag
+2026-01-16T02:16:17.983Z systemd-timesyncd[15520]:    status       : 8192 sync
+2026-01-16T02:16:17.983Z systemd-timesyncd[15520]:    time now     : 1768529777.980
+2026-01-16T02:16:17.984Z systemd-timesyncd[15520]:    constant     : 1
+2026-01-16T02:16:17.984Z systemd-timesyncd[15520]:    offset       : +0.000 sec
+2026-01-16T02:16:17.984Z systemd-timesyncd[15520]:    freq offset  : +360092 (5 ppm)
+2026-01-16T02:16:17.984Z systemd-timesyncd[15520]:  interval/delta/delay/jitter/drift 16s/+182.477s/0.013s/0.000s/+5ppm
+2026-01-16T02:16:17.984Z systemd-timesyncd[15520]:  Synchronized to time server 90.207.243.193:123 (devicetime1.sky.com) at 859082 ms.
+2026-01-16T02:19:32.713Z systemd-timesyncd[15520]:  Sent NTP request to 90.207.243.193:123 (devicetime1.sky.com) at 870821 ms.
+2026-01-16T02:19:32.717Z systemd-timesyncd[15520]:  NTP Response received at 870886 ms
+2026-01-16T02:19:32.720Z systemd-timesyncd[15520]:  NTP response:
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    leap         : 0
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    version      : 4
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    mode         : 4
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    stratum      : 2
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    root distance: 0.034241 sec
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    reference    : n/a
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    origin       : 1768529972.614
+2026-01-16T02:19:32.721Z systemd-timesyncd[15520]:    receive      : 1768529972.458
+2026-01-16T02:19:32.722Z systemd-timesyncd[15520]:    transmit     : 1768529972.458
+2026-01-16T02:19:32.722Z systemd-timesyncd[15520]:    dest         : 1768529972.678
+2026-01-16T02:19:32.722Z systemd-timesyncd[15520]:    offset       : -0.189 sec
+2026-01-16T02:19:32.722Z systemd-timesyncd[15520]:    delay        : +0.064 sec
+2026-01-16T02:19:32.722Z systemd-timesyncd[15520]:    packet count : 2
+2026-01-16T02:19:32.722Z systemd-timesyncd[15520]:    jitter       : 0.071
+2026-01-16T02:19:32.722Z systemd-timesyncd[15520]:    poll interval: 16
+2026-01-16T02:19:32.722Z systemd-timesyncd[15520]:    adjust (slew): -0.189 sec
+2026-01-16T02:19:34.434Z systemd-timesyncd[15520]:  Time response event, set the event flag
+2026-01-16T02:19:34.434Z systemd-timesyncd[15520]:    status       : 8193 sync
+2026-01-16T02:19:34.434Z systemd-timesyncd[15520]:    time now     : 1768529972.678
+2026-01-16T02:19:34.434Z systemd-timesyncd[15520]:    constant     : 0
+2026-01-16T02:19:34.435Z systemd-timesyncd[15520]:    offset       : -0.189 sec
+2026-01-16T02:19:34.435Z systemd-timesyncd[15520]:    freq offset  : +360092 (5 ppm)
+2026-01-16T02:19:34.435Z systemd-timesyncd[15520]:  interval/delta/delay/jitter/drift 16s/-0.189s/0.064s/0.071s/+5ppm
+2026-01-16T02:19:35.406Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:19:35.517Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:19:35.565Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:19:35.609Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:19:35.656Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:19:35.698Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:19:40.730Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:19:40.798Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:19:40.709Z timesyncd-conf-update.sh[15739]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:19:40.962Z systemd-timesyncd[15849]:  NTP Client process started at 879343 ms
+2026-01-16T02:19:40.962Z systemd-timesyncd[15849]:  Selected server devicetime1.sky.com.
+2026-01-16T02:19:40.986Z systemd-timesyncd[15849]:  Resolved address 90.207.241.129:123 for devicetime1.sky.com.
+2026-01-16T02:19:40.987Z systemd-timesyncd[15849]:  Selected address 90.207.241.129:123 of server devicetime1.sky.com.
+2026-01-16T02:19:40.987Z systemd-timesyncd[15849]:  Connecting to time server 90.207.241.129:123 (devicetime1.sky.com).
+2026-01-16T02:19:40.987Z systemd-timesyncd[15849]:  Sent NTP request to 90.207.241.129:123 (devicetime1.sky.com) at 879369 ms.
+2026-01-16T02:19:41.005Z systemd-timesyncd[15849]:  NTP Response received at 879387 ms
+2026-01-16T02:19:41.005Z systemd-timesyncd[15849]:  NTP response:
+2026-01-16T02:19:41.005Z systemd-timesyncd[15849]:    leap         : 0
+2026-01-16T02:19:41.005Z systemd-timesyncd[15849]:    version      : 4
+2026-01-16T02:19:41.006Z systemd-timesyncd[15849]:    mode         : 4
+2026-01-16T02:19:41.006Z systemd-timesyncd[15849]:    stratum      : 2
+2026-01-16T02:19:41.006Z systemd-timesyncd[15849]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:19:41.006Z systemd-timesyncd[15849]:    root distance: 0.029465 sec
+2026-01-16T02:19:41.007Z systemd-timesyncd[15849]:    reference    : n/a
+2026-01-16T02:19:41.007Z systemd-timesyncd[15849]:    origin       : 1768529980.987
+2026-01-16T02:19:41.007Z systemd-timesyncd[15849]:    receive      : 1768529981.000
+2026-01-16T02:19:41.007Z systemd-timesyncd[15849]:    transmit     : 1768529981.000
+2026-01-16T02:19:41.007Z systemd-timesyncd[15849]:    dest         : 1768529981.005
+2026-01-16T02:19:41.007Z systemd-timesyncd[15849]:    offset       : +0.004 sec
+2026-01-16T02:19:41.008Z systemd-timesyncd[15849]:    delay        : +0.018 sec
+2026-01-16T02:19:41.008Z systemd-timesyncd[15849]:    packet count : 1
+2026-01-16T02:19:41.008Z systemd-timesyncd[15849]:    jitter       : 0.000
+2026-01-16T02:19:41.008Z systemd-timesyncd[15849]:    poll interval: 32
+2026-01-16T02:19:41.008Z systemd-timesyncd[15849]:    adjust (slew): +0.004 sec
+2026-01-16T02:19:41.009Z systemd-timesyncd[15849]:  Time response event, set the event flag
+2026-01-16T02:19:41.009Z systemd-timesyncd[15849]:    status       : 8193 sync
+2026-01-16T02:19:41.009Z systemd-timesyncd[15849]:    time now     : 1768529981.005
+2026-01-16T02:19:41.009Z systemd-timesyncd[15849]:    constant     : 1
+2026-01-16T02:19:41.009Z systemd-timesyncd[15849]:    offset       : +0.004 sec
+2026-01-16T02:19:41.009Z systemd-timesyncd[15849]:    freq offset  : +2742477 (41 ppm)
+2026-01-16T02:19:41.010Z systemd-timesyncd[15849]:  interval/delta/delay/jitter/drift 32s/+0.004s/0.018s/0.000s/+41ppm
+2026-01-16T02:19:41.010Z systemd-timesyncd[15849]:  Synchronized to time server 90.207.241.129:123 (devicetime1.sky.com) at 879388 ms.
+2026-01-16T02:22:55.731Z systemd-timesyncd[15849]:  Sent NTP request to 90.207.241.129:123 (devicetime1.sky.com) at 891382 ms.
+2026-01-16T02:22:55.802Z systemd-timesyncd[15849]:  NTP Response received at 891565 ms
+2026-01-16T02:22:55.803Z systemd-timesyncd[15849]:  NTP response:
+2026-01-16T02:22:55.229Z systemd-timesyncd[15849]:    leap         : 0
+2026-01-16T02:22:55.230Z systemd-timesyncd[15849]:    version      : 4
+2026-01-16T02:22:55.230Z systemd-timesyncd[15849]:    mode         : 4
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    stratum      : 2
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    root distance: 0.028519 sec
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    reference    : n/a
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    origin       : 1768530175.619
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    receive      : 1768530175.134
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    transmit     : 1768530175.134
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    dest         : 1768530175.802
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    offset       : -0.577 sec
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    delay        : +0.183 sec
+2026-01-16T02:22:55.231Z systemd-timesyncd[15849]:    packet count : 2
+2026-01-16T02:22:55.232Z systemd-timesyncd[15849]:    jitter       : 0.218
+2026-01-16T02:22:55.232Z systemd-timesyncd[15849]:    poll interval: 16
+2026-01-16T02:22:55.232Z systemd-timesyncd[15849]:    adjust (jump): -0.577 sec
+2026-01-16T02:22:56.533Z systemd-timesyncd[15849]:  Time response event, set the event flag
+2026-01-16T02:22:56.533Z systemd-timesyncd[15849]:    status       : 8192 sync
+2026-01-16T02:22:56.533Z systemd-timesyncd[15849]:    time now     : 1768530175.226
+2026-01-16T02:22:56.534Z systemd-timesyncd[15849]:    constant     : 1
+2026-01-16T02:22:56.534Z systemd-timesyncd[15849]:    offset       : +0.000 sec
+2026-01-16T02:22:56.534Z systemd-timesyncd[15849]:    freq offset  : +2742477 (41 ppm)
+2026-01-16T02:22:56.534Z systemd-timesyncd[15849]:  interval/delta/delay/jitter/drift 16s/-0.577s/0.183s/0.218s/+41ppm
+2026-01-16T02:23:07.590Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:23:07.652Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:23:07.700Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:23:07.744Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:23:07.788Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:23:07.832Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:23:12.861Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:23:12.926Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:23:12.843Z timesyncd-conf-update.sh[16289]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:23:13.107Z systemd-timesyncd[16429]:  NTP Client process started at 909445 ms
+2026-01-16T02:23:13.108Z systemd-timesyncd[16429]:  Selected server devicetime1.sky.com.
+2026-01-16T02:23:13.154Z systemd-timesyncd[16429]:  Resolved address 90.207.243.193:123 for devicetime1.sky.com.
+2026-01-16T02:23:13.155Z systemd-timesyncd[16429]:  Selected address 90.207.243.193:123 of server devicetime1.sky.com.
+2026-01-16T02:23:13.155Z systemd-timesyncd[16429]:  Connecting to time server 90.207.243.193:123 (devicetime1.sky.com).
+2026-01-16T02:23:13.155Z systemd-timesyncd[16429]:  Sent NTP request to 90.207.243.193:123 (devicetime1.sky.com) at 909493 ms.
+2026-01-16T02:23:13.167Z systemd-timesyncd[16429]:  NTP Response received at 909506 ms
+2026-01-16T02:23:13.167Z systemd-timesyncd[16429]:  NTP response:
+2026-01-16T02:23:13.167Z systemd-timesyncd[16429]:    leap         : 0
+2026-01-16T02:23:13.168Z systemd-timesyncd[16429]:    version      : 4
+2026-01-16T02:23:13.168Z systemd-timesyncd[16429]:    mode         : 4
+2026-01-16T02:23:13.168Z systemd-timesyncd[16429]:    stratum      : 2
+2026-01-16T02:23:13.168Z systemd-timesyncd[16429]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:23:13.168Z systemd-timesyncd[16429]:    root distance: 0.016388 sec
+2026-01-16T02:23:13.169Z systemd-timesyncd[16429]:    reference    : n/a
+2026-01-16T02:23:13.169Z systemd-timesyncd[16429]:    origin       : 1768530193.155
+2026-01-16T02:23:13.169Z systemd-timesyncd[16429]:    receive      : 1768530193.240
+2026-01-16T02:23:13.169Z systemd-timesyncd[16429]:    transmit     : 1768530193.240
+2026-01-16T02:23:13.169Z systemd-timesyncd[16429]:    dest         : 1768530193.167
+2026-01-16T02:23:13.169Z systemd-timesyncd[16429]:    offset       : +0.079 sec
+2026-01-16T02:23:13.169Z systemd-timesyncd[16429]:    delay        : +0.012 sec
+2026-01-16T02:23:13.170Z systemd-timesyncd[16429]:    packet count : 1
+2026-01-16T02:23:13.170Z systemd-timesyncd[16429]:    jitter       : 0.000
+2026-01-16T02:23:13.170Z systemd-timesyncd[16429]:    poll interval: 16
+2026-01-16T02:23:13.170Z systemd-timesyncd[16429]:    adjust (slew): +0.079 sec
+2026-01-16T02:23:13.170Z systemd-timesyncd[16429]:  Time response event, set the event flag
+2026-01-16T02:23:13.170Z systemd-timesyncd[16429]:    status       : 8193 sync
+2026-01-16T02:23:13.170Z systemd-timesyncd[16429]:    time now     : 1768530193.167
+2026-01-16T02:23:13.171Z systemd-timesyncd[16429]:    constant     : 0
+2026-01-16T02:23:13.171Z systemd-timesyncd[16429]:    offset       : +0.079 sec
+2026-01-16T02:23:13.171Z systemd-timesyncd[16429]:    freq offset  : +2742477 (41 ppm)
+2026-01-16T02:23:13.171Z systemd-timesyncd[16429]:  interval/delta/delay/jitter/drift 16s/+0.079s/0.012s/0.000s/+41ppm
+2026-01-16T02:23:13.171Z systemd-timesyncd[16429]:  Synchronized to time server 90.207.243.193:123 (devicetime1.sky.com) at 909507 ms.
+2026-01-16T02:26:45.898Z systemd-timesyncd[16429]:  Sent NTP request to 90.207.243.193:123 (devicetime1.sky.com) at 950931 ms.
+2026-01-16T02:26:45.902Z systemd-timesyncd[16429]:  NTP Response received at 951024 ms
+2026-01-16T02:26:45.902Z systemd-timesyncd[16429]:  NTP response:
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    leap         : 0
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    version      : 4
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    mode         : 4
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    stratum      : 2
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    root distance: 0.019577 sec
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    reference    : n/a
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    origin       : 1768530404.573
+2026-01-16T02:26:45.903Z systemd-timesyncd[16429]:    receive      : 1768530405.767
+2026-01-16T02:26:45.904Z systemd-timesyncd[16429]:    transmit     : 1768530405.768
+2026-01-16T02:26:45.904Z systemd-timesyncd[16429]:    dest         : 1768530404.666
+2026-01-16T02:26:45.904Z systemd-timesyncd[16429]:    offset       : +1.148 sec
+2026-01-16T02:26:45.904Z systemd-timesyncd[16429]:    delay        : +0.093 sec
+2026-01-16T02:26:45.904Z systemd-timesyncd[16429]:    packet count : 2
+2026-01-16T02:26:45.904Z systemd-timesyncd[16429]:    jitter       : 0.434
+2026-01-16T02:26:45.904Z systemd-timesyncd[16429]:    poll interval: 16
+2026-01-16T02:26:45.904Z systemd-timesyncd[16429]:    adjust (jump): +1.148 sec
+2026-01-16T02:26:47.175Z systemd-timesyncd[16429]:  Time response event, set the event flag
+2026-01-16T02:26:47.175Z systemd-timesyncd[16429]:    status       : 8192 sync
+2026-01-16T02:26:47.176Z systemd-timesyncd[16429]:    time now     : 1768530405.940
+2026-01-16T02:26:47.176Z systemd-timesyncd[16429]:    constant     : 0
+2026-01-16T02:26:47.176Z systemd-timesyncd[16429]:    offset       : +0.000 sec
+2026-01-16T02:26:47.176Z systemd-timesyncd[16429]:    freq offset  : +2742477 (41 ppm)
+2026-01-16T02:26:47.176Z systemd-timesyncd[16429]:  interval/delta/delay/jitter/drift 16s/+1.148s/0.093s/0.434s/+41ppm
+2026-01-16T02:26:55.887Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:26:56.353Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:26:56.399Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:26:56.443Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:26:56.488Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:26:56.532Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:27:01.660Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:27:01.705Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:27:01.647Z timesyncd-conf-update.sh[16946]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:27:02.855Z systemd-timesyncd[17557]:  NTP Client process started at 968064 ms
+2026-01-16T02:27:02.855Z systemd-timesyncd[17557]:  Selected server devicetime1.sky.com.
+2026-01-16T02:27:03.036Z systemd-timesyncd[17557]:  Resolved address 90.207.241.193:123 for devicetime1.sky.com.
+2026-01-16T02:27:03.036Z systemd-timesyncd[17557]:  Selected address 90.207.241.193:123 of server devicetime1.sky.com.
+2026-01-16T02:27:03.037Z systemd-timesyncd[17557]:  Connecting to time server 90.207.241.193:123 (devicetime1.sky.com).
+2026-01-16T02:27:03.037Z systemd-timesyncd[17557]:  Sent NTP request to 90.207.241.193:123 (devicetime1.sky.com) at 968246 ms.
+2026-01-16T02:27:03.066Z systemd-timesyncd[17557]:  NTP Response received at 968268 ms
+2026-01-16T02:27:03.066Z systemd-timesyncd[17557]:  NTP response:
+2026-01-16T02:27:03.066Z systemd-timesyncd[17557]:    leap         : 0
+2026-01-16T02:27:03.066Z systemd-timesyncd[17557]:    version      : 4
+2026-01-16T02:27:03.066Z systemd-timesyncd[17557]:    mode         : 4
+2026-01-16T02:27:03.066Z systemd-timesyncd[17557]:    stratum      : 2
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    root distance: 0.017586 sec
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    reference    : n/a
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    origin       : 1768530423.037
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    receive      : 1768530423.078
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    transmit     : 1768530423.078
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    dest         : 1768530423.058
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    offset       : +0.030 sec
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    delay        : +0.022 sec
+2026-01-16T02:27:03.067Z systemd-timesyncd[17557]:    packet count : 1
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:    jitter       : 0.000
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:    poll interval: 32
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:    adjust (slew): +0.030 sec
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:  Time response event, set the event flag
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:    status       : 8193 sync
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:    time now     : 1768530423.059
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:    constant     : 1
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:    offset       : +0.030 sec
+2026-01-16T02:27:03.068Z systemd-timesyncd[17557]:    freq offset  : +2742477 (41 ppm)
+2026-01-16T02:27:03.069Z systemd-timesyncd[17557]:  interval/delta/delay/jitter/drift 32s/+0.030s/0.022s/0.000s/+41ppm
+2026-01-16T02:27:03.069Z systemd-timesyncd[17557]:  Synchronized to time server 90.207.241.193:123 (devicetime1.sky.com) at 968269 ms.
+2026-01-16T02:30:09.011Z systemd-timesyncd[17557]:  Sent NTP request to 90.207.241.193:123 (devicetime1.sky.com) at 1012665 ms.
+2026-01-16T02:30:09.018Z systemd-timesyncd[17557]:  NTP Response received at 1012692 ms
+2026-01-16T02:30:09.020Z systemd-timesyncd[17557]:  NTP response:
+2026-01-16T02:30:09.022Z systemd-timesyncd[17557]:    leap         : 0
+2026-01-16T02:30:09.023Z systemd-timesyncd[17557]:    version      : 4
+2026-01-16T02:30:09.023Z systemd-timesyncd[17557]:    mode         : 4
+2026-01-16T02:30:09.023Z systemd-timesyncd[17557]:    stratum      : 2
+2026-01-16T02:30:09.023Z systemd-timesyncd[17557]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:30:09.023Z systemd-timesyncd[17557]:    root distance: 0.044617 sec
+2026-01-16T02:30:09.023Z systemd-timesyncd[17557]:    reference    : n/a
+2026-01-16T02:30:09.023Z systemd-timesyncd[17557]:    origin       : 1768530608.846
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    receive      : 1768530608.707
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    transmit     : 1768530608.707
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    dest         : 1768530608.873
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    offset       : -0.153 sec
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    delay        : +0.027 sec
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    packet count : 2
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    jitter       : 0.058
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    poll interval: 16
+2026-01-16T02:30:09.024Z systemd-timesyncd[17557]:    adjust (slew): -0.153 sec
+2026-01-16T02:30:09.025Z systemd-timesyncd[17557]:  Time response event, set the event flag
+2026-01-16T02:30:09.025Z systemd-timesyncd[17557]:    status       : 8193 sync
+2026-01-16T02:30:09.025Z systemd-timesyncd[17557]:    time now     : 1768530608.873
+2026-01-16T02:30:09.025Z systemd-timesyncd[17557]:    constant     : 0
+2026-01-16T02:30:09.025Z systemd-timesyncd[17557]:    offset       : -0.153 sec
+2026-01-16T02:30:09.025Z systemd-timesyncd[17557]:    freq offset  : -32768000 (-500 ppm)
+2026-01-16T02:30:09.025Z systemd-timesyncd[17557]:  interval/delta/delay/jitter/drift 16s/-0.153s/0.027s/0.058s/-500ppm
+2026-01-16T02:30:17.231Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:30:17.282Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:30:17.325Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:30:17.368Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:30:17.411Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:30:17.458Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:30:22.497Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:30:22.569Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:30:22.470Z timesyncd-conf-update.sh[18812]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:30:22.743Z systemd-timesyncd[18958]:  NTP Client process started at 1026723 ms
+2026-01-16T02:30:22.744Z systemd-timesyncd[18958]:  Selected server devicetime1.sky.com.
+2026-01-16T02:30:22.780Z systemd-timesyncd[18958]:  Resolved address 90.207.241.129:123 for devicetime1.sky.com.
+2026-01-16T02:30:22.780Z systemd-timesyncd[18958]:  Selected address 90.207.241.129:123 of server devicetime1.sky.com.
+2026-01-16T02:30:22.780Z systemd-timesyncd[18958]:  Connecting to time server 90.207.241.129:123 (devicetime1.sky.com).
+2026-01-16T02:30:22.781Z systemd-timesyncd[18958]:  Sent NTP request to 90.207.241.129:123 (devicetime1.sky.com) at 1026760 ms.
+2026-01-16T02:30:22.794Z systemd-timesyncd[18958]:  NTP Response received at 1026774 ms
+2026-01-16T02:30:22.794Z systemd-timesyncd[18958]:  NTP response:
+2026-01-16T02:30:22.794Z systemd-timesyncd[18958]:    leap         : 0
+2026-01-16T02:30:22.794Z systemd-timesyncd[18958]:    version      : 4
+2026-01-16T02:30:22.795Z systemd-timesyncd[18958]:    mode         : 4
+2026-01-16T02:30:22.795Z systemd-timesyncd[18958]:    stratum      : 2
+2026-01-16T02:30:22.795Z systemd-timesyncd[18958]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:30:22.795Z systemd-timesyncd[18958]:    root distance: 0.039093 sec
+2026-01-16T02:30:22.796Z systemd-timesyncd[18958]:    reference    : n/a
+2026-01-16T02:30:22.796Z systemd-timesyncd[18958]:    origin       : 1768530622.780
+2026-01-16T02:30:22.796Z systemd-timesyncd[18958]:    receive      : 1768530622.795
+2026-01-16T02:30:22.796Z systemd-timesyncd[18958]:    transmit     : 1768530622.795
+2026-01-16T02:30:22.796Z systemd-timesyncd[18958]:    dest         : 1768530622.794
+2026-01-16T02:30:22.797Z systemd-timesyncd[18958]:    offset       : +0.008 sec
+2026-01-16T02:30:22.797Z systemd-timesyncd[18958]:    delay        : +0.013 sec
+2026-01-16T02:30:22.797Z systemd-timesyncd[18958]:    packet count : 1
+2026-01-16T02:30:22.797Z systemd-timesyncd[18958]:    jitter       : 0.000
+2026-01-16T02:30:22.797Z systemd-timesyncd[18958]:    poll interval: 32
+2026-01-16T02:30:22.798Z systemd-timesyncd[18958]:    adjust (slew): +0.008 sec
+2026-01-16T02:30:22.798Z systemd-timesyncd[18958]:  Time response event, set the event flag
+2026-01-16T02:30:22.798Z systemd-timesyncd[18958]:    status       : 8193 sync
+2026-01-16T02:30:22.798Z systemd-timesyncd[18958]:    time now     : 1768530622.794
+2026-01-16T02:30:22.798Z systemd-timesyncd[18958]:    constant     : 1
+2026-01-16T02:30:22.799Z systemd-timesyncd[18958]:    offset       : +0.008 sec
+2026-01-16T02:30:22.799Z systemd-timesyncd[18958]:    freq offset  : -25932704 (-395 ppm)
+2026-01-16T02:30:22.799Z systemd-timesyncd[18958]:  interval/delta/delay/jitter/drift 32s/+0.008s/0.013s/0.000s/-395ppm
+2026-01-16T02:30:22.799Z systemd-timesyncd[18958]:  Synchronized to time server 90.207.241.129:123 (devicetime1.sky.com) at 1026775 ms.
+2026-01-16T02:33:31.467Z systemd-timesyncd[18958]:  Sent NTP request to 90.207.241.129:123 (devicetime1.sky.com) at 1067647 ms.
+2026-01-16T02:33:31.471Z systemd-timesyncd[18958]:  NTP Response received at 1067687 ms
+2026-01-16T02:33:31.473Z systemd-timesyncd[18958]:  NTP response:
+2026-01-16T02:33:31.475Z systemd-timesyncd[18958]:    leap         : 0
+2026-01-16T02:33:31.475Z systemd-timesyncd[18958]:    version      : 4
+2026-01-16T02:33:31.475Z systemd-timesyncd[18958]:    mode         : 4
+2026-01-16T02:33:31.475Z systemd-timesyncd[18958]:    stratum      : 2
+2026-01-16T02:33:31.475Z systemd-timesyncd[18958]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:33:31.475Z systemd-timesyncd[18958]:    root distance: 0.041916 sec
+2026-01-16T02:33:31.475Z systemd-timesyncd[18958]:    reference    : n/a
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    origin       : 1768530811.844
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    receive      : 1768530811.384
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    transmit     : 1768530811.384
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    dest         : 1768530811.884
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    offset       : -0.480 sec
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    delay        : +0.040 sec
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    packet count : 2
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    jitter       : 0.182
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    poll interval: 16
+2026-01-16T02:33:31.476Z systemd-timesyncd[18958]:    adjust (jump): -0.480 sec
+2026-01-16T02:33:31.589Z systemd-timesyncd[18958]:  Time response event, set the event flag
+2026-01-16T02:33:31.590Z systemd-timesyncd[18958]:    status       : 8192 sync
+2026-01-16T02:33:31.592Z systemd-timesyncd[18958]:    time now     : 1768530811.440
+2026-01-16T02:33:31.592Z systemd-timesyncd[18958]:    constant     : 1
+2026-01-16T02:33:31.592Z systemd-timesyncd[18958]:    offset       : +0.000 sec
+2026-01-16T02:33:31.592Z systemd-timesyncd[18958]:    freq offset  : -25932704 (-395 ppm)
+2026-01-16T02:33:31.592Z systemd-timesyncd[18958]:  interval/delta/delay/jitter/drift 16s/-0.480s/0.040s/0.182s/-395ppm
+2026-01-16T02:33:40.078Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:33:40.163Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:33:40.203Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:33:40.242Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:33:40.280Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:33:40.318Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:33:45.349Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:33:45.330Z timesyncd-conf-update.sh[19186]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:33:45.406Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:33:45.549Z systemd-timesyncd[19402]:  NTP Client process started at 1081837 ms
+2026-01-16T02:33:45.549Z systemd-timesyncd[19402]:  Selected server devicetime1.sky.com.
+2026-01-16T02:33:45.592Z systemd-timesyncd[19402]:  Resolved address 90.207.241.193:123 for devicetime1.sky.com.
+2026-01-16T02:33:45.593Z systemd-timesyncd[19402]:  Selected address 90.207.241.193:123 of server devicetime1.sky.com.
+2026-01-16T02:33:45.593Z systemd-timesyncd[19402]:  Connecting to time server 90.207.241.193:123 (devicetime1.sky.com).
+2026-01-16T02:33:45.593Z systemd-timesyncd[19402]:  Sent NTP request to 90.207.241.193:123 (devicetime1.sky.com) at 1081881 ms.
+2026-01-16T02:33:45.615Z systemd-timesyncd[19402]:  NTP Response received at 1081904 ms
+2026-01-16T02:33:45.615Z systemd-timesyncd[19402]:  NTP response:
+2026-01-16T02:33:45.616Z systemd-timesyncd[19402]:    leap         : 0
+2026-01-16T02:33:45.617Z systemd-timesyncd[19402]:    version      : 4
+2026-01-16T02:33:45.617Z systemd-timesyncd[19402]:    mode         : 4
+2026-01-16T02:33:45.617Z systemd-timesyncd[19402]:    stratum      : 2
+2026-01-16T02:33:45.617Z systemd-timesyncd[19402]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:33:45.618Z systemd-timesyncd[19402]:    root distance: 0.024773 sec
+2026-01-16T02:33:45.618Z systemd-timesyncd[19402]:    reference    : n/a
+2026-01-16T02:33:45.618Z systemd-timesyncd[19402]:    origin       : 1768530825.593
+2026-01-16T02:33:45.618Z systemd-timesyncd[19402]:    receive      : 1768530825.608
+2026-01-16T02:33:45.619Z systemd-timesyncd[19402]:    transmit     : 1768530825.609
+2026-01-16T02:33:45.619Z systemd-timesyncd[19402]:    dest         : 1768530825.615
+2026-01-16T02:33:45.619Z systemd-timesyncd[19402]:    offset       : +0.004 sec
+2026-01-16T02:33:45.619Z systemd-timesyncd[19402]:    delay        : +0.022 sec
+2026-01-16T02:33:45.619Z systemd-timesyncd[19402]:    packet count : 1
+2026-01-16T02:33:45.620Z systemd-timesyncd[19402]:    jitter       : 0.000
+2026-01-16T02:33:45.620Z systemd-timesyncd[19402]:    poll interval: 32
+2026-01-16T02:33:45.620Z systemd-timesyncd[19402]:    adjust (slew): +0.004 sec
+2026-01-16T02:33:45.620Z systemd-timesyncd[19402]:  Time response event, set the event flag
+2026-01-16T02:33:45.621Z systemd-timesyncd[19402]:    status       : 8193 sync
+2026-01-16T02:33:45.621Z systemd-timesyncd[19402]:    time now     : 1768530825.615
+2026-01-16T02:33:45.621Z systemd-timesyncd[19402]:    constant     : 1
+2026-01-16T02:33:45.621Z systemd-timesyncd[19402]:    offset       : +0.004 sec
+2026-01-16T02:33:45.621Z systemd-timesyncd[19402]:    freq offset  : -25932704 (-395 ppm)
+2026-01-16T02:33:45.622Z systemd-timesyncd[19402]:  interval/delta/delay/jitter/drift 32s/+0.004s/0.022s/0.000s/-395ppm
+2026-01-16T02:33:45.622Z systemd-timesyncd[19402]:  Synchronized to time server 90.207.241.193:123 (devicetime1.sky.com) at 1081905 ms.
+2026-01-16T02:43:36.406Z systemd-timesyncd[19402]:  Sent NTP request to 90.207.241.193:123 (devicetime1.sky.com) at 1124269 ms.
+2026-01-16T02:43:36.412Z systemd-timesyncd[19402]:  NTP Response received at 1124304 ms
+2026-01-16T02:43:36.419Z systemd-timesyncd[19402]:  NTP response:
+2026-01-16T02:43:36.420Z systemd-timesyncd[19402]:    leap         : 0
+2026-01-16T02:43:36.421Z systemd-timesyncd[19402]:    version      : 4
+2026-01-16T02:43:36.421Z systemd-timesyncd[19402]:    mode         : 4
+2026-01-16T02:43:36.422Z systemd-timesyncd[19402]:    stratum      : 2
+2026-01-16T02:43:36.422Z systemd-timesyncd[19402]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:43:36.422Z systemd-timesyncd[19402]:    root distance: 0.021873 sec
+2026-01-16T02:43:36.422Z systemd-timesyncd[19402]:    reference    : n/a
+2026-01-16T02:43:36.423Z systemd-timesyncd[19402]:    origin       : 1768530867.969
+2026-01-16T02:43:36.423Z systemd-timesyncd[19402]:    receive      : 1768531416.261
+2026-01-16T02:43:36.423Z systemd-timesyncd[19402]:    transmit     : 1768531416.262
+2026-01-16T02:43:36.423Z systemd-timesyncd[19402]:    dest         : 1768530868.003
+2026-01-16T02:43:36.424Z systemd-timesyncd[19402]:    offset       : +548.276 sec
+2026-01-16T02:43:36.424Z systemd-timesyncd[19402]:    delay        : +0.034 sec
+2026-01-16T02:43:36.424Z systemd-timesyncd[19402]:    packet count : 2
+2026-01-16T02:43:36.424Z systemd-timesyncd[19402]:    jitter       : 207.229
+2026-01-16T02:43:36.424Z systemd-timesyncd[19402]:    poll interval: 16
+2026-01-16T02:43:36.425Z systemd-timesyncd[19402]:    adjust (jump): +548.276 sec
+2026-01-16T02:43:36.425Z systemd-timesyncd[19402]:  Time response event, set the event flag
+2026-01-16T02:43:36.425Z systemd-timesyncd[19402]:    status       : 8192 sync
+2026-01-16T02:43:36.425Z systemd-timesyncd[19402]:    time now     : 1768531416.319
+2026-01-16T02:43:36.426Z systemd-timesyncd[19402]:    constant     : 1
+2026-01-16T02:43:36.426Z systemd-timesyncd[19402]:    offset       : +0.000 sec
+2026-01-16T02:43:36.426Z systemd-timesyncd[19402]:    freq offset  : -25932704 (-395 ppm)
+2026-01-16T02:43:36.426Z systemd-timesyncd[19402]:  interval/delta/delay/jitter/drift 16s/+548.276s/0.034s/207.229s/-395ppm
+2026-01-16T02:43:44.318Z : /lib/rdk/timesyncd-conf-update.sh: Retrive NTP Server URL from /lib/rdk/getPartnerProperty.sh...
+2026-01-16T02:43:44.411Z [BP] Returning through tr181 call for ntpHost, result=devicetime1.sky.com
+2026-01-16T02:43:44.557Z [BP] Returning through tr181 call for ntpHost2, result=devicetime2.sky.com
+2026-01-16T02:43:44.612Z [BP] Returning through tr181 call for ntpHost3, result=
+2026-01-16T02:43:44.684Z [BP] Returning through tr181 call for ntpHost4, result=
+2026-01-16T02:43:44.731Z [BP] Returning through tr181 call for ntpHost5, result=
+2026-01-16T02:43:49.766Z : /lib/rdk/timesyncd-conf-update.sh: NTP Server URL for the partner:devicetime1.sky.com devicetime2.sky.com   
+2026-01-16T02:43:49.826Z : /lib/rdk/timesyncd-conf-update.sh: No new Hostnames found to update /etc/systemd/timesyncd.conf
+2026-01-16T02:43:49.738Z timesyncd-conf-update.sh[19907]:  Attempt 0 - Failed to retrieve NTP server URL, attempting again...
+2026-01-16T02:43:50.008Z systemd-timesyncd[20633]:  NTP Client process started at 1138037 ms
+2026-01-16T02:43:50.008Z systemd-timesyncd[20633]:  Selected server devicetime1.sky.com.
+2026-01-16T02:43:50.088Z systemd-timesyncd[20633]:  Resolved address 2.127.251.193:123 for devicetime1.sky.com.
+2026-01-16T02:43:50.088Z systemd-timesyncd[20633]:  Selected address 2.127.251.193:123 of server devicetime1.sky.com.
+2026-01-16T02:43:50.089Z systemd-timesyncd[20633]:  Connecting to time server 2.127.251.193:123 (devicetime1.sky.com).
+2026-01-16T02:43:50.089Z systemd-timesyncd[20633]:  Sent NTP request to 2.127.251.193:123 (devicetime1.sky.com) at 1138119 ms.
+2026-01-16T02:43:50.103Z systemd-timesyncd[20633]:  NTP Response received at 1138134 ms
+2026-01-16T02:43:50.103Z systemd-timesyncd[20633]:  NTP response:
+2026-01-16T02:43:50.103Z systemd-timesyncd[20633]:    leap         : 0
+2026-01-16T02:43:50.103Z systemd-timesyncd[20633]:    version      : 4
+2026-01-16T02:43:50.103Z systemd-timesyncd[20633]:    mode         : 4
+2026-01-16T02:43:50.103Z systemd-timesyncd[20633]:    stratum      : 2
+2026-01-16T02:43:50.104Z systemd-timesyncd[20633]:    precision    : 0.000000 sec (-23)
+2026-01-16T02:43:50.104Z systemd-timesyncd[20633]:    root distance: 0.021034 sec
+2026-01-16T02:43:50.104Z systemd-timesyncd[20633]:    reference    : n/a
+2026-01-16T02:43:50.104Z systemd-timesyncd[20633]:    origin       : 1768531430.089
+2026-01-16T02:43:50.104Z systemd-timesyncd[20633]:    receive      : 1768531430.093
+2026-01-16T02:43:50.104Z systemd-timesyncd[20633]:    transmit     : 1768531430.093
+2026-01-16T02:43:50.104Z systemd-timesyncd[20633]:    dest         : 1768531430.103
+2026-01-16T02:43:50.105Z systemd-timesyncd[20633]:    offset       : -0.003 sec
+2026-01-16T02:43:50.105Z systemd-timesyncd[20633]:    delay        : +0.014 sec
+2026-01-16T02:43:50.105Z systemd-timesyncd[20633]:    packet count : 1
+2026-01-16T02:43:50.105Z systemd-timesyncd[20633]:    jitter       : 0.000
+2026-01-16T02:43:50.105Z systemd-timesyncd[20633]:    poll interval: 32
+2026-01-16T02:43:50.105Z systemd-timesyncd[20633]:    adjust (slew): -0.003 sec
+2026-01-16T02:43:50.105Z systemd-timesyncd[20633]:  Time response event, set the event flag
+2026-01-16T02:43:50.106Z systemd-timesyncd[20633]:    status       : 8193 sync
+2026-01-16T02:43:50.106Z systemd-timesyncd[20633]:    time now     : 1768531430.103
+2026-01-16T02:43:50.106Z systemd-timesyncd[20633]:    constant     : 1
+2026-01-16T02:43:50.106Z systemd-timesyncd[20633]:    offset       : -0.003 sec
+2026-01-16T02:43:50.106Z systemd-timesyncd[20633]:    freq offset  : -25932704 (-395 ppm)
+2026-01-16T02:43:50.106Z systemd-timesyncd[20633]:  interval/delta/delay/jitter/drift 32s/-0.003s/0.014s/0.000s/-395ppm
+2026-01-16T02:43:50.106Z systemd-timesyncd[20633]:  Synchronized to time server 2.127.251.193:123 (devicetime1.sky.com) at 1138134 ms.

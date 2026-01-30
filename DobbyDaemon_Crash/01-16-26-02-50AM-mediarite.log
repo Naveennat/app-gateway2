@@ -1,0 +1,475 @@
+2025-12-03T08:39:01.319Z sh[4249]:  Start Mediarite
+2025-12-03T08:39:01.453Z sh[4249]:  FUTARQUE_IDENTITY from ifconfig is:'D4:DA:CD:CB:2D:79'
+2025-12-03T08:39:01.453Z sh[4249]:  FUTARQUE_SERIALNO_UINT64 from FUTARQUE_IDENTITY is:'0xD4DACDCB2D79'
+2025-12-03T08:39:01.453Z sh[4249]:  NETWORK_IDENTITY from /tmp/.model_number is:'SKXI11ADS'
+2025-12-03T08:39:01.453Z sh[4249]:  SOC from /etc/device.properties is:'REALTEK'
+2025-12-03T08:39:01.453Z sh[4249]:  BUILD_TYPE from /etc/device.properties is:'prod'
+2025-12-03T08:39:01.453Z sh[4249]:  FRIENDLY_ID from /etc/device.properties is:'Sky XiOne UK'
+2025-12-03T08:39:01.453Z sh[4249]:  GDPR_LOCALE from /etc/device.properties is:'UK'
+2025-12-03T08:39:01.453Z sh[4249]:  MODEL_NUM from /etc/device.properties is:'SKXI11ADS'
+2025-12-03T08:39:01.453Z sh[4249]:  REMOTE_ACCESS is:'0'
+2025-12-03T08:39:01.581Z sh[4249]:  Configuring environments for Realtek
+2025-12-03T08:39:02.039Z sh[4249]:  export AUDIO_SINK_USE_ESSRMGR="1"
+2025-12-03T08:39:02.039Z sh[4249]:  export BUILD_TYPE="prod"
+2025-12-03T08:39:02.039Z sh[4249]:  export DBUS_SESSION_BUS_ADDRESS="unix:path=/var/run/dbus/system_bus_socket"
+2025-12-03T08:39:02.039Z sh[4249]:  export DROPBEAR_EXTRA_ARGS=" -s -a"
+2025-12-03T08:39:02.039Z sh[4249]:  export DROPBEAR_PARAMS="-r /tmp/.dropbear/dropcfg1 -r /tmp/.dropbear/dropcfg2"
+2025-12-03T08:39:02.039Z sh[4249]:  export FRIENDLY_ID="Sky XiOne UK"
+2025-12-03T08:39:02.039Z sh[4249]:  export FUTARQUE_IDENTITY="D4:DA:CD:CB:2D:79"
+2025-12-03T08:39:02.039Z sh[4249]:  export FUTARQUE_SERIALNO_UINT64="0xD4DACDCB2D79"
+2025-12-03T08:39:02.039Z sh[4249]:  export GDPR_LOCALE="UK"
+2025-12-03T08:39:02.039Z sh[4249]:  export GST_AUDIO_SINK="rtkaudiosink"
+2025-12-03T08:39:02.040Z sh[4249]:  export GST_HW_AV_SYNC="1"
+2025-12-03T08:39:02.040Z sh[4249]:  export GST_PLAY_FLAG_NATIVE_VIDEO="1"
+2025-12-03T08:39:02.040Z sh[4249]:  export GST_UNMAPPED_BUFFER_TIME_STAMPS="1"
+2025-12-03T08:39:02.040Z sh[4249]:  export GST_USE_PCR_SINK="1"
+2025-12-03T08:39:02.040Z sh[4249]:  export GST_WESTEROS_SINK_VIDEO_RES="1920,1080"
+2025-12-03T08:39:02.040Z sh[4249]:  export IP_ADDRESS_PARAM=""
+2025-12-03T08:39:02.040Z sh[4249]:  export LD_LIBRARY_PATH="/usr/lib:/usr/lib/realtek"
+2025-12-03T08:39:02.040Z sh[4249]:  export LD_PRELOAD="/usr/lib/mediarite/libSafeSetenv.so.10 /usr/lib/realtek/libVOutWrapper.so /usr/lib/realtek/libAOutWrapper.so /usr/lib/realtek/libvpu.so /usr/lib/libwesteros_gl.so.0"
+2025-12-03T08:39:02.040Z sh[4249]:  export LOGNAME="root"
+2025-12-03T08:39:02.040Z sh[4249]:  export MODEL_NUM="SKXI11ADS"
+2025-12-03T08:39:02.040Z sh[4249]:  export NETWORK_IDENTITY="SKXI11ADS"
+2025-12-03T08:39:02.040Z sh[4249]:  export NOTIFY_SOCKET="/run/systemd/notify"
+2025-12-03T08:39:02.040Z sh[4249]:  export OLDPWD
+2025-12-03T08:39:02.041Z sh[4249]:  export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+2025-12-03T08:39:02.041Z sh[4249]:  export PLATFORM="sky"
+2025-12-03T08:39:02.041Z sh[4249]:  export PWD="/"
+2025-12-03T08:39:02.041Z sh[4249]:  export REMOTE_ACCESS="0"
+2025-12-03T08:39:02.041Z sh[4249]:  export SHLVL="1"
+2025-12-03T08:39:02.041Z sh[4249]:  export SOC="RTK"
+2025-12-03T08:39:02.041Z sh[4249]:  export THREAD_MONITOR="2"
+2025-12-03T08:39:02.041Z sh[4249]:  export USER="root"
+2025-12-03T08:39:02.041Z sh[4249]:  export USE_DEVKEYS=""
+2025-12-03T08:39:02.041Z sh[4249]:  export WAYLAND_DISPLAY="westeros-mediarite"
+2025-12-03T08:39:02.041Z sh[4249]:  export WAYLAND_DISPLAY_1_SUBTITLE="westeros-mediarite"
+2025-12-03T08:39:02.041Z sh[4249]:  export WAYLAND_DISPLAY_1_VIDEO="westeros-mediarite"
+2025-12-03T08:39:02.041Z sh[4249]:  export WAYLAND_DISPLAY_2_SUBTITLE="westeros-asplayer-subtitles"
+2025-12-03T08:39:02.042Z sh[4249]:  export WAYLAND_DISPLAY_2_VIDEO="westeros-asplayer"
+2025-12-03T08:39:02.042Z sh[4249]:  export WA_GST_AUDIO_MUTE_PULSE_MS="250"
+2025-12-03T08:39:02.042Z sh[4249]:  export WA_GST_MANAGE_PIPELINE_CLOCK="1"
+2025-12-03T08:39:02.042Z sh[4249]:  export WA_GST_SHUTDOWN_BEFORE_NEW_PLAYBIN="1"
+2025-12-03T08:39:02.042Z sh[4249]:  export WA_GST_USE_LAST_SAMPLE="0"
+2025-12-03T08:39:02.042Z sh[4249]:  export WESTEROS_SINK_USE_ESSRMGR="1"
+2025-12-03T08:39:02.042Z sh[4249]:  export WPA_SUPP_ARGS=" -Dnl80211 -c /opt/secure/wifi/wpa_supplicant.conf -i wlan0 -P /var/run/wpa_supplicant/wlan0.pid -t -U -u -d"
+2025-12-03T08:39:02.042Z sh[4249]:  export WPA_SUPP_CONF_FILE="/opt/secure/wifi/wpa_supplicant.conf"
+2025-12-03T08:39:02.042Z sh[4249]:  export XDG_RUNTIME_DIR="/tmp"
+2025-12-03T08:39:02.053Z sh[4249]:  export YOCTO_MACHINE="xione-uk"
+2025-12-03T08:39:02.053Z sh[4249]:  export YOCTO_MACHINEOVERRIDES="armv7ve:xione-uk:arm:kirkstone:client:hank:vgdrm-proxy"
+2025-12-03T08:39:02.053Z sh[4249]:  export YOCTO_PRODUCT=""
+2025-12-03T08:39:02.231Z sh[4249]:  + cd /usr/share/mediarite
+2025-12-03T08:39:02.231Z sh[4249]:  + killall -q -9 MediaRite
+2026-01-16T01:31:48.158Z sh[4249]:  + exec /usr/share/mediarite/MediaRite --enable-stdout=0 --thread-mon=2
+2026-01-16T01:31:49.663Z MediaRite[4249]:  Config loaded config_file=/etc/mediarite/mediarite.cfg
+2026-01-16T01:31:49.663Z MediaRite[4249]:  Config loaded config_file=/etc/mediarite/mediarite-vendor.cfg
+2026-01-16T01:31:49.663Z MediaRite[4249]:  Config not found config_file=/etc/mediarite/mediarite-product.cfg
+2026-01-16T01:31:49.663Z MediaRite[4249]:  Config not found config_file=//opt/persistent/mediarite/mediarite.cfg
+2026-01-16T01:31:49.663Z MediaRite[4249]:  Loading BasicDvbStringInterface
+2026-01-16T01:31:49.664Z MediaRite[4249]:  Looking for plugin pluginFileName=//usr/lib/mediarite/plugins//libBasicDvbStringPlugin.so.10
+2026-01-16T01:31:49.669Z MediaRite[4249]:  Loaded plugin pluginFileName=//usr/lib/mediarite/plugins//libBasicDvbStringPlugin.so.10
+2026-01-16T01:31:49.669Z MediaRite[4249]:  Found Plugin Done...
+2026-01-16T01:31:49.710Z MediaRite[4249]:  MRT_INFO_FILESYSTEM_STATS: size=-1, free=37676032, total=57381888, loc=//opt/persistent/mediarite
+2026-01-16T01:31:49.711Z MediaRite[4249]:  MRT_INFO_FILESYSTEM_STATS: size=-1, free=891707392, total=1382371328, loc=//media/apps/mediarite
+2026-01-16T01:31:49.742Z MediaRite[4249]:  MRT_INFO_FILESYSTEM_STATS: size=-1, free=0, total=0, loc=//tmp/mediarite
+2026-01-16T01:31:49.743Z MediaRite[4249]:   gregfile=//opt/persistent/mediarite/gstreamer_1000610099.reg
+2026-01-16T01:31:49.743Z sh[4249]:  -=========================-
+2026-01-16T01:31:49.743Z sh[4249]:  -=       MediaRite       =-
+2026-01-16T01:31:49.743Z sh[4249]:  -= Sky Labs Aalborg A/S  =-
+2026-01-16T01:31:49.743Z sh[4249]:  -=========================-
+2026-01-16T01:31:49.743Z sh[4249]:   Product          : 8200:broadcast-hal:middleware:release:texttrack:xione-uk
+2026-01-16T01:31:49.744Z sh[4249]:   Software Version : 10.61.0
+2026-01-16T01:31:49.744Z sh[4249]:   Date             : 20251217
+2026-01-16T01:31:49.848Z MediaRite[4249]:  MediaRiteApiManagerInit()
+2026-01-16T01:31:50.149Z MediaRite[4249]:  Listening to tcp=8201, protocol=eJson, fd=5, usage=MAPI_UNTRUSTED, security=true, tcpAccept=LOOPBACK
+2026-01-16T01:31:50.270Z MediaRite[4249]:  Listening to tcp=8200, protocol=eJson, fd=6, usage=MAPI_TRUSTED, security=false, tcpAccept=LOOPBACK
+2026-01-16T01:31:50.545Z MediaRite[4249]:  Listening to tcp=40660, protocol=eJson, fd=7, usage=MAPI, security=false, tcpAccept=LOOPBACK
+2026-01-16T01:31:50.545Z MediaRite[4249]:  Listening to unix=/tmp/mediarite_mapi, protocol=eJson, fd=8
+2026-01-16T01:31:50.546Z MediaRite[4249]:  MediaRiteApiRpcLooper-Listening on  mLocalSocket=/tmp/mediarite_mapi, mTcpPort=8201, mRemoteAccessTrustedPort=false, mRemoteAccessUntrustedPort=false
+2026-01-16T01:31:50.757Z MediaRite[4249]:  Opening 4 i2c busses
+2026-01-16T01:31:50.896Z MediaRite[4249]:  gst_init() took 95 ms
+2026-01-16T01:31:50.934Z MediaRite[4249]:  Looking for plugin pluginFileName=//usr/lib/mediarite/plugins//libHalKeysPlugin.so.10
+2026-01-16T01:31:50.936Z MediaRite[4249]:  Loaded plugin pluginFileName=//usr/lib/mediarite/plugins//libHalKeysPlugin.so.10
+2026-01-16T01:31:50.936Z MediaRite[4249]:  Found Plugin Done...
+2026-01-16T01:31:51.144Z MediaRite[4249]:  Opening SettingsDB SQLite version 3.41.2
+2026-01-16T01:31:51.368Z MediaRite[4249]:  STARTUP_WIZ failed
+2026-01-16T01:31:51.368Z MediaRite[4249]:  SettingsDB - resetit 1
+2026-01-16T01:31:51.369Z MediaRite[4249]:  MRT_INFO_SETTINGS_RESET: reason=SetupNotDone
+2026-01-16T01:31:51.370Z MediaRite[4249]:  settingsdb Unlinked OK
+2026-01-16T01:31:51.370Z MediaRite[4249]:  dynamicdb Unlinked OK
+2026-01-16T01:31:51.370Z MediaRite[4249]:  Unlink of DB failed
+2026-01-16T01:31:51.371Z MediaRite[4249]:  Unlink of epg sched DB backup failed
+2026-01-16T01:31:51.371Z MediaRite[4249]:  settingsdb filesize -1
+2026-01-16T01:31:51.371Z MediaRite[4249]:  Creating SettingsDB
+2026-01-16T01:31:51.650Z MediaRite[4249]:  PermDB - resetit 0
+2026-01-16T01:31:51.650Z MediaRite[4249]:  oldPermVersion 2, PERMDB_DATABASE_VERSION 2
+2026-01-16T01:31:52.050Z MediaRite[4249]:  SetMenuLanguage rfc5646tag=en
+2026-01-16T01:31:52.051Z MediaRite[4249]:  Loading mo file=/usr/share/mediarite/resources/locale/en.mo
+2026-01-16T01:31:52.055Z MediaRite[4249]:  MRT_INFO_SETTING_SET_VAR: key=conf.language.menu, value=en, target=FSST_LOCAL
+2026-01-16T01:31:52.119Z MediaRite[4249]:  VidDecoderCaps mCombinedVideoFormats=<FVF_MPEG1 FVF_MPEG2 FVF_MPEG4_AVC FVF_MPEG4_HEVC>
+2026-01-16T01:31:52.121Z MediaRite[4249]:  PowerManagerPluginClient ctor
+2026-01-16T01:31:52.221Z MediaRite[4249]:  PowerManagerPluginClient::Operational upAndRunning=true
+2026-01-16T01:31:52.221Z MediaRite[4249]:  Get first power state for PowerManager plugin
+2026-01-16T01:31:52.222Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY -> POWER_STATE_STANDBY
+2026-01-16T01:31:52.222Z MediaRite[4249]:  Register event listener for PowerManager plugin
+2026-01-16T01:31:52.228Z MediaRite[4249]:  PowerManagerPluginClient ctor ends
+2026-01-16T01:31:52.387Z MediaRite[4249]:  Detected originalFrontEnd=0, detectedConfigs.size()=0, frontEndSubIndex=0, pConfig->mHwDetect=i2c:/dev/i2c/0/0xC8?w=0x00
+2026-01-16T01:31:52.387Z MediaRite[4249]:  ----- TunerFrontEndConfig -----
+2026-01-16T01:31:52.387Z MediaRite[4249]:   mTunerNumber=0
+2026-01-16T01:31:52.387Z MediaRite[4249]:   mSubTunerNumber=0
+2026-01-16T01:31:52.387Z MediaRite[4249]:   mOrgSubTunerNumber=0
+2026-01-16T01:31:52.388Z MediaRite[4249]:   mSwitchPioPins=0
+2026-01-16T01:31:52.388Z MediaRite[4249]:   mSwitchPin[0]=
+2026-01-16T01:31:52.388Z MediaRite[4249]:   mSwitchPin[1]=
+2026-01-16T01:31:52.388Z MediaRite[4249]:   mDriverType=28
+2026-01-16T01:31:52.388Z MediaRite[4249]:   mTsIn=0
+2026-01-16T01:31:52.388Z MediaRite[4249]:   mCarrierMediaYValue=140
+2026-01-16T01:31:52.388Z MediaRite[4249]:   mSupportedFrontEnds=<FFE_DVB_T FFE_DVB_T2 FFE_DVB_C>
+2026-01-16T01:31:52.389Z MediaRite[4249]:   mRFLevelConnected=false
+2026-01-16T01:31:52.389Z MediaRite[4249]:   mTunerType=21442183
+2026-01-16T01:31:52.389Z MediaRite[4249]:   mPLLI2CAddress=/dev/i2c/0/0xC0
+2026-01-16T01:31:52.389Z MediaRite[4249]:   mSecondPLLI2CAddress=
+2026-01-16T01:31:52.389Z MediaRite[4249]:   mDemodI2CAddress=/dev/i2c/0/0xC8
+2026-01-16T01:31:52.389Z MediaRite[4249]:   mTsMode=1
+2026-01-16T01:31:52.389Z MediaRite[4249]:   mUsesRepeater=true
+2026-01-16T01:31:52.390Z MediaRite[4249]:   mDemodResetPin=/sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T01:31:52.390Z MediaRite[4249]:   mLnbControl=0
+2026-01-16T01:31:52.390Z MediaRite[4249]:   mLnbI2CAddress=
+2026-01-16T01:31:52.390Z MediaRite[4249]:   mPolarityPin=
+2026-01-16T01:31:52.390Z MediaRite[4249]:   mLineLengthPin=
+2026-01-16T01:31:52.390Z MediaRite[4249]:   mLnbEnablePin=
+2026-01-16T01:31:52.390Z MediaRite[4249]:   mResetBeforeHwDetect=true
+2026-01-16T01:31:52.391Z MediaRite[4249]:   mHwDetect=i2c:/dev/i2c/0/0xC8?w=0x00
+2026-01-16T01:31:52.391Z MediaRite[4249]:   mMaxAgc=0
+2026-01-16T01:31:52.391Z MediaRite[4249]:   mMaxBitErrorRate=0
+2026-01-16T01:31:52.391Z MediaRite[4249]:   mMaxSignalNoiseRatio=0
+2026-01-16T01:31:52.391Z MediaRite[4249]:  Looking for plugin pluginFileName=//usr/lib/mediarite/plugins//libHalSiliconLabsFE.so.10
+2026-01-16T01:31:52.438Z MediaRite[4249]:  Loaded plugin pluginFileName=//usr/lib/mediarite/plugins//libHalSiliconLabsFE.so.10
+2026-01-16T01:31:52.639Z MediaRite[4249]:  Found Plugin Done...
+2026-01-16T01:31:52.639Z MediaRite[4249]:  Set DemodResetPin 1050626 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T01:31:52.690Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T01:31:52.703Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(0) pn 24 pn2=0 chiprev 1 fwmajor 50 fwminor=48 cmpbuild=5
+2026-01-16T01:31:52.805Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T01:31:52.805Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T01:31:53.177Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T01:31:53.194Z MediaRite[4249]:  CheckTuner[0] Open(4196609)
+2026-01-16T01:31:53.364Z MediaRite[4249]:  DBOnlineRestore - //media/apps/mediarite/epg_sched.bak[main] -> InMem_EpgSched[main]
+2026-01-16T01:31:53.393Z MediaRite[4249]:  Restore Progress 25/25   100 %
+2026-01-16T01:31:53.536Z MediaRite[4249]:   oCaps=[1] {{mSupportedFrontEndTypes=<FFE_DVB_T FFE_DVB_T2 FFE_DVB_C>, mFrontEndType=FFE_UNKNOWN, mMinFrequency=4200000, mMaxFrequency=85800000, mMinSymbolRate=1000, mMaxSymbolRate=7200, mMinFrequencySweepStep=0, mMaxFrequencySweepStep=4294967295, mTrustActualFrequencyFeedback=false, mSignalIndicatorsAreNordigCompliant=false, mCiSwitchCapability=false, mTsSwitchCapability=false, mAutoSymbolRate=false, mSweepSupport=false}}
+2026-01-16T01:31:53.537Z MediaRite[4249]:  Found: Name=Internal, CAPS=<FFE_DVB_T FFE_DVB_T2 FFE_DVB_C>
+2026-01-16T01:31:54.009Z MediaRite[4249]:  Creating PlayerManager
+2026-01-16T01:31:54.009Z MediaRite[4249]:  Creating TunerManager
+2026-01-16T01:31:54.557Z MediaRite[4249]:  UserSettingsPluginClient ctor
+2026-01-16T01:31:54.644Z MediaRite[4249]:  UserSettingsPluginClient::Operational upAndRunning=true
+2026-01-16T01:31:54.644Z MediaRite[4249]:  Register event listener for User Settings plugin
+2026-01-16T01:31:54.670Z MediaRite[4249]:  User setting available:  key.c_str()=preferredAudioLanguages, result["value"]=eng,eng
+2026-01-16T01:31:54.672Z MediaRite[4249]:  User setting available:  key.c_str()=presentationLanguage, result["value"]=en-GB
+2026-01-16T01:31:54.679Z MediaRite[4249]:  User setting available:  key.c_str()=preferredCaptionsLanguages, result["value"]=eng
+2026-01-16T01:31:54.716Z MediaRite[4249]:  User setting available:  key.c_str()=viewingRestrictions, result["value"]={"restrictions":[]}
+2026-01-16T01:31:54.722Z MediaRite[4249]:  User setting available:  key.c_str()=voiceGuidance, result["value"]=false
+2026-01-16T01:31:54.735Z MediaRite[4249]:  User setting available:  key.c_str()=voiceGuidanceHints, result["value"]=true
+2026-01-16T01:31:54.786Z MediaRite[4249]:  UserSettingsPluginClient ctor ends
+2026-01-16T01:31:54.791Z MediaRite[4249]:  UserSettings plugin already activated
+2026-01-16T01:31:54.793Z MediaRite[4249]:  MRT_INFO_CR_SET_STATE: playerId=Maintenance, grace=MIN, time=MIN, eventChange=false, restriction={}
+2026-01-16T01:31:54.812Z MediaRite[4249]:  MRT_INFO_CR_SET_STATE: playerId=MainPlayer, grace=MIN, time=MIN, eventChange=false, restriction={}
+2026-01-16T01:31:54.815Z MediaRite[4249]:  MRT_INFO_CR_SET_STATE: playerId=AsPlayer, grace=MIN, time=MIN, eventChange=false, restriction={}
+2026-01-16T01:31:54.818Z sh[4249]:  [2026/01/16 01:31:54:8135] N: LWS: 4.2.1-v4.2.2, loglevel 7
+2026-01-16T01:31:54.818Z sh[4249]:  [2026/01/16 01:31:54:8136] N: NET CLI SRV H1 H2 WS ConMon IPv6-absent
+2026-01-16T01:31:54.818Z sh[4249]:  [2026/01/16 01:31:54:8139] N:  ++ [wsi|0|pipe] (1)
+2026-01-16T01:31:54.818Z sh[4249]:  [2026/01/16 01:31:54:8140] N:  ++ [vh|0|netlink] (1)
+2026-01-16T01:31:54.818Z sh[4249]:  [2026/01/16 01:31:54:8141] N:  ++ [vh|1|localhost||9201] (2)
+2026-01-16T01:31:54.818Z sh[4249]:  [2026/01/16 01:31:54:8142] N: lws_socket_bind: nowsi: source ads 0.0.0.0
+2026-01-16T01:31:54.819Z sh[4249]:  [2026/01/16 01:31:54:8143] N:  ++ [wsi|1|listen|localhost||9201] (2)
+2026-01-16T01:31:54.819Z MediaRite[4249]:  Websocket listening on port=9201
+2026-01-16T01:31:54.834Z MediaRite[4249]:  org.rdk.DisplaySettings.getSinkAtmosCapability success!=true result={"success":false}
+2026-01-16T01:31:54.862Z MediaRite[4249]:  org.rdk.PersistentStore.getValue no value params={"namespace":"accountProfile","key":"commercialtype"}, err=22
+2026-01-16T01:31:54.863Z MediaRite[4249]:  MRT_INFO_SETTING_SET_INTEGER_VAR: key=system.hotelmode.enabled, value=0, target=FSST_DEVICE
+2026-01-16T01:31:54.901Z MediaRite[4249]:  MRT_INFO_SETTING_SET_VAR: key=conf.language.preferredAudio, value=eng,eng, target=FSST_DEVICE_ON_INIT
+2026-01-16T01:31:54.945Z MediaRite[4249]:  SetMenuLanguage rfc5646tag=en-GB
+2026-01-16T01:31:54.945Z MediaRite[4249]:  Loading mo file=/usr/share/mediarite/resources/locale/en-GB.mo
+2026-01-16T01:31:54.946Z MediaRite[4249]:  Loading mo file=/usr/share/mediarite/resources/locale/en.mo
+2026-01-16T01:31:54.952Z MediaRite[4249]:  MRT_INFO_SETTING_SET_VAR: key=conf.language.menu, value=en-GB, target=FSST_DEVICE_ON_INIT
+2026-01-16T01:31:54.979Z MediaRite[4249]:  Listening to tcp=9201, usage=MAPI_WS
+2026-01-16T01:31:54.980Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=3542, mExitDeepSleepCounter=0}
+2026-01-16T01:31:55.004Z MediaRite[4249]:  Rebuilding NOCASE_UTF8 indexes Start
+2026-01-16T01:31:55.034Z MediaRite[4249]:  Rebuilding NOCASE_UTF8 indexes End
+2026-01-16T01:31:55.034Z MediaRite[4249]:  MRT_INFO_SETTING_SET_VAR: key=conf.language.preferredApplication, value=eng, target=FSST_DEVICE_ON_INIT
+2026-01-16T01:31:55.064Z MediaRite[4249]:  MRT_INFO_SETTING_SET_VAR: key=conf.language.preferredSubtitle, value=eng, target=FSST_DEVICE_ON_INIT
+2026-01-16T01:31:55.112Z MediaRite[4249]:  MRT_INFO_SETTING_SET_VAR: key=conf.parentalcontrol.contentRestrictions, value=[], target=FSST_DEVICE_ON_INIT
+2026-01-16T01:31:55.161Z MediaRite[4249]:  MRT_INFO_SETTING_SET_VAR: key=conf.parentalcontrol.enforcedRatingSystems, value=0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0, target=FSST_DEVICE_ON_INIT
+2026-01-16T01:31:55.223Z MediaRite[4249]:  MRT_INFO_CR_SET_STATE: playerId=Maintenance, grace=MIN, time=MIN, eventChange=false, restriction={}
+2026-01-16T01:31:55.223Z MediaRite[4249]:  MRT_INFO_CR_SET_STATE: playerId=MainPlayer, grace=MIN, time=MIN, eventChange=false, restriction={}
+2026-01-16T01:31:55.223Z MediaRite[4249]:  MRT_INFO_CR_SET_STATE: playerId=AsPlayer, grace=MIN, time=MIN, eventChange=false, restriction={}
+2026-01-16T01:31:55.223Z MediaRite[4249]:  MRT_INFO_SETTING_SET_INTEGER_VAR: key=conf.accessibility.voiceGuidance.enabled, value=0, target=FSST_DEVICE_ON_INIT
+2026-01-16T01:31:55.253Z MediaRite[4249]:  MRT_INFO_SETTING_SET_INTEGER_VAR: key=conf.accessibility.voiceGuidance.hints, value=1, target=FSST_DEVICE_ON_INIT
+2026-01-16T01:31:56.543Z MediaRite[4249]:  NetworkTunerManager::NotifyNetworkReady(bool networkReady=1 mNetworkReady=0 mInternalTunerReady=0)
+2026-01-16T01:51:06.766Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=1,  stateChangeAfter=1
+2026-01-16T01:51:06.849Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T01:51:06.849Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T01:51:06.850Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T01:51:06.850Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T01:51:06.851Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T01:51:06.851Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T01:51:06.851Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T01:51:06.940Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T01:51:06.951Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=754147, mExitDeepSleepCounter=0}
+2026-01-16T02:02:43.356Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=2,  stateChangeAfter=0
+2026-01-16T02:02:43.440Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:02:43.448Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:02:43.448Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:02:43.448Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:02:43.636Z MediaRite[4249]:  Set DemodResetPin 1048834 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:02:43.688Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:02:43.689Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:02:43.780Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:02:43.781Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:02:44.087Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:02:44.128Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:02:44.128Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:02:44.128Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:02:44.128Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:02:44.228Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=775029, mExitDeepSleepCounter=1}
+2026-01-16T02:02:48.466Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=3,  stateChangeAfter=1
+2026-01-16T02:02:48.537Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:02:48.537Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:02:48.537Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:02:48.538Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:02:48.538Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:02:48.538Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:02:48.538Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:02:48.604Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:02:48.638Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=780195, mExitDeepSleepCounter=1}
+2026-01-16T02:06:05.739Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=4,  stateChangeAfter=0
+2026-01-16T02:06:05.844Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:06:05.844Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:06:05.845Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:06:05.860Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:06:06.027Z MediaRite[4249]:  Set DemodResetPin 1048835 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:06:06.077Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:06:06.080Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:06:06.192Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:06:06.193Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:06:06.523Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:06:06.564Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:06:06.564Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:06:06.564Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:06:06.565Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:06:06.664Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=795112, mExitDeepSleepCounter=2}
+2026-01-16T02:06:10.839Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=5,  stateChangeAfter=1
+2026-01-16T02:06:10.873Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:06:10.873Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:06:10.874Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:06:10.874Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:06:10.874Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:06:10.875Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:06:10.875Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:06:10.939Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:06:10.975Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=800191, mExitDeepSleepCounter=2}
+2026-01-16T02:12:49.176Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=6,  stateChangeAfter=0
+2026-01-16T02:12:49.220Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:12:49.220Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:12:49.221Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:12:49.283Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:12:49.418Z MediaRite[4249]:  Set DemodResetPin 1048836 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:12:49.468Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:12:49.473Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:12:49.611Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:12:49.612Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:12:49.955Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:12:49.995Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:12:49.995Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:12:49.995Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:12:49.995Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:12:50.095Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=815923, mExitDeepSleepCounter=3}
+2026-01-16T02:12:54.287Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=7,  stateChangeAfter=1
+2026-01-16T02:12:54.303Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:12:54.304Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:12:54.304Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:12:54.306Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:12:54.306Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:12:54.307Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:12:54.307Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:12:54.398Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:12:54.407Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=821015, mExitDeepSleepCounter=3}
+2026-01-16T02:13:09.386Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=8,  stateChangeAfter=0
+2026-01-16T02:13:09.432Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:13:09.434Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:13:09.434Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:13:09.480Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:13:09.627Z MediaRite[4249]:  Set DemodResetPin 1048837 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:13:09.676Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:13:09.679Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:13:09.823Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:13:09.823Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:13:10.157Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:13:10.199Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:13:10.200Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:13:10.200Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:13:10.200Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:13:10.300Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=836123, mExitDeepSleepCounter=4}
+2026-01-16T02:13:14.502Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=9,  stateChangeAfter=1
+2026-01-16T02:13:14.511Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:13:14.511Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:13:14.511Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:13:14.511Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:13:14.512Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:13:14.512Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:13:14.512Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:13:14.595Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:13:14.610Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=841219, mExitDeepSleepCounter=4}
+2026-01-16T02:19:34.883Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=10,  stateChangeAfter=0
+2026-01-16T02:19:34.934Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:19:34.934Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:19:34.935Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:19:35.008Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:19:35.136Z MediaRite[4249]:  Set DemodResetPin 1048838 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:19:35.186Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:19:35.189Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:19:35.282Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:19:35.282Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:19:35.610Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:19:35.651Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:19:35.651Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:19:35.651Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:19:35.652Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:19:35.752Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=856267, mExitDeepSleepCounter=5}
+2026-01-16T02:19:39.994Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=11,  stateChangeAfter=1
+2026-01-16T02:19:40.060Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:19:40.060Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:19:40.060Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:19:40.061Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:19:40.061Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:19:40.061Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:19:40.062Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:19:40.133Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:19:40.164Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=861409, mExitDeepSleepCounter=5}
+2026-01-16T02:23:07.202Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=12,  stateChangeAfter=0
+2026-01-16T02:23:07.314Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:23:07.317Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:23:07.317Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:23:07.317Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:23:07.508Z MediaRite[4249]:  Set DemodResetPin 1048839 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:23:07.559Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:23:07.568Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:23:07.661Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:23:07.661Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:23:07.972Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:23:08.012Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:23:08.012Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:23:08.012Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:23:08.013Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:23:08.113Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=886542, mExitDeepSleepCounter=6}
+2026-01-16T02:23:12.316Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=13,  stateChangeAfter=1
+2026-01-16T02:23:12.421Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:23:12.421Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:23:12.422Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:23:12.422Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:23:12.422Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:23:12.422Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:23:12.423Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:23:12.481Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:23:12.522Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=891711, mExitDeepSleepCounter=6}
+2026-01-16T02:26:53.770Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=14,  stateChangeAfter=0
+2026-01-16T02:26:53.849Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:26:53.850Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:26:53.850Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:26:54.055Z MediaRite[4249]:  Set DemodResetPin 1048840 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:26:54.101Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:26:54.103Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:26:54.241Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:26:54.241Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:26:54.380Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:26:55.045Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:26:55.091Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:26:55.091Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:26:55.091Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:26:55.091Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:26:55.192Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=942559, mExitDeepSleepCounter=7}
+2026-01-16T02:26:59.025Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=15,  stateChangeAfter=1
+2026-01-16T02:26:59.108Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:26:59.108Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:26:59.108Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:26:59.108Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:26:59.108Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:26:59.108Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:26:59.109Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:27:00.341Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:27:00.380Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=948481, mExitDeepSleepCounter=7}
+2026-01-16T02:27:07.145Z sh[4249]:  [2026/01/16 02:27:07:1449] N: rops_handle_POLLIN_netlink: DELADDR
+2026-01-16T02:30:16.825Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=16,  stateChangeAfter=0
+2026-01-16T02:30:16.889Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:30:16.895Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:30:16.896Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:30:16.896Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:30:17.098Z MediaRite[4249]:  Set DemodResetPin 1048841 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:30:17.150Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:30:17.153Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:30:17.259Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:30:17.260Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:30:17.562Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:30:17.603Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:30:17.603Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:30:17.603Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:30:17.604Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:30:17.704Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=1003705, mExitDeepSleepCounter=8}
+2026-01-16T02:30:21.925Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=17,  stateChangeAfter=1
+2026-01-16T02:30:22.012Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:30:22.012Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:30:22.012Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:30:22.014Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:30:22.014Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:30:22.015Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:30:22.015Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:30:22.080Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:30:22.115Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=1008888, mExitDeepSleepCounter=8}
+2026-01-16T02:33:39.519Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=18,  stateChangeAfter=0
+2026-01-16T02:33:39.586Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:33:39.597Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:33:39.598Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:33:39.598Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:33:39.791Z MediaRite[4249]:  Set DemodResetPin 1048842 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:33:39.842Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:33:39.845Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:33:39.936Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:33:39.937Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:33:40.244Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:33:40.285Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:33:40.285Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:33:40.285Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:33:40.285Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:33:40.385Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=1058693, mExitDeepSleepCounter=9}
+2026-01-16T02:33:44.624Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=19,  stateChangeAfter=1
+2026-01-16T02:33:44.685Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:33:44.685Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:33:44.685Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:33:44.686Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:33:44.686Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:33:44.686Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:33:44.687Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:33:44.759Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:33:44.787Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=1063844, mExitDeepSleepCounter=9}
+2026-01-16T02:43:44.004Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP,  transactionId=20,  stateChangeAfter=0
+2026-01-16T02:43:44.018Z MediaRite[4249]:  (Mainloop) Power is resumed
+2026-01-16T02:43:44.018Z MediaRite[4249]:  Core::SyncOnPowerResume
+2026-01-16T02:43:44.018Z MediaRite[4249]:  SyncOnPowerResume -> Reinitialize frontend
+2026-01-16T02:43:44.108Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_DEEP_SLEEP -> POWER_STATE_STANDBY_LIGHT_SLEEP
+2026-01-16T02:43:44.219Z MediaRite[4249]:  Set DemodResetPin 1048843 : /sys/class/gpio/rtk_iso_gpio/gpio65i
+2026-01-16T02:43:44.270Z MediaRite[4249]:  Clear DemodResetPin
+2026-01-16T02:43:44.274Z MediaRite[4249]:  SiLabs_TER_Tuner_Part_Info(5) pn 0 pn2=0 chiprev 0 fwmajor 0 fwminor=0 cmpbuild=0
+2026-01-16T02:43:44.389Z MediaRite[4249]:  api->spi_download 0
+2026-01-16T02:43:44.390Z MediaRite[4249]:  Build Option: Si2183_B60_COMPATIBLE
+2026-01-16T02:43:44.804Z MediaRite[4249]:  Si2168-D60 Part running 'FW_6_0b13'
+2026-01-16T02:43:44.851Z MediaRite[4249]:  SyncOnPowerResume done
+2026-01-16T02:43:44.852Z MediaRite[4249]:  MediaHandlers::SyncOnPowerResume
+2026-01-16T02:43:44.852Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerResume
+2026-01-16T02:43:44.852Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerResume
+2026-01-16T02:43:44.953Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=DEEP_SLEEP, mNewState=LIGHT_SLEEP, mChangeTs=1114939, mExitDeepSleepCounter=10}
+2026-01-16T02:43:49.130Z MediaRite[4249]:  OnPowerModePreChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP,  transactionId=21,  stateChangeAfter=1
+2026-01-16T02:43:49.162Z MediaRite[4249]:  (Mainloop) Power is suspended
+2026-01-16T02:43:49.162Z MediaRite[4249]:  Core::SyncOnPowerSuspend
+2026-01-16T02:43:49.162Z MediaRite[4249]:  SyncOnPowerSuspend
+2026-01-16T02:43:49.164Z MediaRite[4249]:  SyncOnPowerSuspend done
+2026-01-16T02:43:49.164Z MediaRite[4249]:  MediaHandlers::SyncOnPowerSuspend
+2026-01-16T02:43:49.165Z MediaRite[4249]:  Mpeg2TsMediaHandler::SyncOnPowerSuspend
+2026-01-16T02:43:49.165Z MediaRite[4249]:  CaManagerInterface::SyncOnPowerSuspend
+2026-01-16T02:43:49.241Z MediaRite[4249]:  OnPowerModeChange: POWER_STATE_STANDBY_LIGHT_SLEEP -> POWER_STATE_STANDBY_DEEP_SLEEP
+2026-01-16T02:43:49.266Z MediaRite[4249]:  NotifyPowerStateChanged iPowerStateChanged={mCurrentState=LIGHT_SLEEP, mNewState=DEEP_SLEEP, mChangeTs=1120071, mExitDeepSleepCounter=10}

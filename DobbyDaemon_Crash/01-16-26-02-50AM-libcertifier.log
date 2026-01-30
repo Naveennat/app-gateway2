@@ -1,0 +1,9 @@
+2026-01-16 01:38:42 DEBUG /usr/src/debug/libcertifier/2.2.1-r0/git/src/certifier.c:289: BEFORE raw_time1768527522
+
+2026-01-16 01:38:42 DEBUG /usr/src/debug/libcertifier/2.2.1-r0/git/src/certifier.c:245: PKCS12 file /opt/certs/devicecert_1.pk12 exists. Loading x509
+2026-01-16 01:38:44 DEBUG /usr/src/debug/libcertifier/2.2.1-r0/git/src/certifier.c:289: BEFORE raw_time1768527524
+
+2026-01-16 01:38:44 DEBUG /usr/src/debug/libcertifier/2.2.1-r0/git/src/certifier.c:245: PKCS12 file /opt/certs/devicecert_1.pk12 exists. Loading x509
+2026-01-16 01:38:45 DEBUG /usr/src/debug/libcertifier/2.2.1-r0/git/src/certifier.c:289: BEFORE raw_time1768527525
+
+2026-01-16 01:38:45 DEBUG /usr/src/debug/libcertifier/2.2.1-r0/git/src/certifier.c:245: PKCS12 file /opt/certs/devicecert_1.pk12 exists. Loading x509

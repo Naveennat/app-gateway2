@@ -1,0 +1,359 @@
+2026-01-15T02:46:38.709Z "parodus"[5244]:  Syntax error near unexpected '('
+2026-01-15T02:46:38.709Z "parodus"[5244]:  shell failureredirection to variable is insecure
+2026-01-15T02:46:38.709Z "parodus"[5244]:  shell failureredirection to variable is insecure
+2026-01-15T02:46:38.757Z "parodus"[5244]:  shell failure/bin/rm: /bin/rm: cannot execute binary file
+2026-01-15T02:46:38.836Z "parodus"[5244]:  [main:309]SERVER_IP_URL RFC PARAM VALUE = [ https://fabric.xmidt-eu.comcast.net:8080 ]
+2026-01-15T02:46:38.836Z "parodus"[5244]:  acquireJWT = [ 1 ]
+2026-01-15T02:46:38.836Z "parodus"[5244]:  NetworkIF = [ ]
+2026-01-15T02:46:38.836Z "parodus"[5244]:  serverPort = [ 8080 ]
+2026-01-15T02:46:38.837Z "parodus"[5244]:  pingWaitTime = [ 180 ]
+2026-01-15T02:46:38.837Z "parodus"[5244]:  openssl pkcs12 -nodes -password pass:$(/usr/bin/rdkssacli "{STOR=GET,SRC=kquhqtoczcbx,DST=/dev/stdout}" ) -in /opt/certs/devicecert_1.pk12 -out /tmp/.adzvfchigc1ssa[main:432]DNS_TEXT_URL RFC PARAM VALUE = [ fabric.xmidt-eu.comcast.net ]
+2026-01-15T02:46:38.837Z "parodus"[5244]:  [main:441]TOKEN_SERVER_URL RFC PARAM VALUE = [ https://issuer.xmidt-eu.comcast.net:8080/issue ]
+2026-01-15T02:46:38.837Z "parodus"[5244]:  [get_PartnerId:139]PARTNERID  = [ sky-uk ]
+2026-01-15T02:46:38.837Z "parodus"[5244]:  [get_PartnerId:166]PartnerId = [ *,sky-uk ]
+2026-01-15T02:46:38.837Z "parodus"[5244]:  The value of bytes read: 17
+2026-01-15T02:46:38.837Z "parodus"[5244]:  [main:469] SERIAL_NUMBER RFC PARAM VALUE = [ IP04SK8214000F0ER ]
+2026-01-15T02:46:38.837Z "parodus"[5244]:  [main:478]BOOT_TIME RFC PARAM VALUE = [ 1768445177 ]
+2026-01-15T02:46:38.837Z "parodus"[5244]:  Parodus Process satrting with Arguments: = [ /usr/bin/parodus         --hw-mac=D452EE59E3E7 --webpa-ping-time=180 --webpa-interface-used= --webpa-url=https://fabric.xmidt-eu.comcast.net:8080         --partner-id=*,sky-uk --webpa-backoff-max=9 --ssl-cert-path=/etc/ssl/certs/ca-certificates.crt --acquire-jwt=1         --dns-txt-url=fabric.xmidt-eu.comcast.net --jwt-public-key-file=/etc/ssl/certs/webpa-rs256.pem --jwt-algo=RS256 --record-jwt-payload=/tmp/xmidt-jwt-payload.json         --crud-config-file=/opt/parodus_cfg.json --hw-manufacturer=Sky --fw-name=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG --hw-model=SKXI11ADS         --hw-serial-number=IP04SK8214000F0ER --boot-time=1768445177 --hw-last-reboot-reason="MAINTENANCE_REBOOT" --client-cert-path= --token-server-url=https://issuer.xmidt-eu.comcast.net:8080/issue & ]
+2026-01-15T02:46:38.962Z "parodus"[5244]:  rdk_dyn_log_initg_dl_socket = 3 __progname = parodus
+2026-01-15T02:46:38.962Z "parodus"[5244]:  Conf file /etc/debug.ini open success
+2026-01-15T02:46:38.962Z "parodus"[5244]:  260115-02:46:38.962559 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: RAND_MAX is 2147483647 (0x7fffffff)
+2026-01-15T02:46:38.963Z "parodus"[5244]:  260115-02:46:38.963041 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ********** Starting component: Parodus **********
+2026-01-15T02:46:38.964Z "parodus"[5244]:   260115-02:46:38.963898 [mod=RFCAPI, lvl=INFO] [tid=5282] getRFCParameter: http server is ready
+2026-01-15T02:46:38.998Z "parodus"[5244]:  260115-02:46:38.997914 [mod=RFCAPI, lvl=INFO] [tid=5282] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.NonRootSupport.Blocklist"]}, datalen = 87
+2026-01-15T02:46:39.049Z "parodus"[5244]:  260115-02:46:39.046941 [mod=RFCAPI, lvl=INFO] [tid=5282] curl response : 0 http response code: 200
+2026-01-15T02:46:39.049Z "parodus"[5244]:  260115-02:46:39.047455 [mod=RFCAPI, lvl=INFO] [tid=5282] Curl response: {
+2026-01-15T02:46:39.049Z "parodus"[5244]:  	"parameters":	[{
+2026-01-15T02:46:39.049Z "parodus"[5244]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.NonRootSupport.Blocklist",
+2026-01-15T02:46:39.049Z "parodus"[5244]:  			"value":	"",
+2026-01-15T02:46:39.049Z "parodus"[5244]:  			"dataType":	0,
+2026-01-15T02:46:39.049Z "parodus"[5244]:  			"parameterCount":	1,
+2026-01-15T02:46:39.050Z "parodus"[5244]:  			"message":	"Parameter value field is not available"
+2026-01-15T02:46:39.050Z "parodus"[5244]:  		}],
+2026-01-15T02:46:39.050Z "parodus"[5244]:  	"message":	"Parameter value field is not available",
+2026-01-15T02:46:39.050Z "parodus"[5244]:  	"statusCode":	22
+2026-01-15T02:46:39.050Z "parodus"[5244]:  }
+2026-01-15T02:46:39.050Z "parodus"[5244]:  260115-02:46:39.047616 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: NonRoot feature is enabled
+2026-01-15T02:46:39.074Z "parodus"[5244]:  260115-02:46:39.074272 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: rbusEvent_Subscribe was successful
+2026-01-15T02:46:39.074Z "parodus"[5244]:  260115-02:46:39.074390 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ERROR :0 -- failed to open file /tmp/rbus_subs_parodus
+2026-01-15T02:46:39.074Z "parodus"[5244]:  260115-02:46:39.074458 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ERROR :0 -- failed to remove /tmp/rbus_subs_parodus
+2026-01-15T02:46:39.086Z "parodus"[5244]:  260115-02:46:39.085669 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Register xmidt sendData method Device.X_RDK_Xmidt.SendData success
+2026-01-15T02:46:39.086Z "parodus"[5244]:  260115-02:46:39.085844 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: processXmidtData thread created Successfully
+2026-01-15T02:46:39.086Z "parodus"[5244]:  260115-02:46:39.085876 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Setting default values to parodusCfg
+2026-01-15T02:46:39.087Z "parodus"[5244]:  260115-02:46:39.085910 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS:  cfg->webpa_protocol is PARODUS-2.0-2.0.0-148-g8d4c61a
+2026-01-15T02:46:39.087Z "parodus"[5244]:  260115-02:46:39.085930 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Default cloud_status is offline
+2026-01-15T02:46:39.087Z "parodus"[5244]:  260115-02:46:39.085948 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Parsing parodus command line arguments..
+2026-01-15T02:46:39.087Z "parodus"[5244]:  260115-02:46:39.085987 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: hw_mac is d452ee59e3e7
+2026-01-15T02:46:39.087Z "parodus"[5244]:  260115-02:46:39.086010 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: webpa_ping_timeout is 180
+2026-01-15T02:46:39.088Z "parodus"[5244]:  260115-02:46:39.086030 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: webpa_interface_used is
+2026-01-15T02:46:39.088Z "parodus"[5244]:  260115-02:46:39.086055 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: webpa_url is https://fabric.xmidt-eu.comcast.net:8080
+2026-01-15T02:46:39.088Z "parodus"[5244]:  260115-02:46:39.086074 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: partner_id is *,sky-uk
+2026-01-15T02:46:39.088Z "parodus"[5244]:  260115-02:46:39.086093 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: webpa_backoff_max is 9
+2026-01-15T02:46:39.088Z "parodus"[5244]:  260115-02:46:39.086115 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: cert_path is /etc/ssl/certs/ca-certificates.crt
+2026-01-15T02:46:39.089Z "parodus"[5244]:  260115-02:46:39.086140 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: acquire jwt option is 1
+2026-01-15T02:46:39.089Z "parodus"[5244]:  260115-02:46:39.086160 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: parodus dns-txt-url is fabric.xmidt-eu.comcast.net
+2026-01-15T02:46:39.105Z "parodus"[5244]:  260115-02:46:39.096053 [mod=PARODUS, lvl=INFO] [tid=5322] PARODUS: subscribeAsyncHandler event Webconfig.Upstream, error 0 - ok
+2026-01-15T02:46:39.105Z "parodus"[5244]:  260115-02:46:39.102154 [mod=PARODUS, lvl=INFO] [tid=5323] PARODUS: Initial cloud connection is not established, Xmidt wait till connection up
+2026-01-15T02:46:39.110Z "parodus"[5244]:  260115-02:46:39.109872 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: 451 bytes read
+2026-01-15T02:46:39.110Z "parodus"[5244]:  260115-02:46:39.110195 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: jwt_key is -----BEGIN PUBLIC KEY-----
+2026-01-15T02:46:39.110Z "parodus"[5244]:  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkZeQUMqDkMu/dQgTcycJ
+2026-01-15T02:46:39.110Z "parodus"[5244]:  /rrgqfKQkoYFTMO7GnK87/OWiftHmtDJYPgktlcHheOPfkGln5ay1WJSitmtWNaH
+2026-01-15T02:46:39.110Z "parodus"[5244]:  +RvBFK/ZsXpIuGm7R6wdSc7e6g9fTaSAfNX/+a8VxHUo58AinXxcq4LnHbuaGjEz
+2026-01-15T02:46:39.110Z "parodus"[5244]:  jw77TLuZGyUuHiany8O8tc+DbnYKvRquScsccI6z/QwZKFtXUjJZ91hJ97zC8o7N
+2026-01-15T02:46:39.110Z "parodus"[5244]:  Ae7n/Jg+Bs0uz9c1/bf/Jqbu6OidFbCr2FN42UupuAZ8DiPp2fWD5Q9qmp1ADk+V
+2026-01-15T02:46:39.110Z "parodus"[5244]:  +TeZPxTCq/WB4dzSCd5v/FvFmO8tH6Ptkltij4pke7Dsi80TVRlcMDXAWxSFXOQV
+2026-01-15T02:46:39.110Z "parodus"[5244]:  qwIDAQAB
+2026-01-15T02:46:39.110Z "parodus"[5244]:  -----END PUBLIC KEY-----
+2026-01-15T02:46:39.111Z "parodus"[5244]:  260115-02:46:39.110992 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: jwt_algo is 1024
+2026-01-15T02:46:39.111Z "parodus"[5244]:  260115-02:46:39.111359 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: record_jwt_file is /tmp/xmidt-jwt-payload.json
+2026-01-15T02:46:39.111Z "parodus"[5244]:  260115-02:46:39.111798 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: crud_config_file is /opt/parodus_cfg.json
+2026-01-15T02:46:39.112Z "parodus"[5244]:  260115-02:46:39.111998 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: hw_manufacturer is Sky
+2026-01-15T02:46:39.112Z "parodus"[5244]:  260115-02:46:39.112161 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: fw_name is SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-15T02:46:39.112Z "parodus"[5244]:  260115-02:46:39.112292 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: hw-model is SKXI11ADS
+2026-01-15T02:46:39.112Z "parodus"[5244]:  260115-02:46:39.112441 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: hw_serial_number is IP04SK8214000F0ER
+2026-01-15T02:46:39.113Z "parodus"[5244]:  260115-02:46:39.113385 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: boot_time is 1768445177
+2026-01-15T02:46:39.113Z "parodus"[5244]:  260115-02:46:39.113615 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: hw_last_reboot_reason is MAINTENANCE_REBOOT
+2026-01-15T02:46:39.113Z "parodus"[5244]:  260115-02:46:39.113759 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: client_cert_path is
+2026-01-15T02:46:39.113Z "parodus"[5244]:  260115-02:46:39.113894 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: token_server_url is https://issuer.xmidt-eu.comcast.net:8080/issue
+2026-01-15T02:46:39.114Z "parodus"[5244]:  260115-02:46:39.114182 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Received reboot_reason as:MAINTENANCE_REBOOT
+2026-01-15T02:46:39.114Z "parodus"[5244]:  260115-02:46:39.114321 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Received reconnect_reason as:webpa_process_starts
+2026-01-15T02:46:39.114Z "parodus"[5244]:  260115-02:46:39.114470 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: User-Agent: PARODUS-2.0-2.0.0-148-g8d4c61a (SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG; SKXI11ADS/Sky;)
+2026-01-15T02:46:39.114Z "parodus"[5244]:  260115-02:46:39.114664 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: X-WebPA-Convey Header: [308]{"hw-model":"SKXI11ADS","hw-serial-number":"IP04SK8214000F0ER","hw-manufacturer":"Sky","fw-name":"SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG","boot-time":1768445177,"webpa-protocol":"PARODUS-2.0-2.0.0-148-g8d4c61a","hw-last-reboot-reason":"MAINTENANCE_REBOOT","webpa-last-reconnect-reason":"webpa_process_starts"}
+2026-01-15T02:46:39.114Z "parodus"[5244]:  260115-02:46:39.114932 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Device_id mac:d452ee59e3e7
+2026-01-15T02:46:39.115Z "parodus"[5244]:  260115-02:46:39.115071 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: full url: https://fabric.xmidt-eu.comcast.net:8080
+2026-01-15T02:46:39.115Z "parodus"[5244]:  260115-02:46:39.115275 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: server address copied from url
+2026-01-15T02:46:39.115Z "parodus"[5244]:  260115-02:46:39.115609 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: server fabric.xmidt-eu.comcast.net, port 8080, http_match 0
+2026-01-15T02:46:39.116Z "parodus"[5244]:  260115-02:46:39.116608 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: default server_Address fabric.xmidt-eu.comcast.net
+2026-01-15T02:46:39.119Z "parodus"[5244]:  260115-02:46:39.118961 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: default port 8080
+2026-01-15T02:46:39.119Z "parodus"[5244]:  260115-02:46:39.119199 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: dns_txt_record_id d452ee59e3e7.fabric.xmidt-eu.comcast.net
+2026-01-15T02:46:39.119Z "parodus"[5244]:  260115-02:46:39.119778 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nsbuf (1) 0x55280
+2026-01-15T02:46:39.120Z "parodus"[5244]:  260115-02:46:39.120211 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nquery: domain : d452ee59e3e7.fabric.xmidt-eu.comcast.net
+2026-01-15T02:46:39.203Z "parodus"[5244]:  260115-02:46:39.195851 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nquery: nsbuf (1) 0x55280
+2026-01-15T02:46:39.203Z "parodus"[5244]:  260115-02:46:39.195904 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nsbuf (2) 0x55280
+2026-01-15T02:46:39.203Z "parodus"[5244]:  260115-02:46:39.195926 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ns_initparse, msglen 662, nsbuf 0x55280
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.195953 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ns_msg_count
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.195972 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: query_dns: ns_msg_count : 3
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.196014 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: query_dns JWT: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE4OTYxNjMyMDAsImlzcyI6IlNIQTI1NjpqZGNSeXNGdW5XVUFUODUyaHVRb0lNOUdONmsyczVjN2lUTVRNZ3VqUEFrIiwiZW5kcG9pbnQiOiJodHRwczovL2ZhYnJpYy54bWlkdC1ldS5jb21jYXN0Lm5ldDo4MDgwLyJ9.g05yR9gqPbm14C6E9MZwpK1Uq9lrl6YPRZR0uof5BoCLjRmWLm4_aIn7ClY_1LGPIAQamz06xsu5ThnQiCBAT4XOpUWhTxrmGJjYHxEnSV74LVWYkFFP1XRnWVMunb79Cct58prnPZCCf3UO8Z6GyKR12YIU1nsTpRunwHngo2vwWblUOLrg2NfhD7Dilkd9G0gHAz6WkFe3QpJmQPXPGGIBzfmdqkSWM0JX0rOEQiMZJ5Fc0xWFMpVhj_Re0QzALsTURTvtA1f6GJTiqtIWcCeQ7k260115-02:46:39.198768 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: JWT endpoint: https://fabric.xmidt-eu.comcast.net:8080/
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.198871 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Exp: 1896163200 Feb  1 08:00:00 2030, Current: 1768445199 Jan 15 02:46:39 2026
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.198895 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: full url: https://fabric.xmidt-eu.comcast.net:8080/
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.198915 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: server address copied from url
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.198937 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: server fabric.xmidt-eu.comcast.net, port 8080, http_match 0
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.198955 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: JWT is_http strncmp: 0
+2026-01-15T02:46:39.204Z "parodus"[5244]:  260115-02:46:39.198982 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: JWT claims: {
+2026-01-15T02:46:39.204Z "parodus"[5244]:  	"endpoint":	"https://fabric.xmidt-eu.comcast.net:8080/"
+2026-01-15T02:46:39.205Z "parodus"[5244]:  }
+2026-01-15T02:46:39.205Z "parodus"[5244]:  260115-02:46:39.199158 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: JWT claims is Successfully written to /tmp/xmidt-jwt-payload.json
+2026-01-15T02:46:39.205Z "parodus"[5244]:  260115-02:46:39.199307 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: JWT ON: jwt_server_url stored as fabric.xmidt-eu.comcast.net
+2026-01-15T02:46:39.209Z "parodus"[5244]:  260115-02:46:39.208272 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connecting in Ipv6 mode
+2026-01-15T02:46:39.222Z "parodus"[5244]:  260115-02:46:39.221805 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:48aa:3dab:359d:b1d9
+2026-01-15T02:46:39.222Z "parodus"[5244]:   
+2026-01-15T02:46:39.222Z "parodus"[5244]:  260115-02:46:39.221875 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:564c:309f:d88b:e4f8
+2026-01-15T02:46:39.223Z "parodus"[5244]:   
+2026-01-15T02:46:39.223Z "parodus"[5244]:  260115-02:46:39.221941 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:c37e:2b5c:1bd8:3308
+2026-01-15T02:46:39.223Z "parodus"[5244]:   
+2026-01-15T02:46:39.223Z "parodus"[5244]:  260115-02:46:39.221986 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:38d9:ce9b:8b67:e043
+2026-01-15T02:46:39.223Z "parodus"[5244]:   
+2026-01-15T02:46:39.223Z "parodus"[5244]:  260115-02:46:39.222029 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:8c58:ac95:241a:2cf8
+2026-01-15T02:46:39.223Z "parodus"[5244]:   
+2026-01-15T02:46:39.223Z "parodus"[5244]:  260115-02:46:39.222084 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:8fb3:7cf0:92d7:570d
+2026-01-15T02:46:39.223Z "parodus"[5244]:   
+2026-01-15T02:46:39.223Z "parodus"[5244]:  260115-02:46:39.222128 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:cccb:78e6:81f6:57b8
+2026-01-15T02:46:39.223Z "parodus"[5244]:   
+2026-01-15T02:46:39.223Z "parodus"[5244]:  260115-02:46:39.222243 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:5b3f:f710:f409:28f5
+2026-01-15T02:46:39.224Z "parodus"[5244]:   
+2026-01-15T02:46:39.224Z "parodus"[5244]:  260115-02:46:39.222415 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:382 Create socket with non blocking-mode
+2026-01-15T02:46:39.224Z "parodus"[5244]:  260115-02:46:39.222529 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:388 unable to connect to remote host fabric.xmidt-eu.comcast.net:8080 errno=101
+2026-01-15T02:46:39.224Z "parodus"[5244]:  260115-02:46:39.223132 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:946 Failed to connect to remote host fabric.xmidt-eu.comcast.net:8080
+2026-01-15T02:46:39.224Z "parodus"[5244]:  260115-02:46:39.223214 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connecting in Ipv4 mode
+2026-01-15T02:46:39.236Z "parodus"[5244]:  260115-02:46:39.234416 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.105
+2026-01-15T02:46:39.236Z "parodus"[5244]:   
+2026-01-15T02:46:39.236Z "parodus"[5244]:  260115-02:46:39.234731 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.124
+2026-01-15T02:46:39.237Z "parodus"[5244]:   
+2026-01-15T02:46:39.237Z "parodus"[5244]:  260115-02:46:39.234831 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.32
+2026-01-15T02:46:39.237Z "parodus"[5244]:   
+2026-01-15T02:46:39.237Z "parodus"[5244]:  260115-02:46:39.234936 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.29
+2026-01-15T02:46:39.237Z "parodus"[5244]:   
+2026-01-15T02:46:39.238Z "parodus"[5244]:  260115-02:46:39.235070 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.47
+2026-01-15T02:46:39.238Z "parodus"[5244]:   
+2026-01-15T02:46:39.238Z "parodus"[5244]:  260115-02:46:39.235116 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.46
+2026-01-15T02:46:39.238Z "parodus"[5244]:   
+2026-01-15T02:46:39.238Z "parodus"[5244]:  260115-02:46:39.235189 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.24
+2026-01-15T02:46:39.238Z "parodus"[5244]:   
+2026-01-15T02:46:39.238Z "parodus"[5244]:  260115-02:46:39.235277 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.52
+2026-01-15T02:46:39.238Z "parodus"[5244]:   
+2026-01-15T02:46:39.239Z "parodus"[5244]:  260115-02:46:39.235370 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:382 Create socket with non blocking-mode
+2026-01-15T02:46:39.266Z "parodus"[5244]:  260115-02:46:39.265947 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:263 Result of wait after connect EINPROGRESS = 0
+2026-01-15T02:46:39.266Z "parodus"[5244]:   
+2026-01-15T02:46:40.040Z "parodus"[5244]:  260115-02:46:40.030517 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:881 Enabling certificate peer verification
+2026-01-15T02:46:40.040Z "parodus"[5244]:  260115-02:46:40.030809 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1069 connecting to remote TLS site fabric.xmidt-eu.comcast.net:8080
+2026-01-15T02:46:40.112Z "parodus"[5244]:  260115-02:46:40.111688 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1140 Client TLS handshake finished, configuring I/O handlers
+2026-01-15T02:46:40.114Z "parodus"[5244]:  260115-02:46:40.114135 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1162 Hostname validation SUCCESS, done as part of client
+2026-01-15T02:46:40.114Z "parodus"[5244]:   
+2026-01-15T02:46:40.114Z "parodus"[5244]:  260115-02:46:40.114919 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1191 TLS I/O handlers configured
+2026-01-15T02:46:40.140Z "parodus"[5244]:  260115-02:46:40.140802 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:3214 websocket server denied connection with: 307 Temporary Redirect
+2026-01-15T02:46:40.141Z "parodus"[5244]:   
+2026-01-15T02:46:40.141Z "parodus"[5244]:  260115-02:46:40.141779 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:3060 Received uncomplete listener handshake reply ((nil) 0 1)
+2026-01-15T02:46:40.142Z "parodus"[5244]:  260115-02:46:40.142159 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:5380 nopoll_conn_wait_for_status_until_connection_ready() response: message: Redirect:https://talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080/api/v2/device
+2026-01-15T02:46:40.142Z "parodus"[5244]:  260115-02:46:40.142335 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Received temporary redirection response message Redirect:https://talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080/api/v2/device
+2026-01-15T02:46:40.142Z "parodus"[5244]:  260115-02:46:40.142480 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: full url: https://talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080/api/v2/device
+2026-01-15T02:46:40.142Z "parodus"[5244]:  260115-02:46:40.142634 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: server address copied from url
+2026-01-15T02:46:40.142Z "parodus"[5244]:  260115-02:46:40.142769 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: server talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net, port 8080, http_match 0
+2026-01-15T02:46:40.142Z "parodus"[5244]:  260115-02:46:40.142951 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_ctx.c:338 Unregistered connection id 2
+2026-01-15T02:46:40.148Z "parodus"[5244]:  260115-02:46:40.148758 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: cloud_status set as offline after connection close
+2026-01-15T02:46:40.150Z "parodus"[5244]:  260115-02:46:40.150578 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: Error removing the file /tmp/webpanotifyready
+2026-01-15T02:46:40.151Z "parodus"[5244]:  260115-02:46:40.150999 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connecting in Ipv6 mode
+2026-01-15T02:46:40.189Z "parodus"[5244]:  260115-02:46:40.177103 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:8451:fbc9:26ce:4f64
+2026-01-15T02:46:40.189Z "parodus"[5244]:   
+2026-01-15T02:46:40.189Z "parodus"[5244]:  260115-02:46:40.177184 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:382 Create socket with non blocking-mode
+2026-01-15T02:46:40.190Z "parodus"[5244]:  260115-02:46:40.177253 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:388 unable to connect to remote host talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080 errno=101
+2026-01-15T02:46:40.190Z "parodus"[5244]:  260115-02:46:40.177314 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:946 Failed to connect to remote host talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080
+2026-01-15T02:46:40.190Z "parodus"[5244]:  260115-02:46:40.177371 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connecting in Ipv4 mode
+2026-01-15T02:46:40.202Z "parodus"[5244]:  260115-02:46:40.199198 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net is 184.120.51.11
+2026-01-15T02:46:40.202Z "parodus"[5244]:   
+2026-01-15T02:46:40.202Z "parodus"[5244]:  260115-02:46:40.199264 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:382 Create socket with non blocking-mode
+2026-01-15T02:46:40.228Z "parodus"[5244]:  260115-02:46:40.227728 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:263 Result of wait after connect EINPROGRESS = 0
+2026-01-15T02:46:40.228Z "parodus"[5244]:   
+2026-01-15T02:46:40.645Z "parodus"[5244]:  260115-02:46:40.645151 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:881 Enabling certificate peer verification
+2026-01-15T02:46:40.645Z "parodus"[5244]:  260115-02:46:40.645420 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1069 connecting to remote TLS site talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080
+2026-01-15T02:46:40.711Z "parodus"[5244]:  260115-02:46:40.710248 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1140 Client TLS handshake finished, configuring I/O handlers
+2026-01-15T02:46:40.711Z "parodus"[5244]:  260115-02:46:40.710463 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1162 Hostname validation SUCCESS, done as part of client
+2026-01-15T02:46:40.711Z "parodus"[5244]:   
+2026-01-15T02:46:40.712Z "parodus"[5244]:  260115-02:46:40.710500 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1191 TLS I/O handlers configured
+2026-01-15T02:46:40.749Z "parodus"[5244]:  260115-02:46:40.747983 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:5397 *****End nopoll_conn_wait_for_status_until_connection_ready ****
+2026-01-15T02:46:40.749Z "parodus"[5244]:  260115-02:46:40.748037 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connected to server over SSL
+2026-01-15T02:46:40.749Z "parodus"[5244]:  260115-02:46:40.748095 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: connect_time-diff-boot_time=23
+2026-01-15T02:46:40.749Z "parodus"[5244]:  260115-02:46:40.748169 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: metadata encoding is successful with size 379
+2026-01-15T02:46:40.749Z "parodus"[5244]:  260115-02:46:40.748210 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: cloud_status set as online after successful connection
+2026-01-15T02:46:40.749Z "parodus"[5244]:  260115-02:46:40.748486 [mod=PARODUS, lvl=INFO] [tid=5323] PARODUS: Received cloud status signal proceed to event processing
+2026-01-15T02:46:40.749Z "parodus"[5244]:  260115-02:46:40.748557 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: libseshat disabled, Hence proceeding without registration
+2026-01-15T02:46:40.760Z "parodus"[5244]:  260115-02:46:40.760142 [mod=PARODUS, lvl=INFO] [tid=5536] PARODUS: nanomsg server gone into the listening mode...
+2026-01-15T02:46:40.766Z "parodus"[5244]:  260115-02:46:40.762957 [mod=PARODUS, lvl=INFO] [tid=5539] PARODUS: No clients are registered, waiting ..
+2026-01-16T02:35:06.108Z "parodus"[5244]:  260116-02:35:06.107594 [mod=PARODUS, lvl=INFO] [tid=5539] PARODUS: No clients are registered, waiting ..
+2026-01-16T02:35:06.504Z /lib/rdk/update_previous_reboot_info.sh: PreviousRebootInfo:Fri Jan 16 02:34:12 UTC 2026,MAINTENANCE_REBOOT,SystemServices,MAINTENANCE_REBOOT
+2026-01-16T02:35:07.509Z "parodus"[5244]:  260116-02:35:07.507993 [mod=PARODUS, lvl=INFO] [tid=5536] PARODUS: Upstream message received from nanomsg client
+2026-01-16T02:35:07.509Z "parodus"[5244]:  260116-02:35:07.508183 [mod=PARODUS, lvl=INFO] [tid=5537] PARODUS:
+2026-01-16T02:35:07.509Z "parodus"[5244]:   Nanomsg client Registration for Upstream
+2026-01-16T02:35:07.509Z "parodus"[5244]:  260116-02:35:07.508571 [mod=PARODUS, lvl=INFO] [tid=5537] PARODUS: Adding first client to list
+2026-01-16T02:35:07.509Z "parodus"[5244]:  260116-02:35:07.509173 [mod=PARODUS, lvl=INFO] [tid=5537] PARODUS: client service config is added to list with url: tcp://127.0.0.1:6667
+2026-01-16T02:35:07.509Z "parodus"[5244]:  260116-02:35:07.509195 [mod=PARODUS, lvl=INFO] [tid=5537] PARODUS: sending auth status to reg client
+2026-01-16T02:35:07.509Z "parodus"[5244]:  260116-02:35:07.509232 [mod=PARODUS, lvl=INFO] [tid=5537] PARODUS: Client config Registered successfully. Sending Acknowledgement...
+2026-01-16T02:35:07.510Z "parodus"[5244]:   260116-02:35:07.509252 [mod=PARODUS, lvl=INFO] [tid=5537] PARODUS: Sending ack:new_node->sock 1 service:config
+2026-01-16T02:35:10.124Z "parodus"[5244]:  260116-02:35:10.124585 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS:  Received upstream event data: dest 'event:rootdoc-report/mac:d452ee59e3e7/status'
+2026-01-16T02:35:10.124Z "parodus"[5244]:  260116-02:35:10.124641 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: Sending response to server
+2026-01-16T02:35:10.125Z "parodus"[5244]:  260116-02:35:10.124665 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: sendMessage length 664
+2026-01-16T02:35:49.223Z "parodus"[5244]:  260116-02:35:49.223437 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:36:34.314Z "parodus"[5244]:  260116-02:36:34.314401 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:37:19.270Z "parodus"[5244]:  260116-02:37:19.270381 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:38:04.226Z "parodus"[5244]:  260116-02:38:04.226085 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:38:49.284Z "parodus"[5244]:  260116-02:38:49.284080 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:39:34.235Z "parodus"[5244]:  260116-02:39:34.235172 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:40:19.289Z "parodus"[5244]:  260116-02:40:19.288579 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:41:04.240Z "parodus"[5244]:  260116-02:41:04.240568 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:41:49.297Z "parodus"[5244]:  260116-02:41:49.296768 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:42:34.252Z "parodus"[5244]:  260116-02:42:34.250720 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:43:19.307Z "parodus"[5244]:  260116-02:43:19.307446 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:44:04.262Z "parodus"[5244]:  260116-02:44:04.262287 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:44:49.217Z "parodus"[5244]:  260116-02:44:49.216850 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:45:34.274Z "parodus"[5244]:  260116-02:45:34.274014 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:46:19.229Z "parodus"[5244]:  260116-02:46:19.228672 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T02:47:04.286Z "parodus"[5244]:  260116-02:47:04.285620 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Ping received with payload mac:d452ee59e3e7, opcode 9
+2026-01-16T05:36:20.009Z "parodus"[5244]:  260116-05:36:20.009533 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS:  Received upstream event data: dest 'event:rootdoc-report/mac:d452ee59e3e7/status'
+2026-01-16T05:36:20.009Z "parodus"[5244]:  260116-05:36:20.009588 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: Sending response to server
+2026-01-16T05:36:20.010Z "parodus"[5244]:  260116-05:36:20.009613 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: sendMessage length 664
+2026-01-16T08:14:42.945Z "parodus"[5244]:  260116-08:14:42.945071 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS:  Received upstream event data: dest 'event:rootdoc-report/mac:d452ee59e3e7/status'
+2026-01-16T08:14:42.945Z "parodus"[5244]:  260116-08:14:42.945119 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: Sending response to server
+2026-01-16T08:14:42.945Z "parodus"[5244]:  260116-08:14:42.945141 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: sendMessage length 664
+2026-01-16T08:35:43.885Z "parodus"[5244]:  260116-08:35:43.884778 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nopoll_loop_wait value -3,nopoll_loop_wait() time 6904 msec
+2026-01-16T08:35:54.912Z "parodus"[5244]:  260116-08:35:54.911891 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS:  Received upstream event data: dest 'event:rootdoc-report/mac:d452ee59e3e7/status'
+2026-01-16T08:35:54.912Z "parodus"[5244]:  260116-08:35:54.911948 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: Sending response to server
+2026-01-16T08:35:54.912Z "parodus"[5244]:  260116-08:35:54.911971 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: sendMessage length 664
+2026-01-16T09:19:39.831Z "parodus"[5244]:  260116-09:19:39.831271 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nopoll_loop_wait value -3,nopoll_loop_wait() time 29381 msec
+2026-01-16T09:19:48.462Z "parodus"[5244]:  260116-09:19:48.462411 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS:  Received upstream event data: dest 'event:rootdoc-report/mac:d452ee59e3e7/status'
+2026-01-16T09:19:48.462Z "parodus"[5244]:  260116-09:19:48.462475 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: Sending response to server
+2026-01-16T09:19:48.462Z "parodus"[5244]:  260116-09:19:48.462503 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: sendMessage length 664
+2026-01-16T09:34:23.823Z "parodus"[5244]:  260116-09:34:23.823014 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nopoll_loop_wait value -3,nopoll_loop_wait() time 34226 msec
+2026-01-16T09:34:28.997Z "parodus"[5244]:  260116-09:34:28.996876 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: heartBeatTimer 196909 webpa_ping_timeout_ms 180000
+2026-01-16T09:34:28.997Z "parodus"[5244]:  260116-09:34:28.996926 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ping wait time > 180 . Terminating the connection with WebPA server and retrying
+2026-01-16T09:34:28.997Z "parodus"[5244]:  260116-09:34:28.996947 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Reconnect detected, setting Ping_Miss reason for Reconnect
+2026-01-16T09:34:28.997Z "parodus"[5244]:  260116-09:34:28.996968 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: close_retry is 1, hence closing the connection and retrying
+2026-01-16T09:34:28.997Z "parodus"[5244]:  260116-09:34:28.997153 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Setting the close and retry connection
+2026-01-16T09:34:28.997Z "parodus"[5244]:  260116-09:34:28.997207 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_ctx.c:338 Unregistered connection id 3
+2026-01-16T09:34:29.002Z "parodus"[5244]:  260116-09:34:29.002597 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: cloud_status set as offline after connection close
+2026-01-16T09:34:29.002Z "parodus"[5244]:  260116-09:34:29.002733 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: Error removing the file /tmp/webpanotifyready
+2026-01-16T09:34:29.002Z "parodus"[5244]:  260116-09:34:29.002762 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Received reboot_reason as:MAINTENANCE_REBOOT
+2026-01-16T09:34:29.002Z "parodus"[5244]:  260116-09:34:29.002782 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Received reconnect_reason as:Ping_Miss
+2026-01-16T09:34:29.002Z "parodus"[5244]:  260116-09:34:29.002804 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: User-Agent: PARODUS-2.0-2.0.0-148-g8d4c61a (SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG; SKXI11ADS/Sky;)
+2026-01-16T09:34:29.003Z "parodus"[5244]:  260116-09:34:29.002844 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: X-WebPA-Convey Header: [297]{"hw-model":"SKXI11ADS","hw-serial-number":"IP04SK8214000F0ER","hw-manufacturer":"Sky","fw-name":"SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG","boot-time":1768445177,"webpa-protocol":"PARODUS-2.0-2.0.0-148-g8d4c61a","hw-last-reboot-reason":"MAINTENANCE_REBOOT","webpa-last-reconnect-reason":"Ping_Miss"}
+2026-01-16T09:34:29.003Z "parodus"[5244]:  260116-09:34:29.003058 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Device_id mac:d452ee59e3e7
+2026-01-16T09:34:29.003Z "parodus"[5244]:  260116-09:34:29.003283 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connecting in Ipv6 mode
+2026-01-16T09:34:29.024Z "parodus"[5244]:  260116-09:34:29.024558 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:564c:309f:d88b:e4f8
+2026-01-16T09:34:29.024Z "parodus"[5244]:   
+2026-01-16T09:34:29.024Z "parodus"[5244]:  260116-09:34:29.024631 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:8c58:ac95:241a:2cf8
+2026-01-16T09:34:29.025Z "parodus"[5244]:   
+2026-01-16T09:34:29.025Z "parodus"[5244]:  260116-09:34:29.024678 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:c37e:2b5c:1bd8:3308
+2026-01-16T09:34:29.025Z "parodus"[5244]:   
+2026-01-16T09:34:29.025Z "parodus"[5244]:  260116-09:34:29.024722 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:8fb3:7cf0:92d7:570d
+2026-01-16T09:34:29.025Z "parodus"[5244]:   
+2026-01-16T09:34:29.025Z "parodus"[5244]:  260116-09:34:29.024766 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:5b3f:f710:f409:28f5
+2026-01-16T09:34:29.025Z "parodus"[5244]:   
+2026-01-16T09:34:29.025Z "parodus"[5244]:  260116-09:34:29.024810 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:cccb:78e6:81f6:57b8
+2026-01-16T09:34:29.025Z "parodus"[5244]:   
+2026-01-16T09:34:29.025Z "parodus"[5244]:  260116-09:34:29.024853 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:38d9:ce9b:8b67:e043
+2026-01-16T09:34:29.025Z "parodus"[5244]:   
+2026-01-16T09:34:29.025Z "parodus"[5244]:  260116-09:34:29.024897 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of fabric.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:48aa:3dab:359d:b1d9
+2026-01-16T09:34:29.025Z "parodus"[5244]:   
+2026-01-16T09:34:29.025Z "parodus"[5244]:  260116-09:34:29.024948 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:382 Create socket with non blocking-mode
+2026-01-16T09:34:29.026Z "parodus"[5244]:  260116-09:34:29.025011 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:388 unable to connect to remote host fabric.xmidt-eu.comcast.net:8080 errno=101
+2026-01-16T09:34:29.026Z "parodus"[5244]:  260116-09:34:29.025098 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:946 Failed to connect to remote host fabric.xmidt-eu.comcast.net:8080
+2026-01-16T09:34:29.026Z "parodus"[5244]:  260116-09:34:29.025158 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connecting in Ipv4 mode
+2026-01-16T09:34:29.105Z "parodus"[5244]:  260116-09:34:29.105909 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.29
+2026-01-16T09:34:29.106Z "parodus"[5244]:   
+2026-01-16T09:34:29.106Z "parodus"[5244]:  260116-09:34:29.106667 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.47
+2026-01-16T09:34:29.106Z "parodus"[5244]:   
+2026-01-16T09:34:29.106Z "parodus"[5244]:  260116-09:34:29.106727 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.52
+2026-01-16T09:34:29.107Z "parodus"[5244]:   
+2026-01-16T09:34:29.107Z "parodus"[5244]:  260116-09:34:29.106768 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.124
+2026-01-16T09:34:29.107Z "parodus"[5244]:   
+2026-01-16T09:34:29.107Z "parodus"[5244]:  260116-09:34:29.106808 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.105
+2026-01-16T09:34:29.107Z "parodus"[5244]:   
+2026-01-16T09:34:29.107Z "parodus"[5244]:  260116-09:34:29.106849 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.24
+2026-01-16T09:34:29.107Z "parodus"[5244]:   
+2026-01-16T09:34:29.107Z "parodus"[5244]:  260116-09:34:29.106887 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.32
+2026-01-16T09:34:29.107Z "parodus"[5244]:   
+2026-01-16T09:34:29.107Z "parodus"[5244]:  260116-09:34:29.106926 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of fabric.xmidt-eu.comcast.net is 184.120.51.46
+2026-01-16T09:34:29.107Z "parodus"[5244]:   
+2026-01-16T09:34:29.107Z "parodus"[5244]:  260116-09:34:29.106977 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:382 Create socket with non blocking-mode
+2026-01-16T09:34:29.389Z "parodus"[5244]:  260116-09:34:29.389670 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:263 Result of wait after connect EINPROGRESS = 0
+2026-01-16T09:34:29.390Z "parodus"[5244]:   
+2026-01-16T09:34:29.551Z "parodus"[5244]:  260116-09:34:29.551403 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:881 Enabling certificate peer verification
+2026-01-16T09:34:29.551Z "parodus"[5244]:  260116-09:34:29.551520 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1069 connecting to remote TLS site fabric.xmidt-eu.comcast.net:8080
+2026-01-16T09:34:29.850Z "parodus"[5244]:  260116-09:34:29.850265 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1140 Client TLS handshake finished, configuring I/O handlers
+2026-01-16T09:34:29.852Z "parodus"[5244]:  260116-09:34:29.852761 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1162 Hostname validation SUCCESS, done as part of client
+2026-01-16T09:34:29.852Z "parodus"[5244]:   
+2026-01-16T09:34:29.853Z "parodus"[5244]:  260116-09:34:29.853124 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1191 TLS I/O handlers configured
+2026-01-16T09:34:30.148Z "parodus"[5244]:  260116-09:34:30.148060 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:3214 websocket server denied connection with: 307 Temporary Redirect
+2026-01-16T09:34:30.148Z "parodus"[5244]:   
+2026-01-16T09:34:30.148Z "parodus"[5244]:  260116-09:34:30.148461 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:3060 Received uncomplete listener handshake reply ((nil) 0 1)
+2026-01-16T09:34:30.148Z "parodus"[5244]:  260116-09:34:30.148627 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:5380 nopoll_conn_wait_for_status_until_connection_ready() response: message: Redirect:https://talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080/api/v2/device
+2026-01-16T09:34:30.148Z "parodus"[5244]:  260116-09:34:30.148652 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Received temporary redirection response message Redirect:https://talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080/api/v2/device
+2026-01-16T09:34:30.148Z "parodus"[5244]:  260116-09:34:30.148674 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: full url: https://talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080/api/v2/device
+2026-01-16T09:34:30.148Z "parodus"[5244]:  260116-09:34:30.148693 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: server address copied from url
+2026-01-16T09:34:30.149Z "parodus"[5244]:  260116-09:34:30.148714 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: server talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net, port 8080, http_match 0
+2026-01-16T09:34:30.149Z "parodus"[5244]:  260116-09:34:30.148751 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_ctx.c:338 Unregistered connection id 4
+2026-01-16T09:34:30.154Z "parodus"[5244]:  260116-09:34:30.154410 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: cloud_status set as offline after connection close
+2026-01-16T09:34:30.154Z "parodus"[5244]:  260116-09:34:30.154785 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: Error removing the file /tmp/webpanotifyready
+2026-01-16T09:34:30.154Z "parodus"[5244]:  260116-09:34:30.154903 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connecting in Ipv6 mode
+2026-01-16T09:34:30.473Z "parodus"[5244]:  260116-09:34:30.473281 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:352 IPv6 address of talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net is 2a0c:93c0:8002:1c00:8451:fbc9:26ce:4f64
+2026-01-16T09:34:30.473Z "parodus"[5244]:   
+2026-01-16T09:34:30.473Z "parodus"[5244]:  260116-09:34:30.473376 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:382 Create socket with non blocking-mode
+2026-01-16T09:34:30.473Z "parodus"[5244]:  260116-09:34:30.473460 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:388 unable to connect to remote host talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080 errno=101
+2026-01-16T09:34:30.474Z "parodus"[5244]:  260116-09:34:30.473527 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:946 Failed to connect to remote host talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080
+2026-01-16T09:34:30.474Z "parodus"[5244]:  260116-09:34:30.473580 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connecting in Ipv4 mode
+2026-01-16T09:34:30.502Z "parodus"[5244]:  260116-09:34:30.502144 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:336 IPv4 address of talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net is 184.120.51.11
+2026-01-16T09:34:30.502Z "parodus"[5244]:   
+2026-01-16T09:34:30.502Z "parodus"[5244]:  260116-09:34:30.502225 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:382 Create socket with non blocking-mode
+2026-01-16T09:34:30.569Z "parodus"[5244]:  260116-09:34:30.569459 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:263 Result of wait after connect EINPROGRESS = 0
+2026-01-16T09:34:30.569Z "parodus"[5244]:   
+2026-01-16T09:34:30.744Z "parodus"[5244]:  260116-09:34:30.743889 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:881 Enabling certificate peer verification
+2026-01-16T09:34:30.744Z "parodus"[5244]:  260116-09:34:30.743995 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1069 connecting to remote TLS site talaria-prod-euwest1-h112-0z15z4y1u01mnsbtr-000.xmidt-eu.comcast.net:8080
+2026-01-16T09:34:30.899Z "parodus"[5244]:  260116-09:34:30.899621 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1140 Client TLS handshake finished, configuring I/O handlers
+2026-01-16T09:34:30.902Z "parodus"[5244]:  260116-09:34:30.901912 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1162 Hostname validation SUCCESS, done as part of client
+2026-01-16T09:34:30.902Z "parodus"[5244]:   
+2026-01-16T09:34:30.902Z "parodus"[5244]:  260116-09:34:30.902215 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:1191 TLS I/O handlers configured
+2026-01-16T09:34:30.977Z "parodus"[5244]:  260116-09:34:30.976970 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_conn.c:5397 *****End nopoll_conn_wait_for_status_until_connection_ready ****
+2026-01-16T09:34:30.977Z "parodus"[5244]:  260116-09:34:30.977026 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Connected to server over SSL
+2026-01-16T09:34:30.977Z "parodus"[5244]:  260116-09:34:30.977099 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: metadata encoding is successful with size 379
+2026-01-16T09:34:30.977Z "parodus"[5244]:  260116-09:34:30.977122 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: cloud_status set as online after successful connection
+2026-01-16T09:34:30.977Z "parodus"[5244]:  260116-09:34:30.977253 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Created /tmp/webpanotifyready file as cloud status is online
+2026-01-16T09:34:38.469Z "parodus"[5244]:  260116-09:34:38.469005 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS:  Received upstream event data: dest 'event:rootdoc-report/mac:d452ee59e3e7/status'
+2026-01-16T09:34:38.469Z "parodus"[5244]:  260116-09:34:38.469122 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: Sending response to server
+2026-01-16T09:34:38.469Z "parodus"[5244]:  260116-09:34:38.469149 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: sendMessage length 664
+2026-01-16T10:28:41.977Z "parodus"[5244]:  260116-10:28:41.977345 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nopoll_loop_wait value -3,nopoll_loop_wait() time 30567 msec
+2026-01-16T10:28:49.319Z "parodus"[5244]:  260116-10:28:49.319029 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS:  Received upstream event data: dest 'event:rootdoc-report/mac:d452ee59e3e7/status'
+2026-01-16T10:28:49.319Z "parodus"[5244]:  260116-10:28:49.319086 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: Sending response to server
+2026-01-16T10:28:49.319Z "parodus"[5244]:  260116-10:28:49.319110 [mod=PARODUS, lvl=INFO] [tid=5321] PARODUS: sendMessage length 664
+2026-01-16T12:54:16.209Z "parodus"[5244]:  260116-12:54:16.209390 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nopoll_loop_wait value -3,nopoll_loop_wait() time 30520 msec
+2026-01-16T12:54:21.004Z "parodus"[5244]:  260116-12:54:21.003696 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: SIGUSR1 received!
+2026-01-16T12:54:21.004Z "parodus"[5244]:  260116-12:54:21.003778 [mod=PARODUS, lvl=ERROR] [tid=5282] PARODUS: ../../git/src/nopoll_loop.c:289 Received error from wait operation, error code was: 4
+2026-01-16T12:54:21.005Z "parodus"[5244]:  260116-12:54:21.003807 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: nopoll_loop_wait value -4,nopoll_loop_wait() time 4794 msec
+2026-01-16T12:54:21.005Z "parodus"[5244]:  260116-12:54:21.003870 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: joining threads
+2026-01-16T12:54:21.256Z "parodus"[5244]:  260116-12:54:21.255862 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Deleted 1 clients
+2026-01-16T12:54:21.256Z "parodus"[5244]:  260116-12:54:21.255917 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: reconnect reason at close webpa_process_starts
+2026-01-16T12:54:21.256Z "parodus"[5244]:  260116-12:54:21.256428 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Reconnect detected, setting default Reconnect reason SSL_Socket_Close
+2026-01-16T12:54:21.256Z "parodus"[5244]:  260116-12:54:21.256466 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Setting the close and retry connection
+2026-01-16T12:54:21.257Z "parodus"[5244]:  260116-12:54:21.256897 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: ../../git/src/nopoll_ctx.c:338 Unregistered connection id 5
+2026-01-16T12:54:21.264Z "parodus"[5244]:  260116-12:54:21.263881 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: shutdown reason at close system_restarting
+2026-01-16T12:54:21.264Z "parodus"[5244]:  260116-12:54:21.264198 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: cloud_status set as offline after connection close
+2026-01-16T12:54:21.264Z "parodus"[5244]:  260116-12:54:21.264597 [mod=PARODUS, lvl=INFO] [tid=5282] PARODUS: Removed /tmp/webpanotifyready file as cloud status is offline
+2026-01-16T12:54:21.328Z "parodus"[20030]:  Usage:
+2026-01-16T12:54:21.328Z "parodus"[20030]:   kill [options] <pid> [...]
+2026-01-16T12:54:21.328Z "parodus"[20030]:  Options:
+2026-01-16T12:54:21.328Z "parodus"[20030]:   <pid> [...]            send signal to every <pid> listed
+2026-01-16T12:54:21.328Z "parodus"[20030]:   -<signal>, -s, --signal <signal>
+2026-01-16T12:54:21.328Z "parodus"[20030]:                          specify the <signal> to be sent
+2026-01-16T12:54:21.328Z "parodus"[20030]:   -q, --queue <value>    integer value to be sent with the signal
+2026-01-16T12:54:21.328Z "parodus"[20030]:   -l, --list=[<signal>]  list all signal names, or convert one to a name
+2026-01-16T12:54:21.328Z "parodus"[20030]:   -L, --table            list all signal names in a nice table
+2026-01-16T12:54:21.328Z "parodus"[20030]:   -h, --help     display this help and exit
+2026-01-16T12:54:21.328Z "parodus"[20030]:   -V, --version  output version information and exit
+2026-01-16T12:54:21.328Z "parodus"[20030]:  For more details see kill(1).

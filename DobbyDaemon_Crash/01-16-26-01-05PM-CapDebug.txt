@@ -1,0 +1,9 @@
+2025-12-03T08:39:00.729Z :[non-root]: Dropping root privilege of telemetry2_0: runs as unprivilege mode
+2025-12-03T08:39:00.729Z :[non-root]: unprivilege user name: non-root 
+2025-12-03T08:39:00.730Z :[non-root]: Dumping current caps of the process: cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setpcap,cap_ipc_lock,cap_ipc_owner,cap_sys_chroot,cap_sys_ptrace,cap_sys_nice=eip
+2025-12-03T08:39:01.636Z :[non-root]: Dropping root privilege of audiocapturemgr: runs as unprivilege mode
+2025-12-03T08:39:01.637Z :[non-root]: unprivilege user name: non-root 
+2025-12-03T08:39:01.637Z :[non-root]: Dumping current caps of the process: cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_sys_ptrace,cap_sys_nice=eip cap_chown,cap_kill,cap_setpcap,cap_ipc_lock,cap_ipc_owner,cap_sys_chroot+i
+2026-01-15T02:46:39.053Z :[non-root]: Dropping root privilege of parodus: runs as unprivilege mode
+2026-01-15T02:46:39.057Z :[non-root]: unprivilege user name: non-root 
+2026-01-15T02:46:39.058Z :[non-root]: Dumping current caps of the process: cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setpcap,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_chroot,cap_sys_ptrace,cap_sys_nice,cap_sys_resource=eip cap_net_bind_service+i

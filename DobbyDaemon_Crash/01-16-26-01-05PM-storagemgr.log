@@ -1,0 +1,472 @@
+2025-12-03T08:38:56.506Z storageMgrMain[3571]:  rdk_dyn_log_initg_dl_socket = 6 __progname = storageMgrMain
+2025-12-03T08:38:56.506Z storageMgrMain[3571]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = rSTMgrBus
+2025-12-03T08:38:56.506Z storageMgrMain[3571]:  setting init done
+2025-12-03T08:38:56.506Z storageMgrMain[3571]:  Registering rSTMgrBus
+2025-12-03T08:38:56.506Z storageMgrMain[3571]:  Conf file /etc/debug.ini open success
+2025-12-03T08:38:56.506Z storageMgrMain[3571]:  251203-08:38:56.505676 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Loger Inited Successfully
+2025-12-03T08:38:56.534Z storageMgrMain[3571]:  251203-08:38:56.521991 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/platform/98012000.emmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0
+2025-12-03T08:38:56.536Z storageMgrMain[3571]:  251203-08:38:56.522046 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/platform/98012000.emmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0
+2025-12-03T08:38:56.537Z storageMgrMain[3571]:  251203-08:38:56.522072 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.537Z storageMgrMain[3571]:  251203-08:38:56.522094 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/mmcblk0
+2025-12-03T08:38:56.537Z storageMgrMain[3571]:  251203-08:38:56.522464 [mod=STORAGEMGR, lvl=INFO] [tid=3571] IS MMC TYPE : Yes
+2025-12-03T08:38:56.547Z storageMgrMain[3571]:  251203-08:38:56.522583 [mod=STORAGEMGR, lvl=ERROR] [tid=3571] Requested to create class for eMMC Memory with the device path = /dev/mmcblk0
+2025-12-03T08:38:56.547Z storageMgrMain[3571]:  251203-08:38:56.522776 [mod=RFCAPI, lvl=ERROR] [tid=3571] getRFCParameter: file /tmp/.tr69hostif_http_server_ready doesn't exist, http server isn't ready yet
+2025-12-03T08:38:56.547Z storageMgrMain[3571]:  251203-08:38:56.523573 [mod=STORAGEMGR, lvl=INFO] [tid=3571] rStorageMedia m_maxAdaptiveBitRateConfigured :18
+2025-12-03T08:38:56.547Z storageMgrMain[3571]:  251203-08:38:56.523719 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2025-12-03T08:38:56.548Z storageMgrMain[3571]:  251203-08:38:56.523771 [mod=RFCAPI, lvl=ERROR] [tid=3571] getRFCParameter: file /tmp/.tr69hostif_http_server_ready doesn't exist, http server isn't ready yet
+2025-12-03T08:38:56.548Z storageMgrMain[3571]:  251203-08:38:56.525986 [mod=STORAGEMGR, lvl=INFO] [tid=3571] rStorageMedia m_maxTSBLengthConfigured :25
+2025-12-03T08:38:56.548Z storageMgrMain[3571]:  251203-08:38:56.526164 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2025-12-03T08:38:56.548Z storageMgrMain[3571]:  251203-08:38:56.546988 [mod=RBUS, lvl=INFO] [tid=3571] rbus open for component: t2_lib_StorageMgr
+2025-12-03T08:38:56.548Z storageMgrMain[3571]:  251203-08:38:56.548552 [mod=RBUS, lvl=INFO] [tid=3571]  rbus open (t2_lib_StorageMgr) success
+2025-12-03T08:38:56.551Z storageMgrMain[3571]:  251203-08:38:56.549192 [mod=RBUS, lvl=ERROR] [tid=3571] rbus_get for Telemetry.OperationalStatus failed with error: Entry not found error
+2025-12-03T08:38:56.551Z storageMgrMain[3571]:  251203-08:38:56.551581 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [populateDeviceDetails] m_capacity is : [9105833984]
+2025-12-03T08:38:56.558Z storageMgrMain[3571]:  251203-08:38:56.551718 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [populateDeviceDetails] The eMMC Card 'READ ONLY' attribute is 0.
+2025-12-03T08:38:56.559Z storageMgrMain[3571]:  251203-08:38:56.551887 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [populateDeviceDetails] The eMMC Card is READ-WRITE and status is 0.
+2025-12-03T08:38:56.559Z storageMgrMain[3571]:  251203-08:38:56.555108 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [populateDeviceDetails] Partition capacity is : [1841299456]
+2025-12-03T08:38:56.559Z storageMgrMain[3571]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File
+2025-12-03T08:38:56.562Z storageMgrMain[3571]:  251203-08:38:56.560635 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [createTsbDir:1260] Successfully created TSB (/tmp/data) Directory.
+2025-12-03T08:38:56.674Z storageMgrMain[3571]:  251203-08:38:56.674425 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [doMount:1221] Mounted /dev/mmcblk0p1 on /tmp/data successfully.
+2025-12-03T08:38:56.674Z storageMgrMain[3571]:  251203-08:38:56.674583 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [doMount:1223] Change SM_EMMC_MOUNT_PATH file permisison to 0777 retStatus : 0
+2025-12-03T08:38:56.676Z storageMgrMain[3571]:  251203-08:38:56.676113 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Update the capacity n freespace as per STATVFS
+2025-12-03T08:38:56.676Z storageMgrMain[3571]:  251203-08:38:56.676284 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [get_eMMCPropertiesStatvfs:988] Partition Details:
+2025-12-03T08:38:56.677Z storageMgrMain[3571]:  251203-08:38:56.676313 [mod=STORAGEMGR, lvl=INFO] [tid=3571] ===========================================
+2025-12-03T08:38:56.677Z storageMgrMain[3571]:  251203-08:38:56.676335 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [/tmp/data, mounted on /dev/mmcblk0p1: of type: ext4 option: rw,relatime,data=ordered
+2025-12-03T08:38:56.677Z storageMgrMain[3571]:  251203-08:38:56.676353 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_partitionId: /dev/mmcblk0p1
+2025-12-03T08:38:56.677Z storageMgrMain[3571]:  251203-08:38:56.676372 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_format: ext4
+2025-12-03T08:38:56.677Z storageMgrMain[3571]:  251203-08:38:56.676390 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_mountPath: /tmp/data
+2025-12-03T08:38:56.677Z storageMgrMain[3571]:  251203-08:38:56.676414 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_capacity: 5972811776
+2025-12-03T08:38:56.678Z storageMgrMain[3571]:  251203-08:38:56.676433 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_freeSpace: 5624852480
+2025-12-03T08:38:56.678Z storageMgrMain[3571]:  251203-08:38:56.676452 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_maxTSBCapacityinMinutes: 25
+2025-12-03T08:38:56.679Z storageMgrMain[3571]:  251203-08:38:56.676471 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_maxTSBLengthConfigured: 25
+2025-12-03T08:38:56.679Z storageMgrMain[3571]:  251203-08:38:56.676489 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_maxAdaptiveBitRateConfigured: 18
+2025-12-03T08:38:56.679Z storageMgrMain[3571]:  251203-08:38:56.677728 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_status: 0
+2025-12-03T08:38:56.679Z storageMgrMain[3571]:  251203-08:38:56.677772 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_isTSBSupported: 1
+2025-12-03T08:38:56.679Z storageMgrMain[3571]:  251203-08:38:56.677791 [mod=STORAGEMGR, lvl=INFO] [tid=3571] 	m_isDVRSupported: 0
+2025-12-03T08:38:56.679Z storageMgrMain[3571]:  251203-08:38:56.678236 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Done with Init; Add to the hash table..
+2025-12-03T08:38:56.679Z storageMgrMain[3571]:  251203-08:38:56.678422 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Given pDeviceID is 45010044473430313601797e711d5800
+2025-12-03T08:38:56.679Z storageMgrMain[3571]:  251203-08:38:56.678446 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Found the matching Device..
+2025-12-03T08:38:56.680Z storageMgrMain[3571]:  251203-08:38:56.679852 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2025-12-03T08:38:56.686Z storageMgrMain[3571]:  251203-08:38:56.683970 [mod=RFCAPI, lvl=ERROR] [tid=3571] getRFCParameter: file /tmp/.tr69hostif_http_server_ready doesn't exist, http server isn't ready yet
+2025-12-03T08:38:56.687Z storageMgrMain[3571]:  251203-08:38:56.685841 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [getHealth:492] eMMC LifeElapsedA = 0x01 (0% - 10% device life time used)
+2025-12-03T08:38:56.687Z storageMgrMain[3571]:  251203-08:38:56.685889 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [getHealth:506] eMMC LifeElapsedB = 0x01 (0% - 10% device life time used)
+2025-12-03T08:38:56.687Z storageMgrMain[3571]:  251203-08:38:56.686433 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [getHealth:589] eMMC DeviceReport = 0x00000000001600003a01000000000000000000002b0e000005000000000000000000000000000000010000004d617220313020323032300032303a31373a34325838010087110000000000000600000000000000000000000000000000000000000000004a11000001000000011600004a010000000000000016000029010000a60e00008b0d0000d20d00000000000000000000010000000100000001000000000000001e000000110000005f00000008000000010000000c000000694e011e0e000000050000002d1d01000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+2025-12-03T08:38:56.687Z storageMgrMain[3571]:  251203-08:38:56.686476 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [getHealth:592] eMMC PreEOLStateEUDA : 1 (Normal)
+2025-12-03T08:38:56.687Z storageMgrMain[3571]:  251203-08:38:56.686496 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [getHealth:607] eMMC PreEOLStateSystem : 1 (Normal)
+2025-12-03T08:38:56.687Z storageMgrMain[3571]:  251203-08:38:56.686515 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [getHealth:622] eMMC PreEOLStateMLC : 1 (Normal)
+2025-12-03T08:38:56.687Z storageMgrMain[3571]:  251203-08:38:56.687493 [mod=RBUS, lvl=ERROR] [tid=3571] rbus_get for Telemetry.OperationalStatus failed with error: Entry not found error
+2025-12-03T08:38:56.688Z storageMgrMain[3571]:  251203-08:38:56.688078 [mod=RBUS, lvl=ERROR] [tid=3571] rbus_get for Telemetry.OperationalStatus failed with error: Entry not found error
+2025-12-03T08:38:56.689Z storageMgrMain[3571]:  251203-08:38:56.688636 [mod=RBUS, lvl=ERROR] [tid=3571] rbus_get for Telemetry.OperationalStatus failed with error: Entry not found error
+2025-12-03T08:38:56.689Z storageMgrMain[3571]:  251203-08:38:56.689440 [mod=RBUS, lvl=ERROR] [tid=3571] rbus_get for Telemetry.OperationalStatus failed with error: Entry not found error
+2025-12-03T08:38:56.690Z storageMgrMain[3571]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File
+2025-12-03T08:38:56.690Z storageMgrMain[3571]:  251203-08:38:56.690178 [mod=RBUS, lvl=ERROR] [tid=3571] rbus_get for Telemetry.OperationalStatus failed with error: Entry not found error
+2025-12-03T08:38:56.690Z storageMgrMain[3571]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File
+2025-12-03T08:38:56.692Z storageMgrMain[3571]:  251203-08:38:56.690990 [mod=RBUS, lvl=ERROR] [tid=3571] rbus_get for Telemetry.OperationalStatus failed with error: Entry not found error
+2025-12-03T08:38:56.698Z storageMgrMain[3571]:  251203-08:38:56.692243 [mod=RBUS, lvl=ERROR] [tid=3571] rbus_get for Telemetry.OperationalStatus failed with error: Entry not found error
+2025-12-03T08:38:56.699Z storageMgrMain[3571]:  251203-08:38:56.692490 [mod=STORAGEMGR, lvl=WARN] [tid=3571] Post RDK_STMGR_EVENT_STATUS_CHANGED update
+2025-12-03T08:38:56.699Z storageMgrMain[3571]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File
+2025-12-03T08:38:56.699Z storageMgrMain[3571]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File
+2025-12-03T08:38:56.699Z storageMgrMain[3571]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File
+2025-12-03T08:38:56.699Z storageMgrMain[3571]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File
+2025-12-03T08:38:56.701Z storageMgrMain[3571]:  251203-08:38:56.699725 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/platform/98012000.emmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0boot0
+2025-12-03T08:38:56.701Z storageMgrMain[3571]:  251203-08:38:56.699780 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/platform/98012000.emmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0boot0
+2025-12-03T08:38:56.701Z storageMgrMain[3571]:  251203-08:38:56.699801 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.701Z storageMgrMain[3571]:  251203-08:38:56.699819 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/mmcblk0boot0
+2025-12-03T08:38:56.701Z storageMgrMain[3571]:  251203-08:38:56.700621 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/platform/98012000.emmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0boot1
+2025-12-03T08:38:56.701Z storageMgrMain[3571]:  251203-08:38:56.700653 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/platform/98012000.emmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0boot1
+2025-12-03T08:38:56.701Z storageMgrMain[3571]:  251203-08:38:56.700676 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.701Z storageMgrMain[3571]:  251203-08:38:56.700695 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/mmcblk0boot1
+2025-12-03T08:38:56.704Z storageMgrMain[3571]:  251203-08:38:56.703937 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/platform/98012000.emmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0rpmb
+2025-12-03T08:38:56.704Z storageMgrMain[3571]:  251203-08:38:56.704218 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/platform/98012000.emmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0rpmb
+2025-12-03T08:38:56.705Z storageMgrMain[3571]:  251203-08:38:56.704261 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.705Z storageMgrMain[3571]:  251203-08:38:56.704282 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/mmcblk0rpmb
+2025-12-03T08:38:56.713Z storageMgrMain[3571]:  251203-08:38:56.713490 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/loop0
+2025-12-03T08:38:56.713Z storageMgrMain[3571]:  251203-08:38:56.713551 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/loop0
+2025-12-03T08:38:56.713Z storageMgrMain[3571]:  251203-08:38:56.713572 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.713Z storageMgrMain[3571]:  251203-08:38:56.713590 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/loop0
+2025-12-03T08:38:56.713Z storageMgrMain[3571]:  251203-08:38:56.713891 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/loop1
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.713917 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/loop1
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.713936 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.713953 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/loop1
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714211 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/loop2
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714234 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/loop2
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714253 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714270 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/loop2
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714516 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/loop3
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714538 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/loop3
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714556 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714573 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/loop3
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714815 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/loop4
+2025-12-03T08:38:56.714Z storageMgrMain[3571]:  251203-08:38:56.714837 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/loop4
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.714855 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.714873 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/loop4
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715113 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/loop5
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715134 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/loop5
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715152 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715169 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/loop5
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715406 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/loop6
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715427 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/loop6
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715445 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715462 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/loop6
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715700 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/loop7
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715721 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/loop7
+2025-12-03T08:38:56.715Z storageMgrMain[3571]:  251203-08:38:56.715739 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.715756 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/loop7
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.715992 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram0
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716013 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram0
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716031 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716048 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram0
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716284 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram1
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716305 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram1
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716329 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716347 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram1
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716585 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram10
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716606 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram10
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716624 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.716Z storageMgrMain[3571]:  251203-08:38:56.716641 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram10
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.716880 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram11
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.716901 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram11
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.716919 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.716936 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram11
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.717297 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram12
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.717319 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram12
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.717338 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.717356 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram12
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.717593 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram13
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.717613 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram13
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.717632 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.717Z storageMgrMain[3571]:  251203-08:38:56.717649 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram13
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  251203-08:38:56.717884 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram14
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  251203-08:38:56.717905 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram14
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  251203-08:38:56.717923 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  251203-08:38:56.717940 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram14
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  251203-08:38:56.718176 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram15
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  251203-08:38:56.718197 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram15
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  251203-08:38:56.718215 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  251203-08:38:56.718232 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram15
+2025-12-03T08:38:56.718Z storageMgrMain[3571]:  T2ERROR:cacheEventToFile ../../../git/source/commonlib/telemetry_busmessage_sender.c:321: cacheEventToFile:321, Caching the event to File
+2025-12-03T08:38:56.719Z storageMgrMain[3571]:  251203-08:38:56.719706 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram2
+2025-12-03T08:38:56.719Z storageMgrMain[3571]:  251203-08:38:56.719907 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram2
+2025-12-03T08:38:56.720Z storageMgrMain[3571]:  251203-08:38:56.720073 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.720Z storageMgrMain[3571]:  251203-08:38:56.720222 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram2
+2025-12-03T08:38:56.720Z storageMgrMain[3571]:  251203-08:38:56.720713 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram3
+2025-12-03T08:38:56.720Z storageMgrMain[3571]:  251203-08:38:56.720899 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram3
+2025-12-03T08:38:56.721Z storageMgrMain[3571]:  251203-08:38:56.721092 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.721Z storageMgrMain[3571]:  251203-08:38:56.721226 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram3
+2025-12-03T08:38:56.721Z storageMgrMain[3571]:  251203-08:38:56.721738 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram4
+2025-12-03T08:38:56.721Z storageMgrMain[3571]:  251203-08:38:56.721891 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram4
+2025-12-03T08:38:56.722Z storageMgrMain[3571]:  251203-08:38:56.722050 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.722Z storageMgrMain[3571]:  251203-08:38:56.722192 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram4
+2025-12-03T08:38:56.722Z storageMgrMain[3571]:  251203-08:38:56.722645 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram5
+2025-12-03T08:38:56.722Z storageMgrMain[3571]:  251203-08:38:56.722821 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram5
+2025-12-03T08:38:56.723Z storageMgrMain[3571]:  251203-08:38:56.722961 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.723Z storageMgrMain[3571]:  251203-08:38:56.723108 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram5
+2025-12-03T08:38:56.723Z storageMgrMain[3571]:  251203-08:38:56.723606 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram6
+2025-12-03T08:38:56.732Z storageMgrMain[3571]:  251203-08:38:56.731969 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram6
+2025-12-03T08:38:56.732Z storageMgrMain[3571]:  251203-08:38:56.732220 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.732Z storageMgrMain[3571]:  251203-08:38:56.732361 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram6
+2025-12-03T08:38:56.732Z storageMgrMain[3571]:  251203-08:38:56.732790 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram7
+2025-12-03T08:38:56.733Z storageMgrMain[3571]:  251203-08:38:56.732942 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram7
+2025-12-03T08:38:56.733Z storageMgrMain[3571]:  251203-08:38:56.733120 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.733Z storageMgrMain[3571]:  251203-08:38:56.733401 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram7
+2025-12-03T08:38:56.733Z storageMgrMain[3571]:  251203-08:38:56.733837 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram8
+2025-12-03T08:38:56.734Z storageMgrMain[3571]:  251203-08:38:56.733989 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram8
+2025-12-03T08:38:56.734Z storageMgrMain[3571]:  251203-08:38:56.734146 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.734Z storageMgrMain[3571]:  251203-08:38:56.734292 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram8
+2025-12-03T08:38:56.734Z storageMgrMain[3571]:  251203-08:38:56.734830 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/ram9
+2025-12-03T08:38:56.735Z storageMgrMain[3571]:  251203-08:38:56.735025 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/ram9
+2025-12-03T08:38:56.735Z storageMgrMain[3571]:  251203-08:38:56.735165 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.735Z storageMgrMain[3571]:  251203-08:38:56.735297 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/ram9
+2025-12-03T08:38:56.736Z storageMgrMain[3571]:  251203-08:38:56.735773 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Sys    Path : /sys/devices/virtual/block/dm-0
+2025-12-03T08:38:56.736Z storageMgrMain[3571]:  251203-08:38:56.735801 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Path : /devices/virtual/block/dm-0
+2025-12-03T08:38:56.736Z storageMgrMain[3571]:  251203-08:38:56.735825 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Type : disk
+2025-12-03T08:38:56.736Z storageMgrMain[3571]:  251203-08:38:56.735847 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Device Node : /dev/dm-0
+2025-12-03T08:38:56.736Z storageMgrMain[3571]:  251203-08:38:56.735991 [mod=STORAGEMGR, lvl=ERROR] [tid=3571] Seems like this platform does not use/support NVRAM
+2025-12-03T08:38:56.736Z storageMgrMain[3571]:  251203-08:38:56.736011 [mod=STORAGEMGR, lvl=ERROR] [tid=3571] This platform does not support SDCard.
+2025-12-03T08:39:00.630Z storageMgrMain[3571]:  251203-08:39:00.629948 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: add
+2025-12-03T08:39:00.631Z storageMgrMain[3571]:  251203-08:39:00.630006 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/zram0
+2025-12-03T08:39:00.631Z storageMgrMain[3571]:  251203-08:39:00.630027 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/zram0
+2025-12-03T08:39:00.631Z storageMgrMain[3571]:  251203-08:39:00.630046 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2025-12-03T08:39:00.631Z storageMgrMain[3571]:  251203-08:39:00.630065 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/zram0
+2025-12-03T08:39:00.631Z storageMgrMain[3571]:  251203-08:39:00.630229 [mod=STORAGEMGR, lvl=INFO] [tid=3640] ID_BUS      : (null)
+2025-12-03T08:39:00.631Z storageMgrMain[3571]:  251203-08:39:00.630251 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-15T02:46:34.154Z storageMgrMain[3571]:  260115-02:46:34.138115 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Found a device which supports TSB n Path has been noted
+2026-01-15T02:46:37.607Z storageMgrMain[3571]:  260115-02:46:37.606509 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: add
+2026-01-15T02:46:37.607Z storageMgrMain[3571]:  260115-02:46:37.606569 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/zram1
+2026-01-15T02:46:37.607Z storageMgrMain[3571]:  260115-02:46:37.606590 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/zram1
+2026-01-15T02:46:37.607Z storageMgrMain[3571]:  260115-02:46:37.606608 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-15T02:46:37.607Z storageMgrMain[3571]:  260115-02:46:37.606627 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/zram1
+2026-01-15T02:46:37.608Z storageMgrMain[3571]:  260115-02:46:37.606767 [mod=STORAGEMGR, lvl=INFO] [tid=3640] ID_BUS      : (null)
+2026-01-15T02:46:37.608Z storageMgrMain[3571]:  260115-02:46:37.607354 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-15T02:46:42.608Z storageMgrMain[3571]:  260115-02:46:42.607601 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: add
+2026-01-15T02:46:42.608Z storageMgrMain[3571]:  260115-02:46:42.607667 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/zram2
+2026-01-15T02:46:42.608Z storageMgrMain[3571]:  260115-02:46:42.607687 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/zram2
+2026-01-15T02:46:42.608Z storageMgrMain[3571]:  260115-02:46:42.607749 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-15T02:46:42.608Z storageMgrMain[3571]:  260115-02:46:42.607768 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/zram2
+2026-01-15T02:46:42.608Z storageMgrMain[3571]:  260115-02:46:42.607915 [mod=STORAGEMGR, lvl=INFO] [tid=3640] ID_BUS      : (null)
+2026-01-15T02:46:42.608Z storageMgrMain[3571]:  260115-02:46:42.607935 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:35:11.051Z storageMgrMain[3571]:  260116-02:35:11.050893 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: add
+2026-01-16T02:35:11.051Z storageMgrMain[3571]:  260116-02:35:11.050942 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/zram3
+2026-01-16T02:35:11.051Z storageMgrMain[3571]:  260116-02:35:11.050962 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/zram3
+2026-01-16T02:35:11.051Z storageMgrMain[3571]:  260116-02:35:11.050981 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:35:11.051Z storageMgrMain[3571]:  260116-02:35:11.050998 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/zram3
+2026-01-16T02:35:11.051Z storageMgrMain[3571]:  260116-02:35:11.051145 [mod=STORAGEMGR, lvl=INFO] [tid=3640] ID_BUS      : (null)
+2026-01-16T02:35:11.052Z storageMgrMain[3571]:  260116-02:35:11.051166 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:35:16.052Z storageMgrMain[3571]:  260116-02:35:16.051512 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T02:35:16.052Z storageMgrMain[3571]:  260116-02:35:16.051580 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop0
+2026-01-16T02:35:16.052Z storageMgrMain[3571]:  260116-02:35:16.051609 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop0
+2026-01-16T02:35:16.052Z storageMgrMain[3571]:  260116-02:35:16.051630 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:35:16.053Z storageMgrMain[3571]:  260116-02:35:16.051650 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop0
+2026-01-16T02:35:16.053Z storageMgrMain[3571]:  260116-02:35:16.051678 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T02:35:16.053Z storageMgrMain[3571]:  260116-02:35:16.051702 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:35:21.062Z storageMgrMain[3571]:  260116-02:35:21.051973 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T02:35:21.062Z storageMgrMain[3571]:  260116-02:35:21.052038 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop0
+2026-01-16T02:35:21.062Z storageMgrMain[3571]:  260116-02:35:21.052058 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop0
+2026-01-16T02:35:21.062Z storageMgrMain[3571]:  260116-02:35:21.052077 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:35:21.063Z storageMgrMain[3571]:  260116-02:35:21.052110 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop0
+2026-01-16T02:35:21.063Z storageMgrMain[3571]:  260116-02:35:21.052131 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T02:35:21.063Z storageMgrMain[3571]:  260116-02:35:21.052149 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:35:26.055Z storageMgrMain[3571]:  260116-02:35:26.053088 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T02:35:26.055Z storageMgrMain[3571]:  260116-02:35:26.053145 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop1
+2026-01-16T02:35:26.056Z storageMgrMain[3571]:  260116-02:35:26.053166 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop1
+2026-01-16T02:35:26.056Z storageMgrMain[3571]:  260116-02:35:26.053185 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:35:26.056Z storageMgrMain[3571]:  260116-02:35:26.053204 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop1
+2026-01-16T02:35:26.056Z storageMgrMain[3571]:  260116-02:35:26.053225 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T02:35:26.056Z storageMgrMain[3571]:  260116-02:35:26.053243 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:35:31.054Z storageMgrMain[3571]:  260116-02:35:31.053522 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T02:35:31.055Z storageMgrMain[3571]:  260116-02:35:31.053593 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop1
+2026-01-16T02:35:31.055Z storageMgrMain[3571]:  260116-02:35:31.053619 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop1
+2026-01-16T02:35:31.055Z storageMgrMain[3571]:  260116-02:35:31.053641 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:35:31.055Z storageMgrMain[3571]:  260116-02:35:31.053664 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop1
+2026-01-16T02:35:31.055Z storageMgrMain[3571]:  260116-02:35:31.053689 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T02:35:31.055Z storageMgrMain[3571]:  260116-02:35:31.053709 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:35:36.054Z storageMgrMain[3571]:  260116-02:35:36.054000 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T02:35:36.055Z storageMgrMain[3571]:  260116-02:35:36.054059 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop2
+2026-01-16T02:35:36.055Z storageMgrMain[3571]:  260116-02:35:36.054082 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop2
+2026-01-16T02:35:36.055Z storageMgrMain[3571]:  260116-02:35:36.054102 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:35:36.055Z storageMgrMain[3571]:  260116-02:35:36.054122 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop2
+2026-01-16T02:35:36.055Z storageMgrMain[3571]:  260116-02:35:36.054144 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T02:35:36.055Z storageMgrMain[3571]:  260116-02:35:36.054163 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:39:04.620Z storageMgrMain[3571]:  260116-02:39:04.619867 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T02:39:04.620Z storageMgrMain[3571]:  260116-02:39:04.619942 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop3
+2026-01-16T02:39:04.621Z storageMgrMain[3571]:  260116-02:39:04.619971 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop3
+2026-01-16T02:39:04.621Z storageMgrMain[3571]:  260116-02:39:04.619997 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:39:04.621Z storageMgrMain[3571]:  260116-02:39:04.620023 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop3
+2026-01-16T02:39:04.621Z storageMgrMain[3571]:  260116-02:39:04.620052 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T02:39:04.621Z storageMgrMain[3571]:  260116-02:39:04.620076 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:39:36.487Z storageMgrMain[3571]:  260116-02:39:36.486214 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T02:39:36.487Z storageMgrMain[3571]:  260116-02:39:36.486275 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop4
+2026-01-16T02:39:36.487Z storageMgrMain[3571]:  260116-02:39:36.486298 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop4
+2026-01-16T02:39:36.487Z storageMgrMain[3571]:  260116-02:39:36.486320 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:39:36.487Z storageMgrMain[3571]:  260116-02:39:36.486341 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop4
+2026-01-16T02:39:36.487Z storageMgrMain[3571]:  260116-02:39:36.486365 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T02:39:36.487Z storageMgrMain[3571]:  260116-02:39:36.486385 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:40:05.049Z storageMgrMain[3571]:  260116-02:40:05.048093 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T02:40:05.049Z storageMgrMain[3571]:  260116-02:40:05.048147 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop5
+2026-01-16T02:40:05.049Z storageMgrMain[3571]:  260116-02:40:05.048168 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop5
+2026-01-16T02:40:05.049Z storageMgrMain[3571]:  260116-02:40:05.048208 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T02:40:05.049Z storageMgrMain[3571]:  260116-02:40:05.048227 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop5
+2026-01-16T02:40:05.049Z storageMgrMain[3571]:  260116-02:40:05.048249 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T02:40:05.049Z storageMgrMain[3571]:  260116-02:40:05.048267 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T02:47:31.716Z storageMgrMain[3571]:  260116-02:47:31.715822 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Found a device which supports TSB n Path has been noted
+2026-01-16T02:47:31.716Z storageMgrMain[3571]:  260116-02:47:31.715870 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T02:47:31.717Z storageMgrMain[3571]:  260116-02:47:31.715907 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T02:47:31.717Z storageMgrMain[3571]:  260116-02:47:31.715934 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 2 -- > 5
+2026-01-16T02:47:31.717Z storageMgrMain[3571]:  260116-02:47:31.715960 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 2 -- > 5
+2026-01-16T02:47:31.717Z storageMgrMain[3571]:  260116-02:47:31.715990 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T02:47:31.717Z storageMgrMain[3571]:  260116-02:47:31.716014 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: adding timeout
+2026-01-16T02:47:31.717Z storageMgrMain[3571]:  260116-02:47:31.716135 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: deep sleep on
+2026-01-16T02:47:36.567Z storageMgrMain[3571]:  260116-02:47:36.566808 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T02:47:36.567Z storageMgrMain[3571]:  260116-02:47:36.566856 [mod=STORAGEMGR, lvl=INFO] [tid=3571] timeOutCallback: Forcefully unmounting 96, R
+2026-01-16T02:47:36.567Z storageMgrMain[3571]:  260116-02:47:36.566876 [mod=STORAGEMGR, lvl=INFO] [tid=3571] STMgrPowerStateHandler unmounting SD Card
+2026-01-16T02:47:36.589Z storageMgrMain[3571]:  Calling umount_function()
+2026-01-16T02:47:36.613Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T02:47:36.613Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T02:47:36.613Z storageMgrMain[3571]:  Retring: 0.
+2026-01-16T02:47:41.677Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T02:47:41.680Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T02:47:41.680Z storageMgrMain[3571]:  Retring: 1.
+2026-01-16T05:36:05.111Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T05:36:05.131Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T05:36:05.131Z storageMgrMain[3571]:  Retring: 2.
+2026-01-16T05:36:07.008Z storageMgrMain[3571]:  260116-05:36:06.998281 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T05:36:07.009Z storageMgrMain[3571]:  260116-05:36:06.998354 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T05:36:07.009Z storageMgrMain[3571]:  260116-05:36:06.998377 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 5 -- > 4
+2026-01-16T05:36:07.009Z storageMgrMain[3571]:  260116-05:36:06.998396 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 5 -- > 4
+2026-01-16T05:36:07.009Z storageMgrMain[3571]:  260116-05:36:06.998418 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T05:36:10.493Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T05:36:10.493Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T05:36:10.494Z storageMgrMain[3571]:  Retring: 3.
+2026-01-16T05:36:12.126Z storageMgrMain[3571]:  260116-05:36:12.123819 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T05:36:12.126Z storageMgrMain[3571]:  260116-05:36:12.123921 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T05:36:12.126Z storageMgrMain[3571]:  260116-05:36:12.123965 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 4 -- > 5
+2026-01-16T05:36:12.126Z storageMgrMain[3571]:  260116-05:36:12.124003 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 4 -- > 5
+2026-01-16T05:36:12.127Z storageMgrMain[3571]:  260116-05:36:12.124046 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T05:36:12.127Z storageMgrMain[3571]:  260116-05:36:12.124083 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: deep sleep on
+2026-01-16T05:36:12.127Z storageMgrMain[3571]:  260116-05:36:12.124118 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: removing sourceId
+2026-01-16T05:36:12.127Z storageMgrMain[3571]:  260116-05:36:12.124178 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler unmounting SD Card
+2026-01-16T05:36:12.135Z storageMgrMain[3571]:  sh: /lib/rdk/disk_check: No such file or directory
+2026-01-16T05:36:12.135Z storageMgrMain[3571]:  260116-05:36:12.135682 [mod=STORAGEMGR, lvl=INFO] [tid=3584] [unMountDevice:507] Successfully unmounted.
+2026-01-16T05:36:15.913Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T05:36:15.914Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T05:36:15.914Z storageMgrMain[3571]:  Retring: 4.
+2026-01-16T05:36:20.975Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T05:36:20.975Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T05:36:20.975Z storageMgrMain[3571]:  Retring: 5.
+2026-01-16T08:14:40.081Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:14:40.087Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:14:40.087Z storageMgrMain[3571]:  Retring: 6.
+2026-01-16T08:14:42.404Z storageMgrMain[3571]:  260116-08:14:42.403316 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T08:14:42.404Z storageMgrMain[3571]:  260116-08:14:42.403396 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T08:14:42.404Z storageMgrMain[3571]:  260116-08:14:42.403426 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 5 -- > 4
+2026-01-16T08:14:42.404Z storageMgrMain[3571]:  260116-08:14:42.403453 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 5 -- > 4
+2026-01-16T08:14:42.405Z storageMgrMain[3571]:  260116-08:14:42.403483 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T08:14:45.002Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:14:45.002Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:14:45.002Z storageMgrMain[3571]:  Retring: 7.
+2026-01-16T08:14:47.554Z storageMgrMain[3571]:  260116-08:14:47.550408 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T08:14:47.554Z storageMgrMain[3571]:  260116-08:14:47.550701 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T08:14:47.554Z storageMgrMain[3571]:  260116-08:14:47.550746 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 4 -- > 5
+2026-01-16T08:14:47.554Z storageMgrMain[3571]:  260116-08:14:47.550783 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 4 -- > 5
+2026-01-16T08:14:47.554Z storageMgrMain[3571]:  260116-08:14:47.550825 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T08:14:47.554Z storageMgrMain[3571]:  260116-08:14:47.550862 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: adding timeout
+2026-01-16T08:14:47.554Z storageMgrMain[3571]:  260116-08:14:47.550920 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: deep sleep on
+2026-01-16T08:14:50.017Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:14:50.018Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:14:50.018Z storageMgrMain[3571]:  Retring: 8.
+2026-01-16T08:14:55.081Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:14:55.081Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:14:55.081Z storageMgrMain[3571]:  Retring: 9.
+2026-01-16T08:35:43.659Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:35:43.668Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:35:43.668Z storageMgrMain[3571]:  Retring: 10.
+2026-01-16T08:35:43.668Z storageMgrMain[3571]:  Failed to umount, retried: 10.
+2026-01-16T08:35:43.672Z storageMgrMain[3571]:  260116-08:35:43.594018 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [unMountDevice:507] Successfully unmounted.
+2026-01-16T08:35:43.672Z storageMgrMain[3571]:  260116-08:35:43.594081 [mod=STORAGEMGR, lvl=INFO] [tid=3571] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T08:35:43.672Z storageMgrMain[3571]:  260116-08:35:43.594102 [mod=STORAGEMGR, lvl=INFO] [tid=3571] timeOutCallback: Forcefully unmounting 144, 260116-08:35:43.594121 [mod=STORAGEMGR, lvl=INFO] [tid=3571] STMgrPowerStateHandler unmounting SD Card
+2026-01-16T08:35:54.045Z storageMgrMain[3571]:  Calling umount_function()
+2026-01-16T08:35:54.058Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:35:54.059Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:35:54.059Z storageMgrMain[3571]:  Retring: 0.
+2026-01-16T08:35:54.296Z storageMgrMain[3571]:  260116-08:35:54.296623 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T08:35:54.296Z storageMgrMain[3571]:  260116-08:35:54.296690 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T08:35:54.296Z storageMgrMain[3571]:  260116-08:35:54.296715 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 5 -- > 4
+2026-01-16T08:35:54.297Z storageMgrMain[3571]:  260116-08:35:54.296766 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 5 -- > 4
+2026-01-16T08:35:54.297Z storageMgrMain[3571]:  260116-08:35:54.296791 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T08:35:59.088Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:35:59.088Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:35:59.089Z storageMgrMain[3571]:  Retring: 1.
+2026-01-16T08:35:59.427Z storageMgrMain[3571]:  260116-08:35:59.426328 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T08:35:59.428Z storageMgrMain[3571]:  260116-08:35:59.426423 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T08:35:59.428Z storageMgrMain[3571]:  260116-08:35:59.426465 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 4 -- > 5
+2026-01-16T08:35:59.428Z storageMgrMain[3571]:  260116-08:35:59.426503 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 4 -- > 5
+2026-01-16T08:35:59.428Z storageMgrMain[3571]:  260116-08:35:59.426544 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T08:35:59.428Z storageMgrMain[3571]:  260116-08:35:59.426582 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: deep sleep on
+2026-01-16T08:36:04.164Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:36:04.164Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:36:04.164Z storageMgrMain[3571]:  Retring: 2.
+2026-01-16T08:36:09.185Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T08:36:09.185Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T08:36:09.185Z storageMgrMain[3571]:  Retring: 3.
+2026-01-16T09:19:39.816Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T09:19:39.820Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T09:19:39.820Z storageMgrMain[3571]:  Retring: 4.
+2026-01-16T09:19:44.818Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T09:19:44.818Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T09:19:44.819Z storageMgrMain[3571]:  Retring: 5.
+2026-01-16T09:19:46.510Z storageMgrMain[3571]:  260116-09:19:46.501735 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T09:19:46.510Z storageMgrMain[3571]:  260116-09:19:46.501794 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T09:19:46.510Z storageMgrMain[3571]:  260116-09:19:46.501817 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 5 -- > 4
+2026-01-16T09:19:46.510Z storageMgrMain[3571]:  260116-09:19:46.501835 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 5 -- > 4
+2026-01-16T09:19:46.510Z storageMgrMain[3571]:  260116-09:19:46.501856 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T09:19:46.673Z storageMgrMain[3571]:  260116-09:19:46.669855 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T09:19:46.673Z storageMgrMain[3571]:  260116-09:19:46.669895 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop0
+2026-01-16T09:19:46.673Z storageMgrMain[3571]:  260116-09:19:46.669915 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop0
+2026-01-16T09:19:46.673Z storageMgrMain[3571]:  260116-09:19:46.669933 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T09:19:46.673Z storageMgrMain[3571]:  260116-09:19:46.669951 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop0
+2026-01-16T09:19:46.673Z storageMgrMain[3571]:  260116-09:19:46.669971 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T09:19:46.674Z storageMgrMain[3571]:  260116-09:19:46.669989 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T09:19:50.000Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T09:19:50.001Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T09:19:50.001Z storageMgrMain[3571]:  Retring: 6.
+2026-01-16T09:19:51.671Z storageMgrMain[3571]:  260116-09:19:51.670249 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T09:19:51.671Z storageMgrMain[3571]:  260116-09:19:51.670293 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop5
+2026-01-16T09:19:51.672Z storageMgrMain[3571]:  260116-09:19:51.670316 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop5
+2026-01-16T09:19:51.672Z storageMgrMain[3571]:  260116-09:19:51.670337 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T09:19:51.672Z storageMgrMain[3571]:  260116-09:19:51.670358 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop5
+2026-01-16T09:19:51.672Z storageMgrMain[3571]:  260116-09:19:51.670383 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T09:19:51.672Z storageMgrMain[3571]:  260116-09:19:51.670401 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T09:19:51.927Z storageMgrMain[3571]:  260116-09:19:51.926478 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T09:19:51.927Z storageMgrMain[3571]:  260116-09:19:51.926537 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T09:19:51.927Z storageMgrMain[3571]:  260116-09:19:51.926560 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 4 -- > 5
+2026-01-16T09:19:51.927Z storageMgrMain[3571]:  260116-09:19:51.926579 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 4 -- > 5
+2026-01-16T09:19:51.928Z storageMgrMain[3571]:  260116-09:19:51.926601 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T09:19:51.928Z storageMgrMain[3571]:  260116-09:19:51.926621 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: deep sleep on
+2026-01-16T09:19:55.023Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T09:19:55.027Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T09:19:55.027Z storageMgrMain[3571]:  Retring: 7.
+2026-01-16T09:19:56.671Z storageMgrMain[3571]:  260116-09:19:56.670626 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T09:19:56.671Z storageMgrMain[3571]:  260116-09:19:56.670680 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop1
+2026-01-16T09:19:56.671Z storageMgrMain[3571]:  260116-09:19:56.670701 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop1
+2026-01-16T09:19:56.671Z storageMgrMain[3571]:  260116-09:19:56.670720 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T09:19:56.671Z storageMgrMain[3571]:  260116-09:19:56.670738 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop1
+2026-01-16T09:19:56.671Z storageMgrMain[3571]:  260116-09:19:56.670759 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T09:19:56.671Z storageMgrMain[3571]:  260116-09:19:56.670776 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T09:20:00.229Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T09:20:00.229Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T09:20:00.230Z storageMgrMain[3571]:  Retring: 8.
+2026-01-16T09:20:01.671Z storageMgrMain[3571]:  260116-09:20:01.670999 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T09:20:01.671Z storageMgrMain[3571]:  260116-09:20:01.671054 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop3
+2026-01-16T09:20:01.671Z storageMgrMain[3571]:  260116-09:20:01.671075 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop3
+2026-01-16T09:20:01.671Z storageMgrMain[3571]:  260116-09:20:01.671094 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T09:20:01.672Z storageMgrMain[3571]:  260116-09:20:01.671112 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop3
+2026-01-16T09:20:01.672Z storageMgrMain[3571]:  260116-09:20:01.671160 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T09:20:01.672Z storageMgrMain[3571]:  260116-09:20:01.671180 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T09:34:23.495Z storageMgrMain[3571]:  260116-09:34:24.392656 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T09:34:23.495Z storageMgrMain[3571]:  260116-09:34:24.392706 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop2
+2026-01-16T09:34:23.495Z storageMgrMain[3571]:  260116-09:34:24.392731 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop2
+2026-01-16T09:34:23.495Z storageMgrMain[3571]:  260116-09:34:24.392750 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T09:34:23.495Z storageMgrMain[3571]:  260116-09:34:24.392769 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop2
+2026-01-16T09:34:23.495Z storageMgrMain[3571]:  260116-09:34:24.392790 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T09:34:23.495Z storageMgrMain[3571]:  260116-09:34:24.392812 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T09:34:23.510Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T09:34:23.516Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T09:34:23.516Z storageMgrMain[3571]:  Retring: 9.
+2026-01-16T09:34:28.357Z storageMgrMain[3571]:  260116-09:34:28.356843 [mod=STORAGEMGR, lvl=INFO] [tid=3640] udev_device_get_action() returns: change
+2026-01-16T09:34:28.357Z storageMgrMain[3571]:  260116-09:34:28.356894 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Sys    Path : /sys/devices/virtual/block/loop4
+2026-01-16T09:34:28.357Z storageMgrMain[3571]:  260116-09:34:28.356915 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Path : /devices/virtual/block/loop4
+2026-01-16T09:34:28.357Z storageMgrMain[3571]:  260116-09:34:28.356934 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Type : disk
+2026-01-16T09:34:28.357Z storageMgrMain[3571]:  260116-09:34:28.356952 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Device Node : /dev/loop4
+2026-01-16T09:34:28.357Z storageMgrMain[3571]:  260116-09:34:28.356972 [mod=STORAGEMGR, lvl=INFO] [tid=3640] Invalid Action..!!! (change)
+2026-01-16T09:34:28.358Z storageMgrMain[3571]:  260116-09:34:28.356990 [mod=STORAGEMGR, lvl=ERROR] [tid=3640] Add/Remove device Failed
+2026-01-16T09:34:28.380Z storageMgrMain[3571]:  umount: /tmp/data: target is busy.
+2026-01-16T09:34:28.381Z storageMgrMain[3571]:  Fail to umount 32.
+2026-01-16T09:34:28.381Z storageMgrMain[3571]:  Retring: 10.
+2026-01-16T09:34:28.381Z storageMgrMain[3571]:  Failed to umount, retried: 10.
+2026-01-16T09:34:28.388Z storageMgrMain[3571]:  260116-09:34:28.388593 [mod=STORAGEMGR, lvl=INFO] [tid=3571] [unMountDevice:507] Successfully unmounted.
+2026-01-16T09:34:38.067Z storageMgrMain[3571]:  260116-09:34:38.065677 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T09:34:38.067Z storageMgrMain[3571]:  260116-09:34:38.065746 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T09:34:38.067Z storageMgrMain[3571]:  260116-09:34:38.065773 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 5 -- > 4
+2026-01-16T09:34:38.067Z storageMgrMain[3571]:  260116-09:34:38.065794 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 5 -- > 4
+2026-01-16T09:34:38.067Z storageMgrMain[3571]:  260116-09:34:38.065820 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T09:34:43.003Z storageMgrMain[3571]:  260116-09:34:43.002623 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T09:34:43.003Z storageMgrMain[3571]:  260116-09:34:43.002722 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T09:34:43.004Z storageMgrMain[3571]:  260116-09:34:43.002765 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 4 -- > 5
+2026-01-16T09:34:43.004Z storageMgrMain[3571]:  260116-09:34:43.002802 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 4 -- > 5
+2026-01-16T09:34:43.004Z storageMgrMain[3571]:  260116-09:34:43.002844 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T09:34:43.004Z storageMgrMain[3571]:  260116-09:34:43.002880 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: deep sleep on
+2026-01-16T10:28:48.687Z storageMgrMain[3571]:  260116-10:28:48.686366 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T10:28:48.687Z storageMgrMain[3571]:  260116-10:28:48.686470 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T10:28:48.687Z storageMgrMain[3571]:  260116-10:28:48.686501 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 5 -- > 4
+2026-01-16T10:28:48.687Z storageMgrMain[3571]:  260116-10:28:48.686527 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 5 -- > 4
+2026-01-16T10:28:48.688Z storageMgrMain[3571]:  260116-10:28:48.686557 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T10:28:53.935Z storageMgrMain[3571]:  260116-10:28:53.934752 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T10:28:53.935Z storageMgrMain[3571]:  260116-10:28:53.934825 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T10:28:53.935Z storageMgrMain[3571]:  260116-10:28:53.934853 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 4 -- > 5
+2026-01-16T10:28:53.935Z storageMgrMain[3571]:  260116-10:28:53.934877 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 4 -- > 5
+2026-01-16T10:28:53.936Z storageMgrMain[3571]:  260116-10:28:53.934905 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0
+2026-01-16T10:28:53.936Z storageMgrMain[3571]:  260116-10:28:53.934929 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:: deep sleep on
+2026-01-16T12:54:22.423Z storageMgrMain[3571]:  260116-12:54:22.414719 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler mountPath -/tmp/data
+2026-01-16T12:54:22.423Z storageMgrMain[3571]:  260116-12:54:22.414771 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler isSDCard -0
+2026-01-16T12:54:22.423Z storageMgrMain[3571]:  260116-12:54:22.414792 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:owner - rSTMgrBus, event owner - FOG , State Changed 5 -- > 4
+2026-01-16T12:54:22.423Z storageMgrMain[3571]:  260116-12:54:22.414812 [mod=STORAGEMGR, lvl=INFO] [tid=3584] STMgrPowerStateHandler:State Changed 5 -- > 4
+2026-01-16T12:54:22.423Z storageMgrMain[3571]:  260116-12:54:22.414833 [mod=STORAGEMGR, lvl=INFO] [tid=3584] Exit [getRdkDeviceProfile]: RDK_PROFILE = 0

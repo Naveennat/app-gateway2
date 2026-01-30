@@ -1,0 +1,8 @@
+2026-01-16T01:31:54.026Z Starting routerDiscovery on wlan0
+2026-01-16T01:31:54.434Z routerDiscovery[5382]:  INFO: SSDP discover to fetch InternetGatewayDevice on interface wlan0
+2026-01-16T01:31:55.343Z routerDiscovery[5382]:  INFO: Router_Discovered : TP-LINK,S4,1.0
+2026-01-16T01:31:55.351Z routerDiscovery[5382]:  T2ERROR:doPopulateEventMarkerList ../../../git/source/commonlib/telemetry_busmessage_sender.c:552: rbus mode : No event list configured in profiles Telemetry.ReportProfiles.upnpdiscover.EventMarkerList and return value 5
+2026-01-16T01:39:12.638Z Starting routerDiscovery on wlan0
+2026-01-16T01:39:12.688Z routerDiscovery[8064]:  INFO: SSDP discover to fetch InternetGatewayDevice on interface wlan0
+2026-01-16T01:39:12.821Z routerDiscovery[8064]:  INFO: Router_Discovered : TP-LINK,S4,1.0
+2026-01-16T01:39:12.824Z routerDiscovery[8064]:  T2ERROR:doPopulateEventMarkerList ../../../git/source/commonlib/telemetry_busmessage_sender.c:552: rbus mode : No event list configured in profiles Telemetry.ReportProfiles.upnpdiscover.EventMarkerList and return value 5

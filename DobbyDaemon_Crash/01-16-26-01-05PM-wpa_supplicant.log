@@ -1,0 +1,1338 @@
+2025-12-03T08:38:55.183Z [sh]: Setting WiFi Regulatory domain to GB.
+2025-12-03T08:38:55.231Z [sh]: /opt/secure/wifi/wpa_supplicant.conf file exists and configurations are present
+2025-12-03T08:38:55.271Z [sh]: Country code is present , No need to change
+2025-12-03T08:38:55.323Z [sh]: wowlan_triggers already present in /opt/secure/wifi/wpa_supplicant.conf, leaving as is
+2025-12-03T08:38:55.200Z sh[3141]:  active
+2025-12-03T08:38:55.257Z sh[3141]:  country=GB
+2025-12-03T08:38:55.277Z sh[3141]:  PMF is already set in config file
+2025-12-03T08:38:55.561Z sh[3238]:  1764751135.557970: wpa_supplicant v2.10
+2025-12-03T08:38:55.562Z sh[3238]:  1764751135.558181: random: Trying to read entropy from /dev/random
+2025-12-03T08:38:55.564Z sh[3238]:  1764751135.564068: dbus: Register D-Bus object '/fi/w1/wpa_supplicant1'
+2025-12-03T08:38:55.568Z sh[3238]:  1764751135.568228: Providing DBus service 'fi.w1.wpa_supplicant1'.
+2025-12-03T08:38:55.568Z sh[3238]:  1764751135.568568: Successfully initialized wpa_supplicant
+2025-12-03T08:38:55.568Z sh[3238]:  1764751135.568779: Initializing interface 'wlan0' conf '/opt/secure/wifi/wpa_supplicant.conf' driver 'nl80211' ctrl_interface 'N/A' bridge 'N/A'
+2025-12-03T08:38:55.568Z sh[3238]:  1764751135.568917: Configuration file '/opt/secure/wifi/wpa_supplicant.conf' -> '/opt/secure/wifi/wpa_supplicant.conf'
+2025-12-03T08:38:55.569Z sh[3238]:  1764751135.569079: Reading configuration file '/opt/secure/wifi/wpa_supplicant.conf'
+2025-12-03T08:38:55.569Z sh[3238]:  1764751135.569342: ctrl_interface='/var/run/wpa_supplicant'
+2025-12-03T08:38:55.569Z sh[3238]:  1764751135.569533: update_config=1
+2025-12-03T08:38:55.569Z sh[3238]:  1764751135.569660: country='GB'
+2025-12-03T08:38:55.569Z sh[3238]:  1764751135.569819: pmf=1
+2025-12-03T08:38:55.570Z sh[3238]:  1764751135.569966: wowlan_triggers='any'
+2025-12-03T08:38:55.571Z sh[3238]:  1764751135.571625: nl80211: Using driver-based roaming
+2025-12-03T08:38:55.575Z sh[3238]:  1764751135.572203: nl80211: TDLS supported
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572232: nl80211: TDLS external setup
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572251: nl80211: Supported cipher 00-0f-ac:1
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572261: nl80211: Supported cipher 00-0f-ac:5
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572269: nl80211: Supported cipher 00-0f-ac:2
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572277: nl80211: Supported cipher 00-40-96:254
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572284: nl80211: Supported cipher 00-40-96:255
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572292: nl80211: Supported cipher 00-0f-ac:4
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572299: nl80211: Supported cipher 00-14-72:1
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572307: nl80211: Supported cipher 00-0f-ac:6
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572379: nl80211: Supported cipher 00-0f-ac:11
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572390: nl80211: Supported cipher 00-0f-ac:12
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572398: nl80211: Supported cipher 00-0f-ac:8
+2025-12-03T08:38:55.576Z sh[3238]:  1764751135.572406: nl80211: Supported cipher 00-0f-ac:9
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572413: nl80211: Supports Probe Response offload in AP mode
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572534: nl80211: Using driver-based off-channel TX
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572578: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=11
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572590: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=22
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572598: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=13
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572608: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=16
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572619: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=14
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572627: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=15
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572634: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=38
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572643: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=39
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572650: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=42
+2025-12-03T08:38:55.577Z sh[3238]:  1764751135.572657: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=40
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572664: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=120
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572671: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=121
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572678: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=54
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572685: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=55
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572692: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=61
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572699: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=74
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572705: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=75
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572712: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=169
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572719: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=64
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572725: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=62
+2025-12-03T08:38:55.578Z sh[3238]:  1764751135.572732: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=77
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572739: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=103
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572746: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=104
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572753: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=119
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572759: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=78
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572766: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=79
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572773: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=80
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572780: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=82
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572787: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=76
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572796: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=106
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572803: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=145
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572810: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=101
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572816: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=108
+2025-12-03T08:38:55.579Z sh[3238]:  1764751135.572823: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=102
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572832: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=109
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572843: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=115
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572852: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=83
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572858: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=116
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572865: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=117
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572872: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=10
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572878: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=118
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572885: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=122
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572892: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=123
+2025-12-03T08:38:55.580Z sh[3238]:  1764751135.572899: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=124
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572906: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=85
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572916: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=84
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572923: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=147
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572930: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=105
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572936: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=9
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572943: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=137
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572950: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=143
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572956: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=34
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572963: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=35
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.572971: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=36
+2025-12-03T08:38:55.581Z sh[3238]:  1764751135.576060: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=164
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576079: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=146
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576087: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=152
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576094: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=127
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576102: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=149
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576110: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=150
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576117: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=151
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576124: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=154
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576130: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=155
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576137: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=158
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576143: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=159
+2025-12-03T08:38:55.582Z sh[3238]:  1764751135.576150: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=160
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576156: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=161
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576163: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=144
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576169: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=138
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576175: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=156
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576182: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=12
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576188: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=171
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576195: nl80211: Supported vendor command: vendor_id=0x1374 subcmd=81
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576201: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=10
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576208: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=12
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576214: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=13
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576220: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=14
+2025-12-03T08:38:55.583Z sh[3238]:  1764751135.576227: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=15
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576233: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=16
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576239: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=17
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576246: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=18
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576252: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=19
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576259: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=127
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576265: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=37
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576271: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=54
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576281: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=56
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576287: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=57
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576294: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=58
+2025-12-03T08:38:55.584Z sh[3238]:  1764751135.576300: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=59
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576306: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=60
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576313: nl80211: Supported vendor event: vendor_id=0x0 subcmd=0
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576319: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=80
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576326: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=100
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576333: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=106
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576339: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=107
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576346: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=102
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576352: nl80211: Supported vendor event: vendor_id=0x0 subcmd=0
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576358: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=119
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576365: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=81
+2025-12-03T08:38:55.587Z sh[3238]:  1764751135.576371: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=123
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576377: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=124
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576385: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=147
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576391: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=148
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576398: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=150
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576404: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=157
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576411: nl80211: Supported vendor event: vendor_id=0x0 subcmd=0
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576417: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=165
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576423: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=171
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576430: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=174
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576437: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=101
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576443: nl80211: Supported vendor event: vendor_id=0x0 subcmd=0
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576450: nl80211: Supported vendor event: vendor_id=0x0 subcmd=0
+2025-12-03T08:38:55.588Z sh[3238]:  1764751135.576456: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=64
+2025-12-03T08:38:55.592Z sh[3238]:  1764751135.576462: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=182
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.576469: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=187
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.576475: nl80211: Supported vendor event: vendor_id=0x1374 subcmd=188
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.576527: nl80211: Use separate P2P group interface (driver advertised support)
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.576537: nl80211: Enable multi-channel concurrent (driver advertised support)
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.576634: nl80211: DFS offload capability: 1
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.576735: nl80211: key_mgmt=0x3f0f enc=0x76f auth=0x7 flags=0xac38729abcfbc4 rrm_flags=0x0 probe_resp_offloads=0x0 max_stations=32 max_remain_on_chan=5000 max_scan_ssids=10
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.576748: nl80211: interface wlan0 in phy phy0
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.576872: nl80211: Set mode ifindex 6 iftype 2 (STATION)
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.577022: nl80211: Subscribe to mgmt frames with non-AP handle 0x168cd8
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.577043: nl80211: Register frame type=0xb0 (WLAN_FC_STYPE_AUTH) nl_handle=0x168cd8 match=0300 multicast=0
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.577096: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0104 multicast=0
+2025-12-03T08:38:55.593Z sh[3238]:  1764751135.577135: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040a multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577172: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040b multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577213: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040c multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577251: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040d multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577288: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090a multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577326: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090b multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577364: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090c multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577401: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090d multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577441: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0409506f9a09 multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577480: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=7f506f9a09 multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577544: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0801 multicast=0
+2025-12-03T08:38:55.594Z sh[3238]:  1764751135.577583: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=12 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577620: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=06 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577658: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a07 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577696: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a11 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577734: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a0b multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577772: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1101 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577810: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1102 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577850: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0505 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577888: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0500 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577926: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1301 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.577963: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1305 multicast=0
+2025-12-03T08:38:55.595Z sh[3238]:  1764751135.578002: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=7e506f9a1a multicast=0
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.578339: rfkill: initial event: idx=0 type=1 op=0 soft=0 hard=0
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.578439: netlink: Operstate: ifindex=6 linkmode=1 (userspace-control), operstate=5 (IF_OPER_DORMANT)
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579111: Add interface wlan0 to a new radio phy0
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579680: nl80211: Regulatory information - country=GB (DFS-ETSI)
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579696: nl80211: 2402-2482 @ 40 MHz 20 mBm
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579710: nl80211: 5170-5250 @ 80 MHz 23 mBm (no outdoor)
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579726: nl80211: 5250-5330 @ 80 MHz 23 mBm (no outdoor) (DFS)
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579742: nl80211: 5490-5730 @ 160 MHz 30 mBm (DFS)
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579755: nl80211: 5735-5835 @ 80 MHz 30 mBm (DFS)
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579809: nl80211: Added 802.11b mode based on 802.11g information
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579840: nl80211: Mode IEEE 802.11g: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 2484[DISABLED]
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579863: nl80211: Mode IEEE 802.11a: 5180[NO_IR] 5200[NO_IR] 5220[NO_IR] 5240[NO_IR] 5260[NO_IR][RADAR] 5280[NO_IR][RADAR] 5300[NO_IR][RADAR] 5320[NO_IR][RADAR] 5500[RADAR] 5520[RADAR] 5540[RADAR] 5560[RADAR] 5580[RADAR] 5600[RADAR]
+2025-12-03T08:38:55.596Z sh[3238]:  1764751135.579883: nl80211: Mode IEEE 802.11b: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 2484[DISABLED]
+2025-12-03T08:38:55.668Z sh[3238]:  1764751135.628304: wlan0: Own MAC address: d4:52:ee:59:e3:e8
+2025-12-03T08:38:55.668Z sh[3238]:  1764751135.628411: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=(nil) key_idx=0 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628440: nl80211: DEL_KEY
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628460:    broadcast key
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628618: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=(nil) key_idx=1 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628639: nl80211: DEL_KEY
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628651:    broadcast key
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628730: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=(nil) key_idx=2 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628747: nl80211: DEL_KEY
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628757:    broadcast key
+2025-12-03T08:38:55.669Z sh[3238]:  1764751135.628814: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=(nil) key_idx=3 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.628829: nl80211: DEL_KEY
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.628839:    broadcast key
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.628894: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=(nil) key_idx=4 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.628908: nl80211: DEL_KEY
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.628918:    broadcast key
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.629016: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=(nil) key_idx=5 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.629033: nl80211: DEL_KEY
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.629042:    broadcast key
+2025-12-03T08:38:55.675Z sh[3238]:  1764751135.629087: wlan0: RSN: flushing PMKID list in the driver
+2025-12-03T08:38:55.676Z sh[3238]:  1764751135.629097: nl80211: Flush PMKIDs
+2025-12-03T08:38:55.676Z sh[3238]:  1764751135.629220: wlan0: State: DISCONNECTED -> INACTIVE
+2025-12-03T08:38:55.676Z sh[3238]:  1764751135.664584: wlan0: WPS: UUID based on MAC address: a9822053-1f09-52c6-8042-81b072b4e699
+2025-12-03T08:38:57.874Z sh[3238]:  1764751137.870937: ENGINE: Loading builtin engines
+2025-12-03T08:38:57.874Z sh[3238]:  1764751137.872322: ENGINE: Loading builtin engines
+2025-12-03T08:38:57.874Z sh[3238]:  1764751137.872539: EAPOL: SUPP_PAE entering state DISCONNECTED
+2025-12-03T08:38:57.874Z sh[3238]:  1764751137.872552: EAPOL: Supplicant port status: Unauthorized
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.872562: nl80211: Skip set_supp_port(unauthorized) while not associated
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.872569: EAPOL: KEY_RX entering state NO_KEY_RECEIVE
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.872576: EAPOL: SUPP_BE entering state INITIALIZE
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.872584: EAP: EAP entering state DISABLED
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.872779: P2P: Add operating class 81
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.872797: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.873068: P2P: Own listen channel: 81:1
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.873186: P2P: Random operating channel: 81:11
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.873344: P2P: initialized
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.873377: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.873389: P2P: cli_channels:
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.873407: nl80211: Setting wowlan
+2025-12-03T08:38:57.875Z sh[3238]:  1764751137.873508: MBO: Update non-preferred channels, non_pref_chan=N/A
+2025-12-03T08:38:57.876Z sh[3238]:  1764751137.873670: dbus: Register interface object '/fi/w1/wpa_supplicant1/Interfaces/0'
+2025-12-03T08:38:57.879Z sh[3238]:  1764751137.878320: wlan0: Added interface wlan0
+2025-12-03T08:38:57.879Z sh[3238]:  1764751137.878360: wlan0: State: INACTIVE -> DISCONNECTED
+2025-12-03T08:38:57.879Z sh[3238]:  1764751137.878372: nl80211: Set wlan0 operstate 0->0 (DORMANT)
+2025-12-03T08:38:57.879Z sh[3238]:  1764751137.878381: netlink: Operstate: ifindex=6 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+2025-12-03T08:38:57.879Z sh[3238]:  1764751137.878429: wlan0: Determining shared radio frequencies (max len 2)
+2025-12-03T08:38:57.879Z sh[3238]:  1764751137.878443: wlan0: Shared frequencies (len=0): completed iteration
+2025-12-03T08:38:57.880Z sh[3238]:  1764751137.878457: P2P: Add operating class 81
+2025-12-03T08:38:57.881Z sh[3238]:  1764751137.878468: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2025-12-03T08:38:57.881Z sh[3238]:  1764751137.878559: P2P: Update channel list
+2025-12-03T08:38:57.881Z sh[3238]:  1764751137.878580: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2025-12-03T08:38:57.881Z sh[3238]:  1764751137.878592: P2P: cli_channels:
+2025-12-03T08:38:57.882Z sh[3238]:  1764751137.881396: RTM_NEWLINK: ifi_index=6 ifname=wlan0 operstate=2 linkmode=1 ifi_family=0 ifi_flags=0x1003 ([UP])
+2025-12-03T08:38:57.882Z sh[3238]:  1764751137.881459: RTM_NEWLINK: ifi_index=6 ifname=wlan0 operstate=2 linkmode=1 ifi_family=0 ifi_flags=0x1003 ([UP])
+2025-12-03T08:38:57.896Z sh[3238]:  1764751137.895634: wlan0: Setting bss expiration age: 250 sec
+2025-12-03T08:38:57.896Z sh[3238]:  1764751137.895963: wlan0: Setting bss expiration scan count: 2
+2025-12-03T08:38:57.896Z sh[3238]:  1764751137.896375: pmf=1
+2025-12-03T08:38:57.918Z sh[3238]:  1764751137.916813: wlan0: Add radio work 'scan'@0x18fc68
+2025-12-03T08:38:57.918Z sh[3238]:  1764751137.916845: wlan0: First radio work item in the queue - schedule start immediately
+2025-12-03T08:38:57.918Z sh[3238]:  1764751137.917020: wlan0: Starting radio work 'scan'@0x18fc68 after 0.000171 second wait
+2025-12-03T08:38:57.918Z sh[3238]:  1764751137.917048: wlan0: nl80211: vendor scan request
+2025-12-03T08:38:57.919Z sh[3238]:  1764751137.917327: nl80211: Vendor scan requested (ret=0) - scan timeout 30 seconds, scan cookie:0xe1579400
+2025-12-03T08:38:57.919Z sh[3238]:  1764751137.917376: nl80211: Drv Event 103 (NL80211_CMD_VENDOR) received for wlan0
+2025-12-03T08:38:57.919Z sh[3238]:  1764751137.917387: nl80211: Vendor event: wiphy=0 vendor_id=0x1374 subcmd=106
+2025-12-03T08:38:57.919Z sh[3238]:  1764751137.917493: wlan0: Event SCAN_STARTED (47) received
+2025-12-03T08:38:57.919Z sh[3238]:  1764751137.917760: wlan0: Own scan request started a scan in 0.000410 seconds
+2025-12-03T08:38:58.142Z sh[3238]:  1764751138.141791: random: Got 15/20 bytes from /dev/random
+2025-12-03T08:38:58.142Z sh[3238]:  1764751138.141860: random: Got 5/5 bytes from /dev/random
+2025-12-03T08:38:58.875Z sh[3238]:  1764751138.873867: EAPOL: disable timer tick
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.895458: nl80211: Drv Event 103 (NL80211_CMD_VENDOR) received for wlan0
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.895496: nl80211: Vendor event: wiphy=0 vendor_id=0x1374 subcmd=107
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.895615: nl80211: Scan probed for SSID ''
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.895625: nl80211: Scan probed for SSID 'TALKTALK695DDE'
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.895653: nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5180 5200 5220 5240 5260 5280 5300 5320 5500 5520 5540 5560 5580 5600 5620 5640 5660 5680 5700 5720 5745 5765 5785 5805 5825
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.895666: wlan0: Event SCAN_RESULTS (3) received
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.895687: wlan0: Scan completed in 3.977929 seconds
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.895907: nl80211: Received scan results (8 BSSes)
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.896275: wlan0: BSS: Start scan result update 1
+2025-12-03T08:39:01.898Z sh[3238]:  1764751141.896302: wlan0: BSS: Add new id 0 BSSID 10:d7:b0:69:5d:dc SSID 'TALKTALK695DDE'
+2025-12-03T08:39:01.899Z sh[3238]:  1764751141.896317: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/0'
+2025-12-03T08:39:01.904Z sh[3238]:  1764751141.900493: wlan0: BSS: Add new id 1 BSSID 12:d7:b0:69:5d:dd SSID '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+2025-12-03T08:39:01.905Z sh[3238]:  1764751141.900527: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/1'
+2025-12-03T08:39:01.905Z sh[3238]:  1764751141.901547: wlan0: BSS: Add new id 2 BSSID b0:0a:d5:57:b3:08 SSID 'Three_56B308'
+2025-12-03T08:39:01.905Z sh[3238]:  1764751141.901564: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/2'
+2025-12-03T08:39:01.905Z sh[3238]:  1764751141.902677: wlan0: BSS: Add new id 3 BSSID d6:35:1d:75:12:82 SSID 'vodafone75127A'
+2025-12-03T08:39:01.905Z sh[3238]:  1764751141.902706: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/3'
+2025-12-03T08:39:01.905Z sh[3238]:  1764751141.903794: wlan0: BSS: Add new id 4 BSSID b0:0a:d5:56:b3:08 SSID 'Three_56B308'
+2025-12-03T08:39:01.905Z sh[3238]:  1764751141.903811: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/4'
+2025-12-03T08:39:01.906Z sh[3238]:  1764751141.906104: wlan0: BSS: Add new id 5 BSSID 28:6d:97:e0:08:83 SSID '[washer] Samsung'
+2025-12-03T08:39:01.906Z sh[3238]:  1764751141.906139: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/5'
+2025-12-03T08:39:01.908Z sh[3238]:  1764751141.907263: wlan0: BSS: Add new id 6 BSSID 10:d7:b0:69:5d:db SSID 'TALKTALK695DDE'
+2025-12-03T08:39:01.908Z sh[3238]:  1764751141.907294: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/6'
+2025-12-03T08:39:01.908Z sh[3238]:  1764751141.908547: wlan0: BSS: Add new id 7 BSSID d4:35:1d:75:12:7a SSID 'vodafone75127A'
+2025-12-03T08:39:01.908Z sh[3238]:  1764751141.908690: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/7'
+2025-12-03T08:39:01.909Z sh[3238]:  1764751141.909876: BSS: last_scan_res_used=8/32
+2025-12-03T08:39:01.923Z sh[3238]:  1764751141.923034: wlan0: Scan-only results received
+2025-12-03T08:39:01.923Z sh[3238]:  1764751141.923320: wlan0: Radio work 'scan'@0x18fc68 done in 4.006298 seconds
+2025-12-03T08:39:01.923Z sh[3238]:  1764751141.923346: wlan0: radio_work_free('scan'@0x18fc68): num_active_works --> 0
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.182111: dbus: Register network object '/fi/w1/wpa_supplicant1/Interfaces/0/Networks/0'
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.186068: wlan0: WPS-PBC-ACTIVE
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.186101: wlan0: Setting scan request: 0.000000 sec
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.186425: wlan0: State: DISCONNECTED -> SCANNING
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.186453: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.186467: wlan0: Shared frequencies (len=0): completed iteration
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.186480: P2P: Add operating class 81
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.186491: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-15T02:46:34.229Z sh[3238]:  1768445194.186587: P2P: Update channel list
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186617: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186631: P2P: cli_channels:
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186644: wlan0: Starting AP scan for wildcard SSID
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186655: wlan0: WPS: Scan only frequency 5280 MHz
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186676: WPS: Building WPS IE for Probe Request
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186692: WPS:  * Version (hardcoded 0x10)
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186703: WPS:  * Request Type
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186710: WPS:  * Config Methods (3108)
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186717: WPS:  * UUID-E
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186723: WPS:  * Primary Device Type
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186730: WPS:  * RF Bands (3)
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186736: WPS:  * Association State
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186742: WPS:  * Configuration Error (0)
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186749: WPS:  * Device Password ID (4)
+2026-01-15T02:46:34.230Z sh[3238]:  1768445194.186755: WPS:  * Manufacturer
+2026-01-15T02:46:34.231Z sh[3238]:  1768445194.186761: WPS:  * Model Name
+2026-01-15T02:46:34.231Z sh[3238]:  1768445194.186768: WPS:  * Model Number
+2026-01-15T02:46:34.231Z sh[3238]:  1768445194.186777: WPS:  * Device Name
+2026-01-15T02:46:34.231Z sh[3238]:  1768445194.186786: WPS:  * Version2 (0x20)
+2026-01-15T02:46:34.244Z sh[3238]:  1768445194.186794: WPS:  * Request to Enroll (1)
+2026-01-15T02:46:34.244Z sh[3238]:  1768445194.186805: P2P: * P2P IE header
+2026-01-15T02:46:34.244Z sh[3238]:  1768445194.186811: P2P: * Capability dev=25 group=00
+2026-01-15T02:46:34.244Z sh[3238]:  1768445194.186822: P2P: * Listen Channel: Regulatory Class 81 Channel 1
+2026-01-15T02:46:34.244Z sh[3238]:  1768445194.186840: wlan0: Add radio work 'scan'@0x18e1d8
+2026-01-15T02:46:34.244Z sh[3238]:  1768445194.186854: wlan0: First radio work item in the queue - schedule start immediately
+2026-01-15T02:46:34.244Z sh[3238]:  1768445194.186890: wlan0: Starting radio work 'scan'@0x18e1d8 after 0.000034 second wait
+2026-01-15T02:46:34.244Z sh[3238]:  1768445194.186910: wlan0: nl80211: vendor scan request
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.187181: nl80211: Vendor scan requested (ret=0) - scan timeout 30 seconds, scan cookie:0xe1578600
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.187236: nl80211: Drv Event 103 (NL80211_CMD_VENDOR) received for wlan0
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.187247: nl80211: Vendor event: wiphy=0 vendor_id=0x1374 subcmd=106
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.187341: wlan0: Event SCAN_STARTED (47) received
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.187360: wlan0: Own scan request started a scan in 0.000159 seconds
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.195027: WPS: Cancel operation - cancel scan
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.195053: wlan0: Cancelling scan request
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.195073: dbus: Unregister network object '/fi/w1/wpa_supplicant1/Interfaces/0/Networks/0'
+2026-01-15T02:46:34.246Z sh[3238]:  1768445194.195249: wlan0: WPS-CANCEL
+2026-01-15T02:46:34.247Z sh[3238]:  1768445194.211251: dot11RSNAConfigPMKLifetime=604800
+2026-01-15T02:46:34.247Z sh[3238]:  1768445194.211930: nl80211: Setting wowlan
+2026-01-15T02:46:34.247Z sh[3238]:  1768445194.214900: ap_isolate=0
+2026-01-15T02:46:34.272Z sh[3238]:  1768445194.256233: dbus: Register network object '/fi/w1/wpa_supplicant1/Interfaces/0/Networks/0'
+2026-01-15T02:46:34.317Z sh[3238]:  1768445194.317607: nl80211: Drv Event 103 (NL80211_CMD_VENDOR) received for wlan0
+2026-01-15T02:46:34.317Z sh[3238]:  1768445194.317640: nl80211: Vendor event: wiphy=0 vendor_id=0x1374 subcmd=107
+2026-01-15T02:46:34.317Z sh[3238]:  1768445194.317756: nl80211: Scan included frequencies: 5280
+2026-01-15T02:46:34.317Z sh[3238]:  1768445194.317770: wlan0: Event SCAN_RESULTS (3) received
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.317790: wlan0: Scan completed in 0.130431 seconds
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.317965: nl80211: Received scan results (8 BSSes)
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.318244: wlan0: BSS: Start scan result update 2
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.318390: BSS: last_scan_res_used=8/32
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.318407: BSS: Not able to find any 5GHz BSSID for SSID 'TALKTALK695DDE'
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.318431: wlan0: New scan results available (own=1 ext=0)
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.318617: WPS: AP 10:d7:b0:69:5d:dc type 0 added
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.318633: WPS: AP b0:0a:d5:57:b3:08 type 0 added
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.318647: WPS: AP d6:35:1d:75:12:82 type 0 added
+2026-01-15T02:46:34.318Z sh[3238]:  1768445194.318660: WPS: AP b0:0a:d5:56:b3:08 type 0 added
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318673: WPS: AP 10:d7:b0:69:5d:db type 0 added
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318686: WPS: AP d4:35:1d:75:12:7a type 0 added
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318696: WPS: AP[0] 10:d7:b0:69:5d:dc type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318708: WPS: AP[1] b0:0a:d5:57:b3:08 type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318718: WPS: AP[2] d6:35:1d:75:12:82 type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318729: WPS: AP[3] b0:0a:d5:56:b3:08 type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318739: WPS: AP[4] 10:d7:b0:69:5d:db type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318749: WPS: AP[5] d4:35:1d:75:12:7a type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318767: wlan0: Radio work 'scan'@0x18e1d8 done in 0.131877 seconds
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318781: wlan0: radio_work_free('scan'@0x18e1d8): num_active_works --> 0
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318793: wlan0: Selecting BSS from priority group 0
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318815: wlan0: 0: 10:d7:b0:69:5d:dc ssid='TALKTALK695DDE' wpa_ie_len=0 rsn_ie_len=20 caps=0x111 level=-58 freq=5280  wps
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318832: wlan0:    skip - disabled
+2026-01-15T02:46:34.319Z sh[3238]:  1768445194.318863: wlan0: 1: 12:d7:b0:69:5d:dd ssid='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' wpa_ie_len=0 rsn_ie_len=20 caps=0x1111 level=-58 freq=5280
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.318876: wlan0:    skip - disabled
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.318896: wlan0: 2: b0:0a:d5:57:b3:08 ssid='Three_56B308' wpa_ie_len=0 rsn_ie_len=20 caps=0x1531 level=-87 freq=5180  wps
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.318908: wlan0:    skip - disabled
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.318928: wlan0: 3: d6:35:1d:75:12:82 ssid='vodafone75127A' wpa_ie_len=0 rsn_ie_len=20 caps=0x1111 level=-91 freq=5280  wps
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.318941: wlan0:    skip - disabled
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.318961: wlan0: 4: b0:0a:d5:56:b3:08 ssid='Three_56B308' wpa_ie_len=0 rsn_ie_len=20 caps=0x1431 level=-65 freq=2432  wps
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.318974: wlan0:    skip - disabled
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.318993: wlan0: 5: 28:6d:97:e0:08:83 ssid='[washer] Samsung' wpa_ie_len=0 rsn_ie_len=20 caps=0x411 level=-29 freq=2412
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.319005: wlan0:    skip - disabled
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.319025: wlan0: 6: 10:d7:b0:69:5d:db ssid='TALKTALK695DDE' wpa_ie_len=0 rsn_ie_len=20 caps=0x411 level=-48 freq=2437  wps
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.319037: wlan0:    skip - disabled
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.319056: wlan0: 7: d4:35:1d:75:12:7a ssid='vodafone75127A' wpa_ie_len=0 rsn_ie_len=20 caps=0x1411 level=-74 freq=2412  wps
+2026-01-15T02:46:34.320Z sh[3238]:  1768445194.319069: wlan0:    skip - disabled
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319079: wlan0: No suitable network found
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319092: wlan0: Use normal scan instead of sched_scan for initial scans (normal_scans=1)
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319103: wlan0: No enabled networks (1 disabled networks)
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319113: wlan0: Short-circuit new scan request since there are no enabled networks
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319124: wlan0: State: SCANNING -> INACTIVE
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319146: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319158: wlan0: Shared frequencies (len=0): completed iteration
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319170: P2P: Add operating class 81
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319180: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319268: P2P: Update channel list
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319289: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-15T02:46:34.321Z sh[3238]:  1768445194.319300: P2P: cli_channels:
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.339935: wlan0: Scan results matching the currently selected network
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340002: wlan0: 0: 10:d7:b0:69:5d:dc freq=5280 level=-58 snr=56 est_throughput=390001
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340041: wlan0: 6: 10:d7:b0:69:5d:db freq=2437 level=-48 snr=66 est_throughput=65000
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340057: wlan0: Selecting BSS from priority group 0
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340079: wlan0: 0: 10:d7:b0:69:5d:dc ssid='TALKTALK695DDE' wpa_ie_len=0 rsn_ie_len=20 caps=0x111 level=-58 freq=5280  wps
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340093: wlan0:    selected based on RSN IE
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340109: wlan0:    selected BSS 10:d7:b0:69:5d:dc ssid='TALKTALK695DDE'
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340139: wlan0: Considering connect request: reassociate: 1  selected: 10:d7:b0:69:5d:dc  bssid: 00:00:00:00:00:00  pending: 00:00:00:00:00:00  wpa_state: INACTIVE  ssid=0x192cb0  current_ssid=0x192cb0
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340155: wlan0: Request association with 10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340167: MBO: Disable MBO/OCE due to misbehaving AP not having enabled PMF
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340177: wlan0: No ongoing scan/p2p-scan found to abort
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340189: wlan0: Add radio work 'connect'@0x19de60
+2026-01-15T02:46:34.340Z sh[3238]:  1768445194.340201: wlan0: First radio work item in the queue - schedule start immediately
+2026-01-15T02:46:34.384Z sh[3238]:  1768445194.384699: wlan0: Starting radio work 'connect'@0x19de60 after 0.044488 second wait
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384738: wlan0: WPA: clearing own WPA/RSN IE
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384751: wlan0: RSN: clearing own RSNXE
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384764: RSN: PMKSA cache search - network_ctx=0x192cb0 try_opportunistic=0 akmp=0x0
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384773: RSN: Search for BSSID 10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384782: RSN: No PMKSA cache entry found
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384793: wlan0: RSN: using IEEE 802.11i/D9.0
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384806: wlan0: WPA: Selected cipher suites: group 16 pairwise 16 key_mgmt 2 proto 2
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384817: wlan0: WPA: Selected mgmt group cipher 32
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384828: wlan0: WPA: clearing AP WPA IE
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384837: WPA: set AP RSN IE - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 0c 00
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384859: wlan0: WPA: clearing AP RSNXE
+2026-01-15T02:46:34.385Z sh[3238]:  1768445194.384870: wlan0: WPA: AP group 0x10 network profile group 0x18; available group 0x10
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.384881: wlan0: WPA: using GTK CCMP
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.384893: wlan0: WPA: AP pairwise 0x10 network profile pairwise 0x18; available pairwise 0x10
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.384904: wlan0: WPA: using PTK CCMP
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.384915: wlan0: WPA: AP key_mgmt 0x2 network profile key_mgmt 0x142; available key_mgmt 0x2
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.384926: wlan0: WPA: using KEY_MGMT WPA-PSK
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.386342: wlan0: WPA: AP mgmt_group_cipher 0x20 network profile mgmt_group_cipher 0x0; available mgmt_group_cipher 0x0
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.386373: wlan0: WPA: not using MGMT group cipher
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.386388: WPA: Set own WPA IE default - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 80 00
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.386411: RSN: Set own RSNXE default - hexdump(len=0):
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.386418: WPA: Set PMK based on external data - hexdump(len=32): [REMOVED]
+2026-01-15T02:46:34.386Z sh[3238]:  1768445194.386430: wlan0: Automatic auth_alg selection: 0x1
+2026-01-15T02:46:34.399Z sh[3238]:  1768445194.386476: Added supported operating classes IE - hexdump(len=22): 3b 14 80 51 53 54 73 74 75 76 77 78 79 7a 7b 7c 7d 7e 7f 80 81 82
+2026-01-15T02:46:34.399Z sh[3238]:  1768445194.388448: wlan0: Trying to associate with SSID 'TALKTALK695DDE'
+2026-01-15T02:46:34.399Z sh[3238]:  1768445194.388469: wlan0: Cancelling scan request
+2026-01-15T02:46:34.399Z sh[3238]:  1768445194.388484: wlan0: State: INACTIVE -> ASSOCIATING
+2026-01-15T02:46:34.399Z sh[3238]:  1768445194.388494: nl80211: Set wlan0 operstate 0->0 (DORMANT)
+2026-01-15T02:46:34.400Z sh[3238]:  1768445194.388503: netlink: Operstate: ifindex=6 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+2026-01-15T02:46:34.401Z sh[3238]:  1768445194.388555: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-15T02:46:34.401Z sh[3238]:  1768445194.388569: wlan0: Shared frequencies (len=0): completed iteration
+2026-01-15T02:46:34.401Z sh[3238]:  1768445194.388583: P2P: Add operating class 81
+2026-01-15T02:46:34.401Z sh[3238]:  1768445194.389150: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-15T02:46:34.401Z sh[3238]:  1768445194.389243: P2P: Update channel list
+2026-01-15T02:46:34.401Z sh[3238]:  1768445194.389271: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-15T02:46:34.401Z sh[3238]:  1768445194.389285: P2P: cli_channels:
+2026-01-15T02:46:34.401Z sh[3238]:  1768445194.389302: nl80211: Set mode ifindex 6 iftype 2 (STATION)
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.389399: nl80211: Unsubscribe mgmt frames handle 0x889e0451 (mode change)
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.390219: nl80211: Subscribe to mgmt frames with non-AP handle 0x168cd8
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.390240: nl80211: Register frame type=0xb0 (WLAN_FC_STYPE_AUTH) nl_handle=0x168cd8 match=0300 multicast=0
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.390312: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0104 multicast=0
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.390354: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040a multicast=0
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.390394: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040b multicast=0
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.390432: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040c multicast=0
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.390471: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040d multicast=0
+2026-01-15T02:46:34.402Z sh[3238]:  1768445194.390515: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090a multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.390554: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090b multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.390594: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090c multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.390633: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090d multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392354: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0409506f9a09 multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392420: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=7f506f9a09 multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392462: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0801 multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392500: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=12 multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392540: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=06 multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392581: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a07 multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392619: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a11 multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392656: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a0b multicast=0
+2026-01-15T02:46:34.428Z sh[3238]:  1768445194.392695: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1101 multicast=0
+2026-01-15T02:46:34.429Z sh[3238]:  1768445194.392733: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1102 multicast=0
+2026-01-15T02:46:34.429Z sh[3238]:  1768445194.394389: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0505 multicast=0
+2026-01-15T02:46:34.429Z sh[3238]:  1768445194.394463: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0500 multicast=0
+2026-01-15T02:46:34.429Z sh[3238]:  1768445194.394503: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1301 multicast=0
+2026-01-15T02:46:34.429Z sh[3238]:  1768445194.394543: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1305 multicast=0
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394585: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=7e506f9a1a multicast=0
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394633: nl80211: Key management set PSK
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394642: nl80211: Connect (ifindex=6)
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394653:   * bssid_hint=10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394663:   * freq_hint=5280
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394671:   * SSID=TALKTALK695DDE
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394678:   * IEs - hexdump(len=57): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 80 00 7f 0b 00 00 02 02 00 40 40 00 00 00 20 3b 14 80 51 53 54 73 74 75 76 77 78 79 7a 7b 7c 7d 7e 7f 80 81 82
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394715:   * WPA Versions 0x2
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394722:   * pairwise=0xfac04
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394729:   * group=0xfac04
+2026-01-15T02:46:34.433Z sh[3238]:  1768445194.394736:   * akm=0xfac02
+2026-01-15T02:46:34.434Z sh[3238]:  1768445194.394744:   * Auth Type 0
+2026-01-15T02:46:34.434Z sh[3238]:  1768445194.401729: nl80211: Connect request send successfully
+2026-01-15T02:46:34.434Z sh[3238]:  1768445194.401758: wlan0: Setting authentication timeout: 10 sec 0 usec
+2026-01-15T02:46:34.434Z sh[3238]:  1768445194.401781: EAPOL: External notification - EAP success=0
+2026-01-15T02:46:34.434Z sh[3238]:  1768445194.401793: EAPOL: External notification - EAP fail=0
+2026-01-15T02:46:34.434Z sh[3238]:  1768445194.401801: EAPOL: External notification - portControl=Auto
+2026-01-15T02:46:34.533Z sh[3238]:  1768445194.532581: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-15T02:46:34.534Z sh[3238]:  1768445194.534016: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-15T02:46:34.534Z sh[3238]:  1768445194.534108: RTM_NEWLINK: ifi_index=6 ifname=wlan0 operstate=5 linkmode=1 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-15T02:46:34.534Z sh[3238]:  1768445194.534301: nl80211: Drv Event 46 (NL80211_CMD_CONNECT) received for wlan0
+2026-01-15T02:46:34.535Z sh[3238]:  1768445194.534316: nl80211: Connect event (status=0 ignore_next_local_disconnect=0)
+2026-01-15T02:46:34.535Z sh[3238]:  1768445194.534446: nl80211: Associated on 5280 MHz
+2026-01-15T02:46:34.536Z sh[3238]:  1768445194.534456: nl80211: Associated with 10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.537Z sh[3238]:  1768445194.535045: nl80211: Operating frequency for the associated BSS from scan results: 5280 MHz
+2026-01-15T02:46:34.537Z sh[3238]:  1768445194.535150: nl80211: Associated on 5280 MHz
+2026-01-15T02:46:34.537Z sh[3238]:  1768445194.535160: nl80211: Associated with 10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.537Z sh[3238]:  1768445194.535187: nl80211: Set drv->ssid based on scan res info to 'TALKTALK695DDE'
+2026-01-15T02:46:34.537Z sh[3238]:  1768445194.535202: wlan0: Event ASSOC (0) received
+2026-01-15T02:46:34.537Z sh[3238]:  1768445194.535219: wlan0: Association info event
+2026-01-15T02:46:34.538Z sh[3238]:  1768445194.535228: req_ies - hexdump(len=205): 00 0e 54 41 4c 4b 54 41 4c 4b 36 39 35 44 44 45 01 08 8c 12 98 24 b0 48 60 6c c7 01 12 21 02 08 17 24 32 24 01 28 01 2c 01 30 01 34 01 38 01 3c 01 40 01 64 01 68 01 6c 01 70 01 74 01 78 01 7c 01 80 01 84 01 88 01 8c 01 90 01 95 01 99 01 9d 01 a1 01 a5 01 2d 1a ef 01 13 ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 30 16 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 00 00 00 00 3b 14 80 51 53 54 73 74 75 76 77 78 79 7a 7b 7c 7d 7e 7f 80 81 82 7f 08 04 00 00 00 00 00 00 40 bf 0c b2 71 90 33 fa ff 62 03 fa ff 62 03 dd 07 00 50 f2 02 00 01 00 dd 0b 8c fd f0 01 01 02 01 00 02 01 01
+2026-01-15T02:46:34.538Z sh[3238]:  1768445194.535343: resp_ies - hexdump(len=172): 01 08 8c 12 98 24 b0 48 60 6c 2d 1a ef 01 17 ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 3d 16 38 07 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 7f 08 04 00 08 80 00 00 00 40 bf 0c b2 69 8b 0f aa ff 00 00 aa ff 00 00 c0 05 01 3a 00 00 00 dd 18 00 50 f2 04 10 4a 00 01 10 10 3b 00 01 03 10 49 00 06 00 37 2a 00 01 20 dd 05 00 90 4c 04 17 dd 09 00 10 18 02 04 04 9c 00 00 dd 18 00 50 f2 02 01 01 80 00 03 a4 00 00 27 a4 00 00 42 43 5e 00 62 32 2f 00 dd 07 50 6f 9a 16 01 01 00
+2026-01-15T02:46:34.538Z sh[3238]:  1768445194.535445: wlan0: freq=5280 MHz
+2026-01-15T02:46:34.538Z sh[3238]:  1768445194.535457: WPA: set own WPA/RSN IE - hexdump(len=24): 30 16 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 00 00 00 00
+2026-01-15T02:46:34.538Z sh[3238]:  1768445194.535483: wlan0: RSN: PMKID from assoc IE not found from PMKSA cache
+2026-01-15T02:46:34.538Z sh[3238]:  1768445194.536593: wlan0: RSN: clearing own RSNXE
+2026-01-15T02:46:34.538Z sh[3238]:  1768445194.536614: wlan0: State: ASSOCIATING -> ASSOCIATED
+2026-01-15T02:46:34.539Z sh[3238]:  1768445194.536625: nl80211: Set wlan0 operstate 0->0 (DORMANT)
+2026-01-15T02:46:34.539Z sh[3238]:  1768445194.536634: netlink: Operstate: ifindex=6 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+2026-01-15T02:46:34.539Z sh[3238]:  1768445194.536687: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-15T02:46:34.539Z sh[3238]:  1768445194.536701: wlan0: Shared frequencies (len=1): completed iteration
+2026-01-15T02:46:34.539Z sh[3238]:  1768445194.536712: wlan0: freq[0]: 5280, flags=0x1
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536725: P2P: Add operating class 81
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536737: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536827: P2P: Update channel list
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536847: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536859: P2P: cli_channels:
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536883: wlan0: Associated to a new BSS: BSSID=10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536905: WPA: Update cipher suite selection based on IEs in driver-generated WPA/RSNE in AssocReq - hexdump(len=92): 30 16 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 00 00 00 00 3b 14 80 51 53 54 73 74 75 76 77 78 79 7a 7b 7c 7d 7e 7f 80 81 82 7f 08 04 00 00 00 00 00 00 40 bf 0c b2 71 90 33 fa ff 62 03 fa ff 62 03 dd 07 00 50 f2 02 00 01 00 dd 0b 8c fd f0 01 01 02 01 00 02 01 01
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536965: wlan0: WPA: AP key_mgmt 0x2 network key_mgmt 0x142; available key_mgmt 0x2
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536979: wlan0: WPA: using KEY_MGMT WPA2-PSK and proto 2
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.536996: wlan0: WPA: AP pairwise cipher 0x10 network pairwise cipher 0x18; available pairwise cipher 0x10
+2026-01-15T02:46:34.540Z sh[3238]:  1768445194.537009: wlan0: WPA: using PTK CCMP
+2026-01-15T02:46:34.541Z sh[3238]:  1768445194.537024: wlan0: WPA: AP group cipher 0x10 network group cipher 0x18; available group cipher 0x10
+2026-01-15T02:46:34.541Z sh[3238]:  1768445194.537035: wlan0: WPA: using GTK CCMP
+2026-01-15T02:46:34.541Z sh[3238]:  1768445194.537047: wlan0: WPA: AP mgmt_group_cipher 0x20 network mgmt_group_cipher 0x0; available mgmt_group_cipher 0x20
+2026-01-15T02:46:34.541Z sh[3238]:  1768445194.537057: wlan0: WPA: STA/AP is not MFP capable; AP RSNE caps 0xc
+2026-01-15T02:46:34.541Z sh[3238]:  1768445194.537606: wlan0: WPA: not using MGMT group cipher
+2026-01-15T02:46:34.541Z sh[3238]:  1768445194.537624: wlan0: WPA: clearing AP WPA IE
+2026-01-15T02:46:34.541Z sh[3238]:  1768445194.537634: WPA: set AP RSN IE - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 0c 00
+2026-01-15T02:46:34.541Z sh[3238]:  1768445194.537656: wlan0: WPA: clearing AP RSNXE
+2026-01-15T02:46:34.542Z sh[3238]:  1768445194.537670: wlan0: Associated with 10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.542Z sh[3238]:  1768445194.537680: wlan0: WPA: Association event - clear replay counter
+2026-01-15T02:46:34.542Z sh[3238]:  1768445194.537690: wlan0: WPA: Clear old PTK
+2026-01-15T02:46:34.542Z sh[3238]:  1768445194.537699: EAPOL: External notification - portEnabled=0
+2026-01-15T02:46:34.542Z sh[3238]:  1768445194.537712: EAPOL: External notification - portValid=0
+2026-01-15T02:46:34.543Z sh[3238]:  1768445194.537722: EAPOL: External notification - EAP success=0
+2026-01-15T02:46:34.543Z sh[3238]:  1768445194.537730: EAPOL: External notification - portEnabled=1
+2026-01-15T02:46:34.543Z sh[3238]:  1768445194.537737: EAPOL: SUPP_PAE entering state CONNECTING
+2026-01-15T02:46:34.543Z sh[3238]:  1768445194.537743: EAPOL: enable timer tick
+2026-01-15T02:46:34.543Z sh[3238]:  1768445194.537751: EAPOL: SUPP_BE entering state IDLE
+2026-01-15T02:46:34.543Z sh[3238]:  1768445194.537761: wlan0: Setting authentication timeout: 10 sec 0 usec
+2026-01-15T02:46:34.543Z sh[3238]:  1768445194.537773: wlan0: Cancelling scan request
+2026-01-15T02:46:34.543Z sh[3238]:  1768445194.537787: MBO: Disable MBO/OCE due to misbehaving AP not having enabled PMF
+2026-01-15T02:46:34.544Z sh[3238]:  1768445194.537796: wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+2026-01-15T02:46:34.544Z sh[3238]:  1768445194.537818: l2_packet_receive: src=10:d7:b0:69:5d:dc len=99
+2026-01-15T02:46:34.544Z sh[3238]:  1768445194.537833: wlan0: RX EAPOL from 10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.544Z sh[3238]:  1768445194.537844: wlan0: Setting authentication timeout: 10 sec 0 usec
+2026-01-15T02:46:34.544Z sh[3238]:  1768445194.537859: wlan0: IEEE 802.1X RX: version=2 type=3 length=95
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537870: wlan0:   EAPOL-Key type=2
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537885: wlan0:   key_info 0x8a (ver=2 keyidx=0 rsvd=0 Pairwise Ack)
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537896: wlan0:   key_length=16 key_data_length=0
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537904:   replay_counter - hexdump(len=8): 00 00 00 00 00 00 00 00
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537916:   key_nonce - hexdump(len=32): 4e 7a 4a 6d 75 a5 cc 79 2d 92 8c 5b b2 9e dc f4 02 51 4b e8 de fd dc c5 cc 24 4e 96 42 23 05 19
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537938:   key_iv - hexdump(len=16): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537954:   key_rsc - hexdump(len=8): 00 00 00 00 00 00 00 00
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537964:   key_id (reserved) - hexdump(len=8): 00 00 00 00 00 00 00 00
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537975:   key_mic - hexdump(len=16): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.537998: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.538022: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-15T02:46:34.545Z sh[3238]:  1768445194.538035: wlan0: Shared frequencies (len=1): completed iteration
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538046: wlan0: freq[0]: 5280, flags=0x1
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538057: P2P: Add operating class 81
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538067: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538693: P2P: Update channel list
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538719: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538732: P2P: cli_channels:
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538748: wlan0: WPA: RX message 1 of 4-Way Handshake from 10:d7:b0:69:5d:dc (ver=2)
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538757: RSN: msg 1/4 key data - hexdump(len=0):
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.538989: WPA: Renewed SNonce - hexdump(len=32): 85 51 53 fb 79 c0 a7 93 93 8a 82 43 3d be 97 6f 24 1b ee c8 a3 c5 b7 8a 56 a9 de b9 a7 56 ea ae
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.539016: WPA: PTK derivation using PRF(SHA1)
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.539058: WPA: PTK derivation - A1=d4:52:ee:59:e3:e8 A2=10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.539070: WPA: Nonce1 - hexdump(len=32): 85 51 53 fb 79 c0 a7 93 93 8a 82 43 3d be 97 6f 24 1b ee c8 a3 c5 b7 8a 56 a9 de b9 a7 56 ea ae
+2026-01-15T02:46:34.546Z sh[3238]:  1768445194.539092: WPA: Nonce2 - hexdump(len=32): 4e 7a 4a 6d 75 a5 cc 79 2d 92 8c 5b b2 9e dc f4 02 51 4b e8 de fd dc c5 cc 24 4e 96 42 23 05 19
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539114: WPA: PMK - hexdump(len=32): [REMOVED]
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539121: WPA: PTK - hexdump(len=48): [REMOVED]
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539669: WPA: KCK - hexdump(len=16): [REMOVED]
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539677: WPA: KEK - hexdump(len=16): [REMOVED]
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539685: WPA: TK - hexdump(len=16): [REMOVED]
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539693: WPA: WPA IE for msg 2/4 - hexdump(len=24): 30 16 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 00 00 00 00
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539749: WPA: Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 00
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539763: wlan0: WPA: Sending EAPOL-Key 2/4
+2026-01-15T02:46:34.547Z sh[3238]:  1768445194.539773: WPA: Send EAPOL-Key frame to 10:d7:b0:69:5d:dc ver=2 mic_len=16 key_mgmt=0x2
+2026-01-15T02:46:34.556Z sh[3238]:  1768445194.539783: WPA: EAPOL-Key MIC using HMAC-SHA1
+2026-01-15T02:46:34.556Z sh[3238]:  1768445194.539813: WPA: KCK - hexdump(len=16): [REMOVED]
+2026-01-15T02:46:34.556Z sh[3238]:  1768445194.539821: WPA: Derived Key MIC - hexdump(len=16): 03 a7 02 20 2a 45 0d c7 08 ce ce ac 2a be 40 70
+2026-01-15T02:46:34.556Z sh[3238]:  1768445194.539949: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-15T02:46:34.556Z sh[3238]:  1768445194.540010: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-15T02:46:34.556Z sh[3238]:  1768445194.540041: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-15T02:46:34.556Z sh[3238]:  1768445194.548539: l2_packet_receive: src=10:d7:b0:69:5d:dc len=155
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548572: wlan0: RX EAPOL from 10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548596: wlan0: IEEE 802.1X RX: version=2 type=3 length=151
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548608: wlan0:   EAPOL-Key type=2
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548625: wlan0:   key_info 0x13ca (ver=2 keyidx=0 rsvd=0 Pairwise Install Ack MIC Secure Encr)
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548637: wlan0:   key_length=16 key_data_length=56
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548645:   replay_counter - hexdump(len=8): 00 00 00 00 00 00 00 01
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548658:   key_nonce - hexdump(len=32): 4e 7a 4a 6d 75 a5 cc 79 2d 92 8c 5b b2 9e dc f4 02 51 4b e8 de fd dc c5 cc 24 4e 96 42 23 05 19
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548680:   key_iv - hexdump(len=16): 53 be e1 e8 59 b7 90 1c bb 94 7d 3d 30 45 71 8d
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548694:   key_rsc - hexdump(len=8): 91 2c 16 00 00 00 00 00
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548705:   key_id (reserved) - hexdump(len=8): 00 00 00 00 00 00 00 00
+2026-01-15T02:46:34.557Z sh[3238]:  1768445194.548716:   key_mic - hexdump(len=16): b9 e2 26 ae f2 6a 85 56 c3 2c 1a 9a 5f 25 3e db
+2026-01-15T02:46:34.575Z sh[3238]:  1768445194.548735: WPA: EAPOL-Key MIC using HMAC-SHA1
+2026-01-15T02:46:34.575Z sh[3238]:  1768445194.548781: RSN: encrypted key data - hexdump(len=56): 88 a3 82 a5 91 48 24 b8 01 bd 38 15 47 a3 5b 5d 77 6a ff cb 81 da 89 7d 94 0b 11 51 eb e3 ac 09 71 93 b1 d8 1d 94 dd af a2 53 77 65 70 49 dc 4c a8 06 9e 36 48 10 bb d9
+2026-01-15T02:46:34.575Z sh[3238]:  1768445194.548818: WPA: Decrypt Key Data using AES-UNWRAP (KEK length 16)
+2026-01-15T02:46:34.575Z sh[3238]:  1768445194.548864: WPA: decrypted EAPOL-Key key data - hexdump(len=48): [REMOVED]
+2026-01-15T02:46:34.575Z sh[3238]:  1768445194.548876: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE
+2026-01-15T02:46:34.575Z sh[3238]:  1768445194.548891: wlan0: WPA: RX message 3 of 4-Way Handshake from 10:d7:b0:69:5d:dc (ver=2)
+2026-01-15T02:46:34.576Z sh[3238]:  1768445194.548900: WPA: IE KeyData - hexdump(len=48): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 0c 00 dd 16 00 0f ac 01 01 00 65 2d 64 ec d4 02 f0 97 4f a6 58 41 ce 31 b8 9d dd 00
+2026-01-15T02:46:34.576Z sh[3238]:  1768445194.548933: WPA: RSN IE in EAPOL-Key - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 0c 00
+2026-01-15T02:46:34.576Z sh[3238]:  1768445194.548953: WPA: GTK in EAPOL-Key - hexdump(len=24): [REMOVED]
+2026-01-15T02:46:34.576Z sh[3238]:  1768445194.548965: wlan0: WPA: Sending EAPOL-Key 4/4
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.548974: WPA: Send EAPOL-Key frame to 10:d7:b0:69:5d:dc ver=2 mic_len=16 key_mgmt=0x2
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.548984: WPA: EAPOL-Key MIC using HMAC-SHA1
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549003: WPA: KCK - hexdump(len=16): [REMOVED]
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549011: WPA: Derived Key MIC - hexdump(len=16): c1 2d d3 a6 58 59 43 be e5 46 8b 40 91 11 d2 22
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549084: wlan0: WPA: Installing PTK to the driver
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549142: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=3 addr=0x164b44 key_idx=0 set_tx=1 seq_len=6 key_len=16 key_flag=0x2c
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549161: nl80211: NEW_KEY
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549188: nl80211: KEY_DATA - hexdump(len=16): [REMOVED]
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549196: nl80211: KEY_SEQ - hexdump(len=6): 00 00 00 00 00 00
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549207:    addr=10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.549215:    pairwise key
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.550003: EAPOL: External notification - portValid=1
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.550023: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.550061: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-15T02:46:34.577Z sh[3238]:  1768445194.550074: wlan0: Shared frequencies (len=1): completed iteration
+2026-01-15T02:46:34.578Z sh[3238]:  1768445194.550086: wlan0: freq[0]: 5280, flags=0x1
+2026-01-15T02:46:34.578Z sh[3238]:  1768445194.550099: P2P: Add operating class 81
+2026-01-15T02:46:34.578Z sh[3238]:  1768445194.550111: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-15T02:46:34.578Z sh[3238]:  1768445194.550199: P2P: Update channel list
+2026-01-15T02:46:34.578Z sh[3238]:  1768445194.550220: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-15T02:46:34.578Z sh[3238]:  1768445194.550232: P2P: cli_channels:
+2026-01-15T02:46:34.579Z sh[3238]:  1768445194.550242: RSN: received GTK in pairwise handshake - hexdump(len=18): [REMOVED]
+2026-01-15T02:46:34.579Z sh[3238]:  1768445194.550251: WPA: Group Key - hexdump(len=16): [REMOVED]
+2026-01-15T02:46:34.580Z sh[3238]:  1768445194.550262: wlan0: WPA: Installing GTK to the driver (keyidx=1 tx=0 len=16)
+2026-01-15T02:46:34.580Z sh[3238]:  1768445194.550271: WPA: RSC - hexdump(len=6): 91 2c 16 00 00 00
+2026-01-15T02:46:34.589Z sh[3238]:  1768445194.550319: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=3 addr=0xdfb83 key_idx=1 set_tx=0 seq_len=6 key_len=16 key_flag=0x14
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.550334: nl80211: NEW_KEY
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.550345: nl80211: KEY_DATA - hexdump(len=16): [REMOVED]
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.550353: nl80211: KEY_SEQ - hexdump(len=6): 91 2c 16 00 00 00
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.550363:    broadcast key
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.564321: wlan0: WPA: Key negotiation completed with 10:d7:b0:69:5d:dc [PTK=CCMP GTK=CCMP]
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.564616: wlan0: Cancelling authentication timeout
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.564636: wlan0: State: GROUP_HANDSHAKE -> COMPLETED
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.564655: wlan0: Radio work 'connect'@0x19de60 done in 0.179962 seconds
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.564667: wlan0: radio_work_free('connect'@0x19de60): num_active_works --> 0
+2026-01-15T02:46:34.590Z sh[3238]:  1768445194.564684: wlan0: CTRL-EVENT-CONNECTED - Connection to 10:d7:b0:69:5d:dc completed [id=0 id_str=]
+2026-01-15T02:46:34.591Z sh[3238]:  1768445194.564694: nl80211: Set wlan0 operstate 0->1 (UP)
+2026-01-15T02:46:34.591Z sh[3238]:  1768445194.564703: netlink: Operstate: ifindex=6 linkmode=-1 (no change), operstate=6 (IF_OPER_UP)
+2026-01-15T02:46:34.591Z sh[3238]:  1768445194.585838: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.585870: wlan0: Shared frequencies (len=1): completed iteration
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.585883: wlan0: freq[0]: 5280, flags=0x1
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.585896: P2P: Add operating class 81
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.585907: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.585998: P2P: Update channel list
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.586018: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.586030: P2P: cli_channels:
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.586048: EAPOL: External notification - portValid=1
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.586059: EAPOL: External notification - EAP success=1
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.586066: EAPOL: SUPP_PAE entering state AUTHENTICATING
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.586073: EAPOL: SUPP_BE entering state SUCCESS
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.586079: EAP: EAP entering state DISABLED
+2026-01-15T02:46:34.592Z sh[3238]:  1768445194.586086: EAPOL: SUPP_PAE entering state AUTHENTICATED
+2026-01-15T02:46:34.593Z sh[3238]:  1768445194.586092: EAPOL: Supplicant port status: Authorized
+2026-01-15T02:46:34.593Z sh[3238]:  1768445194.586099: nl80211: Set supplicant port authorized for 10:d7:b0:69:5d:dc
+2026-01-15T02:46:34.593Z sh[3238]:  1768445194.586203: EAPOL: SUPP_BE entering state IDLE
+2026-01-15T02:46:34.593Z sh[3238]:  1768445194.586213: EAPOL authentication completed - result=SUCCESS
+2026-01-15T02:46:34.593Z sh[3238]:  1768445194.586223: nl80211: Set rekey offload
+2026-01-15T02:46:34.593Z sh[3238]:  1768445194.586917: RTM_NEWLINK: ifi_index=6 ifname=wlan0 operstate=6 linkmode=1 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-15T02:46:34.618Z sh[3238]:  1768445194.603652: nl80211: Drv Event 103 (NL80211_CMD_VENDOR) received for wlan0
+2026-01-15T02:46:34.618Z sh[3238]:  1768445194.603678: nl80211: Vendor event: wiphy=0 vendor_id=0x1374 subcmd=165
+2026-01-15T02:46:34.632Z sh[3238]:  1768445194.632438: nl80211: Ignore unsupported QCA vendor event 165
+2026-01-15T02:46:35.910Z sh[3238]:  1768445195.908261: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-15T02:46:36.564Z sh[3238]:  1768445196.539817: EAPOL: startWhen --> 0
+2026-01-15T02:46:36.564Z sh[3238]:  1768445196.539850: EAPOL: disable timer tick
+2026-01-16T02:35:07.141Z sh[3238]:  1768530907.141052: nl80211: Drv Event 33 (NL80211_CMD_TRIGGER_SCAN) received for wlan0
+2026-01-16T02:35:07.142Z sh[3238]:  1768530907.141084: wlan0: nl80211: Scan trigger
+2026-01-16T02:35:07.142Z sh[3238]:  1768530907.141103: wlan0: Event SCAN_STARTED (47) received
+2026-01-16T02:35:07.142Z sh[3238]:  1768530907.141115: wlan0: External program started a scan
+2026-01-16T02:35:12.365Z sh[3238]:  1768530912.364562: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.419Z sh[3238]:  1768530912.418784: RTM_NEWLINK: ifi_index=10 ifname=dobby_tap0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.424Z sh[3238]:  1768530912.424249: RTM_NEWLINK: ifi_index=10 ifname=dobby_tap0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.425Z sh[3238]:  1768530912.424542: RTM_NEWLINK: ifi_index=10 ifname=dobby_tap0 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.425Z sh[3238]:  1768530912.424740: RTM_NEWLINK: ifi_index=10 ifname=dobby_tap0 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.425Z sh[3238]:  1768530912.424881: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.425Z sh[3238]:  1768530912.425019: RTM_NEWLINK: ifi_index=10 ifname=dobby_tap0 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.425Z sh[3238]:  1768530912.425150: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.426Z sh[3238]:  1768530912.426049: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.432Z sh[3238]:  1768530912.427147: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=0 linkmode=0 ifi_family=0 ifi_flags=0x1043 ([UP][RUNNING])
+2026-01-16T02:35:12.495Z sh[3238]:  1768530912.495482: RTM_NEWLINK: ifi_index=2 ifname=eth0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-16T02:35:12.495Z sh[3238]:  1768530912.495540: RTM_NEWLINK: ifi_index=6 ifname=wlan0 operstate=6 linkmode=1 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:12.497Z sh[3238]:  1768530912.496229: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=0 linkmode=0 ifi_family=0 ifi_flags=0x1043 ([UP][RUNNING])
+2026-01-16T02:35:12.497Z sh[3238]:  1768530912.496733: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=0 linkmode=0 ifi_family=0 ifi_flags=0x1043 ([UP][RUNNING])
+2026-01-16T02:35:12.500Z sh[3238]:  1768530912.498877: RTM_NEWLINK: ifi_index=11 ifname=veth0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.501Z sh[3238]:  1768530912.501746: RTM_NEWLINK: ifi_index=11 ifname=veth0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.502Z sh[3238]:  1768530912.502164: RTM_NEWLINK: ifi_index=11 ifname=veth0 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.503Z sh[3238]:  1768530912.502966: RTM_NEWLINK: ifi_index=11 ifname=veth0 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.503Z sh[3238]:  1768530912.503273: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=0 linkmode=0 ifi_family=0 ifi_flags=0x1043 ([UP][RUNNING])
+2026-01-16T02:35:12.503Z sh[3238]:  1768530912.503516: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T02:35:12.602Z sh[3238]:  1768530912.601808: RTM_NEWLINK: ifi_index=11 ifname=veth0 operstate=0 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:12.603Z sh[3238]:  1768530912.602988: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=0 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:12.603Z sh[3238]:  1768530912.603022: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=0 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:12.603Z sh[3238]:  1768530912.603039: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=0 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:12.603Z sh[3238]:  1768530912.603056: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=6 linkmode=0 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:12.603Z sh[3238]:  1768530912.603071: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:12.603Z sh[3238]:  1768530912.603087: RTM_NEWLINK: ifi_index=11 ifname=veth0 operstate=6 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:13.275Z sh[3238]:  1768530913.275345: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:13.346Z sh[3238]:  1768530913.346289: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:13.346Z sh[3238]:  1768530913.346576: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:13.347Z sh[3238]:  1768530913.346805: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:13.347Z sh[3238]:  1768530913.346964: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T02:35:13.463Z sh[3238]:  1768530913.457419: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=3 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:35:13.463Z sh[3238]:  1768530913.457466: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=3 ifi_family=7 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:35:13.484Z sh[3238]:  1768530913.484206: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:13.484Z sh[3238]:  1768530913.484252: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:13.484Z sh[3238]:  1768530913.484273: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:13.484Z sh[3238]:  1768530913.484292: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=6 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:13.986Z sh[3238]:  1768530913.983058: nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+2026-01-16T02:35:13.986Z sh[3238]:  1768530913.983101: wlan0: nl80211: New scan results available
+2026-01-16T02:35:13.986Z sh[3238]:  1768530913.983142: nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5180 5200 5220 5240 5260 5280 5300 5320 5500 5520 5540 5560 5580 5600 5620 5640 5660 5680 5700 5720 5745 5765 5785 5805 5825
+2026-01-16T02:35:13.986Z sh[3238]:  1768530913.983156: wlan0: Event SCAN_RESULTS (3) received
+2026-01-16T02:35:13.988Z sh[3238]:  1768530913.983334: nl80211: Received scan results (8 BSSes)
+2026-01-16T02:35:13.988Z sh[3238]:  1768530913.986788: nl80211: Scan results indicate BSS status with 10:d7:b0:69:5d:dc as associated
+2026-01-16T02:35:13.988Z sh[3238]:  1768530913.986856: wlan0: BSS: Start scan result update 3
+2026-01-16T02:35:13.988Z sh[3238]:  1768530913.987044: BSS: last_scan_res_used=8/32
+2026-01-16T02:35:13.988Z sh[3238]:  1768530913.987057: BSS: Not able to find any 5GHz BSSID for SSID 'TALKTALK695DDE'
+2026-01-16T02:35:13.988Z sh[3238]:  1768530913.987086: wlan0: New scan results available (own=0 ext=1)
+2026-01-16T02:35:13.988Z sh[3238]:  1768530913.988764: wlan0: Do not use results from externally requested scan operation for network selection
+2026-01-16T02:35:13.989Z sh[3238]:  1768530913.988846: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:22.856Z sh[3238]:  1768530922.854917: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:22.891Z sh[3238]:  1768530922.891437: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:22.891Z sh[3238]:  1768530922.891485: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:22.891Z sh[3238]:  1768530922.891504: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:35:22.891Z sh[3238]:  1768530922.891520: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T02:35:23.011Z sh[3238]:  1768530923.010034: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=3 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:35:23.011Z sh[3238]:  1768530923.010085: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=3 ifi_family=7 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:35:23.011Z sh[3238]:  1768530923.010101: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:23.011Z sh[3238]:  1768530923.010117: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:23.011Z sh[3238]:  1768530923.010132: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:23.011Z sh[3238]:  1768530923.010148: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=6 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:27.621Z sh[3238]:  1768530927.619707: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:28.631Z sh[3238]:  1768530928.630731: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:38.103Z sh[3238]:  1768530938.102650: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:35:59.523Z sh[3238]:  1768530959.522377: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:36:59.685Z sh[3238]:  1768531019.683973: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:37:59.785Z sh[3238]:  1768531079.784666: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:38:59.941Z sh[3238]:  1768531139.940820: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:39:04.766Z sh[3238]:  1768531144.765746: RTM_NEWLINK: ifi_index=14 ifname=veth3 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:39:04.789Z sh[3238]:  1768531144.787495: RTM_NEWLINK: ifi_index=14 ifname=veth3 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:39:04.789Z sh[3238]:  1768531144.787756: RTM_NEWLINK: ifi_index=14 ifname=veth3 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:39:04.790Z sh[3238]:  1768531144.788006: RTM_NEWLINK: ifi_index=14 ifname=veth3 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:39:04.790Z sh[3238]:  1768531144.788179: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T02:39:04.802Z sh[3238]:  1768531144.795781: RTM_NEWLINK: ifi_index=14 ifname=veth3 operstate=3 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:39:04.802Z sh[3238]:  1768531144.795826: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=3 ifi_family=7 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:39:04.802Z sh[3238]:  1768531144.795846: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:04.802Z sh[3238]:  1768531144.795864: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:04.803Z sh[3238]:  1768531144.795883: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:04.803Z sh[3238]:  1768531144.795911: RTM_NEWLINK: ifi_index=14 ifname=veth3 operstate=6 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:19.803Z sh[3238]:  1768531159.802643: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:21.127Z sh[3238]:  1768531161.123442: wlan0: BSS: Remove id 1 BSSID 12:d7:b0:69:5d:dd SSID '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' due to wpa_bss_flush_by_age
+2026-01-16T02:39:21.127Z sh[3238]:  1768531161.123510: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/1'
+2026-01-16T02:39:21.128Z sh[3238]:  1768531161.123912: wlan0: BSS: Remove id 2 BSSID b0:0a:d5:57:b3:08 SSID 'Three_56B308' due to wpa_bss_flush_by_age
+2026-01-16T02:39:21.128Z sh[3238]:  1768531161.123940: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/2'
+2026-01-16T02:39:21.128Z sh[3238]:  1768531161.124248: wlan0: BSS: Remove id 3 BSSID d6:35:1d:75:12:82 SSID 'vodafone75127A' due to wpa_bss_flush_by_age
+2026-01-16T02:39:21.128Z sh[3238]:  1768531161.124274: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/3'
+2026-01-16T02:39:21.128Z sh[3238]:  1768531161.124578: wlan0: BSS: Remove id 4 BSSID b0:0a:d5:56:b3:08 SSID 'Three_56B308' due to wpa_bss_flush_by_age
+2026-01-16T02:39:21.128Z sh[3238]:  1768531161.124602: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/4'
+2026-01-16T02:39:21.128Z sh[3238]:  1768531161.124903: wlan0: BSS: Remove id 5 BSSID 28:6d:97:e0:08:83 SSID '[washer] Samsung' due to wpa_bss_flush_by_age
+2026-01-16T02:39:21.129Z sh[3238]:  1768531161.124928: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/5'
+2026-01-16T02:39:21.129Z sh[3238]:  1768531161.125230: wlan0: BSS: Remove id 6 BSSID 10:d7:b0:69:5d:db SSID 'TALKTALK695DDE' due to wpa_bss_flush_by_age
+2026-01-16T02:39:21.129Z sh[3238]:  1768531161.125254: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/6'
+2026-01-16T02:39:21.129Z sh[3238]:  1768531161.125553: wlan0: BSS: Remove id 7 BSSID d4:35:1d:75:12:7a SSID 'vodafone75127A' due to wpa_bss_flush_by_age
+2026-01-16T02:39:21.129Z sh[3238]:  1768531161.125578: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/7'
+2026-01-16T02:39:36.611Z sh[3238]:  1768531176.610740: RTM_NEWLINK: ifi_index=15 ifname=veth4 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:39:36.676Z sh[3238]:  1768531176.675975: RTM_NEWLINK: ifi_index=15 ifname=veth4 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:39:36.676Z sh[3238]:  1768531176.676516: RTM_NEWLINK: ifi_index=15 ifname=veth4 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:39:36.677Z sh[3238]:  1768531176.677285: RTM_NEWLINK: ifi_index=15 ifname=veth4 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:39:36.677Z sh[3238]:  1768531176.677459: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T02:39:36.737Z sh[3238]:  1768531176.737056: RTM_NEWLINK: ifi_index=15 ifname=veth4 operstate=3 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:39:36.738Z sh[3238]:  1768531176.737981: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=3 ifi_family=7 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:39:36.739Z sh[3238]:  1768531176.739179: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:36.739Z sh[3238]:  1768531176.739219: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:36.739Z sh[3238]:  1768531176.739241: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:36.740Z sh[3238]:  1768531176.739264: RTM_NEWLINK: ifi_index=15 ifname=veth4 operstate=6 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:39:51.812Z sh[3238]:  1768531191.798880: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:40:00.086Z sh[3238]:  1768531200.085589: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:40:05.184Z sh[3238]:  1768531205.183054: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:40:05.248Z sh[3238]:  1768531205.248308: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:40:05.248Z sh[3238]:  1768531205.248581: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:40:05.249Z sh[3238]:  1768531205.248912: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T02:40:05.249Z sh[3238]:  1768531205.249075: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T02:40:05.309Z sh[3238]:  1768531205.308815: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=3 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:40:05.311Z sh[3238]:  1768531205.310721: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=3 ifi_family=7 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T02:40:05.323Z sh[3238]:  1768531205.322342: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:40:05.323Z sh[3238]:  1768531205.322386: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:40:05.323Z sh[3238]:  1768531205.322408: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:40:05.323Z sh[3238]:  1768531205.322432: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=6 linkmode=0 master=9 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:40:20.471Z sh[3238]:  1768531220.470639: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=6 ifi_family=7 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T02:41:00.197Z sh[3238]:  1768531260.196826: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:42:00.354Z sh[3238]:  1768531320.353148: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:43:00.510Z sh[3238]:  1768531380.509620: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:44:00.625Z sh[3238]:  1768531440.624201: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:45:00.765Z sh[3238]:  1768531500.764394: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:46:00.901Z sh[3238]:  1768531560.900562: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T02:47:01.055Z sh[3238]:  1768531621.054127: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T05:36:05.100Z sh[3238]:  1768541764.977672: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x1043 ([UP][RUNNING])
+2026-01-16T05:36:05.101Z sh[3238]:  1768541764.977757: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x1043 ([UP][RUNNING])
+2026-01-16T05:36:05.101Z sh[3238]:  1768541764.977805: RTM_NEWLINK: ifi_index=6 ifname=wlan0 operstate=2 linkmode=1 ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-16T05:36:05.101Z sh[3238]:  1768541764.977874: nl80211: Drv Event 48 (NL80211_CMD_DISCONNECT) received for wlan0
+2026-01-16T05:36:05.101Z sh[3238]:  1768541764.977888: nl80211: Disconnect event
+2026-01-16T05:36:05.101Z sh[3238]:  1768541764.977903: wlan0: Event DEAUTH (11) received
+2026-01-16T05:36:05.102Z sh[3238]:  1768541764.977919: wlan0: Deauthentication notification
+2026-01-16T05:36:05.102Z sh[3238]:  1768541764.977936: wlan0:  * reason 0 (UNKNOWN) locally_generated=1
+2026-01-16T05:36:05.102Z sh[3238]:  1768541764.977949: Deauthentication frame IE(s) - hexdump(len=0): [NULL]
+2026-01-16T05:36:05.102Z sh[3238]:  1768541764.977968: wlan0: CTRL-EVENT-DISCONNECTED bssid=10:d7:b0:69:5d:dc reason=0 locally_generated=1
+2026-01-16T05:36:05.102Z sh[3238]:  1768541764.977982: wlan0: Auto connect enabled: try to reconnect (wps=0/0 wpa_state=9)
+2026-01-16T05:36:05.102Z sh[3238]:  1768541764.977995: wlan0: Setting scan request: 0.100000 sec
+2026-01-16T05:36:05.102Z sh[3238]:  1768541764.978014: wlan0: sme_auth_timed_out = 0 And SME_AUTH_TIME_OUT_COUNT = 0 , Start Blacklisting BSSID
+2026-01-16T05:36:05.103Z sh[3238]:  1768541764.978030: Added BSSID 10:d7:b0:69:5d:dc into ignore list, ignoring for 10 seconds
+2026-01-16T05:36:05.103Z sh[3238]:  1768541764.978049: wlan0: Consecutive connection failures: 1 --> request scan in 100 ms
+2026-01-16T05:36:05.103Z sh[3238]:  1768541764.978067: wlan0: Ignore new scan request for 0.100000 sec since an earlier request is scheduled to trigger sooner
+2026-01-16T05:36:05.103Z sh[3238]:  1768541764.978083: wlan0: WPA: Clear old PMK and PTK
+2026-01-16T05:36:05.103Z sh[3238]:  1768541765.001456: wlan0: Disconnect event - remove keys
+2026-01-16T05:36:05.103Z sh[3238]:  1768541765.001523: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=(nil) key_idx=0 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+2026-01-16T05:36:05.104Z sh[3238]:  1768541765.001546: nl80211: DEL_KEY
+2026-01-16T05:36:05.104Z sh[3238]:  1768541765.001562:    broadcast key
+2026-01-16T05:36:05.104Z sh[3238]:  1768541765.001655: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=(nil) key_idx=1 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+2026-01-16T05:36:05.104Z sh[3238]:  1768541765.001670: nl80211: DEL_KEY
+2026-01-16T05:36:05.104Z sh[3238]:  1768541765.001681:    broadcast key
+2026-01-16T05:36:05.105Z sh[3238]:  1768541765.001743: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=0 addr=0x162020 key_idx=0 set_tx=0 seq_len=0 key_len=0 key_flag=0x20
+2026-01-16T05:36:05.112Z sh[3238]:  1768541765.001758: nl80211: DEL_KEY
+2026-01-16T05:36:05.112Z sh[3238]:  1768541765.001768:    addr=10:d7:b0:69:5d:dc
+2026-01-16T05:36:05.112Z sh[3238]:  1768541765.001778:    pairwise key
+2026-01-16T05:36:05.112Z sh[3238]:  1768541765.001843: wlan0: State: COMPLETED -> DISCONNECTED
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.001858: nl80211: Set wlan0 operstate 1->0 (DORMANT)
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.001868: netlink: Operstate: ifindex=6 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.001903: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.001917: wlan0: Shared frequencies (len=0): completed iteration
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.001931: P2P: Add operating class 81
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.001943: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.002033: P2P: Update channel list
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.002055: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.002074: P2P: cli_channels:
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.002109: EAPOL: External notification - portEnabled=0
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.002126: EAPOL: SUPP_PAE entering state DISCONNECTED
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.002134: EAPOL: Supplicant port status: Unauthorized
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.002143: nl80211: Skip set_supp_port(unauthorized) while not associated
+2026-01-16T05:36:05.113Z sh[3238]:  1768541765.002150: EAPOL: SUPP_BE entering state INITIALIZE
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.002159: EAPOL: External notification - portValid=0
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.002166: EAPOL: External notification - EAP success=0
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078134: wlan0: State: DISCONNECTED -> SCANNING
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078196: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078212: wlan0: Shared frequencies (len=0): completed iteration
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078226: P2P: Add operating class 81
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078238: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078329: P2P: Update channel list
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078350: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078362: P2P: cli_channels:
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078374: Scan SSID - hexdump_ascii(len=14):
+2026-01-16T05:36:05.114Z sh[3238]:       54 41 4c 4b 54 41 4c 4b 36 39 35 44 44 45         TALKTALK695DDE
+2026-01-16T05:36:05.114Z sh[3238]:  1768541765.078400: wlan0: Starting AP scan for wildcard SSID
+2026-01-16T05:36:05.115Z sh[3238]:  1768541765.078415: WPS: Building WPS IE for Probe Request
+2026-01-16T05:36:05.115Z sh[3238]:  1768541765.078429: WPS:  * Version (hardcoded 0x10)
+2026-01-16T05:36:05.131Z sh[3238]:  1768541765.078436: WPS:  * Request Type
+2026-01-16T05:36:05.131Z sh[3238]:  1768541765.078443: WPS:  * Config Methods (3108)
+2026-01-16T05:36:05.131Z sh[3238]:  1768541765.078450: WPS:  * UUID-E
+2026-01-16T05:36:05.131Z sh[3238]:  1768541765.078456: WPS:  * Primary Device Type
+2026-01-16T05:36:05.131Z sh[3238]:  1768541765.078464: WPS:  * RF Bands (3)
+2026-01-16T05:36:05.131Z sh[3238]:  1768541765.078471: WPS:  * Association State
+2026-01-16T05:36:05.131Z sh[3238]:  1768541765.078477: WPS:  * Configuration Error (0)
+2026-01-16T05:36:05.131Z sh[3238]:  1768541765.078484: WPS:  * Device Password ID (0)
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078491: WPS:  * Manufacturer
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078497: WPS:  * Model Name
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078504: WPS:  * Model Number
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078510: WPS:  * Device Name
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078517: WPS:  * Version2 (0x20)
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078530: P2P: * P2P IE header
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078538: P2P: * Capability dev=25 group=00
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078546: P2P: * Listen Channel: Regulatory Class 81 Channel 1
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078562: wlan0: Add radio work 'scan'@0x18b080
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078575: wlan0: First radio work item in the queue - schedule start immediately
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078606: wlan0: Starting radio work 'scan'@0x18b080 after 0.000029 second wait
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078628: wlan0: nl80211: vendor scan request
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078870: nl80211: Vendor scan requested (ret=0) - scan timeout 30 seconds, scan cookie:0xe5369c00
+2026-01-16T05:36:05.132Z sh[3238]:  1768541765.078922: nl80211: Drv Event 103 (NL80211_CMD_VENDOR) received for wlan0
+2026-01-16T05:36:05.133Z sh[3238]:  1768541765.078934: nl80211: Vendor event: wiphy=0 vendor_id=0x1374 subcmd=106
+2026-01-16T05:36:05.133Z sh[3238]:  1768541765.079033: wlan0: Event SCAN_STARTED (47) received
+2026-01-16T05:36:05.133Z sh[3238]:  1768541765.079052: wlan0: Own scan request started a scan in 0.000160 seconds
+2026-01-16T05:36:08.947Z sh[3238]:  1768541768.946988: nl80211: Drv Event 103 (NL80211_CMD_VENDOR) received for wlan0
+2026-01-16T05:36:08.948Z sh[3238]:  1768541768.947033: nl80211: Vendor event: wiphy=0 vendor_id=0x1374 subcmd=107
+2026-01-16T05:36:08.948Z sh[3238]:  1768541768.947176: nl80211: Scan probed for SSID 'TALKTALK695DDE'
+2026-01-16T05:36:08.948Z sh[3238]:  1768541768.947192: nl80211: Scan probed for SSID ''
+2026-01-16T05:36:08.948Z sh[3238]:  1768541768.947231: nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5180 5200 5220 5240 5260 5280 5300 5320 5500 5520 5540 5560 5580 5600 5620 5640 5660 5680 5700 5720 5745 5765 5785 5805 5825
+2026-01-16T05:36:08.948Z sh[3238]:  1768541768.947248: wlan0: Event SCAN_RESULTS (3) received
+2026-01-16T05:36:08.948Z sh[3238]:  1768541768.947274: wlan0: Scan completed in 3.868221 seconds
+2026-01-16T05:36:08.948Z sh[3238]:  1768541768.947508: nl80211: Received scan results (8 BSSes)
+2026-01-16T05:36:08.948Z sh[3238]:  1768541768.947900: wlan0: BSS: Start scan result update 4
+2026-01-16T05:36:08.949Z sh[3238]:  1768541768.947955: wlan0: BSS: Add new id 8 BSSID 12:d7:b0:69:5d:dd SSID '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+2026-01-16T05:36:08.949Z sh[3238]:  1768541768.947976: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/8'
+2026-01-16T05:36:08.950Z sh[3238]:  1768541768.950508: BSS: 10:d7:b0:69:5d:dc changed freq 5280 --> 5500
+2026-01-16T05:36:08.950Z sh[3238]:  1768541768.950609: wlan0: BSS: Add new id 9 BSSID b0:0a:d5:57:b3:08 SSID 'Three_56B308'
+2026-01-16T05:36:08.950Z sh[3238]:  1768541768.950631: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/9'
+2026-01-16T05:36:08.954Z sh[3238]:  1768541768.954046: wlan0: BSS: Add new id 10 BSSID d6:35:1d:75:12:82 SSID 'vodafone75127A'
+2026-01-16T05:36:08.954Z sh[3238]:  1768541768.954089: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/10'
+2026-01-16T05:36:08.955Z sh[3238]:  1768541768.955575: wlan0: BSS: Add new id 11 BSSID b0:0a:d5:56:b3:08 SSID 'Three_56B308'
+2026-01-16T05:36:08.955Z sh[3238]:  1768541768.955610: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/11'
+2026-01-16T05:36:08.957Z sh[3238]:  1768541768.957651: wlan0: BSS: Add new id 12 BSSID 28:6d:97:e0:08:83 SSID '[washer] Samsung'
+2026-01-16T05:36:08.957Z sh[3238]:  1768541768.957689: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/12'
+2026-01-16T05:36:08.959Z sh[3238]:  1768541768.959783: wlan0: BSS: Add new id 13 BSSID 10:d7:b0:69:5d:db SSID 'TALKTALK695DDE'
+2026-01-16T05:36:08.960Z sh[3238]:  1768541768.959868: wlan0: BSS: BSSID 10:d7:b0:69:5d:db found for SSID 'TALKTALK695DDE' freq 2437 signal -48 noise -114 qual 0 est_throughput 65000
+2026-01-16T05:36:08.960Z sh[3238]:  1768541768.959892: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/13'
+2026-01-16T05:36:08.961Z sh[3238]:  1768541768.961440: wlan0: BSS: Add new id 14 BSSID d4:35:1d:75:12:7a SSID 'vodafone75127A'
+2026-01-16T05:36:08.961Z sh[3238]:  1768541768.961481: dbus: Register BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/14'
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.962933: BSS: last_scan_res_used=8/32
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.962993: BSS: Not able to find any 5GHz BSSID for SSID 'TALKTALK695DDE'
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.963031: wlan0: New scan results available (own=1 ext=0)
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.963263: WPS: AP 10:d7:b0:69:5d:dc type 0 added
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.963287: WPS: AP b0:0a:d5:57:b3:08 type 0 added
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.963309: WPS: AP d6:35:1d:75:12:82 type 0 added
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.963329: WPS: AP b0:0a:d5:56:b3:08 type 0 added
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.963349: WPS: AP 10:d7:b0:69:5d:db type 0 added
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.963368: WPS: AP d4:35:1d:75:12:7a type 0 added
+2026-01-16T05:36:08.963Z sh[3238]:  1768541768.963386: WPS: AP[0] 10:d7:b0:69:5d:dc type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=1
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963401: WPS: AP[1] b0:0a:d5:57:b3:08 type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963417: WPS: AP[2] d6:35:1d:75:12:82 type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963432: WPS: AP[3] b0:0a:d5:56:b3:08 type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963447: WPS: AP[4] 10:d7:b0:69:5d:db type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963462: WPS: AP[5] d4:35:1d:75:12:7a type=0 tries=0 last_attempt=-1 sec ago bssid_ignore=0
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963521: wlan0: Radio work 'scan'@0x18b080 done in 3.884910 seconds
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963544: wlan0: radio_work_free('scan'@0x18b080): num_active_works --> 0
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963564: wlan0: Selecting BSS from priority group 0
+2026-01-16T05:36:08.964Z sh[3238]:  1768541768.963610: wlan0: 0: 12:d7:b0:69:5d:dd ssid='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' wpa_ie_len=0 rsn_ie_len=20 caps=0x1111 level=-54 freq=5500
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963636: wlan0:    skip - SSID mismatch
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963666: wlan0: 1: 10:d7:b0:69:5d:dc ssid='TALKTALK695DDE' wpa_ie_len=0 rsn_ie_len=20 caps=0x111 level=-55 freq=5500  wps
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963687: wlan0:    skip - BSSID ignored (count=1 limit=0)
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963717: wlan0: 2: b0:0a:d5:57:b3:08 ssid='Three_56B308' wpa_ie_len=0 rsn_ie_len=20 caps=0x1531 level=-87 freq=5180  wps
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963735: wlan0:    skip - SSID mismatch
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963764: wlan0: 3: d6:35:1d:75:12:82 ssid='vodafone75127A' wpa_ie_len=0 rsn_ie_len=20 caps=0x1111 level=-90 freq=5280  wps
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963783: wlan0:    skip - SSID mismatch
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963812: wlan0: 4: b0:0a:d5:56:b3:08 ssid='Three_56B308' wpa_ie_len=0 rsn_ie_len=20 caps=0x1431 level=-63 freq=2432  wps
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963830: wlan0:    skip - SSID mismatch
+2026-01-16T05:36:08.965Z sh[3238]:  1768541768.963859: wlan0: 5: 28:6d:97:e0:08:83 ssid='[washer] Samsung' wpa_ie_len=0 rsn_ie_len=20 caps=0x411 level=-30 freq=2412
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.963877: wlan0:    skip - SSID mismatch
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.963906: wlan0: 6: 10:d7:b0:69:5d:db ssid='TALKTALK695DDE' wpa_ie_len=0 rsn_ie_len=20 caps=0x411 level=-48 freq=2437  wps
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.963927: wlan0:    selected based on RSN IE
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.963955: wlan0:    selected BSS 10:d7:b0:69:5d:db ssid='TALKTALK695DDE'
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.963994: wlan0: Considering connect request: reassociate: 0  selected: 10:d7:b0:69:5d:db  bssid: 00:00:00:00:00:00  pending: 00:00:00:00:00:00  wpa_state: SCANNING  ssid=0x192cb0  current_ssid=(nil)
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.964045: wlan0: Request association with 10:d7:b0:69:5d:db
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.964062: wlan0: Re-association to the same ESS
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.964081: wlan0: No ongoing scan/p2p-scan found to abort
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.964100: wlan0: Add radio work 'connect'@0x196de0
+2026-01-16T05:36:08.966Z sh[3238]:  1768541768.964117: wlan0: First radio work item in the queue - schedule start immediately
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.975907: wlan0: Starting radio work 'connect'@0x196de0 after 0.011779 second wait
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.975956: wlan0: WPA: clearing own WPA/RSN IE
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.976008: wlan0: RSN: clearing own RSNXE
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.976025: RSN: PMKSA cache search - network_ctx=0x192cb0 try_opportunistic=0 akmp=0x0
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.976038: RSN: Search for BSSID 10:d7:b0:69:5d:db
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.976050: RSN: No PMKSA cache entry found
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.976065: wlan0: RSN: using IEEE 802.11i/D9.0
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.976083: wlan0: WPA: Selected cipher suites: group 16 pairwise 16 key_mgmt 2 proto 2
+2026-01-16T05:36:08.976Z sh[3238]:  1768541768.976099: wlan0: WPA: Selected mgmt group cipher 32
+2026-01-16T05:36:08.977Z sh[3238]:  1768541768.976114: wlan0: WPA: clearing AP WPA IE
+2026-01-16T05:36:08.977Z sh[3238]:  1768541768.976126: WPA: set AP RSN IE - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 0c 00
+2026-01-16T05:36:08.977Z sh[3238]:  1768541768.976158: wlan0: WPA: clearing AP RSNXE
+2026-01-16T05:36:08.977Z sh[3238]:  1768541768.976175: wlan0: WPA: AP group 0x10 network profile group 0x18; available group 0x10
+2026-01-16T05:36:08.977Z sh[3238]:  1768541768.976191: wlan0: WPA: using GTK CCMP
+2026-01-16T05:36:08.977Z sh[3238]:  1768541768.976208: wlan0: WPA: AP pairwise 0x10 network profile pairwise 0x18; available pairwise 0x10
+2026-01-16T05:36:08.977Z sh[3238]:  1768541768.976222: wlan0: WPA: using PTK CCMP
+2026-01-16T05:36:08.978Z sh[3238]:  1768541768.976239: wlan0: WPA: AP key_mgmt 0x2 network profile key_mgmt 0x142; available key_mgmt 0x2
+2026-01-16T05:36:08.978Z sh[3238]:  1768541768.976254: wlan0: WPA: using KEY_MGMT WPA-PSK
+2026-01-16T05:36:08.978Z sh[3238]:  1768541768.976272: wlan0: WPA: AP mgmt_group_cipher 0x20 network profile mgmt_group_cipher 0x0; available mgmt_group_cipher 0x0
+2026-01-16T05:36:08.978Z sh[3238]:  1768541768.976287: wlan0: WPA: not using MGMT group cipher
+2026-01-16T05:36:08.978Z sh[3238]:  1768541768.976302: WPA: Set own WPA IE default - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 80 00
+2026-01-16T05:36:08.978Z sh[3238]:  1768541768.976330: RSN: Set own RSNXE default - hexdump(len=0):
+2026-01-16T05:36:08.978Z sh[3238]:  1768541768.976341: WPA: Set PMK based on external data - hexdump(len=32): [REMOVED]
+2026-01-16T05:36:08.978Z sh[3238]:  1768541768.976355: wlan0: Automatic auth_alg selection: 0x1
+2026-01-16T05:36:08.979Z sh[3238]:  1768541768.976411: Added supported operating classes IE - hexdump(len=22): 3b 14 51 51 53 54 73 74 75 76 77 78 79 7a 7b 7c 7d 7e 7f 80 81 82
+2026-01-16T05:36:08.979Z sh[3238]:  1768541768.976447: wlan0: Trying to associate with SSID 'TALKTALK695DDE'
+2026-01-16T05:36:08.979Z sh[3238]:  1768541768.976463: wlan0: Cancelling scan request
+2026-01-16T05:36:08.979Z sh[3238]:  1768541768.976565: wlan0: State: SCANNING -> ASSOCIATING
+2026-01-16T05:36:08.979Z sh[3238]:  1768541768.976585: nl80211: Set wlan0 operstate 0->0 (DORMANT)
+2026-01-16T05:36:08.979Z sh[3238]:  1768541768.976598: netlink: Operstate: ifindex=6 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+2026-01-16T05:36:08.980Z sh[3238]:  1768541768.976696: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-16T05:36:08.980Z sh[3238]:  1768541768.976716: wlan0: Shared frequencies (len=0): completed iteration
+2026-01-16T05:36:08.980Z sh[3238]:  1768541768.976734: P2P: Add operating class 81
+2026-01-16T05:36:08.985Z sh[3238]:  1768541768.976749: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-16T05:36:08.985Z sh[3238]:  1768541768.976959: P2P: Update channel list
+2026-01-16T05:36:08.985Z sh[3238]:  1768541768.976995: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-16T05:36:08.985Z sh[3238]:  1768541768.977012: P2P: cli_channels:
+2026-01-16T05:36:08.985Z sh[3238]:  1768541768.977128: nl80211: Set mode ifindex 6 iftype 2 (STATION)
+2026-01-16T05:36:08.986Z sh[3238]:  1768541768.977262: nl80211: Unsubscribe mgmt frames handle 0x889e0451 (mode change)
+2026-01-16T05:36:08.986Z sh[3238]:  1768541768.977427: nl80211: Subscribe to mgmt frames with non-AP handle 0x168cd8
+2026-01-16T05:36:08.986Z sh[3238]:  1768541768.977446: nl80211: Register frame type=0xb0 (WLAN_FC_STYPE_AUTH) nl_handle=0x168cd8 match=0300 multicast=0
+2026-01-16T05:36:08.986Z sh[3238]:  1768541768.977520: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0104 multicast=0
+2026-01-16T05:36:08.987Z sh[3238]:  1768541768.977579: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040a multicast=0
+2026-01-16T05:36:08.987Z sh[3238]:  1768541768.977634: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040b multicast=0
+2026-01-16T05:36:08.987Z sh[3238]:  1768541768.977691: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040c multicast=0
+2026-01-16T05:36:08.987Z sh[3238]:  1768541768.977747: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=040d multicast=0
+2026-01-16T05:36:08.987Z sh[3238]:  1768541768.977801: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090a multicast=0
+2026-01-16T05:36:08.987Z sh[3238]:  1768541768.977856: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090b multicast=0
+2026-01-16T05:36:08.988Z sh[3238]:  1768541768.977911: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090c multicast=0
+2026-01-16T05:36:08.988Z sh[3238]:  1768541768.977965: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=090d multicast=0
+2026-01-16T05:36:08.988Z sh[3238]:  1768541768.978022: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0409506f9a09 multicast=0
+2026-01-16T05:36:08.988Z sh[3238]:  1768541768.978079: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=7f506f9a09 multicast=0
+2026-01-16T05:36:08.988Z sh[3238]:  1768541768.978134: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0801 multicast=0
+2026-01-16T05:36:08.989Z sh[3238]:  1768541768.978188: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=12 multicast=0
+2026-01-16T05:36:08.989Z sh[3238]:  1768541768.978242: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=06 multicast=0
+2026-01-16T05:36:08.989Z sh[3238]:  1768541768.978297: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a07 multicast=0
+2026-01-16T05:36:08.990Z sh[3238]:  1768541768.978351: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a11 multicast=0
+2026-01-16T05:36:08.990Z sh[3238]:  1768541768.978405: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0a0b multicast=0
+2026-01-16T05:36:08.990Z sh[3238]:  1768541768.978460: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1101 multicast=0
+2026-01-16T05:36:08.990Z sh[3238]:  1768541768.978514: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1102 multicast=0
+2026-01-16T05:36:08.990Z sh[3238]:  1768541768.978569: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0505 multicast=0
+2026-01-16T05:36:08.990Z sh[3238]:  1768541768.978624: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=0500 multicast=0
+2026-01-16T05:36:08.990Z sh[3238]:  1768541768.978679: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1301 multicast=0
+2026-01-16T05:36:08.991Z sh[3238]:  1768541768.978733: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=1305 multicast=0
+2026-01-16T05:36:08.991Z sh[3238]:  1768541768.978789: nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x168cd8 match=7e506f9a1a multicast=0
+2026-01-16T05:36:08.991Z sh[3238]:  1768541768.978853: nl80211: Key management set PSK
+2026-01-16T05:36:08.991Z sh[3238]:  1768541768.978865: nl80211: Connect (ifindex=6)
+2026-01-16T05:36:08.991Z sh[3238]:  1768541768.978880:   * bssid_hint=10:d7:b0:69:5d:db
+2026-01-16T05:36:08.991Z sh[3238]:  1768541768.978893:   * freq_hint=2437
+2026-01-16T05:36:08.992Z sh[3238]:  1768541768.978903:   * SSID=TALKTALK695DDE
+2026-01-16T05:36:08.992Z sh[3238]:  1768541768.978913:   * IEs - hexdump(len=57): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 80 00 7f 0b 00 00 0a 02 00 40 40 00 00 00 20 3b 14 51 51 53 54 73 74 75 76 77 78 79 7a 7b 7c 7d 7e 7f 80 81 82
+2026-01-16T05:36:08.992Z sh[3238]:  1768541768.978966:   * WPA Versions 0x2
+2026-01-16T05:36:08.992Z sh[3238]:  1768541768.978976:   * pairwise=0xfac04
+2026-01-16T05:36:08.992Z sh[3238]:  1768541768.978985:   * group=0xfac04
+2026-01-16T05:36:08.992Z sh[3238]:  1768541768.978995:   * akm=0xfac02
+2026-01-16T05:36:08.993Z sh[3238]:  1768541768.979006:   * Auth Type 0
+2026-01-16T05:36:08.993Z sh[3238]:  1768541768.980743: nl80211: Connect request send successfully
+2026-01-16T05:36:08.993Z sh[3238]:  1768541768.980789: wlan0: Setting authentication timeout: 10 sec 0 usec
+2026-01-16T05:36:08.993Z sh[3238]:  1768541768.980847: EAPOL: External notification - EAP success=0
+2026-01-16T05:36:08.993Z sh[3238]:  1768541768.980868: EAPOL: External notification - EAP fail=0
+2026-01-16T05:36:08.993Z sh[3238]:  1768541768.980883: EAPOL: External notification - portControl=Auto
+2026-01-16T05:36:09.498Z sh[3238]:  1768541769.498138: l2_packet_receive: src=10:d7:b0:69:5d:dc len=99
+2026-01-16T05:36:09.498Z sh[3238]:  1768541769.498191: wlan0: RX EAPOL from 10:d7:b0:69:5d:dc
+2026-01-16T05:36:09.498Z sh[3238]:  1768541769.498223: wlan0: Not associated - Delay processing of received EAPOL frame (state=ASSOCIATING bssid=00:00:00:00:00:00)
+2026-01-16T05:36:09.550Z sh[3238]:  1768541769.550624: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-16T05:36:09.654Z sh[3238]:  1768541769.652187: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-16T05:36:09.654Z sh[3238]:  1768541769.652279: RTM_NEWLINK: ifi_index=6 ifname=wlan0 operstate=5 linkmode=1 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T05:36:09.654Z sh[3238]:  1768541769.653327: nl80211: Drv Event 46 (NL80211_CMD_CONNECT) received for wlan0
+2026-01-16T05:36:09.654Z sh[3238]:  1768541769.653354: nl80211: Connect event (status=0 ignore_next_local_disconnect=0)
+2026-01-16T05:36:09.806Z sh[3238]:  1768541769.806530: nl80211: Associated on 5500 MHz
+2026-01-16T05:36:09.806Z sh[3238]:  1768541769.806564: nl80211: Associated with 10:d7:b0:69:5d:dc
+2026-01-16T05:36:09.806Z sh[3238]:  1768541769.806598: nl80211: Operating frequency for the associated BSS from scan results: 5500 MHz
+2026-01-16T05:36:09.806Z sh[3238]:  1768541769.806711: nl80211: Associated on 5500 MHz
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.806723: nl80211: Associated with 10:d7:b0:69:5d:dc
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.806749: nl80211: Set drv->ssid based on scan res info to 'TALKTALK695DDE'
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.806765: wlan0: Event ASSOC (0) received
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.806785: wlan0: Association info event
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.806795: req_ies - hexdump(len=205): 00 0e 54 41 4c 4b 54 41 4c 4b 36 39 35 44 44 45 01 08 8c 12 98 24 b0 48 60 6c c7 01 12 21 02 08 17 24 32 24 01 28 01 2c 01 30 01 34 01 38 01 3c 01 40 01 64 01 68 01 6c 01 70 01 74 01 78 01 7c 01 80 01 84 01 88 01 8c 01 90 01 95 01 99 01 9d 01 a1 01 a5 01 2d 1a ef 01 13 ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 30 16 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 00 00 00 00 3b 14 51 51 53 54 73 74 75 76 77 78 79 7a 7b 7c 7d 7e 7f 80 81 82 7f 08 04 00 08 00 00 00 00 40 bf 0c b2 71 90 33 fa ff 62 03 fa ff 62 03 dd 07 00 50 f2 02 00 01 00 dd 0b 8c fd f0 01 01 02 01 00 02 01 01
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.806909: resp_ies - hexdump(len=172): 01 08 8c 12 98 24 b0 48 60 6c 2d 1a ef 01 17 ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 3d 16 64 05 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 7f 08 04 00 08 80 00 00 00 40 bf 0c b2 69 8b 0f aa ff 00 00 aa ff 00 00 c0 05 01 6a 00 00 00 dd 18 00 50 f2 04 10 4a 00 01 10 10 3b 00 01 03 10 49 00 06 00 37 2a 00 01 20 dd 05 00 90 4c 04 17 dd 09 00 10 18 02 03 04 9c 00 00 dd 18 00 50 f2 02 01 01 80 00 03 a4 00 00 27 a4 00 00 42 43 5e 00 62 32 2f 00 dd 07 50 6f 9a 16 01 01 00
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.807013: wlan0: freq=5500 MHz
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.807026: WPA: set own WPA/RSN IE - hexdump(len=24): 30 16 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 00 00 00 00
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.807052: wlan0: RSN: PMKID from assoc IE not found from PMKSA cache
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.807063: wlan0: RSN: clearing own RSNXE
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.807077: wlan0: State: ASSOCIATING -> ASSOCIATED
+2026-01-16T05:36:09.807Z sh[3238]:  1768541769.807088: nl80211: Set wlan0 operstate 0->0 (DORMANT)
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807097: netlink: Operstate: ifindex=6 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807161: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807176: wlan0: Shared frequencies (len=1): completed iteration
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807188: wlan0: freq[0]: 5500, flags=0x1
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807201: P2P: Add operating class 81
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807213: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807304: P2P: Update channel list
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807325: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807589: P2P: cli_channels:
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807807: wlan0: Associated to a new BSS: BSSID=10:d7:b0:69:5d:dc
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807836: WPA: Update cipher suite selection based on IEs in driver-generated WPA/RSNE in AssocReq - hexdump(len=92): 30 16 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 00 00 00 00 3b 14 51 51 53 54 73 74 75 76 77 78 79 7a 7b 7c 7d 7e 7f 80 81 82 7f 08 04 00 08 00 00 00 00 40 bf 0c b2 71 90 33 fa ff 62 03 fa ff 62 03 dd 07 00 50 f2 02 00 01 00 dd 0b 8c fd f0 01 01 02 01 00 02 01 01
+2026-01-16T05:36:09.808Z sh[3238]:  1768541769.807898: wlan0: WPA: AP key_mgmt 0x2 network key_mgmt 0x142; available key_mgmt 0x2
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.807912: wlan0: WPA: using KEY_MGMT WPA2-PSK and proto 2
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.807925: wlan0: WPA: AP pairwise cipher 0x10 network pairwise cipher 0x18; available pairwise cipher 0x10
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.807936: wlan0: WPA: using PTK CCMP
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.807952: wlan0: WPA: AP group cipher 0x10 network group cipher 0x18; available group cipher 0x10
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.807963: wlan0: WPA: using GTK CCMP
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.807976: wlan0: WPA: AP mgmt_group_cipher 0x20 network mgmt_group_cipher 0x0; available mgmt_group_cipher 0x20
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.807987: wlan0: WPA: STA/AP is not MFP capable; AP RSNE caps 0xc
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.807997: wlan0: WPA: not using MGMT group cipher
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.808010: wlan0: WPA: clearing AP WPA IE
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.808019: WPA: set AP RSN IE - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 0c 00
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.808040: wlan0: WPA: clearing AP RSNXE
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.808055: wlan0: Associated with 10:d7:b0:69:5d:dc
+2026-01-16T05:36:09.809Z sh[3238]:  1768541769.808066: wlan0: WPA: Association event - clear replay counter
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808076: wlan0: WPA: Clear old PTK
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808086: EAPOL: External notification - portEnabled=0
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808097: EAPOL: External notification - portValid=0
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808105: EAPOL: External notification - EAP success=0
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808112: EAPOL: External notification - portEnabled=1
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808119: EAPOL: SUPP_PAE entering state CONNECTING
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808126: EAPOL: enable timer tick
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808135: EAPOL: SUPP_BE entering state IDLE
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808146: wlan0: Setting authentication timeout: 10 sec 0 usec
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808159: wlan0: Cancelling scan request
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808173: MBO: Disable MBO/OCE due to misbehaving AP not having enabled PMF
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808184: wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+2026-01-16T05:36:09.810Z sh[3238]:  1768541769.808231: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T05:36:09.811Z sh[3238]:  1768541769.808273: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T05:36:09.811Z sh[3238]:  1768541769.808307: RTM_NEWLINK: ifi_index=6 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+2026-01-16T05:36:11.887Z sh[3238]:  1768541771.886405: EAPOL: startWhen --> 0
+2026-01-16T05:36:11.887Z sh[3238]:  1768541771.886497: EAPOL: disable timer tick
+2026-01-16T05:36:11.888Z sh[3238]:  1768541771.886514: EAPOL: SUPP_PAE entering state CONNECTING
+2026-01-16T05:36:11.888Z sh[3238]:  1768541771.886529: EAPOL: enable timer tick
+2026-01-16T05:36:11.888Z sh[3238]:  1768541771.886547: EAPOL: txStart
+2026-01-16T05:36:11.888Z sh[3238]:  1768541771.886561: WPA: drop TX EAPOL in non-IEEE 802.1X mode (type=1 len=0)
+2026-01-16T05:36:12.436Z sh[3238]:  1768541772.436436: l2_packet_receive: src=10:d7:b0:69:5d:dc len=99
+2026-01-16T05:36:12.436Z sh[3238]:  1768541772.436490: wlan0: RX EAPOL from 10:d7:b0:69:5d:dc
+2026-01-16T05:36:12.436Z sh[3238]:  1768541772.436517: wlan0: Setting authentication timeout: 10 sec 0 usec
+2026-01-16T05:36:12.437Z sh[3238]:  1768541772.436572: wlan0: IEEE 802.1X RX: version=2 type=3 length=95
+2026-01-16T05:36:12.437Z sh[3238]:  1768541772.436592: wlan0:   EAPOL-Key type=2
+2026-01-16T05:36:12.437Z sh[3238]:  1768541772.436615: wlan0:   key_info 0x8a (ver=2 keyidx=0 rsvd=0 Pairwise Ack)
+2026-01-16T05:36:12.437Z sh[3238]:  1768541772.436631: wlan0:   key_length=16 key_data_length=0
+2026-01-16T05:36:12.437Z sh[3238]:  1768541772.436643:   replay_counter - hexdump(len=8): 00 00 00 00 00 00 00 01
+2026-01-16T05:36:12.437Z sh[3238]:  1768541772.436661:   key_nonce - hexdump(len=32): 8d 6d f4 48 56 ec ab 57 1d 4e 0a 03 92 4c b0 95 8b 48 fb 54 27 63 fc 06 7e b8 ba e7 b5 93 db a0
+2026-01-16T05:36:12.437Z sh[3238]:  1768541772.436692:   key_iv - hexdump(len=16): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2026-01-16T05:36:12.437Z sh[3238]:  1768541772.436715:   key_rsc - hexdump(len=8): 00 00 00 00 00 00 00 00
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.436731:   key_id (reserved) - hexdump(len=8): 00 00 00 00 00 00 00 00
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.436746:   key_mic - hexdump(len=16): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.436780: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.436824: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.436843: wlan0: Shared frequencies (len=1): completed iteration
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.436860: wlan0: freq[0]: 5500, flags=0x1
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.436877: P2P: Add operating class 81
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.436892: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-16T05:36:12.438Z sh[3238]:  1768541772.437016: P2P: Update channel list
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437045: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437061: P2P: cli_channels:
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437082: wlan0: WPA: RX message 1 of 4-Way Handshake from 10:d7:b0:69:5d:dc (ver=2)
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437096: RSN: msg 1/4 key data - hexdump(len=0):
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437394: WPA: Renewed SNonce - hexdump(len=32): 19 8b 50 cf ff 2e 04 9c 00 da 96 1e 8f 04 a2 82 4b 74 8e 72 16 d8 2f 3c 2a 54 8d a0 51 5e ca 43
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437433: WPA: PTK derivation using PRF(SHA1)
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437492: WPA: PTK derivation - A1=d4:52:ee:59:e3:e8 A2=10:d7:b0:69:5d:dc
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437508: WPA: Nonce1 - hexdump(len=32): 19 8b 50 cf ff 2e 04 9c 00 da 96 1e 8f 04 a2 82 4b 74 8e 72 16 d8 2f 3c 2a 54 8d a0 51 5e ca 43
+2026-01-16T05:36:12.439Z sh[3238]:  1768541772.437540: WPA: Nonce2 - hexdump(len=32): 8d 6d f4 48 56 ec ab 57 1d 4e 0a 03 92 4c b0 95 8b 48 fb 54 27 63 fc 06 7e b8 ba e7 b5 93 db a0
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437571: WPA: PMK - hexdump(len=32): [REMOVED]
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437581: WPA: PTK - hexdump(len=48): [REMOVED]
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437591: WPA: KCK - hexdump(len=16): [REMOVED]
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437601: WPA: KEK - hexdump(len=16): [REMOVED]
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437611: WPA: TK - hexdump(len=16): [REMOVED]
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437624: WPA: WPA IE for msg 2/4 - hexdump(len=24): 30 16 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 00 00 00 00
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437653: WPA: Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 01
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437672: wlan0: WPA: Sending EAPOL-Key 2/4
+2026-01-16T05:36:12.440Z sh[3238]:  1768541772.437686: WPA: Send EAPOL-Key frame to 10:d7:b0:69:5d:dc ver=2 mic_len=16 key_mgmt=0x2
+2026-01-16T05:36:12.441Z sh[3238]:  1768541772.437700: WPA: EAPOL-Key MIC using HMAC-SHA1
+2026-01-16T05:36:12.441Z sh[3238]:  1768541772.437728: WPA: KCK - hexdump(len=16): [REMOVED]
+2026-01-16T05:36:12.441Z sh[3238]:  1768541772.437740: WPA: Derived Key MIC - hexdump(len=16): 9c 6a 9d 18 5f e6 a5 81 cd f0 73 a5 7c 91 ed 97
+2026-01-16T05:36:12.445Z sh[3238]:  1768541772.445131: l2_packet_receive: src=10:d7:b0:69:5d:dc len=155
+2026-01-16T05:36:12.445Z sh[3238]:  1768541772.445171: wlan0: RX EAPOL from 10:d7:b0:69:5d:dc
+2026-01-16T05:36:12.445Z sh[3238]:  1768541772.445199: wlan0: IEEE 802.1X RX: version=2 type=3 length=151
+2026-01-16T05:36:12.445Z sh[3238]:  1768541772.445216: wlan0:   EAPOL-Key type=2
+2026-01-16T05:36:12.445Z sh[3238]:  1768541772.445239: wlan0:   key_info 0x13ca (ver=2 keyidx=0 rsvd=0 Pairwise Install Ack MIC Secure Encr)
+2026-01-16T05:36:12.446Z sh[3238]:  1768541772.445255: wlan0:   key_length=16 key_data_length=56
+2026-01-16T05:36:12.446Z sh[3238]:  1768541772.445268:   replay_counter - hexdump(len=8): 00 00 00 00 00 00 00 02
+2026-01-16T05:36:12.446Z sh[3238]:  1768541772.445288:   key_nonce - hexdump(len=32): 8d 6d f4 48 56 ec ab 57 1d 4e 0a 03 92 4c b0 95 8b 48 fb 54 27 63 fc 06 7e b8 ba e7 b5 93 db a0
+2026-01-16T05:36:12.446Z sh[3238]:  1768541772.445319:   key_iv - hexdump(len=16): 53 be e1 e8 59 b7 90 1c bb 94 7d 3d 30 45 71 8d
+2026-01-16T05:36:12.446Z sh[3238]:  1768541772.445340:   key_rsc - hexdump(len=8): 7e 84 16 00 00 00 00 00
+2026-01-16T05:36:12.446Z sh[3238]:  1768541772.445355:   key_id (reserved) - hexdump(len=8): 00 00 00 00 00 00 00 00
+2026-01-16T05:36:12.446Z sh[3238]:  1768541772.445370:   key_mic - hexdump(len=16): 58 59 df 92 b2 dd 3c 13 ce 10 55 d4 cc eb 01 97
+2026-01-16T05:36:12.447Z sh[3238]:  1768541772.445396: WPA: EAPOL-Key MIC using HMAC-SHA1
+2026-01-16T05:36:12.447Z sh[3238]:  1768541772.445447: RSN: encrypted key data - hexdump(len=56): 43 3b d2 a5 6e 7a 6d 40 bc 4e 35 be 14 a8 7a 07 fe 59 d1 de 37 c6 f5 42 df 67 44 1c 4a 4e 21 0d 61 2b b8 20 54 86 1a 8c 7f 72 7a a4 19 12 89 ed 93 bd bb 6d 0c 41 9b b2
+2026-01-16T05:36:12.447Z sh[3238]:  1768541772.445497: WPA: Decrypt Key Data using AES-UNWRAP (KEK length 16)
+2026-01-16T05:36:12.447Z sh[3238]:  1768541772.445529: WPA: decrypted EAPOL-Key key data - hexdump(len=48): [REMOVED]
+2026-01-16T05:36:12.447Z sh[3238]:  1768541772.445544: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE
+2026-01-16T05:36:12.447Z sh[3238]:  1768541772.445566: wlan0: WPA: RX message 3 of 4-Way Handshake from 10:d7:b0:69:5d:dc (ver=2)
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445579: WPA: IE KeyData - hexdump(len=48): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 0c 00 dd 16 00 0f ac 01 01 00 65 2d 64 ec d4 02 f0 97 4f a6 58 41 ce 31 b8 9d dd 00
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445625: WPA: RSN IE in EAPOL-Key - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 02 0c 00
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445652: WPA: GTK in EAPOL-Key - hexdump(len=24): [REMOVED]
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445668: wlan0: WPA: Sending EAPOL-Key 4/4
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445681: WPA: Send EAPOL-Key frame to 10:d7:b0:69:5d:dc ver=2 mic_len=16 key_mgmt=0x2
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445695: WPA: EAPOL-Key MIC using HMAC-SHA1
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445724: WPA: KCK - hexdump(len=16): [REMOVED]
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445736: WPA: Derived Key MIC - hexdump(len=16): 2d 1a 54 6d 04 95 4a ea d1 d9 fe 9b 8a 23 e1 3a
+2026-01-16T05:36:12.448Z sh[3238]:  1768541772.445832: wlan0: WPA: Installing PTK to the driver
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.445898: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=3 addr=0x164b44 key_idx=0 set_tx=1 seq_len=6 key_len=16 key_flag=0x2c
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.445926: nl80211: NEW_KEY
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.445946: nl80211: KEY_DATA - hexdump(len=16): [REMOVED]
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.445958: nl80211: KEY_SEQ - hexdump(len=6): 00 00 00 00 00 00
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.445973:    addr=10:d7:b0:69:5d:dc
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.445985:    pairwise key
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.446836: EAPOL: External notification - portValid=1
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.446865: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.446915: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-16T05:36:12.449Z sh[3238]:  1768541772.446934: wlan0: Shared frequencies (len=1): completed iteration
+2026-01-16T05:36:12.450Z sh[3238]:  1768541772.446952: wlan0: freq[0]: 5500, flags=0x1
+2026-01-16T05:36:12.450Z sh[3238]:  1768541772.446970: P2P: Add operating class 81
+2026-01-16T05:36:12.450Z sh[3238]:  1768541772.446985: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-16T05:36:12.450Z sh[3238]:  1768541772.447392: P2P: Update channel list
+2026-01-16T05:36:12.450Z sh[3238]:  1768541772.447427: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-16T05:36:12.450Z sh[3238]:  1768541772.447444: P2P: cli_channels:
+2026-01-16T05:36:12.450Z sh[3238]:  1768541772.447459: RSN: received GTK in pairwise handshake - hexdump(len=18): [REMOVED]
+2026-01-16T05:36:12.450Z sh[3238]:  1768541772.447474: WPA: Group Key - hexdump(len=16): [REMOVED]
+2026-01-16T05:36:12.451Z sh[3238]:  1768541772.447489: wlan0: WPA: Installing GTK to the driver (keyidx=1 tx=0 len=16)
+2026-01-16T05:36:12.451Z sh[3238]:  1768541772.447502: WPA: RSC - hexdump(len=6): 7e 84 16 00 00 00
+2026-01-16T05:36:12.451Z sh[3238]:  1768541772.447567: wpa_driver_nl80211_set_key: ifindex=6 (wlan0) alg=3 addr=0xdfb83 key_idx=1 set_tx=0 seq_len=6 key_len=16 key_flag=0x14
+2026-01-16T05:36:12.451Z sh[3238]:  1768541772.447591: nl80211: NEW_KEY
+2026-01-16T05:36:12.451Z sh[3238]:  1768541772.447610: nl80211: KEY_DATA - hexdump(len=16): [REMOVED]
+2026-01-16T05:36:12.451Z sh[3238]:  1768541772.447622: nl80211: KEY_SEQ - hexdump(len=6): 7e 84 16 00 00 00
+2026-01-16T05:36:12.451Z sh[3238]:  1768541772.447637:    broadcast key
+2026-01-16T05:36:12.461Z sh[3238]:  1768541772.461183: wlan0: WPA: Key negotiation completed with 10:d7:b0:69:5d:dc [PTK=CCMP GTK=CCMP]
+2026-01-16T05:36:12.462Z sh[3238]:  1768541772.461498: wlan0: Cancelling authentication timeout
+2026-01-16T05:36:12.462Z sh[3238]:  1768541772.461517: Removed BSSID 10:d7:b0:69:5d:dc from ignore list
+2026-01-16T05:36:12.462Z sh[3238]:  1768541772.461535: wlan0: State: GROUP_HANDSHAKE -> COMPLETED
+2026-01-16T05:36:12.462Z sh[3238]:  1768541772.461559: wlan0: Radio work 'connect'@0x196de0 done in 3.485657 seconds
+2026-01-16T05:36:12.462Z sh[3238]:  1768541772.461577: wlan0: radio_work_free('connect'@0x196de0): num_active_works --> 0
+2026-01-16T05:36:12.462Z sh[3238]:  1768541772.461601: wlan0: CTRL-EVENT-CONNECTED - Connection to 10:d7:b0:69:5d:dc completed [id=0 id_str=]
+2026-01-16T05:36:12.462Z sh[3238]:  1768541772.461615: nl80211: Set wlan0 operstate 0->1 (UP)
+2026-01-16T05:36:12.462Z sh[3238]:  1768541772.461627: netlink: Operstate: ifindex=6 linkmode=-1 (no change), operstate=6 (IF_OPER_UP)
+2026-01-16T05:36:12.464Z sh[3238]:  1768541772.462943: wlan0: Determining shared radio frequencies (max len 2)
+2026-01-16T05:36:12.464Z sh[3238]:  1768541772.462991: wlan0: Shared frequencies (len=1): completed iteration
+2026-01-16T05:36:12.464Z sh[3238]:  1768541772.463010: wlan0: freq[0]: 5500, flags=0x1
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463028: P2P: Add operating class 81
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463044: P2P: Channels - hexdump(len=13): 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463170: P2P: Update channel list
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463200: P2P: channels: 81:1,2,3,4,5,6,7,8,9,10,11,12,13
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463217: P2P: cli_channels:
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463243: EAPOL: External notification - portValid=1
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463259: EAPOL: External notification - EAP success=1
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463269: EAPOL: SUPP_PAE entering state AUTHENTICATING
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463279: EAPOL: SUPP_BE entering state SUCCESS
+2026-01-16T05:36:12.465Z sh[3238]:  1768541772.463289: EAP: EAP entering state DISABLED
+2026-01-16T05:36:12.466Z sh[3238]:  1768541772.463299: EAPOL: SUPP_PAE entering state AUTHENTICATED
+2026-01-16T05:36:12.466Z sh[3238]:  1768541772.463308: EAPOL: Supplicant port status: Authorized
+2026-01-16T05:36:12.466Z sh[3238]:  1768541772.463319: nl80211: Set supplicant port authorized for 10:d7:b0:69:5d:dc
+2026-01-16T05:36:12.793Z sh[3238]:  1768541772.788615: EAPOL: SUPP_BE entering state IDLE
+2026-01-16T05:36:12.793Z sh[3238]:  1768541772.788662: EAPOL authentication completed - result=SUCCESS
+2026-01-16T05:36:12.793Z sh[3238]:  1768541772.788682: nl80211: Set rekey offload
+2026-01-16T05:36:12.793Z sh[3238]:  1768541772.790088: RTM_NEWLINK: ifi_index=6 ifname=wlan0 operstate=6 linkmode=1 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+2026-01-16T05:36:12.944Z sh[3238]:  1768541772.943449: nl80211: Drv Event 103 (NL80211_CMD_VENDOR) received for wlan0
+2026-01-16T05:36:12.945Z sh[3238]:  1768541772.943483: nl80211: Vendor event: wiphy=0 vendor_id=0x1374 subcmd=165
+2026-01-16T05:36:12.945Z sh[3238]:  1768541772.945235: nl80211: Ignore unsupported QCA vendor event 165
+2026-01-16T05:36:18.983Z sh[3238]:  1768541778.982803: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T08:14:40.078Z sh[3238]:  1768551278.130138: nl80211: Drv Event 79 (NL80211_CMD_SET_REKEY_OFFLOAD) received for wlan0
+2026-01-16T08:14:40.078Z sh[3238]:  1768551278.130168: nl80211: Rekey offload event for BSSID 10:d7:b0:69:5d:dc
+2026-01-16T08:14:40.078Z sh[3238]:  1768551278.130178: nl80211: Rekey offload - Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02
+2026-01-16T08:14:40.078Z sh[3238]:  1768551278.146636: wlan0: Event DRIVER_GTK_REKEY (34) received
+2026-01-16T08:14:40.078Z sh[3238]:  1768551278.146714: wlan0: BSS: Remove id 8 BSSID 12:d7:b0:69:5d:dd SSID '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' due to wpa_bss_flush_by_age
+2026-01-16T08:14:40.078Z sh[3238]:  1768551278.146728: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/8'
+2026-01-16T08:14:40.078Z sh[3238]:  1768551278.149920: wlan0: BSS: Remove id 9 BSSID b0:0a:d5:57:b3:08 SSID 'Three_56B308' due to wpa_bss_flush_by_age
+2026-01-16T08:14:40.078Z sh[3238]:  1768551278.149946: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/9'
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.154255: wlan0: BSS: Remove id 10 BSSID d6:35:1d:75:12:82 SSID 'vodafone75127A' due to wpa_bss_flush_by_age
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.154278: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/10'
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.155716: wlan0: BSS: Remove id 11 BSSID b0:0a:d5:56:b3:08 SSID 'Three_56B308' due to wpa_bss_flush_by_age
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.155744: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/11'
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.157118: wlan0: BSS: Remove id 12 BSSID 28:6d:97:e0:08:83 SSID '[washer] Samsung' due to wpa_bss_flush_by_age
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.157146: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/12'
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.158054: wlan0: BSS: Remove id 13 BSSID 10:d7:b0:69:5d:db SSID 'TALKTALK695DDE' due to wpa_bss_flush_by_age
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.158079: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/13'
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.162742: wlan0: BSS: Remove id 14 BSSID d4:35:1d:75:12:7a SSID 'vodafone75127A' due to wpa_bss_flush_by_age
+2026-01-16T08:14:40.079Z sh[3238]:  1768551278.162769: dbus: Unregister BSS object '/fi/w1/wpa_supplicant1/Interfaces/0/BSSs/14'
+2026-01-16T08:35:43.657Z sh[3238]:  1768552543.146402: nl80211: Drv Event 79 (NL80211_CMD_SET_REKEY_OFFLOAD) received for wlan0
+2026-01-16T08:35:43.657Z sh[3238]:  1768552543.146428: nl80211: Rekey offload event for BSSID 10:d7:b0:69:5d:dc
+2026-01-16T08:35:43.657Z sh[3238]:  1768552543.146442: nl80211: Rekey offload - Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02
+2026-01-16T08:35:43.657Z sh[3238]:  1768552543.146463: wlan0: Event DRIVER_GTK_REKEY (34) received
+2026-01-16T08:35:44.552Z sh[3238]:  1768552544.552878: EAPOL: startWhen --> 0
+2026-01-16T08:35:44.553Z sh[3238]:  1768552544.552909: EAPOL: disable timer tick
+2026-01-16T09:19:39.807Z sh[3238]:  1768555178.051551: nl80211: Drv Event 79 (NL80211_CMD_SET_REKEY_OFFLOAD) received for wlan0
+2026-01-16T09:19:39.807Z sh[3238]:  1768555178.051578: nl80211: Rekey offload event for BSSID 10:d7:b0:69:5d:dc
+2026-01-16T09:19:39.807Z sh[3238]:  1768555178.051589: nl80211: Rekey offload - Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02
+2026-01-16T09:19:39.807Z sh[3238]:  1768555178.051608: wlan0: Event DRIVER_GTK_REKEY (34) received
+2026-01-16T09:19:40.764Z sh[3238]:  1768555180.764126: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T09:19:47.033Z sh[3238]:  1768555187.032334: RTM_NEWLINK: ifi_index=11 ifname=veth0 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:47.118Z sh[3238]:  1768555187.118261: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:47.118Z sh[3238]:  1768555187.118296: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:47.961Z sh[3238]:  1768555187.960941: RTM_NEWLINK: ifi_index=11 ifname=veth0 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:47.961Z sh[3238]:  1768555187.960992: RTM_DELLINK: ifi_index=11 ifname=veth0 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:47.961Z sh[3238]:  1768555187.961010: RTM_DELLINK: ifi_index=11 ifname=veth0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:47.961Z sh[3238]:  1768555187.961020: RTM_DELLINK: Interface 'veth0' removed
+2026-01-16T09:19:51.676Z sh[3238]:  1768555191.673511: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:51.755Z sh[3238]:  1768555191.755626: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:51.822Z sh[3238]:  1768555191.756285: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:52.108Z sh[3238]:  1768555192.107382: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:52.171Z sh[3238]:  1768555192.171252: RTM_NEWLINK: ifi_index=12 ifname=veth1 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:52.173Z sh[3238]:  1768555192.171731: RTM_DELLINK: ifi_index=12 ifname=veth1 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:52.173Z sh[3238]:  1768555192.171880: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:52.173Z sh[3238]:  1768555192.172079: RTM_NEWLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.089Z sh[3238]:  1768555195.087536: RTM_NEWLINK: ifi_index=15 ifname=veth4 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.147Z sh[3238]:  1768555195.147297: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.148Z sh[3238]:  1768555195.147827: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.206Z sh[3238]:  1768555195.206698: RTM_NEWLINK: ifi_index=14 ifname=veth3 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.216Z sh[3238]:  1768555195.216751: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.216Z sh[3238]:  1768555195.216795: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.643Z sh[3238]:  1768555195.642244: RTM_NEWLINK: ifi_index=15 ifname=veth4 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.643Z sh[3238]:  1768555195.642284: RTM_DELLINK: ifi_index=15 ifname=veth4 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.643Z sh[3238]:  1768555195.642303: RTM_DELLINK: ifi_index=15 ifname=veth4 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.643Z sh[3238]:  1768555195.642313: RTM_DELLINK: Interface 'veth4' removed
+2026-01-16T09:19:55.643Z sh[3238]:  1768555195.642329: RTM_DELLINK: ifi_index=12 ifname=veth1 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.643Z sh[3238]:  1768555195.642340: RTM_DELLINK: Interface 'veth1' removed
+2026-01-16T09:19:55.846Z sh[3238]:  1768555195.845803: RTM_NEWLINK: ifi_index=14 ifname=veth3 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.846Z sh[3238]:  1768555195.845865: RTM_DELLINK: ifi_index=14 ifname=veth3 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.849Z sh[3238]:  1768555195.849120: RTM_DELLINK: ifi_index=14 ifname=veth3 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:55.849Z sh[3238]:  1768555195.849169: RTM_DELLINK: Interface 'veth3' removed
+2026-01-16T09:19:59.560Z sh[3238]:  1768555199.555354: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:19:59.632Z sh[3238]:  1768555199.632738: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:19:59.633Z sh[3238]:  1768555199.632799: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:20:00.937Z sh[3238]:  1768555200.937185: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:20:01.001Z sh[3238]:  1768555201.001131: RTM_NEWLINK: ifi_index=13 ifname=veth2 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:20:01.001Z sh[3238]:  1768555201.001416: RTM_DELLINK: ifi_index=13 ifname=veth2 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:20:01.001Z sh[3238]:  1768555201.001646: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:20:01.001Z sh[3238]:  1768555201.001855: RTM_NEWLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:34:23.508Z sh[3238]:  1768556064.375487: nl80211: Drv Event 79 (NL80211_CMD_SET_REKEY_OFFLOAD) received for wlan0
+2026-01-16T09:34:23.508Z sh[3238]:  1768556064.375545: nl80211: Rekey offload event for BSSID 10:d7:b0:69:5d:dc
+2026-01-16T09:34:23.508Z sh[3238]:  1768556064.375560: nl80211: Rekey offload - Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02
+2026-01-16T09:34:23.508Z sh[3238]:  1768556064.392560: wlan0: Event DRIVER_GTK_REKEY (34) received
+2026-01-16T09:34:30.069Z sh[3238]:  1768556070.067327: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:34:30.332Z sh[3238]:  1768556070.331979: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:34:30.332Z sh[3238]:  1768556070.332021: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:34:30.332Z sh[3238]:  1768556070.332040: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-16T09:34:30.343Z sh[3238]:  1768556070.342655: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:34:30.343Z sh[3238]:  1768556070.342693: RTM_NEWLINK: ifi_index=16 ifname=veth5 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:34:30.345Z sh[3238]:  1768556070.345365: RTM_DELLINK: ifi_index=16 ifname=veth5 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:34:30.345Z sh[3238]:  1768556070.345655: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 master=9 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:34:30.346Z sh[3238]:  1768556070.346133: RTM_NEWLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:34:30.375Z sh[3238]:  1768556070.375748: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T09:34:31.172Z sh[3238]:  1768556071.171222: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-16T09:34:31.172Z sh[3238]:  1768556071.171253: RTM_NEWLINK: ifi_index=10 ifname=dobby_tap0 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:34:31.172Z sh[3238]:  1768556071.171270: RTM_DELLINK: ifi_index=10 ifname=dobby_tap0 master=9 operstate=2 ifi_family=7 ifi_flags=0x1002 ()
+2026-01-16T09:34:31.172Z sh[3238]:  1768556071.171288: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1003 ([UP])
+2026-01-16T09:34:31.172Z sh[3238]:  1768556071.171304: RTM_DELLINK: ifi_index=10 ifname=dobby_tap0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:34:31.172Z sh[3238]:  1768556071.171314: RTM_DELLINK: Interface 'dobby_tap0' removed
+2026-01-16T09:34:31.266Z sh[3238]:  1768556071.265337: RTM_NEWLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:34:31.543Z sh[3238]:  1768556071.542740: RTM_DELLINK: ifi_index=9 ifname=dobby0 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T09:34:31.543Z sh[3238]:  1768556071.542777: RTM_DELLINK: Interface 'dobby0' removed
+2026-01-16T10:28:41.929Z sh[3238]:  1768559323.744134: nl80211: Drv Event 79 (NL80211_CMD_SET_REKEY_OFFLOAD) received for wlan0
+2026-01-16T10:28:41.929Z sh[3238]:  1768559323.744164: nl80211: Rekey offload event for BSSID 10:d7:b0:69:5d:dc
+2026-01-16T10:28:41.930Z sh[3238]:  1768559323.744176: nl80211: Rekey offload - Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02
+2026-01-16T10:28:41.930Z sh[3238]:  1768559323.744202: wlan0: Event DRIVER_GTK_REKEY (34) received
+2026-01-16T10:28:49.490Z sh[3238]:  1768559329.488876: RTM_DELLINK: ifi_index=16 ifname=veth5 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T10:28:49.490Z sh[3238]:  1768559329.488920: RTM_DELLINK: Interface 'veth5' removed
+2026-01-16T10:28:51.522Z sh[3238]:  1768559331.521368: RTM_DELLINK: ifi_index=13 ifname=veth2 operstate=2 linkmode=0 ifi_family=0 ifi_flags=0x1002 ()
+2026-01-16T10:28:51.522Z sh[3238]:  1768559331.521429: RTM_DELLINK: Interface 'veth2' removed
+2026-01-16T10:28:51.774Z sh[3238]:  1768559331.772155: wlan0: Control interface command 'SIGNAL_POLL'
+2026-01-16T12:54:15.864Z sh[3238]:  1768568055.772038: nl80211: Drv Event 79 (NL80211_CMD_SET_REKEY_OFFLOAD) received for wlan0
+2026-01-16T12:54:15.864Z sh[3238]:  1768568055.772063: nl80211: Rekey offload event for BSSID 10:d7:b0:69:5d:dc
+2026-01-16T12:54:15.864Z sh[3238]:  1768568055.772074: nl80211: Rekey offload - Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02
+2026-01-16T12:54:15.864Z sh[3238]:  1768568055.772093: wlan0: Event DRIVER_GTK_REKEY (34) received

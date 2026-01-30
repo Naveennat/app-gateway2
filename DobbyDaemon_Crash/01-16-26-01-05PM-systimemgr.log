@@ -1,0 +1,202 @@
+2025-12-03T08:39:01.717Z sysTimeMgr[4305]:  rdk_dyn_log_initg_dl_socket = 3 __progname = sysTimeMgr
+2025-12-03T08:39:01.755Z sysTimeMgr[4305]:  Conf file /etc/debug.ini open success
+2025-12-03T08:39:01.758Z sysTimeMgr[4305]:  251203-08:39:01.737251 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [initialize:97]:Initializing Src and Syncs. Category = timesrc, Type = ntp, Args = /ntp.
+2025-12-03T08:39:01.758Z sysTimeMgr[4305]:  251203-08:39:01.737608 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [initialize:97]:Initializing Src and Syncs. Category = timesrc, Type = dtt, Args = /dtt.
+2025-12-03T08:39:01.758Z sysTimeMgr[4305]:  251203-08:39:01.737658 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [initialize:97]:Initializing Src and Syncs. Category = timesync, Type = rdkdefault, Args = /clock_time.
+2025-12-03T08:39:01.778Z sysTimeMgr[4305]:  IARM_Bus_IsConnected invalid state
+2025-12-03T08:39:01.778Z sysTimeMgr[4305]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = SystemTimeMgr
+2025-12-03T08:39:01.778Z sysTimeMgr[4305]:  setting init done
+2025-12-03T08:39:01.778Z sysTimeMgr[4305]:  Registering SystemTimeMgr
+2025-12-03T08:39:01.778Z sysTimeMgr[4305]:  251203-08:39:01.777848 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [initialize:118]:createSubscriber IARM_BUS_SYSTIME_MGR_NAME TIMER_STATUS_MSG Invoke
+2025-12-03T08:39:01.779Z sysTimeMgr[4305]:  251203-08:39:01.777915 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [createSubscriber:65]:createSubscriber for IarmTimerStatusSubscriber
+2025-12-03T08:39:01.797Z sysTimeMgr[4305]:  251203-08:39:01.780455 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [IarmTimerStatusSubscriber:37]:IarmTimerStatusSubscriber IARM_Bus_IsConnected Success
+2025-12-03T08:39:01.797Z sysTimeMgr[4305]:  251203-08:39:01.780499 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [initialize:120]:createSubscriber IARM_BUS_SYSTIME_MGR_NAME POWER_CHANGE_MSG Invoke
+2025-12-03T08:39:01.797Z sysTimeMgr[4305]:  251203-08:39:01.780524 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [createSubscriber:71]:createSubscriber for IPowerControllerSubscriber
+2025-12-03T08:39:01.798Z sysTimeMgr[4305]:  251203-08:39:01.780566 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [initialize:122]:IarmTimerStatusSubscriber Invoke
+2025-12-03T08:39:01.798Z sysTimeMgr[4305]:  251203-08:39:01.780672 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [initialize:124]:IpowerControllerSubscriber or IarmPowerSubscriber Invoke
+2025-12-03T08:39:01.798Z sysTimeMgr[4305]:  251203-08:39:01.780698 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [subscribe:38]:Registering function for the Event = POWER_CHANGE
+2025-12-03T08:39:01.799Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:937] Init: Entering ...
+2025-12-03T08:39:01.799Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:845] Connect: Entering ...
+2025-12-03T08:39:01.799Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3847
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  251203-08:39:02.004437 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [subscribe:44]:PowerController_Init Completed
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  251203-08:39:02.004563 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [sysTimeMgrInitPwrEvt:236]:Thread Creation is Success
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  251203-08:39:02.004590 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [subscribe:47]:Initializing sysTimeMgrInitPwrEvt Completed
+2026-01-15T02:46:34.082Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-15T02:46:34.083Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:868] Connect: COM-RPC channel already open
+2026-01-15T02:46:34.083Z sysTimeMgr[4305]:  [PowerController][4305] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-15T02:46:34.083Z sysTimeMgr[4305]:  251203-08:39:02.008622 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [subscribe:62]:Power Controller Registration Success
+2026-01-15T02:46:34.083Z sysTimeMgr[4305]:  251203-08:39:02.009218 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [getTime:118]:Returning Last Known Good Time, time = Thursday Thu Jan 15 02:46:34 2026
+2026-01-15T02:46:34.083Z sysTimeMgr[4305]:  251203-08:39:02.009419 [mod=RBUS, lvl=INFO] [tid=4305] rbus open for component: t2_lib_sysTimeMgr
+2026-01-15T02:46:34.083Z sysTimeMgr[4305]:  251203-08:39:02.010439 [mod=RBUS, lvl=INFO] [tid=4305]  rbus open (t2_lib_sysTimeMgr) success
+2026-01-15T02:46:34.083Z sysTimeMgr[4305]:  [PowerController][4438] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  251203-08:39:02.023844 [mod=RBUS, lvl=ERROR] [tid=4305] rbus_get for Telemetry.ReportProfiles.sysTimeMgr.EventMarkerList failed with error: Entry not found error
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  T2ERROR:doPopulateEventMarkerList ../../../git/source/commonlib/telemetry_busmessage_sender.c:552: rbus mode : No event list configured in profiles Telemetry.ReportProfiles.sysTimeMgr.EventMarkerList and return value 5
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  251203-08:39:02.024847 [mod=RBUS, lvl=INFO] [tid=4305] Telemetry.ReportProfiles.ProfilesUpdated subscribe retries succeeded
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  251203-08:39:02.025190 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [setInitialTime:431]:Successfully created file (/tmp/systimeset) to trigger systime-set target
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  251203-08:39:02.025230 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [setInitialTime:445]: Clock_gettime Call succeeded with REAL time.
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  260115-02:46:34.000022 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [setInitialTime:468]:Successfully to set time
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  260115-02:46:34.001120 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  260115-02:46:34.001225 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [publishStatus:505]:TIME Published = 1768445194, Converted Real Time(included in published time): Thursday Thu Jan 15 02:46:34 2026, Converted Monotonic Time = Thursday Thu Jan 15 02:46:34 2026
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  260115-02:46:34.001257 [mod=SYSTIMEMGR, lvl=INFO] [tid=4305] [publish:33]:IARM Broadcast Info: MsgType = 0, Quality = 0, Message = Poor
+2026-01-15T02:46:34.128Z sysTimeMgr[4305]:  260115-02:46:34.066279 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrPwrEventHandlingThreadFunc:158]: Waiting for Events from Power Manager
+2026-01-15T02:46:38.247Z sysTimeMgr[4305]:  260115-02:46:38.245380 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:562]: Clock_gettime Call succeeded with REAL time.
+2026-01-15T02:46:38.247Z sysTimeMgr[4305]:  260115-02:46:38.245523 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:569]:TIME Returning for Query = 1768445198, Converted Real Time(included in TimeMsg): Thursday Thu Jan 15 02:46:38 2026, Converted Monotonic Time = Thursday Thu Jan 15 02:46:38 2026
+2026-01-16T02:35:06.108Z sysTimeMgr[4305]:  260116-02:35:06.107595 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T02:35:06.108Z sysTimeMgr[4305]:  260116-02:35:06.108096 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [updateTime:147]:Updating Time. Converted Time: Thursday Thu Jan  1 01:00:00 1970 , Actual value passed:0,
+2026-01-16T02:35:06.109Z sysTimeMgr[4305]:  260116-02:35:06.108160 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [updateTime:156]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T02:35:06.109Z sysTimeMgr[4305]:  260116-02:35:06.108229 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [updateTime:175]:Updating Time in file. Converted Time: Friday Fri Jan 16 02:35:06 2026 , Actual value passed:1768530906,
+2026-01-16T02:35:06.109Z sysTimeMgr[4305]:  260116-02:35:06.108834 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-16T02:35:06.109Z sysTimeMgr[4305]:  260116-02:35:06.108943 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [publishStatus:505]:TIME Published = 1768530906, Converted Real Time(included in published time): Friday Fri Jan 16 02:35:06 2026, Converted Monotonic Time = Friday Fri Jan 16 02:35:06 2026
+2026-01-16T02:35:06.109Z sysTimeMgr[4305]:  260116-02:35:06.108970 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [publish:33]:IARM Broadcast Info: MsgType = 2, Quality = 1, Message = Good
+2026-01-16T02:35:07.269Z sysTimeMgr[4305]:  260116-02:35:07.267488 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:562]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T02:35:07.270Z sysTimeMgr[4305]:  260116-02:35:07.267645 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:569]:TIME Returning for Query = 1768530907, Converted Real Time(included in TimeMsg): Friday Fri Jan 16 02:35:07 2026, Converted Monotonic Time = Friday Fri Jan 16 02:35:07 2026
+2026-01-16T02:35:22.186Z sysTimeMgr[4305]:  260116-02:35:22.186200 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T02:35:22.187Z sysTimeMgr[4305]:  260116-02:35:22.186385 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T02:35:49.581Z sysTimeMgr[4305]:  260116-02:35:49.579651 [mod=RBUS, lvl=ERROR] [tid=4442] rbus_get for Telemetry.ReportProfiles.sysTimeMgr.EventMarkerList failed with error: Entry not found error
+2026-01-16T02:35:49.581Z sysTimeMgr[4305]:  T2ERROR:doPopulateEventMarkerList ../../../git/source/commonlib/telemetry_busmessage_sender.c:552: rbus mode : No event list configured in profiles Telemetry.ReportProfiles.sysTimeMgr.EventMarkerList and return value 5
+2026-01-16T02:35:54.444Z sysTimeMgr[4305]:  260116-02:35:54.442818 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T02:35:54.444Z sysTimeMgr[4305]:  260116-02:35:54.442960 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T02:36:58.698Z sysTimeMgr[4305]:  260116-02:36:58.696466 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T02:36:58.698Z sysTimeMgr[4305]:  260116-02:36:58.696612 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T02:39:06.934Z sysTimeMgr[4305]:  260116-02:39:06.933367 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T02:39:06.934Z sysTimeMgr[4305]:  260116-02:39:06.933826 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T02:43:23.193Z sysTimeMgr[4305]:  260116-02:43:23.191903 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T02:43:23.194Z sysTimeMgr[4305]:  260116-02:43:23.194596 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T02:44:57.484Z sysTimeMgr[4305]:  260116-02:44:57.483286 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [updateTime:147]:Updating Time. Converted Time: Thursday Thu Jan  1 01:00:00 1970 , Actual value passed:0,
+2026-01-16T02:44:57.484Z sysTimeMgr[4305]:  260116-02:44:57.483372 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [updateTime:156]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T02:44:57.484Z sysTimeMgr[4305]:  260116-02:44:57.483476 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [updateTime:175]:Updating Time in file. Converted Time: Friday Fri Jan 16 02:44:57 2026 , Actual value passed:1768531497,
+2026-01-16T02:44:57.489Z sysTimeMgr[4305]:  260116-02:44:57.488749 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [getTimeSec:66]:JSON Data Received = null
+2026-01-16T02:44:57.489Z sysTimeMgr[4305]:   
+2026-01-16T02:44:57.592Z sysTimeMgr[4305]:  260116-02:44:57.592421 [mod=SYSTIMEMGR, lvl=ERROR] [tid=4443] [getTimeSec:78]:Successfully registered for onBroadcastTimeAvailable.
+2026-01-16T02:44:57.696Z sysTimeMgr[4305]:  260116-02:44:57.696206 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [getTimeSec:88]:JSON Data Received = {
+2026-01-16T02:44:57.696Z sysTimeMgr[4305]:  	"success" : false
+2026-01-16T02:44:57.696Z sysTimeMgr[4305]:  }
+2026-01-16T02:44:57.696Z sysTimeMgr[4305]:   
+2026-01-16T02:44:57.696Z sysTimeMgr[4305]:  260116-02:44:57.696309 [mod=SYSTIMEMGR, lvl=ERROR] [tid=4443] [getTimeSec:95]:DTT Time Not Available.
+2026-01-16T02:47:31.838Z sysTimeMgr[4305]:  260116-02:47:31.834206 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T02:47:31.838Z sysTimeMgr[4305]:  260116-02:47:31.834330 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:200]:Deep Sleep ON is Invoked
+2026-01-16T02:47:31.838Z sysTimeMgr[4305]:  260116-02:47:31.834367 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T02:47:31.838Z sysTimeMgr[4305]:  260116-02:47:31.834399 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepon:637]:Deep Sleep is turned on.
+2026-01-16T02:47:31.839Z sysTimeMgr[4305]:  260116-02:47:31.834430 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrPwrEventHandlingThreadFunc:158]: Waiting for Events from Power Manager
+2026-01-16T05:36:07.051Z sysTimeMgr[4305]:  260116-05:36:07.035323 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T05:36:07.051Z sysTimeMgr[4305]:  260116-05:36:07.035393 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:210]:Deep Sleep OFF is Invoked
+2026-01-16T05:36:07.051Z sysTimeMgr[4305]:  260116-05:36:07.035469 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T05:36:07.052Z sysTimeMgr[4305]:  260116-05:36:07.035498 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepoff:594]:Deep Sleep is Turned off. Resetting State Machine and restarting ntp service.
+2026-01-16T05:36:07.052Z sysTimeMgr[4305]:  260116-05:36:07.035523 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-16T05:36:07.052Z sysTimeMgr[4305]:  260116-05:36:07.035620 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:505]:TIME Published = 1768541767, Converted Real Time(included in published time): Friday Fri Jan 16 05:36:07 2026, Converted Monotonic Time = Friday Fri Jan 16 05:36:07 2026
+2026-01-16T05:36:07.052Z sysTimeMgr[4305]:  260116-05:36:07.035644 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publish:33]:IARM Broadcast Info: MsgType = 5, Quality = 1, Message = Good
+2026-01-16T05:36:12.216Z sysTimeMgr[4305]:  260116-05:36:12.194918 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T05:36:13.678Z sysTimeMgr[4305]:  260116-05:36:13.676788 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:200]:Deep Sleep ON is Invoked
+2026-01-16T05:36:13.678Z sysTimeMgr[4305]:  260116-05:36:13.676846 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T05:36:13.678Z sysTimeMgr[4305]:  260116-05:36:13.676871 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepon:637]:Deep Sleep is turned on.
+2026-01-16T05:36:13.678Z sysTimeMgr[4305]:  260116-05:36:13.676896 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrPwrEventHandlingThreadFunc:158]: Waiting for Events from Power Manager
+2026-01-16T05:36:13.678Z sysTimeMgr[4305]:  260116-05:36:13.676944 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:562]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T05:36:13.678Z sysTimeMgr[4305]:  260116-05:36:13.677090 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:569]:TIME Returning for Query = 1768541773, Converted Real Time(included in TimeMsg): Friday Fri Jan 16 05:36:13 2026, Converted Monotonic Time = Friday Fri Jan 16 05:36:13 2026
+2026-01-16T05:36:14.245Z sysTimeMgr[4305]:  260116-05:36:14.242923 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T05:36:14.245Z sysTimeMgr[4305]:  260116-05:36:14.244630 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T08:14:40.083Z sysTimeMgr[4305]:  260116-08:14:40.022219 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T08:14:40.083Z sysTimeMgr[4305]:  260116-08:14:40.022306 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T08:14:42.471Z sysTimeMgr[4305]:  260116-08:14:42.431847 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T08:14:42.471Z sysTimeMgr[4305]:  260116-08:14:42.431962 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:210]:Deep Sleep OFF is Invoked
+2026-01-16T08:14:42.471Z sysTimeMgr[4305]:  260116-08:14:42.432002 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T08:14:42.471Z sysTimeMgr[4305]:  260116-08:14:42.432033 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepoff:594]:Deep Sleep is Turned off. Resetting State Machine and restarting ntp service.
+2026-01-16T08:14:42.472Z sysTimeMgr[4305]:  260116-08:14:42.432068 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-16T08:14:42.472Z sysTimeMgr[4305]:  260116-08:14:42.432184 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:505]:TIME Published = 1768551282, Converted Real Time(included in published time): Friday Fri Jan 16 08:14:42 2026, Converted Monotonic Time = Friday Fri Jan 16 08:14:42 2026
+2026-01-16T08:14:42.472Z sysTimeMgr[4305]:  260116-08:14:42.432218 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publish:33]:IARM Broadcast Info: MsgType = 5, Quality = 1, Message = Good
+2026-01-16T08:14:47.659Z sysTimeMgr[4305]:  260116-08:14:47.653393 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T08:14:48.556Z sysTimeMgr[4305]:  260116-08:14:48.556127 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:200]:Deep Sleep ON is Invoked
+2026-01-16T08:14:48.556Z sysTimeMgr[4305]:  260116-08:14:48.556126 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:562]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T08:14:48.556Z sysTimeMgr[4305]:  260116-08:14:48.556340 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:569]:TIME Returning for Query = 1768551288, Converted Real Time(included in TimeMsg): Friday Fri Jan 16 08:14:48 2026, Converted Monotonic Time = Friday Fri Jan 16 08:14:48 2026
+2026-01-16T08:14:48.557Z sysTimeMgr[4305]:  260116-08:14:48.557270 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T08:14:48.557Z sysTimeMgr[4305]:  260116-08:14:48.557553 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepon:637]:Deep Sleep is turned on.
+2026-01-16T08:14:48.557Z sysTimeMgr[4305]:  260116-08:14:48.557618 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrPwrEventHandlingThreadFunc:158]: Waiting for Events from Power Manager
+2026-01-16T08:14:48.600Z sysTimeMgr[4305]:  260116-08:14:48.600619 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T08:14:48.601Z sysTimeMgr[4305]:  260116-08:14:48.600742 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T08:35:43.662Z sysTimeMgr[4305]:  260116-08:35:43.595588 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T08:35:43.662Z sysTimeMgr[4305]:  260116-08:35:43.595678 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T08:35:54.368Z sysTimeMgr[4305]:  260116-08:35:54.334061 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T08:35:54.368Z sysTimeMgr[4305]:  260116-08:35:54.334137 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:210]:Deep Sleep OFF is Invoked
+2026-01-16T08:35:54.368Z sysTimeMgr[4305]:  260116-08:35:54.334168 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T08:35:54.368Z sysTimeMgr[4305]:  260116-08:35:54.334192 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepoff:594]:Deep Sleep is Turned off. Resetting State Machine and restarting ntp service.
+2026-01-16T08:35:54.368Z sysTimeMgr[4305]:  260116-08:35:54.334220 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-16T08:35:54.368Z sysTimeMgr[4305]:  260116-08:35:54.334313 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:505]:TIME Published = 1768552554, Converted Real Time(included in published time): Friday Fri Jan 16 08:35:54 2026, Converted Monotonic Time = Friday Fri Jan 16 08:35:54 2026
+2026-01-16T08:35:54.368Z sysTimeMgr[4305]:  260116-08:35:54.334341 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publish:33]:IARM Broadcast Info: MsgType = 5, Quality = 1, Message = Good
+2026-01-16T08:35:59.547Z sysTimeMgr[4305]:  260116-08:35:59.545438 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T08:36:00.312Z sysTimeMgr[4305]:  260116-08:36:00.312052 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:200]:Deep Sleep ON is Invoked
+2026-01-16T08:36:00.312Z sysTimeMgr[4305]:  260116-08:36:00.312115 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T08:36:00.312Z sysTimeMgr[4305]:  260116-08:36:00.312151 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepon:637]:Deep Sleep is turned on.
+2026-01-16T08:36:00.312Z sysTimeMgr[4305]:  260116-08:36:00.312190 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrPwrEventHandlingThreadFunc:158]: Waiting for Events from Power Manager
+2026-01-16T08:36:00.313Z sysTimeMgr[4305]:  260116-08:36:00.312257 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:562]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T08:36:00.313Z sysTimeMgr[4305]:  260116-08:36:00.312404 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:569]:TIME Returning for Query = 1768552560, Converted Real Time(included in TimeMsg): Friday Fri Jan 16 08:36:00 2026, Converted Monotonic Time = Friday Fri Jan 16 08:36:00 2026
+2026-01-16T08:36:00.350Z sysTimeMgr[4305]:  260116-08:36:00.349777 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T08:36:00.350Z sysTimeMgr[4305]:  260116-08:36:00.349930 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T09:19:39.832Z sysTimeMgr[4305]:  260116-09:19:39.831923 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T09:19:39.832Z sysTimeMgr[4305]:  260116-09:19:39.832014 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T09:19:46.674Z sysTimeMgr[4305]:  260116-09:19:46.670881 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T09:19:46.674Z sysTimeMgr[4305]:  260116-09:19:46.670954 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:210]:Deep Sleep OFF is Invoked
+2026-01-16T09:19:46.674Z sysTimeMgr[4305]:  260116-09:19:46.670984 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T09:19:46.674Z sysTimeMgr[4305]:  260116-09:19:46.671006 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepoff:594]:Deep Sleep is Turned off. Resetting State Machine and restarting ntp service.
+2026-01-16T09:19:46.675Z sysTimeMgr[4305]:  260116-09:19:46.671033 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-16T09:19:46.675Z sysTimeMgr[4305]:  260116-09:19:46.671189 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:505]:TIME Published = 1768555186, Converted Real Time(included in published time): Friday Fri Jan 16 09:19:46 2026, Converted Monotonic Time = Friday Fri Jan 16 09:19:46 2026
+2026-01-16T09:19:46.675Z sysTimeMgr[4305]:  260116-09:19:46.671219 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publish:33]:IARM Broadcast Info: MsgType = 5, Quality = 1, Message = Good
+2026-01-16T09:19:51.980Z sysTimeMgr[4305]:  260116-09:19:51.965346 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T09:19:54.868Z sysTimeMgr[4305]:  260116-09:19:54.865644 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:200]:Deep Sleep ON is Invoked
+2026-01-16T09:19:54.868Z sysTimeMgr[4305]:  260116-09:19:54.865694 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T09:19:54.868Z sysTimeMgr[4305]:  260116-09:19:54.865719 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepon:637]:Deep Sleep is turned on.
+2026-01-16T09:19:54.868Z sysTimeMgr[4305]:  260116-09:19:54.865742 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrPwrEventHandlingThreadFunc:158]: Waiting for Events from Power Manager
+2026-01-16T09:19:54.868Z sysTimeMgr[4305]:  260116-09:19:54.865788 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:562]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T09:19:54.868Z sysTimeMgr[4305]:  260116-09:19:54.865885 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:569]:TIME Returning for Query = 1768555194, Converted Real Time(included in TimeMsg): Friday Fri Jan 16 09:19:54 2026, Converted Monotonic Time = Friday Fri Jan 16 09:19:54 2026
+2026-01-16T09:19:54.907Z sysTimeMgr[4305]:  260116-09:19:54.906858 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T09:19:54.907Z sysTimeMgr[4305]:  260116-09:19:54.906972 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T09:34:23.492Z sysTimeMgr[4305]:  260116-09:34:23.386337 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T09:34:23.492Z sysTimeMgr[4305]:  260116-09:34:23.386421 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T09:34:37.919Z sysTimeMgr[4305]:  260116-09:34:37.917871 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T09:34:37.920Z sysTimeMgr[4305]:  260116-09:34:37.918001 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:210]:Deep Sleep OFF is Invoked
+2026-01-16T09:34:37.920Z sysTimeMgr[4305]:  260116-09:34:37.918032 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T09:34:37.920Z sysTimeMgr[4305]:  260116-09:34:37.918059 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepoff:594]:Deep Sleep is Turned off. Resetting State Machine and restarting ntp service.
+2026-01-16T09:34:37.920Z sysTimeMgr[4305]:  260116-09:34:37.918090 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-16T09:34:37.920Z sysTimeMgr[4305]:  260116-09:34:37.918200 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:505]:TIME Published = 1768556077, Converted Real Time(included in published time): Friday Fri Jan 16 09:34:37 2026, Converted Monotonic Time = Friday Fri Jan 16 09:34:37 2026
+2026-01-16T09:34:37.920Z sysTimeMgr[4305]:  260116-09:34:37.918231 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publish:33]:IARM Broadcast Info: MsgType = 5, Quality = 1, Message = Good
+2026-01-16T09:34:43.105Z sysTimeMgr[4305]:  260116-09:34:43.091384 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T09:34:43.839Z sysTimeMgr[4305]:  260116-09:34:43.838712 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:200]:Deep Sleep ON is Invoked
+2026-01-16T09:34:43.839Z sysTimeMgr[4305]:  260116-09:34:43.838769 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T09:34:43.839Z sysTimeMgr[4305]:  260116-09:34:43.838805 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepon:637]:Deep Sleep is turned on.
+2026-01-16T09:34:43.839Z sysTimeMgr[4305]:  260116-09:34:43.838843 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrPwrEventHandlingThreadFunc:158]: Waiting for Events from Power Manager
+2026-01-16T09:34:43.839Z sysTimeMgr[4305]:  260116-09:34:43.838914 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:562]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T09:34:43.840Z sysTimeMgr[4305]:  260116-09:34:43.839059 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:569]:TIME Returning for Query = 1768556083, Converted Real Time(included in TimeMsg): Friday Fri Jan 16 09:34:43 2026, Converted Monotonic Time = Friday Fri Jan 16 09:34:43 2026
+2026-01-16T09:34:43.887Z sysTimeMgr[4305]:  260116-09:34:43.886980 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T09:34:43.887Z sysTimeMgr[4305]:  260116-09:34:43.887125 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T10:28:41.934Z sysTimeMgr[4305]:  260116-10:28:43.823141 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T10:28:41.934Z sysTimeMgr[4305]:  260116-10:28:41.908652 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T10:28:48.725Z sysTimeMgr[4305]:  260116-10:28:48.722052 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T10:28:48.725Z sysTimeMgr[4305]:  260116-10:28:48.722251 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:210]:Deep Sleep OFF is Invoked
+2026-01-16T10:28:48.725Z sysTimeMgr[4305]:  260116-10:28:48.722289 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T10:28:48.725Z sysTimeMgr[4305]:  260116-10:28:48.722319 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepoff:594]:Deep Sleep is Turned off. Resetting State Machine and restarting ntp service.
+2026-01-16T10:28:48.725Z sysTimeMgr[4305]:  260116-10:28:48.722354 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-16T10:28:48.725Z sysTimeMgr[4305]:  260116-10:28:48.722698 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:505]:TIME Published = 1768559328, Converted Real Time(included in published time): Friday Fri Jan 16 10:28:48 2026, Converted Monotonic Time = Friday Fri Jan 16 10:28:48 2026
+2026-01-16T10:28:48.726Z sysTimeMgr[4305]:  260116-10:28:48.722738 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publish:33]:IARM Broadcast Info: MsgType = 5, Quality = 1, Message = Good
+2026-01-16T10:28:54.038Z sysTimeMgr[4305]:  260116-10:28:54.035680 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T10:28:54.859Z sysTimeMgr[4305]:  260116-10:28:54.858908 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:200]:Deep Sleep ON is Invoked
+2026-01-16T10:28:54.859Z sysTimeMgr[4305]:  260116-10:28:54.858956 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T10:28:54.859Z sysTimeMgr[4305]:  260116-10:28:54.858982 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepon:637]:Deep Sleep is turned on.
+2026-01-16T10:28:54.859Z sysTimeMgr[4305]:  260116-10:28:54.859013 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrPwrEventHandlingThreadFunc:158]: Waiting for Events from Power Manager
+2026-01-16T10:28:54.859Z sysTimeMgr[4305]:  260116-10:28:54.859069 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:562]: Clock_gettime Call succeeded with REAL time.
+2026-01-16T10:28:54.859Z sysTimeMgr[4305]:  260116-10:28:54.859219 [mod=SYSTIMEMGR, lvl=INFO] [tid=4389] [getTimeStatus:569]:TIME Returning for Query = 1768559334, Converted Real Time(included in TimeMsg): Friday Fri Jan 16 10:28:54 2026, Converted Monotonic Time = Friday Fri Jan 16 10:28:54 2026
+2026-01-16T10:28:54.899Z sysTimeMgr[4305]:  260116-10:28:54.899471 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T10:28:54.899Z sysTimeMgr[4305]:  260116-10:28:54.899570 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T12:54:15.864Z sysTimeMgr[4305]:  260116-12:54:15.785661 [mod=SYSTIMEMGR, lvl=INFO] [tid=4446] [runPathMonitor:303]:File created/modified = ntp
+2026-01-16T12:54:15.865Z sysTimeMgr[4305]:  260116-12:54:15.785755 [mod=SYSTIMEMGR, lvl=INFO] [tid=4443] [runStateMachine:178]:There is no Event Processing available in this state. State = 3, Event = 5
+2026-01-16T12:54:22.479Z sysTimeMgr[4305]:  260116-12:54:22.467333 [mod=SYSTIMEMGR, lvl=INFO] [tid=4393] [sysTimeMgrPwrEventHandler:113]:Sending Signal to Thread for Processing Callback Event
+2026-01-16T12:54:22.479Z sysTimeMgr[4305]:  260116-12:54:22.467456 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [sysTimeMgrHandlePwrEventData:210]:Deep Sleep OFF is Invoked
+2026-01-16T12:54:22.480Z sysTimeMgr[4305]:  260116-12:54:22.467482 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [powerhandler:574]:Entering Power Change Event
+2026-01-16T12:54:22.480Z sysTimeMgr[4305]:  260116-12:54:22.467505 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [deepsleepoff:594]:Deep Sleep is Turned off. Resetting State Machine and restarting ntp service.
+2026-01-16T12:54:22.480Z sysTimeMgr[4305]:  260116-12:54:22.467532 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:497]: clock_gettime Call succeeded with REAL time.
+2026-01-16T12:54:22.480Z sysTimeMgr[4305]:  260116-12:54:22.467629 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publishStatus:505]:TIME Published = 1768568062, Converted Real Time(included in published time): Friday Fri Jan 16 12:54:22 2026, Converted Monotonic Time = Friday Fri Jan 16 12:54:22 2026
+2026-01-16T12:54:22.480Z sysTimeMgr[4305]:  260116-12:54:22.467654 [mod=SYSTIMEMGR, lvl=INFO] [tid=4439] [publish:33]:IARM Broadcast Info: MsgType = 5, Quality = 1, Message = Good

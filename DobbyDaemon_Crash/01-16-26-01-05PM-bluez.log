@@ -1,0 +1,1218 @@
+2025-12-03T08:38:56.119Z bluetoothd[3416]:  Bluetooth daemon 5.48
+2025-12-03T08:38:56.141Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:parse_config() parsing /etc/bluetooth/main.conf
+2025-12-03T08:38:56.142Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:parse_config() discovto=180
+2025-12-03T08:38:56.142Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:parse_config() pairto=180
+2025-12-03T08:38:56.142Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:parse_config() Key file does not have key “Privacy” in group “General”
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:parse_config() Key file does not have key “TemporaryTimeout” in group “General”
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:parse_config() name=Sky
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:parse_config() class=0x040414
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:parse_config() Key file does not have key “DeviceID” in group “General”
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_init() sending read version command
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  Starting SDP server
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:register_device_id() Adding device id record for 0002:1d6b:0246:0530
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:plugin_init() Loading builtin plugins
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading hostname plugin
+2025-12-03T08:38:56.143Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading wiimote plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading autopair plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading policy plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading a2dp plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading avrcp plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading network plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading input plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading hog plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading gap plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading scanparam plugin
+2025-12-03T08:38:56.144Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading deviceinfo plugin
+2025-12-03T08:38:56.145Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading battery plugin
+2025-12-03T08:38:56.145Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:plugin_init() Loading plugins /usr/lib/bluetooth/plugins
+2025-12-03T08:38:56.145Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/suspend-none.c:suspend_init()
+2025-12-03T08:38:56.145Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/manager.c:read_config() /etc/bluetooth/network.conf: Key file does not have key “DisableSecurity” in group “General”
+2025-12-03T08:38:56.145Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/manager.c:read_config() Config options: Security=true
+2025-12-03T08:38:56.146Z bluetoothd[3416]:  ../bluez-5.48/src/main.c:main() Entering main loop
+2025-12-03T08:38:56.146Z bluetoothd[3416]:  ../bluez-5.48/src/rfkill.c:rfkill_event() RFKILL event idx 0 type 1 op 0 soft 0 hard 0
+2025-12-03T08:38:56.154Z bluetoothd[3416]:  Bluetooth management interface 1.14 initialized
+2025-12-03T08:38:56.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:read_version_complete() sending read supported commands command
+2025-12-03T08:38:56.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:read_version_complete() sending read index list command
+2025-12-03T08:38:56.154Z bluetoothd[3416]:  ../bluez-5.48/src/rfkill.c:rfkill_event() RFKILL event idx 1 type 2 op 0 soft 0 hard 0
+2025-12-03T08:38:56.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:read_commands_complete() Number of commands: 65
+2025-12-03T08:38:56.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:read_commands_complete() Number of events: 35
+2025-12-03T08:38:56.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:read_commands_complete() enabling kernel-side connection control
+2025-12-03T08:38:56.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:read_index_list_complete() Number of controllers: 0
+2025-12-03T08:38:56.908Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:index_added() index 0
+2025-12-03T08:38:56.908Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() System name: Sky
+2025-12-03T08:38:56.908Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Major class: 4
+2025-12-03T08:38:56.908Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Minor class: 5
+2025-12-03T08:38:56.909Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Modalias: usb:v1D6Bp0246d0530
+2025-12-03T08:38:56.909Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Discoverable timeout: 180 seconds
+2025-12-03T08:38:56.909Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Pairable timeout: 180 seconds
+2025-12-03T08:38:56.909Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:index_added() sending read info command for index 0
+2025-12-03T08:38:56.909Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:read_info_complete() index 0 status 0x00
+2025-12-03T08:38:56.909Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:clear_uuids() sending clear uuids command for index 0
+2025-12-03T08:38:56.909Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:clear_devices() sending clear devices command for index 0
+2025-12-03T08:38:56.910Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_mode() sending set mode command for index 0
+2025-12-03T08:38:56.910Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_mode() sending set mode command for index 0
+2025-12-03T08:38:56.910Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_mode() sending set mode command for index 0
+2025-12-03T08:38:56.910Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_privacy() sending set privacy command for index 0
+2025-12-03T08:38:56.910Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_privacy() setting privacy mode 0x00 for index 0
+2025-12-03T08:38:56.910Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-database.c:btd_gatt_database_new() GATT Manager registered for adapter: /org/bluez/hci0
+2025-12-03T08:38:56.911Z bluetoothd[3416]:  ../bluez-5.48/src/advertising.c:btd_adv_manager_new() LE Advertising Manager created for adapter: /org/bluez/hci0
+2025-12-03T08:38:56.938Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/a2dp.c:media_server_probe() path /org/bluez/hci0
+2025-12-03T08:38:56.938Z bluetoothd[3416]:  ../bluez-5.48/plugins/hostname.c:hostname_probe()
+2025-12-03T08:38:56.938Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/manager.c:panu_server_probe() path /org/bluez/hci0
+2025-12-03T08:38:56.938Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/server.c:server_register() Registered interface org.bluez.NetworkServer1 on path /org/bluez/hci0
+2025-12-03T08:38:56.938Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/manager.c:gn_server_probe() path /org/bluez/hci0
+2025-12-03T08:38:56.938Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/manager.c:nap_server_probe() path /org/bluez/hci0
+2025-12-03T08:38:56.938Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avrcp.c:avrcp_controller_server_probe() path /org/bluez/hci0
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10001
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000017-0000-1000-8000-00805f9
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110e-0000-1000-8000-00805f9
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110f-0000-1000-8000-00805f9
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2025-12-03T08:38:56.939Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avrcp.c:avrcp_target_server_probe() path /org/bluez/hci0
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10002
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000017-0000-1000-8000-00805f9
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110c-0000-1000-8000-00805f9
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110e-0000-1000-8000-00805f9
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2025-12-03T08:38:56.940Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/a2dp.c:a2dp_sink_server_probe() path /org/bluez/hci0
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/a2dp.c:a2dp_source_server_probe() path /org/bluez/hci0
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:btd_adapter_unblock_address() hci0 00:00:00:00:00:00
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file()
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check if we need to recover: /proc/self/fd/300/D4:52:EE:59:E3:E9/20:44:41:02:DC:C0/info, dir name /proc/self/fd/300/D4:52:EE:59:E3:E9/20:44:41:02:DC:C0/
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file info. versus dname info
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: info
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file info. versus dname attributes
+2025-12-03T08:38:56.941Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: attributes
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file()
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check if we need to recover: /proc/self/fd/300/D4:52:EE:59:E3:E9/20:44:41:02:DC:C0/attributes, dir name /proc/self/fd/300/D4:52:EE:59:E3:E9/20:44:41:02:DC:C0/
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file attributes. versus dname info
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: info
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file attributes. versus dname attributes
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: attributes
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:get_ltk_info() 20:44:41:02:DC:C0
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_create_from_storage() address 20:44:41:02:DC:C0
+2025-12-03T08:38:56.942Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_new() address 20:44:41:02:DC:C0
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_new() Creating device /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:btd_device_set_temporary() temporary 0
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_bonded()
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:load_link_keys() hci0 keys 0 debug_keys 0
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:load_ltks() hci0 keys 1
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:load_irks() hci0 irks 1
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:load_conn_params() hci0 conn params 1
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_probe_profiles() Probing profiles for device 20:44:41:02:DC:C0
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/profiles/battery/battery.c:batt_probe() BATT profile probe (20:44:41:02:DC:C0)
+2025-12-03T08:38:56.943Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6da8: device 20:44:41:02:DC:C0 profile batt-profile state changed: unavailable -> disconnected (0)
+2025-12-03T08:38:56.944Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xbad70: device 20:44:41:02:DC:C0 profile deviceinfo state changed: unavailable -> disconnected (0)
+2025-12-03T08:38:56.944Z bluetoothd[3416]:  ../bluez-5.48/profiles/gap/gas.c:gap_probe() GAP profile probe (20:44:41:02:DC:C0)
+2025-12-03T08:38:56.944Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6c00: device 20:44:41:02:DC:C0 profile gap-profile state changed: unavailable -> disconnected (0)
+2025-12-03T08:38:56.944Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog.c:hog_probe() path /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2025-12-03T08:38:56.944Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xb88e0: device 20:44:41:02:DC:C0 profile input-hog state changed: unavailable -> disconnected (0)
+2025-12-03T08:38:56.944Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 1
+2025-12-03T08:38:56.944Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2025-12-03T08:38:56.944Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2025-12-03T08:38:56.947Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_did() hci0 source 2 vendor 1d6b product 246 version 530
+2025-12-03T08:38:56.948Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_register() Adapter /org/bluez/hci0 registered
+2025-12-03T08:38:56.948Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_dev_class() sending set device class command for index 0
+2025-12-03T08:38:56.948Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_name() sending set local name command for index 0
+2025-12-03T08:38:56.948Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_mode() sending set mode command for index 0
+2025-12-03T08:38:56.948Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x000000c0
+2025-12-03T08:38:56.948Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000040
+2025-12-03T08:38:56.949Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2025-12-03T08:38:56.949Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x000002c0
+2025-12-03T08:38:56.949Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000200
+2025-12-03T08:38:56.949Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2025-12-03T08:38:56.949Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2025-12-03T08:38:56.949Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000800
+2025-12-03T08:38:56.949Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2025-12-03T08:38:56.950Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_privacy_complete() Successfuly set privacy for index 0
+2025-12-03T08:38:56.950Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:load_link_keys_complete() link keys loaded for hci0
+2025-12-03T08:38:56.950Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:load_ltks_complete() LTKs loaded for hci0
+2025-12-03T08:38:56.951Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:load_irks_complete() IRKs loaded for hci0
+2025-12-03T08:38:56.951Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:load_conn_params_complete() Connection Parameters loaded for hci0
+2025-12-03T08:38:56.951Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_device_complete() 20:44:41:02:DC:C0 (1) added to kernel connect list
+2025-12-03T08:38:56.951Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:local_name_changed_callback() Name: Sky
+2025-12-03T08:38:56.951Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:local_name_changed_callback() Short name:
+2025-12-03T08:38:56.951Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:local_name_changed_callback() Current alias: Sky
+2025-12-03T08:38:56.951Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ad0
+2025-12-03T08:38:56.952Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000010
+2025-12-03T08:38:56.952Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-15T02:46:39.017Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:property_set_mode() sending Set Powered command for index 0
+2026-01-15T02:46:39.049Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-15T02:46:39.057Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:property_set_mode_complete() Success (0x00)
+2026-01-15T02:46:39.057Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ad1
+2026-01-15T02:46:39.060Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-15T02:46:39.060Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-15T02:46:39.060Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-15T02:46:39.060Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-15T02:46:39.081Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() sender :1.72
+2026-01-15T02:46:39.081Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:parse_discovery_filter_dict() filtered discovery params: transport: 6 rssi: 32767 pathloss: 32767  duplicate data: false discoverable false
+2026-01-15T02:46:39.083Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() successfully pre-set filter
+2026-01-15T02:46:39.090Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:property_set_mode() sending Set Bondable command for index 0
+2026-01-15T02:46:39.090Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:property_set_mode_complete() Success (0x00)
+2026-01-15T02:46:39.090Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-15T02:46:39.090Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000010
+2026-01-15T02:46:39.091Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-15T02:46:39.136Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_connect_le() Connection attempt to: 20:44:41:02:DC:C0
+2026-01-15T02:46:39.519Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xc7300 registered: type:0 codec:0 seid:1
+2026-01-15T02:46:39.519Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-15T02:46:39.519Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10003
+2026-01-15T02:46:39.520Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-15T02:46:39.520Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-15T02:46:39.520Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-15T02:46:39.521Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110a-0000-1000-8000-00805f9
+2026-01-15T02:46:39.521Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-15T02:46:39.523Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-15T02:46:39.523Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-15T02:46:39.524Z bluetoothd[3416]:  Endpoint registered: sender=:1.82 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-15T02:46:39.526Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-15T02:46:39.537Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xc6c78 registered: type:1 codec:0 seid:2
+2026-01-15T02:46:39.538Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-15T02:46:39.538Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10004
+2026-01-15T02:46:39.538Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-15T02:46:39.538Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-15T02:46:39.538Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-15T02:46:39.538Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110b-0000-1000-8000-00805f9
+2026-01-15T02:46:39.538Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-15T02:46:39.538Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-15T02:46:39.539Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-15T02:46:39.539Z bluetoothd[3416]:  Endpoint registered: sender=:1.82 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-15T02:46:39.552Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x0c0414
+2026-01-15T02:46:39.609Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_ref() 0xbc4c8: ref=1
+2026-01-15T02:46:39.609Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:register_agent() agent :1.82
+2026-01-15T02:46:39.611Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:add_default_agent() Default agent set to :1.82 /org/bluez/agent_4928
+2026-01-16T02:35:09.716Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:connected_callback() hci0 device 20:44:41:02:DC:C0 connected eir_len 30
+2026-01-16T02:35:09.733Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_attach_att() Elevating security level since LTK is available
+2026-01-16T02:35:09.739Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=1
+2026-01-16T02:35:09.739Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_gatt_db() Restoring 20:44:41:02:DC:C0 gatt database from file
+2026-01-16T02:35:09.739Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file()
+2026-01-16T02:35:09.739Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check if we need to recover: /proc/self/fd/300/D4:52:EE:59:E3:E9/cache/20:44:41:02:DC:C0, dir name /proc/self/fd/300/D4:52:EE:59:E3:E9/cache/
+2026-01-16T02:35:09.739Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file 20:44:41:02:DC:C0. versus dname 20:44:41:02:DC:C0
+2026-01-16T02:35:09.739Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: 20:44:41:02:DC:C0
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file 20:44:41:02:DC:C0. versus dname D0:C9:85:A4:D3:CD
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: D0:C9:85:A4:D3:CD
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_gatt_db() Restoring 20:44:41:02:DC:C0 gatt database from file
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0001, end: 0x0009, uuid: 00001800-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0010, end: 0x0017, uuid: 00001801-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0030, end: 0x0040, uuid: 0000180a-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0060, end: 0x0063, uuid: 0000180f-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0080, end: 0x008f, uuid: 00001812-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0200, end: 0x0203, uuid: e0262760-08c2-11e1-9073-0e8ac72e1001
+2026-01-16T02:35:09.740Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0700, end: 0x0709, uuid: 0000f800-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.741Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0710, end: 0x0742, uuid: 0000f801-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.741Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0750, end: 0x0756, uuid: 0000f802-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.741Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x0780, end: 0x078e, uuid: 0000f803-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.741Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_service() loading service: 0x5010, end: 0xffff, uuid: 00001802-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.741Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0002, value handle: 0x0003, properties 0x0002 uuid: 00002a00-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.741Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0004, value handle: 0x0005, properties 0x0002 uuid: 00002a01-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.742Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0006, value handle: 0x0007, properties 0x0002 uuid: 00002a04-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.742Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0008, value handle: 0x0009, properties 0x0002 uuid: 00002aa6-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.742Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0011, value handle: 0x0012, properties 0x0020 uuid: 00002a05-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.742Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0013, value: 0x0000, uuid: 00002902-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.742Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0014, value handle: 0x0015, properties 0x0002 uuid: 00002b29-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.742Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0016, value handle: 0x0017, properties 0x0002 uuid: 00002b2a-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.742Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0031, value handle: 0x0032, properties 0x0002 uuid: 00002a29-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.742Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0033, value handle: 0x0034, properties 0x0002 uuid: 00002a23-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0035, value handle: 0x0036, properties 0x0002 uuid: 00002a24-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0037, value handle: 0x0038, properties 0x0002 uuid: 00002a25-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0039, value handle: 0x003a, properties 0x0002 uuid: 00002a26-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x003b, value handle: 0x003c, properties 0x0002 uuid: 00002a27-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x003d, value handle: 0x003e, properties 0x0002 uuid: 00002a28-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x003f, value handle: 0x0040, properties 0x0002 uuid: 00002a50-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0061, value handle: 0x0062, properties 0x0012 uuid: 00002a19-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0063, value: 0x0000, uuid: 00002902-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0081, value handle: 0x0082, properties 0x0002 uuid: 00002a4a-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.743Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0083, value handle: 0x0084, properties 0x0002 uuid: 00002a4b-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0085, value: 0x0000, uuid: 00002907-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0086, value handle: 0x0087, properties 0x0012 uuid: 00002a4d-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0088, value: 0x0000, uuid: 00002902-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0089, value: 0x0000, uuid: 00002908-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x008a, value handle: 0x008b, properties 0x000e uuid: 00002a4d-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x008c, value: 0x0000, uuid: 00002908-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x008d, value handle: 0x008e, properties 0x000a uuid: 00002a4d-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x008f, value: 0x0000, uuid: 00002908-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0201, value handle: 0x0202, properties 0x0016 uuid: e0262760-08c2-11e1-9073-0e8ac72e0001
+2026-01-16T02:35:09.744Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0203, value: 0x0000, uuid: 00002902-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.745Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0701, value handle: 0x0702, properties 0x0002 uuid: 0000ea00-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.745Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0703, value handle: 0x0704, properties 0x000e uuid: 0000ea01-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.755Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0705, value handle: 0x0706, properties 0x000e uuid: 0000ea02-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.756Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0707, value handle: 0x0708, properties 0x0010 uuid: 0000ea03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.756Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0709, value: 0x0000, uuid: 00002902-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.756Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0711, value handle: 0x0712, properties 0x000e uuid: 0000eb01-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.756Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0713, value handle: 0x0714, properties 0x000e uuid: 0000eb02-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.756Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0715, value handle: 0x0716, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.756Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0717, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0718, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0719, value handle: 0x071a, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x071b, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x071c, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x071d, value handle: 0x071e, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x071f, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0720, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0721, value handle: 0x0722, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0723, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.757Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0724, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0725, value handle: 0x0726, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0727, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0728, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0729, value handle: 0x072a, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x072b, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x072c, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x072d, value handle: 0x072e, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x072f, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.758Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0730, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.759Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0731, value handle: 0x0732, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.759Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0733, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.766Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0734, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.766Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0735, value handle: 0x0736, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0737, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0738, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0739, value handle: 0x073a, properties 0x000e uuid: 0000eb03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x073b, value: 0x0000, uuid: 0000eb04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x073c, value: 0x0000, uuid: 0000eb05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x073d, value handle: 0x073e, properties 0x000e uuid: 0000eb06-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x073f, value handle: 0x0740, properties 0x000e uuid: 0000eb07-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0741, value handle: 0x0742, properties 0x000e uuid: 0000eb08-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.767Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0751, value handle: 0x0752, properties 0x0002 uuid: 0000ec01-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0753, value handle: 0x0754, properties 0x0014 uuid: 0000ec02-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0755, value: 0x0000, uuid: 00002902-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0756, value: 0x0000, uuid: 0000ec03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0781, value handle: 0x0782, properties 0x0012 uuid: 0000ed01-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0783, value: 0x0000, uuid: 00002902-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0784, value handle: 0x0785, properties 0x0012 uuid: 0000ed02-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_desc() loading descriptor handle: 0x0786, value: 0x0000, uuid: 00002902-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0787, value handle: 0x0788, properties 0x000c uuid: 0000ed03-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.768Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x0789, value handle: 0x078a, properties 0x0002 uuid: 0000ed04-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x078b, value handle: 0x078c, properties 0x000a uuid: 0000ed05-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x078d, value handle: 0x078e, properties 0x000a uuid: 0000ed06-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:load_chrc() loading characteristic handle: 0x5011, value handle: 0x5012, properties 0x0004 uuid: 00002a06-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/profiles/battery/battery.c:batt_accept() BATT profile accept (20:44:41:02:DC:C0)
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6da8: device 20:44:41:02:DC:C0 profile batt-profile state changed: disconnected -> connected (0)
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/profiles/deviceinfo/deviceinfo.c:deviceinfo_accept() deviceinfo profile accept (20:44:41:02:DC:C0)
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/profiles/deviceinfo/deviceinfo.c:handle_characteristic() Unsupported characteristic: 00002a29-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/profiles/deviceinfo/deviceinfo.c:handle_characteristic() Unsupported characteristic: 00002a23-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.769Z bluetoothd[3416]:  ../bluez-5.48/profiles/deviceinfo/deviceinfo.c:handle_characteristic() Unsupported characteristic: 00002a24-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.770Z bluetoothd[3416]:  ../bluez-5.48/profiles/deviceinfo/deviceinfo.c:handle_characteristic() Unsupported characteristic: 00002a25-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.775Z bluetoothd[3416]:  ../bluez-5.48/profiles/deviceinfo/deviceinfo.c:handle_characteristic() Unsupported characteristic: 00002a26-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.775Z bluetoothd[3416]:  ../bluez-5.48/profiles/deviceinfo/deviceinfo.c:handle_characteristic() Unsupported characteristic: 00002a27-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.775Z bluetoothd[3416]:  ../bluez-5.48/profiles/deviceinfo/deviceinfo.c:handle_characteristic() Unsupported characteristic: 00002a28-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.775Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xbad70: device 20:44:41:02:DC:C0 profile deviceinfo state changed: disconnected -> connected (0)
+2026-01-16T02:35:09.775Z bluetoothd[3416]:  ../bluez-5.48/profiles/gap/gas.c:gap_accept() GAP profile accept (20:44:41:02:DC:C0)
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/profiles/gap/gas.c:handle_characteristic() Unsupported characteristic: 00002a04-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/profiles/gap/gas.c:handle_characteristic() Unsupported characteristic: 00002aa6-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6c00: device 20:44:41:02:DC:C0 profile gap-profile state changed: disconnected -> connected (0)
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog.c:hog_device_accept() name=P250 SkyQ LC103 vendor=0x75F, product=0x9, version=0x100
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=2
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:bt_hog_attach() HoG discovering characteristics
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=3
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=4
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=5
+2026-01-16T02:35:09.776Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=6
+2026-01-16T02:35:09.777Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=7
+2026-01-16T02:35:09.777Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=8
+2026-01-16T02:35:09.777Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xb88e0: device 20:44:41:02:DC:C0 profile input-hog state changed: disconnected -> connected (0)
+2026-01-16T02:35:09.777Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:btd_service_ref() 0xb88e0: ref=2
+2026-01-16T02:35:09.777Z bluetoothd[3416]:  ../bluez-5.48/plugins/policy.c:service_cb() Added input-hog reconnect 0
+2026-01-16T02:35:09.777Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:btd_gatt_client_connected() Device connected.
+2026-01-16T02:35:09.777Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() MTU exchange complete, with MTU: 251
+2026-01-16T02:35:09.875Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() MTU exchange complete, with MTU: 251
+2026-01-16T02:35:10.010Z bluetoothd[3416]:  ../bluez-5.48/profiles/gap/gas.c:read_device_name_cb() GAP Device Name: P250 SkyQ LC103
+2026-01-16T02:35:10.055Z bluetoothd[3416]:  ../bluez-5.48/profiles/gap/gas.c:read_appearance_cb() GAP Appearance: 0x0180
+2026-01-16T02:35:10.100Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:info_read_cb() bcdHID: 0x0111 bCountryCode: 0x00 Flags: 0x00
+2026-01-16T02:35:10.100Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=7
+2026-01-16T02:35:10.146Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() HoG inspecting report map
+2026-01-16T02:35:10.147Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() Report MAP:
+2026-01-16T02:35:10.147Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 05 01
+2026-01-16T02:35:10.147Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 09 06
+2026-01-16T02:35:10.147Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 a1 01
+2026-01-16T02:35:10.147Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 85 01
+2026-01-16T02:35:10.147Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 05 07
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 19 e0
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 29 e7
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 15 00
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 25 01
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 75 01
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 95 08
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 81 02
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 95 01
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 75 08
+2026-01-16T02:35:10.148Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 81 01
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 95 06
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 75 08
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 15 00
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 26 dd 00
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 05 07
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 19 00
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 29 dd
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 81 00
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() 	 c0
+2026-01-16T02:35:10.149Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_map_read_cb() HoG created uHID device
+2026-01-16T02:35:10.150Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=6
+2026-01-16T02:35:10.190Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:external_report_reference_cb() External report reference read, external report characteristic UUID: 0x2a19
+2026-01-16T02:35:10.190Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=5
+2026-01-16T02:35:10.235Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_reference_cb() Report 0x0087: id 0x01 type input
+2026-01-16T02:35:10.235Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_ref() 0xcd540: g_attrib_ref=6
+2026-01-16T02:35:10.236Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=5
+2026-01-16T02:35:10.280Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_reference_cb() Report 0x008b: id 0x00 type output
+2026-01-16T02:35:10.280Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=4
+2026-01-16T02:35:10.325Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_reference_cb() Report 0x008e: id 0x00 type feature
+2026-01-16T02:35:10.326Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=3
+2026-01-16T02:35:10.415Z bluetoothd[3416]:  ../bluez-5.48/src/battery.c:btd_battery_register() path = /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T02:35:10.415Z bluetoothd[3416]:  ../bluez-5.48/src/battery.c:btd_battery_register() registered Battery object: /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T02:35:10.415Z bluetoothd[3416]:  ../bluez-5.48/profiles/battery/battery.c:parse_battery_level() Battery Level updated: 70%
+2026-01-16T02:35:10.416Z bluetoothd[3416]:  ../bluez-5.48/src/battery.c:btd_battery_update() path = /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T02:35:10.416Z bluetoothd[3416]:  ../bluez-5.48/profiles/battery/battery.c:batt_io_ccc_written_cb() Battery Level: notification enabled
+2026-01-16T02:35:10.460Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=2
+2026-01-16T02:35:10.550Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog-lib.c:report_ccc_written_cb() Report characteristic descriptor written: notifications enabled
+2026-01-16T02:35:10.595Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() Primary services found: 11
+2026-01-16T02:35:10.595Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0001, end: 0x0009, uuid: 00001800-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:10.595Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0010, end: 0x0017, uuid: 00001801-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:10.595Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0030, end: 0x0040, uuid: 0000180a-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:10.595Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0060, end: 0x0063, uuid: 0000180f-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:10.596Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0080, end: 0x008f, uuid: 00001812-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:10.596Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0200, end: 0x0203, uuid: e0262760-08c2-11e1-9073-0e8ac72e1001
+2026-01-16T02:35:10.596Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0700, end: 0x0709, uuid: 0000f800-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:10.596Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0710, end: 0x0742, uuid: 0000f801-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:10.596Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0750, end: 0x0756, uuid: 0000f802-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:10.596Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x0780, end: 0x078e, uuid: 0000f803-bdf0-407c-aaff-d09967f31acd
+2026-01-16T02:35:10.596Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() start: 0x5010, end: 0xffff, uuid: 00001802-0000-1000-8000-00805f9b34fb
+2026-01-16T02:35:10.596Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_client_ready_cb() status: success, error: 0
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:btd_gatt_client_ready() GATT client ready
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:create_services() Exporting objects for GATT services: 20:44:41:02:DC:C0
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0011
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0011/desc0013
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0014
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0016
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0031
+2026-01-16T02:35:10.597Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0033
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0035
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0037
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0039
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003b
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003d
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003f
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061
+2026-01-16T02:35:10.598Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061/desc0063
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200/char0201
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200/char0201/desc0203
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0701
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0703
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0705
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0707
+2026-01-16T02:35:10.599Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0707/desc0709
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0711
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0713
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715/desc0717
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715/desc0718
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719/desc071b
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719/desc071c
+2026-01-16T02:35:10.600Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d/desc071f
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d/desc0720
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721/desc0723
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721/desc0724
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725/desc0727
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725/desc0728
+2026-01-16T02:35:10.601Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729/desc072b
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729/desc072c
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d/desc072f
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d/desc0730
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731/desc0733
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731/desc0734
+2026-01-16T02:35:10.602Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735/desc0737
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735/desc0738
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739/desc073b
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739/desc073c
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char073d
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char073f
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0741
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750
+2026-01-16T02:35:10.603Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0751
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753/desc0755
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753/desc0756
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781/desc0783
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:descriptor_create() Exported GATT characteristic descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784/desc0786
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0787
+2026-01-16T02:35:10.604Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0789
+2026-01-16T02:35:10.605Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char078b
+2026-01-16T02:35:10.605Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char078d
+2026-01-16T02:35:10.605Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:service_create() Exported GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010
+2026-01-16T02:35:10.605Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create() Exported GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010/char5011
+2026-01-16T02:35:10.607Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_svc_resolved() /org/bluez/hci0/dev_20_44_41_02_DC_C0 err 0
+2026-01-16T02:35:15.293Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:gatt_debug() Registered handler for "Service Changed": 1
+2026-01-16T02:35:17.937Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_ref() owner :1.72
+2026-01-16T02:35:17.937Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_ref() owner :1.72
+2026-01-16T02:35:18.275Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_ref() owner :1.72
+2026-01-16T02:35:18.380Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create_pipe() AcquireNotify: sender :1.72 io 0xd7b20
+2026-01-16T02:35:18.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create_pipe() AcquireNotify: sender :1.72 io 0xb6a40
+2026-01-16T02:35:18.476Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_create_pipe() AcquireNotify: sender :1.72 io 0xbe490
+2026-01-16T02:47:31.839Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_pipe_hup() /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781: io 0xd7b20
+2026-01-16T02:47:31.845Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_unref() owner :1.72
+2026-01-16T02:47:31.859Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_free() owner :1.72
+2026-01-16T02:47:31.909Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_pipe_hup() /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784: io 0xb6a40
+2026-01-16T02:47:31.913Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_unref() owner :1.72
+2026-01-16T02:47:31.916Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_free() owner :1.72
+2026-01-16T02:47:31.917Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:characteristic_pipe_hup() /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061: io 0xbe490
+2026-01-16T02:47:31.917Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_unref() owner :1.72
+2026-01-16T02:47:31.917Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:notify_client_free() owner :1.72
+2026-01-16T02:47:33.153Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 0
+2026-01-16T02:47:33.154Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6da8: device 20:44:41:02:DC:C0 profile batt-profile state changed: connected -> disconnecting (0)
+2026-01-16T02:47:33.154Z bluetoothd[3416]:  ../bluez-5.48/src/battery.c:btd_battery_unregister() path = /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T02:47:33.154Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6da8: device 20:44:41:02:DC:C0 profile batt-profile state changed: disconnecting -> disconnected (0)
+2026-01-16T02:47:33.155Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xbad70: device 20:44:41:02:DC:C0 profile deviceinfo state changed: connected -> disconnecting (0)
+2026-01-16T02:47:33.155Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xbad70: device 20:44:41:02:DC:C0 profile deviceinfo state changed: disconnecting -> disconnected (0)
+2026-01-16T02:47:33.155Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6c00: device 20:44:41:02:DC:C0 profile gap-profile state changed: connected -> disconnecting (0)
+2026-01-16T02:47:33.155Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6c00: device 20:44:41:02:DC:C0 profile gap-profile state changed: disconnecting -> disconnected (0)
+2026-01-16T02:47:33.155Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xb88e0: device 20:44:41:02:DC:C0 profile input-hog state changed: connected -> disconnecting (0)
+2026-01-16T02:47:33.156Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=1
+2026-01-16T02:47:33.226Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xb88e0: device 20:44:41:02:DC:C0 profile input-hog state changed: disconnecting -> disconnected (0)
+2026-01-16T02:47:33.226Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_device_complete() 20:44:41:02:DC:C0 (1) removed from kernel connect list
+2026-01-16T02:47:35.716Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_disconnected() Device 20:44:41:02:DC:C0 disconnected, reason 2
+2026-01-16T02:47:35.716Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_remove_connection()
+2026-01-16T02:47:35.718Z bluetoothd[3416]:  ../bluez-5.48/plugins/policy.c:disconnect_cb() reason 2
+2026-01-16T02:47:35.719Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:bonding_attempt_complete() hci0 bdaddr 20:44:41:02:DC:C0 type 1 status 0xe
+2026-01-16T02:47:35.720Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_bonding_complete() bonding (nil) status 0x0e
+2026-01-16T02:47:35.721Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_bonding_failed() status 14
+2026-01-16T02:47:35.724Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:resume_discovery()
+2026-01-16T02:47:35.726Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:att_disconnected_cb()
+2026-01-16T02:47:35.726Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:att_disconnected_cb() Software caused connection abort (103)
+2026-01-16T02:47:35.726Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:btd_gatt_client_disconnected() Device disconnected. Cleaning up.
+2026-01-16T02:47:35.726Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:att_disconnected_cb() Automatic connection disabled
+2026-01-16T02:47:35.726Z bluetoothd[3416]:  ../bluez-5.48/attrib/gattrib.c:g_attrib_unref() 0xcd540: g_attrib_unref=0
+2026-01-16T02:47:35.819Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T02:47:35.819Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T02:47:35.820Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10004
+2026-01-16T02:47:35.820Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.82 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T02:47:35.820Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.82 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T02:47:35.820Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.82 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T02:47:35.820Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xc6c78 unregistered: type:1 codec:0 seid:2
+2026-01-16T02:47:35.821Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T02:47:35.821Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T02:47:35.821Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10003
+2026-01-16T02:47:35.821Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.82 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T02:47:35.821Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.82 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T02:47:35.822Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.82 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T02:47:35.822Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xc7300 unregistered: type:0 codec:0 seid:1
+2026-01-16T02:47:35.823Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T02:47:35.824Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T02:47:38.148Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_disconnect() Agent :1.82 disconnected
+2026-01-16T02:47:38.148Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:remove_default_agent() Default agent cleared
+2026-01-16T02:47:38.148Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_destroy() agent :1.82
+2026-01-16T02:47:38.148Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_unref() 0xbc4c8: ref=0
+2026-01-16T05:36:07.019Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000000
+2026-01-16T05:36:07.019Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2026-01-16T05:36:07.019Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T05:36:07.019Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T05:36:07.019Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:cancel_passive_scanning()
+2026-01-16T05:36:07.020Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_stop() adapter /org/bluez/hci0 has been disabled
+2026-01-16T05:36:07.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:property_set_mode() sending Set Powered command for index 0
+2026-01-16T05:36:07.196Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T05:36:07.198Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:property_set_mode_complete() Success (0x00)
+2026-01-16T05:36:07.199Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-16T05:36:07.199Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T05:36:07.199Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T05:36:07.199Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-16T05:36:07.201Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-16T05:36:07.215Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() sender :1.72
+2026-01-16T05:36:07.216Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:parse_discovery_filter_dict() filtered discovery params: transport: 6 rssi: 32767 pathloss: 32767  duplicate data: false discoverable false
+2026-01-16T05:36:07.218Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() successfully pre-set filter
+2026-01-16T05:36:07.270Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 1
+2026-01-16T05:36:07.271Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_connect_le() Connection attempt to: 20:44:41:02:DC:C0
+2026-01-16T05:36:07.271Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_device_complete() 20:44:41:02:DC:C0 (1) added to kernel connect list
+2026-01-16T05:36:10.939Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xc0be8 registered: type:0 codec:0 seid:1
+2026-01-16T05:36:10.939Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T05:36:10.939Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10003
+2026-01-16T05:36:10.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T05:36:10.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T05:36:10.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T05:36:10.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110a-0000-1000-8000-00805f9
+2026-01-16T05:36:10.940Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T05:36:10.940Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T05:36:10.940Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T05:36:10.940Z bluetoothd[3416]:  Endpoint registered: sender=:1.150 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T05:36:10.941Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T05:36:10.942Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xc2570 registered: type:1 codec:0 seid:2
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10004
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110b-0000-1000-8000-00805f9
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T05:36:10.943Z bluetoothd[3416]:  Endpoint registered: sender=:1.150 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T05:36:10.945Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x0c0414
+2026-01-16T05:36:11.066Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_ref() 0xc9d88: ref=1
+2026-01-16T05:36:11.066Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:register_agent() agent :1.150
+2026-01-16T05:36:11.071Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:add_default_agent() Default agent set to :1.150 /org/bluez/agent_14393
+2026-01-16T05:36:13.357Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 0
+2026-01-16T05:36:14.371Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_device_complete() 20:44:41:02:DC:C0 (1) removed from kernel connect list
+2026-01-16T05:36:14.446Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T05:36:14.446Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T05:36:14.446Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10004
+2026-01-16T05:36:14.446Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.150 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T05:36:14.447Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.150 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T05:36:14.447Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.150 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T05:36:14.447Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xc2570 unregistered: type:1 codec:0 seid:2
+2026-01-16T05:36:14.447Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T05:36:14.447Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T05:36:14.447Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10003
+2026-01-16T05:36:14.447Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.150 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T05:36:14.455Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.150 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T05:36:14.456Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.150 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T05:36:14.456Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xc0be8 unregistered: type:0 codec:0 seid:1
+2026-01-16T05:36:14.459Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T05:36:14.462Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T05:36:15.900Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_disconnect() Agent :1.150 disconnected
+2026-01-16T05:36:15.900Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:remove_default_agent() Default agent cleared
+2026-01-16T05:36:15.900Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_destroy() agent :1.150
+2026-01-16T05:36:15.901Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_unref() 0xc9d88: ref=0
+2026-01-16T08:14:42.023Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000000
+2026-01-16T08:14:42.024Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2026-01-16T08:14:42.024Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T08:14:42.024Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T08:14:42.024Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:cancel_passive_scanning()
+2026-01-16T08:14:42.024Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_stop() adapter /org/bluez/hci0 has been disabled
+2026-01-16T08:14:42.239Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T08:14:42.241Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-16T08:14:42.241Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T08:14:42.241Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T08:14:42.241Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-16T08:14:42.241Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-16T08:14:42.545Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() sender :1.72
+2026-01-16T08:14:42.546Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:parse_discovery_filter_dict() filtered discovery params: transport: 6 rssi: 32767 pathloss: 32767  duplicate data: false discoverable false
+2026-01-16T08:14:42.547Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() successfully pre-set filter
+2026-01-16T08:14:42.616Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 1
+2026-01-16T08:14:42.616Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_connect_le() Connection attempt to: 20:44:41:02:DC:C0
+2026-01-16T08:14:42.620Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_device_complete() 20:44:41:02:DC:C0 (1) added to kernel connect list
+2026-01-16T08:14:46.081Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xce910 registered: type:0 codec:0 seid:1
+2026-01-16T08:14:46.081Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T08:14:46.081Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10003
+2026-01-16T08:14:46.081Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T08:14:46.081Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T08:14:46.081Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T08:14:46.082Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110a-0000-1000-8000-00805f9
+2026-01-16T08:14:46.082Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T08:14:46.082Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T08:14:46.082Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T08:14:46.082Z bluetoothd[3416]:  Endpoint registered: sender=:1.168 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T08:14:46.084Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T08:14:46.086Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xccf70 registered: type:1 codec:0 seid:2
+2026-01-16T08:14:46.086Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T08:14:46.086Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10004
+2026-01-16T08:14:46.086Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T08:14:46.086Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T08:14:46.087Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T08:14:46.087Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110b-0000-1000-8000-00805f9
+2026-01-16T08:14:46.087Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T08:14:46.087Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T08:14:46.087Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T08:14:46.088Z bluetoothd[3416]:  Endpoint registered: sender=:1.168 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T08:14:46.088Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x0c0414
+2026-01-16T08:14:46.246Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_ref() 0xd23d8: ref=1
+2026-01-16T08:14:46.246Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:register_agent() agent :1.168
+2026-01-16T08:14:46.248Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:add_default_agent() Default agent set to :1.168 /org/bluez/agent_15063
+2026-01-16T08:14:48.864Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 0
+2026-01-16T08:14:48.864Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_device_complete() 20:44:41:02:DC:C0 (1) removed from kernel connect list
+2026-01-16T08:14:49.004Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T08:14:49.004Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T08:14:49.004Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10004
+2026-01-16T08:14:49.005Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.168 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T08:14:49.005Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.168 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T08:14:49.005Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.168 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T08:14:49.005Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xccf70 unregistered: type:1 codec:0 seid:2
+2026-01-16T08:14:49.006Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T08:14:49.006Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T08:14:49.006Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10003
+2026-01-16T08:14:49.006Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.168 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T08:14:49.006Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.168 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T08:14:49.007Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.168 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T08:14:49.007Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xce910 unregistered: type:0 codec:0 seid:1
+2026-01-16T08:14:49.007Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T08:14:49.021Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T08:14:50.536Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_disconnect() Agent :1.168 disconnected
+2026-01-16T08:14:50.536Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:remove_default_agent() Default agent cleared
+2026-01-16T08:14:50.536Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_destroy() agent :1.168
+2026-01-16T08:14:50.536Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_unref() 0xd23d8: ref=0
+2026-01-16T08:35:54.153Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000000
+2026-01-16T08:35:54.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2026-01-16T08:35:54.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T08:35:54.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T08:35:54.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:cancel_passive_scanning()
+2026-01-16T08:35:54.154Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_stop() adapter /org/bluez/hci0 has been disabled
+2026-01-16T08:35:54.396Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T08:35:54.398Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-16T08:35:54.398Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T08:35:54.398Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T08:35:54.398Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-16T08:35:54.398Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-16T08:35:54.472Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() sender :1.72
+2026-01-16T08:35:54.473Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:parse_discovery_filter_dict() filtered discovery params: transport: 6 rssi: 32767 pathloss: 32767  duplicate data: false discoverable false
+2026-01-16T08:35:54.474Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() successfully pre-set filter
+2026-01-16T08:35:54.581Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 1
+2026-01-16T08:35:54.581Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_connect_le() Connection attempt to: 20:44:41:02:DC:C0
+2026-01-16T08:35:54.581Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_device_complete() 20:44:41:02:DC:C0 (1) added to kernel connect list
+2026-01-16T08:35:58.133Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xd67a0 registered: type:0 codec:0 seid:1
+2026-01-16T08:35:58.133Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T08:35:58.133Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10003
+2026-01-16T08:35:58.134Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T08:35:58.134Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T08:35:58.134Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T08:35:58.134Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110a-0000-1000-8000-00805f9
+2026-01-16T08:35:58.134Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T08:35:58.135Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T08:35:58.135Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T08:35:58.135Z bluetoothd[3416]:  Endpoint registered: sender=:1.179 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T08:35:58.136Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T08:35:58.138Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xd5010 registered: type:1 codec:0 seid:2
+2026-01-16T08:35:58.138Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T08:35:58.139Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10004
+2026-01-16T08:35:58.139Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T08:35:58.139Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T08:35:58.139Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T08:35:58.139Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110b-0000-1000-8000-00805f9
+2026-01-16T08:35:58.140Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T08:35:58.140Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T08:35:58.140Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T08:35:58.140Z bluetoothd[3416]:  Endpoint registered: sender=:1.179 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T08:35:58.141Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x0c0414
+2026-01-16T08:35:58.325Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_ref() 0xbb3e0: ref=1
+2026-01-16T08:35:58.326Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:register_agent() agent :1.179
+2026-01-16T08:35:58.327Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:add_default_agent() Default agent set to :1.179 /org/bluez/agent_15435
+2026-01-16T08:36:00.754Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 0
+2026-01-16T08:36:00.755Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_device_complete() 20:44:41:02:DC:C0 (1) removed from kernel connect list
+2026-01-16T08:36:00.908Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T08:36:00.908Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T08:36:00.908Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10004
+2026-01-16T08:36:00.909Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.179 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T08:36:00.909Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.179 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T08:36:00.909Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.179 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T08:36:00.909Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xd5010 unregistered: type:1 codec:0 seid:2
+2026-01-16T08:36:00.919Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T08:36:00.920Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T08:36:00.921Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10003
+2026-01-16T08:36:00.921Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.179 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T08:36:00.921Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.179 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T08:36:00.922Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.179 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T08:36:00.922Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xd67a0 unregistered: type:0 codec:0 seid:1
+2026-01-16T08:36:00.922Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T08:36:00.922Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T08:36:02.647Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_disconnect() Agent :1.179 disconnected
+2026-01-16T08:36:02.648Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:remove_default_agent() Default agent cleared
+2026-01-16T08:36:02.648Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_destroy() agent :1.179
+2026-01-16T08:36:02.648Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_unref() 0xbb3e0: ref=0
+2026-01-16T09:19:45.780Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000000
+2026-01-16T09:19:45.780Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2026-01-16T09:19:45.780Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T09:19:45.780Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T09:19:45.780Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:cancel_passive_scanning()
+2026-01-16T09:19:45.784Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_stop() adapter /org/bluez/hci0 has been disabled
+2026-01-16T09:19:46.330Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T09:19:46.345Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-16T09:19:46.345Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T09:19:46.346Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T09:19:46.346Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-16T09:19:46.347Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-16T09:19:46.888Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() sender :1.72
+2026-01-16T09:19:46.907Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:parse_discovery_filter_dict() filtered discovery params: transport: 6 rssi: 32767 pathloss: 32767  duplicate data: false discoverable false
+2026-01-16T09:19:46.909Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() successfully pre-set filter
+2026-01-16T09:19:47.048Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 1
+2026-01-16T09:19:47.049Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_connect_le() Connection attempt to: 20:44:41:02:DC:C0
+2026-01-16T09:19:47.050Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_device_complete() 20:44:41:02:DC:C0 (1) added to kernel connect list
+2026-01-16T09:19:51.407Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xccf70 registered: type:0 codec:0 seid:1
+2026-01-16T09:19:51.408Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T09:19:51.408Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10003
+2026-01-16T09:19:51.409Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T09:19:51.409Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T09:19:51.409Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T09:19:51.409Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110a-0000-1000-8000-00805f9
+2026-01-16T09:19:51.410Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T09:19:51.410Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T09:19:51.411Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T09:19:51.411Z bluetoothd[3416]:  Endpoint registered: sender=:1.191 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T09:19:51.411Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T09:19:51.421Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xb8a88 registered: type:1 codec:0 seid:2
+2026-01-16T09:19:51.421Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T09:19:51.421Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10004
+2026-01-16T09:19:51.421Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T09:19:51.422Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T09:19:51.423Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T09:19:51.423Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110b-0000-1000-8000-00805f9
+2026-01-16T09:19:51.423Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T09:19:51.423Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T09:19:51.425Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T09:19:51.425Z bluetoothd[3416]:  Endpoint registered: sender=:1.191 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T09:19:51.426Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x0c0414
+2026-01-16T09:19:51.605Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_ref() 0xdb5e0: ref=1
+2026-01-16T09:19:51.605Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:register_agent() agent :1.191
+2026-01-16T09:19:51.608Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:add_default_agent() Default agent set to :1.191 /org/bluez/agent_16395
+2026-01-16T09:19:53.165Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 0
+2026-01-16T09:19:53.166Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_device_complete() 20:44:41:02:DC:C0 (1) removed from kernel connect list
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10004
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.191 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.191 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.191 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xb8a88 unregistered: type:1 codec:0 seid:2
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T09:19:53.292Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10003
+2026-01-16T09:19:53.293Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.191 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T09:19:53.293Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.191 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T09:19:53.293Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.191 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T09:19:53.293Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xccf70 unregistered: type:0 codec:0 seid:1
+2026-01-16T09:19:53.872Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T09:19:53.956Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_disconnect() Agent :1.191 disconnected
+2026-01-16T09:19:53.956Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:remove_default_agent() Default agent cleared
+2026-01-16T09:19:53.957Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_destroy() agent :1.191
+2026-01-16T09:19:53.957Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_unref() 0xdb5e0: ref=0
+2026-01-16T09:19:54.576Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T09:34:37.564Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000000
+2026-01-16T09:34:37.564Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2026-01-16T09:34:37.564Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T09:34:37.564Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T09:34:37.564Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:cancel_passive_scanning()
+2026-01-16T09:34:37.564Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_stop() adapter /org/bluez/hci0 has been disabled
+2026-01-16T09:34:37.783Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T09:34:37.785Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-16T09:34:37.785Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T09:34:37.785Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T09:34:37.785Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-16T09:34:37.785Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-16T09:34:38.087Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() sender :1.72
+2026-01-16T09:34:38.087Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:parse_discovery_filter_dict() filtered discovery params: transport: 6 rssi: 32767 pathloss: 32767  duplicate data: false discoverable false
+2026-01-16T09:34:38.089Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() successfully pre-set filter
+2026-01-16T09:34:38.169Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 1
+2026-01-16T09:34:38.169Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_connect_le() Connection attempt to: 20:44:41:02:DC:C0
+2026-01-16T09:34:38.170Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_device_complete() 20:44:41:02:DC:C0 (1) added to kernel connect list
+2026-01-16T09:34:41.591Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xdb438 registered: type:0 codec:0 seid:1
+2026-01-16T09:34:41.591Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T09:34:41.591Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10003
+2026-01-16T09:34:41.592Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T09:34:41.592Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T09:34:41.592Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T09:34:41.592Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110a-0000-1000-8000-00805f9
+2026-01-16T09:34:41.592Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T09:34:41.592Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T09:34:41.592Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T09:34:41.593Z bluetoothd[3416]:  Endpoint registered: sender=:1.221 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T09:34:41.594Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T09:34:41.596Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xb8668 registered: type:1 codec:0 seid:2
+2026-01-16T09:34:41.596Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T09:34:41.596Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10004
+2026-01-16T09:34:41.596Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T09:34:41.597Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T09:34:41.597Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T09:34:41.597Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110b-0000-1000-8000-00805f9
+2026-01-16T09:34:41.597Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T09:34:41.597Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T09:34:41.597Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T09:34:41.598Z bluetoothd[3416]:  Endpoint registered: sender=:1.221 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T09:34:41.598Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x0c0414
+2026-01-16T09:34:41.753Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_ref() 0xbc4c8: ref=1
+2026-01-16T09:34:41.753Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:register_agent() agent :1.221
+2026-01-16T09:34:41.755Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:add_default_agent() Default agent set to :1.221 /org/bluez/agent_19165
+2026-01-16T09:34:44.299Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 0
+2026-01-16T09:34:44.361Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_device_complete() 20:44:41:02:DC:C0 (1) removed from kernel connect list
+2026-01-16T09:34:44.436Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T09:34:44.436Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T09:34:44.436Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10004
+2026-01-16T09:34:44.437Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.221 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T09:34:44.437Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.221 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T09:34:44.437Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.221 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T09:34:44.437Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xb8668 unregistered: type:1 codec:0 seid:2
+2026-01-16T09:34:44.437Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T09:34:44.438Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T09:34:44.438Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10003
+2026-01-16T09:34:44.438Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.221 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T09:34:44.438Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.221 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T09:34:44.438Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.221 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T09:34:44.439Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xdb438 unregistered: type:0 codec:0 seid:1
+2026-01-16T09:34:44.439Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T09:34:44.440Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T09:34:46.036Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_disconnect() Agent :1.221 disconnected
+2026-01-16T09:34:46.036Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:remove_default_agent() Default agent cleared
+2026-01-16T09:34:46.037Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_destroy() agent :1.221
+2026-01-16T09:34:46.037Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_unref() 0xbc4c8: ref=0
+2026-01-16T10:28:48.426Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000000
+2026-01-16T10:28:48.426Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2026-01-16T10:28:48.427Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T10:28:48.427Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T10:28:48.427Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:cancel_passive_scanning()
+2026-01-16T10:28:48.427Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_stop() adapter /org/bluez/hci0 has been disabled
+2026-01-16T10:28:48.640Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T10:28:48.643Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-16T10:28:48.643Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T10:28:48.643Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T10:28:48.643Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-16T10:28:48.643Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-16T10:28:48.886Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() sender :1.72
+2026-01-16T10:28:48.886Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:parse_discovery_filter_dict() filtered discovery params: transport: 6 rssi: 32767 pathloss: 32767  duplicate data: false discoverable false
+2026-01-16T10:28:48.888Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() successfully pre-set filter
+2026-01-16T10:28:48.986Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 1
+2026-01-16T10:28:48.987Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_connect_le() Connection attempt to: 20:44:41:02:DC:C0
+2026-01-16T10:28:48.988Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_device_complete() 20:44:41:02:DC:C0 (1) added to kernel connect list
+2026-01-16T10:28:52.374Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xc1f10 registered: type:0 codec:0 seid:1
+2026-01-16T10:28:52.374Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T10:28:52.375Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10003
+2026-01-16T10:28:52.375Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T10:28:52.375Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T10:28:52.375Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T10:28:52.375Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110a-0000-1000-8000-00805f9
+2026-01-16T10:28:52.375Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T10:28:52.375Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T10:28:52.375Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T10:28:52.376Z bluetoothd[3416]:  Endpoint registered: sender=:1.232 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T10:28:52.377Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T10:28:52.379Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_register_sep() SEP 0xc2350 registered: type:1 codec:0 seid:2
+2026-01-16T10:28:52.379Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T10:28:52.379Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10004
+2026-01-16T10:28:52.379Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000019-0000-1000-8000-00805f9
+2026-01-16T10:28:52.379Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T10:28:52.379Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T10:28:52.379Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110b-0000-1000-8000-00805f9
+2026-01-16T10:28:52.380Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110d-0000-1000-8000-00805f9
+2026-01-16T10:28:52.380Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T10:28:52.380Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T10:28:52.380Z bluetoothd[3416]:  Endpoint registered: sender=:1.232 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T10:28:52.382Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x0c0414
+2026-01-16T10:28:52.534Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_ref() 0xc8d28: ref=1
+2026-01-16T10:28:52.534Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:register_agent() agent :1.232
+2026-01-16T10:28:52.536Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:add_default_agent() Default agent set to :1.232 /org/bluez/agent_19599
+2026-01-16T10:28:55.238Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 0
+2026-01-16T10:28:55.279Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_device_complete() 20:44:41:02:DC:C0 (1) removed from kernel connect list
+2026-01-16T10:28:55.369Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T10:28:55.370Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T10:28:55.370Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10004
+2026-01-16T10:28:55.370Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.232 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T10:28:55.370Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.232 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T10:28:55.370Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.232 path=/MediaEndpoint/SBC/A2DP/Sink
+2026-01-16T10:28:55.370Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xc2350 unregistered: type:1 codec:0 seid:2
+2026-01-16T10:28:55.371Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T10:28:55.371Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T10:28:55.371Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10003
+2026-01-16T10:28:55.382Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:release_endpoint() sender=:1.232 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T10:28:55.385Z bluetoothd[3416]:  Endpoint unregistered: sender=:1.232 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T10:28:55.385Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/media.c:media_endpoint_destroy() sender=:1.232 path=/MediaEndpoint/SBC/A2DP/Source
+2026-01-16T10:28:55.385Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avdtp.c:avdtp_unregister_sep() SEP 0xc1f10 unregistered: type:0 codec:0 seid:1
+2026-01-16T10:28:55.388Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x080414
+2026-01-16T10:28:55.393Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T10:28:56.827Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_disconnect() Agent :1.232 disconnected
+2026-01-16T10:28:56.828Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:remove_default_agent() Default agent cleared
+2026-01-16T10:28:56.829Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_destroy() agent :1.232
+2026-01-16T10:28:56.829Z bluetoothd[3416]:  ../bluez-5.48/src/agent.c:agent_unref() 0xc8d28: ref=0
+2026-01-16T12:54:22.140Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000000
+2026-01-16T12:54:22.140Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2026-01-16T12:54:22.141Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T12:54:22.141Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T12:54:22.141Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:cancel_passive_scanning()
+2026-01-16T12:54:22.141Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_stop() adapter /org/bluez/hci0 has been disabled
+2026-01-16T12:54:22.365Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T12:54:22.366Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-16T12:54:22.366Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T12:54:22.366Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T12:54:22.366Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-16T12:54:22.367Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-16T12:54:22.403Z bluetoothd[3416]:  Terminating
+2026-01-16T12:54:22.404Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_shutdown()
+2026-01-16T12:54:22.404Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:set_mode() sending set mode command for index 0
+2026-01-16T12:54:22.404Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac0
+2026-01-16T12:54:22.404Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T12:54:22.405Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T12:54:22.405Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:cancel_passive_scanning()
+2026-01-16T12:54:22.405Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_stop() adapter /org/bluez/hci0 has been disabled
+2026-01-16T12:54:22.405Z bluetoothd[3416]:  ../bluez-5.48/src/plugin.c:plugin_cleanup() Cleanup plugins
+2026-01-16T12:54:22.405Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/suspend-none.c:suspend_exit()
+2026-01-16T12:54:22.405Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/a2dp.c:media_server_remove() path /org/bluez/hci0
+2026-01-16T12:54:22.405Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:btd_service_unref() 0xb88e0: ref=1
+2026-01-16T12:54:22.406Z bluetoothd[3416]:  ../bluez-5.48/plugins/hostname.c:hostname_remove()
+2026-01-16T12:54:22.421Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_remove() Removing adapter /org/bluez/hci0
+2026-01-16T12:54:22.423Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_remove() Removing device /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T12:54:22.423Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6da8: device 20:44:41:02:DC:C0 profile batt-profile state changed: disconnected -> unavailable (0)
+2026-01-16T12:54:22.424Z bluetoothd[3416]:  ../bluez-5.48/profiles/battery/battery.c:batt_remove() BATT profile remove (20:44:41:02:DC:C0)
+2026-01-16T12:54:22.424Z bluetoothd[3416]:  ../bluez-5.48/profiles/battery/battery.c:batt_remove() notify_id: 1
+2026-01-16T12:54:22.425Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:btd_service_unref() 0xc6da8: ref=0
+2026-01-16T12:54:22.425Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xbad70: device 20:44:41:02:DC:C0 profile deviceinfo state changed: disconnected -> unavailable (0)
+2026-01-16T12:54:22.425Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:btd_service_unref() 0xbad70: ref=0
+2026-01-16T12:54:22.426Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xc6c00: device 20:44:41:02:DC:C0 profile gap-profile state changed: disconnected -> unavailable (0)
+2026-01-16T12:54:22.426Z bluetoothd[3416]:  ../bluez-5.48/profiles/gap/gas.c:gap_remove() GAP profile remove (20:44:41:02:DC:C0)
+2026-01-16T12:54:22.426Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:btd_service_unref() 0xc6c00: ref=0
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:change_state() 0xb88e0: device 20:44:41:02:DC:C0 profile input-hog state changed: disconnected -> unavailable (0)
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/profiles/input/hog.c:hog_remove() path /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  bt_uhid_destroy: Invalid argument
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/src/service.c:btd_service_unref() 0xb88e0: ref=0
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:btd_device_unref() Freeing device /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0011
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0011/desc0013
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0014
+2026-01-16T12:54:22.427Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0016
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0031
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0033
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0035
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0037
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0039
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003b
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003d
+2026-01-16T12:54:22.428Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003f
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061/desc0063
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200/char0201
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200/char0201/desc0203
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0701
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0703
+2026-01-16T12:54:22.429Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0705
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0707
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0707/desc0709
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0711
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0713
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715/desc0717
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715/desc0718
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719
+2026-01-16T12:54:22.430Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719/desc071b
+2026-01-16T12:54:22.431Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719/desc071c
+2026-01-16T12:54:22.431Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d
+2026-01-16T12:54:22.431Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d/desc071f
+2026-01-16T12:54:22.431Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d/desc0720
+2026-01-16T12:54:22.432Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721
+2026-01-16T12:54:22.432Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721/desc0723
+2026-01-16T12:54:22.432Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721/desc0724
+2026-01-16T12:54:22.434Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725
+2026-01-16T12:54:22.434Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725/desc0727
+2026-01-16T12:54:22.434Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725/desc0728
+2026-01-16T12:54:22.436Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729
+2026-01-16T12:54:22.436Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729/desc072b
+2026-01-16T12:54:22.437Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729/desc072c
+2026-01-16T12:54:22.438Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d
+2026-01-16T12:54:22.438Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d/desc072f
+2026-01-16T12:54:22.438Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d/desc0730
+2026-01-16T12:54:22.439Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731
+2026-01-16T12:54:22.439Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731/desc0733
+2026-01-16T12:54:22.440Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731/desc0734
+2026-01-16T12:54:22.441Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735
+2026-01-16T12:54:22.441Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735/desc0737
+2026-01-16T12:54:22.441Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735/desc0738
+2026-01-16T12:54:22.442Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739
+2026-01-16T12:54:22.442Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739/desc073b
+2026-01-16T12:54:22.442Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739/desc073c
+2026-01-16T12:54:22.443Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char073d
+2026-01-16T12:54:22.444Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char073f
+2026-01-16T12:54:22.444Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0741
+2026-01-16T12:54:22.447Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750
+2026-01-16T12:54:22.447Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0751
+2026-01-16T12:54:22.447Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753
+2026-01-16T12:54:22.447Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753/desc0755
+2026-01-16T12:54:22.447Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753/desc0756
+2026-01-16T12:54:22.447Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780
+2026-01-16T12:54:22.448Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781
+2026-01-16T12:54:22.448Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781/desc0783
+2026-01-16T12:54:22.448Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784
+2026-01-16T12:54:22.448Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_descriptor() Removing GATT descriptor: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784/desc0786
+2026-01-16T12:54:22.448Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0787
+2026-01-16T12:54:22.449Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0789
+2026-01-16T12:54:22.449Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char078b
+2026-01-16T12:54:22.450Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char078d
+2026-01-16T12:54:22.450Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_service() Removing GATT service: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010
+2026-01-16T12:54:22.450Z bluetoothd[3416]:  ../bluez-5.48/src/gatt-client.c:unregister_characteristic() Removing GATT characteristic: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010/char5011
+2026-01-16T12:54:22.452Z bluetoothd[3416]:  ../bluez-5.48/src/device.c:device_free() 0xbbf30
+2026-01-16T12:54:22.453Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/a2dp.c:a2dp_source_server_remove() path /org/bluez/hci0
+2026-01-16T12:54:22.453Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/a2dp.c:a2dp_sink_server_remove() path /org/bluez/hci0
+2026-01-16T12:54:22.453Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avrcp.c:avrcp_target_server_remove() path /org/bluez/hci0
+2026-01-16T12:54:22.453Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T12:54:22.453Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T12:54:22.453Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10002
+2026-01-16T12:54:22.454Z bluetoothd[3416]:  ../bluez-5.48/profiles/audio/avrcp.c:avrcp_controller_server_remove() path /org/bluez/hci0
+2026-01-16T12:54:22.454Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_service_remove() /org/bluez/hci0
+2026-01-16T12:54:22.454Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:remove_uuid() sending remove uuid command for index 0
+2026-01-16T12:54:22.454Z bluetoothd[3416]:  ../bluez-5.48/src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10001
+2026-01-16T12:54:22.454Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/manager.c:nap_server_remove() path /org/bluez/hci0
+2026-01-16T12:54:22.454Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/manager.c:gn_server_remove() path /org/bluez/hci0
+2026-01-16T12:54:22.454Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/manager.c:panu_server_remove() path /org/bluez/hci0
+2026-01-16T12:54:22.455Z bluetoothd[3416]:  ../bluez-5.48/profiles/network/server.c:path_unregister() Unregistered interface org.bluez.NetworkServer1 on path /org/bluez/hci0
+2026-01-16T12:54:22.455Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:btd_adapter_unref() Freeing adapter /org/bluez/hci0
+2026-01-16T12:54:22.455Z bluetoothd[3416]:  ../bluez-5.48/src/adapter.c:adapter_free() 0xb7ac0
+2026-01-16T12:54:22.455Z bluetoothd[3416]:  Stopping SDP server
+2026-01-16T12:54:22.455Z bluetoothd[3416]:  Exit
+2026-01-16T12:54:22.758Z bluetoothd[20158]:  Bluetooth daemon 5.48
+2026-01-16T12:54:22.791Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:parse_config() parsing /etc/bluetooth/main.conf
+2026-01-16T12:54:22.791Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:parse_config() discovto=180
+2026-01-16T12:54:22.791Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:parse_config() pairto=180
+2026-01-16T12:54:22.791Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:parse_config() Key file does not have key “Privacy” in group “General”
+2026-01-16T12:54:22.791Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:parse_config() Key file does not have key “TemporaryTimeout” in group “General”
+2026-01-16T12:54:22.791Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:parse_config() name=Sky
+2026-01-16T12:54:22.792Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:parse_config() class=0x040414
+2026-01-16T12:54:22.792Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:parse_config() Key file does not have key “DeviceID” in group “General”
+2026-01-16T12:54:22.818Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:adapter_init() sending read version command
+2026-01-16T12:54:22.818Z bluetoothd[20158]:  Starting SDP server
+2026-01-16T12:54:22.819Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:register_device_id() Adding device id record for 0002:1d6b:0246:0530
+2026-01-16T12:54:22.819Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:plugin_init() Loading builtin plugins
+2026-01-16T12:54:22.819Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading hostname plugin
+2026-01-16T12:54:22.819Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading wiimote plugin
+2026-01-16T12:54:22.820Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading autopair plugin
+2026-01-16T12:54:22.820Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading policy plugin
+2026-01-16T12:54:22.820Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading a2dp plugin
+2026-01-16T12:54:22.821Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading avrcp plugin
+2026-01-16T12:54:22.821Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading network plugin
+2026-01-16T12:54:22.821Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading input plugin
+2026-01-16T12:54:22.822Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading hog plugin
+2026-01-16T12:54:22.822Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading gap plugin
+2026-01-16T12:54:22.822Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading scanparam plugin
+2026-01-16T12:54:22.822Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading deviceinfo plugin
+2026-01-16T12:54:22.823Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:add_plugin() Loading battery plugin
+2026-01-16T12:54:22.823Z bluetoothd[20158]:  ../bluez-5.48/src/plugin.c:plugin_init() Loading plugins /usr/lib/bluetooth/plugins
+2026-01-16T12:54:22.823Z bluetoothd[20158]:  ../bluez-5.48/profiles/input/suspend-none.c:suspend_init()
+2026-01-16T12:54:22.834Z bluetoothd[20158]:  ../bluez-5.48/profiles/network/manager.c:read_config() /etc/bluetooth/network.conf: Key file does not have key “DisableSecurity” in group “General”
+2026-01-16T12:54:22.834Z bluetoothd[20158]:  ../bluez-5.48/profiles/network/manager.c:read_config() Config options: Security=true
+2026-01-16T12:54:22.844Z bluetoothd[20158]:  ../bluez-5.48/src/main.c:main() Entering main loop
+2026-01-16T12:54:22.844Z bluetoothd[20158]:  ../bluez-5.48/src/rfkill.c:rfkill_event() RFKILL event idx 0 type 1 op 0 soft 0 hard 0
+2026-01-16T12:54:22.844Z bluetoothd[20158]:  Bluetooth management interface 1.14 initialized
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:read_version_complete() sending read supported commands command
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:read_version_complete() sending read index list command
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/rfkill.c:rfkill_event() RFKILL event idx 1 type 2 op 0 soft 0 hard 0
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:read_commands_complete() Number of commands: 65
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:read_commands_complete() Number of events: 35
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:read_commands_complete() enabling kernel-side connection control
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:read_index_list_complete() Number of controllers: 1
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:read_index_list_complete() Found index 0
+2026-01-16T12:54:22.845Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:index_added() index 0
+2026-01-16T12:54:22.846Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() System name: Sky
+2026-01-16T12:54:22.846Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Major class: 4
+2026-01-16T12:54:22.846Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Minor class: 5
+2026-01-16T12:54:22.846Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Modalias: usb:v1D6Bp0246d0530
+2026-01-16T12:54:22.852Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Discoverable timeout: 180 seconds
+2026-01-16T12:54:22.852Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:btd_adapter_new() Pairable timeout: 180 seconds
+2026-01-16T12:54:22.853Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:index_added() sending read info command for index 0
+2026-01-16T12:54:22.853Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:read_info_complete() index 0 status 0x00
+2026-01-16T12:54:22.853Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:clear_uuids() sending clear uuids command for index 0
+2026-01-16T12:54:22.854Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:clear_devices() sending clear devices command for index 0
+2026-01-16T12:54:22.854Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_privacy() sending set privacy command for index 0
+2026-01-16T12:54:22.854Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_privacy() setting privacy mode 0x00 for index 0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/src/gatt-database.c:btd_gatt_database_new() GATT Manager registered for adapter: /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/src/advertising.c:btd_adv_manager_new() LE Advertising Manager created for adapter: /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/profiles/audio/a2dp.c:media_server_probe() path /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/plugins/hostname.c:hostname_probe()
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/profiles/network/manager.c:panu_server_probe() path /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/profiles/network/server.c:server_register() Registered interface org.bluez.NetworkServer1 on path /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/profiles/network/manager.c:gn_server_probe() path /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/profiles/network/manager.c:nap_server_probe() path /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/profiles/audio/avrcp.c:avrcp_controller_server_probe() path /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T12:54:22.859Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10001
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000017-0000-1000-8000-00805f9
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110e-0000-1000-8000-00805f9
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110f-0000-1000-8000-00805f9
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/profiles/audio/avrcp.c:avrcp_target_server_probe() path /org/bluez/hci0
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:adapter_service_add() /org/bluez/hci0
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10002
+2026-01-16T12:54:22.860Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000017-0000-1000-8000-00805f9
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110c-0000-1000-8000-00805f9
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/src/sdpd-service.c:add_record_to_server() Record pattern UUID 0000110e-0000-1000-8000-00805f9
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/profiles/audio/a2dp.c:a2dp_sink_server_probe() path /org/bluez/hci0
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/profiles/audio/a2dp.c:a2dp_source_server_probe() path /org/bluez/hci0
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:btd_adapter_unblock_address() hci0 00:00:00:00:00:00
+2026-01-16T12:54:22.861Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file()
+2026-01-16T12:54:22.862Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Check if we need to recover: /proc/self/fd/300/D4:52:EE:59:E3:E9/20:44:41:02:DC:C0/info, dir name /proc/self/fd/300/D4:52:EE:59:E3:E9/20:44:41:02:DC:C0/
+2026-01-16T12:54:22.862Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file info. versus dname info
+2026-01-16T12:54:22.862Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: info
+2026-01-16T12:54:22.862Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file info. versus dname attributes
+2026-01-16T12:54:22.862Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: attributes
+2026-01-16T12:54:22.862Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file()
+2026-01-16T12:54:22.862Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Check if we need to recover: /proc/self/fd/300/D4:52:EE:59:E3:E9/20:44:41:02:DC:C0/attributes, dir name /proc/self/fd/300/D4:52:EE:59:E3:E9/20:44:41:02:DC:C0/
+2026-01-16T12:54:22.862Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file attributes. versus dname info
+2026-01-16T12:54:22.867Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: info
+2026-01-16T12:54:22.867Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Check file: target file attributes. versus dname attributes
+2026-01-16T12:54:22.867Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:restore_file() Ignore file: attributes
+2026-01-16T12:54:22.868Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:get_ltk_info() 20:44:41:02:DC:C0
+2026-01-16T12:54:22.868Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:device_create_from_storage() address 20:44:41:02:DC:C0
+2026-01-16T12:54:22.868Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:device_new() address 20:44:41:02:DC:C0
+2026-01-16T12:54:22.868Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:device_new() Creating device /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T12:54:22.870Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:btd_device_set_temporary() temporary 0
+2026-01-16T12:54:22.870Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:device_set_bonded()
+2026-01-16T12:54:22.871Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:load_link_keys() hci0 keys 0 debug_keys 0
+2026-01-16T12:54:22.871Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:load_ltks() hci0 keys 1
+2026-01-16T12:54:22.871Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:load_irks() hci0 irks 1
+2026-01-16T12:54:22.871Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:load_conn_params() hci0 conn params 1
+2026-01-16T12:54:22.871Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:device_probe_profiles() Probing profiles for device 20:44:41:02:DC:C0
+2026-01-16T12:54:22.871Z bluetoothd[20158]:  ../bluez-5.48/profiles/battery/battery.c:batt_probe() BATT profile probe (20:44:41:02:DC:C0)
+2026-01-16T12:54:22.871Z bluetoothd[20158]:  ../bluez-5.48/src/service.c:change_state() 0xc7100: device 20:44:41:02:DC:C0 profile batt-profile state changed: unavailable -> disconnected (0)
+2026-01-16T12:54:22.871Z bluetoothd[20158]:  ../bluez-5.48/src/service.c:change_state() 0xcf650: device 20:44:41:02:DC:C0 profile deviceinfo state changed: unavailable -> disconnected (0)
+2026-01-16T12:54:22.877Z bluetoothd[20158]:  ../bluez-5.48/profiles/gap/gas.c:gap_probe() GAP profile probe (20:44:41:02:DC:C0)
+2026-01-16T12:54:22.877Z bluetoothd[20158]:  ../bluez-5.48/src/service.c:change_state() 0xb66c0: device 20:44:41:02:DC:C0 profile gap-profile state changed: unavailable -> disconnected (0)
+2026-01-16T12:54:22.877Z bluetoothd[20158]:  ../bluez-5.48/profiles/input/hog.c:hog_probe() path /org/bluez/hci0/dev_20_44_41_02_DC_C0
+2026-01-16T12:54:22.878Z bluetoothd[20158]:  ../bluez-5.48/src/service.c:change_state() 0xb9e18: device 20:44:41:02:DC:C0 profile input-hog state changed: unavailable -> disconnected (0)
+2026-01-16T12:54:22.878Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:device_set_auto_connect() 20:44:41:02:DC:C0 auto connect: 1
+2026-01-16T12:54:22.879Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:adapter_service_insert() /org/bluez/hci0
+2026-01-16T12:54:22.879Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:add_uuid() sending add uuid command for index 0
+2026-01-16T12:54:22.879Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_did() hci0 source 2 vendor 1d6b product 246 version 530
+2026-01-16T12:54:22.879Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:adapter_register() Adapter /org/bluez/hci0 registered
+2026-01-16T12:54:22.879Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_dev_class() sending set device class command for index 0
+2026-01-16T12:54:22.879Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_name() sending set local name command for index 0
+2026-01-16T12:54:22.879Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_mode() sending set mode command for index 0
+2026-01-16T12:54:22.879Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_privacy_complete() Successfuly set privacy for index 0
+2026-01-16T12:54:22.880Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:load_link_keys_complete() link keys loaded for hci0
+2026-01-16T12:54:22.880Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:load_ltks_complete() LTKs loaded for hci0
+2026-01-16T12:54:22.880Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:load_irks_complete() IRKs loaded for hci0
+2026-01-16T12:54:22.880Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:load_conn_params_complete() Connection Parameters loaded for hci0
+2026-01-16T12:54:22.880Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:add_device_complete() 20:44:41:02:DC:C0 (1) added to kernel connect list
+2026-01-16T12:54:22.880Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ad0
+2026-01-16T12:54:22.880Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000010
+2026-01-16T12:54:22.881Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T12:54:22.923Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:property_set_mode() sending Set Powered command for index 0
+2026-01-16T12:54:22.937Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:dev_class_changed_callback() Class: 0x000414
+2026-01-16T12:54:22.939Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:property_set_mode_complete() Success (0x00)
+2026-01-16T12:54:22.939Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ad1
+2026-01-16T12:54:22.939Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000001
+2026-01-16T12:54:22.939Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000
+2026-01-16T12:54:22.939Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:adapter_start() adapter /org/bluez/hci0 has been enabled
+2026-01-16T12:54:22.939Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:trigger_passive_scanning()
+2026-01-16T12:54:22.944Z bluetoothd[20158]:  ../bluez-5.48/src/device.c:device_connect_le() Connection attempt to: 20:44:41:02:DC:C0
+2026-01-16T12:54:22.960Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() sender :1.72
+2026-01-16T12:54:22.960Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:parse_discovery_filter_dict() filtered discovery params: transport: 6 rssi: 32767 pathloss: 32767  duplicate data: false discoverable false
+2026-01-16T12:54:22.960Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:set_discovery_filter() successfully pre-set filter
+2026-01-16T12:54:22.964Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:property_set_mode() sending Set Bondable command for index 0
+2026-01-16T12:54:22.964Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:property_set_mode_complete() Success (0x00)
+2026-01-16T12:54:22.968Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:new_settings_callback() Settings: 0x00000ac1
+2026-01-16T12:54:22.968Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:settings_changed() Changed settings: 0x00000010
+2026-01-16T12:54:22.968Z bluetoothd[20158]:  ../bluez-5.48/src/adapter.c:settings_changed() Pending settings: 0x00000000

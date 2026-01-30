@@ -1,0 +1,10 @@
+2025-12-03T08:38:55.871Z PreviousRebootReason: RebootReason: Triggered from SystemServices process MAINTENANCE_REBOOT
+2025-12-03T08:38:55.898Z PreviousRebootInitiatedBy: SystemServices
+2025-12-03T08:38:55.947Z PreviousRebootTime:  Fri Jan 16 01:36:21 UTC 2026
+2025-12-03T08:38:55.981Z PreviousCustomReason:  MAINTENANCE_REBOOT
+2025-12-03T08:38:56.020Z PreviousOtherReason:  MAINTENANCE_REBOOT
+RebootReason: Triggered from SystemServices process REBOOT
+RebootInitiatedBy: SystemServices
+RebootTime: Fri Jan 16 02:43:42 UTC 2026
+CustomReason: REBOOT
+OtherReason: REBOOT

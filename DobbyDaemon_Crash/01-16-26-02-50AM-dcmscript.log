@@ -1,0 +1,192 @@
+2025-12-03T08:39:00.366Z dcmd[4002]:  rdk_dyn_log_initg_dl_socket = 3 __progname = dcmd
+2025-12-03T08:39:00.366Z dcmd[4002]:  Conf file /etc/debug.ini open success
+2025-12-03T08:39:00.366Z dcmd[4002]:  251203-08:39:00.356504 [mod=DCM, lvl=INFO] [tid=4002] [DCM] main[261]: Starting DCM Process: 4002
+2025-12-03T08:39:00.366Z dcmd[4002]:  251203-08:39:00.357181 [mod=DCM, lvl=INFO] [tid=4002] [DCM] main[270]: Exiting the main process
+2025-12-03T08:39:00.381Z dcmd[4002]:  251203-08:39:00.381222 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmUtilsCheckDaemonStatus[161]: Opening new pid file
+2025-12-03T08:39:00.383Z dcmd[4002]:  251203-08:39:00.382435 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingGetValueFromFile[99]: Key: RDK_PATH Value: /lib/rdk
+2025-12-03T08:39:00.383Z dcmd[4002]:  251203-08:39:00.383660 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingGetValueFromFile[99]: Key: ENABLE_MAINTENANCE Value: true
+2025-12-03T08:39:00.384Z dcmd[4002]:  251203-08:39:00.384104 [mod=RBUS, lvl=INFO] [tid=4015] rbus open for component: T2TODCM
+2025-12-03T08:39:00.386Z dcmd[4002]:  251203-08:39:00.386359 [mod=RBUS, lvl=INFO] [tid=4015]  rbus open (T2TODCM) success
+2025-12-03T08:39:00.386Z dcmd[4002]:  251203-08:39:00.386563 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmDaemonMainInit[161]: T2 is enabled
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.405372 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmRbusGetT2Version[322]: Telemetry 2 Version: "2.0.1"
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.405427 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmDaemonMainInit[164]: T2 Version: "2.0.1"
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.405644 [mod=RBUS, lvl=INFO] [tid=4015] Device.DCM.Setconfig 01:00:14.483489
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.405716 [mod=RBUS, lvl=INFO] [tid=4015] Device.DCM.Processconfig 01:00:14.483580
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.405773 [mod=RBUS, lvl=INFO] [tid=4015] file /tmp/rbus_subs_T2TODCM
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.405822 [mod=RBUS, lvl=ERROR] [tid=4015] failed to open file /tmp/rbus_subs_T2TODCM
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.405846 [mod=RBUS, lvl=WARN] [tid=4015] removing corrupted file /tmp/rbus_subs_T2TODCM
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.405880 [mod=RBUS, lvl=ERROR] [tid=4015] failed to remove /tmp/rbus_subs_T2TODCM
+2025-12-03T08:39:00.407Z dcmd[4002]:  251203-08:39:00.406680 [mod=DCM, lvl=INFO] [tid=4015] [DCM] main[307]: Loading the Default config
+2025-12-03T08:39:00.408Z dcmd[4002]:  251203-08:39:00.406780 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingDefaultBoot[717]: Fetching the Default Boot config from /opt/.t2persistentfolder/DCMresponse.txt
+2025-12-03T08:39:00.430Z dcmd[4002]:  251203-08:39:00.430078 [mod=RBUS, lvl=INFO] [tid=4030] item=01:00:14.483489
+2025-12-03T08:39:00.432Z dcmd[4002]:  251203-08:39:00.432168 [mod=RBUS, lvl=INFO] [tid=4030] item=01:00:14.483580
+2025-12-03T08:39:00.432Z dcmd[4002]:  251203-08:39:00.432207 [mod=RBUS, lvl=INFO] [tid=4030] subs past due
+2025-12-03T08:39:00.432Z dcmd[4002]:  251203-08:39:00.432240 [mod=RBUS, lvl=INFO] [tid=4030] Device.DCM.Setconfig subscribing
+2025-12-03T08:39:00.436Z dcmd[4002]:  251203-08:39:00.436442 [mod=RBUS, lvl=INFO] [tid=4030] Device.DCM.Setconfig no provider. retry in 1000 ms with 599970 left
+2025-12-03T08:39:00.436Z dcmd[4002]:  251203-08:39:00.436502 [mod=RBUS, lvl=INFO] [tid=4030] Device.DCM.Processconfig subscribing
+2025-12-03T08:39:00.437Z dcmd[4002]:  251203-08:39:00.437469 [mod=RBUS, lvl=INFO] [tid=4030] Device.DCM.Processconfig no provider. retry in 1000 ms with 599969 left
+2025-12-03T08:39:00.437Z dcmd[4002]:  251203-08:39:00.437585 [mod=RBUS, lvl=INFO] [tid=4030] item=01:00:15.514300
+2025-12-03T08:39:00.437Z dcmd[4002]:  251203-08:39:00.437624 [mod=RBUS, lvl=INFO] [tid=4030] item=01:00:15.515345
+2025-12-03T08:39:00.437Z dcmd[4002]:  251203-08:39:00.437658 [mod=RBUS, lvl=INFO] [tid=4030] subs due in 998 miliseconds nextSendTime=01:00:15.514300
+2025-12-03T08:39:00.849Z dcmd[4002]:  251203-08:39:00.849157 [mod=RBUS, lvl=INFO] [tid=4023] Consumer=rbus.telemetry2_0.INBOX.4161 SUBSCRIBED to event=Device.X_RDKCENTREL-COM.Reloadconfig
+2025-12-03T08:39:00.849Z dcmd[4002]:  251203-08:39:00.849206 [mod=DCM, lvl=INFO] [tid=4023] [DCM] rbusSendEventCB[161]: rbusSendEvent event registered Device.X_RDKCENTREL-COM.Reloadconfig
+2025-12-03T08:39:01.437Z dcmd[4002]:  251203-08:39:01.436589 [mod=RBUS, lvl=INFO] [tid=4030] item=01:00:15.514300
+2025-12-03T08:39:01.437Z dcmd[4002]:  251203-08:39:01.436663 [mod=RBUS, lvl=INFO] [tid=4030] item=01:00:15.515345
+2025-12-03T08:39:01.437Z dcmd[4002]:  251203-08:39:01.436687 [mod=RBUS, lvl=INFO] [tid=4030] subs past due
+2025-12-03T08:39:01.437Z dcmd[4002]:  251203-08:39:01.436726 [mod=RBUS, lvl=INFO] [tid=4030] Device.DCM.Setconfig subscribing
+2025-12-03T08:39:01.439Z dcmd[4002]:  251203-08:39:01.438595 [mod=RBUS, lvl=INFO] [tid=4030] Device.DCM.Setconfig subscribe retries succeeded
+2025-12-03T08:39:01.439Z dcmd[4002]:  251203-08:39:01.438635 [mod=DCM, lvl=INFO] [tid=4030] [DCM] rbusAsyncSubCB[204]: Subscription Device.DCM.Setconfig event Success
+2025-12-03T08:39:01.439Z dcmd[4002]:  251203-08:39:01.438668 [mod=RBUS, lvl=INFO] [tid=4030] Device.DCM.Processconfig subscribing
+2025-12-03T08:39:01.441Z dcmd[4002]:  251203-08:39:01.440813 [mod=RBUS, lvl=INFO] [tid=4030] Device.DCM.Processconfig subscribe retries succeeded
+2025-12-03T08:39:01.441Z dcmd[4002]:  251203-08:39:01.440847 [mod=DCM, lvl=INFO] [tid=4030] [DCM] rbusAsyncSubCB[204]: Subscription Device.DCM.Processconfig event Success
+2025-12-03T08:39:01.747Z dcmd[4002]:  251203-08:39:01.746538 [mod=DCM, lvl=INFO] [tid=4015] [DCM] main[326]: Telemetry Events subscriptions is success
+2025-12-03T08:39:01.747Z dcmd[4002]:  251203-08:39:01.746604 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmRbusSendEvent[227]: dcmRbusSendEvent ++in
+2025-12-03T08:39:01.748Z dcmd[4002]:  251203-08:39:01.748062 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmRbusSendEvent[266]: dcmRbusSendEvent --out
+2025-12-03T08:39:01.748Z dcmd[4002]:  251203-08:39:01.748207 [mod=DCM, lvl=INFO] [tid=4015] [DCM] main[333]: Sent Event to telemetry for configuraion path
+2026-01-16T01:38:55.492Z : /lib/rdk/Start_MaintenanceTasks.sh: Starting log upload
+2026-01-16T01:38:56.003Z : /lib/rdk/Start_MaintenanceTasks.sh: upload_protocol: HTTP
+2026-01-16T01:38:56.569Z : /lib/rdk/Start_MaintenanceTasks.sh: upload_httplink: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-S3.cgi
+2026-01-16T01:38:56.893Z : /lib/rdk/Start_MaintenanceTasks.sh: The value of 'UploadOnReboot' is 'true', executing script uploadSTBLogs.sh
+2026-01-16T01:38:57.070Z : /lib/rdk/Start_MaintenanceTasks.sh: Log upload triggered from regular execution
+2026-01-16T01:38:59.330Z : /lib/rdk/uploadSTBLogs.sh: Called with 3 attempts
+2026-01-16T01:38:59.491Z : /lib/rdk/uploadSTBLogs.sh: USAGE: /lib/rdk/uploadSTBLogs.sh <TFTP Server IP> <Flag (STB delay or not)> <SCP_SERVER> <UploadOnReboot> <UploadProtocol> <UploadHttpLink> <RRD_FLAG> <RRD_UPLOADLOG_FILE>
+2026-01-16T01:38:59.765Z : /lib/rdk/uploadSTBLogs.sh: Check Codebig flag,,,
+2026-01-16T01:39:00.108Z : /lib/rdk/uploadSTBLogs.sh: Build Type: prod Log file: D4DACDCB2D79_Logs_01-16-26-01-38AM.tgz UploadProtocol: HTTP UploadHttpLink: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-S3.cgi
+2026-01-16T01:39:02.074Z : /lib/rdk/uploadSTBLogs.sh: upload_flag = true
+2026-01-16T01:39:02.195Z : /lib/rdk/uploadSTBLogs.sh: DCM log Folder does not exist . Creating now
+2026-01-16T01:39:03.063Z : /lib/rdk/uploadSTBLogs.sh: [INFO] : getPrivacyControlMode : Entering
+2026-01-16T01:39:03.259Z : /lib/rdk/uploadSTBLogs.sh: [WARN] : getPrivacyControlMode : WPEFrameworkSecurityUtility failed to get token; status = 127
+2026-01-16T01:39:03.423Z : /lib/rdk/uploadSTBLogs.sh: [WARN] : getPrivacyControlMode : WPEFrameworkSecurityUtility Token is empty
+2026-01-16T01:39:03.808Z : /lib/rdk/uploadSTBLogs.sh: [INFO] : getPrivacyControlMode : END : 2.0
+2026-01-16T01:39:03.911Z : /lib/rdk/uploadSTBLogs.sh: UploadOnReboot set to true
+2026-01-16T01:39:04.086Z : /lib/rdk/uploadSTBLogs.sh: Sleeping for seven minutes
+2026-01-16T01:39:05.645Z dcmd[4002]:  260116-01:39:05.644925 [mod=DCM, lvl=INFO] [tid=4023] [DCM] rbusSetConf[92]: configPath: /opt/.t2persistentfolder/DCMresponse.txt
+2026-01-16T01:39:05.645Z dcmd[4002]:  260116-01:39:05.644959 [mod=DCM, lvl=INFO] [tid=4023] [DCM] rbusSetConf[95]: Recieved eventName: Device.DCM.Setconfig, Event type: 3, Event Name: Device.DCM.Setconfig
+2026-01-16T01:39:05.645Z dcmd[4002]:  260116-01:39:05.645067 [mod=DCM, lvl=INFO] [tid=4023] [DCM] rbusProcConf[131]: Recieved eventName: Device.DCM.Processconfig, Event type: 3, Event Name: Device.DCM.Processconfig
+2026-01-16T01:39:06.607Z dcmd[4002]:  260116-01:39:06.607790 [mod=DCM, lvl=INFO] [tid=4015] [DCM] main[341]: Start Scheduling
+2026-01-16T01:39:06.608Z dcmd[4002]:  260116-01:39:06.607986 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingParseConf[487]: Log Upload protocol: HTTP
+2026-01-16T01:39:06.608Z dcmd[4002]:  260116-01:39:06.608028 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingParseConf[496]: Log Upload URL: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-S3.cgi
+2026-01-16T01:39:06.608Z dcmd[4002]:  260116-01:39:06.608050 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingParseConf[505]: TimeZone : Local time
+2026-01-16T01:39:06.608Z dcmd[4002]:  260116-01:39:06.608070 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingParseConf[510]: DCM_LOGUPLOAD_REBOOT: 1
+2026-01-16T01:39:06.608Z dcmd[4002]:  260116-01:39:06.608092 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingParseConf[518]: DCM_LOGUPLOAD_CRON: 31 -4 * * *
+2026-01-16T01:39:06.608Z dcmd[4002]:  260116-01:39:06.608111 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingParseConf[526]: DCM_DIFD_CRON: 1 1 * * *
+2026-01-16T01:39:06.613Z dcmd[4002]:  260116-01:39:06.613459 [mod=DCM, lvl=INFO] [tid=4015] [DCM] dcmSettingParseConf[550]: urn:settings:LogUploadSettings:UploadSchedule:cron is present setting cron jobs
+2026-01-16T01:39:06.723Z dcmd[4002]:  260116-01:39:06.723528 [mod=DCM, lvl=WARN] [tid=4015] [DCM] dcmSchedStartJob[126]: Failed to parse log upload cron: 31 -4 * * *
+2026-01-16T01:39:06.744Z : /lib/rdk/uploadSTBLogs.sh: Called with 3 attempts
+2026-01-16T01:39:06.759Z : /lib/rdk/uploadSTBLogs.sh: USAGE: /lib/rdk/uploadSTBLogs.sh <TFTP Server IP> <Flag (STB delay or not)> <SCP_SERVER> <UploadOnReboot> <UploadProtocol> <UploadHttpLink> <RRD_FLAG> <RRD_UPLOADLOG_FILE>
+2026-01-16T01:39:06.792Z : /lib/rdk/uploadSTBLogs.sh: Another instance of this app /lib/rdk/uploadSTBLogs.sh is already running (flock lock held)..!
+2026-01-16T01:39:06.806Z : /lib/rdk/uploadSTBLogs.sh: Exiting without starting the /lib/rdk/uploadSTBLogs.sh..!
+2026-01-16T01:39:06.818Z IARM_event_send[7575]:  IARM_event_sender  Entering 7575
+
+2026-01-16T01:39:06.818Z IARM_event_send[7575]:  >>>>> Send IARM_BUS_NAME EVENT current Event Name =MaintenanceMGR,evenstatus=16
+2026-01-16T01:39:06.837Z IARM_event_send[7575]:  >>>>> Generate IARM_BUS_NAME EVENT current Event Name =MaintenanceMGR,eventstatus=16
+2026-01-16T01:39:06.838Z IARM_event_send[7575]:  >>>>> Identified MaintenanceMGR
+2026-01-16T01:39:06.838Z IARM_event_send[7575]:  >>>>> IARM SUCCESS  Event  = 16
+2026-01-16T01:39:07.349Z IARM_event_send[7575]:  IARM_event_sender closing 
+
+Retrieving CPU instantaneous information for telemetry support
+Retrieving virtual memory information for telemetry support
+Retrieving CPU Temperature for telemetry support
+2026-01-16T01:44:34.271Z : /lib/rdk/uploadSTBLogs.sh: Done sleeping
+/lib/rdk/uploadSTBLogs.sh: line 205: [: too many arguments
+2026-01-16T01:44:45.098Z : /lib/rdk/uploadSTBLogs.sh: reboot_reason: "reason":"MAINTENANCE_REBOOT",
+"customReason":"MAINTENANCE_REBOOT",
+"otherReason":"MAINTENANCE_REBOOT" , uploadLog:true and UploadLogsOnUnscheduledReboot.Disable RFC: false
+2026-01-16T01:44:45.194Z : /lib/rdk/uploadSTBLogs.sh: Uploading Logs with DCM
+01-16-26-01-44AM-CapDebug.txt
+01-16-26-01-44AM-ConnectionStats.txt
+01-16-26-01-44AM-NMMonitor.log
+01-16-26-01-44AM-NetworkManager.log
+01-16-26-01-44AM-access.log
+01-16-26-01-44AM-audiocapturemgr.log
+01-16-26-01-44AM-bluez.log
+01-16-26-01-44AM-btmgrlog.txt
+01-16-26-01-44AM-caupdate.log
+01-16-26-01-44AM-certinfo.txt
+01-16-26-01-44AM-core_log.txt
+01-16-26-01-44AM-crun.log
+01-16-26-01-44AM-ctrlm_log.txt
+01-16-26-01-44AM-dcmscript.log
+01-16-26-01-44AM-device-uid.log
+01-16-26-01-44AM-device_details.log
+01-16-26-01-44AM-disk_cleanup.log
+01-16-26-01-44AM-dnsmasq.log
+01-16-26-01-44AM-dropbear.log
+01-16-26-01-44AM-ecfs.txt
+01-16-26-01-44AM-fog.log
+01-16-26-01-44AM-gst-cleanup.log
+01-16-26-01-44AM-hdcp.log
+01-16-26-01-44AM-ipSetupLogs.txt
+01-16-26-01-44AM-iptables.log
+01-16-26-01-44AM-libcertifier.log
+01-16-26-01-44AM-lighttpd.error.log
+01-16-26-01-44AM-logrotate.log
+01-16-26-01-44AM-lxy.txt
+01-16-26-01-44AM-maintenance.log
+01-16-26-01-44AM-mediarite.log
+01-16-26-01-44AM-memcapture.log
+01-16-26-01-44AM-messages.txt
+01-16-26-01-44AM-mount_log.txt
+01-16-26-01-44AM-nfrtool.log
+01-16-26-01-44AM-ntp.log
+01-16-26-01-44AM-parodus.log
+01-16-26-01-44AM-perfmonstatus.log
+01-16-26-01-44AM-rdk_milestones.log
+01-16-26-01-44AM-rdkconfig.txt
+01-16-26-01-44AM-rdkssa.txt
+01-16-26-01-44AM-rdm_status.log
+01-16-26-01-44AM-rebootInfo.log
+01-16-26-01-44AM-rebootreason.log
+01-16-26-01-44AM-remote-debugger.log
+01-16-26-01-44AM-rfcscript.log
+01-16-26-01-44AM-ripple.log
+01-16-26-01-44AM-routerInfo.log
+01-16-26-01-44AM-rtk_afw_license_check.log
+01-16-26-01-44AM-rtk_fw.log
+01-16-26-01-44AM-rtk_fw.log.1
+01-16-26-01-44AM-rtk_service.log
+01-16-26-01-44AM-rtrouted.log
+01-16-26-01-44AM-sky-messages.log
+01-16-26-01-44AM-skyversion.txt
+01-16-26-01-44AM-sslendpoints.log
+01-16-26-01-44AM-startup_stdout_log.txt
+01-16-26-01-44AM-storagemgr.log
+01-16-26-01-44AM-sw_mirroring.log
+01-16-26-01-44AM-swupdate.log
+01-16-26-01-44AM-syslog_fallback.log
+01-16-26-01-44AM-system.log
+01-16-26-01-44AM-systimemgr.log
+01-16-26-01-44AM-telemetry2_0.txt.0
+01-16-26-01-44AM-testagent_loader.log
+01-16-26-01-44AM-top_log.txt
+01-16-26-01-44AM-tr69hostif.log
+01-16-26-01-44AM-uimgr_log.txt
+01-16-26-01-44AM-version.txt
+01-16-26-01-44AM-webconfig.log
+01-16-26-01-44AM-wpa_supplicant.log
+01-16-26-01-44AM-wpeframework.log
+01-16-26-01-44AM-wpeframework.log.1
+01-16-26-01-44AM-xpkicertsupdate.log
+01-16-26-01-44AM-zram.log
+last_reboot
+2026-01-16T01:45:47.360Z : /lib/rdk/uploadSTBLogs.sh: RFC_EncryptCloudUpload_Enable:
+2026-01-16T01:45:47.475Z : /lib/rdk/uploadSTBLogs.sh: HttpLogUpload: Codebig is disabled UseCodebig=0
+2026-01-16T01:45:47.580Z : /lib/rdk/uploadSTBLogs.sh: HttpLogUpload: Attempting direct log upload
+2026-01-16T01:45:47.680Z : /lib/rdk/uploadSTBLogs.sh: RFC_EncryptCloudUpload_Enable:
+2026-01-16T01:45:47.776Z : /lib/rdk/uploadSTBLogs.sh: MTLS defaulted
+2026-01-16T01:45:47.864Z : /lib/rdk/uploadSTBLogs.sh: Connect with mTLS certificate from xPKI
+2026-01-16T01:45:47.957Z : /lib/rdk/uploadSTBLogs.sh: Device operational cert2 not supported for SKXI11ADS
+2026-01-16T01:45:48.228Z : /lib/rdk/uploadSTBLogs.sh: CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -w '%{http_code} %{remote_ip} %{remote_port}\n' -d "filename=D4DACDCB2D79_Logs_01-16-26-01-38AM.tgz"  -o "/tmp/httpresult.txt" "https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-S3.cgi" --connect-timeout 30 -m 10
+2026-01-16T01:45:49.629Z : /lib/rdk/uploadSTBLogs.sh: Curl Connected to ssr.xdp.eu-1.xcal.tv (184.120.27.240) port 443
+2026-01-16T01:45:49.735Z : /lib/rdk/uploadSTBLogs.sh: Connect with mTLS certificate from xPKI Curl return code: 0, http code: 200
+2026-01-16T01:45:49.877Z : /lib/rdk/uploadSTBLogs.sh: HttpLogUpload: Direct log upload Success: httpcode=200
+2026-01-16T01:45:49.983Z : /lib/rdk/uploadSTBLogs.sh: S3 upload query success. Got new S3 url to upload log
+2026-01-16T01:45:50.147Z : /lib/rdk/uploadSTBLogs.sh: Attempting --tlsv1.2 connection for Uploading Logs to S3 Amazon server
+2026-01-16T01:45:50.285Z : /lib/rdk/uploadSTBLogs.sh: CURL_CMD: curl --tlsv1.2 -w '%{http_code} %{remote_ip} %{remote_port}\n' -T "D4DACDCB2D79_Logs_01-16-26-01-38AM.tgz" -o "/tmp/httpresult.txt" "https://rdk-sky-it.s3.dualstack.eu-west-1.amazonaws.com/stblogs/unencrypted/2026/1/16/1/D4DACDCB2D79_Logs_01-16-26-01-38AM.tgz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZUIKWRPZFXPVQJLS%2F20260116%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260116T014549Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=4a9a03bd2744ff1136a12c6b1a03da8ff8c44ef7c9d1df4b99d91ccedc801205"" --connect-timeout 60 -m 120 -v
+2026-01-16T01:45:51.809Z : /lib/rdk/uploadSTBLogs.sh: Curl Connected to rdk-sky-it.s3.dualstack.eu-west-1.amazonaws.com (52.92.3.122) port 443
+2026-01-16T01:45:51.913Z : /lib/rdk/uploadSTBLogs.sh: Curl return code: 0, http code: 200
+2026-01-16T01:46:02.670Z : /lib/rdk/uploadSTBLogs.sh: Deleting from Previous Logs  Folder 
+2026-01-16T01:46:04.006Z : /lib/rdk/Start_MaintenanceTasks.sh: Log Upload Task execution done
+Retrieving CPU instantaneous information for telemetry support
+Retrieving virtual memory information for telemetry support
+Retrieving CPU Temperature for telemetry support

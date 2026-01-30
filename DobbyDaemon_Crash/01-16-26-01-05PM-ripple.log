@@ -1,0 +1,4 @@
+2026-01-15T02:46:34.442Z bash[4504]:  Checking for configuration files...
+2026-01-15T02:46:34.446Z bash[4504]:  Config file found: /var/sky/build/vendorConfig.json
+2026-01-15T02:46:34.493Z bash[4504]:  Extracted country from vendor config: uk
+2026-01-15T02:46:34.494Z bash[4504]:  Disabling Badger service.

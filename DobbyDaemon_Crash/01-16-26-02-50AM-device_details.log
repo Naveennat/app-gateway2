@@ -1,0 +1,144 @@
+2025-12-03T08:38:56.688Z "getDeviceDetails"[3258]:  /lib/rdk/getDeviceDetails.sh: line 217: echo: write error: Broken pipe
+2025-12-03T08:38:56.689Z "getDeviceDetails"[3258]:  UNKNOWN
+2025-12-03T08:38:56.709Z "getDeviceDetails"[3258]:  cat: can't open '/tmp/.manufacturer': No such file or directory
+2025-12-03T08:38:57.349Z "getDeviceDetails"[3258]:  cat: can't open '/tmp/.brandname': No such file or directory
+[2025-12-03 08:39:01] [INFO] <FlashApp: Version>:       ###########################################
+[2025-12-03 08:39:01] [INFO] <FlashApp: Version>:         FlashApp - V7.2  Oct 14 2024 14:20:45
+[2025-12-03 08:39:01] [INFO] <FlashApp: Version>:       ###########################################
+[2025-12-03 08:39:01] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2025-12-03 08:39:01] [INFO] <FlashApp: ShowMessage>: FlashApp is now locked 
+[2025-12-03 08:39:01] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:              Board Information
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>: ###########################################
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:             Chip ID : XIONE 1319 VS 
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:         HW Revision : CAD EP        
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:          HW Variant : SADI          
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:        Booted Image : PCI2          
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:           Booted Fw : MAIN          
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:         Boot Cookie : BANK_NONE     
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:                 PMI : SKXI11ADS     
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:     Current PCI Ver : 9.4.0/SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>:              Box is : UNSECURE      
+[2025-12-03 08:39:01] [INFO] <FlashApp: DumpBoardInfo>: ###########################################
+[XSign_New:470]:[0;32mXSIGN Version:[4.0.1] Build Stamp[Nov 23 2022]:[15:59:18]
+[39m
+[XSign_New:471]:[0;32mXSIGN OpenSSL Version: [OpenSSL 3.0.5 5 Jul 2022] 
+[39m
+[UNSIGNED_IMAGES_SUPORTED]
+[XSIGN_DEBUG_ENABLE]
+CertificateStore Region: [xione.uk]
+CertificateStore Size: [2864]
+[setupCertStore:2837]:[0;32mVerify with signingTime = [1767642583] [260105194943] Mon Jan  5 19:49:43 2026
+[39m
+[XSign_New:470]:[0;32mXSIGN Version:[4.0.1] Build Stamp[Nov 23 2022]:[15:59:18]
+[39m
+[XSign_New:471]:[0;32mXSIGN OpenSSL Version: [OpenSSL 3.0.5 5 Jul 2022] 
+[39m
+[UNSIGNED_IMAGES_SUPORTED]
+[XSIGN_DEBUG_ENABLE]
+CertificateStore Region: [xione.uk]
+CertificateStore Size: [2864]
+[setupCertStore:2837]:[0;32mVerify with signingTime = [1767642583] [260105194943] Mon Jan  5 19:49:43 2026
+[39m
+[XSign_New:470]:[0;32mXSIGN Version:[4.0.1] Build Stamp[Nov 23 2022]:[15:59:18]
+[39m
+[XSign_New:471]:[0;32mXSIGN OpenSSL Version: [OpenSSL 3.0.5 5 Jul 2022] 
+[39m
+[UNSIGNED_IMAGES_SUPORTED]
+[XSIGN_DEBUG_ENABLE]
+CertificateStore Region: [xione.uk]
+CertificateStore Size: [2864]
+[setupCertStore:2837]:[0;32mVerify with signingTime = [1670510943] [221208144903] Thu Dec  8 14:49:03 2022
+[39m
+[XSign_New:470]:[0;32mXSIGN Version:[4.0.1] Build Stamp[Nov 23 2022]:[15:59:18]
+[39m
+[XSign_New:471]:[0;32mXSIGN OpenSSL Version: [OpenSSL 3.0.5 5 Jul 2022] 
+[39m
+[UNSIGNED_IMAGES_SUPORTED]
+[XSIGN_DEBUG_ENABLE]
+CertificateStore Region: [xione.uk]
+CertificateStore Size: [2864]
+[setupCertStore:2837]:[0;32mVerify with signingTime = [1670510943] [221208144903] Thu Dec  8 14:49:03 2022
+[39m
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: PCI1 Manifest Info 
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PCI1 CodeVersionString [SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PCI1 Image size [225206272]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PCI1 Signing time stamp [260105194943]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PCI1 SVN value [6]
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: PCI2 Manifest Info 
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PCI2 CodeVersionString [SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PCI2 Image size [225206272]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PCI2 Signing time stamp [260105194943]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PCI2 SVN value [6]
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: PDRI Manifest Info 
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PDRI CodeVersionString [SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0.bin]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PDRI Image size [51650560]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PDRI Signing time stamp [221208144903]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: PDRI SVN value [0]
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: BDRI Manifest Info 
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: BDRI CodeVersionString [SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0.bin]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: BDRI Image size [51650560]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: BDRI Signing time stamp [221208144903]
+[2026-01-16 01:31:48] [INFO] <FlashApp: DumpBootBankInfo>: BDRI SVN value [0]
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: Compare Firmware banks 
+[2026-01-16 01:31:48] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [teeos    ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [bl31     ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [rtkparams] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [fwt      ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [pcpu     ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [video    ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [audio    ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [atfcert  ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [dtecert  ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [pcpucert ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [avcpucert] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [bl-sec   ] - MAIN and BKP - same
+[2026-01-16 01:31:48] [INFO] <FlashApp: CompareBanks>: [bl       ] - MAIN and BKP - same
+[0m[DEBUG]mfr_getRuntimeCookieData:[470]  Inside mfr_getRuntimeCookieData[0m
+[0m[DEBUG]printSHA256:[2172] Runtime calculated SHA256 is = [0m
+5A1EB3C345CD3FA4F02603CBEDD2ED93C349E229A24140115A694B7D152009C2
+[0m[DEBUG]printSHA256:[2174] SHA256 obtained from flash is = [0m
+5A1EB3C345CD3FA4F02603CBEDD2ED93C349E229A24140115A694B7D152009C2
+[0m[DEBUG]SkyCrypto_verifycert:[271] TA CertStore validation PASSED[0m
+[0m[DEBUG]printSHA256:[2172] Runtime calculated SHA256 is = [0m
+389914CBB3B6B96FC0232DFCF9E1CA2D36F566317DD933046BEE85278DD2933E
+[0m[DEBUG]printSHA256:[2174] SHA256 obtained from flash is = [0m
+389914CBB3B6B96FC0232DFCF9E1CA2D36F566317DD933046BEE85278DD2933E
+[0m[DEBUG]mfr_getMinSvn:[1107] min svn value is 6[0m
+[0m[DEBUG]SkyCrypto_verifycert:[271] TA CertStore validation PASSED[0m
+[0m[DEBUG]printSHA256:[2172] Runtime calculated SHA256 is = [0m
+389914CBB3B6B96FC0232DFCF9E1CA2D36F566317DD933046BEE85278DD2933E
+[0m[DEBUG]printSHA256:[2174] SHA256 obtained from flash is = [0m
+389914CBB3B6B96FC0232DFCF9E1CA2D36F566317DD933046BEE85278DD2933E
+[0m[DEBUG]mfr_getMinSvn:[1107] min svn value is 6[0m
+[0m[DEBUG]SkyCrypto_verifycert:[271] TA CertStore validation PASSED[0m
+[0m[DEBUG]printSHA256:[2172] Runtime calculated SHA256 is = [0m
+54135DE3030CC2E8320860CB14E2ED7D134CA094EBF7FB2DC90FB47CD889B684
+[0m[DEBUG]printSHA256:[2174] SHA256 obtained from flash is = [0m
+54135DE3030CC2E8320860CB14E2ED7D134CA094EBF7FB2DC90FB47CD889B684
+[0m[DEBUG]mfr_getMinSvn:[1107] min svn value is 0[0m
+[0m[DEBUG]SkyCrypto_verifycert:[271] TA CertStore validation PASSED[0m
+[0m[DEBUG]printSHA256:[2172] Runtime calculated SHA256 is = [0m
+54135DE3030CC2E8320860CB14E2ED7D134CA094EBF7FB2DC90FB47CD889B684
+[0m[DEBUG]printSHA256:[2174] SHA256 obtained from flash is = [0m
+54135DE3030CC2E8320860CB14E2ED7D134CA094EBF7FB2DC90FB47CD889B684
+[0m[DEBUG]mfr_getMinSvn:[1107] min svn value is 0[0m
+VideoFirmware:   [Video Firmware Version]    0x0bb94d37
+VideoFirmware:   [Video Binary  Built on]   Oct 16 2023 22:06:44
+AudioFirmware:  AudioVersion:036225e2a114a40a4a59fd56beddc46926f67bfc
+AudioFirmware:  AudioCommitDate:Sep 30 16:06:36 2025
+AudioFirmware:  CommonVersion:4bb322f753c2a6ea8b50147d1823165c10c2e423
+AudioFirmware:  BinaryCompiled:Oct  1 2025 10:42:06
+get_TEEOS_version
+TEEOS_version : 0-6f6f0012cd5e351fa0f9f281c3b08f3daf3c5b50.teeos=drm.
+2026-01-16T01:31:55.031Z "getDeviceDetails"[3258]:  getDeviceDetails: 01:31:55 up 0 min, Breaking the loop, Got IPAddress:192.168.68.153

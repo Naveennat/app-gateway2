@@ -1,0 +1,12 @@
+2025-12-03T08:38:51.656Z ---Received call to disk_threshold_check.sh ----
+2025-12-03T08:38:51.800Z Memory Before Closed FD cleanup: Filesystem                Size      Used Available Use% Mounted on
+/dev/mmcblk0p3          487.2M     62.8M    388.6M  14% /opt
+2025-12-03T08:38:51.825Z Bootup Time Cleanup..!
+2025-12-03T08:38:51.872Z 1. Completed the cleanup during the bootup/runtime at 2025-12-03 08:38:51
+2025-12-03T08:38:51.895Z /opt size 14 is OK to start
+2026-01-16T01:39:41.834Z ---Received call to disk_threshold_check.sh ----
+2026-01-16T01:39:42.409Z Memory Before Closed FD cleanup: Filesystem                Size      Used Available Use% Mounted on
+/dev/mmcblk0p3          487.2M     66.6M    384.8M  15% /opt
+2026-01-16T01:39:42.435Z Runtime Cleanup..!
+2026-01-16T01:39:42.458Z 2. Completed the cleanup during the bootup/runtime at 2026-01-16 01:39:42
+2026-01-16T01:39:42.477Z /opt size 15 is OK to start

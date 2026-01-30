@@ -1,0 +1,9 @@
+2025-12-03T08:38:52.152Z: /lib/rdk/bootversion-loader.sh: BOOT_NORMAL since Version is equal and MigrationStatus is MIGRATION_COMPLETED
+2025-12-03T08:38:52.179Z: /lib/rdk/bootversion-loader.sh: Update completed.
+2025-12-03T08:38:52.271Z: /lib/rdk/boot_FSR.sh: Exiting since this script is not intended for this platform
+2025-12-03T08:38:52.109Z: /lib/rdk/bootversion-loader.sh: Update previously completed, /opt/.bootversion file is backedup as /opt/.bootversion.bak
+2025-12-03T08:38:52.157Z: /lib/rdk/bootversion-loader.sh: Update in progress...
+2025-12-03T08:38:52.228Z: /lib/rdk/bootversion-loader.sh: MigrationStatus: NOT_NEEDED
+2025-12-03T08:38:52.253Z: /lib/rdk/bootversion-loader.sh: BOOT_NORMAL since Version is equal and MigrationStatus is MIGRATION_COMPLETED
+2025-12-03T08:38:52.274Z: /lib/rdk/bootversion-loader.sh: Update completed.
+2025-12-03T08:38:52.363Z: /lib/rdk/boot_FSR.sh: Exiting since this script is not intended for this platform

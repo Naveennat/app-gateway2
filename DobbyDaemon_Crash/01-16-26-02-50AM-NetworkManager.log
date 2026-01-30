@@ -1,0 +1,111 @@
+2025-12-03T08:38:54.589Z NetworkManager[3074]:  <info>  [1764751134.5891] NetworkManager (version 1.43.7) is starting... (asserts:100, boot:74e61b2f-4f23-44a4-828e-e08d6b78a7f8)
+2025-12-03T08:38:54.590Z NetworkManager[3074]:  <info>  [1764751134.5894] Read config: /etc/NetworkManager/NetworkManager.conf (etc: 10-unmanaged-devices.conf, 95-logging.conf, nm-connectivity.conf)
+2025-12-03T08:38:54.590Z NetworkManager[3074]:  <warn>  [1764751134.5894] config: unknown key 'wps-method' in section [device] of file '/etc/NetworkManager/NetworkManager.conf'
+2025-12-03T08:38:54.659Z NetworkManager[3074]:  <info>  [1764751134.6592] manager[0x2b4900]: monitoring kernel firmware directory '/lib/firmware'.
+2025-12-03T08:38:54.694Z NetworkManager[3074]:  <info>  [1764751134.6852] hostname: hostname: couldn't get property from hostnamed
+2025-12-03T08:38:54.694Z NetworkManager[3074]:  <info>  [1764751134.6858] hostname: static hostname changed from (none) to "xione-uk"
+2025-12-03T08:38:54.694Z NetworkManager[3074]:  <info>  [1764751134.6872] dns-mgr: init: dns=dnsmasq,systemd-resolved rc-manager=symlink (auto), plugin=dnsmasq
+2025-12-03T08:38:54.695Z NetworkManager[3074]:  <info>  [1764751134.6880] manager[0x2b4900]: rfkill: Wi-Fi hardware radio set enabled
+2025-12-03T08:38:54.695Z NetworkManager[3074]:  <info>  [1764751134.6881] manager[0x2b4900]: rfkill: WWAN hardware radio set enabled
+2025-12-03T08:38:54.715Z NetworkManager[3074]:  <info>  [1764751134.7156] Loaded device plugin: NMAtmManager (/usr/lib/NetworkManager/1.43.7/libnm-device-plugin-adsl.so)
+2025-12-03T08:38:54.729Z NetworkManager[3074]:  <info>  [1764751134.7290] Loaded device plugin: NMWifiFactory (/usr/lib/NetworkManager/1.43.7/libnm-device-plugin-wifi.so)
+2025-12-03T08:38:54.729Z NetworkManager[3074]:  <info>  [1764751134.7294] manager: rfkill: Wi-Fi enabled by radio killswitch; enabled by state file
+2025-12-03T08:38:54.729Z NetworkManager[3074]:  <info>  [1764751134.7297] manager: rfkill: WWAN enabled by radio killswitch; enabled by state file
+2025-12-03T08:38:54.730Z NetworkManager[3074]:  <info>  [1764751134.7299] manager: Networking is enabled by state file
+2025-12-03T08:38:54.742Z NetworkManager[3074]:  <info>  [1764751134.7422] settings: Loaded settings plugin: ifupdown ("/usr/lib/NetworkManager/1.43.7/libnm-settings-plugin-ifupdown.so")
+2025-12-03T08:38:54.742Z NetworkManager[3074]:  <info>  [1764751134.7424] settings: Loaded settings plugin: keyfile (internal)
+2025-12-03T08:38:54.742Z NetworkManager[3074]:  <info>  [1764751134.7425] ifupdown: management mode: managed
+2025-12-03T08:38:54.743Z NetworkManager[3074]:  <info>  [1764751134.7435] ifupdown: interfaces file /etc/network/interfaces doesn't exist
+2025-12-03T08:38:54.788Z NetworkManager[3074]:  <info>  [1764751134.7880] dhcp: init: Using DHCP client 'internal'
+2025-12-03T08:38:54.789Z NetworkManager[3074]:  <info>  [1764751134.7890] manager: (lo): new Loopback device (/org/freedesktop/NetworkManager/Devices/1)
+2025-12-03T08:38:54.792Z NetworkManager[3074]:  <info>  [1764751134.7928] manager: (eth0): new Ethernet device (/org/freedesktop/NetworkManager/Devices/2)
+2025-12-03T08:38:54.794Z NetworkManager[3074]:  <info>  [1764751134.7946] device (eth0): state change: unmanaged -> unavailable (reason 'managed', sys-iface-state: 'external')
+2025-12-03T08:38:55.028Z NetworkManager[3074]:  <warn>  [1764751135.0278] device (eth0): connectivity: "/proc/sys/net/ipv4/conf/eth0/rp_filter" is set to "1". This might break connectivity checking for IPv4 on this device
+2025-12-03T08:38:55.031Z NetworkManager[3074]:  <info>  [1764751135.0315] manager: (ip6_vti0): new IPTunnel device (/org/freedesktop/NetworkManager/Devices/3)
+2025-12-03T08:38:55.035Z NetworkManager[3074]:  <info>  [1764751135.0352] manager: (ip6tnl0): new IPTunnel device (/org/freedesktop/NetworkManager/Devices/4)
+2025-12-03T08:38:55.039Z NetworkManager[3074]:  <info>  [1764751135.0391] manager: (ip_vti0): new IPTunnel device (/org/freedesktop/NetworkManager/Devices/5)
+2025-12-03T08:38:55.054Z NetworkManager[3074]:  <info>  [1764751135.0546] bus-manager: acquired D-Bus service "org.freedesktop.NetworkManager"
+2025-12-03T08:38:55.059Z NetworkManager[3074]:  <info>  [1764751135.0595] rfkill0: found Wi-Fi radio killswitch (at /sys/devices/platform/980a0000.pcie2/pci0001:01/0001:01:00.0/ieee80211/phy0/rfkill0) (driver cnss_pci)
+2025-12-03T08:38:55.066Z NetworkManager[3074]:  <info>  [1764751135.0665] device (wlan0): driver supports Access Point (AP) mode
+2025-12-03T08:38:55.069Z NetworkManager[3074]:  <info>  [1764751135.0693] manager: (wlan0): new 802.11 Wi-Fi device (/org/freedesktop/NetworkManager/Devices/6)
+2025-12-03T08:38:55.072Z NetworkManager[3074]:  <info>  [1764751135.0720] device (wlan1): driver supports Access Point (AP) mode
+2025-12-03T08:38:55.075Z NetworkManager[3074]:  <info>  [1764751135.0753] manager: (wlan1): new 802.11 Wi-Fi device (/org/freedesktop/NetworkManager/Devices/7)
+2025-12-03T08:38:55.083Z NetworkManager[3074]:  <info>  [1764751135.0832] device (wlan0): state change: unmanaged -> unavailable (reason 'managed', sys-iface-state: 'external')
+2025-12-03T08:38:55.111Z NetworkManager[3074]:  <warn>  [1764751135.1109] device (wlan0): connectivity: "/proc/sys/net/ipv4/conf/wlan0/rp_filter" is set to "1". This might break connectivity checking for IPv4 on this device
+2025-12-03T08:38:55.344Z NetworkManager[3074]:  <info>  [1764751135.3445] ifupdown: interfaces file /etc/network/interfaces doesn't exist
+2025-12-03T08:38:55.351Z NetworkManager[3074]:  <info>  [1764751135.3511] audit: op="connections-reload" pid=3188 uid=0 result="success"
+2025-12-03T08:38:58.185Z NetworkManager[3074]:  <info>  [1764751138.1846] device (wlan0): supplicant interface state: internal-starting -> disconnected
+2025-12-03T08:38:58.186Z NetworkManager[3074]:  <info>  [1764751138.1859] Wi-Fi P2P device controlled by interface wlan0 created
+2025-12-03T08:38:58.187Z NetworkManager[3074]:  <info>  [1764751138.1875] manager: (p2p-dev-wlan0): new 802.11 Wi-Fi P2P device (/org/freedesktop/NetworkManager/Devices/8)
+2025-12-03T08:38:58.189Z NetworkManager[3074]:  <info>  [1764751138.1890] device (wlan0): state change: unavailable -> disconnected (reason 'supplicant-available', sys-iface-state: 'managed')
+2026-01-16T01:31:48.270Z NetworkManager[3074]:  <info>  [1768527108.2690] policy: auto-activating connection 'BT-22ACSH' (07f73780-9623-4cdc-b803-2b2c9e15597a)
+2026-01-16T01:31:48.274Z NetworkManager[3074]:  <info>  [1768527108.2748] device (wlan0): Activation: starting connection 'BT-22ACSH' (07f73780-9623-4cdc-b803-2b2c9e15597a)
+2026-01-16T01:31:48.275Z NetworkManager[3074]:  <info>  [1768527108.2755] device (wlan0): state change: disconnected -> prepare (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:48.277Z NetworkManager[3074]:  <info>  [1768527108.2777] manager: NetworkManager state is now CONNECTING
+2026-01-16T01:31:48.297Z NetworkManager[3074]:  <info>  [1768527108.2970] device (wlan0): state change: prepare -> config (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:48.306Z NetworkManager[3074]:  <info>  [1768527108.3067] device (wlan0): Activation: (wifi) access point 'BT-22ACSH' has security, but secrets are required.
+2026-01-16T01:31:48.307Z NetworkManager[3074]:  <info>  [1768527108.3069] device (wlan0): state change: config -> need-auth (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:48.312Z NetworkManager[3074]:  <info>  [1768527108.3122] sup-iface[96ebd4beeb9f51c6,0,wlan0]: wps: type pbc start...
+2026-01-16T01:31:48.366Z NetworkManager[3074]:  <info>  [1768527108.3667] device (wlan0): supplicant interface state: disconnected -> scanning
+2026-01-16T01:31:48.376Z NetworkManager[3074]:  <info>  [1768527108.3737] device (p2p-dev-wlan0): supplicant management interface state: disconnected -> scanning
+2026-01-16T01:31:48.406Z NetworkManager[3074]:  <info>  [1768527108.4062] device (wlan0): state change: need-auth -> prepare (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:48.449Z NetworkManager[3074]:  <info>  [1768527108.4494] device (wlan0): state change: prepare -> config (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:48.459Z NetworkManager[3074]:  <info>  [1768527108.4596] device (wlan0): Activation: (wifi) connection 'BT-22ACSH' has security, and secrets exist.  No new secrets needed.
+2026-01-16T01:31:48.460Z NetworkManager[3074]:  <info>  [1768527108.4598] Config: added 'ssid' value 'BT-22ACSH'
+2026-01-16T01:31:48.460Z NetworkManager[3074]:  <info>  [1768527108.4599] Config: added 'scan_ssid' value '1'
+2026-01-16T01:31:48.460Z NetworkManager[3074]:  <info>  [1768527108.4599] Config: added 'bgscan' value 'simple:30:-65:300'
+2026-01-16T01:31:48.460Z NetworkManager[3074]:  <info>  [1768527108.4600] Config: added 'key_mgmt' value 'WPA-PSK WPA-PSK-SHA256 FT-PSK'
+2026-01-16T01:31:48.460Z NetworkManager[3074]:  <info>  [1768527108.4600] Config: added 'psk' value '<hidden>'
+2026-01-16T01:31:48.808Z NetworkManager[3074]:  <info>  [1768527108.8080] device (wlan0): supplicant interface state: scanning -> associating
+2026-01-16T01:31:48.808Z NetworkManager[3074]:  <info>  [1768527108.8081] device (p2p-dev-wlan0): supplicant management interface state: scanning -> associating
+2026-01-16T01:31:48.995Z NetworkManager[3074]:  <info>  [1768527108.9676] device (wlan0): supplicant interface state: associating -> 4way_handshake
+2026-01-16T01:31:48.997Z NetworkManager[3074]:  <info>  [1768527108.9678] device (p2p-dev-wlan0): supplicant management interface state: associating -> 4way_handshake
+2026-01-16T01:31:49.038Z NetworkManager[3074]:  <info>  [1768527109.0240] device (wlan0): supplicant interface state: 4way_handshake -> completed
+2026-01-16T01:31:49.038Z NetworkManager[3074]:  <info>  [1768527109.0241] device (wlan0): Activation: (wifi) Stage 2 of 5 (Device Configure) successful. Connected to wireless network "BT-22ACSH"
+2026-01-16T01:31:49.039Z NetworkManager[3074]:  <info>  [1768527109.0241] device (p2p-dev-wlan0): supplicant management interface state: 4way_handshake -> completed
+2026-01-16T01:31:49.039Z NetworkManager[3074]:  <info>  [1768527109.0246] device (wlan0): state change: config -> ip-config (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:49.095Z NetworkManager[3074]:  <info>  [1768527109.0953] dhcp4 (wlan0): activation: beginning transaction (timeout in 45 seconds)
+2026-01-16T01:31:49.193Z NetworkManager[3074]:  <info>  [1768527109.1926] dhcp4 (wlan0): state changed new lease, address=192.168.68.153
+2026-01-16T01:31:49.195Z NetworkManager[3074]:  <info>  [1768527109.1945] policy: set 'BT-22ACSH' (wlan0) as default for IPv4 routing and DNS
+2026-01-16T01:31:49.198Z NetworkManager[3074]:  <info>  [1768527109.1987] dnsmasq: starting /usr/bin/dnsmasq
+2026-01-16T01:31:49.313Z NetworkManager[3074]:  <warn>  [1768527109.3117] dns-mgr: could not commit DNS changes: Failed to create file “/etc/resolv.conf.H5VCJ3”: Read-only file system
+2026-01-16T01:31:49.470Z NetworkManager[3074]:  <info>  [1768527109.4695] device (wlan0): state change: ip-config -> ip-check (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:49.555Z NetworkManager[3074]:  <info>  [1768527109.5534] device (wlan0): state change: ip-check -> secondaries (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:49.556Z NetworkManager[3074]:  <info>  [1768527109.5541] device (wlan0): state change: secondaries -> activated (reason 'none', sys-iface-state: 'managed')
+2026-01-16T01:31:49.556Z NetworkManager[3074]:  <info>  [1768527109.5552] manager: NetworkManager state is now CONNECTED_SITE
+2026-01-16T01:31:49.598Z NetworkManager[3074]:  <info>  [1768527109.5928] device (wlan0): Activation: successful, device activated.
+2026-01-16T01:31:49.627Z NetworkManager[3074]:  <info>  [1768527109.6140] manager: startup complete
+2026-01-16T01:31:49.879Z NetworkManager[3074]:  <info>  [1768527109.8790] connectivity: Invoking D-Bus method NotifyConnected...
+2026-01-16T01:31:49.881Z NetworkManager[3074]:  <info>  [1768527109.8812] manager: NetworkManager state is now CONNECTED_GLOBAL
+2026-01-16T01:31:49.902Z NetworkManager[3074]:  <info>  [1768527109.8987] connectivity: Connectivity FULL: connectivity check interval set to 0 seconds
+2026-01-16T01:31:50.938Z NetworkManager[3074]:  <info>  [1768527110.9372] dhcp6 (wlan0): activation: beginning transaction (timeout in 45 seconds)
+2026-01-16T01:31:50.946Z NetworkManager[3074]:  <info>  [1768527110.9437] policy: set 'BT-22ACSH' (wlan0) as default for IPv6 routing and DNS
+2026-01-16T01:38:48.841Z NetworkManager[3074]:  <info>  [1768527528.8394] manager: (dobby0): new Bridge device (/org/freedesktop/NetworkManager/Devices/9)
+2026-01-16T01:38:48.962Z NetworkManager[3074]:  <info>  [1768527528.9558] manager: (dobby_tap0): new Tun device (/org/freedesktop/NetworkManager/Devices/10)
+2026-01-16T01:38:49.041Z NetworkManager[3074]:  <info>  [1768527529.0402] manager: (veth0): new Veth device (/org/freedesktop/NetworkManager/Devices/11)
+2026-01-16T01:38:49.156Z NetworkManager[3074]:  <info>  [1768527529.1546] device (veth0): carrier: link connected
+2026-01-16T01:38:49.180Z NetworkManager[3074]:  <info>  [1768527529.1798] device (dobby0): carrier: link connected
+2026-01-16T01:38:49.873Z NetworkManager[3074]:  <info>  [1768527529.8712] manager: (veth1): new Veth device (/org/freedesktop/NetworkManager/Devices/12)
+2026-01-16T01:38:49.982Z NetworkManager[3074]:  <info>  [1768527529.9822] device (veth1): carrier: link connected
+2026-01-16T01:38:59.174Z NetworkManager[3074]:  <info>  [1768527539.1684] manager: (veth2): new Veth device (/org/freedesktop/NetworkManager/Devices/13)
+2026-01-16T01:38:59.291Z NetworkManager[3074]:  <info>  [1768527539.2894] device (veth2): carrier: link connected
+2026-01-16T01:39:10.983Z NetworkManager[3074]:  <info>  [1768527550.9617] device (wlan0): supplicant interface state: completed -> 4way_handshake
+2026-01-16T01:39:10.983Z NetworkManager[3074]:  <info>  [1768527550.9618] device (p2p-dev-wlan0): supplicant management interface state: completed -> 4way_handshake
+2026-01-16T01:39:11.113Z NetworkManager[3074]:  <info>  [1768527551.0726] device (wlan0): supplicant interface state: 4way_handshake -> completed
+2026-01-16T01:39:11.113Z NetworkManager[3074]:  <info>  [1768527551.0758] device (wlan0): ip:dhcp4: restarting
+2026-01-16T01:39:11.139Z NetworkManager[3074]:  <info>  [1768527551.1371] dhcp4 (wlan0): canceled DHCP transaction
+2026-01-16T01:39:11.139Z NetworkManager[3074]:  <info>  [1768527551.1372] dhcp4 (wlan0): activation: beginning transaction (timeout in 45 seconds)
+2026-01-16T01:39:11.139Z NetworkManager[3074]:  <info>  [1768527551.1373] dhcp4 (wlan0): state changed no lease
+2026-01-16T01:39:11.139Z NetworkManager[3074]:  <info>  [1768527551.1375] dhcp4 (wlan0): activation: beginning transaction (timeout in 45 seconds)
+2026-01-16T01:39:11.140Z NetworkManager[3074]:  <info>  [1768527551.1379] device (wlan0): ip:dhcp6: restarting
+2026-01-16T01:39:11.140Z NetworkManager[3074]:  <info>  [1768527551.1380] dhcp6 (wlan0): canceled DHCP transaction
+2026-01-16T01:39:11.140Z NetworkManager[3074]:  <info>  [1768527551.1380] dhcp6 (wlan0): state changed no lease
+2026-01-16T01:39:11.140Z NetworkManager[3074]:  <info>  [1768527551.1382] dhcp6 (wlan0): activation: beginning transaction (timeout in 45 seconds)
+2026-01-16T01:39:11.140Z NetworkManager[3074]:  <info>  [1768527551.1384] device (p2p-dev-wlan0): supplicant management interface state: 4way_handshake -> completed
+2026-01-16T01:39:11.437Z NetworkManager[3074]:  <info>  [1768527551.4370] dhcp4 (wlan0): state changed new lease, address=192.168.68.153
+2026-01-16T01:43:14.304Z NetworkManager[3074]:  <info>  [1768527794.3041] manager: (veth3): new Veth device (/org/freedesktop/NetworkManager/Devices/14)
+2026-01-16T01:43:14.393Z NetworkManager[3074]:  <info>  [1768527794.3931] device (veth3): carrier: link connected
+2026-01-16T01:43:42.904Z NetworkManager[3074]:  <info>  [1768527822.9033] manager: (veth4): new Veth device (/org/freedesktop/NetworkManager/Devices/15)
+2026-01-16T01:43:42.917Z NetworkManager[3074]:  <info>  [1768527822.9175] device (veth4): carrier: link connected
+2026-01-16T02:26:58.505Z NetworkManager[3074]:  <info>  [1768530418.5043] device (dobby0): bridge port veth0 was detached
+2026-01-16T02:27:07.242Z NetworkManager[3074]:  <info>  [1768530427.2413] device (dobby0): bridge port veth2 was detached

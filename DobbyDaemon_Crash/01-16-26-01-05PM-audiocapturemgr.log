@@ -1,0 +1,11 @@
+2025-12-03T08:39:01.643Z audiocapturemgr[4295]:  acm_session_mgr[115] - INFO: Enter
+2025-12-03T08:39:01.646Z audiocapturemgr[4295]:  q_mgr[168] - INFO: Creating instance 0x0x31e80.
+2025-12-03T08:39:01.646Z audiocapturemgr[4295]:   new AudioCapturer()Handle is not NULL
+2025-12-03T08:39:01.646Z audiocapturemgr[4295]:  q_mgr[182] - INFO: open() result is 0x0
+2025-12-03T08:39:01.646Z audiocapturemgr[4295]:  calculate_data_rate[153] - INFO: Audio properties: 48000kHz, 16 bit, 2 channel, byte rate: 192000
+2025-12-03T08:39:01.646Z audiocapturemgr[4295]:  q_mgr[193] - INFO: Max incoming queue size is now 703
+2025-12-03T08:39:01.646Z audiocapturemgr[4295]:  drop_root[39] - INFO: NonRoot feature is enabled
+2025-12-03T08:39:01.647Z audiocapturemgr[4295]:  activate[155] - INFO: Enter
+2025-12-03T08:39:01.647Z audiocapturemgr[4295]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = audiocapturemgr
+2025-12-03T08:39:01.682Z audiocapturemgr[4295]:  setting init done
+2025-12-03T08:39:01.682Z audiocapturemgr[4295]:  Registering audiocapturemgr

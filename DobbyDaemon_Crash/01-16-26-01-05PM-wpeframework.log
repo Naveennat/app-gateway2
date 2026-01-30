@@ -1,0 +1,744 @@
+2026-01-16T10:28:42.375Z WPEFramework[3847]:  [4196] ERROR [ThermalMfrImpl.h:241] GetTemperature: Failed IARM_BUS_MFRLIB_API_GetTemperature
+2026-01-16T10:28:42.375Z WPEFramework[3847]:  [4196] INFO [ThermalController.cpp:450] pollThermalLevels: Warning - Failed to retrieve temperature from OEM
+2026-01-16T10:28:42.407Z WPEFramework[3847]:  IARM_Bus_Call provider returned error (3) for the method mfrGetTemperature
+2026-01-16T10:28:42.407Z WPEFramework[3847]:  ResOverride VideoOutputPortConfig::getSupportedResolutions isIgnoreEdid:1
+2026-01-16T10:28:42.407Z WPEFramework[3847]:  _supportedResolutions cache updated
+2026-01-16T10:28:42.407Z WPEFramework[3847]:  [3870] WARN [DisplaySettings.cpp:1163] getCurrentResolution: Exception caughtvideoDisplay=HDMI0 code=0 message=Illegal Argument
+2026-01-16T10:28:42.407Z WPEFramework[3847]:  [3870] INFO [DisplaySettings.cpp:1166] getCurrentResolution: response={"success":false}
+2026-01-16T10:28:43.761Z WPEFramework[3847]:  10:28:43.761023 [Info ] [PID=4200] [TID=4208] [NetworkManagerImplementation.cpp +1044] processMonitor : VSS = 145012 KB   RSS = 18264 KB
+2026-01-16T10:28:44.004Z WPEFramework[3847]:  [4199] INFO [SystemServices.cpp:4842] _systemStateChanged: len = 644
+2026-01-16T10:28:44.004Z WPEFramework[3847]:  [4199] WARN [SystemServices.cpp:4871] _systemStateChanged: Clock is set.
+2026-01-16T10:28:44.004Z WPEFramework[3847]:  [4199] INFO [SystemServices.cpp:2762] onClockSet: Notify onSystemClockSet {}
+2026-01-16T10:28:46.839Z WPEFramework[3847]:  [3860] INFO [UtilsSynchro.hpp:52] operator(): calling getCurrentResolution with lock: 0xa2c02b18
+2026-01-16T10:28:46.839Z WPEFramework[3847]:  [3860] INFO [DisplaySettings.cpp:1092] getCurrentResolution: params={"videoDisplay":"HDMI0"}
+2026-01-16T10:28:46.865Z WPEFramework[3847]:  ResOverride VideoOutputPortConfig::getSupportedResolutions isIgnoreEdid:1
+2026-01-16T10:28:46.865Z WPEFramework[3847]:  _supportedResolutions cache updated
+2026-01-16T10:28:46.866Z WPEFramework[3847]:  [3860] WARN [DisplaySettings.cpp:1163] getCurrentResolution: Exception caughtvideoDisplay=HDMI0 code=1 message=Illegal Argument
+2026-01-16T10:28:46.866Z WPEFramework[3847]:  [3860] INFO [DisplaySettings.cpp:1166] getCurrentResolution: response={"success":false}
+2026-01-16T10:28:48.248Z WPEFramework[3847]:  Power-up Tuner Module
+2026-01-16T10:28:48.424Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1372: Removing the no RCUs paired flag if it exists
+2026-01-16T10:28:48.425Z ble_wakeup_enabler[19431]:  Bluetooth_WakeUpEnabler.c +1372: Removing the no RCUs paired flag if it exists
+2026-01-16T10:28:48.425Z ble_wakeup_enabler[19431]:  Bluetooth_WakeUpEnabler.c +1406: Taking down the adapter and bringing it back up to clear the wakeup configuration
+2026-01-16T10:28:48.426Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1406: Taking down the adapter and bringing it back up to clear the wakeup configuration
+2026-01-16T10:28:48.545Z WPEFramework[3847]:  PING 192.168.1.1 (192.168.1.1): 56 data bytes
+2026-01-16T10:28:48.545Z WPEFramework[3847]:  64 bytes from 192.168.1.1: seq=0 ttl=64 time=10.326 ms
+2026-01-16T10:28:48.545Z WPEFramework[3847]:  --- 192.168.1.1 ping statistics ---
+2026-01-16T10:28:48.545Z WPEFramework[3847]:  1 packets transmitted, 1 packets received, 0% packet loss
+2026-01-16T10:28:48.545Z WPEFramework[3847]:  round-trip min/avg/max/mdev = 10.326/10.326/10.326/0.000 ms
+2026-01-16T10:28:48.547Z WPEFramework[3847]:  [3862] INFO [DeepSleepImpl.h:123] SetDeepSleep: Device wake-up from Deepsleep Mode! GPIOWakeup: 0, networkStandby: 0
+2026-01-16T10:28:48.547Z WPEFramework[3847]:  [3862] INFO [DeepSleepController.cpp:326] enterDeepSleepNow: Device entered to Deep sleep Mode..
+2026-01-16T10:28:48.676Z WPEFramework[3847]:  [3862] INFO [DeepSleepImpl.h:158] GetLastWakeupReason: wakeupReason: TIMER, status:Success
+2026-01-16T10:28:48.676Z WPEFramework[3847]:  [3862] ERROR [DeepSleepController.cpp:356] deepSleepTimerWakeup: DeepSleep wakeupReason: TIMER, timeout: 60945s, elapsed: 45s, pending: 60899961ms
+2026-01-16T10:28:48.676Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:929] onDeepSleepTimerWakeup: >> DeepSleep timedout: 60945
+2026-01-16T10:28:48.676Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:95] dispatchDeepSleepTimeoutEvent: >>
+2026-01-16T10:28:48.676Z WPEFramework[3847]:  [3862] INFO [PowerManager.h:113] OnDeepSleepTimeout: wakeupTimeout 60945
+2026-01-16T10:28:48.677Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:101] dispatchDeepSleepTimeoutEvent: client 0x1f735c took 0ms to process IDeepSleepTimeout event
+2026-01-16T10:28:48.677Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:104] dispatchDeepSleepTimeoutEvent: <<
+2026-01-16T10:28:48.677Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:933] onDeepSleepTimerWakeup: Set Device to light sleep on Deep Sleep timer expiry
+2026-01-16T10:28:48.677Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:352] SetPowerState: >> newState: LIGHT_SLEEP, reason DeepSleep timedout
+2026-01-16T10:28:48.677Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:356] SetPowerState: selfLock Acquired
+2026-01-16T10:28:48.677Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:286] GetPowerState: >>
+2026-01-16T10:28:48.677Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:294] GetPowerState: << currentState : DEEP_SLEEP, prevState : LIGHT_SLEEP, errorCode = 0
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:386] SetPowerState: Device wakeup from DEEP_SLEEP to LIGHT_SLEEP
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [DeepSleepImpl.h:139] DeepSleepWakeup: Device resumed from Deep sleep Mode, status :Success
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [DeepSleepController.cpp:242] Deactivate: Deepsleep wakeup completed, errorCode: 0
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:393] SetPowerState: There is a state change request in progress for DEEP_SLEEP state.
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] WARN [PowerManagerImplementation.cpp:400] SetPowerState: Power state change is already in progress, cancel old request
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [AckController.h:93] AckAwait: Append clientId: 2, transactionId: 12, pending 1
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [AckController.h:93] AckAwait: Append clientId: 1, transactionId: 12, pending 2
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:472] submitPowerModePreChangeEvent: >> currentState : DEEP_SLEEP, newState : LIGHT_SLEEP, transactionId : 12
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:481] submitPowerModePreChangeEvent: << currentState : DEEP_SLEEP, newState : LIGHT_SLEEP, transactionId : 12
+2026-01-16T10:28:48.678Z WPEFramework[3847]:  [3862] INFO [AckController.h:194] Schedule: time offset: 0ms, pending: 2
+2026-01-16T10:28:48.679Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:435] operator(): >> CompletionHandler isTimedout: 0, isAborted: 0
+2026-01-16T10:28:48.679Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:819] powerModePreChangeCompletionHandler: >> keyCode: 0, powerState: LIGHT_SLEEP
+2026-01-16T10:28:48.679Z WPEFramework[3847]:  [3873] INFO [PowerManager.h:107] OnPowerModePreChange: currentState 5, newState 4, transactionId 12, stateChangeAfter 0 sec
+2026-01-16T10:28:48.679Z WPEFramework[3847]:  [3866] INFO [PowerManagerImplementation.cpp:849] DelayPowerModeChangeBy: >> clientId: 2, transactionId: 12, delayPeriod: 5
+2026-01-16T10:28:48.679Z WPEFramework[3847]:  [3866] INFO [AckController.h:279] Reschedule: clientId: 2, transactionId: 12, offset: 5000, status: 0
+2026-01-16T10:28:48.679Z WPEFramework[3847]:  [3866] INFO [PowerManagerImplementation.cpp:858] DelayPowerModeChangeBy: << errorcode: 0
+2026-01-16T10:28:48.679Z WPEFramework[3847]:  [3859] INFO [PowerManagerImplementation.cpp:830] PowerModePreChangeComplete: >> clientId: 1, transactionId: 12
+2026-01-16T10:28:48.680Z WPEFramework[3847]:  [3859] INFO [AckController.h:131] Ack: AckController::Ack: clientId: 1, transactionId: 12, status: 0, pending 1
+2026-01-16T10:28:48.680Z WPEFramework[3847]:  [3859] INFO [PowerManagerImplementation.cpp:840] PowerModePreChangeComplete: << errorcode: 0
+2026-01-16T10:28:48.720Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:81] dispatchPowerModeChangedEvent: >>
+2026-01-16T10:28:48.721Z WPEFramework[3847]:  [3862] INFO [PowerManager.h:101] OnPowerModeChanged: currentState 5, newState 4
+2026-01-16T10:28:48.721Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0x1f7358 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0x1e3e68 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac306bd8 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] WARN [SystemServices.cpp:757] onPowerModeChanged: IARM Event triggered for PowerStateChange.                    Old State DEEP_SLEEP, New State: LIGHT_SLEEP
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] WARN [SystemServices.cpp:1046] onSystemPowerStateChanged: power state changed from 'DEEP_SLEEP' to 'LIGHT_SLEEP'
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] INFO [SystemServices.cpp:1047] onSystemPowerStateChanged: Notify onSystemPowerStateChanged {"powerState":"LIGHT_SLEEP","currentPowerState":"DEEP_SLEEP"}
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac50879c took 0ms to process IModeChanged event
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] WARN [DisplaySettings.cpp:4235] onPowerModeChanged: onPowerModeChanged: State Changed 5 --> 4
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] INFO [DisplaySettings.cpp:4259] onPowerModeChanged: onPowerModeChanged: Current Power state: 4
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac515550 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] INFO [FrontPanelImplementation.cpp:202] onPowerModeChanged: setPowerStatus false
+2026-01-16T10:28:48.728Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac500db8 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.729Z WPEFramework[3847]:  [3862] INFO [HdmiCecSourceImplementation.cpp:735] onPowerModeChanged: Event IARM_BUS_PWRMGR_EVENT_MODECHANGED: State Changed 5 -- > 4
+2026-01-16T10:28:48.729Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac610ae8 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.729Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xb4c26548 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.729Z WPEFramework[3847]:  [3862] INFO [SecManager.cpp:270] onPowerModeChanged: SecManager PwrMgr Event triggered for PowerStateChange currentState 5, newState: 4
+2026-01-16T10:28:48.729Z WPEFramework[3847]:  [DEBUG]suspend_system:[318] mem written into '/sys/power/state' successfully
+2026-01-16T10:28:48.733Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[632] After writing 'mem' to '/sys/power/state' for suspend-to-RAM
+2026-01-16T10:28:48.733Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[635] Clearing the wake on BLE configuration on Bluetooth
+2026-01-16T10:28:48.733Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[641] Executed 'configure_bt_on_resume.sh' executed successfully with return value 0
+2026-01-16T10:28:48.733Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[649] Network Standby mode enabled after resume :-[1]
+2026-01-16T10:28:48.733Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[651] Network Standby mode internal flag after resume :-[1]
+2026-01-16T10:28:48.734Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[656] Configuring Tuner module
+2026-01-16T10:28:48.735Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[662] Executed 'configure_mediarite_on_resume.sh' executed successfully with return value 0
+2026-01-16T10:28:48.735Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[702] Fetching resume reason: popen is successful
+2026-01-16T10:28:48.735Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1203] Entering function..
+2026-01-16T10:28:48.735Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1240] Current GPIO wake-up reason is 5
+2026-01-16T10:28:48.736Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[752] Resumed without user interface
+2026-01-16T10:28:48.736Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[794] Box wokeup from DS with NSM on mode so calling 'arp_ping_after_ds_wakeup'
+2026-01-16T10:28:48.736Z WPEFramework[3847]:  [DEBUG]arp_ping_after_ds_wakeup:[364] Ping successful: Internet is available
+2026-01-16T10:28:48.736Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[798] SKY-XIONE: [798]
+2026-01-16T10:28:48.736Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[827] Enter
+2026-01-16T10:28:48.737Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[856] Fetching resume reason: popen is successful
+2026-01-16T10:28:48.737Z WPEFramework[3847]:  [DEBUG]fetchWakeupMapping:[1019] Entering function..
+2026-01-16T10:28:48.737Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1203] Entering function..
+2026-01-16T10:28:48.737Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1240] Current GPIO wake-up reason is 5
+2026-01-16T10:28:48.737Z WPEFramework[3847]:  [DEBUG]fetchWakeupMapping:[1046] Wakeup reason mapping value is [5]
+2026-01-16T10:28:48.738Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[944] False packet wake-up due to Wake on WLAN
+2026-01-16T10:28:48.738Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[1000] Wakeup reason value:-[6]
+2026-01-16T10:28:48.738Z WPEFramework[3847]:  [DEBUG]restore_governor:[431] [restore_governor] Governor already 'ondemand'; no change
+2026-01-16T10:28:48.738Z WPEFramework[3847]:  [DEBUG]PLAT_DS_DeepSleepWakeup:[815] PLAT_DS_DeepSleepWakeup: Nothing done,returning SUCCESS
+2026-01-16T10:28:48.738Z WPEFramework[3847]:   
+2026-01-16T10:28:48.739Z WPEFramework[3847]:  PLAT_API_SetPowerState: Received request to change powerstate to state 3SetPowerState: 3_syscmd enter: echo 3 > /opt/lastPowerState
+2026-01-16T10:28:48.739Z WPEFramework[3847]:  _syscmd: exit
+2026-01-16T10:28:48.739Z WPEFramework[3847]:  PLAT_API_SetPowerState:Successfully changed powerstate to state 3[ta_open_session][PID F07] TEEC_Opensession: g_init:11 g_ctx.fd:44 g_sess:0xac621070
+2026-01-16T10:28:48.739Z WPEFramework[3847]:  260116-10:28:48.724001 [mod=IPCONTROL, lvl=INFO] [tid=3856] void ipcontrol::platform::power_management::RDKPowerManager::PowerStateChanged(const WPEFramework::Core::JSON::String&):
+2026-01-16T10:28:48.740Z WPEFramework[3847]:  260116-10:28:48.724182 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::platform::power_management::RDKPowerManager::PowerStateChanged(const WPEFramework::Core::JSON::String&)::<lambda()>: power state changed from OFF to STANDBY
+2026-01-16T10:28:48.740Z WPEFramework[3847]:  260116-10:28:48.724217 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: power state changed from OFF to STANDBY
+2026-01-16T10:28:48.740Z WPEFramework[3847]:  260116-10:28:48.724243 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: reinitializing storage due to CPU resume
+2026-01-16T10:28:48.740Z WPEFramework[3847]:  [3859] INFO [PowerManagerImplementation.cpp:587] GetLastWakeupReason: >>
+2026-01-16T10:28:48.741Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[827] Enter
+2026-01-16T10:28:48.741Z WPEFramework[3847]:  260116-10:28:48.726757 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: notifying subsystems of CPU resume
+2026-01-16T10:28:48.741Z WPEFramework[3847]:  [4199] WARN [SystemServices.cpp:4902] _timerStatusEventHandler: IARM_BUS_SYSTIME_MGR_NAME event received
+2026-01-16T10:28:48.741Z WPEFramework[3847]:  [4199] WARN [SystemServices.cpp:2457] onTimeStatusChanged: TimeQuality = Good TimeSrc = Last Known Time = 1768559328
+2026-01-16T10:28:48.741Z WPEFramework[3847]:  [4199] INFO [SystemServices.cpp:2458] onTimeStatusChanged: Notify onTimeStatusChanged {"TimeQuality":"Good","TimeSrc":"Last Known","Time":"1768559328"}
+2026-01-16T10:28:48.742Z WPEFramework[3847]:  [3856] INFO [SystemTime.cpp:97] onTimeStatusChanged: onTimeStatusChanged: {"Time":"1768559328","TimeSrc":"Last Known","TimeQuality":"Good"}
+2026-01-16T10:28:48.751Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[856] Fetching resume reason: popen is successful
+2026-01-16T10:28:48.751Z WPEFramework[3847]:  [ta_open_session][PID F07] TEEC_Opensession: g_init:12 g_ctx.fd:44 g_sess:0xac621070
+2026-01-16T10:28:48.751Z WPEFramework[3847]:  260116-10:28:48.744138 [mod=IPCONTROL, lvl=WARN] [tid=7176] virtual bool ipcontrol::subsystem::rics::storage::RicsStorage::RetrieveControllers(std::vector<std::shared_ptr<ipcontrol::subsystem::rics::controller::Controller> >&): failed to get controller list, possible first boot
+2026-01-16T10:28:48.751Z WPEFramework[3847]:  260116-10:28:48.744191 [mod=IPCONTROL, lvl=INFO] [tid=7176] void ipcontrol::subsystem::rics::Subsystem::LogAllControllers(): 0 Paired Controllers
+2026-01-16T10:28:48.752Z WPEFramework[3847]:  260116-10:28:48.745183 [mod=IPCONTROL, lvl=INFO] [tid=19455] void ipcontrol::subsystem::rics::websocket::NopollServer::ServerThread(): enter
+2026-01-16T10:28:48.752Z WPEFramework[3847]:  260116-10:28:48.746460 [mod=IPCONTROL, lvl=INFO] [tid=19455] void ipcontrol::subsystem::rics::websocket::NopollServer::ServerThread(): server running, notifying
+2026-01-16T10:28:48.834Z WPEFramework[3847]:  [3862] WARN [SecManager.cpp:2545] getSecProcessor: Created SecProcessor 0x910166c8
+2026-01-16T10:28:48.834Z WPEFramework[3847]:  [3862] INFO [SecManager.cpp:2523] wakeupFromDeepSleep: Waking up from deep sleep
+2026-01-16T10:28:48.835Z WPEFramework[3847]:  [3862] INFO [DeviceIdentity.cpp:204] loadActiveApplicationList: File /opt/drm/appList.txt does not exist
+2026-01-16T10:28:48.835Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac61e130 took 108ms to process IModeChanged event
+2026-01-16T10:28:48.864Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac3009a8 took 15ms to process IModeChanged event
+2026-01-16T10:28:48.864Z WPEFramework[3847]:  [DEBUG]fetchWakeupMapping:[1019] Entering function..
+2026-01-16T10:28:48.864Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1203] Entering function..
+2026-01-16T10:28:48.864Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1240] Current GPIO wake-up reason is 5
+2026-01-16T10:28:48.864Z WPEFramework[3847]:  [DEBUG]fetchWakeupMapping:[1046] Wakeup reason mapping value is [5]
+2026-01-16T10:28:48.864Z WPEFramework[3847]:  [3862] I-| [DeviceProvisioningImplementation.cpp:526] onPowerModeChanged: PwrMgr Event triggered for PowerStateChange Old State 5, New State: 4
+2026-01-16T10:28:48.865Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac623588 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.865Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac107088 took 1ms to process IModeChanged event
+2026-01-16T10:28:48.865Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xb4c4eb18 took 0ms to process IModeChanged event
+2026-01-16T10:28:48.865Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:90] dispatchPowerModeChangedEvent: <<
+2026-01-16T10:28:48.865Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:312] setDevicePowerState: keyCode: 0, prevState: DEEP_SLEEP, newState: LIGHT_SLEEP, reason: DeepSleep timedout, errorcode: 0
+2026-01-16T10:28:48.865Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:823] powerModePreChangeCompletionHandler: <<
+2026-01-16T10:28:48.865Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:449] operator(): selfLock Released isSync: true
+2026-01-16T10:28:48.865Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:452] operator(): << CompletionHandler
+2026-01-16T10:28:48.866Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:465] SetPowerState: << keyCode: 0, newState: LIGHT_SLEEP, errorCode: 0
+2026-01-16T10:28:48.866Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:935] onDeepSleepTimerWakeup: <<
+2026-01-16T10:28:48.972Z WPEFramework[3847]:  [3859] INFO [DeepSleepImpl.h:158] GetLastWakeupReason: wakeupReason: TIMER, status:Success
+2026-01-16T10:28:48.973Z WPEFramework[3847]:  [3859] INFO [PowerManagerImplementation.cpp:595] GetLastWakeupReason: << wakeupReason: 7, errorCode: 0
+2026-01-16T10:28:48.973Z WPEFramework[3847]:  [3859] WARN [SystemServices.cpp:2378] getWakeupReason: WakeupReason : WAKEUP_REASON_TIMER
+2026-01-16T10:28:48.973Z WPEFramework[3847]:  [3859] INFO [SystemServices.cpp:2381] getWakeupReason: response={"wakeupReason":"WAKEUP_REASON_TIMER","success":true}
+2026-01-16T10:28:48.998Z WPEFramework[3847]:  [3869] INFO [SystemServices.cpp:3977] getRFCConfig: jsonRFCList[0] = Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart
+2026-01-16T10:28:48.998Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[944] False packet wake-up due to Wake on WLAN
+2026-01-16T10:28:48.998Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[1000] Wakeup reason value:-[6]
+2026-01-16T10:28:48.999Z WPEFramework[3847]:  260116-10:28:48.994697 [mod=RFCAPI, lvl=INFO] [tid=3869] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart"]}, datalen = 81
+2026-01-16T10:28:48.999Z WPEFramework[3847]:  260116-10:28:48.998364 [mod=RFCAPI, lvl=INFO] [tid=3869] curl response : 0 http response code: 200
+2026-01-16T10:28:48.999Z WPEFramework[3847]:  260116-10:28:48.998753 [mod=RFCAPI, lvl=INFO] [tid=3869] Curl response: {
+2026-01-16T10:28:48.999Z WPEFramework[3847]:  	"parameters":	[{
+2026-01-16T10:28:48.999Z WPEFramework[3847]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart",
+2026-01-16T10:28:48.999Z WPEFramework[3847]:  			"value":	"",
+2026-01-16T10:28:48.999Z WPEFramework[3847]:  			"dataType":	1,
+2026-01-16T10:28:49.000Z WPEFramework[3847]:  			"parameterCount":	1,
+2026-01-16T10:28:49.000Z WPEFramework[3847]:  			"message":	"Parameter value field is not available"
+2026-01-16T10:28:49.000Z WPEFramework[3847]:  		}],
+2026-01-16T10:28:49.000Z WPEFramework[3847]:  	"message":	"Parameter value field is not available",
+2026-01-16T10:28:49.000Z WPEFramework[3847]:  	"statusCode":	22
+2026-01-16T10:28:49.001Z WPEFramework[3847]:  }
+2026-01-16T10:28:49.001Z WPEFramework[3847]:  [3869] ERROR [SystemServices.cpp:3997] getRFCConfig: Failed to get Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart with 22
+2026-01-16T10:28:49.001Z WPEFramework[3847]:  [3869] INFO [SystemServices.cpp:4010] getRFCConfig: response={"RFCConfig":{"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart":"Empty response received"},"success":false}
+2026-01-16T10:28:49.010Z WPEFramework[3847]:  [3859] INFO [MaintenanceManager.cpp:1905] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T10:28:49.010Z WPEFramework[3847]:  [3870] INFO [SystemServices.cpp:2260] getNetworkStandbyMode: Got cached NetworkStandbyMode: 'true'
+2026-01-16T10:28:49.010Z WPEFramework[3847]:  [3870] INFO [SystemServices.cpp:2281] getNetworkStandbyMode: response={"nwStandby":true,"success":true}
+2026-01-16T10:28:49.069Z WPEFramework[3847]:  [3866] INFO [MaintenanceManager.cpp:2137] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T10:28:49.071Z WPEFramework[3847]:  [3868] INFO [SystemServices.cpp:2180] setDeepSleepTimer: params={"seconds":57694}
+2026-01-16T10:28:49.071Z WPEFramework[3847]:  [3868] INFO [PowerManagerImplementation.cpp:570] SetDeepSleepTimer: >> timeOut: 57694
+2026-01-16T10:28:49.092Z WPEFramework[3847]:  [3868] INFO [PowerManagerImplementation.cpp:580] SetDeepSleepTimer: << timeOutVal: 57694, errorCode: 0
+2026-01-16T10:28:49.092Z WPEFramework[3847]:  [3868] INFO [SystemServices.cpp:2205] setDeepSleepTimer: response={"success":true}
+2026-01-16T10:28:49.110Z WPEFramework[3847]:  [3868] INFO [FrontPanelImplementation.cpp:430] SetLED: [SetLED][430]SetLED called - LED Indicator: power_led, Brightness: 0, Color: White, Red: 0, Green: 0, Blue: 0
+2026-01-16T10:28:49.492Z WPEFramework[3847]:  [3871] INFO [PowerManagerImplementation.cpp:830] PowerModePreChangeComplete: >> clientId: 2, transactionId: 12
+2026-01-16T10:28:49.493Z WPEFramework[3847]:  [3871] INFO [AckController.h:131] Ack: AckController::Ack: clientId: 2, transactionId: 12, status: 0, pending 0
+2026-01-16T10:28:49.493Z WPEFramework[3847]:  [3871] INFO [PowerManagerImplementation.cpp:840] PowerModePreChangeComplete: << errorcode: 0
+2026-01-16T10:28:51.781Z WPEFramework[3847]:  10:28:51.780555 [Info ] [PID=4200] [TID=4604] [NetworkManagerImplementation.cpp +979] GetWiFiSignalQuality : SSID:TALKTALK695DDE, BSSID:10:d7:b0:69:5d:dc, Band:5GHz, RSSI:-54, Noise:-96, SNR:42
+2026-01-16T10:28:51.781Z WPEFramework[3847]:  10:28:51.780658 [Info ] [PID=4200] [TID=4604] [NetworkManagerImplementation.cpp +980] GetWiFiSignalQuality : bssid=10:d7:b0:69:5d:dc,ssid=TALKTALK695DDE,rssi=-54,phyrate=866,noise=-96,Band=5GHz
+2026-01-16T10:28:51.839Z WPEFramework[3847]:  [3859] INFO [UtilsSynchro.hpp:52] operator(): calling getCurrentResolution with lock: 0xa2c02b18
+2026-01-16T10:28:51.839Z WPEFramework[3847]:  [3859] INFO [DisplaySettings.cpp:1092] getCurrentResolution: params={"videoDisplay":"HDMI0"}
+2026-01-16T10:28:52.692Z WPEFramework[3847]:  260116-10:28:52.692 [Warning] [pid=3847,tid=3856] Activated:TextToSpeech.h:129 TextToSpeech::Notification::Activated - 0x1e3ff4
+2026-01-16T10:28:52.692Z WPEFramework[3847]:  [3856] INFO [FirmwareUpdate.h:62] Activated: FirmwareUpdate Notification Activated
+2026-01-16T10:28:52.692Z WPEFramework[3847]:  260116-10:28:52.692 [Warning] [pid=3847,tid=3856] Activated:SystemAudioPlayer.h:68 SAP: SystemAudioPlayer::Notification::Activated - 0xb4c87224
+2026-01-16T10:28:52.692Z WPEFramework[3847]:  [3856] INFO [HdcpProfile.h:63] Activated: HdcpProfile Notification Activated
+2026-01-16T10:28:52.692Z WPEFramework[3847]:  [3856] INFO [OCIContainer.h:63] Activated: OCIContainer Notification Activated
+2026-01-16T10:28:52.692Z WPEFramework[3847]:  [3856] INFO [Telemetry.h:62] Activated: Telemetry Notification Activated
+2026-01-16T10:28:52.692Z WPEFramework[3847]:  [3856] INFO [AuthService.h:115] Activated: AuthService Notification Activated - 0xac61a318
+2026-01-16T10:28:52.808Z WPEFramework[3847]:  [3860] INFO [PowerManagerImplementation.cpp:286] GetPowerState: >>
+2026-01-16T10:28:52.808Z WPEFramework[3847]:  [3860] INFO [PowerManagerImplementation.cpp:294] GetPowerState: << currentState : LIGHT_SLEEP, prevState : DEEP_SLEEP, errorCode = 0
+2026-01-16T10:28:52.809Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:222] Register: >>
+2026-01-16T10:28:52.809Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:224] Register: << IModeChanged 0x227fc8, errorCode: 0
+2026-01-16T10:28:52.810Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:286] GetPowerState: >>
+2026-01-16T10:28:52.810Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:294] GetPowerState: << currentState : LIGHT_SLEEP, prevState : DEEP_SLEEP, errorCode = 0
+2026-01-16T10:28:53.738Z WPEFramework[3847]:  [3867] WARN [SystemServices.cpp:4189] getSystemTimeStatus: Query to get Timer Status Failed..
+2026-01-16T10:28:53.739Z WPEFramework[3847]:  [3867] INFO [SystemServices.cpp:4190] getSystemTimeStatus: response={"success":false}
+2026-01-16T10:28:53.900Z WPEFramework[3847]:  [3868] WARN [frontpanel.cpp:475] setLED: setLed ledIndicator: power_led brightness: 0
+2026-01-16T10:28:53.900Z WPEFramework[3847]:  [4199] WARN [RemoteControl.cpp:168] iarmEventHandler: Got CTRLM_RCU_IARM_EVENT event.
+2026-01-16T10:28:53.900Z WPEFramework[3847]:  [4199] INFO [RemoteControl.cpp:880] onStatus: Notify onStatus {"status":{"remoteData":[{"macAddress":"20:44:41:02:dc:c0","connected":false,"name":"P250 SkyQ LC103","remoteId":1,"deviceId":67,"make":"Remote Solution","model":"LC103","hwVersion":"103.1.0.0","swVersion":"5103.4.8","btlVersion":"Rel-39a27b8","serialNumber":"c0dc02414420","batteryPercent":70,"tvIRCode":"0","ampIRCode":"0","wakeupKeyCode":255,"upgradeSessionId":"","wakeupConfig":"all"}],"netTypesSupported":[1],"netType":1,"pairingState":"IDLE","irProgState":"IDLE"}}
+2026-01-16T10:28:53.916Z WPEFramework[3847]:  dbus_connection_send_with_reply_and_block failed with error Did not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked theIARM_Call failed for call SystemTimeMgr-TIMER_STATUS
+2026-01-16T10:28:53.916Z WPEFramework[3847]:  IARM_Bus_Call failed to invoke TIMER_STATUS with retCode 2
+2026-01-16T10:28:53.916Z WPEFramework[3847]:  IARM_Bus_Call provider returned error (2) for the method TIMER_STATUS
+2026-01-16T10:28:53.916Z WPEFramework[3847]:  ResOverride VideoOutputPortConfig::getSupportedResolutions isIgnoreEdid:1
+2026-01-16T10:28:53.916Z WPEFramework[3847]:  _supportedResolutions cache updated
+2026-01-16T10:28:53.917Z WPEFramework[3847]:  [3859] WARN [DisplaySettings.cpp:1163] getCurrentResolution: Exception caughtvideoDisplay=HDMI0 code=3 message=Illegal Argument
+2026-01-16T10:28:53.917Z WPEFramework[3847]:  [3859] INFO [DisplaySettings.cpp:1166] getCurrentResolution: response={"success":false}
+2026-01-16T10:28:53.922Z WPEFramework[3847]:  [3865] INFO [SystemServices.cpp:4260] setDevicePowerState: SystemServices::setDevicePowerState state: DEEP_SLEEP, reason: AUTO
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] WARN [SystemServices.cpp:4265] setDevicePowerState: Output of getPreferredSleepMode: 'LIGHT_SLEEP'
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] WARN [SystemServicesHelper.cpp:216] convert: INSIDE CONVERT
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] WARN [SystemServicesHelper.cpp:209] convertCase: convertCase: after transform to upper :LIGHT_SLEEP
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:352] SetPowerState: >> newState: DEEP_SLEEP, reason random
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:356] SetPowerState: selfLock Acquired
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:286] GetPowerState: >>
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:294] GetPowerState: << currentState : LIGHT_SLEEP, prevState : DEEP_SLEEP, errorCode = 0
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:393] SetPowerState: There is a state change request in progress for LIGHT_SLEEP state.
+2026-01-16T10:28:53.924Z WPEFramework[3847]:  [3865] WARN [PowerManagerImplementation.cpp:400] SetPowerState: Power state change is already in progress, cancel old request
+2026-01-16T10:28:53.925Z WPEFramework[3847]:  [3865] INFO [AckController.h:93] AckAwait: Append clientId: 2, transactionId: 13, pending 1
+2026-01-16T10:28:53.925Z WPEFramework[3847]:  [3865] INFO [AckController.h:93] AckAwait: Append clientId: 1, transactionId: 13, pending 2
+2026-01-16T10:28:53.925Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:472] submitPowerModePreChangeEvent: >> currentState : LIGHT_SLEEP, newState : DEEP_SLEEP, transactionId : 13
+2026-01-16T10:28:53.925Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:481] submitPowerModePreChangeEvent: << currentState : LIGHT_SLEEP, newState : DEEP_SLEEP, transactionId : 13
+2026-01-16T10:28:53.926Z WPEFramework[3847]:  [3859] INFO [PowerManager.h:107] OnPowerModePreChange: currentState 4, newState 5, transactionId 13, stateChangeAfter 1 sec
+2026-01-16T10:28:53.926Z WPEFramework[3847]:  [3865] INFO [AckController.h:194] Schedule: time offset: 1000ms, pending: 2
+2026-01-16T10:28:53.926Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:462] SetPowerState: selfLock Released isSync: false
+2026-01-16T10:28:53.926Z WPEFramework[3847]:  [3865] INFO [PowerManagerImplementation.cpp:465] SetPowerState: << keyCode: 0, newState: DEEP_SLEEP, errorCode: 0
+2026-01-16T10:28:53.926Z WPEFramework[3847]:  [3865] INFO [SystemServices.cpp:4289] setDevicePowerState: response={"success":true}
+2026-01-16T10:28:53.929Z WPEFramework[3847]:  [3863] INFO [PowerManagerImplementation.cpp:830] PowerModePreChangeComplete: >> clientId: 1, transactionId: 13
+2026-01-16T10:28:53.929Z WPEFramework[3847]:  [3863] INFO [AckController.h:131] Ack: AckController::Ack: clientId: 1, transactionId: 13, status: 0, pending 1
+2026-01-16T10:28:53.929Z WPEFramework[3847]:  [3863] INFO [PowerManagerImplementation.cpp:840] PowerModePreChangeComplete: << errorcode: 0
+2026-01-16T10:28:53.929Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:849] DelayPowerModeChangeBy: >> clientId: 2, transactionId: 13, delayPeriod: 5
+2026-01-16T10:28:53.929Z WPEFramework[3847]:  [3873] INFO [AckController.h:279] Reschedule: clientId: 2, transactionId: 13, offset: 5000, status: 0
+2026-01-16T10:28:53.929Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:858] DelayPowerModeChangeBy: << errorcode: 0
+2026-01-16T10:28:54.001Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:830] PowerModePreChangeComplete: >> clientId: 2, transactionId: 13
+2026-01-16T10:28:54.001Z WPEFramework[3847]:  [3858] INFO [AckController.h:292] runHandler: isTimedout: 0, pending: 0
+2026-01-16T10:28:54.001Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:435] operator(): >> CompletionHandler isTimedout: 0, isAborted: 0
+2026-01-16T10:28:54.002Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:819] powerModePreChangeCompletionHandler: >> keyCode: 0, powerState: DEEP_SLEEP
+2026-01-16T10:28:54.034Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:81] dispatchPowerModeChangedEvent: >>
+2026-01-16T10:28:54.034Z WPEFramework[3847]:  [3858] INFO [PowerManager.h:101] OnPowerModeChanged: currentState 4, newState 5
+2026-01-16T10:28:54.034Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0x1f7358 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.035Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0x1e3e68 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac306bd8 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] WARN [SystemServices.cpp:757] onPowerModeChanged: IARM Event triggered for PowerStateChange.                    Old State LIGHT_SLEEP, New State: DEEP_SLEEP
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] WARN [SystemServices.cpp:1046] onSystemPowerStateChanged: power state changed from 'LIGHT_SLEEP' to 'DEEP_SLEEP'
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] INFO [SystemServices.cpp:1047] onSystemPowerStateChanged: Notify onSystemPowerStateChanged {"powerState":"DEEP_SLEEP","currentPowerState":"LIGHT_SLEEP"}
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac50879c took 0ms to process IModeChanged event
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] WARN [DisplaySettings.cpp:4235] onPowerModeChanged: onPowerModeChanged: State Changed 4 --> 5
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] INFO [DisplaySettings.cpp:4259] onPowerModeChanged: onPowerModeChanged: Current Power state: 5
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac515550 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.039Z WPEFramework[3847]:  [3858] INFO [FrontPanelImplementation.cpp:202] onPowerModeChanged: setPowerStatus false
+2026-01-16T10:28:54.040Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac500db8 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.040Z WPEFramework[3847]:  [3858] INFO [HdmiCecSourceImplementation.cpp:735] onPowerModeChanged: Event IARM_BUS_PWRMGR_EVENT_MODECHANGED: State Changed 4 -- > 5
+2026-01-16T10:28:54.040Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac610ae8 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.040Z WPEFramework[3847]:  PLAT_API_SetPowerState: Received request to change powerstate to state 4SetPowerState: 4_syscmd enter: echo 4 > /opt/lastPowerState
+2026-01-16T10:28:54.040Z WPEFramework[3847]:  _syscmd: exit
+2026-01-16T10:28:54.040Z WPEFramework[3847]:  PLAT_API_SetPowerState:Successfully changed powerstate to state 4260116-10:28:54.036764 [mod=IPCONTROL, lvl=INFO] [tid=3856] void ipcontrol::platform::power_management::RDKPowerManager::PowerStateChanged(const WPEFramework::Core::JSON::String&):
+2026-01-16T10:28:54.042Z WPEFramework[3847]:  260116-10:28:54.037104 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::platform::power_management::RDKPowerManager::PowerStateChanged(const WPEFramework::Core::JSON::String&)::<lambda()>: power state changed from STANDBY to OFF
+2026-01-16T10:28:54.042Z WPEFramework[3847]:  260116-10:28:54.037143 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: power state changed from STANDBY to OFF
+2026-01-16T10:28:54.042Z WPEFramework[3847]:  260116-10:28:54.037168 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: cleaning up storage before CPU halt
+2026-01-16T10:28:54.042Z WPEFramework[3847]:  260116-10:28:54.037385 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: notifying subsystems of CPU halt
+2026-01-16T10:28:54.042Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xb4c26548 took 4ms to process IModeChanged event
+2026-01-16T10:28:54.042Z WPEFramework[3847]:  [3859] INFO [TelemetryImplementation.cpp:500] AbortReport:
+2026-01-16T10:28:54.042Z WPEFramework[3847]:  [3858] INFO [SecManager.cpp:270] onPowerModeChanged: SecManager PwrMgr Event triggered for PowerStateChange currentState 4, newState: 5
+2026-01-16T10:28:54.043Z WPEFramework[3847]:  [3858] WARN [SecManager.cpp:2482] gotoDeepSleep: secManagerSessionsMap.size 0
+2026-01-16T10:28:54.043Z WPEFramework[3847]:  [3858] INFO [SecManager.cpp:2499] gotoDeepSleep: Going to deep sleep
+2026-01-16T10:28:54.043Z WPEFramework[3847]:  [3858] INFO [SecManager.cpp:2500] gotoDeepSleep: Closing deviceIdentity active apps
+2026-01-16T10:28:54.043Z WPEFramework[3847]:  [3858] WARN [SecManager.cpp:2553] releaseSecProcessor: 0x910166c8, use_count: 1
+2026-01-16T10:28:54.043Z WPEFramework[3847]:  [3858] WARN [SecManager.cpp:312] SecProcessor_Release_debug: Releasing handle 0x910166c8
+2026-01-16T10:28:54.043Z WPEFramework[3847]:  [ta_close_session][PID F07] TEEC_CloseSession: g_init:12 g_ctx.fd:44 g_sess:0xac621070
+2026-01-16T10:28:54.043Z WPEFramework[3847]:  [3858] INFO [SecManager.cpp:2510] gotoDeepSleep: SecProcessor being released
+2026-01-16T10:28:54.044Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac61e130 took 3ms to process IModeChanged event
+2026-01-16T10:28:54.045Z WPEFramework[3847]:  [19619] INFO [TelemetryImplementation.cpp:251] t2OnAbortEventHandler: Got Device.X_RDKCENTRAL-COM_T2.AbortDCMReport rbus callback
+2026-01-16T10:28:54.048Z WPEFramework[3847]:  [3863] INFO [HdmiCecSourceImplementation.cpp:1175] GetOTPEnabled: GetOTPEnabled :1
+2026-01-16T10:28:54.049Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac3009a8 took 5ms to process IModeChanged event
+2026-01-16T10:28:54.049Z WPEFramework[3847]:  [3858] I-| [DeviceProvisioningImplementation.cpp:526] onPowerModeChanged: PwrMgr Event triggered for PowerStateChange Old State 4, New State: 5
+2026-01-16T10:28:54.049Z WPEFramework[3847]:  [3858] I-| [DeviceProvisioningImplementation.cpp:533] onPowerModeChanged: DeviceProvisioning _powerState Device is being suspended
+2026-01-16T10:28:54.049Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac623588 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.050Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac107088 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.050Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xb4c4eb18 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.051Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0x227fc8 took 0ms to process IModeChanged event
+2026-01-16T10:28:54.051Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:90] dispatchPowerModeChangedEvent: <<
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:312] setDevicePowerState: keyCode: 0, prevState: LIGHT_SLEEP, newState: DEEP_SLEEP, reason: random, errorcode: 0
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:315] setDevicePowerState: newState is DEEP SLEEP, activating deep sleep mode
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3858] INFO [DeepSleepController.cpp:219] Activate: timeOut: 57694, nwStandbyMode: Enabled
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:823] powerModePreChangeCompletionHandler: <<
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:452] operator(): << CompletionHandler
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3873] INFO [DeepSleepController.cpp:221] operator(): timeOut: 57694, nwStandbyMode: Enabled
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3873] INFO [DeepSleepController.cpp:365] performActivate: timeOut: 57694, nwStandbyMode: Enabled
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3858] INFO [AckController.h:131] Ack: AckController::Ack: clientId: 2, transactionId: 13, status: 0, pending 0
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3858] INFO [PowerManagerImplementation.cpp:840] PowerModePreChangeComplete: << errorcode: 0
+2026-01-16T10:28:54.052Z WPEFramework[3847]:  [3873] ERROR [DeepSleepController.cpp:266] read_integer_conf: file /tmp/deepSleepTimer, error: No such file or directory
+2026-01-16T10:28:54.053Z WPEFramework[3847]:  [3873] ERROR [DeepSleepController.cpp:266] read_integer_conf: file /tmp/deepSleepTimerVal, error: No such file or directory
+2026-01-16T10:28:54.053Z WPEFramework[3847]:  [3873] INFO [DeepSleepController.cpp:301] enterDeepSleepNow: Enter to Deep sleep Mode..stop Receiver with sleep 1 before DS
+2026-01-16T10:28:54.252Z WPEFramework[3847]:  260116-10:28:54.251901 [mod=IPCONTROL, lvl=INFO] [tid=19455] void ipcontrol::subsystem::rics::websocket::NopollServer::ServerThread(): exit
+2026-01-16T10:28:54.966Z WPEFramework[3847]:  [4199] INFO [SystemServices.cpp:4842] _systemStateChanged: len = 644
+2026-01-16T10:28:54.966Z WPEFramework[3847]:  [4199] WARN [SystemServices.cpp:4871] _systemStateChanged: Clock is set.
+2026-01-16T10:28:54.966Z WPEFramework[3847]:  [4199] INFO [SystemServices.cpp:2762] onClockSet: Notify onSystemClockSet {}
+2026-01-16T10:28:55.051Z WPEFramework[3847]:  [3873] INFO [DeepSleepController.cpp:309] enterDeepSleepNow: Device entering Deep sleep with nwStandbyMode: Disabled
+2026-01-16T10:28:55.185Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +634: Trying to get a general purpose connection handle
+2026-01-16T10:28:55.186Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +634: Trying to get a general purpose connection handle
+2026-01-16T10:28:55.195Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +642: Got a connection handle: 0x4c800
+2026-01-16T10:28:55.196Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +643: Getting the list of paired RCUs and disconnecting them
+2026-01-16T10:28:55.196Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +645: Quering Bluez for remotes
+2026-01-16T10:28:55.197Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +642: Got a connection handle: 0x4c800
+2026-01-16T10:28:55.197Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +643: Getting the list of paired RCUs and disconnecting them
+2026-01-16T10:28:55.197Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +645: Quering Bluez for remotes
+2026-01-16T10:28:55.232Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +674: Got reply, processing it
+2026-01-16T10:28:55.232Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +678: Found 81 objects
+2026-01-16T10:28:55.232Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +674: Got reply, processing it
+2026-01-16T10:28:55.232Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +678: Found 81 objects
+2026-01-16T10:28:55.232Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +701: /org/bluez is not a valid device path
+2026-01-16T10:28:55.232Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +701: /org/bluez is not a valid device path
+2026-01-16T10:28:55.233Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0 is not a valid device object path
+2026-01-16T10:28:55.234Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +736: OUI of 20:44:41:02:DC:C0 matches LC Series remotes
+2026-01-16T10:28:55.234Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0 is not a valid device object path
+2026-01-16T10:28:55.234Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +736: OUI of 20:44:41:02:DC:C0 matches LC Series remotes
+2026-01-16T10:28:55.235Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +924: Disconnecting 20:44:41:02:DC:C0
+2026-01-16T10:28:55.236Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +924: Disconnecting 20:44:41:02:DC:C0
+2026-01-16T10:28:55.239Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010 is not a valid device object path
+2026-01-16T10:28:55.240Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010/char5011 is not a valid device object path
+2026-01-16T10:28:55.240Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 is not a valid device object path
+2026-01-16T10:28:55.240Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char078d is not a valid device object path
+2026-01-16T10:28:55.244Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char078b is not a valid device object path
+2026-01-16T10:28:55.244Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0789 is not a valid device object path
+2026-01-16T10:28:55.244Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0787 is not a valid device object path
+2026-01-16T10:28:55.244Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784/desc0786 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781/desc0783 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753/desc0756 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753/desc0755 is not a valid device object path
+2026-01-16T10:28:55.245Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0751 is not a valid device object path
+2026-01-16T10:28:55.246Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 is not a valid device object path
+2026-01-16T10:28:55.246Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0741 is not a valid device object path
+2026-01-16T10:28:55.246Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char073f is not a valid device object path
+2026-01-16T10:28:55.246Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char073d is not a valid device object path
+2026-01-16T10:28:55.246Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739 is not a valid device object path
+2026-01-16T10:28:55.246Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service5010/char5011 is not a valid device object path
+2026-01-16T10:28:55.246Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739/desc073c is not a valid device object path
+2026-01-16T10:28:55.247Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739/desc073b is not a valid device object path
+2026-01-16T10:28:55.247Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735 is not a valid device object path
+2026-01-16T10:28:55.247Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735/desc0738 is not a valid device object path
+2026-01-16T10:28:55.247Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735/desc0737 is not a valid device object path
+2026-01-16T10:28:55.247Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731 is not a valid device object path
+2026-01-16T10:28:55.247Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731/desc0734 is not a valid device object path
+2026-01-16T10:28:55.247Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731/desc0733 is not a valid device object path
+2026-01-16T10:28:55.247Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d is not a valid device object path
+2026-01-16T10:28:55.248Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d/desc0730 is not a valid device object path
+2026-01-16T10:28:55.248Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d/desc072f is not a valid device object path
+2026-01-16T10:28:55.248Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729 is not a valid device object path
+2026-01-16T10:28:55.248Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729/desc072c is not a valid device object path
+2026-01-16T10:28:55.249Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780 is not a valid device object path
+2026-01-16T10:28:55.249Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729/desc072b is not a valid device object path
+2026-01-16T10:28:55.249Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725 is not a valid device object path
+2026-01-16T10:28:55.249Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725/desc0728 is not a valid device object path
+2026-01-16T10:28:55.250Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725/desc0727 is not a valid device object path
+2026-01-16T10:28:55.250Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721 is not a valid device object path
+2026-01-16T10:28:55.250Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721/desc0724 is not a valid device object path
+2026-01-16T10:28:55.250Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721/desc0723 is not a valid device object path
+2026-01-16T10:28:55.250Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d is not a valid device object path
+2026-01-16T10:28:55.250Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d/desc0720 is not a valid device object path
+2026-01-16T10:28:55.250Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d/desc071f is not a valid device object path
+2026-01-16T10:28:55.251Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719 is not a valid device object path
+2026-01-16T10:28:55.251Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719/desc071c is not a valid device object path
+2026-01-16T10:28:55.251Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719/desc071b is not a valid device object path
+2026-01-16T10:28:55.251Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char078d is not a valid device object path
+2026-01-16T10:28:55.251Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715 is not a valid device object path
+2026-01-16T10:28:55.252Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715/desc0718 is not a valid device object path
+2026-01-16T10:28:55.252Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715/desc0717 is not a valid device object path
+2026-01-16T10:28:55.252Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0713 is not a valid device object path
+2026-01-16T10:28:55.252Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0711 is not a valid device object path
+2026-01-16T10:28:55.252Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700 is not a valid device object path
+2026-01-16T10:28:55.252Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0707 is not a valid device object path
+2026-01-16T10:28:55.252Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0707/desc0709 is not a valid device object path
+2026-01-16T10:28:55.252Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0705 is not a valid device object path
+2026-01-16T10:28:55.253Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0703 is not a valid device object path
+2026-01-16T10:28:55.253Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0701 is not a valid device object path
+2026-01-16T10:28:55.253Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200 is not a valid device object path
+2026-01-16T10:28:55.253Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200/char0201 is not a valid device object path
+2026-01-16T10:28:55.253Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200/char0201/desc0203 is not a valid device object path
+2026-01-16T10:28:55.253Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char078b is not a valid device object path
+2026-01-16T10:28:55.253Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060 is not a valid device object path
+2026-01-16T10:28:55.254Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061 is not a valid device object path
+2026-01-16T10:28:55.254Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061/desc0063 is not a valid device object path
+2026-01-16T10:28:55.254Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030 is not a valid device object path
+2026-01-16T10:28:55.254Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003f is not a valid device object path
+2026-01-16T10:28:55.254Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003d is not a valid device object path
+2026-01-16T10:28:55.254Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003b is not a valid device object path
+2026-01-16T10:28:55.254Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0039 is not a valid device object path
+2026-01-16T10:28:55.254Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0037 is not a valid device object path
+2026-01-16T10:28:55.255Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0035 is not a valid device object path
+2026-01-16T10:28:55.255Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0033 is not a valid device object path
+2026-01-16T10:28:55.255Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0031 is not a valid device object path
+2026-01-16T10:28:55.255Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010 is not a valid device object path
+2026-01-16T10:28:55.255Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0016 is not a valid device object path
+2026-01-16T10:28:55.255Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0789 is not a valid device object path
+2026-01-16T10:28:55.255Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0014 is not a valid device object path
+2026-01-16T10:28:55.256Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0011 is not a valid device object path
+2026-01-16T10:28:55.256Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0011/desc0013 is not a valid device object path
+2026-01-16T10:28:55.256Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +955: Opening /tmp/remoteList.txt
+2026-01-16T10:28:55.256Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +963: Writing the device list to /tmp/remoteList.txt
+2026-01-16T10:28:55.256Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +968: Closing the file
+2026-01-16T10:28:55.256Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0787 is not a valid device object path
+2026-01-16T10:28:55.256Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784 is not a valid device object path
+2026-01-16T10:28:55.257Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0784/desc0786 is not a valid device object path
+2026-01-16T10:28:55.257Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781 is not a valid device object path
+2026-01-16T10:28:55.257Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0780/char0781/desc0783 is not a valid device object path
+2026-01-16T10:28:55.257Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750 is not a valid device object path
+2026-01-16T10:28:55.257Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753 is not a valid device object path
+2026-01-16T10:28:55.257Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753/desc0756 is not a valid device object path
+2026-01-16T10:28:55.258Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0753/desc0755 is not a valid device object path
+2026-01-16T10:28:55.258Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0750/char0751 is not a valid device object path
+2026-01-16T10:28:55.258Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710 is not a valid device object path
+2026-01-16T10:28:55.258Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0741 is not a valid device object path
+2026-01-16T10:28:55.258Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char073f is not a valid device object path
+2026-01-16T10:28:55.258Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char073d is not a valid device object path
+2026-01-16T10:28:55.259Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739 is not a valid device object path
+2026-01-16T10:28:55.259Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739/desc073c is not a valid device object path
+2026-01-16T10:28:55.259Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0739/desc073b is not a valid device object path
+2026-01-16T10:28:55.259Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735 is not a valid device object path
+2026-01-16T10:28:55.259Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735/desc0738 is not a valid device object path
+2026-01-16T10:28:55.259Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0735/desc0737 is not a valid device object path
+2026-01-16T10:28:55.260Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731 is not a valid device object path
+2026-01-16T10:28:55.260Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731/desc0734 is not a valid device object path
+2026-01-16T10:28:55.260Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0731/desc0733 is not a valid device object path
+2026-01-16T10:28:55.260Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d is not a valid device object path
+2026-01-16T10:28:55.260Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d/desc0730 is not a valid device object path
+2026-01-16T10:28:55.260Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char072d/desc072f is not a valid device object path
+2026-01-16T10:28:55.261Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729 is not a valid device object path
+2026-01-16T10:28:55.261Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729/desc072c is not a valid device object path
+2026-01-16T10:28:55.261Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0729/desc072b is not a valid device object path
+2026-01-16T10:28:55.261Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725 is not a valid device object path
+2026-01-16T10:28:55.261Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725/desc0728 is not a valid device object path
+2026-01-16T10:28:55.261Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0725/desc0727 is not a valid device object path
+2026-01-16T10:28:55.261Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721 is not a valid device object path
+2026-01-16T10:28:55.262Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721/desc0724 is not a valid device object path
+2026-01-16T10:28:55.262Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0721/desc0723 is not a valid device object path
+2026-01-16T10:28:55.262Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d is not a valid device object path
+2026-01-16T10:28:55.262Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d/desc0720 is not a valid device object path
+2026-01-16T10:28:55.262Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char071d/desc071f is not a valid device object path
+2026-01-16T10:28:55.263Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719 is not a valid device object path
+2026-01-16T10:28:55.263Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719/desc071c is not a valid device object path
+2026-01-16T10:28:55.263Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0719/desc071b is not a valid device object path
+2026-01-16T10:28:55.263Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715 is not a valid device object path
+2026-01-16T10:28:55.263Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715/desc0718 is not a valid device object path
+2026-01-16T10:28:55.263Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0715/desc0717 is not a valid device object path
+2026-01-16T10:28:55.263Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0713 is not a valid device object path
+2026-01-16T10:28:55.264Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0710/char0711 is not a valid device object path
+2026-01-16T10:28:55.264Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700 is not a valid device object path
+2026-01-16T10:28:55.264Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0707 is not a valid device object path
+2026-01-16T10:28:55.264Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0707/desc0709 is not a valid device object path
+2026-01-16T10:28:55.264Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0705 is not a valid device object path
+2026-01-16T10:28:55.264Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0703 is not a valid device object path
+2026-01-16T10:28:55.265Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0700/char0701 is not a valid device object path
+2026-01-16T10:28:55.265Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200 is not a valid device object path
+2026-01-16T10:28:55.265Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200/char0201 is not a valid device object path
+2026-01-16T10:28:55.265Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0200/char0201/desc0203 is not a valid device object path
+2026-01-16T10:28:55.265Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060 is not a valid device object path
+2026-01-16T10:28:55.265Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061 is not a valid device object path
+2026-01-16T10:28:55.266Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0060/char0061/desc0063 is not a valid device object path
+2026-01-16T10:28:55.266Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030 is not a valid device object path
+2026-01-16T10:28:55.266Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003f is not a valid device object path
+2026-01-16T10:28:55.266Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003d is not a valid device object path
+2026-01-16T10:28:55.266Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char003b is not a valid device object path
+2026-01-16T10:28:55.266Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0039 is not a valid device object path
+2026-01-16T10:28:55.267Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0037 is not a valid device object path
+2026-01-16T10:28:55.267Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0035 is not a valid device object path
+2026-01-16T10:28:55.267Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0033 is not a valid device object path
+2026-01-16T10:28:55.267Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0030/char0031 is not a valid device object path
+2026-01-16T10:28:55.267Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010 is not a valid device object path
+2026-01-16T10:28:55.267Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0016 is not a valid device object path
+2026-01-16T10:28:55.268Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0014 is not a valid device object path
+2026-01-16T10:28:55.268Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0011 is not a valid device object path
+2026-01-16T10:28:55.268Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +715: /org/bluez/hci0/dev_20_44_41_02_DC_C0/service0010/char0011/desc0013 is not a valid device object path
+2026-01-16T10:28:55.268Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +955: Opening /tmp/remoteList.txt
+2026-01-16T10:28:55.268Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +963: Writing the device list to /tmp/remoteList.txt
+2026-01-16T10:28:55.268Z ble_wakeup_enabler[19666]:  Bluetooth_WakeUpEnabler.c +968: Closing the file
+2026-01-16T10:28:55.366Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:230] Unregister: >>
+2026-01-16T10:28:55.366Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:232] Unregister: << IModeChanged 0x227fc8, errorcode: 0
+2026-01-16T10:28:55.515Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[452] Setting device into deepsleep mode
+2026-01-16T10:28:55.515Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[488] Setting deepsleep wakeup timer to [57694]
+2026-01-16T10:28:55.515Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[493] Configuring Bluetooth to wake on BLE
+2026-01-16T10:28:55.516Z WPEFramework[3847]:  260116-10:28:55.515 [Warning] [pid=3847,tid=3856] Deactivated:TextToSpeech.h:134 TextToSpeech::Notification::Deactivated - 0x1e3ff4
+2026-01-16T10:28:55.516Z WPEFramework[3847]:  [3856] INFO [FirmwareUpdate.h:67] Deactivated: FirmwareUpdate Notification Deactivated
+2026-01-16T10:28:55.516Z WPEFramework[3847]:  260116-10:28:55.515 [Warning] [pid=3847,tid=3856] Deactivated:SystemAudioPlayer.h:73 SAP: SystemAudioPlayer::Notification::Deactivated - 0xb4c87224
+2026-01-16T10:28:55.516Z WPEFramework[3847]:  [3856] INFO [HdcpProfile.h:68] Deactivated: HdcpProfile Notification Deactivated
+2026-01-16T10:28:55.516Z WPEFramework[3847]:  [3856] INFO [OCIContainer.h:68] Deactivated: OCIContainer Notification Deactivated
+2026-01-16T10:28:55.516Z WPEFramework[3847]:  [SysLog]:[Shutdown]: OCIContainer Deactivated
+2026-01-16T10:28:55.516Z WPEFramework[3847]:  [3856] INFO [Telemetry.h:67] Deactivated: Telemetry Notification Deactivated
+2026-01-16T10:28:55.516Z WPEFramework[3847]:  [3856] INFO [AuthService.h:122] Deactivated: AuthService Notification Deactivated - 0xac61a318
+2026-01-16T10:28:56.844Z WPEFramework[3847]:  [3871] INFO [UtilsSynchro.hpp:52] operator(): calling getCurrentResolution with lock: 0xa2c02b18
+2026-01-16T10:28:56.844Z WPEFramework[3847]:  [3871] INFO [DisplaySettings.cpp:1092] getCurrentResolution: params={"videoDisplay":"HDMI0"}
+2026-01-16T10:28:56.851Z WPEFramework[3847]:  ResOverride VideoOutputPortConfig::getSupportedResolutions isIgnoreEdid:1
+2026-01-16T10:28:56.851Z WPEFramework[3847]:  _supportedResolutions cache updated
+2026-01-16T10:28:56.851Z WPEFramework[3847]:  [3871] WARN [DisplaySettings.cpp:1163] getCurrentResolution: Exception caughtvideoDisplay=HDMI0 code=0 message=Illegal Argument
+2026-01-16T10:28:56.851Z WPEFramework[3847]:  [3871] INFO [DisplaySettings.cpp:1166] getCurrentResolution: response={"success":false}
+2026-01-16T10:28:56.898Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1328: Opening /tmp/remoteList.txt
+2026-01-16T10:28:56.898Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1339: Looking for remotes
+2026-01-16T10:28:56.900Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1328: Opening /tmp/remoteList.txt
+2026-01-16T10:28:56.900Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1346: Found 20:44:41:02:DC:C0
+2026-01-16T10:28:56.901Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1351: Closing the file
+2026-01-16T10:28:56.901Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1084: Bringing the adapter back up
+2026-01-16T10:28:56.901Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +143: HCIDEVUP: already up
+2026-01-16T10:28:56.902Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1088: HCIDEVUP: adapter already up
+2026-01-16T10:28:56.902Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1173: Adding 20:44:41:02:DC:C0 to the adapter white list
+2026-01-16T10:28:56.902Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1197: Disabling the current LE scan
+2026-01-16T10:28:56.902Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1210: Enabling the passive scan for whitelisted devices on the adapter
+2026-01-16T10:28:56.903Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1217: Setting up the parameters for the LE scan
+2026-01-16T10:28:56.903Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1339: Looking for remotes
+2026-01-16T10:28:56.903Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1240: Enabling passive LE scan
+2026-01-16T10:28:56.904Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1253: Sending the command to the Bluetooth adapter to go into wake-up mode
+2026-01-16T10:28:56.904Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1346: Found 20:44:41:02:DC:C0
+2026-01-16T10:28:56.904Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1351: Closing the file
+2026-01-16T10:28:56.904Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1084: Bringing the adapter back up
+2026-01-16T10:28:56.905Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +143: HCIDEVUP: already up
+2026-01-16T10:28:56.905Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1088: HCIDEVUP: adapter already up
+2026-01-16T10:28:56.905Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1173: Adding 20:44:41:02:DC:C0 to the adapter white list
+2026-01-16T10:28:56.905Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1197: Disabling the current LE scan
+2026-01-16T10:28:56.906Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1210: Enabling the passive scan for whitelisted devices on the adapter
+2026-01-16T10:28:56.906Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1217: Setting up the parameters for the LE scan
+2026-01-16T10:28:56.906Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1240: Enabling passive LE scan
+2026-01-16T10:28:56.907Z ble_wakeup_enabler[19677]:  Bluetooth_WakeUpEnabler.c +1253: Sending the command to the Bluetooth adapter to go into wake-up mode
+2026-01-16T10:28:56.975Z WPEFramework[3847]:  Power-off Tuner Module
+2026-01-16T10:28:58.412Z WPEFramework[3847]:  0
+2026-01-16T10:29:01.841Z WPEFramework[3847]:  [3864] INFO [UtilsSynchro.hpp:52] operator(): calling getCurrentResolution with lock: 0xa2c02b18
+2026-01-16T10:29:01.841Z WPEFramework[3847]:  [3864] INFO [DisplaySettings.cpp:1092] getCurrentResolution: params={"videoDisplay":"HDMI0"}
+2026-01-16T10:29:01.855Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[499] Executed 'configure_bt_on_suspend.sh' executed successfully with return value 0
+2026-01-16T10:29:01.855Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[507] Configuring Tuner module into low power
+2026-01-16T10:29:01.855Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[513] Executed 'configure_mediarite_on_suspend.sh' executed successfully with return value 0
+2026-01-16T10:29:01.855Z WPEFramework[3847]:  PLAT_API_SetWakeupSrc: Wake on WLAN Enabled in platform
+2026-01-16T10:29:01.855Z WPEFramework[3847]:  PLAT_API_SetWakeupSrc:LAN trigger is Enabled
+2026-01-16T10:29:01.855Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[576] Network Standby mode enabled before suspend :-[1]
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[580] Network Standby mode internal flag before suspend :-[1]
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[586] Before writing 'mem' to '/sys/power/state' for suspend-to-RAM
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  [DEBUG]save_governor:[399] Saved CPU governor 'ondemand' -> /tmp/cpu_config.txt
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  [DEBUG]suspend_system:[293] Inside suspend_system
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  [DEBUG]is_suspend_supported:[273] Inside is_suspend_supported
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  ResOverride VideoOutputPortConfig::getSupportedResolutions isIgnoreEdid:1
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  _supportedResolutions cache updated
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  [3864] WARN [DisplaySettings.cpp:1163] getCurrentResolution: Exception caughtvideoDisplay=HDMI0 code=-1406140340 message=Illegal Argument
+2026-01-16T10:29:01.856Z WPEFramework[3847]:  [3864] INFO [DisplaySettings.cpp:1166] getCurrentResolution: response={"success":false}
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3858] INFO [UtilsSynchro.hpp:52] operator(): calling getCurrentResolution with lock: 0xa2c02b18
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3858] INFO [DisplaySettings.cpp:1092] getCurrentResolution: params={"videoDisplay":"HDMI0"}
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [SystemServices.cpp:823] requestSystemReboot: SystemService unable to shutdown Netflix                         process. nfxResult = 0
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [SystemServices.cpp:832] requestSystemReboot: requestSystemReboot: custom reason: REBOOT, other reason: REBOOT
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:622] Reboot: >> requestor SystemServices, custom reason: REBOOT, other reason: REBOOT
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:109] dispatchRebootBeginEvent: >>
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [PowerManager.h:131] OnRebootBegin: rebootReasonCustom REBOOT, rebootReasonOther REBOOT, rebootRequestor SystemServices
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:115] dispatchRebootBeginEvent: client 0x1f7350 took 0ms to process IReboot event
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [SystemServices.cpp:1056] onPwrMgrReboot: Notify onRebootRequest {"requestedApp":"SystemServices","rebootReason":"REBOOT"}
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:115] dispatchRebootBeginEvent: client 0xac508798 took 0ms to process IReboot event
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:118] dispatchRebootBeginEvent: <<
+2026-01-16T12:54:15.858Z WPEFramework[3847]:  [3862] INFO [PowerManagerImplementation.cpp:632] Reboot: << errorcode: 0
+2026-01-16T12:54:15.859Z WPEFramework[3847]:  [3862] INFO [SystemServices.cpp:849] requestSystemReboot: response={"IARM_Bus_Call_STATUS":0,"success":true}
+2026-01-16T12:54:16.268Z WPEFramework[3847]:  [4196] ERROR [ThermalMfrImpl.h:241] GetTemperature: Failed IARM_BUS_MFRLIB_API_GetTemperature
+2026-01-16T12:54:16.268Z WPEFramework[3847]:  [4196] INFO [ThermalController.cpp:450] pollThermalLevels: Warning - Failed to retrieve temperature from OEM
+2026-01-16T12:54:16.294Z WPEFramework[3847]:  IARM_Bus_Call provider returned error (3) for the method mfrGetTemperature
+2026-01-16T12:54:16.294Z WPEFramework[3847]:  ResOverride VideoOutputPortConfig::getSupportedResolutions isIgnoreEdid:1
+2026-01-16T12:54:16.294Z WPEFramework[3847]:  _supportedResolutions cache updated
+2026-01-16T12:54:16.295Z WPEFramework[3847]:  [3858] WARN [DisplaySettings.cpp:1163] getCurrentResolution: Exception caughtvideoDisplay=HDMI0 code=1 message=Illegal Argument
+2026-01-16T12:54:16.295Z WPEFramework[3847]:  [3858] INFO [DisplaySettings.cpp:1166] getCurrentResolution: response={"success":false}
+2026-01-16T12:54:16.414Z WPEFramework[3847]:  [3870] INFO [PowerController.cpp:223] operator(): ------------FINAL REBOOT NOTICE----------
+2026-01-16T12:54:16.414Z WPEFramework[3847]:  	Rebooting device requestor: SystemServices, reasonCustom: REBOOT, reasonOther: REBOOT
+2026-01-16T12:54:17.912Z WPEFramework[3847]:  [4199] INFO [SystemServices.cpp:4842] _systemStateChanged: len = 644
+2026-01-16T12:54:17.912Z WPEFramework[3847]:  [4199] WARN [SystemServices.cpp:4871] _systemStateChanged: Clock is set.
+2026-01-16T12:54:17.912Z WPEFramework[3847]:  [4199] INFO [SystemServices.cpp:2762] onClockSet: Notify onSystemClockSet {}
+2026-01-16T12:54:20.767Z WPEFramework[3847]:  [3861] INFO [UtilsSynchro.hpp:52] operator(): calling getCurrentResolution with lock: 0xa2c02b18
+2026-01-16T12:54:20.769Z WPEFramework[3847]:  [3861] INFO [DisplaySettings.cpp:1092] getCurrentResolution: params={"videoDisplay":"HDMI0"}
+2026-01-16T12:54:20.820Z WPEFramework[3847]:  ResOverride VideoOutputPortConfig::getSupportedResolutions isIgnoreEdid:1
+2026-01-16T12:54:20.821Z WPEFramework[3847]:  _supportedResolutions cache updated
+2026-01-16T12:54:20.821Z WPEFramework[3847]:  [3861] WARN [DisplaySettings.cpp:1163] getCurrentResolution: Exception caughtvideoDisplay=HDMI0 code=1634089506 message=Illegal Argument
+2026-01-16T12:54:20.821Z WPEFramework[3847]:  [3861] INFO [DisplaySettings.cpp:1166] getCurrentResolution: response={"success":false}
+2026-01-16T12:54:20.949Z WPEFramework[3847]:  12:54:20.949319 [Info ] [PID=3847] [TID=3860] [NetworkManagerJsonRpc.cpp +199] GetPrimaryInterface : params={}
+2026-01-16T12:54:20.950Z WPEFramework[3847]:  12:54:20.949919 [Info ] [PID=3847] [TID=3860] [NetworkManagerJsonRpc.cpp +212] GetPrimaryInterface : response={"interface":"wlan0","success":true}
+2026-01-16T12:54:20.958Z WPEFramework[3847]:  12:54:20.957989 [Info ] [PID=3847] [TID=3865] [NetworkManagerJsonRpc.cpp +265] GetIPSettings : params={"interface":"wlan0"}
+2026-01-16T12:54:20.958Z WPEFramework[3847]:  12:54:20.958767 [Info ] [PID=3847] [TID=3865] [NetworkManagerJsonRpc.cpp +299] GetIPSettings : response={"interface":"wlan0","ipversion":"IPv4","autoconfig":true,"ipaddress":"192.168.1.79","prefix":24,"ula":"","dhcpserver":"192.168.1.1","gateway":"192.168.1.1","primarydns":"79.79.79.79","secondarydns":"79.79.79.80","success":true}
+2026-01-16T12:54:20.978Z WPEFramework[3847]:  [3860] INFO [AuthServiceImplementation.cpp:2689] GetExperience: getExperience
+2026-01-16T12:54:20.979Z WPEFramework[3847]:  [3860] INFO [helpers.cpp:162] readBytesFromPathParts: file_len: 5
+2026-01-16T12:54:20.980Z WPEFramework[3847]:  [3860] INFO [helpers.cpp:178] readBytesFromPathParts: file_len2: 5
+2026-01-16T12:54:20.980Z WPEFramework[3847]:  [3860] INFO [AuthServiceImplementation.cpp:2702] GetExperience: experience=EntOS, success:1
+2026-01-16T12:54:21.410Z WPEFramework[3847]:  /lib/rdk/eMMC_Upgrade.sh: line 59: mmc: command not found
+2026-01-16T12:54:21.452Z WPEFramework[3847]:  awk: cmd. line:1: Access to negative field
+2026-01-16T12:54:21.995Z WPEFramework[3847]:  Power-up Tuner Module
+2026-01-16T12:54:22.139Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1372: Removing the no RCUs paired flag if it exists
+2026-01-16T12:54:22.139Z WPEFramework[3847]:  ble_wakeup_enabler: Bluetooth_WakeUpEnabler.c +1406: Taking down the adapter and bringing it back up to clear the wakeup configuration
+2026-01-16T12:54:22.140Z ble_wakeup_enabler[20072]:  Bluetooth_WakeUpEnabler.c +1372: Removing the no RCUs paired flag if it exists
+2026-01-16T12:54:22.140Z ble_wakeup_enabler[20072]:  Bluetooth_WakeUpEnabler.c +1406: Taking down the adapter and bringing it back up to clear the wakeup configuration
+2026-01-16T12:54:22.274Z WPEFramework[3847]:  PING 192.168.1.1 (192.168.1.1): 56 data bytes
+2026-01-16T12:54:22.274Z WPEFramework[3847]:  64 bytes from 192.168.1.1: seq=0 ttl=64 time=8.734 ms
+2026-01-16T12:54:22.275Z WPEFramework[3847]:  --- 192.168.1.1 ping statistics ---
+2026-01-16T12:54:22.275Z WPEFramework[3847]:  1 packets transmitted, 1 packets received, 0% packet loss
+2026-01-16T12:54:22.275Z WPEFramework[3847]:  round-trip min/avg/max/mdev = 8.734/8.734/8.734/0.000 ms
+2026-01-16T12:54:22.277Z WPEFramework[3847]:  [3873] INFO [DeepSleepImpl.h:123] SetDeepSleep: Device wake-up from Deepsleep Mode! GPIOWakeup: 0, networkStandby: 0
+2026-01-16T12:54:22.277Z WPEFramework[3847]:  [3873] INFO [DeepSleepController.cpp:326] enterDeepSleepNow: Device entered to Deep sleep Mode..
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [DeepSleepImpl.h:158] GetLastWakeupReason: wakeupReason: TIMER, status:Success
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] ERROR [DeepSleepController.cpp:356] deepSleepTimerWakeup: DeepSleep wakeupReason: TIMER, timeout: 57694s, elapsed: 44s, pending: 57649466ms
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:929] onDeepSleepTimerWakeup: >> DeepSleep timedout: 57694
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:95] dispatchDeepSleepTimeoutEvent: >>
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [PowerManager.h:113] OnDeepSleepTimeout: wakeupTimeout 57694
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:101] dispatchDeepSleepTimeoutEvent: client 0x1f735c took 0ms to process IDeepSleepTimeout event
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:104] dispatchDeepSleepTimeoutEvent: <<
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:933] onDeepSleepTimerWakeup: Set Device to light sleep on Deep Sleep timer expiry
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:352] SetPowerState: >> newState: LIGHT_SLEEP, reason DeepSleep timedout
+2026-01-16T12:54:22.398Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:356] SetPowerState: selfLock Acquired
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:286] GetPowerState: >>
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:294] GetPowerState: << currentState : DEEP_SLEEP, prevState : LIGHT_SLEEP, errorCode = 0
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:386] SetPowerState: Device wakeup from DEEP_SLEEP to LIGHT_SLEEP
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [DeepSleepImpl.h:139] DeepSleepWakeup: Device resumed from Deep sleep Mode, status :Success
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [DeepSleepController.cpp:242] Deactivate: Deepsleep wakeup completed, errorCode: 0
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:393] SetPowerState: There is a state change request in progress for DEEP_SLEEP state.
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] WARN [PowerManagerImplementation.cpp:400] SetPowerState: Power state change is already in progress, cancel old request
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [AckController.h:93] AckAwait: Append clientId: 2, transactionId: 14, pending 1
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [AckController.h:93] AckAwait: Append clientId: 1, transactionId: 14, pending 2
+2026-01-16T12:54:22.399Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:472] submitPowerModePreChangeEvent: >> currentState : DEEP_SLEEP, newState : LIGHT_SLEEP, transactionId : 14
+2026-01-16T12:54:22.403Z WPEFramework[3847]:  [3859] INFO [PowerManager.h:107] OnPowerModePreChange: currentState 5, newState 4, transactionId 14, stateChangeAfter 0 sec
+2026-01-16T12:54:22.421Z WPEFramework[3847]:  [3861] INFO [PowerManagerImplementation.cpp:830] PowerModePreChangeComplete: >> clientId: 1, transactionId: 14
+2026-01-16T12:54:22.421Z WPEFramework[3847]:  [3861] INFO [AckController.h:131] Ack: AckController::Ack: clientId: 1, transactionId: 14, status: 0, pending 1
+2026-01-16T12:54:22.421Z WPEFramework[3847]:  [3861] INFO [PowerManagerImplementation.cpp:840] PowerModePreChangeComplete: << errorcode: 0
+2026-01-16T12:54:22.421Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:481] submitPowerModePreChangeEvent: << currentState : DEEP_SLEEP, newState : LIGHT_SLEEP, transactionId : 14
+2026-01-16T12:54:22.421Z WPEFramework[3847]:  [3873] INFO [AckController.h:194] Schedule: time offset: 0ms, pending: 1
+2026-01-16T12:54:22.421Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:435] operator(): >> CompletionHandler isTimedout: 0, isAborted: 0
+2026-01-16T12:54:22.421Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:819] powerModePreChangeCompletionHandler: >> keyCode: 0, powerState: LIGHT_SLEEP
+2026-01-16T12:54:22.421Z WPEFramework[3847]:  [3859] INFO [PowerManagerImplementation.cpp:849] DelayPowerModeChangeBy: >> clientId: 2, transactionId: 14, delayPeriod: 5
+2026-01-16T12:54:22.422Z WPEFramework[3847]:  [3859] INFO [AckController.h:279] Reschedule: clientId: 2, transactionId: 14, offset: 5000, status: 0
+2026-01-16T12:54:22.422Z WPEFramework[3847]:  [3859] INFO [PowerManagerImplementation.cpp:858] DelayPowerModeChangeBy: << errorcode: 0
+2026-01-16T12:54:22.457Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:81] dispatchPowerModeChangedEvent: >>
+2026-01-16T12:54:22.457Z WPEFramework[3847]:  [3873] INFO [PowerManager.h:101] OnPowerModeChanged: currentState 5, newState 4
+2026-01-16T12:54:22.457Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0x1f7358 took 0ms to process IModeChanged event
+2026-01-16T12:54:22.459Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0x1e3e68 took 1ms to process IModeChanged event
+2026-01-16T12:54:22.480Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac306bd8 took 10ms to process IModeChanged event
+2026-01-16T12:54:22.480Z WPEFramework[3847]:  [3873] WARN [SystemServices.cpp:757] onPowerModeChanged: IARM Event triggered for PowerStateChange.                    Old State DEEP_SLEEP, New State: LIGHT_SLEEP
+2026-01-16T12:54:22.480Z WPEFramework[3847]:  [3873] WARN [SystemServices.cpp:1046] onSystemPowerStateChanged: power state changed from 'DEEP_SLEEP' to 'LIGHT_SLEEP'
+2026-01-16T12:54:22.480Z WPEFramework[3847]:  [3873] INFO [SystemServices.cpp:1047] onSystemPowerStateChanged: Notify onSystemPowerStateChanged {"powerState":"LIGHT_SLEEP","currentPowerState":"DEEP_SLEEP"}
+2026-01-16T12:54:22.481Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac50879c took 0ms to process IModeChanged event
+2026-01-16T12:54:22.481Z WPEFramework[3847]:  [3873] WARN [DisplaySettings.cpp:4235] onPowerModeChanged: onPowerModeChanged: State Changed 5 --> 4
+2026-01-16T12:54:22.481Z WPEFramework[3847]:  [3873] INFO [DisplaySettings.cpp:4259] onPowerModeChanged: onPowerModeChanged: Current Power state: 4
+2026-01-16T12:54:22.481Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac515550 took 0ms to process IModeChanged event
+2026-01-16T12:54:22.481Z WPEFramework[3847]:  [3873] INFO [FrontPanelImplementation.cpp:202] onPowerModeChanged: setPowerStatus false
+2026-01-16T12:54:22.481Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac500db8 took 0ms to process IModeChanged event
+2026-01-16T12:54:22.482Z WPEFramework[3847]:  [3873] INFO [HdmiCecSourceImplementation.cpp:735] onPowerModeChanged: Event IARM_BUS_PWRMGR_EVENT_MODECHANGED: State Changed 5 -- > 4
+2026-01-16T12:54:22.483Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac610ae8 took 0ms to process IModeChanged event
+2026-01-16T12:54:22.483Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xb4c26548 took 0ms to process IModeChanged event
+2026-01-16T12:54:22.486Z WPEFramework[3847]:  [3873] INFO [SecManager.cpp:270] onPowerModeChanged: SecManager PwrMgr Event triggered for PowerStateChange currentState 5, newState: 4
+2026-01-16T12:54:22.486Z WPEFramework[3847]:  [DEBUG]suspend_system:[318] mem written into '/sys/power/state' successfully
+2026-01-16T12:54:22.486Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[632] After writing 'mem' to '/sys/power/state' for suspend-to-RAM
+2026-01-16T12:54:22.487Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[635] Clearing the wake on BLE configuration on Bluetooth
+2026-01-16T12:54:22.487Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[641] Executed 'configure_bt_on_resume.sh' executed successfully with return value 0
+2026-01-16T12:54:22.487Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[649] Network Standby mode enabled after resume :-[1]
+2026-01-16T12:54:22.487Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[651] Network Standby mode internal flag after resume :-[1]
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[656] Configuring Tuner module
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[662] Executed 'configure_mediarite_on_resume.sh' executed successfully with return value 0
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[702] Fetching resume reason: popen is successful
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1203] Entering function..
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1240] Current GPIO wake-up reason is 5
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[752] Resumed without user interface
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[794] Box wokeup from DS with NSM on mode so calling 'arp_ping_after_ds_wakeup'
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]arp_ping_after_ds_wakeup:[364] Ping successful: Internet is available
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]PLAT_DS_SetDeepSleep:[798] SKY-XIONE: [798]
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[827] Enter
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[856] Fetching resume reason: popen is successful
+2026-01-16T12:54:22.488Z WPEFramework[3847]:  [DEBUG]fetchWakeupMapping:[1019] Entering function..
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1203] Entering function..
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1240] Current GPIO wake-up reason is 5
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  [DEBUG]fetchWakeupMapping:[1046] Wakeup reason mapping value is [5]
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[944] False packet wake-up due to Wake on WLAN
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[1000] Wakeup reason value:-[6]
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  [DEBUG]restore_governor:[431] [restore_governor] Governor already 'ondemand'; no change
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  [DEBUG]PLAT_DS_DeepSleepWakeup:[815] PLAT_DS_DeepSleepWakeup: Nothing done,returning SUCCESS
+2026-01-16T12:54:22.489Z WPEFramework[3847]:   
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  PLAT_API_SetPowerState: Received request to change powerstate to state 3SetPowerState: 3_syscmd enter: echo 3 > /opt/lastPowerState
+2026-01-16T12:54:22.489Z WPEFramework[3847]:  _syscmd: exit
+2026-01-16T12:54:22.509Z WPEFramework[3847]:  PLAT_API_SetPowerState:Successfully changed powerstate to state 3260116-12:54:22.469814 [mod=IPCONTROL, lvl=INFO] [tid=3856] void ipcontrol::platform::power_management::RDKPowerManager::PowerStateChanged(const WPEFramework::Core::JSON::String&):
+2026-01-16T12:54:22.509Z WPEFramework[3847]:  260116-12:54:22.469973 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::platform::power_management::RDKPowerManager::PowerStateChanged(const WPEFramework::Core::JSON::String&)::<lambda()>: power state changed from OFF to STANDBY
+2026-01-16T12:54:22.509Z WPEFramework[3847]:  260116-12:54:22.470008 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: power state changed from OFF to STANDBY
+2026-01-16T12:54:22.509Z WPEFramework[3847]:  260116-12:54:22.470029 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: reinitializing storage due to CPU resume
+2026-01-16T12:54:22.510Z WPEFramework[3847]:  [ta_open_session][PID F07] TEEC_Opensession: g_init:12 g_ctx.fd:44 g_sess:0xac621070
+2026-01-16T12:54:22.510Z WPEFramework[3847]:  260116-12:54:22.471797 [mod=IPCONTROL, lvl=INFO] [tid=7176] ipcontrol::daemon::Daemon::InitializePlatformConstructs()::<lambda(ipcontrol::platform::power_management::PowerState, ipcontrol::platform::power_management::PowerState)>: notifying subsystems of CPU resume
+2026-01-16T12:54:22.510Z WPEFramework[3847]:  260116-12:54:22.473933 [mod=IPCONTROL, lvl=WARN] [tid=7176] virtual bool ipcontrol::subsystem::rics::storage::RicsStorage::RetrieveControllers(std::vector<std::shared_ptr<ipcontrol::subsystem::rics::controller::Controller> >&): failed to get controller list, possible first boot
+2026-01-16T12:54:22.510Z WPEFramework[3847]:  260116-12:54:22.473978 [mod=IPCONTROL, lvl=INFO] [tid=7176] void ipcontrol::subsystem::rics::Subsystem::LogAllControllers(): 0 Paired Controllers
+2026-01-16T12:54:22.510Z WPEFramework[3847]:  260116-12:54:22.474426 [mod=IPCONTROL, lvl=INFO] [tid=20126] void ipcontrol::subsystem::rics::websocket::NopollServer::ServerThread(): enter
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  260116-12:54:22.475394 [mod=IPCONTROL, lvl=INFO] [tid=20126] void ipcontrol::subsystem::rics::websocket::NopollServer::ServerThread(): server running, notifying
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [4199] WARN [SystemServices.cpp:4902] _timerStatusEventHandler: IARM_BUS_SYSTIME_MGR_NAME event received
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [4199] WARN [SystemServices.cpp:2457] onTimeStatusChanged: TimeQuality = Good TimeSrc = Last Known Time = 1768568062
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [4199] INFO [SystemServices.cpp:2458] onTimeStatusChanged: Notify onTimeStatusChanged {"TimeQuality":"Good","TimeSrc":"Last Known","Time":"1768568062"}
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [3856] INFO [SystemTime.cpp:97] onTimeStatusChanged: onTimeStatusChanged: {"Time":"1768568062","TimeSrc":"Last Known","TimeQuality":"Good"}
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [3864] INFO [PowerManagerImplementation.cpp:587] GetLastWakeupReason: >>
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [3873] WARN [SecManager.cpp:2545] getSecProcessor: Created SecProcessor 0xac624298
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [3873] INFO [SecManager.cpp:2523] wakeupFromDeepSleep: Waking up from deep sleep
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [3873] INFO [DeviceIdentity.cpp:204] loadActiveApplicationList: File /opt/drm/appList.txt does not exist
+2026-01-16T12:54:22.529Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac61e130 took 32ms to process IModeChanged event
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac3009a8 took 4ms to process IModeChanged event
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[827] Enter
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[856] Fetching resume reason: popen is successful
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [3873] I-| [DeviceProvisioningImplementation.cpp:526] onPowerModeChanged: PwrMgr Event triggered for PowerStateChange Old State 5, New State: 4
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac623588 took 0ms to process IModeChanged event
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xac107088 took 0ms to process IModeChanged event
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:87] dispatchPowerModeChangedEvent: client 0xb4c4eb18 took 0ms to process IModeChanged event
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:90] dispatchPowerModeChangedEvent: <<
+2026-01-16T12:54:22.530Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:312] setDevicePowerState: keyCode: 0, prevState: DEEP_SLEEP, newState: LIGHT_SLEEP, reason: DeepSleep timedout, errorcode: 0
+2026-01-16T12:54:22.531Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:823] powerModePreChangeCompletionHandler: <<
+2026-01-16T12:54:22.531Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:449] operator(): selfLock Released isSync: true
+2026-01-16T12:54:22.531Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:452] operator(): << CompletionHandler
+2026-01-16T12:54:22.531Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:465] SetPowerState: << keyCode: 0, newState: LIGHT_SLEEP, errorCode: 0
+2026-01-16T12:54:22.531Z WPEFramework[3847]:  [3873] INFO [PowerManagerImplementation.cpp:935] onDeepSleepTimerWakeup: <<
+2026-01-16T12:54:22.676Z WPEFramework[3847]:  [3864] INFO [DeepSleepImpl.h:158] GetLastWakeupReason: wakeupReason: TIMER, status:Success
+2026-01-16T12:54:22.676Z WPEFramework[3847]:  [3864] INFO [PowerManagerImplementation.cpp:595] GetLastWakeupReason: << wakeupReason: 7, errorCode: 0
+2026-01-16T12:54:22.676Z WPEFramework[3847]:  [3864] WARN [SystemServices.cpp:2378] getWakeupReason: WakeupReason : WAKEUP_REASON_TIMER
+2026-01-16T12:54:22.677Z WPEFramework[3847]:  [3864] INFO [SystemServices.cpp:2381] getWakeupReason: response={"wakeupReason":"WAKEUP_REASON_TIMER","success":true}
+2026-01-16T12:54:22.678Z WPEFramework[3847]:  [3859] INFO [SystemServices.cpp:3977] getRFCConfig: jsonRFCList[0] = Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart
+2026-01-16T12:54:22.678Z WPEFramework[3847]:  [DEBUG]fetchWakeupMapping:[1019] Entering function..
+2026-01-16T12:54:22.678Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1203] Entering function..
+2026-01-16T12:54:22.678Z WPEFramework[3847]:  [DEBUG]getWakeupGPIO:[1240] Current GPIO wake-up reason is 5
+2026-01-16T12:54:22.678Z WPEFramework[3847]:  [DEBUG]fetchWakeupMapping:[1046] Wakeup reason mapping value is [5]
+2026-01-16T12:54:22.678Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[944] False packet wake-up due to Wake on WLAN
+2026-01-16T12:54:22.678Z WPEFramework[3847]:  [DEBUG]PLAT_DS_GetLastWakeupReason:[1000] Wakeup reason value:-[6]
+2026-01-16T12:54:22.678Z WPEFramework[3847]:  260116-12:54:22.678339 [mod=RFCAPI, lvl=INFO] [tid=3859] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart"]}, datalen = 81
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  260116-12:54:22.682391 [mod=RFCAPI, lvl=INFO] [tid=3859] curl response : 0 http response code: 200
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  260116-12:54:22.682674 [mod=RFCAPI, lvl=INFO] [tid=3859] Curl response: {
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  	"parameters":	[{
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart",
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  			"value":	"",
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  			"dataType":	1,
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  			"parameterCount":	1,
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  			"message":	"Parameter value field is not available"
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  		}],
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  	"message":	"Parameter value field is not available",
+2026-01-16T12:54:22.683Z WPEFramework[3847]:  	"statusCode":	22
+2026-01-16T12:54:22.684Z WPEFramework[3847]:  }
+2026-01-16T12:54:22.684Z WPEFramework[3847]:  [3859] ERROR [SystemServices.cpp:3997] getRFCConfig: Failed to get Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart with 22
+2026-01-16T12:54:22.684Z WPEFramework[3847]:  [3859] INFO [SystemServices.cpp:4010] getRFCConfig: response={"RFCConfig":{"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Canary.wakeUpStart":"Empty response received"},"success":false}
+2026-01-16T12:54:22.687Z WPEFramework[3847]:  [3873] INFO [MaintenanceManager.cpp:1905] getMaintenanceActivityStatus: response={"maintenanceStatus":"MAINTENANCE_COMPLETE","LastSuccessfulCompletionTime":1768531347,"isCriticalMaintenance":false,"isRebootPending":false,"success":true}
+2026-01-16T12:54:22.688Z WPEFramework[3847]:  [3867] INFO [SystemServices.cpp:2260] getNetworkStandbyMode: Got cached NetworkStandbyMode: 'true'
+2026-01-16T12:54:22.688Z WPEFramework[3847]:  [3867] INFO [SystemServices.cpp:2281] getNetworkStandbyMode: response={"nwStandby":true,"success":true}
+2026-01-16T12:54:22.827Z WPEFramework[3847]:  [3871] INFO [MaintenanceManager.cpp:2137] getMaintenanceStartTime: response={"maintenanceStartTime":1768617119,"success":true}
+2026-01-16T12:54:22.831Z WPEFramework[3847]:  [3860] INFO [SystemServices.cpp:2180] setDeepSleepTimer: params={"seconds":48961}
+2026-01-16T12:54:22.831Z WPEFramework[3847]:  [3860] INFO [PowerManagerImplementation.cpp:570] SetDeepSleepTimer: >> timeOut: 48961
+2026-01-16T12:54:22.853Z WPEFramework[3847]:  [3860] INFO [PowerManagerImplementation.cpp:580] SetDeepSleepTimer: << timeOutVal: 48961, errorCode: 0
+2026-01-16T12:54:22.853Z WPEFramework[3847]:  [3860] INFO [SystemServices.cpp:2205] setDeepSleepTimer: response={"success":true}
+2026-01-16T12:54:22.853Z WPEFramework[3847]:  [3865] INFO [FrontPanelImplementation.cpp:430] SetLED: [SetLED][430]SetLED called - LED Indicator: power_led, Brightness: 0, Color: White, Red: 0, Green: 0, Blue: 0
+2026-01-16T12:54:23.202Z WPEFramework[3847]:  [3871] INFO [PowerManagerImplementation.cpp:830] PowerModePreChangeComplete: >> clientId: 2, transactionId: 14
+2026-01-16T12:54:23.202Z WPEFramework[3847]:  [3871] INFO [AckController.h:131] Ack: AckController::Ack: clientId: 2, transactionId: 14, status: 0, pending 0
+2026-01-16T12:54:23.202Z WPEFramework[3847]:  [3871] INFO [PowerManagerImplementation.cpp:840] PowerModePreChangeComplete: << errorcode: 0

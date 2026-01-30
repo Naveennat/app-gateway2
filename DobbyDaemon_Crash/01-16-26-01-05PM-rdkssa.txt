@@ -1,0 +1,36 @@
+63	: rdkssaStdoutRedirect - output redirection done
+63	: rdkssaStdoutRedirect - output redirection done
+688	: RDKSSA_CLI_initalizeCertDeviceData - [RDKXPKICERTIFIER_CLI]: Extract MAC Address Success, MAC is D4:52:EE:59:E3:E7
+63	: rdkssaStdoutRedirect - output redirection done
+63	: rdkssaStdoutRedirect - output redirection done
+697	: RDKSSA_CLI_initalizeCertDeviceData - [RDKXPKICERTIFIER_CLI]: Extract Serial Number Success, SERIALNUMBER is IP04SK8214000F0ER
+660	: RDKSSA_CLI_GetRFCProperty - [RDKXPKICERTIFIER_CLI]: RDKSSA_CLI_GetRFCProperty name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.fkpskdf.Enable,type=3,value=true,status=38
+724	: RDKSSA_CLI_initalizeCertDeviceData - [RDKXPKICERTIFIER_CLI]: Extraction of fkpskdf RFC success, RFC value is true
+758	: RDKSSA_CLI_initalizeCertDeviceData - [RDKXPKICERTIFIER_CLI]: ssa xpki cert SAN=:D452EE59E3E7-SKXI11ADS.xcal.tv
+100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+938	: rdkssaCACheckValidity -  xc_get_cert_status returning [ 0 ] cert status=[0]
+239	: RDKSSA_CLI_checkCertValidity - [RDKXPKICERTIFIER_CLI]: Execution of Cert Validity API Success for cert /opt/certs/devicecert_1.pk12
+100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+208	: RDKSSA_CLI_compareCerts - [RDKXPKICERTIFIER_CLI]: Cert and PEM Both compare  success100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+183	: main - [RDKXPKICERTIFIER_CLI]: SSA fkpskdf rfc enabled1158	: RDKSSA_CLI_useCdfg - [RDKXPKICERTIFIER_CLI]: SSA fkpskdf rfc enabled
+1169	: RDKSSA_CLI_useCdfg - [RDKXPKICERTIFIER_CLI]: ssa daemon is not running
+186	: main - [RDKXPKICERTIFIER_CLI]: ssa unable to get useCdfg
+100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+1024	: rdkssaCAUpdatePKCS12 -   xc_renew_cert returning 4
+491	: RDKSSA_CLI_renewcert - [RDKXPKICERTIFIER_CLI]: XPKI /opt/certs/devicecert_1.pk12 cert renew success 
+220	: main - [RDKXPKICERTIFIER_CLI]: ssa CLI attempt 1 : /opt/certs/devicecert_1.pk12 Cert renew/new xpki cert success
+100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+938	: rdkssaCACheckValidity -  xc_get_cert_status returning [ 0 ] cert status=[0]
+239	: RDKSSA_CLI_checkCertValidity - [RDKXPKICERTIFIER_CLI]: Execution of Cert Validity API Success for cert /opt/certs/devicecert_1.pk12
+243	: main - [RDKXPKICERTIFIER_CLI]: xpki cert is valid
+100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+347	: RDKSSA_CLI_convert_to_pem - [RDKXPKICERTIFIER_CLI]: Pem file /tmp/devicecert_1ssa.pem generate success: RDKSSA_CLI_convert_to_pem
+248	: main - [RDKXPKICERTIFIER_CLI]: Converted to pem success
+100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+254	: main - [RDKXPKICERTIFIER_CLI]: xpki cert start date Jul 30 23:37:33 2025 GMT
+100	: RDKSSA_CLI_getStoreData - [RDKXPKICERTIFIER_CLI]: PP Extract Success
+261	: main - [RDKXPKICERTIFIER_CLI]: xpki cert end date Jul 31 01:37:33 2026 GMT
+262	: main - [RDKXPKICERTIFIER_CLI]: cert end date notAfter=Jul 31 01:37:33 2026 GMT
+Rdkssa Daemon started listening
+Rdkssa Daemon Exiting gracefully

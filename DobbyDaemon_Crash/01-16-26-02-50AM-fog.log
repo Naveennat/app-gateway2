@@ -1,0 +1,416 @@
+2025-12-03T08:39:02.147Z fogcli[4388]:  {cbde66f3} 
+ENTERING FOG IARM INIT (server)
+ 
+
+2025-12-03T08:39:02.173Z fogcli[4388]:  {cbde66f3} IARM_Bus_Init: IARM_RESULT_SUCCESS
+ 
+
+2025-12-03T08:39:02.175Z fogcli[4388]:  {cbde66f3} IARM_Bus_Connect: IARM_RESULT_SUCCESS
+ 
+
+2025-12-03T08:39:02.175Z fogcli[4388]:  {cbde66f3} IARM_Bus_RegisterCall: IARM_RESULT_SUCCESS
+ 
+
+2025-12-03T08:39:02.182Z fogcli[4388]:  {cbde66f3} 
+Calling initPowerController() 
+
+2025-12-03T08:39:02.182Z sh[4388]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = FOG
+2025-12-03T08:39:02.182Z sh[4388]:  setting init done
+2025-12-03T08:39:02.185Z sh[4388]:  Registering FOG
+2025-12-03T08:39:02.185Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:937] Init: Entering ...
+2025-12-03T08:39:02.185Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:845] Connect: Entering ...
+2025-12-03T08:39:02.185Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2025-12-03T08:39:02.185Z fogcli[4388]:  {cbde66f3} 
+Enter ... initPowerController() 
+
+2025-12-03T08:39:02.185Z fogcli[4388]:  {cbde66f3} [initPowerController:335]: created getPwrContInterface thread.. 
+ 
+
+2025-12-03T08:39:02.185Z fogcli[4388]:  {cbde66f3} 
+Exit ... initPowerController() 
+
+2025-12-03T08:39:02.185Z fogcli[4388]:  {cbde66f3} [readConfigurationFromFile][ERROR]Reading Json from config file /etc/fogPrefs.json 
+
+2025-12-03T08:39:02.185Z fogcli[4388]:  {ceadf3af} 
+Enter ... getPwrContInterface() 
+
+2025-12-03T08:39:02.185Z fogcli[4388]:  {cbde66f3} [CONFIG]recordingLocation=/tmp/data/fog 
+
+2025-12-03T08:39:02.186Z fogcli[4388]:  {cbde66f3} [CONFIG]tsbLocation=/tmp/data/fog 
+
+2025-12-03T08:39:02.186Z fogcli[4388]:  {cbde66f3} [CONFIG]cullLength =1500000 
+
+2025-12-03T08:39:02.186Z fogcli[4388]:  {cbde66f3} [CONFIG]bitrates=-1 
+
+2025-12-03T08:39:02.186Z fogcli[4388]:  {cbde66f3} [CONFIG]tsbPolicy=0 
+
+2025-12-03T08:39:02.186Z fogcli[4388]:  {cbde66f3} [CONFIG]minDiskFreePercentage=0.050000 
+
+2025-12-03T08:39:02.186Z sh[4388]:  rdk_dyn_log_initg_dl_socket = 11 __progname = fogcli
+2025-12-03T08:39:02.186Z sh[4388]:  Conf file /etc/debug.ini open success
+2025-12-03T08:39:02.186Z sh[4388]:  251203-08:39:02.186472 [mod=STORAGEMGR, lvl=INFO] [tid=4388] IARM Interface Inited Successfully
+2025-12-03T08:39:02.186Z fogcli[4388]:  {cbde66f3} [CONFIG]bitrateCheating=1 
+
+2025-12-03T08:39:02.186Z fogcli[4388]:  {cbde66f3} [CONFIG]ignoreExpiredFragRequest=1 
+
+2025-12-03T08:39:02.187Z fogcli[4388]:  {cbde66f3} [CONFIG]tsbPreemptiveDownloadDelay=10.000000 
+
+2025-12-03T08:39:02.187Z fogcli[4388]:  {cbde66f3} [CONFIG]downloadTimeoutMS=5000 
+
+2025-12-03T08:39:02.201Z sh[4388]:  251203-08:39:02.196129 [mod=STORAGEMGR, lvl=INFO] [tid=4388] rdkStorage_isTSBEnabled : Successfully finished
+2025-12-03T08:39:02.201Z sh[4388]:  251203-08:39:02.198655 [mod=STORAGEMGR, lvl=INFO] [tid=4388] rdkStorage_getTSBPartitionMountPath : Successfully finished
+2025-12-03T08:39:02.201Z fogcli[4388]:  {cbde66f3} [getStorageMountPath]Successfully returned mountPathBuff (/tmp/data).
+ 
+
+2025-12-03T08:39:02.202Z fogcli[4388]:  {cbde66f3} [CONFIG]FOG : storage mount-path: /tmp/data 
+  
+
+2025-12-03T08:39:02.204Z fogcli[4388]:  {cbde66f3} [CONFIG]FOG: TSB storage-path: /tmp/data/fog 
+
+2025-12-03T08:39:02.206Z fogcli[4388]:  {cbde66f3}  NET_SRV_MGR getActiveInterface read failed : 2 
+
+2025-12-03T08:39:02.206Z fogcli[4388]:  {cbde66f3} Active Streaming Interface [0] 
+
+2025-12-03T08:39:02.216Z fogcli[4388]:  {cbde66f3} [CheckDiskSpace][INFO] Disk free Space:5.24 Gb[5624901632 bytes], Disk Total Space:5.54 Gb[5948858368 bytes] 
+
+2026-01-16T01:31:48.014Z fogcli[4388]:  {ceadf3af} 
+init controller struct... controller.transactionId=0, controller.clientId =0,controller.clientName=FOG  
+
+2026-01-16T01:31:48.017Z sh[4388]:  dbus_connection_send_with_reply_and_block failed with error The name process.iarm.NET_SRV_MGR was not provided by any .service files
+2026-01-16T01:31:48.017Z sh[4388]:  IARM_Call failed for call NET_SRV_MGR-getActiveInterface
+2026-01-16T01:31:48.030Z sh[4388]:  IARM_Bus_Call failed to invoke getActiveInterface with retCode 2
+2026-01-16T01:31:48.030Z sh[4388]:  IARM_Bus_Call provider returned error (2) for the method getActiveInterface
+2026-01-16T01:31:48.030Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T01:31:48.030Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T01:31:48.030Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-16T01:31:48.030Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-16T01:31:48.030Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3831
+2026-01-16T01:31:48.031Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T01:31:48.031Z sh[4388]:  [PowerController][4459] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-16T01:31:48.031Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T01:31:48.031Z sh[4388]:  [PowerController][4449] INFO  [power_controller.cpp:1250] AddPowerModePreChangeClient: result[0], clientName[FOG], clientId[1]
+2026-01-16T01:31:48.031Z fogcli[4388]:  {ceadf3af} 
+Exit ... getPwrContInterface() controller.clientId =1,controller.clientName=FOG  
+
+2026-01-16T01:31:48.051Z fogcli[4388]:  {cbde66f3} _IsFOGEnabled:endpoint:http://127.0.0.1:9080/tsb 
+
+2026-01-16T01:31:48.051Z fogcli[4388]:  {cbde66f3} fogiarm_generateStatusEvent:IARM_Bus_BroadcastEvent: IARM_RESULT_SUCCESS
+ 
+
+2026-01-16T01:38:59.779Z fogcli[4388]:  {53735b71} _IsFOGEnabled:endpoint:http://127.0.0.1:9080/tsb 
+
+2026-01-16T01:51:06.763Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 2, newState: 5, clientId: 1, transactionId: 1, stateChangeAfter: 1
+ 
+
+2026-01-16T01:51:06.763Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T01:51:06.763Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[1]
+2026-01-16T01:51:06.765Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T01:51:06.765Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T01:51:06.765Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=1, transactionId: 1
+ 
+
+2026-01-16T02:02:43.353Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 2, stateChangeAfter: 0
+ 
+
+2026-01-16T02:02:43.355Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[2]
+2026-01-16T02:02:43.355Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:02:43.356Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:02:43.356Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:02:43.356Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=2, transactionId: 2
+ 
+
+2026-01-16T02:02:48.465Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 3, stateChangeAfter: 1
+ 
+
+2026-01-16T02:02:48.465Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:02:48.465Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:02:48.466Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:02:48.467Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=3, transactionId: 3
+ 
+
+2026-01-16T02:02:48.479Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[3]
+2026-01-16T02:06:05.737Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 4, stateChangeAfter: 0
+ 
+
+2026-01-16T02:06:05.738Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:06:05.738Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:06:05.738Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:06:05.739Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=4, transactionId: 4
+ 
+
+2026-01-16T02:06:05.748Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[4]
+2026-01-16T02:06:10.836Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 5, stateChangeAfter: 1
+ 
+
+2026-01-16T02:06:10.838Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:06:10.839Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:06:10.839Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:06:10.840Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=5, transactionId: 5
+ 
+
+2026-01-16T02:06:10.841Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[5]
+2026-01-16T02:12:49.175Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 6, stateChangeAfter: 0
+ 
+
+2026-01-16T02:12:49.175Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:12:49.175Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[6]
+2026-01-16T02:12:49.176Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:12:49.176Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:12:49.177Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=6, transactionId: 6
+ 
+
+2026-01-16T02:12:54.280Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 7, stateChangeAfter: 1
+ 
+
+2026-01-16T02:12:54.281Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:12:54.281Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:12:54.281Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:12:54.282Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=7, transactionId: 7
+ 
+
+2026-01-16T02:12:54.288Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[7]
+2026-01-16T02:13:09.383Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 8, stateChangeAfter: 0
+ 
+
+2026-01-16T02:13:09.385Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[8]
+2026-01-16T02:13:09.385Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:13:09.385Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:13:09.385Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:13:09.385Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=8, transactionId: 8
+ 
+
+2026-01-16T02:13:14.500Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 9, stateChangeAfter: 1
+ 
+
+2026-01-16T02:13:14.501Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:13:14.501Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:13:14.501Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:13:14.503Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=9, transactionId: 9
+ 
+
+2026-01-16T02:13:14.510Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[9]
+2026-01-16T02:19:34.882Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 10, stateChangeAfter: 0
+ 
+
+2026-01-16T02:19:34.883Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:19:34.883Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:19:34.883Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:19:34.884Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=10, transactionId: 10
+ 
+
+2026-01-16T02:19:34.893Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[10]
+2026-01-16T02:19:39.993Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 11, stateChangeAfter: 1
+ 
+
+2026-01-16T02:19:39.993Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:19:39.994Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:19:39.995Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:19:40.001Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[11]
+2026-01-16T02:19:40.004Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=11, transactionId: 11
+ 
+
+2026-01-16T02:23:07.199Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[12]
+2026-01-16T02:23:07.199Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 12, stateChangeAfter: 0
+ 
+
+2026-01-16T02:23:07.201Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:23:07.201Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:23:07.202Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:23:07.202Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=12, transactionId: 12
+ 
+
+2026-01-16T02:23:12.315Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 13, stateChangeAfter: 1
+ 
+
+2026-01-16T02:23:12.316Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:23:12.317Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:23:12.317Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:23:12.317Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=13, transactionId: 13
+ 
+
+2026-01-16T02:23:12.331Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[13]
+2026-01-16T02:26:53.848Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 14, stateChangeAfter: 0
+ 
+
+2026-01-16T02:26:53.848Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:26:53.849Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:26:53.849Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:26:53.849Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=14, transactionId: 14
+ 
+
+2026-01-16T02:26:53.860Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[14]
+2026-01-16T02:26:59.109Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 15, stateChangeAfter: 1
+ 
+
+2026-01-16T02:26:59.109Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:26:59.110Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:26:59.110Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:26:59.110Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=15, transactionId: 15
+ 
+
+2026-01-16T02:27:00.333Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[15]
+2026-01-16T02:30:16.821Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 16, stateChangeAfter: 0
+ 
+
+2026-01-16T02:30:16.822Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:30:16.822Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[16]
+2026-01-16T02:30:16.822Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:30:16.824Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:30:16.825Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=16, transactionId: 16
+ 
+
+2026-01-16T02:30:21.922Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 17, stateChangeAfter: 1
+ 
+
+2026-01-16T02:30:21.922Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[17]
+2026-01-16T02:30:21.924Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:30:21.926Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:30:21.928Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:30:21.928Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=17, transactionId: 17
+ 
+
+2026-01-16T02:33:39.513Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 18, stateChangeAfter: 0
+ 
+
+2026-01-16T02:33:39.513Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:33:39.513Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:33:39.513Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:33:39.513Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=18, transactionId: 18
+ 
+
+2026-01-16T02:33:39.519Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[18]
+2026-01-16T02:33:44.623Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[19]
+2026-01-16T02:33:44.623Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 19, stateChangeAfter: 1
+ 
+
+2026-01-16T02:33:44.624Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:33:44.625Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:33:44.625Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:33:44.625Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=19, transactionId: 19
+ 
+
+2026-01-16T02:43:44.003Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 5, newState: 4, clientId: 1, transactionId: 20, stateChangeAfter: 0
+ 
+
+2026-01-16T02:43:44.003Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:43:44.003Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:43:44.003Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:43:44.004Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=20, transactionId: 20
+ 
+
+2026-01-16T02:43:44.011Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[20]
+2026-01-16T02:43:49.128Z sh[4388]:  [PowerController][4450] INFO  [power_controller.cpp:1298] PowerModePreChangeComplete: result[0], clientId[1], transactionId[21]
+2026-01-16T02:43:49.128Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler:State Changed currentState: 4, newState: 5, clientId: 1, transactionId: 21, stateChangeAfter: 1
+ 
+
+2026-01-16T02:43:49.129Z fogcli[4388]:  {2877cc48} [pauseAllTSBRecordings][INFO] pause tsb count:0  
+
+2026-01-16T02:43:49.131Z fogcli[4388]:  {2877cc48} FogIARM_PowerPreChangeHandler power down 
+ 
+
+2026-01-16T02:43:49.131Z fogcli[4388]:  {2877cc48} pData->owner -FOG 
+ 
+
+2026-01-16T02:43:49.131Z fogcli[4388]:  {2877cc48} Calling  PowerController_PowerModePreChangeComplete() with clientId: 1, controller.transactionId=21, transactionId: 21
+ 
+

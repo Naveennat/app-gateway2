@@ -1,0 +1,9 @@
+2025-12-03:08:38:51:123584:CHK Found RDM xpki certs Bundle /etc/SKXI11ADS-xpki-certs-update-bundle_0.1.tar
+2025-12-03:08:38:51:178991:CHK Extract xpki firmware bundle
+2025-12-03:08:38:51:194954:CHK Extract update script
+2025-12-03:08:38:51:202085:CHK Run update on xpki cert bundle /tmp/xpkicertsupdate1798/update-xpki-certs.sh
+2025-12-03:08:38:51:639330:UPD /opt/dl/certs/staticXpkiCrt.pk12 valid
+2025-12-03:08:38:51:755701:UPD /opt/dl/certs/xpic.p12 valid
+2025-12-03:08:38:51:763892:CHK xPki cert bundle extraction success.
+2025-12-03:08:38:51:814255:CHK Performing xPki bundle: upgrade from firmware...
+2025-12-03:08:38:51:821799:CHK Exiting ()

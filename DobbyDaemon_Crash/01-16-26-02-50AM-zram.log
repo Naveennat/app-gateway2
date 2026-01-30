@@ -1,0 +1,13 @@
+2025-12-03T08:39:00.307Z sh[3995]:  Checking RFC Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.MEMSWAP.Enable value for ZRAM_RFC_ENABLE
+2025-12-03T08:39:00.456Z sh[3995]:  Using ZRAM feature control value from RFC parameter:true
+2025-12-03T08:39:00.457Z sh[3995]:  zram is enabled:true
+2025-12-03T08:39:00.795Z sh[3995]:  enabling zram with 4 devices of 472467968 size each
+2025-12-03T08:39:00.795Z sh[3995]:  zram_enabled_stats: 4,472467968
+2026-01-16T01:31:49.851Z sh[3995]:  Setting up swapspace version 1, size = 450.6 MiB (472465408 bytes)
+2026-01-16T01:31:49.851Z sh[3995]:  no label, UUID=7fafa4e6-1d16-42fb-8312-03bc73ab6791
+2026-01-16T01:31:50.075Z sh[3995]:  Setting up swapspace version 1, size = 450.6 MiB (472465408 bytes)
+2026-01-16T01:31:50.075Z sh[3995]:  no label, UUID=accaa9f7-3fb5-4237-b16d-3e87ffaf3f83
+2026-01-16T01:31:50.082Z sh[3995]:  Setting up swapspace version 1, size = 450.6 MiB (472465408 bytes)
+2026-01-16T01:31:50.083Z sh[3995]:  no label, UUID=e6dafdf7-0699-43ef-a3c7-3fe20c21ea54
+2026-01-16T01:31:50.150Z sh[3995]:  Setting up swapspace version 1, size = 450.6 MiB (472465408 bytes)
+2026-01-16T01:31:50.150Z sh[3995]:  no label, UUID=581deebb-f2a1-4fe6-893b-fa6dc93f30b8

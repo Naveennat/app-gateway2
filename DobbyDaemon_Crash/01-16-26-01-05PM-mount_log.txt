@@ -1,0 +1,29 @@
+2025-12-03T08:38:50.119Z mount-disk-partition.sh[1355]:  e2fsck 1.46.5 (30-Dec-2021)
+2025-12-03T08:38:50.122Z mount-disk-partition.sh[1355]:  /dev/mmcblk0p3: clean, 1181/32768 files, 21983/131072 blocks
+2025-12-03T08:38:50.150Z mount-disk-partition.sh[1355]:  e2fsck 1.46.5 (30-Dec-2021)
+2025-12-03T08:38:50.154Z mount-disk-partition.sh[1355]:  /dev/mmcblk0p4: clean, 449/16384 files, 20002/65536 blocks
+2025-12-03T08:38:50.157Z mount-disk-partition.sh[1355]:  fsck successful for [/dev/mmcblk0p4] so mounting the FS
+2025-12-03T08:38:50.171Z mount-disk-partition.sh[1355]:  dumpe2fs 1.46.5 (30-Dec-2021)
+2025-12-03T08:38:50.185Z mount-disk-partition.sh[1355]:  [/dev/mmcblk0p4]: Has journaling support
+2025-12-03T08:38:50.195Z mount-disk-partition.sh[1355]:  Mounting success for /dev/mmcblk0p4
+2025-12-03T08:38:50.208Z mount-disk-partition.sh[1355]:  /opt/wifi is not a symlink
+2025-12-03T08:38:52.948Z disk_init[2767]:  Calling start_function()
+2025-12-03T08:38:53.200Z disk_init[2767]:  Calling mount_function()
+2025-12-03T08:38:53.207Z disk_init[2767]:  Fix file system : Start
+2025-12-03T08:38:53.220Z disk_init[2767]:  /dev/mmcblk0p2: clean, 256/88176 files, 132946/352256 blocks
+2025-12-03T08:38:53.225Z disk_init[2767]:  Fix file system : Done
+2025-12-03T08:38:53.234Z disk_init[2767]:  SD card is not mounted.
+2025-12-03T08:38:53.239Z disk_init[2767]:  dumpe2fs 1.46.5 (30-Dec-2021)
+2025-12-03T08:38:53.253Z disk_init[2767]:  Now mounting ...
+2025-12-03T08:38:53.277Z disk_init[2767]:  Mount successful.
+2025-12-03T08:38:53.278Z disk_init[2767]:  Checking SDCARD mount partitions..
+2025-12-03T08:38:53.283Z disk_init[2767]:  SDCARD is mounted on /dev/mmcblk0p2 /media/apps ext4 rw,relatime,data=ordered 0 0 partition
+2025-12-03T08:38:53.288Z disk_init[2767]:  Checking SDCARD /media/apps read /write access...
+2025-12-03T08:38:55.370Z disk_init[2767]:  SDCARD is working fine...
+2025-12-03T08:38:55.376Z disk_init[2767]:  Clearing /media/apps/lost+found/*
+2025-12-03T08:38:55.379Z disk_init[2767]:  Checking /dev/mmcblk0p1 filesystem for errors...
+2025-12-03T08:38:55.401Z disk_init[2767]:  Calling filesystem_function()
+2025-12-03T08:38:55.408Z disk_init[2767]:  Fix file system : Start
+2025-12-03T08:38:55.437Z disk_init[2767]:  /dev/mmcblk0p1: clean, 55/374624 files, 45856/1498112 blocks
+2025-12-03T08:38:55.443Z disk_init[2767]:  Fix file system : Done
+2025-12-03T08:38:55.443Z disk_init[2767]:  Clearing /tmp/data/lost+found/* after filesystem check

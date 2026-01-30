@@ -1,0 +1,309 @@
+2025-12-03T08:38:56.120Z HdmiService[3388]:  [1;32mHdmiService: [0mstarting in debug mode
+2025-12-03T08:38:56.120Z HdmiService[3388]:  [1;32mHdmiService: [0mmutex_init start ------------>
+2025-12-03T08:38:56.120Z HdmiService[3388]:  [1;32mHdmiService: [0mmutex_init end ------------>
+2025-12-03T08:38:56.120Z HdmiService[3388]:  [1;32mHdmiService: [0mcreate /tmp/HdmiRequest
+2025-12-03T08:38:56.120Z HdmiService[3388]:  [1;32mHdmiService: [0mStart HdmiService with DV supported
+2025-12-03T08:38:56.120Z HdmiService[3388]:  [CP][+]RealtekDVControlPathService init!
+2025-12-03T08:38:56.120Z HdmiService[3388]:  register rpc node: 0x3a2b8
+2025-12-03T08:38:56.120Z HdmiService[3388]:  register rpc node: 0x3a2d0
+2025-12-03T08:38:56.120Z HdmiService[3388]:  register rpc node: 0x3a2e8
+2025-12-03T08:38:56.142Z HdmiService[3388]:  [CP]check_DV_ControlPath_secureID custid:121 121
+2025-12-03T08:38:56.142Z HdmiService[3388]:  [DVCP][+]check_DV_ControlPath_secureID result:0!
+2025-12-03T08:38:56.142Z HdmiService[3388]:  [CP]Rtk_DV_Control_Path_Init initialization.processcount:0
+2025-12-03T08:38:56.142Z HdmiService[3388]:  [+][CP]Rtk_DV_Control_Path_RPC_to_VO_Sink_Cap_Share_Mem: 0x785b000
+2025-12-03T08:38:56.142Z HdmiService[3388]:  [-][CP]Rtk_DV_Control_Path_RPC_to_VO_Sink_Cap_Share_Mem
+2025-12-03T08:38:56.142Z HdmiService[3388]:  [CP]DVCP_CA_Init[+]
+2025-12-03T08:38:56.142Z HdmiService[3388]:  @@DVCP_CA_InitializeContext  0
+2025-12-03T08:38:56.199Z HdmiService[3388]:  @@@@DVCP_TEEC_OpenSession  session0
+2025-12-03T08:38:56.199Z HdmiService[3388]:  @@ DVCP_CA_Init buf b6fdb000
+2025-12-03T08:38:56.199Z HdmiService[3388]:  @@DVCP_SVS_CP_INIT  invok res:0 ori:4
+2025-12-03T08:38:56.206Z HdmiService[3388]:  Rtk_DV_checkBonding_SecureID
+2025-12-03T08:38:56.206Z HdmiService[3388]:  [CP]DVCP_CA_Init[-]
+2025-12-03T08:38:56.206Z HdmiService[3388]:  [CP][-]RealtekDVControlPathService init!
+2025-12-03T08:38:56.206Z HdmiService[3388]:  [1;32mHdmiService: [0mcreate HDMIServiceCore ----------->
+2025-12-03T08:38:56.214Z HdmiService[3388]:  mEdidInfoPath : /sys/devices/platform/9800d000.hdmitx/edid_info.
+2025-12-03T08:38:56.214Z HdmiService[3388]:  [1;32mHdmiService: [0mRxSense -1 => 1
+2025-12-03T08:38:56.215Z HdmiService[3388]:  [1;32mHdmiService: [0mthread_suspend():enter.....
+2025-12-03T08:38:56.215Z HdmiService[3388]:  [1;32mHdmiService::HDCPController: [0mHDCPController::HDCPController()
+2025-12-03T08:38:56.215Z HdmiService[3388]:  Open hdcp successfully!  fd: 19
+2025-12-03T08:38:56.215Z HdmiService[3388]:  [1;32mHdmiService: [0mthread_hdcp():enter.....
+2025-12-03T08:38:56.215Z HdmiService[3388]:  [1;32mHdmiService: [0mthread_retry_hdcp():enter.....
+2025-12-03T08:38:56.257Z sh[3521]:  OK
+2025-12-03T08:38:56.269Z sh[3526]:  OK
+2025-12-03T08:38:56.288Z sh[3532]:  OK
+2025-12-03T08:38:56.724Z HdmiService[3388]:  [1;32mHdmiService: [0m[HdmiService.cpp 889] connect fail!!(path=/tmp/HdmiNotify)
+2025-12-03T08:38:56.724Z HdmiService[3388]:  [1;32mHdmiService: [0mHDP -1 => 0
+2025-12-03T08:38:57.230Z HdmiService[3388]:  [1;32mHdmiService: [0m[HdmiService.cpp 889] connect fail!!(path=/tmp/HdmiNotify)
+2025-12-03T08:38:57.230Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex +
+2025-12-03T08:38:57.230Z HdmiService[3388]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 0
+2025-12-03T08:38:57.280Z HdmiService[3388]:  m_isCustomCecEnable ----------> 0 -
+2025-12-03T08:38:57.280Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex -
+2025-12-03T08:38:57.676Z RtkAudioService[3536]:  [SystemSoundPlayer][WARN] [AVR] HDMI hotplug -1->0
+2025-12-03T08:38:57.676Z RtkAudioService[3536]:  [SystemSoundPlayer][INFO] SystemSoundPlayer::setupTrsenc[+]
+2025-12-03T08:38:57.676Z RtkAudioService[3536]:  [SystemSoundPlayer][INFO] output_type & avr_caps are the same. Skip reconstruct encoder
+2025-12-03T08:38:57.676Z RtkAudioService[3536]:  [SystemSoundPlayer][INFO] SystemSoundPlayer::setupTrsenc[-]
+2025-12-03T08:38:57.676Z RtkAudioService[3536]:  [SystemSoundPlayer][INFO] setOutputMode: AO_WRAP_AUDIO_DIGITAL_LPCM_DUAL_CH
+2025-12-03T08:38:57.677Z RtkAudioService[3536]:  [SystemSoundPlayer][INFO] user_prefer=1, Current_reencode_type=0
+2025-12-03T08:38:57.708Z RtkAudioService[3536]:  register rpc node: 0xac2c0
+2025-12-03T08:38:57.708Z RtkAudioService[3536]:  register rpc node: 0xac068
+2025-12-03T08:38:57.708Z RtkAudioService[3536]:  register rpc node: 0xabe10
+2025-12-03T08:38:57.708Z RtkAudioService[3536]:  [TEE_API_Initialize:210][pid:0xdd0 tid:0xdd0][mInit:0] Create session
+2025-12-03T08:38:57.723Z RtkAudioService[3536]:  [SystemSoundPlayer][INFO] Start PCM Player with Trsenc
+2025-12-03T08:38:57.724Z RtkAudioService[3536]:  [SystemSoundPlayer][INFO] OutputTypeMonitor start
+2025-12-03T08:38:57.725Z RtkAudioService[3536]:  [RpcServer][INFO] Server running.
+2025-12-03T08:39:01.621Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 0, len = 12, command_id 18 = HDMI_WRAP_SET_SERVICE_INFO
+2025-12-03T08:39:01.621Z HdmiService[3388]:  [1;32mHdmiService: [0mservice_info.bEableHotplugAction ----> 1
+2025-12-03T08:39:01.621Z HdmiService[3388]:  [1;32mHdmiService: [0mm_HdmiService_isEableHotplugAction(1)
+2025-12-03T08:39:01.650Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 3, len = 32, command_id 36 = HDMI_WRAP_SET_SPD_INFOFRAME
+2025-12-03T08:39:01.828Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 6, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2025-12-03T08:39:01.828Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2025-12-03T08:39:01.829Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2025-12-03T08:39:01.829Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 7, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2025-12-03T08:39:01.830Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-15T02:46:34.273Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 8, len = 12, command_id 12 = HDMI_WRAP_SET_HDCP
+2026-01-15T02:46:34.273Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-15T02:46:34.274Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-15T02:46:34.274Z HdmiService[3388]:  [1;32mHdmiService: [0mmain : HDMI_WRAP_SET_HDCP 0 10 1---->end
+2026-01-15T02:46:35.766Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-15T02:46:35.766Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.hdmiVersion (0 0) monitor:  0 -
+2026-01-15T02:46:35.843Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 0, len = 4, command_id 21 = HDMI_WRAP_CEC_INIT
+2026-01-15T02:46:35.843Z HdmiService[3388]:  SetHW CEC_ENABLE = 0
+2026-01-15T02:46:35.843Z HdmiService[3388]:  cec_set_hotplug ------------------> 0
+2026-01-15T02:46:35.843Z HdmiService[3388]:  [0;32m In cecEnable:218 cecEnable : 0 [m
+2026-01-15T02:46:35.849Z HdmiService[3388]:  SetHW CEC_ENABLE = 0
+2026-01-15T02:46:35.849Z HdmiService[3388]:  disable cec -------------------------->
+2026-01-15T02:46:35.849Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1, len = 8, command_id 23 = HDMI_WRAP_CEC_CECENABLE
+2026-01-15T02:46:35.849Z HdmiService[3388]:  enable_callback : 0, mode : 1
+2026-01-15T02:46:35.849Z HdmiService[3388]:  [0;32m In cecEnable:218 cecEnable : 1 [m
+2026-01-15T02:46:35.849Z HdmiService[3388]:  SetHW CEC_ENABLE = 1
+2026-01-15T02:46:35.849Z HdmiService[3388]:  enable cec ----------------------->
+2026-01-15T02:46:35.849Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 2, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:35.927Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:35.927Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 3, len = 8, command_id 25 = HDMI_WRAP_CEC_ADDLOGICALADDRESS
+2026-01-15T02:46:35.929Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 4, len = 0, command_id 53 = **Unknown**
+2026-01-15T02:46:35.942Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 5, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.038Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:36.091Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 7, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.143Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 9, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.332Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 11, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.428Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:36.430Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 13, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.538Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:36.564Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 15, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.648Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:36.651Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 17, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.759Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:36.760Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 19, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.870Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:36.871Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 21, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:36.980Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:36.982Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 23, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:37.092Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:37.095Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 25, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:37.211Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 9 times
+2026-01-15T02:46:37.211Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-15T02:46:37.212Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-15T02:46:37.212Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-15T02:46:37.214Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:37.216Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 27, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:37.311Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:37.323Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 29, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:37.421Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:37.423Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 31, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:37.538Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:37.560Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 33, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:37.652Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:37.695Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 35, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:37.754Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:37.764Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 37, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:37.866Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:38.714Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 8 times
+2026-01-15T02:46:38.714Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-15T02:46:38.714Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-15T02:46:38.715Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-15T02:46:39.109Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 61, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:39.205Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:39.209Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 63, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:39.314Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:39.367Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 65, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:39.463Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:39.464Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 67, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:39.573Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:39.577Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 69, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:39.705Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:39.758Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 71, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:39.853Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:39.855Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 73, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:40.006Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:40.007Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 75, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:40.076Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:40.076Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 77, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:40.189Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:40.189Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 79, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:40.206Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 7 times
+2026-01-15T02:46:40.206Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-15T02:46:40.209Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-15T02:46:40.209Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-15T02:46:40.294Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:40.294Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 16, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-15T02:46:40.294Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-15T02:46:40.296Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 81, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:40.407Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:40.408Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 83, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:40.516Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:40.517Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 85, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:40.627Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:40.628Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 87, len = 32, command_id 24 = HDMI_WRAP_CEC_SENDMESSAGEWITHPARAM
+2026-01-15T02:46:40.736Z HdmiService[3388]:  mFD:20, cec message send fail: errno(1), Operation not permitted
+2026-01-15T02:46:41.717Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 6 times
+2026-01-15T02:46:41.717Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-15T02:46:41.719Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-15T02:46:41.719Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T02:35:06.662Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 5 times
+2026-01-16T02:35:06.662Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T02:35:06.663Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T02:35:06.663Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T02:35:08.163Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 4 times
+2026-01-16T02:35:08.163Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T02:35:08.163Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T02:35:08.163Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T02:35:09.664Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 3 times
+2026-01-16T02:35:09.664Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T02:35:09.664Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T02:35:09.664Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T02:35:11.165Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 2 times
+2026-01-16T02:35:11.165Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T02:35:11.166Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T02:35:11.167Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T02:35:12.667Z HdmiService[3388]:  [1;32mHdmiService: [0mretry HDCP version(0.x) 10 times, remain 1 times
+2026-01-16T02:35:12.667Z HdmiService[3388]:  [1;32mHdmiService: [0m_EnableHDCP: begin
+2026-01-16T02:35:12.670Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP Error, resetting version
+2026-01-16T02:35:12.670Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T02:35:19.190Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:35:19.191Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.hdmiVersion (0 0) monitor:  0 -
+2026-01-16T02:39:37.552Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:39:37.553Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.hdmiVersion (0 0) monitor:  0 -
+2026-01-16T02:40:06.858Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:40:06.858Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.hdmiVersion (0 0) monitor:  0 -
+2026-01-16T02:40:07.017Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.intTVSupportHDR 0 intTVSupportDV 0 intTVSupportMatPcm 0
+2026-01-16T02:40:07.017Z HdmiService[3388]:  [1;32mHdmiService: [0mcap.hdmiVersion (0 0) monitor:  0 -
+2026-01-16T02:47:31.883Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 921, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T02:47:31.883Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T02:47:31.883Z HdmiService[3388]:  [1;32mHdmiService: [0mHDCP(0.0) state => Disabled, errcode: USER_TURNOFF_HDMI
+2026-01-16T02:47:31.883Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T02:47:31.883Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 922, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T02:47:31.883Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T05:36:05.097Z HdmiService[3388]:  [1;32mHdmiService: [0mResume from suspend status 49
+2026-01-16T05:36:05.098Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T05:36:05.098Z HdmiService[3388]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 0
+2026-01-16T05:36:05.098Z HdmiService[3388]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T05:36:05.098Z HdmiService[3388]:  cec_set_hotplug ------------------> 0
+2026-01-16T05:36:05.098Z HdmiService[3388]:  CECController::cec_set_hotplug ------------>
+2026-01-16T05:36:05.099Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T05:36:07.087Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 941, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T05:36:07.087Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T05:36:07.087Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T05:36:07.087Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 942, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T05:36:07.087Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T05:36:12.226Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 950, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T05:36:12.227Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T05:36:12.227Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T05:36:12.227Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 951, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T05:36:12.227Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T08:14:40.077Z HdmiService[3388]:  [1;32mHdmiService: [0mResume from suspend status 50
+2026-01-16T08:14:40.077Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T08:14:40.077Z HdmiService[3388]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 0
+2026-01-16T08:14:40.450Z HdmiService[3388]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T08:14:40.451Z HdmiService[3388]:  cec_set_hotplug ------------------> 0
+2026-01-16T08:14:40.451Z HdmiService[3388]:  CECController::cec_set_hotplug ------------>
+2026-01-16T08:14:40.451Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T08:14:42.470Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 969, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T08:14:42.470Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T08:14:42.470Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T08:14:42.470Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 970, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T08:14:42.470Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T08:14:47.680Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 976, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T08:14:47.680Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T08:14:47.681Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T08:14:47.681Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 977, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T08:14:47.681Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T08:35:43.663Z HdmiService[3388]:  [1;32mHdmiService: [0mResume from suspend status 51
+2026-01-16T08:35:43.663Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T08:35:43.663Z HdmiService[3388]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 0
+2026-01-16T08:35:53.829Z HdmiService[3388]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T08:35:53.829Z HdmiService[3388]:  cec_set_hotplug ------------------> 0
+2026-01-16T08:35:53.829Z HdmiService[3388]:  CECController::cec_set_hotplug ------------>
+2026-01-16T08:35:53.829Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T08:35:54.364Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 999, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T08:35:54.364Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T08:35:54.364Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T08:35:54.364Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1000, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T08:35:54.366Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T08:35:59.563Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1008, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T08:35:59.564Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T08:35:59.572Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T08:35:59.572Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1009, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T08:35:59.572Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T09:19:39.811Z HdmiService[3388]:  [1;32mHdmiService: [0mResume from suspend status 52
+2026-01-16T09:19:39.811Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T09:19:39.811Z HdmiService[3388]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 0
+2026-01-16T09:19:40.569Z HdmiService[3388]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T09:19:40.569Z HdmiService[3388]:  cec_set_hotplug ------------------> 0
+2026-01-16T09:19:40.569Z HdmiService[3388]:  CECController::cec_set_hotplug ------------>
+2026-01-16T09:19:40.569Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T09:19:46.693Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1030, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T09:19:46.693Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T09:19:46.693Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T09:19:46.693Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1031, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T09:19:46.694Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T09:19:51.977Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1037, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T09:19:51.978Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T09:19:52.107Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T09:19:52.107Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1038, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T09:19:52.107Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T09:34:23.503Z HdmiService[3388]:  [1;32mHdmiService: [0mResume from suspend status 53
+2026-01-16T09:34:23.503Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T09:34:23.503Z HdmiService[3388]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 0
+2026-01-16T09:34:23.868Z HdmiService[3388]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T09:34:23.868Z HdmiService[3388]:  cec_set_hotplug ------------------> 0
+2026-01-16T09:34:23.919Z HdmiService[3388]:  CECController::cec_set_hotplug ------------>
+2026-01-16T09:34:23.919Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T09:34:38.057Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1075, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T09:34:38.058Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T09:34:38.058Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T09:34:38.111Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1076, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T09:34:38.111Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T09:34:43.132Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1082, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T09:34:43.132Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T09:34:43.133Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T09:34:43.133Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1083, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T09:34:43.133Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T10:28:41.924Z HdmiService[3388]:  [1;32mHdmiService: [0mResume from suspend status 54
+2026-01-16T10:28:41.924Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T10:28:41.924Z HdmiService[3388]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 0
+2026-01-16T10:28:43.509Z HdmiService[3388]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T10:28:43.509Z HdmiService[3388]:  cec_set_hotplug ------------------> 0
+2026-01-16T10:28:43.509Z HdmiService[3388]:  CECController::cec_set_hotplug ------------>
+2026-01-16T10:28:43.510Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T10:28:48.744Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1106, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T10:28:48.745Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T10:28:48.745Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T10:28:48.745Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1107, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T10:28:48.745Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T10:28:54.075Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1113, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T10:28:54.076Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T10:28:54.076Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T10:28:54.076Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1115, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T10:28:54.076Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1
+2026-01-16T12:54:15.865Z HdmiService[3388]:  [1;32mHdmiService: [0mResume from suspend status 55
+2026-01-16T12:54:15.865Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex +
+2026-01-16T12:54:15.865Z HdmiService[3388]:  [1;32mHdmiService: [0mUse mHDMILib setHdmiState 0
+2026-01-16T12:54:16.379Z HdmiService[3388]:  m_isCustomCecEnable ----------> 1 -
+2026-01-16T12:54:16.379Z HdmiService[3388]:  cec_set_hotplug ------------------> 0
+2026-01-16T12:54:16.379Z HdmiService[3388]:  CECController::cec_set_hotplug ------------>
+2026-01-16T12:54:16.379Z HdmiService[3388]:  setHdmiState m_HdmiService_Mutex -
+2026-01-16T12:54:22.512Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1137, len = 0, command_id 3 = HDMI_WRAP_TURN_OFF
+2026-01-16T12:54:22.512Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex +
+2026-01-16T12:54:22.512Z HdmiService[3388]:  HDMI_WRAP_TURN_OFF m_HdmiService_Mutex -
+2026-01-16T12:54:22.513Z HdmiService[3388]:  [1;32mHdmiService: [0mHdmiService: seqNum = 1138, len = 4, command_id 9 = HDMI_WRAP_SET_AUDIO_MUTE
+2026-01-16T12:54:22.513Z HdmiService[3388]:  [1;32mHdmiService: [0maudio mute 1

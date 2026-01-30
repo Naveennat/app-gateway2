@@ -1,0 +1,184 @@
+2025-12-03T08:38:52.695Z [RFC] Requesting /opt/secure/RFC/.RFC_CGROUPENABLE.ini
+2025-12-03T08:38:52.910Z [RFC] Requesting /opt/secure/RFC/.RFC_CGROUPENABLE.ini
+2026-01-16T01:31:51.191Z : /lib/rdk/Start_MaintenanceTasks.sh: Starting rfcMgr Binary
+Conf file /etc/debug.ini open success
+IARM_Bus_IsConnected invalid state
+IARM_Init group name = com.comcast.rdk.iarm.bus member name = RDKVRFCMgrEvent
+setting init done
+Registering RDKVRFCMgrEvent
+260116-01:31:51.385969 [mod=RFCMGR, lvl=INFO] [tid=4925] [main][98] RFC: Starting service, creating lock 
+260116-01:31:51.387858 [mod=RFCMGR, lvl=INFO] [tid=4925] [main][114] Waiting for IP Acquistion
+260116-01:31:51.387962 [mod=RFCMGR, lvl=INFO] [tid=4925] [CheckDeviceIsOnline][319] Checking IP and Route configuration
+2026-01-16T01:31:51.634Z : /lib/rdk/Start_MaintenanceTasks.sh: RFC Task execution done
+260116-01:38:50.477278 [mod=RFCMGR, lvl=INFO] [tid=4925] [CheckIProuteConnectivity][218] Received Route Config file
+260116-01:38:50.477463 [mod=RFCMGR, lvl=INFO] [tid=4925] [CheckIProuteConnectivity][231] ip address=IPV4 192.168.68.1
+
+260116-01:38:50.477527 [mod=RFCMGR, lvl=INFO] [tid=4925] [CheckDeviceIsOnline][324] Checking IP and Route configuration found
+260116-01:38:50.477563 [mod=RFCMGR, lvl=INFO] [tid=4925] [CheckDeviceIsOnline][325] Checking DNS Nameserver configuration
+260116-01:38:50.477647 [mod=RFCMGR, lvl=INFO] [tid=4925] [CheckDeviceIsOnline][328] DNS Nameservers are available
+260116-01:38:50.477683 [mod=RFCMGR, lvl=INFO] [tid=4925] [main][116] Starting execution of RFCManager
+260116-01:38:50.477716 [mod=RFCMGR, lvl=INFO] [tid=4925] [main][120] RFC:Device is Online
+260116-01:38:50.478094 [mod=RFCAPI, lvl=INFO] [tid=4925] getRFCParameter: http server is ready
+260116-01:38:50.482626 [mod=RFCAPI, lvl=INFO] [tid=4925] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable"]}, datalen = 82
+260116-01:38:50.486614 [mod=RFCAPI, lvl=INFO] [tid=4925] curl response : 0 http response code: 200
+260116-01:38:50.486914 [mod=RFCAPI, lvl=INFO] [tid=4925] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable",
+			"value":	"false",
+			"dataType":	3,
+			"parameterCount":	1,
+			"message":	"Default Value"
+		}],
+	"statusCode":	38
+}
+260116-01:38:50.487144 [mod=RFCMGR, lvl=INFO] [tid=4925] [read_RFCProperty][191] RFC name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable,type=3,value=false,status=38
+260116-01:38:50.487194 [mod=RFCMGR, lvl=INFO] [tid=4925] [isDebugServicesEnabled][148] rfc Debug services = false
+260116-01:38:50.487260 [mod=RFCAPI, lvl=INFO] [tid=4925] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Bootstrap.XconfUrl"]}, datalen = 73
+260116-01:38:50.490650 [mod=RFCAPI, lvl=INFO] [tid=4925] curl response : 0 http response code: 200
+260116-01:38:50.490936 [mod=RFCAPI, lvl=INFO] [tid=4925] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Bootstrap.XconfUrl",
+			"value":	"https://xconf.xdp.eu-1.xcal.tv",
+			"dataType":	0,
+			"parameterCount":	1,
+			"message":	"Success"
+		}],
+	"statusCode":	0
+}
+260116-01:38:50.491031 [mod=RFCMGR, lvl=INFO] [tid=4925] [read_RFCProperty][191] RFC name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Bootstrap.XconfUrl,type=0,value=https://xconf.xdp.eu-1.xcal.tv,status=0
+260116-01:38:50.491068 [mod=RFCMGR, lvl=INFO] [tid=4925] XconfUrl: = https://xconf.xdp.eu-1.xcal.tv, found after 1 attempts
+260116-01:38:50.491224 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] *** CALLING GetFirmwareVersion FROM COMMON_UTILITIES/LIBFWUTILS ***
+260116-01:38:50.491534 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] *** CALLING GetPartnerId FROM COMMON_UTILITIES/LIBFWUTILS ***
+260116-01:38:50.491614 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] getDevicePropertyData : Trying device property data for WHOAMI_SUPPORT and buf size=8
+260116-01:38:50.491724 [mod=RFCMGR, lvl=ERROR] [tid=4925] [checkWhoamiSupport][129] Failed to get WHOAMI_SUPPORT property. Status: -1
+260116-01:38:50.491770 [mod=RFCMGR, lvl=INFO] [tid=4925] GetRFCPartnerID: PartnerID = sky-uk
+260116-01:38:50.492116 [mod=RFCMGR, lvl=INFO] [tid=4925] [GetServURL][1119] _xconf_server_url: [https://xconf.xcal.tv:443/featureControl/getSettings]
+260116-01:38:50.492212 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] doCurlInit: curl init success
+260116-01:38:50.492264 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] getJsonRpcData : CURL: Setting For jsonrpc_auth_token
+260116-01:38:50.507943 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] Curl Connected to http://127.0.0.1:9998/jsonrpc (127.0.0.1) port 9998
+260116-01:38:50.508035 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] Curl return code =0, http code=200
+260116-01:38:50.508066 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] In performRequest curl_ret_status =0
+260116-01:38:50.508118 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] getJsonRpcData : Bytes Downloaded=71 and curl ret status=0 and http code=200
+260116-01:38:50.508149 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] getJsonRpcData : data received ={"jsonrpc":"2.0","id":3,"result":{"experience":"EntOS","success":true}}
+260116-01:38:50.508192 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] doStopDownload : CURL: free resources
+260116-01:38:50.509823 [mod=RFCMGR, lvl=INFO] [tid=4925] [GetLastProcessedFirmware][184] GetLastProcessedFirmware: [SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG]
+260116-01:38:50.509966 [mod=RFCAPI, lvl=INFO] [tid=4925] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.AccountInfo.AccountID"]}, datalen = 84
+260116-01:38:50.512996 [mod=RFCAPI, lvl=INFO] [tid=4925] curl response : 0 http response code: 200
+260116-01:38:50.513247 [mod=RFCAPI, lvl=INFO] [tid=4925] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.AccountInfo.AccountID",
+			"value":	"1457684130600498670",
+			"dataType":	0,
+			"parameterCount":	1,
+			"message":	"Success"
+		}],
+	"statusCode":	0
+}
+260116-01:38:50.513339 [mod=RFCMGR, lvl=INFO] [tid=4925] [read_RFCProperty][191] RFC name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.AccountInfo.AccountID,type=0,value=1457684130600498670,status=0
+260116-01:38:50.513371 [mod=RFCMGR, lvl=INFO] [tid=4925] GetAccountID: AccountID = 1457684130600498670
+260116-01:38:50.513435 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] getDevicePropertyData : Trying device property data for WHOAMI_SUPPORT and buf size=8
+260116-01:38:50.513570 [mod=RFCMGR, lvl=ERROR] [tid=4925] [checkWhoamiSupport][129] Failed to get WHOAMI_SUPPORT property. Status: -1
+260116-01:38:50.513641 [mod=RFCAPI, lvl=INFO] [tid=4925] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable"]}, datalen = 82
+260116-01:38:50.517192 [mod=RFCAPI, lvl=INFO] [tid=4925] curl response : 0 http response code: 200
+260116-01:38:50.517440 [mod=RFCAPI, lvl=INFO] [tid=4925] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable",
+			"value":	"false",
+			"dataType":	3,
+			"parameterCount":	1,
+			"message":	"Default Value"
+		}],
+	"statusCode":	38
+}
+260116-01:38:50.517528 [mod=RFCMGR, lvl=INFO] [tid=4925] [read_RFCProperty][191] RFC name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable,type=3,value=false,status=38
+260116-01:38:50.517562 [mod=RFCMGR, lvl=INFO] [tid=4925] [isDebugServicesEnabled][148] rfc Debug services = false
+260116-01:38:50.517642 [mod=RFCMGR, lvl=INFO] [tid=4925] [ProcessRuntimeFeatureControlReq][1548] Setting URL from Bootstrap config XCONF_BS_URL:https://xconf.xdp.eu-1.xcal.tv to https://xconf.xdp.eu-1.xcal.tv/featureControl/getSettings 
+260116-01:38:50.554497 [mod=RFCMGR, lvl=INFO] [tid=4925] [CreateXconfHTTPUrl][1756] Encoding is enabled plain URL: https://xconf.xdp.eu-1.xcal.tv/featureControl/getSettings?estbMacAddress=D4:DA:CD:CB:2D:79&firmwareVersion=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG&env=prod&model=SKXI11ADS&manufacturer=Sky_CP&controllerId=2504&channelMapId=2345&VodId=15660&partnerId=sky-uk&osClass=&accountId=1457684130600498670&Experience=EntOS&version=2
+260116-01:38:50.554625 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][1912] Curl Initialized
+260116-01:38:50.554702 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][1922] Xconf Request : [https://xconf.xdp.eu-1.xcal.tv/featureControl/getSettings?estbMacAddress=D4%3ADA%3ACD%3ACB%3A2D%3A79&firmwareVersion=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG&env=prod&model=SKXI11ADS&manufacturer=Sky_CP&controllerId=2504&channelMapId=2345&VodId=15660&partnerId=sky-uk&osClass=&accountId=1457684130600498670&Experience=EntOS&version=2]
+260116-01:38:50.554778 [mod=RFCMGR, lvl=INFO] [tid=4925] [GetStoredHashAndTime][1768] Last Image version SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG and current image version SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG are same 
+260116-01:38:50.554830 [mod=RFCAPI, lvl=INFO] [tid=4925] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.XconfSelector"]}, datalen = 76
+260116-01:38:50.557435 [mod=RFCAPI, lvl=INFO] [tid=4925] curl response : 0 http response code: 200
+260116-01:38:50.557689 [mod=RFCAPI, lvl=INFO] [tid=4925] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.XconfSelector",
+			"value":	"prod",
+			"dataType":	0,
+			"parameterCount":	1,
+			"message":	"Success"
+		}],
+	"statusCode":	0
+}
+260116-01:38:50.557787 [mod=RFCMGR, lvl=INFO] [tid=4925] [read_RFCProperty][191] RFC name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.XconfSelector,type=0,value=prod,status=0
+260116-01:38:50.557822 [mod=RFCMGR, lvl=INFO] [tid=4925] [isXconfSelectorSlotProd][1262] XconfSelector = prod
+260116-01:38:50.557887 [mod=RFCAPI, lvl=INFO] [tid=4925] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.ConfigSetHash"]}, datalen = 76
+260116-01:38:50.561133 [mod=RFCAPI, lvl=INFO] [tid=4925] curl response : 0 http response code: 200
+260116-01:38:50.561474 [mod=RFCAPI, lvl=INFO] [tid=4925] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.ConfigSetHash",
+			"value":	"15MSQEw4xQ1ZGZQLemxZnYrZ3mLqcf1B7t",
+			"dataType":	0,
+			"parameterCount":	1,
+			"message":	"Success"
+		}],
+	"statusCode":	0
+}
+260116-01:38:50.561600 [mod=RFCMGR, lvl=INFO] [tid=4925] [read_RFCProperty][191] RFC name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.ConfigSetHash,type=0,value=15MSQEw4xQ1ZGZQLemxZnYrZ3mLqcf1B7t,status=0
+260116-01:38:50.561670 [mod=RFCMGR, lvl=INFO] [tid=4925] [RetrieveHashAndTimeFromPreviousDataSet][1855] ConfigSetHash: Hash = 15MSQEw4xQ1ZGZQLemxZnYrZ3mLqcf1B7t
+260116-01:38:50.561723 [mod=RFCAPI, lvl=INFO] [tid=4925] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.ConfigSetTime"]}, datalen = 76
+260116-01:38:50.565449 [mod=RFCAPI, lvl=INFO] [tid=4925] curl response : 0 http response code: 200
+260116-01:38:50.565874 [mod=RFCAPI, lvl=INFO] [tid=4925] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.ConfigSetTime",
+			"value":	"1768352777",
+			"dataType":	2,
+			"parameterCount":	1,
+			"message":	"Success"
+		}],
+	"statusCode":	0
+}
+260116-01:38:50.565988 [mod=RFCMGR, lvl=INFO] [tid=4925] [read_RFCProperty][191] RFC name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Control.ConfigSetTime,type=2,value=1768352777,status=0
+260116-01:38:50.566026 [mod=RFCMGR, lvl=INFO] [tid=4925] [RetrieveHashAndTimeFromPreviousDataSet][1870] ConfigSetTime: Set Time = 1768352777
+260116-01:38:50.566098 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][1940] Initializing cert selector
+260116-01:38:50.566294 [mod=CERTSELECTOR, lvl=ERROR] [tid=4925]  rdkcertselector_new:hrot file, /etc/ssl/certsel/hrot.properties, not found
+260116-01:38:50.566337 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][1949] Cert selector initialization successful
+260116-01:38:50.566368 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][1957] Fetching MTLS credential for SSR/XCONF
+260116-01:38:50.642954 [mod=RFCMGR, lvl=INFO] [tid=4925] getMtlscert, MTLS dynamic/static cert success. cert=/opt/certs/devicecert_1.pk12, type=P12, engine=
+260116-01:38:50.643053 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][1959] getMtlscert function ret value = 0
+260116-01:38:50.643128 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][1968] MTLS is enable
+MTLS creds for SSR fetched ret=0
+260116-01:38:50.682290 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] doCurlInit: curl init success
+260116-01:38:50.682405 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] doHttpFileDownload : CURL: setCommonCurlOpt Success
+260116-01:38:50.682449 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] setMtlsHeaders: certfile:/opt/certs/devicecert_1.pk12:cert type:P12
+260116-01:38:50.682480 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] setMtlsHeaders: engine type:
+260116-01:38:50.682526 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] setMtlsHeaders : set certfile:/opt/certs/devicecert_1.pk12:paswd:<> and type:P12
+260116-01:38:50.682562 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] doHttpFileDownload : CURL: setMtlsHeaders Success
+260116-01:38:50.682599 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] urlHelperDownloadToMem: Header Data Request Set
+260116-01:38:51.404556 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] Curl Connected to https://xconf.xdp.eu-1.xcal.tv/featureControl/getSettings?estbMacAddress=D4%3ADA%3ACD%3ACB%3A2D%3A79&firmwareVersion=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG&env=prod&model=SKXI11ADS&manufacturer=Sky_CP&controllerId=2504&channelMapId=2345&VodId=15660&partnerId=sky-uk&osClass=&accountId=1457684130600498670&Experience=EntOS&version=2 (184.120.150.216) port 443
+260116-01:38:51.404649 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] Curl return code =0, http code=304
+260116-01:38:51.404678 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] In performRequest curl_ret_status =0
+260116-01:38:51.404731 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] doHttpFileDownload : After curl operation no of bytes Downloaded=0 and curl ret status=0 and http code=304
+260116-01:38:51.404762 [mod=COMMONUTILITIES, lvl=INFO] [tid=4925] doStopDownload : CURL: free resources
+260116-01:38:51.412913 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][1973] RFC Xconf Connection Response cURL Return : 0 HTTP Code : 304
+260116-01:38:51.413079 [mod=RFCMGR, lvl=INFO] [tid=4925] [DownloadRuntimeFeatutres][2036] HTTP request success. Response unchanged (304). No processing
+260116-01:38:51.414061 [mod=RFCMGR, lvl=INFO] [tid=4925] [Features Enabled]-[ACTIVE]: AAMP_CFG:B=true,AAMP_CLI_DAI:E=true,ADT:E=true,AccountId=true,ApparmorEnhance:E=true,CFG_14:E=true,DNS64Proxy:E=true,DNS64Proxy:E_N2=true,DNSP:D=true,DolbyVision:E=true,HDMICEC:E=true,IUIUrl:AllPlatform2=true,LogUpldDpSlp:E=true,MINID:E=true,NETFLIX_RESURRECTION:E=true,Netflix4k:E=true,NetflixAtmos:E=true,NetworkDisable:E=true,OTT_Token:E_Netflix=true,PGT:E=true,PXSCENE_PRELOAD:E=true,SupportedLanguages:en-GB=true,T2:E_N1=true,TEEU:E=true,UNII3_feature:E=true,XConf:EU=true,ZRAM:E=true,eMMC_Version_New:E=true,vRexTtsUrl:UK=true, 
+RFC configuration for Forward SSH is not available. Defaulting to ForwardSSH to true.
+RFC_ENABLE_MOCASSH:true
+SSH: Forward SSH changed to enabled
+iptables_init: Adding DEV/VBN /usr/sbin/iptables -w  rules..
+iptables_init: Adding VBN/PROD /usr/sbin/iptables -w  rules..
+Add the IPv4 SSH Static IP Addresses
+Appended the IPv4 96.118.159.156 in StaticSshWhiteList
+Appended the IPv4 96.118.159.245 in StaticSshWhiteList
+Appended the IPv4 96.118.159.252 in StaticSshWhiteList
+Appended the IPv4 96.118.213.116 in StaticSshWhiteList
+iptables_init: Adding VBN/PROD /usr/sbin/ip6tables -w   rules..
+Enabling ssh only from approved source IPv6s ...
+SSH will be disabled from all other source !!!
+Appended the IPv6 2001:558:fc0a:6:f816:3eff:fe19:9cc8 in StaticSshWhiteList
+Appended the IPv6 2001:558:fc0a:6:f816:3eff:fe38:224b in StaticSshWhiteList
+Appended the IPv6 2001:558:fc0a:6:f816:3eff:feb2:22bd in StaticSshWhiteList
+260116-01:38:56.111080 [mod=RFCMGR, lvl=INFO] [tid=4925] [RFCManagerPostProcess][389] Script[/lib/rdk/iptables_init] Executed Successfully
+260116-01:38:56.111193 [mod=RFCMGR, lvl=INFO] [tid=4925] [RFCManagerProcess][440] RFC:Post Processing Successfully Completed
+260116-01:38:56.207543 [mod=RFCMGR, lvl=INFO] [tid=4925] [main][124] RFC:Xconf Request Processed successfully
+260116-01:38:56.209372 [mod=RFCMGR, lvl=INFO] [tid=4925] [cleanup_lock_file][38] RFC: Completed service, deleting lock

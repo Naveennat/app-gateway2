@@ -1,0 +1,493 @@
+2025-12-03T08:39:00.437Z webconfig[4002]:  rdk_dyn_log_initg_dl_socket = 3 __progname = webconfig
+2025-12-03T08:39:00.437Z webconfig[4002]:  Conf file /etc/debug.ini open success
+2025-12-03T08:39:00.437Z webconfig[4002]:  251203-08:39:00.436766 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: ********** Starting component: webconfig **********
+2025-12-03T08:39:00.440Z webconfig[4002]:   251203-08:39:00.440648 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: webconfigRbusInit is success. ret is 0
+2025-12-03T08:39:00.440Z webconfig[4002]:  251203-08:39:00.440701 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: Registering parameters Device.X_RDK_WebConfig.RfcEnable, Device.X_RDK_WebConfig.Data
+2025-12-03T08:39:00.440Z webconfig[4002]:  251203-08:39:00.440778 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: ERROR :0 -- failed to open file /tmp/rbus_subs_webconfig
+2025-12-03T08:39:00.442Z webconfig[4002]:  251203-08:39:00.440818 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: ERROR :0 -- failed to remove /tmp/rbus_subs_webconfig
+2025-12-03T08:39:00.470Z webconfig[4002]:  251203-08:39:00.464396 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: WebUrl present in db json file
+2025-12-03T08:39:00.470Z webconfig[4002]:  251203-08:39:00.464488 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: Sup_url present in db json file
+2025-12-03T08:39:00.470Z webconfig[4002]:  251203-08:39:00.464514 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: Rfc present in db json file
+2025-12-03T08:39:00.471Z webconfig[4002]:  251203-08:39:00.464552 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: psm_get success ret 0 for parameter Device.X_RDK_WebConfig.RfcEnable and value true
+2025-12-03T08:39:00.471Z webconfig[4002]:  251203-08:39:00.464580 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: rbus reg status returned is 0
+2025-12-03T08:39:00.471Z webconfig[4002]:  251203-08:39:00.464603 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: Checked CR - System is ready, proceed with webconfig startup
+2025-12-03T08:39:00.471Z webconfig[4002]:  251203-08:39:00.467120 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: systemReadyTime is 1764751140
+2025-12-03T08:39:00.471Z webconfig[4002]:  251203-08:39:00.467172 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: Registering WanEventHandler sysevents
+2025-12-03T08:39:00.471Z webconfig[4002]:  251203-08:39:00.467194 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: Waiting for Webconfig.Upstream event subscription for 300s
+2026-01-15T02:46:39.086Z webconfig[4002]:  260115-02:46:39.084389 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: eventSubHandler: action=subscribe eventName=Webconfig.Upstream
+2026-01-15T02:46:42.449Z webconfig[4002]:  260115-02:46:42.447902 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: WebConfig Rfc is enabled, starting initWebConfigMultipartTask.
+2026-01-15T02:46:42.450Z webconfig[4002]:  260115-02:46:42.448103 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: WebConfigMultipartTask Thread created Successfully.
+2026-01-15T02:46:42.450Z webconfig[4002]:  260115-02:46:42.448141 [mod=WEBCONFIG, lvl=INFO] [tid=4002] WEBCONFIG: mqtt is disabled..
+2026-01-15T02:46:42.476Z webconfig[4002]:  telemetry:1:true
+2026-01-15T02:46:42.477Z webconfig[4002]:  260115-02:46:42.476840 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig Notification thread created Successfully
+2026-01-15T02:46:42.478Z webconfig[4002]:  {"webcfgdb"=>[{"name"=>"root", "version"=>0}]}260115-02:46:42.478322 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Producer added webcfgdb->name root, webcfg->version 0, success_doc_count 1
+2026-01-15T02:46:42.478Z webconfig[4002]:  260115-02:46:42.478403 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Starting initEventHandlingTask
+2026-01-15T02:46:42.478Z webconfig[4002]:  260115-02:46:42.478542 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig event handling thread created Successfully
+2026-01-15T02:46:42.478Z webconfig[4002]:  260115-02:46:42.478628 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: processWebcfgEvents thread created Successfully
+2026-01-15T02:46:42.478Z webconfig[4002]:  260115-02:46:42.478651 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig is ready to process requests. set webcfgReady to true
+2026-01-15T02:46:42.481Z webconfig[4002]:  260115-02:46:42.481149 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: getSerialNumber
+2026-01-15T02:46:42.494Z webconfig[4002]:  260115-02:46:42.492513 [mod=WEBCONFIG, lvl=INFO] [tid=5792] WEBCONFIG: Registering RBUS event Element
+2026-01-15T02:46:42.495Z webconfig[4002]:  260115-02:46:42.493031 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: SerialNumber fetched success
+2026-01-15T02:46:42.495Z webconfig[4002]:  260115-02:46:42.493062 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: serialNum is : IP04SK8214000F0ER
+2026-01-15T02:46:42.495Z webconfig[4002]:  260115-02:46:42.493081 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-15T02:46:42.495Z webconfig[4002]:  260115-02:46:42.494187 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-15T02:46:42.496Z webconfig[4002]:  260115-02:46:42.496577 [mod=WEBCONFIG, lvl=INFO] [tid=5792] WEBCONFIG: registerWebcfgEvent success
+2026-01-15T02:46:42.501Z webconfig[4002]:  260115-02:46:42.500900 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-15T02:46:42.528Z webconfig[4002]:  260115-02:46:42.525549 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-15T02:46:42.528Z webconfig[4002]:  260115-02:46:42.525606 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-15T02:46:42.528Z webconfig[4002]:  260115-02:46:42.525627 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Failed to read token from /etc/parodus/parodus_read_file.sh. Proceeding to create new token.
+2026-01-15T02:46:42.528Z webconfig[4002]:  260115-02:46:42.526628 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-15T02:46:42.529Z webconfig[4002]:  260115-02:46:42.529089 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+260116-02:35:06.328845 WEBCONFIG: generated uuid is e85c36de-7353-4eb6-ae44-62894534b200
+260116-02:35:06.342518 WEBCONFIG: MAC is d452ee59e3e7
+260116-02:35:06.361140 WEBCONFIG: SER_NUM is IP04SK8214000F0ER
+260116-02:35:06.375410 WEBCONFIG: Transaction-Id is e85c36de-7353-4eb6-ae44-62894534b200
+260116-02:35:06.418189 WEBCONFIG: X-Midt-Partner-Id header is *,sky-uk
+260116-02:35:06.444596 WEBCONFIG: Server Url is https://issuer.xmidt.comcast.net:8080/issue
+260116-02:35:06.465375 Device operational cert2 not supported for SKXI11ADS
+260116-02:35:06.697224 CURL_CMD: /usr/bin/curl --cert-type P12 --cert /opt/certs/devicecert_1.pk12<hidden key> -w '%{http_code}\n' --connect-timeout 30 -m 30 --output /tmp/.cURLresponse --header X-Midt-Mac-Address:"d452ee59e3e7" --header X-Midt-Serial-Number:"IP04SK8214000F0ER" --header X-Midt-Uuid:"e85c36de-7353-4eb6-ae44-62894534b200" --header X-Midt-Transaction-Id:"e85c36de-7353-4eb6-ae44-62894534b200" --header X-Midt-Partner-Id:"*,sky-uk" https://issuer.xmidt.comcast.net:8080/issue
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100   821  100   821    0     0    465      0  0:00:01  0:00:01 --:--:--   465
+260116-02:35:09.653449 WEBCONFIG: ret = 0 http_code: 200
+260116-02:35:09.662044 WEBCONFIG: cURL success.
+260116-02:35:09.669466 WEBCONFIG: cURL success
+260116-02:35:09.677383 WEBCONFIG: File generated successfully
+260116-02:35:09.681636 WEBCONFIG: After update
+2026-01-16T02:35:09.683Z webconfig[4002]:  260116-02:35:09.683159 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T02:35:09.684Z webconfig[4002]:  260116-02:35:09.683232 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T02:35:09.684Z webconfig[4002]:  260116-02:35:09.684526 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T02:35:09.697Z webconfig[4002]:  260116-02:35:09.697285 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T02:35:09.700Z webconfig[4002]:  260116-02:35:09.699892 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T02:35:09.700Z webconfig[4002]:  260116-02:35:09.700001 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T02:35:09.700Z webconfig[4002]:  260116-02:35:09.700025 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T02:35:09.700Z webconfig[4002]:  260116-02:35:09.700044 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T02:35:09.700Z webconfig[4002]:  260116-02:35:09.700064 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T02:35:09.700Z webconfig[4002]:  260116-02:35:09.700085 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T02:35:09.700Z webconfig[4002]:  260116-02:35:09.700105 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T02:35:09.700Z webconfig[4002]:  260116-02:35:09.700124 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T02:35:09.701Z webconfig[4002]:  260116-02:35:09.701287 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.703673 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.703705 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.703728 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768530909
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.703750 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.703850 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: d1571f20-0d64-42ab-88ad-9611588e5702
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.704133 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.704160 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.704180 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.704200 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T02:35:09.704Z webconfig[4002]:  260116-02:35:09.704219 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T02:35:09.710Z webconfig[4002]:  260116-02:35:09.708915 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T02:35:09.710Z webconfig[4002]:  260116-02:35:09.708951 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T02:35:09.710Z webconfig[4002]:  Trying to free null pointer
+2026-01-16T02:35:09.710Z webconfig[4002]:  260116-02:35:09.709533 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T02:35:09.710Z webconfig[4002]:  260116-02:35:09.709564 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T02:35:09.710Z webconfig[4002]:  260116-02:35:09.709595 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T02:35:10.116Z webconfig[4002]:  260116-02:35:10.116137 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 404
+2026-01-16T02:35:10.116Z webconfig[4002]:  260116-02:35:10.116373 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 0.4 seconds
+2026-01-16T02:35:10.123Z webconfig[4002]:  260116-02:35:10.123105 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Action not supported. response_code:404
+2026-01-16T02:35:10.123Z webconfig[4002]:  260116-02:35:10.123349 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T02:35:10.123Z webconfig[4002]:  260116-02:35:10.123530 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T02:35:10.123Z webconfig[4002]:  260116-02:35:10.123699 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Supplementary sync for telemetry
+2026-01-16T02:35:10.124Z webconfig[4002]:  260116-02:35:10.123759 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: dest is event:rootdoc-report/mac:d452ee59e3e7/status
+2026-01-16T02:35:10.124Z webconfig[4002]:  260116-02:35:10.123862 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: stringifiedNotifyPayload is {"device_id":"mac:d452ee59e3e7","http_status_code":404,"transaction_uuid":"d1571f20-0d64-42ab-88ad-9611588e5702","version":"0"}
+2026-01-16T02:35:10.124Z webconfig[4002]:  260116-02:35:10.124107 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: Notification successfully sent to Webconfig.Upstream
+2026-01-16T02:35:10.124Z webconfig[4002]:  260116-02:35:10.124584 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T02:35:10.125Z webconfig[4002]:  260116-02:35:10.125178 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T02:35:10.125Z webconfig[4002]:  260116-02:35:10.125768 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T02:35:10.139Z webconfig[4002]:  260116-02:35:10.139162 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T02:35:10.139Z webconfig[4002]:  260116-02:35:10.139214 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T02:35:10.139Z webconfig[4002]:  260116-02:35:10.139235 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T02:35:10.140Z webconfig[4002]:  260116-02:35:10.139266 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T02:35:10.140Z webconfig[4002]:  260116-02:35:10.139659 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T02:35:10.140Z webconfig[4002]:  260116-02:35:10.139679 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T02:35:10.140Z webconfig[4002]:  260116-02:35:10.139700 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supplementaryDocs_header formed X-System-SupplementaryService-Sync: telemetry
+2026-01-16T02:35:10.140Z webconfig[4002]:  260116-02:35:10.139719 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.139739 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.139760 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.139782 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768530910
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.139801 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.139842 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: 49472eff-b78c-4434-aef9-0a219f8a2ae4
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.140671 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.140697 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.140717 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.140737 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.140755 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.140774 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T02:35:10.141Z webconfig[4002]:  260116-02:35:10.140795 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: telemetryVersion_header formed X-System-Telemetry-Profile-Version: 2.0
+2026-01-16T02:35:10.144Z webconfig[4002]:  260116-02:35:10.143276 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: PartnerID_header formed X-System-PartnerID: sky-uk
+2026-01-16T02:35:10.146Z webconfig[4002]:  260116-02:35:10.145197 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: AccountID_header formed X-System-AccountID: 656480991463752764
+2026-01-16T02:35:10.146Z webconfig[4002]:  260116-02:35:10.145243 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: DeviceWanMac_header formed X-System-Wan-Mac: d452ee59e3e7
+2026-01-16T02:35:10.146Z webconfig[4002]:  260116-02:35:10.145265 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 1
+2026-01-16T02:35:10.147Z webconfig[4002]:  Trying to free null pointer
+2026-01-16T02:35:10.147Z webconfig[4002]:  260116-02:35:10.145781 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Supplementary URL:https://cpe-profile-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T02:35:10.147Z webconfig[4002]:  260116-02:35:10.145809 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-profile-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T02:35:10.147Z webconfig[4002]:  260116-02:35:10.145833 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T02:35:10.678Z webconfig[4002]:  260116-02:35:10.675875 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 200
+2026-01-16T02:35:10.678Z webconfig[4002]:  260116-02:35:10.675929 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 0.5 seconds
+2026-01-16T02:35:10.678Z webconfig[4002]:  260116-02:35:10.675963 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ct is multipart/mixed; boundary=2xKIxjfJuErFW+hmNCwEoMoY8I+ECM9efrV6EI4efSSW9QjI, content_res is 0
+2026-01-16T02:35:10.678Z webconfig[4002]:  260116-02:35:10.675984 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Content-Type is multipart/mixed. Valid
+2026-01-16T02:35:10.685Z webconfig[4002]:  260116-02:35:10.685134 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Size of the docs is :1
+2026-01-16T02:35:10.686Z webconfig[4002]:  260116-02:35:10.686799 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Added 2 mp entries To tmp List
+2026-01-16T02:35:10.687Z webconfig[4002]:  260116-02:35:10.687098 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: node is pointing to temp->name root temp->version 0 temp->status pending temp->error_details none
+2026-01-16T02:35:10.687Z webconfig[4002]:  260116-02:35:10.687275 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: node is pointing to temp->name telemetry temp->version 3568651768 temp->status pending_apply temp->error_details none
+2026-01-16T02:35:10.687Z webconfig[4002]:  260116-02:35:10.687435 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: doc telemetry is updated to version 3568651768 status pending error_details none error_code 0 trans_id 0 temp->retry_count 0
+2026-01-16T02:35:10.688Z webconfig[4002]:  {"parameters"=>[{"name"=>"Device.X_RDKCENTRAL-COM_T2.ReportProfilesMsgPack", "value"=>"Ù(<h2>404 NOT FOUND</h2>profiles not found", "dataType"=>12}]}260116-02:35:10.688018 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: subdoc_name: telemetry, version: 3568651768, transaction_id: 38765
+2026-01-16T02:35:10.688Z webconfig[4002]:  "subdoc_name"260116-02:35:10.688244 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: doc telemetry is updated to version 3568651768 status pending error_details none error_code 0 trans_id 38765 temp->retry_count 0
+2026-01-16T02:35:10.688Z webconfig[4002]:  260116-02:35:10.688392 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Request:> param[0].name = Device.X_RDKCENTRAL-COM_T2.ReportProfilesMsgPack, type = 5
+2026-01-16T02:35:10.690Z webconfig[4002]:  260116-02:35:10.690655 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The ret status for rbus_setMulti is 0
+2026-01-16T02:35:10.690Z webconfig[4002]:  260116-02:35:10.690859 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ccspRetStatus is 100
+2026-01-16T02:35:10.691Z webconfig[4002]:  260116-02:35:10.691019 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: setValues success. ccspStatus : 100
+2026-01-16T02:35:10.691Z webconfig[4002]:  260116-02:35:10.691166 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: processMsgpackSubdoc done,docs are sent for apply
+2026-01-16T05:36:07.095Z webconfig[4002]:  260116-05:36:07.093811 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Received poke request, proceed to parseForceSyncJson
+2026-01-16T05:36:07.095Z webconfig[4002]:  260116-05:36:07.093868 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Force sync json parsed: [root]
+2026-01-16T05:36:07.095Z webconfig[4002]:  260116-05:36:07.093916 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSync transaction Id is NULL, generated uuid 63864fce-a7ee-4347-b8ee-f7fbc0036378
+2026-01-16T05:36:07.095Z webconfig[4002]:  260116-05:36:07.093947 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSyncTransID is 63864fce-a7ee-4347-b8ee-f7fbc0036378
+2026-01-16T05:36:07.095Z webconfig[4002]:  260116-05:36:07.093969 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Trigger force sync
+2026-01-16T05:36:07.095Z webconfig[4002]:  260116-05:36:07.094092 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ForceSyncDoc root ForceSyncTransID. 63864fce-a7ee-4347-b8ee-f7fbc0036378
+2026-01-16T05:36:07.096Z webconfig[4002]:  260116-05:36:07.094140 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T05:36:07.097Z webconfig[4002]:  260116-05:36:07.096902 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T05:36:07.108Z webconfig[4002]:  260116-05:36:07.108872 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T05:36:07.157Z webconfig[4002]:  260116-05:36:07.157574 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157642 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157672 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157713 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157857 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157886 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157910 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157935 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157961 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.157981 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.158002 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.158028 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.158055 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T05:36:07.158Z webconfig[4002]:  260116-05:36:07.158078 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T05:36:07.159Z webconfig[4002]:  260116-05:36:07.158100 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768541767
+2026-01-16T05:36:07.159Z webconfig[4002]:  260116-05:36:07.158120 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T05:36:07.159Z webconfig[4002]:  260116-05:36:07.158146 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: updating transaction_uuid with force g_ForceSyncTransID
+2026-01-16T05:36:07.159Z webconfig[4002]:  260116-05:36:07.158168 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: 63864fce-a7ee-4347-b8ee-f7fbc0036378
+2026-01-16T05:36:07.160Z webconfig[4002]:  260116-05:36:07.159553 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T05:36:07.160Z webconfig[4002]:  260116-05:36:07.159592 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T05:36:07.160Z webconfig[4002]:  260116-05:36:07.159613 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T05:36:07.160Z webconfig[4002]:  260116-05:36:07.159634 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T05:36:07.160Z webconfig[4002]:  260116-05:36:07.159654 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T05:36:07.160Z webconfig[4002]:  260116-05:36:07.159674 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T05:36:07.160Z webconfig[4002]:  260116-05:36:07.159700 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T05:36:07.166Z webconfig[4002]:  260116-05:36:07.165297 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T05:36:07.166Z webconfig[4002]:  260116-05:36:07.165342 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T05:36:07.166Z webconfig[4002]:  260116-05:36:07.165366 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T05:36:09.273Z webconfig[4002]:  260116-05:36:09.272886 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 6 http_code 0
+2026-01-16T05:36:09.273Z webconfig[4002]:  260116-05:36:09.272938 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 1.9 seconds
+2026-01-16T05:36:09.273Z webconfig[4002]:  260116-05:36:09.273013 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: curl_easy_perform() failed: Couldn't resolve host name
+2026-01-16T05:36:09.274Z webconfig[4002]:  260116-05:36:09.273154 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Error code returned, need to do curl retry to server. response_code:0
+2026-01-16T05:36:09.274Z webconfig[4002]:  260116-05:36:09.273185 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webcfg_http_request BACKOFF_SLEEP_DELAY_SEC is 10 seconds
+2026-01-16T05:36:19.676Z webconfig[4002]:  260116-05:36:19.675613 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig curl retry_count to server is 1
+2026-01-16T05:36:19.676Z webconfig[4002]:  260116-05:36:19.675680 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T05:36:19.677Z webconfig[4002]:  260116-05:36:19.677514 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T05:36:19.678Z webconfig[4002]:  260116-05:36:19.678036 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T05:36:19.695Z webconfig[4002]:  260116-05:36:19.695383 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T05:36:19.695Z webconfig[4002]:  260116-05:36:19.695445 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T05:36:19.695Z webconfig[4002]:  260116-05:36:19.695466 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T05:36:19.695Z webconfig[4002]:  260116-05:36:19.695499 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T05:36:19.699Z webconfig[4002]:  260116-05:36:19.699869 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.699912 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.699932 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.699953 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.699974 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.699993 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.700012 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.700032 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.700054 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.700075 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.700097 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768541779
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.700118 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T05:36:19.700Z webconfig[4002]:  260116-05:36:19.700138 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: updating transaction_uuid with force g_ForceSyncTransID
+2026-01-16T05:36:19.701Z webconfig[4002]:  260116-05:36:19.700158 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: 63864fce-a7ee-4347-b8ee-f7fbc0036378
+2026-01-16T05:36:19.701Z webconfig[4002]:  260116-05:36:19.700476 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T05:36:19.701Z webconfig[4002]:  260116-05:36:19.700506 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T05:36:19.701Z webconfig[4002]:  260116-05:36:19.700527 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T05:36:19.701Z webconfig[4002]:  260116-05:36:19.700568 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T05:36:19.701Z webconfig[4002]:  260116-05:36:19.700590 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T05:36:19.701Z webconfig[4002]:  260116-05:36:19.700610 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T05:36:19.701Z webconfig[4002]:  260116-05:36:19.700635 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T05:36:19.702Z webconfig[4002]:  260116-05:36:19.702705 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T05:36:19.702Z webconfig[4002]:  260116-05:36:19.702747 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T05:36:19.702Z webconfig[4002]:  260116-05:36:19.702772 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as V4 mode
+2026-01-16T05:36:20.003Z webconfig[4002]:  260116-05:36:20.002885 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 404
+2026-01-16T05:36:20.003Z webconfig[4002]:  260116-05:36:20.002944 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 0.3 seconds
+2026-01-16T05:36:20.008Z webconfig[4002]:  260116-05:36:20.008831 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Action not supported. response_code:404
+2026-01-16T05:36:20.009Z webconfig[4002]:  260116-05:36:20.008945 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T05:36:20.009Z webconfig[4002]:  260116-05:36:20.009023 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T05:36:20.009Z webconfig[4002]:  260116-05:36:20.009115 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: dest is event:rootdoc-report/mac:d452ee59e3e7/status
+2026-01-16T05:36:20.009Z webconfig[4002]:  260116-05:36:20.009147 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: stringifiedNotifyPayload is {"device_id":"mac:d452ee59e3e7","http_status_code":404,"transaction_uuid":"63864fce-a7ee-4347-b8ee-f7fbc0036378","version":"0"}
+2026-01-16T05:36:20.009Z webconfig[4002]:  260116-05:36:20.009278 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: Notification successfully sent to Webconfig.Upstream
+2026-01-16T08:14:42.518Z webconfig[4002]:  260116-08:14:42.512424 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Received poke request, proceed to parseForceSyncJson
+2026-01-16T08:14:42.518Z webconfig[4002]:  260116-08:14:42.512482 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Force sync json parsed: [root]
+2026-01-16T08:14:42.519Z webconfig[4002]:  260116-08:14:42.512545 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSync transaction Id is NULL, generated uuid 753c12fd-646c-411a-823e-f40755cb15e5
+2026-01-16T08:14:42.519Z webconfig[4002]:  260116-08:14:42.512580 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSyncTransID is 753c12fd-646c-411a-823e-f40755cb15e5
+2026-01-16T08:14:42.520Z webconfig[4002]:  260116-08:14:42.512606 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Trigger force sync
+2026-01-16T08:14:42.520Z webconfig[4002]:  260116-08:14:42.512733 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ForceSyncDoc root ForceSyncTransID. 753c12fd-646c-411a-823e-f40755cb15e5
+2026-01-16T08:14:42.520Z webconfig[4002]:  260116-08:14:42.512795 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T08:14:42.520Z webconfig[4002]:  260116-08:14:42.512851 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T08:14:42.524Z webconfig[4002]:  260116-08:14:42.523816 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T08:14:42.574Z webconfig[4002]:  260116-08:14:42.573883 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T08:14:42.574Z webconfig[4002]:  260116-08:14:42.573996 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T08:14:42.574Z webconfig[4002]:  260116-08:14:42.574029 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T08:14:42.574Z webconfig[4002]:  260116-08:14:42.574070 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574134 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574159 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574184 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574207 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574231 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574256 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574278 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574302 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574326 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574349 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574374 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768551282
+2026-01-16T08:14:42.575Z webconfig[4002]:  260116-08:14:42.574398 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T08:14:42.576Z webconfig[4002]:  260116-08:14:42.574421 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: updating transaction_uuid with force g_ForceSyncTransID
+2026-01-16T08:14:42.576Z webconfig[4002]:  260116-08:14:42.574443 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: 753c12fd-646c-411a-823e-f40755cb15e5
+2026-01-16T08:14:42.578Z webconfig[4002]:  260116-08:14:42.577107 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T08:14:42.578Z webconfig[4002]:  260116-08:14:42.577146 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T08:14:42.578Z webconfig[4002]:  260116-08:14:42.577170 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T08:14:42.578Z webconfig[4002]:  260116-08:14:42.577196 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T08:14:42.579Z webconfig[4002]:  260116-08:14:42.577220 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T08:14:42.579Z webconfig[4002]:  260116-08:14:42.577248 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T08:14:42.579Z webconfig[4002]:  260116-08:14:42.577285 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T08:14:42.579Z webconfig[4002]:  260116-08:14:42.577864 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T08:14:42.579Z webconfig[4002]:  260116-08:14:42.577898 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T08:14:42.579Z webconfig[4002]:  260116-08:14:42.577925 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T08:14:42.937Z webconfig[4002]:  260116-08:14:42.937478 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 404
+2026-01-16T08:14:42.937Z webconfig[4002]:  260116-08:14:42.937542 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 0.4 seconds
+2026-01-16T08:14:42.944Z webconfig[4002]:  260116-08:14:42.943929 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Action not supported. response_code:404
+2026-01-16T08:14:42.945Z webconfig[4002]:  260116-08:14:42.944437 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T08:14:42.945Z webconfig[4002]:  260116-08:14:42.944509 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T08:14:42.945Z webconfig[4002]:  260116-08:14:42.944635 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: dest is event:rootdoc-report/mac:d452ee59e3e7/status
+2026-01-16T08:14:42.945Z webconfig[4002]:  260116-08:14:42.944663 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: stringifiedNotifyPayload is {"device_id":"mac:d452ee59e3e7","http_status_code":404,"transaction_uuid":"753c12fd-646c-411a-823e-f40755cb15e5","version":"0"}
+2026-01-16T08:14:42.945Z webconfig[4002]:  260116-08:14:42.944778 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: Notification successfully sent to Webconfig.Upstream
+2026-01-16T08:35:54.391Z webconfig[4002]:  260116-08:35:54.373931 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Received poke request, proceed to parseForceSyncJson
+2026-01-16T08:35:54.391Z webconfig[4002]:  260116-08:35:54.373978 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Force sync json parsed: [root]
+2026-01-16T08:35:54.391Z webconfig[4002]:  260116-08:35:54.374080 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSync transaction Id is NULL, generated uuid 8ccf7c89-c9ab-45cb-ab59-65797d0c1f1f
+2026-01-16T08:35:54.392Z webconfig[4002]:  260116-08:35:54.374110 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSyncTransID is 8ccf7c89-c9ab-45cb-ab59-65797d0c1f1f
+2026-01-16T08:35:54.392Z webconfig[4002]:  260116-08:35:54.374131 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Trigger force sync
+2026-01-16T08:35:54.392Z webconfig[4002]:  260116-08:35:54.374261 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ForceSyncDoc root ForceSyncTransID. 8ccf7c89-c9ab-45cb-ab59-65797d0c1f1f
+2026-01-16T08:35:54.392Z webconfig[4002]:  260116-08:35:54.374311 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T08:35:54.394Z webconfig[4002]:  260116-08:35:54.378507 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T08:35:54.394Z webconfig[4002]:  260116-08:35:54.386418 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452099 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452171 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452196 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452230 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452335 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452360 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452380 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452400 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T08:35:54.452Z webconfig[4002]:  260116-08:35:54.452422 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452442 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452462 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452485 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452506 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452527 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452550 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768552554
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452571 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452591 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: updating transaction_uuid with force g_ForceSyncTransID
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452611 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: 8ccf7c89-c9ab-45cb-ab59-65797d0c1f1f
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452958 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.452989 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T08:35:54.453Z webconfig[4002]:  260116-08:35:54.453010 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T08:35:54.454Z webconfig[4002]:  260116-08:35:54.453031 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T08:35:54.454Z webconfig[4002]:  260116-08:35:54.453052 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T08:35:54.454Z webconfig[4002]:  260116-08:35:54.453072 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T08:35:54.454Z webconfig[4002]:  260116-08:35:54.453098 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T08:35:54.462Z webconfig[4002]:  260116-08:35:54.461897 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T08:35:54.462Z webconfig[4002]:  260116-08:35:54.461978 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T08:35:54.462Z webconfig[4002]:  260116-08:35:54.462008 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T08:35:54.903Z webconfig[4002]:  260116-08:35:54.903281 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 404
+2026-01-16T08:35:54.903Z webconfig[4002]:  260116-08:35:54.903352 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 0.4 seconds
+2026-01-16T08:35:54.910Z webconfig[4002]:  260116-08:35:54.910662 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Action not supported. response_code:404
+2026-01-16T08:35:54.911Z webconfig[4002]:  260116-08:35:54.910896 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T08:35:54.911Z webconfig[4002]:  260116-08:35:54.910990 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T08:35:54.911Z webconfig[4002]:  260116-08:35:54.911079 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: dest is event:rootdoc-report/mac:d452ee59e3e7/status
+2026-01-16T08:35:54.911Z webconfig[4002]:  260116-08:35:54.911112 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: stringifiedNotifyPayload is {"device_id":"mac:d452ee59e3e7","http_status_code":404,"transaction_uuid":"8ccf7c89-c9ab-45cb-ab59-65797d0c1f1f","version":"0"}
+2026-01-16T08:35:54.911Z webconfig[4002]:  260116-08:35:54.911227 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: Notification successfully sent to Webconfig.Upstream
+2026-01-16T09:19:46.820Z webconfig[4002]:  260116-09:19:46.814986 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Received poke request, proceed to parseForceSyncJson
+2026-01-16T09:19:46.820Z webconfig[4002]:  260116-09:19:46.815042 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Force sync json parsed: [root]
+2026-01-16T09:19:46.820Z webconfig[4002]:  260116-09:19:46.815088 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSync transaction Id is NULL, generated uuid 41df2781-07dd-4c69-b017-91240eed60f7
+2026-01-16T09:19:46.820Z webconfig[4002]:  260116-09:19:46.815120 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSyncTransID is 41df2781-07dd-4c69-b017-91240eed60f7
+2026-01-16T09:19:46.820Z webconfig[4002]:  260116-09:19:46.815266 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Trigger force sync
+2026-01-16T09:19:46.820Z webconfig[4002]:  260116-09:19:46.815372 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ForceSyncDoc root ForceSyncTransID. 41df2781-07dd-4c69-b017-91240eed60f7
+2026-01-16T09:19:46.820Z webconfig[4002]:  260116-09:19:46.815421 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T09:19:46.822Z webconfig[4002]:  260116-09:19:46.820320 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T09:19:46.880Z webconfig[4002]:  260116-09:19:46.830367 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T09:19:46.880Z webconfig[4002]:  260116-09:19:46.849451 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T09:19:46.880Z webconfig[4002]:  260116-09:19:46.849498 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T09:19:46.880Z webconfig[4002]:  260116-09:19:46.849519 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T09:19:46.880Z webconfig[4002]:  260116-09:19:46.849552 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T09:19:46.880Z webconfig[4002]:  260116-09:19:46.849785 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T09:19:46.880Z webconfig[4002]:  260116-09:19:46.849816 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T09:19:46.880Z webconfig[4002]:  260116-09:19:46.849835 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T09:19:46.881Z webconfig[4002]:  260116-09:19:46.849856 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T09:19:46.881Z webconfig[4002]:  260116-09:19:46.849919 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T09:19:46.881Z webconfig[4002]:  260116-09:19:46.849943 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T09:19:46.881Z webconfig[4002]:  260116-09:19:46.849963 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T09:19:46.881Z webconfig[4002]:  260116-09:19:46.849985 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T09:19:46.882Z webconfig[4002]:  260116-09:19:46.850006 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T09:19:46.882Z webconfig[4002]:  260116-09:19:46.850026 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T09:19:46.882Z webconfig[4002]:  260116-09:19:46.850047 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768555186
+2026-01-16T09:19:46.882Z webconfig[4002]:  260116-09:19:46.850067 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T09:19:46.888Z webconfig[4002]:  260116-09:19:46.850086 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: updating transaction_uuid with force g_ForceSyncTransID
+2026-01-16T09:19:46.905Z webconfig[4002]:  260116-09:19:46.850106 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: 41df2781-07dd-4c69-b017-91240eed60f7
+2026-01-16T09:19:46.906Z webconfig[4002]:  260116-09:19:46.850444 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T09:19:46.906Z webconfig[4002]:  260116-09:19:46.850473 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T09:19:46.907Z webconfig[4002]:  260116-09:19:46.850493 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T09:19:46.907Z webconfig[4002]:  260116-09:19:46.850514 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T09:19:46.907Z webconfig[4002]:  260116-09:19:46.850534 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T09:19:46.907Z webconfig[4002]:  260116-09:19:46.850554 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T09:19:46.907Z webconfig[4002]:  260116-09:19:46.850578 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T09:19:46.938Z webconfig[4002]:  260116-09:19:46.921962 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T09:19:46.938Z webconfig[4002]:  260116-09:19:46.922010 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T09:19:46.938Z webconfig[4002]:  260116-09:19:46.922036 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T09:19:48.453Z webconfig[4002]:  260116-09:19:48.453252 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 404
+2026-01-16T09:19:48.453Z webconfig[4002]:  260116-09:19:48.453325 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 1.5 seconds
+2026-01-16T09:19:48.461Z webconfig[4002]:  260116-09:19:48.461423 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Action not supported. response_code:404
+2026-01-16T09:19:48.461Z webconfig[4002]:  260116-09:19:48.461529 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T09:19:48.461Z webconfig[4002]:  260116-09:19:48.461591 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T09:19:48.462Z webconfig[4002]:  260116-09:19:48.461937 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: dest is event:rootdoc-report/mac:d452ee59e3e7/status
+2026-01-16T09:19:48.462Z webconfig[4002]:  260116-09:19:48.461977 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: stringifiedNotifyPayload is {"device_id":"mac:d452ee59e3e7","http_status_code":404,"transaction_uuid":"41df2781-07dd-4c69-b017-91240eed60f7","version":"0"}
+2026-01-16T09:19:48.462Z webconfig[4002]:  260116-09:19:48.462095 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: Notification successfully sent to Webconfig.Upstream
+2026-01-16T09:34:38.022Z webconfig[4002]:  260116-09:34:38.018223 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Received poke request, proceed to parseForceSyncJson
+2026-01-16T09:34:38.022Z webconfig[4002]:  260116-09:34:38.018280 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Force sync json parsed: [root]
+2026-01-16T09:34:38.022Z webconfig[4002]:  260116-09:34:38.018342 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSync transaction Id is NULL, generated uuid a0b3bfc6-fa92-4b1d-9513-903286bb06d2
+2026-01-16T09:34:38.022Z webconfig[4002]:  260116-09:34:38.018375 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSyncTransID is a0b3bfc6-fa92-4b1d-9513-903286bb06d2
+2026-01-16T09:34:38.023Z webconfig[4002]:  260116-09:34:38.018398 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Trigger force sync
+2026-01-16T09:34:38.023Z webconfig[4002]:  260116-09:34:38.018511 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ForceSyncDoc root ForceSyncTransID. a0b3bfc6-fa92-4b1d-9513-903286bb06d2
+2026-01-16T09:34:38.023Z webconfig[4002]:  260116-09:34:38.018565 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T09:34:38.029Z webconfig[4002]:  260116-09:34:38.027513 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T09:34:38.037Z webconfig[4002]:  260116-09:34:38.037295 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T09:34:38.077Z webconfig[4002]:  260116-09:34:38.077174 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077237 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077262 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077300 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077427 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077455 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077477 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077500 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077524 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077546 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077568 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T09:34:38.078Z webconfig[4002]:  260116-09:34:38.077593 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T09:34:38.079Z webconfig[4002]:  260116-09:34:38.077617 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T09:34:38.079Z webconfig[4002]:  260116-09:34:38.077641 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T09:34:38.079Z webconfig[4002]:  260116-09:34:38.077666 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768556078
+2026-01-16T09:34:38.079Z webconfig[4002]:  260116-09:34:38.077688 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T09:34:38.079Z webconfig[4002]:  260116-09:34:38.077711 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: updating transaction_uuid with force g_ForceSyncTransID
+2026-01-16T09:34:38.079Z webconfig[4002]:  260116-09:34:38.077734 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: a0b3bfc6-fa92-4b1d-9513-903286bb06d2
+2026-01-16T09:34:38.082Z webconfig[4002]:  260116-09:34:38.082010 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T09:34:38.082Z webconfig[4002]:  260116-09:34:38.082067 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T09:34:38.082Z webconfig[4002]:  260116-09:34:38.082098 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T09:34:38.082Z webconfig[4002]:  260116-09:34:38.082123 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T09:34:38.083Z webconfig[4002]:  260116-09:34:38.082146 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T09:34:38.084Z webconfig[4002]:  260116-09:34:38.082177 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T09:34:38.084Z webconfig[4002]:  260116-09:34:38.082214 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T09:34:38.084Z webconfig[4002]:  260116-09:34:38.084277 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T09:34:38.085Z webconfig[4002]:  260116-09:34:38.084323 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T09:34:38.085Z webconfig[4002]:  260116-09:34:38.084351 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T09:34:38.460Z webconfig[4002]:  260116-09:34:38.460375 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 404
+2026-01-16T09:34:38.460Z webconfig[4002]:  260116-09:34:38.460453 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 0.4 seconds
+2026-01-16T09:34:38.468Z webconfig[4002]:  260116-09:34:38.468207 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Action not supported. response_code:404
+2026-01-16T09:34:38.468Z webconfig[4002]:  260116-09:34:38.468381 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T09:34:38.468Z webconfig[4002]:  260116-09:34:38.468474 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T09:34:38.468Z webconfig[4002]:  260116-09:34:38.468572 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: dest is event:rootdoc-report/mac:d452ee59e3e7/status
+2026-01-16T09:34:38.468Z webconfig[4002]:  260116-09:34:38.468606 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: stringifiedNotifyPayload is {"device_id":"mac:d452ee59e3e7","http_status_code":404,"transaction_uuid":"a0b3bfc6-fa92-4b1d-9513-903286bb06d2","version":"0"}
+2026-01-16T09:34:38.468Z webconfig[4002]:  260116-09:34:38.468736 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: Notification successfully sent to Webconfig.Upstream
+2026-01-16T10:28:48.847Z webconfig[4002]:  260116-10:28:48.835994 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Received poke request, proceed to parseForceSyncJson
+2026-01-16T10:28:48.847Z webconfig[4002]:  260116-10:28:48.836055 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Force sync json parsed: [root]
+2026-01-16T10:28:48.847Z webconfig[4002]:  260116-10:28:48.836112 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSync transaction Id is NULL, generated uuid 6d47ed1b-9486-4a8a-abbf-11356e0ac341
+2026-01-16T10:28:48.849Z webconfig[4002]:  260116-10:28:48.836146 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSyncTransID is 6d47ed1b-9486-4a8a-abbf-11356e0ac341
+2026-01-16T10:28:48.849Z webconfig[4002]:  260116-10:28:48.836173 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Trigger force sync
+2026-01-16T10:28:48.849Z webconfig[4002]:  260116-10:28:48.836254 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ForceSyncDoc root ForceSyncTransID. 6d47ed1b-9486-4a8a-abbf-11356e0ac341
+2026-01-16T10:28:48.849Z webconfig[4002]:  260116-10:28:48.836325 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T10:28:48.850Z webconfig[4002]:  260116-10:28:48.839706 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T10:28:48.850Z webconfig[4002]:  260116-10:28:48.842817 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T10:28:48.889Z webconfig[4002]:  260116-10:28:48.889218 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T10:28:48.889Z webconfig[4002]:  260116-10:28:48.889293 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T10:28:48.889Z webconfig[4002]:  260116-10:28:48.889324 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T10:28:48.889Z webconfig[4002]:  260116-10:28:48.889368 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T10:28:48.890Z webconfig[4002]:  260116-10:28:48.889519 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T10:28:48.890Z webconfig[4002]:  260116-10:28:48.889552 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T10:28:48.890Z webconfig[4002]:  260116-10:28:48.889578 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T10:28:48.890Z webconfig[4002]:  260116-10:28:48.889605 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T10:28:48.890Z webconfig[4002]:  260116-10:28:48.889633 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T10:28:48.891Z webconfig[4002]:  260116-10:28:48.889660 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T10:28:48.891Z webconfig[4002]:  260116-10:28:48.889685 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T10:28:48.891Z webconfig[4002]:  260116-10:28:48.889715 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T10:28:48.891Z webconfig[4002]:  260116-10:28:48.889744 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T10:28:48.891Z webconfig[4002]:  260116-10:28:48.889771 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T10:28:48.892Z webconfig[4002]:  260116-10:28:48.889801 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768559328
+2026-01-16T10:28:48.892Z webconfig[4002]:  260116-10:28:48.889829 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T10:28:48.892Z webconfig[4002]:  260116-10:28:48.889855 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: updating transaction_uuid with force g_ForceSyncTransID
+2026-01-16T10:28:48.892Z webconfig[4002]:  260116-10:28:48.889881 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: 6d47ed1b-9486-4a8a-abbf-11356e0ac341
+2026-01-16T10:28:48.892Z webconfig[4002]:  260116-10:28:48.891354 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T10:28:48.892Z webconfig[4002]:  260116-10:28:48.891405 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T10:28:48.893Z webconfig[4002]:  260116-10:28:48.891433 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T10:28:48.894Z webconfig[4002]:  260116-10:28:48.891462 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T10:28:48.894Z webconfig[4002]:  260116-10:28:48.891490 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T10:28:48.894Z webconfig[4002]:  260116-10:28:48.891517 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T10:28:48.894Z webconfig[4002]:  260116-10:28:48.891554 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T10:28:48.894Z webconfig[4002]:  260116-10:28:48.893590 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T10:28:48.894Z webconfig[4002]:  260116-10:28:48.893643 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T10:28:48.895Z webconfig[4002]:  260116-10:28:48.893678 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T10:28:49.311Z webconfig[4002]:  260116-10:28:49.311323 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 404
+2026-01-16T10:28:49.311Z webconfig[4002]:  260116-10:28:49.311385 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 0.4 seconds
+2026-01-16T10:28:49.318Z webconfig[4002]:  260116-10:28:49.318197 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Action not supported. response_code:404
+2026-01-16T10:28:49.318Z webconfig[4002]:  260116-10:28:49.318292 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T10:28:49.318Z webconfig[4002]:  260116-10:28:49.318377 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T10:28:49.318Z webconfig[4002]:  260116-10:28:49.318465 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: dest is event:rootdoc-report/mac:d452ee59e3e7/status
+2026-01-16T10:28:49.318Z webconfig[4002]:  260116-10:28:49.318497 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: stringifiedNotifyPayload is {"device_id":"mac:d452ee59e3e7","http_status_code":404,"transaction_uuid":"6d47ed1b-9486-4a8a-abbf-11356e0ac341","version":"0"}
+2026-01-16T10:28:49.318Z webconfig[4002]:  260116-10:28:49.318733 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: Notification successfully sent to Webconfig.Upstream
+2026-01-16T12:54:22.520Z webconfig[4002]:  260116-12:54:22.501890 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Received poke request, proceed to parseForceSyncJson
+2026-01-16T12:54:22.521Z webconfig[4002]:  260116-12:54:22.501936 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Force sync json parsed: [root]
+2026-01-16T12:54:22.521Z webconfig[4002]:  260116-12:54:22.501983 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSync transaction Id is NULL, generated uuid 80f21a20-526d-48ba-bea3-d309218273ff
+2026-01-16T12:54:22.521Z webconfig[4002]:  260116-12:54:22.502009 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: ForceSyncTransID is 80f21a20-526d-48ba-bea3-d309218273ff
+2026-01-16T12:54:22.521Z webconfig[4002]:  260116-12:54:22.502029 [mod=WEBCONFIG, lvl=INFO] [tid=4042] WEBCONFIG: Trigger force sync
+2026-01-16T12:54:22.522Z webconfig[4002]:  260116-12:54:22.502126 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ForceSyncDoc root ForceSyncTransID. 80f21a20-526d-48ba-bea3-d309218273ff
+2026-01-16T12:54:22.522Z webconfig[4002]:  260116-12:54:22.502173 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Proceed to execute_token_script function
+2026-01-16T12:54:22.522Z webconfig[4002]:  260116-12:54:22.508320 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is initiated
+2026-01-16T12:54:22.522Z webconfig[4002]:  260116-12:54:22.513516 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is executed
+2026-01-16T12:54:22.570Z webconfig[4002]:  260116-12:54:22.560000 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script command is success
+2026-01-16T12:54:22.570Z webconfig[4002]:  260116-12:54:22.560063 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: execute_token_script is done
+2026-01-16T12:54:22.570Z webconfig[4002]:  260116-12:54:22.560087 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: update webpa_auth_token in success case
+2026-01-16T12:54:22.570Z webconfig[4002]:  260116-12:54:22.560128 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T12:54:22.570Z webconfig[4002]:  260116-12:54:22.560233 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T12:54:22.570Z webconfig[4002]:  260116-12:54:22.560262 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: version_header formed IF-NONE-MATCH:0
+2026-01-16T12:54:22.571Z webconfig[4002]:  260116-12:54:22.560285 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: docList fetched root
+2026-01-16T12:54:22.571Z webconfig[4002]:  260116-12:54:22.560305 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Post none retain header formed POST-NONE-RETAIN: true
+2026-01-16T12:54:22.571Z webconfig[4002]:  260116-12:54:22.560327 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: schema_header formed Schema-Version: v1.0
+2026-01-16T12:54:22.576Z webconfig[4002]:  260116-12:54:22.560349 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedVersion fetched is NULL
+2026-01-16T12:54:22.576Z webconfig[4002]:  260116-12:54:22.560369 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: supportedDocs_header formed X-System-Supported-Docs: 16777217
+2026-01-16T12:54:22.576Z webconfig[4002]:  260116-12:54:22.560396 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: bootTime_header formed X-System-Boot-Time: 1768445177
+2026-01-16T12:54:22.576Z webconfig[4002]:  260116-12:54:22.560419 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: FwVersion_header formed X-System-Firmware-Version: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+2026-01-16T12:54:22.576Z webconfig[4002]:  260116-12:54:22.560440 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: status_header formed X-System-Status: Operational
+2026-01-16T12:54:22.576Z webconfig[4002]:  260116-12:54:22.560463 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: currentTime_header formed X-System-Current-Time: 1768568062
+2026-01-16T12:54:22.576Z webconfig[4002]:  260116-12:54:22.560486 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: systemReadyTime_header formed X-System-Ready-Time: 1764751140
+2026-01-16T12:54:22.576Z webconfig[4002]:  260116-12:54:22.560508 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: updating transaction_uuid with force g_ForceSyncTransID
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.560530 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: uuid_header formed Transaction-ID: 80f21a20-526d-48ba-bea3-d309218273ff
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.560888 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- rbus_get for Device.DeviceInfo.ProductClass failed with error: Entry not found error
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.560920 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ERROR :0 -- Failed to get the data. Error : 5
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.560942 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get value rbus_getExt rc=5 resCount=0
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.560964 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to GetValue for Device.DeviceInfo.ProductClass
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.560984 [mod=WEBCONFIG, lvl=ERROR] [tid=5787] WEBCONFIG: Failed to get productClass
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.561005 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: ModelName_header formed X-System-Model-Name: SKXI11ADS
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.561033 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: The get_global_supplementarySync() is 0
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.562453 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Global set Webconfig URL:https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config
+2026-01-16T12:54:22.577Z webconfig[4002]:  260116-12:54:22.562497 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Webconfig root ConfigURL is https://cpe-config-sky-uk.wp.xdp.comcast.net/api/v1/device/d452ee59e3e7/config?group_id=root
+2026-01-16T12:54:22.578Z webconfig[4002]:  260116-12:54:22.562528 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl Ip resolve option set as default mode
+2026-01-16T12:54:23.034Z webconfig[4002]:  260116-12:54:23.034380 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: webConfig curl response 0 http_code 404
+2026-01-16T12:54:23.034Z webconfig[4002]:  260116-12:54:23.034445 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: curl response Time: 0.5 seconds
+2026-01-16T12:54:23.043Z webconfig[4002]:  260116-12:54:23.043538 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: Action not supported. response_code:404
+2026-01-16T12:54:23.043Z webconfig[4002]:  260116-12:54:23.043636 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: reboot reason is MAINTENANCE_REBOOT
+2026-01-16T12:54:23.043Z webconfig[4002]:  260116-12:54:23.043701 [mod=WEBCONFIG, lvl=INFO] [tid=5787] WEBCONFIG: versionsList is 0
+2026-01-16T12:54:23.044Z webconfig[4002]:  260116-12:54:23.043823 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: dest is event:rootdoc-report/mac:d452ee59e3e7/status
+2026-01-16T12:54:23.044Z webconfig[4002]:  260116-12:54:23.043856 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: stringifiedNotifyPayload is {"device_id":"mac:d452ee59e3e7","http_status_code":404,"transaction_uuid":"80f21a20-526d-48ba-bea3-d309218273ff","version":"0"}
+2026-01-16T12:54:23.044Z webconfig[4002]:  260116-12:54:23.044008 [mod=WEBCONFIG, lvl=INFO] [tid=5791] WEBCONFIG: Notification successfully sent to Webconfig.Upstream

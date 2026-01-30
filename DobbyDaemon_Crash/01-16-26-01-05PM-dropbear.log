@@ -1,0 +1,13 @@
+2025-12-03T08:39:00.745Z sh[3998]:   dropbear using prod authorization keys
+2025-12-03T08:39:00.878Z sh[3998]:  RFC_ENABLE_MOCASSH:true
+2025-12-03T08:39:00.984Z dropbear[4197]:  Running in background
+2026-01-15T02:46:36.719Z Restarting Dropbear due to global ip address changes
+2026-01-15T02:46:37.387Z sh[4930]:   dropbear using prod authorization keys
+2026-01-15T02:46:37.524Z sh[4930]:  RFC_ENABLE_MOCASSH:true
+2026-01-15T02:46:37.524Z sh[4930]:  Reading IPv4 address for wlan0
+2026-01-15T02:46:37.819Z dropbear[5096]:  Running in background
+2026-01-16T05:36:14.768Z Restarting Dropbear due to global ip address changes
+2026-01-16T05:36:15.148Z sh[14561]:   dropbear using prod authorization keys
+2026-01-16T05:36:15.183Z sh[14561]:  RFC_ENABLE_MOCASSH:true
+2026-01-16T05:36:15.185Z sh[14561]:  Reading IPv4 address for wlan0
+2026-01-16T05:36:15.300Z dropbear[14693]:  Running in background

@@ -1,0 +1,20 @@
+2025-12-03T08:38:55.751Z iptables_init[3257]:  RFC configuration for Forward SSH is not available. Defaulting to ForwardSSH to true.
+2025-12-03T08:38:55.834Z iptables_init[3257]:  RFC_ENABLE_MOCASSH:
+2025-12-03T08:38:55.834Z iptables_init[3257]:  SSH: Forward SSH changed to enabled
+2025-12-03T08:38:55.840Z iptables_init[3257]:  iptables_init: Adding DEV/VBN /usr/sbin/iptables -w  rules..
+2025-12-03T08:38:55.840Z iptables_init[3257]:  iptables_init: Adding VBN/PROD /usr/sbin/iptables -w  rules..
+2025-12-03T08:38:56.142Z iptables_init[3257]:  Add the IPv4 SSH Static IP Addresses
+2025-12-03T08:38:56.142Z iptables_init[3257]:  Appended the IPv4 96.118.159.156 in StaticSshWhiteList
+2025-12-03T08:38:56.144Z iptables_init[3257]:  Appended the IPv4 96.118.159.245 in StaticSshWhiteList
+2025-12-03T08:38:56.153Z iptables_init[3257]:  Appended the IPv4 96.118.159.252 in StaticSshWhiteList
+2025-12-03T08:38:56.157Z iptables_init[3257]:  Appended the IPv4 96.118.213.116 in StaticSshWhiteList
+2025-12-03T08:38:56.262Z iptables_init[3257]:  iptables v1.8.7 (legacy): unknown protocol "igmp" specified
+2025-12-03T08:38:56.262Z iptables_init[3257]:  Try `iptables -h' or 'iptables --help' for more information.
+2025-12-03T08:38:56.472Z iptables_init[3257]:  iptables_init: Adding VBN/PROD /usr/sbin/ip6tables -w   rules..
+2025-12-03T08:38:56.588Z iptables_init[3257]:  Enabling ssh only from approved source IPv6s ...
+2025-12-03T08:38:56.588Z iptables_init[3257]:  SSH will be disabled from all other source !!!
+2025-12-03T08:38:56.594Z iptables_init[3257]:  Appended the IPv6 2001:558:fc0a:6:f816:3eff:fe19:9cc8 in StaticSshWhiteList
+2025-12-03T08:38:56.607Z iptables_init[3257]:  Appended the IPv6 2001:558:fc0a:6:f816:3eff:fe38:224b in StaticSshWhiteList
+2025-12-03T08:38:56.655Z iptables_init[3257]:  Appended the IPv6 2001:558:fc0a:6:f816:3eff:feb2:22bd in StaticSshWhiteList
+2025-12-03T08:38:56.802Z iptables_init[3257]:  ip6tables v1.8.7 (legacy): unknown protocol "igmp" specified
+2025-12-03T08:38:56.802Z iptables_init[3257]:  Try `ip6tables -h' or 'ip6tables --help' for more information.

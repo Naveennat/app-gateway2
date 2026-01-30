@@ -1,0 +1,8 @@
+2025-12-03T08:38:55.691Z nfrtool[3250]:  rdk_dyn_log_initg_dl_socket = 3 __progname = nfrtool
+2025-12-03T08:38:55.691Z nfrtool[3250]:  Conf file /etc/debug.ini open success
+2025-12-03T08:38:55.691Z nfrtool[3250]:  Running from service
+2026-01-15T02:46:34.692Z nfrtool[3250]:  260115-02:46:34.690263 [mod=NFRTOOL, lvl=ERROR] [tid=3310] [NetworkMonitor] Failed to subscribe to statechange event: 11
+2026-01-15T02:46:39.799Z nfrtool[3250]:  260115-02:46:39.798386 [mod=NFRTOOL, lvl=INFO] [tid=3310] [NetworkMonitor] Subscribed to statechange event successfully.
+2026-01-15T02:46:39.803Z nfrtool[3250]:  260115-02:46:39.803063 [mod=NFRTOOL, lvl=INFO] [tid=3310] [NetworkMonitor] Subscribed to onInternetStatusChange event successfully.
+2026-01-15T02:46:39.804Z nfrtool[3250]:  260115-02:46:39.804376 [mod=NFRTOOL, lvl=INFO] [tid=3310] [NetworkMonitor] Subscribed to onActiveInterfaceChange event successfully.
+2026-01-15T02:46:39.806Z nfrtool[3250]:  260115-02:46:39.806156 [mod=NFRTOOL, lvl=INFO] [tid=3310] [NetworkMonitor] interface wlan0

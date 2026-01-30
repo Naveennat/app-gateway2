@@ -1,0 +1,72 @@
+2025-12-03T08:38:55.577Z reboot-checker.sh[3260]:  Reading Reboot information from rebootInfo.log file
+2025-12-03T08:38:55.717Z reboot-checker.sh[3260]:  LOG PATH: /opt/logs/PreviousLogs
+2025-12-03T08:38:55.717Z reboot-checker.sh[3260]:  Last reboot File = /opt/logs/PreviousLogs/rebootInfo.log
+2025-12-03T08:38:56.124Z reboot-checker.sh[3260]:  /lib/rdk/update_previous_reboot_info.sh: Start of Reboot Reason Script
+2025-12-03T08:38:56.162Z reboot-checker.sh[3260]:  /lib/rdk/update_previous_reboot_info.sh: Acquired rebootInfo lock
+2025-12-03T08:38:56.162Z reboot-checker.sh[3260]:  /lib/rdk/update_previous_reboot_info.sh: Checking /tmp/stt_received and /tmp/rebootInfo_Updated flag to update the reboot reason
+2025-12-03T08:38:56.162Z reboot-checker.sh[3260]:  /lib/rdk/update_previous_reboot_info.sh: Exiting since /tmp/stt_received or  /tmp/rebootInfo_Updated flag is not available
+2025-12-03T08:38:56.162Z reboot-checker.sh[3260]:  /lib/rdk/update_previous_reboot_info.sh: Releasing rebootInfo lock
+2025-12-03T08:38:56.162Z reboot-checker.sh[3260]:  /lib/rdk/update_previous_reboot_info.sh: End of Reboot Reason Script
+2026-01-16T01:38:41.884Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: Start of Reboot Reason Script
+2026-01-16T01:38:41.912Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: Acquired rebootInfo lock
+2026-01-16T01:38:41.912Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: Checking /tmp/stt_received and /tmp/rebootInfo_Updated flag to update the reboot reason
+2026-01-16T01:38:41.939Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: New /opt/secure/reboot/reboot.info file found, Creating previous reboot info file...
+2026-01-16T01:38:41.950Z update_previous_reboot_info.sh[5866]:  {
+2026-01-16T01:38:41.950Z update_previous_reboot_info.sh[5866]:  "timestamp":"Fri Jan 16 01:36:21 UTC 2026",
+2026-01-16T01:38:41.950Z update_previous_reboot_info.sh[5866]:  "source":"SystemServices",
+2026-01-16T01:38:41.950Z update_previous_reboot_info.sh[5866]:  "reason":"MAINTENANCE_REBOOT",
+2026-01-16T01:38:41.950Z update_previous_reboot_info.sh[5866]:  "customReason":"MAINTENANCE_REBOOT",
+2026-01-16T01:38:41.951Z update_previous_reboot_info.sh[5866]:  "otherReason":"MAINTENANCE_REBOOT"
+2026-01-16T01:38:41.951Z update_previous_reboot_info.sh[5866]:  }
+2026-01-16T01:38:41.966Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: New /opt/secure/reboot/parodusreboot.info file found, updating parodus logfile...
+2026-01-16T01:38:42.174Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: Get previous reboot reason from /opt/secure/reboot/previousreboot.info - prevrebootreason: maintenance_reboot
+2026-01-16T01:38:42.247Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: Unable to find the /opt/secure/reboot/keypress.info file
+2026-01-16T01:38:42.261Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: End of Reboot Reason Script
+2026-01-16T01:38:42.277Z update_previous_reboot_info.sh[5866]:  /lib/rdk/update_previous_reboot_info.sh: Releasing rebootInfo lock
+2026-01-16T02:43:39.611Z :/rebootNow.sh: Start of rebootNow script
+2026-01-16T02:43:40.053Z :/rebootNow.sh: Checking multiple instance of rebootNow.sh script
+2026-01-16T02:43:40.131Z :/rebootNow.sh: Reboot requested on the device from Source:SystemServices Reason:REBOOT
+2026-01-16T02:43:40.314Z :/rebootNow.sh: Previous Reboot happened on the device was triggred by RDK software
+2026-01-16T02:43:40.386Z :/rebootNow.sh: Reboot Loop Detection enabled to check cyclic reboot scenarios:true
+2026-01-16T02:43:40.964Z :/rebootNow.sh: Previous Reboot Information of the Device:
+2026-01-16T02:43:41.034Z :/rebootNow.sh: Time:Fri Jan 16 01:36:21 UTC 2026
+2026-01-16T02:43:41.104Z :/rebootNow.sh: Source:SystemServices
+2026-01-16T02:43:41.176Z :/rebootNow.sh: Reason:MAINTENANCE_REBOOT
+2026-01-16T02:43:41.255Z :/rebootNow.sh: customReason:MAINTENANCE_REBOOT
+2026-01-16T02:43:41.327Z :/rebootNow.sh: otherReason:MAINTENANCE_REBOOT
+2026-01-16T02:43:41.454Z :/rebootNow.sh: Device Uptime from last reboot: 3196 secs
+2026-01-16T02:43:41.617Z :/rebootNow.sh: Current Requested Reboot Information:
+2026-01-16T02:43:41.694Z :/rebootNow.sh: Source:SystemServices
+2026-01-16T02:43:41.765Z :/rebootNow.sh: Reason:APP_TRIGGERED
+2026-01-16T02:43:41.840Z :/rebootNow.sh: customReason:REBOOT
+2026-01-16T02:43:41.912Z :/rebootNow.sh: otherReason:REBOOT
+2026-01-16T02:43:41.982Z :/rebootNow.sh: Reboot requested after the 10 mins reboot loop window
+2026-01-16T02:43:42.053Z :/rebootNow.sh: Publishing Reboot Stop Disable Event
+2026-01-16T02:43:42.162Z :/rebootNow.sh: Reboot Loop Detection counter reset as device not in reboot loop
+2026-01-16T02:43:42.315Z :/rebootNow.sh: Invoke setPreviousRebootInfo to save reboot information under /opt/secure/reboot folder
+2026-01-16T02:43:42.386Z :/rebootNow.sh: setPreviousRebootInfo: Saving reboot info in /opt/secure/reboot/reboot.info file
+2026-01-16T02:43:42.458Z :/rebootNow.sh: setPreviousRebootInfo: Updated Reboot Reason information in /opt/secure/reboot/reboot.info and /opt/secure/reboot/parodusreboot.info
+2026-01-16T02:43:42.567Z :/rebootNow.sh: Value of Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.ManageableNotification.Enable: 
+2026-01-16T02:43:42.638Z :/rebootNow.sh: Signal telemetry2_0 to send out any pending messages before reboot
+2026-01-16T02:43:42.757Z :/rebootNow.sh: Properly shutdown parodus by sending SIGUSR1 kill signal
+2026-01-16T02:43:42.873Z :/rebootNow.sh: syncLog: /var/logs not found!!!
+2026-01-16T02:43:42.947Z :/rebootNow.sh: Upgrade eMMC FW if required
+2026-01-16T02:43:43.667Z :/rebootNow.sh: Shutting down the bluetooth and syslog-ng services gracefully
+2026-01-16T02:43:43.740Z :/rebootNow.sh: Shutting down the sky-bluetoothrcu service
+2026-01-16T02:43:43.925Z :/rebootNow.sh: sky-bluetoothrcu service is not active
+2026-01-16T02:43:43.999Z :/rebootNow.sh: Shutting down the btmgr service
+2026-01-16T02:43:44.170Z :/rebootNow.sh: btmgr service is not active
+2026-01-16T02:43:44.339Z :/rebootNow.sh: Shutting down the bluetooth service
+2026-01-16T02:43:49.758Z :/rebootNow.sh: bluetooth service stopped successfully
+2026-01-16T02:43:49.862Z :/rebootNow.sh: Shutting down the bt-hciuart service
+2026-01-16T02:43:49.997Z :/rebootNow.sh: bt-hciuart service is not active
+2026-01-16T02:43:50.087Z :/rebootNow.sh: Shutting down the btmac-preset service
+2026-01-16T02:43:50.224Z :/rebootNow.sh: btmac-preset service is not active
+2026-01-16T02:43:50.307Z :/rebootNow.sh: Shutting down the bt service
+2026-01-16T02:43:50.419Z :/rebootNow.sh: bt service is not active
+2026-01-16T02:43:50.499Z :/rebootNow.sh: Shutting down the syslog-ng service
+2026-01-16T02:43:50.761Z :/rebootNow.sh: syslog-ng service stopped successfully
+2026-01-16T02:43:50.832Z :/rebootNow.sh: Start the sync
+2026-01-16T02:43:50.965Z :/rebootNow.sh: End of the sync
+2026-01-16T02:43:51.036Z :/rebootNow.sh: Creating /opt/secure/reboot/rebootNow as the reboot was triggred by RDK software
+2026-01-16T02:43:51.150Z :/rebootNow.sh: Rebooting the Device Now

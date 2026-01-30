@@ -1,0 +1,28 @@
+IARM_Init group name = com.comcast.rdk.iarm.bus member name = enableHDCPclient
+setting init done
+Registering enableHDCPclient
+Entering Initialize count 0 with thread id 3068785152
+<<<<< VDISP is initialized in Multi-App Mode >>>>>>>>
+Manager::Initialize: result :0 retryCount :0
+<<<<< AOP is initialized in Multi-App Mode >>>>>>>>
+<<<<< VOP is initialized in Multi-App Mode >>>>>>>>
+<<<<< VID is initialized in Multi-App Mode >>>>>>>>
+
+AudioOutputPort init: _type:1 _index:0 _handle:-1233350136
+IARM_Bus_Call provider returned error (2) for the method dsGetAudioGain 
+IARM_Bus_Call provider returned error (2) for the method dsGetAudioLevel 
+dsGetVideoPort..6-6
+Exiting Initialize with thread 3068785152
+Setting HDCP [true]
+IARM:CLI:dsEnableHDCP 1, (nil), 288
+Setting  HDCP done
+Entering DeInitialize count 1 with thread id: 3068785152
+Exiting DeInitialize with thread 3068785152
+term start init 1
+[IarmImpl.hpp:159] CallbackList[T=PN6device4Host20IDisplayDeviceEventsE] released, status: 0
+[IarmImpl.hpp:159] CallbackList[T=PN6device4Host14IDisplayEventsE] released, status: 0
+[IarmImpl.hpp:159] CallbackList[T=PN6device4Host18ICompositeInEventsE] released, status: 0
+[IarmImpl.hpp:159] CallbackList[T=PN6device4Host22IAudioOutputPortEventsE] released, status: 0
+[IarmImpl.hpp:159] CallbackList[T=PN6device4Host22IVideoOutputPortEventsE] released, status: 0
+[IarmImpl.hpp:159] CallbackList[T=PN6device4Host18IVideoDeviceEventsE] released, status: 0
+[IarmImpl.hpp:159] CallbackList[T=PN6device4Host13IHdmiInEventsE] released, status: 0

@@ -1,0 +1,94 @@
+2025-12-03T08:39:00.628Z remotedebugger[4049]:  rdk_dyn_log_initg_dl_socket = 3 __progname = remotedebugger
+2025-12-03T08:39:00.633Z remotedebugger[4049]:  Conf file /etc/debug.ini open success
+2025-12-03T08:39:00.633Z remotedebugger[4049]:  251203-08:39:00.632419 [mod=RFCAPI, lvl=INFO] [tid=4049] getRFCParameter: http server is ready
+2025-12-03T08:39:00.636Z remotedebugger[4049]:  251203-08:39:00.636144 [mod=RFCAPI, lvl=INFO] [tid=4049] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.RDKRemoteDebugger.Enable"]}, datalen = 87
+2025-12-03T08:39:00.645Z remotedebugger[4049]:  251203-08:39:00.644896 [mod=RFCAPI, lvl=INFO] [tid=4049] curl response : 0 http response code: 200
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  251203-08:39:00.645938 [mod=RFCAPI, lvl=INFO] [tid=4049] Curl response: {
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  	"parameters":	[{
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.RDKRemoteDebugger.Enable",
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  			"value":	"true",
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  			"dataType":	3,
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  			"parameterCount":	1,
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  			"message":	"Default Value"
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  		}],
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  	"statusCode":	38
+2025-12-03T08:39:00.646Z remotedebugger[4049]:  }
+2025-12-03T08:39:00.679Z remotedebugger[4049]:  IARM_Init group name = com.comcast.rdk.iarm.bus member name = REMOTE_DEBUGGER
+2025-12-03T08:39:00.679Z remotedebugger[4049]:  setting init done
+2025-12-03T08:39:00.679Z remotedebugger[4049]:  Registering REMOTE_DEBUGGER
+2025-12-03T08:39:00.680Z remotedebugger[4049]:  251203-08:39:00.679590 [mod=RBUS, lvl=INFO] [tid=4049] rbus open for component: rdkRrdRbus
+2025-12-03T08:39:00.684Z remotedebugger[4049]:  251203-08:39:00.683940 [mod=RBUS, lvl=INFO] [tid=4049]  rbus open (rdkRrdRbus) success
+2025-12-03T08:39:00.692Z remotedebugger[4049]:  251203-08:39:00.692454 [mod=RBUS, lvl=INFO] [tid=4049] Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.RDKRemoteDebugger.IssueType subscribe retries succeeded
+2025-12-03T08:39:00.697Z remotedebugger[4049]:  251203-08:39:00.697399 [mod=RBUS, lvl=INFO] [tid=4049] Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.RDKRemoteDebugger.WebCfgData subscribe retries succeeded
+2025-12-03T08:39:00.725Z remotedebugger[4049]:  Inside FUNC register_sub_docs LINE 240
+2025-12-03T08:39:00.725Z remotedebugger[4049]:  Inside FUNC initMessageQueue LINE 1124
+2025-12-03T08:39:00.725Z remotedebugger[4049]:  Entering rbusInit
+2025-12-03T08:39:00.725Z remotedebugger[4049]:  251203-08:39:00.725087 [mod=RBUS, lvl=INFO] [tid=4136] rbus open for component: remotedebugger_wbcfg
+2025-12-03T08:39:00.726Z remotedebugger[4049]:  251203-08:39:00.726038 [mod=RBUS, lvl=INFO] [tid=4136]  rbus open (remotedebugger_wbcfg) success
+2025-12-03T08:39:00.733Z remotedebugger[4049]:  isWebCfgRbusEnabled: rbus enabled is 1
+2025-12-03T08:39:00.733Z remotedebugger[4049]:  subscribeSubdocForceReset: Discover component for event 'Device.X_RDK_WebConfig.webcfgSubdocForceReset'
+2025-12-03T08:39:00.733Z remotedebugger[4049]:  webcfg_rbus_discover_component rbusModuleList[Device.X_RDK_WebConfig.webcfgSubdocForceReset]
+2025-12-03T08:39:00.733Z remotedebugger[4049]:  webcfg_rbus_discover_component: (1-1)ret[TRUE]
+2025-12-03T08:39:00.733Z remotedebugger[4049]:  251203-08:39:00.732671 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T01:31:51.442Z remotedebugger[4049]:  Inside FUNC messageQueueProcessing LINE 899
+2026-01-16T01:31:51.442Z remotedebugger[4049]:  Inside FUNC display_subDocs LINE 88
+2026-01-16T01:31:51.442Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:937] Init: Entering ...
+2026-01-16T01:31:51.442Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-16T01:31:51.444Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:850] Connect: Opening COM-RPC channel ...
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:764] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:770] Operational: callsign: (org.rdk.PowerManager), running: 1
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:779] Operational: Established COM-RPC connection with PowerManager plugin
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:853] Connect: COM-RPC channel opened successfully
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:476] readPID: /tmp/wpeframework.pid PID: 3831
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:946] Init: Exiting ...
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:845] Connect: Entering ...
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:868] Connect: COM-RPC channel already open
+2026-01-16T01:31:51.635Z remotedebugger[4049]:  [PowerController][4114] INFO  [power_controller.cpp:887] Connect: Exiting... status[0]
+2026-01-16T01:31:51.636Z remotedebugger[4049]:  260116-01:31:51.634986 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4114] [getPwrCtrlInterface:49]: PowerController_Connect is Success
+2026-01-16T01:31:51.639Z remotedebugger[4049]:  [PowerController][4988] INFO  [power_controller.cpp:536] monitorThread: started, pid file: /tmp/wpeframework.pid
+2026-01-16T01:31:56.486Z remotedebugger[4049]:  subscribeSubdocForceReset: [Device.X_RDK_WebConfig.webcfgSubdocForceReset] Component found
+2026-01-16T01:31:56.486Z remotedebugger[4049]:  subscribeSubdocForceReset: subscribing to event Device.X_RDK_WebConfig.webcfgSubdocForceReset
+2026-01-16T01:31:56.486Z remotedebugger[4049]:  260116-01:31:56.485539 [mod=RBUS, lvl=INFO] [tid=4136] Device.X_RDK_WebConfig.webcfgSubdocForceReset subscribe retries succeeded
+2026-01-16T02:02:43.445Z remotedebugger[4049]:  subscribeSubdocForceReset: subscribed to event Device.X_RDK_WebConfig.webcfgSubdocForceReset
+2026-01-16T02:02:43.445Z remotedebugger[4049]:  subscribeSubdocForceReset: job done
+2026-01-16T02:02:43.446Z remotedebugger[4049]:  260116-02:02:43.431955 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:02:43.446Z remotedebugger[4049]:  260116-02:02:43.432124 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:02:43.502Z remotedebugger[4049]:  260116-02:02:43.502188 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:02:43.502Z remotedebugger[4049]:  260116-02:02:43.502261 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:06:05.857Z remotedebugger[4049]:  260116-02:06:05.854967 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:06:05.857Z remotedebugger[4049]:  260116-02:06:05.856940 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:06:05.895Z remotedebugger[4049]:  260116-02:06:05.893915 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:06:05.895Z remotedebugger[4049]:  260116-02:06:05.893969 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:12:49.273Z remotedebugger[4049]:  260116-02:12:49.271803 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:12:49.273Z remotedebugger[4049]:  260116-02:12:49.271902 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:12:49.310Z remotedebugger[4049]:  260116-02:12:49.309698 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:12:49.310Z remotedebugger[4049]:  260116-02:12:49.309749 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:13:09.480Z remotedebugger[4049]:  260116-02:13:09.471032 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:13:09.480Z remotedebugger[4049]:  260116-02:13:09.471213 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:13:09.523Z remotedebugger[4049]:  260116-02:13:09.522818 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:13:09.523Z remotedebugger[4049]:  260116-02:13:09.522872 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:19:35.006Z remotedebugger[4049]:  260116-02:19:34.990902 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:19:35.006Z remotedebugger[4049]:  260116-02:19:34.994826 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:19:35.031Z remotedebugger[4049]:  260116-02:19:35.030728 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:19:35.032Z remotedebugger[4049]:  260116-02:19:35.030792 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:23:07.312Z remotedebugger[4049]:  260116-02:23:07.309954 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:23:07.316Z remotedebugger[4049]:  260116-02:23:07.311147 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:23:07.340Z remotedebugger[4049]:  260116-02:23:07.339376 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:23:07.340Z remotedebugger[4049]:  260116-02:23:07.339427 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:26:54.378Z remotedebugger[4049]:  260116-02:26:54.374165 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:26:54.378Z remotedebugger[4049]:  260116-02:26:54.374289 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:26:54.462Z remotedebugger[4049]:  260116-02:26:54.461924 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:26:54.462Z remotedebugger[4049]:  260116-02:26:54.461986 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:30:16.888Z remotedebugger[4049]:  260116-02:30:16.885648 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:30:16.892Z remotedebugger[4049]:  260116-02:30:16.891830 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:30:16.966Z remotedebugger[4049]:  260116-02:30:16.965311 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:30:16.966Z remotedebugger[4049]:  260116-02:30:16.965376 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:33:39.584Z remotedebugger[4049]:  260116-02:33:39.582232 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:33:39.585Z remotedebugger[4049]:  260116-02:33:39.582371 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:33:39.620Z remotedebugger[4049]:  260116-02:33:39.620422 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:33:39.620Z remotedebugger[4049]:  260116-02:33:39.620474 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...
+2026-01-16T02:43:44.106Z remotedebugger[4049]:  260116-02:43:44.104608 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4943] [_pwrManagerEventHandler:167]: Invoking WebCfg Force Sync: Device.X_RDK_WebConfig.ForceSync...
+2026-01-16T02:43:44.106Z remotedebugger[4049]:  260116-02:43:44.104740 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [getIssueInfo:191]:  Received Main Node= DEEPSLEEP, SubNode= (null)
+2026-01-16T02:43:44.149Z remotedebugger[4049]:  260116-02:43:44.147895 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [append_item:113]: Append Item with PkgData: RDK-RRD-DEEPSLEEP and issue Type: DEEPSLEEP to Cache
+2026-01-16T02:43:44.149Z remotedebugger[4049]:  260116-02:43:44.147941 [mod=REMOTEDEBUGGER, lvl=INFO] [tid=4137] [RRDEventThreadFunc:44]:Waiting for for TR69/RBUS Events...

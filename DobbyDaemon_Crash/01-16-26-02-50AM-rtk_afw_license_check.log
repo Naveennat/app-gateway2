@@ -1,0 +1,65 @@
+2025-12-03T08:38:56.314Z afw_license_check.sh[3511]:  OK
+2025-12-03T08:38:56.474Z afw_license_check.sh[3511]:  [RtkAFWLC][klog.cpp][40] [1;31menter klog_init
+2025-12-03T08:38:56.474Z afw_license_check.sh[3511]:  [mopen /dev/rpc2 success:4
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  open /dev/rpc3 success:5
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  open /dev/rpc6 success:6
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  open /dev/rpc7 success:7
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  open /dev/rpc0 success:8
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  open /dev/rpc1 success:9
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  open /dev/rpc4 success:10
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  open /dev/rpc5 success:11
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  [RtkAFWLC][func.cpp][15] [1;31mwfdpa:8 wfdia:9 wfdpv:10 wfdiv:11
+2025-12-03T08:38:56.475Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31minitRPCProxy RPC_user_count 1
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31menter audio_fw_init
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31menter.fw encrypt
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [mIn make_key...
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  found available slot: [0] ctx:0x15b098 context:(nil) ack:0 idx:0
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  task:3514 client_call
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply ...
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply...
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=300 versionID=0)
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=202 versionID=0)
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:97 dispatch for opt:7 program:99 version:99 procedure:0 task:0 tid:0 pid:0 size:72 context:0
+2025-12-03T08:38:56.476Z afw_license_check.sh[3511]:  [mgetContextByTid: [0] ctx:0x15b098 context:0x15b050 ack:0 idx:0
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  Reply_Handler wakeup task:3514[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply done!
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  [mtask:3514 client_call
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  [RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply ...
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply...
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=300 versionID=0)
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=202 versionID=0)
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:97 dispatch for opt:7 program:99 version:99 procedure:0 task:0 tid:0 pid:0 size:72 context:0
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  [mgetContextByTid: [0] ctx:0x15b098 context:0x15b168 ack:0 idx:0
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  Reply_Handler wakeup task:3514[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply done!
+2025-12-03T08:38:56.477Z afw_license_check.sh[3511]:  [mtask:3514 client_call
+2025-12-03T08:38:56.478Z afw_license_check.sh[3511]:  [RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply ...
+2025-12-03T08:38:56.478Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply...
+2025-12-03T08:38:56.478Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=300 versionID=0)
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=202 versionID=0)
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:97 dispatch for opt:7 program:99 version:99 procedure:0 task:0 tid:0 pid:0 size:72 context:0
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [mgetContextByTid: [0] ctx:0x15b098 context:0x15b1b0 ack:0 idx:0
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  Reply_Handler wakeup task:3514[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply done!
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [mtask:3514 client_call
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply ...
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply...
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=300 versionID=0)
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=202 versionID=0)
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:97 dispatch for opt:7 program:99 version:99 procedure:0 task:0 tid:0 pid:0 size:72 context:0
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [mgetContextByTid: [0] ctx:0x15b098 context:0x15b1f8 ack:0 idx:0
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  Reply_Handler wakeup task:3514[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply done!
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [mtask:3514 client_call
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply ...
+2025-12-03T08:38:56.479Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply...
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=300 versionID=0)
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=202 versionID=0)
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:97 dispatch for opt:7 program:99 version:99 procedure:0 task:0 tid:0 pid:0 size:72 context:0
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [mgetContextByTid: [0] ctx:0x15b098 context:0x15b240 ack:0 idx:0
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  Reply_Handler wakeup task:3514[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply done!
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [mtask:3514 client_call
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply ...
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply...
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=300 versionID=0)
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:103 rpc(programID=99 versionID=99) reg(programID=202 versionID=0)
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDispatchRPCRequest:97 dispatch for opt:7 program:99 version:99 procedure:0 task:0 tid:0 pid:0 size:8 context:0
+2025-12-03T08:38:56.480Z afw_license_check.sh[3511]:  [mgetContextByTid: [0] ctx:0x15b098 context:0x15b288 ack:0 idx:0
+2025-12-03T08:38:56.481Z afw_license_check.sh[3511]:  Reply_Handler wakeup task:3514[RtkAFWLC][func.cpp][15] [1;31mwaitReply : task:3514 waitReply done!
+2025-12-03T08:38:56.481Z afw_license_check.sh[3511]:  [m[RtkAFWLC][func.cpp][15] [1;31mDeInitRPCProxy RPC_user_count 0

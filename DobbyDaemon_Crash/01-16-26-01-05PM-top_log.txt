@@ -1,0 +1,135 @@
+2026-01-16T02:37:14.733Z system_info_collector.sh[8728]:  Clock Frequency Info:
+2026-01-16T02:37:14.819Z system_info_collector.sh[8728]:  Update VM and CPU stats to the messages.txt file
+2026-01-16T02:37:16.110Z system_info_collector.sh[8728]:  Logging for Yocto platforms...
+2026-01-16T02:37:16.134Z system_info_collector.sh[8728]:  2026-01-16T02:37:16.133Z
+2026-01-16T02:37:16.145Z system_info_collector.sh[8728]:   02:37:16 up 2 min,  0 users,  load average: 1.23, 1.26, 0.54
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:  top - 02:37:16 up 2 min,  0 users,  load average: 1.23, 1.26, 0.54
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:  Tasks: 274 total,   1 running, 268 sleeping,   0 stopped,   5 zombie
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:  %Cpu(s):  1.2 us,  8.5 sy,  0.0 ni, 89.0 id,  0.0 wa,  0.0 hi,  1.2 si,  0.0 st
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:  MiB Mem :   3604.6 total,   2248.8 free,    858.4 used,    497.5 buff/cache
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:  MiB Swap:   1802.3 total,   1802.3 free,      0.0 used.   2600.6 avail Mem
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:   8819 root      20   0    3796   1972   1488 R  11.1   0.1   0:00.08 top
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:   3243 redis    -24   0   29216   3576   2532 S   5.6   0.1   0:04.59 redis-ser+
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:   4269 root     -31   0  174416  10748   9208 S   5.6   0.3   0:05.46 dsMgrMain
+2026-01-16T02:37:16.403Z system_info_collector.sh[8728]:   4555 root      20   0  381496  68640  42124 S   5.6   1.9   0:09.23 appsservi+
+2026-01-16T02:37:16.404Z system_info_collector.sh[8728]:   7129 app-1     20   0  740628 122172  72828 S   5.6   3.3   0:13.25 epg_ui
+2026-01-16T02:37:16.404Z system_info_collector.sh[8728]:      1 root      20   0    5116   4060   2460 S   0.0   0.1   0:05.54 systemd
+2026-01-16T02:37:16.404Z system_info_collector.sh[8728]:      2 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kthreadd
+2026-01-16T02:37:16.404Z system_info_collector.sh[8728]:      3 root     -50   0       0      0      0 S   0.0   0.0   0:00.22 ksoftirqd+
+2026-01-16T02:37:16.404Z system_info_collector.sh[8728]:      4 root     -11   0       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+2026-01-16T02:37:16.404Z system_info_collector.sh[8728]:      5 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+2026-01-16T02:37:16.405Z system_info_collector.sh[8728]:  ********** Disk Space Usage **********
+2026-01-16T02:37:16.410Z system_info_collector.sh[8728]:  Filesystem                Size      Used Available Use% Mounted on
+2026-01-16T02:37:16.410Z system_info_collector.sh[8728]:  none                      1.3G         0      1.3G   0% /dev
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  /dev/dm-0               183.0M    183.0M         0 100% /
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  tmpfs                     1.8G     44.0K      1.8G   0% /dev/shm
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  tmpfs                     1.8G     73.6M      1.7G   4% /run
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  tmpfs                     1.8G         0      1.8G   0% /sys/fs/cgroup
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  tmpfs                     1.8G     73.6M      1.7G   4% /etc/machine-id
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  tmpfs                     1.8G      2.1M      1.8G   0% /tmp
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  tmpfs                     1.8G      2.1M      1.8G   0% /etc/systemd/timesyncd.conf
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  /dev/mmcblk0p3          487.9M     65.6M    386.5M  15% /opt
+2026-01-16T02:37:16.411Z system_info_collector.sh[8728]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /mnt/critical
+2026-01-16T02:37:16.412Z system_info_collector.sh[8728]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /opt/persistent
+2026-01-16T02:37:16.412Z system_info_collector.sh[8728]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /opt/www
+2026-01-16T02:37:16.412Z system_info_collector.sh[8728]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /opt/drm
+2026-01-16T02:37:16.412Z system_info_collector.sh[8728]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /opt/gp
+2026-01-16T02:37:16.412Z system_info_collector.sh[8728]:  tmpfs                   576.0M         0    576.0M   0% /opt/CDL
+2026-01-16T02:37:16.412Z system_info_collector.sh[8728]:  tmpfs                     5.0M         0      5.0M   0% /opt/oem
+2026-01-16T02:37:16.412Z system_info_collector.sh[8728]:  tmpfs                   128.0M         0    128.0M   0% /mnt/memory
+2026-01-16T02:37:16.413Z system_info_collector.sh[8728]:  /dev/mmcblk0p3          487.9M     65.6M    386.5M  15% /nvram
+2026-01-16T02:37:16.413Z system_info_collector.sh[8728]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /etc/timezone
+2026-01-16T02:37:16.413Z system_info_collector.sh[8728]:  /dev/mmcblk0p3          487.9M     65.6M    386.5M  15% /var/lib
+2026-01-16T02:37:16.413Z system_info_collector.sh[8728]:  tmpfs                     1.8G     36.0K      1.8G   0% /var/volatile
+2026-01-16T02:37:16.413Z system_info_collector.sh[8728]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/asound.conf
+2026-01-16T02:37:16.413Z system_info_collector.sh[8728]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/hostname
+2026-01-16T02:37:16.413Z system_info_collector.sh[8728]:  tmpfs                     1.8G     36.0K      1.8G   0% /www
+2026-01-16T02:37:16.413Z system_info_collector.sh[8728]:  tmpfs                     1.8G     36.0K      1.8G   0% /var/spool/cron
+2026-01-16T02:37:16.414Z system_info_collector.sh[8728]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/resolv.conf
+2026-01-16T02:37:16.414Z system_info_collector.sh[8728]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/xupnp
+2026-01-16T02:37:16.414Z system_info_collector.sh[8728]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/hosts
+2026-01-16T02:37:16.414Z system_info_collector.sh[8728]:  /opt/secure             487.9M     65.6M    386.5M  15% /opt/secure
+2026-01-16T02:37:16.414Z system_info_collector.sh[8728]:  /opt/secure             487.9M     65.6M    386.5M  15% /nvram/secure
+2026-01-16T02:37:16.414Z system_info_collector.sh[8728]:  /opt/secure             487.9M     65.6M    386.5M  15% /var/lib/secure
+2026-01-16T02:37:16.415Z system_info_collector.sh[8728]:  /dev/mmcblk0p2            1.3G    465.7M    771.9M  38% /media/apps
+2026-01-16T02:37:16.415Z system_info_collector.sh[8728]:  /opt/drm                 58.0M     13.4M     40.1M  25% /opt/drm
+2026-01-16T02:37:16.415Z system_info_collector.sh[8728]:  /opt/drm                 58.0M     13.4M     40.1M  25% /mnt/critical/drm
+2026-01-16T02:37:16.415Z system_info_collector.sh[8728]:  /dev/mmcblk0p1            5.6G     23.2M      5.2G   0% /tmp/data
+2026-01-16T02:37:16.415Z system_info_collector.sh[8728]:  tmpfs                     1.8G      2.1M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.comcast.viper_ipa
+2026-01-16T02:37:16.416Z system_info_collector.sh[8728]:  tmpfs                     1.8G      2.1M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.xumo.ipa
+2026-01-16T02:37:16.416Z system_info_collector.sh[8728]:  tmpfs                     1.8G      2.1M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.bskyb.epgui
+2026-01-16T02:37:17.425Z system_info_collector.sh[8728]:  INSTANTANEOUS CPU INFORMATIONS
+2026-01-16T02:37:17.438Z system_info_collector.sh[8728]:  cpuInfoHeader: %user,%nice,%system,%iowait,%steal,%idle
+2026-01-16T02:37:17.438Z system_info_collector.sh[8728]:  cpuInfoValues: 1.29,0.00,3.60,0.00,0.00,95.12
+2026-01-16T02:37:17.449Z system_info_collector.sh[8728]:  USED_MEM:878904
+2026-01-16T02:37:17.449Z system_info_collector.sh[8728]:  FREE_MEM:2302836
+2026-01-16T02:47:19.047Z system_info_collector.sh[13674]:  Clock Frequency Info:
+2026-01-16T02:47:19.135Z system_info_collector.sh[13674]:  Update VM and CPU stats to the messages.txt file
+2026-01-16T02:47:20.337Z system_info_collector.sh[13674]:  Logging for Yocto platforms...
+2026-01-16T02:47:20.356Z system_info_collector.sh[13674]:  2026-01-16T02:47:20.355Z
+2026-01-16T02:47:20.365Z system_info_collector.sh[13674]:   02:47:20 up 12 min,  0 users,  load average: 0.28, 0.51, 0.49
+2026-01-16T02:47:20.625Z system_info_collector.sh[13674]:  top - 02:47:20 up 12 min,  0 users,  load average: 0.28, 0.51, 0.49
+2026-01-16T02:47:20.626Z system_info_collector.sh[13674]:  Tasks: 285 total,   1 running, 279 sleeping,   0 stopped,   5 zombie
+2026-01-16T02:47:20.626Z system_info_collector.sh[13674]:  %Cpu(s):  4.4 us,  7.7 sy,  0.0 ni, 87.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+2026-01-16T02:47:20.626Z system_info_collector.sh[13674]:  MiB Mem :   3604.6 total,   1724.4 free,   1162.7 used,    717.6 buff/cache
+2026-01-16T02:47:20.626Z system_info_collector.sh[13674]:  MiB Swap:   1802.3 total,   1802.3 free,      0.0 used.   2191.8 avail Mem
+2026-01-16T02:47:20.626Z system_info_collector.sh[13674]:    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+2026-01-16T02:47:20.626Z system_info_collector.sh[13674]:  13759 root      20   0    3796   1968   1484 R  21.1   0.1   0:00.09 top
+2026-01-16T02:47:20.626Z system_info_collector.sh[13674]:   4269 root     -31   0  174416  10748   9208 S   5.3   0.3   0:25.50 dsMgrMain
+2026-01-16T02:47:20.626Z system_info_collector.sh[13674]:   4555 root      20   0  414648  69560  42740 S   5.3   1.9   0:26.11 appsservi+
+2026-01-16T02:47:20.627Z system_info_collector.sh[13674]:   7129 app-1     20   0  743160 125876  72828 S   5.3   3.4   0:39.43 epg_ui
+2026-01-16T02:47:20.627Z system_info_collector.sh[13674]:      1 root      20   0    5116   4060   2460 S   0.0   0.1   0:06.22 systemd
+2026-01-16T02:47:20.627Z system_info_collector.sh[13674]:      2 root      20   0       0      0      0 S   0.0   0.0   0:00.01 kthreadd
+2026-01-16T02:47:20.627Z system_info_collector.sh[13674]:      3 root     -50   0       0      0      0 S   0.0   0.0   0:00.29 ksoftirqd+
+2026-01-16T02:47:20.627Z system_info_collector.sh[13674]:      5 root     -36 -20       0      0      0 S   0.0   0.0   0:00.00 kworker/0+
+2026-01-16T02:47:20.627Z system_info_collector.sh[13674]:      7 root      20   0       0      0      0 S   0.0   0.0   0:02.89 rcu_preem+
+2026-01-16T02:47:20.627Z system_info_collector.sh[13674]:      8 root      20   0       0      0      0 S   0.0   0.0   0:00.02 rcu_sched
+2026-01-16T02:47:20.629Z system_info_collector.sh[13674]:  ********** Disk Space Usage **********
+2026-01-16T02:47:20.635Z system_info_collector.sh[13674]:  Filesystem                Size      Used Available Use% Mounted on
+2026-01-16T02:47:20.635Z system_info_collector.sh[13674]:  none                      1.3G         0      1.3G   0% /dev
+2026-01-16T02:47:20.635Z system_info_collector.sh[13674]:  /dev/dm-0               183.0M    183.0M         0 100% /
+2026-01-16T02:47:20.635Z system_info_collector.sh[13674]:  tmpfs                     1.8G     48.0K      1.8G   0% /dev/shm
+2026-01-16T02:47:20.636Z system_info_collector.sh[13674]:  tmpfs                     1.8G    178.3M      1.6G  10% /run
+2026-01-16T02:47:20.636Z system_info_collector.sh[13674]:  tmpfs                     1.8G         0      1.8G   0% /sys/fs/cgroup
+2026-01-16T02:47:20.636Z system_info_collector.sh[13674]:  tmpfs                     1.8G    178.3M      1.6G  10% /etc/machine-id
+2026-01-16T02:47:20.636Z system_info_collector.sh[13674]:  tmpfs                     1.8G      2.6M      1.8G   0% /tmp
+2026-01-16T02:47:20.636Z system_info_collector.sh[13674]:  tmpfs                     1.8G      2.6M      1.8G   0% /etc/systemd/timesyncd.conf
+2026-01-16T02:47:20.636Z system_info_collector.sh[13674]:  /dev/mmcblk0p3          487.9M     53.0M    399.1M  12% /opt
+2026-01-16T02:47:20.636Z system_info_collector.sh[13674]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /mnt/critical
+2026-01-16T02:47:20.636Z system_info_collector.sh[13674]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /opt/persistent
+2026-01-16T02:47:20.637Z system_info_collector.sh[13674]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /opt/www
+2026-01-16T02:47:20.637Z system_info_collector.sh[13674]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /opt/drm
+2026-01-16T02:47:20.637Z system_info_collector.sh[13674]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /opt/gp
+2026-01-16T02:47:20.637Z system_info_collector.sh[13674]:  tmpfs                   576.0M         0    576.0M   0% /opt/CDL
+2026-01-16T02:47:20.637Z system_info_collector.sh[13674]:  tmpfs                     5.0M         0      5.0M   0% /opt/oem
+2026-01-16T02:47:20.637Z system_info_collector.sh[13674]:  tmpfs                   128.0M         0    128.0M   0% /mnt/memory
+2026-01-16T02:47:20.637Z system_info_collector.sh[13674]:  /dev/mmcblk0p3          487.9M     53.0M    399.1M  12% /nvram
+2026-01-16T02:47:20.637Z system_info_collector.sh[13674]:  /dev/mmcblk0p4           58.0M     13.4M     40.1M  25% /etc/timezone
+2026-01-16T02:47:20.638Z system_info_collector.sh[13674]:  /dev/mmcblk0p3          487.9M     53.0M    399.1M  12% /var/lib
+2026-01-16T02:47:20.638Z system_info_collector.sh[13674]:  tmpfs                     1.8G     36.0K      1.8G   0% /var/volatile
+2026-01-16T02:47:20.638Z system_info_collector.sh[13674]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/asound.conf
+2026-01-16T02:47:20.638Z system_info_collector.sh[13674]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/hostname
+2026-01-16T02:47:20.638Z system_info_collector.sh[13674]:  tmpfs                     1.8G     36.0K      1.8G   0% /www
+2026-01-16T02:47:20.638Z system_info_collector.sh[13674]:  tmpfs                     1.8G     36.0K      1.8G   0% /var/spool/cron
+2026-01-16T02:47:20.638Z system_info_collector.sh[13674]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/resolv.conf
+2026-01-16T02:47:20.638Z system_info_collector.sh[13674]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/xupnp
+2026-01-16T02:47:20.639Z system_info_collector.sh[13674]:  tmpfs                     1.8G     36.0K      1.8G   0% /etc/hosts
+2026-01-16T02:47:20.639Z system_info_collector.sh[13674]:  /opt/secure             487.9M     53.0M    399.1M  12% /opt/secure
+2026-01-16T02:47:20.639Z system_info_collector.sh[13674]:  /opt/secure             487.9M     53.0M    399.1M  12% /nvram/secure
+2026-01-16T02:47:20.639Z system_info_collector.sh[13674]:  /opt/secure             487.9M     53.0M    399.1M  12% /var/lib/secure
+2026-01-16T02:47:20.639Z system_info_collector.sh[13674]:  /dev/mmcblk0p2            1.3G    465.7M    771.9M  38% /media/apps
+2026-01-16T02:47:20.639Z system_info_collector.sh[13674]:  /opt/drm                 58.0M     13.4M     40.1M  25% /opt/drm
+2026-01-16T02:47:20.639Z system_info_collector.sh[13674]:  /opt/drm                 58.0M     13.4M     40.1M  25% /mnt/critical/drm
+2026-01-16T02:47:20.640Z system_info_collector.sh[13674]:  /dev/mmcblk0p1            5.6G     23.2M      5.2G   0% /tmp/data
+2026-01-16T02:47:20.640Z system_info_collector.sh[13674]:  tmpfs                     1.8G      2.6M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.comcast.viper_ipa
+2026-01-16T02:47:20.640Z system_info_collector.sh[13674]:  tmpfs                     1.8G      2.6M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.xumo.ipa
+2026-01-16T02:47:20.640Z system_info_collector.sh[13674]:  tmpfs                     1.8G      2.6M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_com.bskyb.epgui
+2026-01-16T02:47:20.640Z system_info_collector.sh[13674]:  tmpfs                     1.8G      2.6M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_iPlayer
+2026-01-16T02:47:20.640Z system_info_collector.sh[13674]:  tmpfs                     1.8G      2.6M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_Netflix
+2026-01-16T02:47:20.640Z system_info_collector.sh[13674]:  tmpfs                     1.8G      2.6M      1.8G   0% /tmp/.hostmnttunnel-com.sky.as.apps_prime.video
+2026-01-16T02:47:21.650Z system_info_collector.sh[13674]:  INSTANTANEOUS CPU INFORMATIONS
+2026-01-16T02:47:21.663Z system_info_collector.sh[13674]:  cpuInfoHeader: %user,%nice,%system,%iowait,%steal,%idle
+2026-01-16T02:47:21.663Z system_info_collector.sh[13674]:  cpuInfoValues: 2.81,0.00,3.07,0.00,0.00,94.12
+2026-01-16T02:47:21.674Z system_info_collector.sh[13674]:  USED_MEM:1190580
+2026-01-16T02:47:21.674Z system_info_collector.sh[13674]:  FREE_MEM:1765796

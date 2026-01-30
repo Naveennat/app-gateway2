@@ -1,0 +1,94 @@
+[2025-12-03 08:38:57] [INFO] <FlashApp: Version>:       ###########################################
+[2025-12-03 08:38:57] [INFO] <FlashApp: Version>:         FlashApp - V7.2  Oct 14 2024 14:20:45
+[2025-12-03 08:38:57] [INFO] <FlashApp: Version>:       ###########################################
+[2025-12-03 08:38:57] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2025-12-03 08:38:57] [INFO] <FlashApp: ShowMessage>: FlashApp is now locked 
+[2025-12-03 08:38:57] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:              Board Information
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>: ###########################################
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:             Chip ID : XIONE 1319 VS 
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:         HW Revision : CAD EP        
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:          HW Variant : SADI          
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:        Booted Image : PCI2          
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:           Booted Fw : MAIN          
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:         Boot Cookie : BANK_NONE     
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:                 PMI : SKXI11ADS     
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:     Current PCI Ver : 9.4.0/SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>:              Box is : SECURE        
+[2025-12-03 08:38:57] [INFO] <FlashApp: DumpBoardInfo>: ###########################################
+[2025-12-03 08:38:57] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2025-12-03 08:38:57] [INFO] <FlashApp: ShowMessage>: FlashApp is running in Mirroring mode 
+[2025-12-03 08:38:57] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2025-12-03 08:38:57] [INFO] <FlashApp: main>: FW update not detected, checking for DRI mismatch
+[XSign_New:470]:[0;32mXSIGN Version:[4.0.1] Build Stamp[Nov 23 2022]:[15:59:18]
+[39m
+[XSign_New:471]:[0;32mXSIGN OpenSSL Version: [OpenSSL 3.0.5 5 Jul 2022] 
+[39m
+[XSIGN_DEBUG_ENABLE]
+CertificateStore Region: [xione.uk]
+CertificateStore Size: [2864]
+[setupCertStore:2837]:[0;32mVerify with signingTime = [1670510943] [221208144903] Thu Dec  8 14:49:03 2022
+[39m
+[2025-12-03 08:38:57] [INFO] <FlashApp: CompareandValidateDRI>: PDRI CodeVersionString [SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0.bin]
+[2025-12-03 08:38:57] [INFO] <FlashApp: ValidateAllSections>: Validation of section [version  ] - [PASSED]
+[2025-12-03 08:38:57] [INFO] <FlashApp: ValidateAllSections>: Validation of section [kernel   ] - [PASSED]
+[2025-12-03 08:38:57] [INFO] <FlashApp: ValidateAllSections>: Validation of section [dtb      ] - [PASSED]
+[2025-12-03 08:38:58] [INFO] <FlashApp: ValidateAllSections>: Validation of section [rootfs   ] - [PASSED]
+[2025-12-03 08:38:58] [INFO] <FlashApp: ValidateAllSections>: Validation of section [bootargs ] - [PASSED]
+[2025-12-03 08:38:58] [INFO] <FlashApp: ValidateAllSections>: Successfully validated SHA256 of image sections
+[2025-12-03 08:38:58] [INFO] <FlashApp: CompareandValidateDRI>: SHA256 validation of PDRI sections successful
+[XSign_New:470]:[0;32mXSIGN Version:[4.0.1] Build Stamp[Nov 23 2022]:[15:59:18]
+[39m
+[XSign_New:471]:[0;32mXSIGN OpenSSL Version: [OpenSSL 3.0.5 5 Jul 2022] 
+[39m
+[XSIGN_DEBUG_ENABLE]
+CertificateStore Region: [xione.uk]
+CertificateStore Size: [2864]
+[setupCertStore:2837]:[0;32mVerify with signingTime = [1670510943] [221208144903] Thu Dec  8 14:49:03 2022
+[39m
+[2025-12-03 08:38:58] [INFO] <FlashApp: CompareandValidateDRI>: BDRI CodeVersionString [SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0.bin]
+[2025-12-03 08:38:58] [INFO] <FlashApp: ValidateAllSections>: Validation of section [version  ] - [PASSED]
+[2025-12-03 08:38:58] [INFO] <FlashApp: ValidateAllSections>: Validation of section [kernel   ] - [PASSED]
+[2025-12-03 08:38:58] [INFO] <FlashApp: ValidateAllSections>: Validation of section [dtb      ] - [PASSED]
+[2025-12-03 08:38:59] [INFO] <FlashApp: ValidateAllSections>: Validation of section [rootfs   ] - [PASSED]
+[2025-12-03 08:38:59] [INFO] <FlashApp: ValidateAllSections>: Validation of section [bootargs ] - [PASSED]
+[2025-12-03 08:38:59] [INFO] <FlashApp: ValidateAllSections>: Successfully validated SHA256 of image sections
+[2025-12-03 08:38:59] [INFO] <FlashApp: CompareandValidateDRI>: SHA256 validation of BDRI sections successful
+[2025-12-03 08:38:59] [INFO] <FlashApp: CompareandValidateDRI>: PDRI & BDRI are valid and their versions are same will not mirror
+[2025-12-03 08:38:59] [INFO] <FlashApp: main>: FW update not detected, checking for FW mismatch
+[2025-12-03 08:38:59] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2025-12-03 08:38:59] [INFO] <FlashApp: ShowMessage>: Comparing FW MAIN -> BKP 
+[2025-12-03 08:38:59] [INFO] <FlashApp: ShowMessage>: ==============================================
+[2025-12-03 08:39:00] [INFO] <FlashApp: CompareFirmware>: Both MAIN and BKUP Firmware is SAME
+[2025-12-03 08:39:00] [INFO] <FlashApp: main>: FW update not detected, checking for PCI mismatch
+[XSign_New:470]:[0;32mXSIGN Version:[4.0.1] Build Stamp[Nov 23 2022]:[15:59:18]
+[39m
+[XSign_New:471]:[0;32mXSIGN OpenSSL Version: [OpenSSL 3.0.5 5 Jul 2022] 
+[39m
+[XSIGN_DEBUG_ENABLE]
+CertificateStore Region: [xione.uk]
+CertificateStore Size: [2864]
+[setupCertStore:2837]:[0;32mVerify with signingTime = [1767642583] [260105194943] Mon Jan  5 19:49:43 2026
+[39m
+[2025-12-03 08:39:00] [INFO] <FlashApp: ComparePCIVersion>: PCI1 CodeVersionString [SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG]
+[XSign_New:470]:[0;32mXSIGN Version:[4.0.1] Build Stamp[Nov 23 2022]:[15:59:18]
+[39m
+[XSign_New:471]:[0;32mXSIGN OpenSSL Version: [OpenSSL 3.0.5 5 Jul 2022] 
+[39m
+[XSIGN_DEBUG_ENABLE]
+CertificateStore Region: [xione.uk]
+CertificateStore Size: [2864]
+[setupCertStore:2837]:[0;32mVerify with signingTime = [1767642583] [260105194943] Mon Jan  5 19:49:43 2026
+[39m
+[2025-12-03 08:39:00] [INFO] <FlashApp: ComparePCIVersion>: PCI2 CodeVersionString [SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG]
+[2025-12-03 08:39:00] [INFO] <FlashApp: ComparePCIVersion>: PCI1 & PCI2 versions are same
+[2025-12-03 08:39:00] [INFO] <FlashApp: main>: All the Components Looks Ok. No Need to Mirror
+[0m[DEBUG]mfr_getRuntimeCookieData:[470]  Inside mfr_getRuntimeCookieData[0m
+[0m[DEBUG]printSHA256:[2172] Runtime calculated SHA256 is = [0m
+5A1EB3C345CD3FA4F02603CBEDD2ED93C349E229A24140115A694B7D152009C2
+[0m[DEBUG]printSHA256:[2174] SHA256 obtained from flash is = [0m
+5A1EB3C345CD3FA4F02603CBEDD2ED93C349E229A24140115A694B7D152009C2
+[0m[DEBUG]SkyCrypto_verifycert:[271] TA CertStore validation PASSED[0m
+[0m[DEBUG]SkyCrypto_verifycert:[271] TA CertStore validation PASSED[0m
+[0m[DEBUG]SkyCrypto_verifycert:[271] TA CertStore validation PASSED[0m
+[0m[DEBUG]SkyCrypto_verifycert:[271] TA CertStore validation PASSED[0m

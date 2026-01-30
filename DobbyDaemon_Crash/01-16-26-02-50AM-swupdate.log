@@ -1,0 +1,397 @@
+2026-01-16T01:38:51.739Z : /lib/rdk/Start_MaintenanceTasks.sh: Starting software update
+rdk_dyn_log_initg_dl_socket = 3 __progname = rdkvfwupgrader 
+RDKLOG init completed
+Conf file /etc/debug.ini open success
+260116-01:38:51.818908 [mod=FWUPG, lvl=INFO] [tid=6411] SIGUSR1 handler install success
+260116-01:38:51.819063 [mod=FWUPG, lvl=INFO] [tid=6411] Starting c method rdkvfwupgrader
+260116-01:38:51.819602 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParameter: http server is ready
+260116-01:38:51.822023 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.SWDLSpLimit.Enable"]}, datalen = 81
+260116-01:38:51.826077 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:51.827041 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.SWDLSpLimit.Enable",
+			"value":	"false",
+			"dataType":	3,
+			"parameterCount":	1,
+			"message":	"Default Value"
+		}],
+	"statusCode":	38
+}
+260116-01:38:51.827260 [mod=FWUPG, lvl=INFO] [tid=6411] read_RFCProperty() name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.SWDLSpLimit.Enable,type=3,value=false,status=38
+260116-01:38:51.827303 [mod=FWUPG, lvl=INFO] [tid=6411] getRFCSettings() rfc throttle= false
+260116-01:38:51.827350 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.SWDLSpLimit.TopSpeed"]}, datalen = 83
+260116-01:38:51.831483 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:51.832081 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.SWDLSpLimit.TopSpeed",
+			"value":	"1280000",
+			"dataType":	1,
+			"parameterCount":	1,
+			"message":	"Default Value"
+		}],
+	"statusCode":	38
+}
+260116-01:38:51.832201 [mod=FWUPG, lvl=INFO] [tid=6411] read_RFCProperty() name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.SWDLSpLimit.TopSpeed,type=1,value=1280000,status=38
+260116-01:38:51.832235 [mod=FWUPG, lvl=INFO] [tid=6411] getRFCSettings() rfc topspeed= 1280000
+260116-01:38:51.832278 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.IncrementalCDL.Enable"]}, datalen = 84
+260116-01:38:51.836092 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:51.836326 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.IncrementalCDL.Enable",
+			"value":	"true",
+			"dataType":	3,
+			"parameterCount":	1,
+			"message":	"Default Value"
+		}],
+	"statusCode":	38
+}
+260116-01:38:51.836411 [mod=FWUPG, lvl=INFO] [tid=6411] read_RFCProperty() name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.IncrementalCDL.Enable,type=3,value=true,status=38
+260116-01:38:51.836466 [mod=FWUPG, lvl=INFO] [tid=6411] getRFCSettings() rfc IncrementalCDL= true
+260116-01:38:51.836496 [mod=FWUPG, lvl=INFO] [tid=6411]  getRFCSettings() MTLS Default Enabled260116-01:38:51.836617 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] createDir :Already Folder exist:/opt/CDL
+IARM_Bus_IsConnected invalid state
+260116-01:38:51.836706 [mod=FWUPG, lvl=INFO] [tid=6411] IARM_Bus_IsConnected: 2 (0)IARM_Init group name = com.comcast.rdk.iarm.bus member name = RDKVFWEvent
+setting init done
+260116-01:38:51.857671 [mod=FWUPG, lvl=INFO] [tid=6411] IARM_Bus_Init: 0
+260116-01:38:51.857759 [mod=FWUPG, lvl=INFO] [tid=6411] SUCCESS: IARM_Bus_Init done!
+Registering RDKVFWEvent
+260116-01:38:51.859966 [mod=FWUPG, lvl=INFO] [tid=6411] IARM_Bus_Connect: 0
+260116-01:38:51.862039 [mod=FWUPG, lvl=INFO] [tid=6411] IARM_Bus_IsConnected: 0 (1)260116-01:38:51.862138 [mod=FWUPG, lvl=INFO] [tid=6411] SUCCESS: IARM_Bus_Connect done!
+260116-01:38:51.862264 [mod=FWUPG, lvl=INFO] [tid=6411] init_event_handler: IARM_Bus_RegisterEventHandler ret=0
+/usr/bin/WPEFrameworkSecurityUtility: No such file or directory
+260116-01:38:51.866941 [mod=FWUPG, lvl=ERROR] [tid=6411] RunCommand fread fails:0
+260116-01:38:51.867112 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doCurlInit: curl init success
+260116-01:38:51.867211 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] getJsonRpcData : CURL: Setting For jsonrpc_auth_token
+260116-01:38:51.874481 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] Curl Connected to http://127.0.0.1:9998/jsonrpc (127.0.0.1) port 9998
+260116-01:38:51.874567 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] Curl return code =0, http code=200
+260116-01:38:51.874596 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] In performRequest curl_ret_status =0
+260116-01:38:51.874626 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] getJsonRpcData : Bytes Downloaded=114 and curl ret status=0 and http code=200
+260116-01:38:51.874653 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] getJsonRpcData : data received ={"jsonrpc":"2.0","id":3,"result":{"maintenanceMode":"FOREGROUND","triggerMode":"","optOut":"NONE","success":true}}
+260116-01:38:51.874696 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doStopDownload : CURL: free resources
+260116-01:38:51.874981 [mod=FWUPG, lvl=INFO] [tid=6411] [0] = /usr/bin/rdkvfwupgrader
+260116-01:38:51.875025 [mod=FWUPG, lvl=INFO] [tid=6411] [1] = 0
+260116-01:38:51.875053 [mod=FWUPG, lvl=INFO] [tid=6411] [2] = 1
+260116-01:38:51.875085 [mod=FWUPG, lvl=INFO] [tid=6411] Image Upgrade During Bootup ..!
+260116-01:38:51.875263 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.FWUpdate.AutoExcluded.Enable"]}, datalen = 91
+260116-01:38:51.878650 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:51.879093 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.FWUpdate.AutoExcluded.Enable",
+			"value":	"",
+			"dataType":	3,
+			"parameterCount":	1,
+			"message":	"Parameter value field is not available"
+		}],
+	"message":	"Parameter value field is not available",
+	"statusCode":	22
+}
+260116-01:38:51.879242 [mod=FWUPG, lvl=ERROR] [tid=6411] error:read_RFCProperty(): status= 22
+260116-01:38:51.880007 [mod=FWUPG, lvl=ERROR] [tid=6411] read_RFCProperty() return failed Status -1
+260116-01:38:51.880128 [mod=FWUPG, lvl=ERROR] [tid=6411] CurrentRunningInst():Unable to open the file:/tmp/DIFD.pid
+260116-01:38:51.880270 [mod=FWUPG, lvl=INFO] [tid=6411] current pid=6411
+:6411
+260116-01:38:51.880376 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] *** CALLING GetFirmwareVersion FROM COMMON_UTILITIES/LIBFWUTILS ***
+260116-01:38:51.880481 [mod=FWUPG, lvl=INFO] [tid=6411] lastDnldFile tbuff: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+
+260116-01:38:51.880531 [mod=FWUPG, lvl=INFO] [tid=6411] lastDnldFile: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:51.880561 [mod=FWUPG, lvl=INFO] [tid=6411] Image name return to caller function: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:51.881218 [mod=FWUPG, lvl=INFO] [tid=6411] init_validate_status = 0
+260116-01:38:51.881286 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager: Generate IARM_BUS_NAME current event=FirmwareStateEvent
+260116-01:38:51.881351 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager: event_status = 0
+260116-01:38:51.885897 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager : >> IARM SUCCESS  Event=FirmwareStateEvent,sysStateEvent=43
+260116-01:38:51.885992 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager : IARM_event_sender closing
+260116-01:38:51.886038 [mod=FWUPG, lvl=INFO] [tid=6411] isStateRedSupported(): Yes file present:/lib/rdk/stateRedRecovery.sh
+260116-01:38:51.886083 [mod=FWUPG, lvl=INFO] [tid=6411] isInStateRed(): No Flag Not prsent:/tmp/stateRedEnabled. Device is not in statered
+260116-01:38:51.886114 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager: Generate IARM_BUS_NAME current event=FirmwareStateEvent
+260116-01:38:51.886146 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager: event_status = 1
+260116-01:38:51.886736 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager : >> IARM SUCCESS  Event=FirmwareStateEvent,sysStateEvent=43
+260116-01:38:51.886821 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager : IARM_event_sender closing
+260116-01:38:51.890412 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable"]}, datalen = 82
+260116-01:38:51.900155 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:51.900427 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable",
+			"value":	"false",
+			"dataType":	3,
+			"parameterCount":	1,
+			"message":	"Default Value"
+		}],
+	"statusCode":	38
+}
+260116-01:38:51.900533 [mod=FWUPG, lvl=INFO] [tid=6411] read_RFCProperty() name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Identity.DbgServices.Enable,type=3,value=false,status=38
+260116-01:38:51.900597 [mod=FWUPG, lvl=INFO] [tid=6411] isDebugServicesEnabled: rfc Debug services = false
+260116-01:38:51.900809 [mod=FWUPG, lvl=INFO] [tid=6411] isStateRedSupported(): Yes file present:/lib/rdk/stateRedRecovery.sh
+260116-01:38:51.900900 [mod=FWUPG, lvl=INFO] [tid=6411] isInStateRed(): No Flag Not prsent:/tmp/stateRedEnabled. Device is not in statered
+260116-01:38:51.900971 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Bootstrap.XconfUrl"]}, datalen = 73
+260116-01:38:51.905887 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:51.906144 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Bootstrap.XconfUrl",
+			"value":	"https://xconf.xdp.eu-1.xcal.tv",
+			"dataType":	0,
+			"parameterCount":	1,
+			"message":	"Success"
+		}],
+	"statusCode":	0
+}
+260116-01:38:51.906241 [mod=FWUPG, lvl=INFO] [tid=6411] read_RFCProperty() name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Bootstrap.XconfUrl,type=0,value=https://xconf.xdp.eu-1.xcal.tv,status=0
+260116-01:38:51.906328 [mod=FWUPG, lvl=INFO] [tid=6411] GetTR181Url: pUrlOut = https://xconf.xdp.eu-1.xcal.tv
+260116-01:38:51.906367 [mod=FWUPG, lvl=INFO] [tid=6411] MakeXconfComms: server URL https://xconf.xdp.eu-1.xcal.tv/xconf/swu/stb
+260116-01:38:51.906578 [mod=FWUPG, lvl=INFO] [tid=6411] cpu_arch = ARM
+260116-01:38:51.906688 [mod=FWUPG, lvl=INFO] [tid=6411] DEVICE_NAME = XiOne
+260116-01:38:51.906726 [mod=FWUPG, lvl=ERROR] [tid=6411] GetEstbMac calling from librdksw_fwutils.so
+260116-01:38:51.906833 [mod=FWUPG, lvl=INFO] [tid=6411] GetEstbMac: After reading ESTB_MAC_FILE value=D4:DA:CD:CB:2D:79
+260116-01:38:51.906877 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] *** CALLING GetFirmwareVersion FROM COMMON_UTILITIES/LIBFWUTILS ***
+260116-01:38:52.512265 [mod=FWUPG, lvl=INFO] [tid=6411] RunCommand: Successful read 48 bytes
+260116-01:38:52.512411 [mod=FWUPG, lvl=INFO] [tid=6411] GetPDRIFileName: PDRI Version = SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0.bin
+
+260116-01:38:52.512654 [mod=RBUS, lvl=INFO] [tid=6411] rbus open for component: t2_lib_rdkfwupgrader
+260116-01:38:52.513783 [mod=RBUS, lvl=INFO] [tid=6411]  rbus open (t2_lib_rdkfwupgrader) success
+260116-01:38:52.521830 [mod=RBUS, lvl=ERROR] [tid=6411] rbus_get for Telemetry.ReportProfiles.rdkfwupgrader.EventMarkerList failed with error: Entry not found error
+T2ERROR:doPopulateEventMarkerList ../../../git/source/commonlib/telemetry_busmessage_sender.c:552: rbus mode : No event list configured in profiles Telemetry.ReportProfiles.rdkfwupgrader.EventMarkerList and return value 5
+
+260116-01:38:52.523729 [mod=RBUS, lvl=INFO] [tid=6411] Telemetry.ReportProfiles.ProfilesUpdated subscribe retries succeeded
+260116-01:38:52.524039 [mod=FWUPG, lvl=INFO] [tid=6411] BuildRemoteInfo: Start
+260116-01:38:52.524109 [mod=FWUPG, lvl=INFO] [tid=6411] BuildRemoteInfo: End
+260116-01:38:52.524155 [mod=FWUPG, lvl=INFO] [tid=6411] GetRemoteInfo: returning sztotlen=25
+260116-01:38:52.524301 [mod=FWUPG, lvl=INFO] [tid=6411] Calling GetModelNum function
+260116-01:38:52.524460 [mod=FWUPG, lvl=ERROR] [tid=6411] GetPartnerId calling from librdksw_fwutils.so
+260116-01:38:52.524581 [mod=FWUPG, lvl=ERROR] [tid=6411] GetPartnerId: getDevicePropertyData() for whoami fail
+260116-01:38:52.543790 [mod=FWUPG, lvl=ERROR] [tid=6411] GetOsClass: getDevicePropertyData() for whoami fail
+260116-01:38:52.543883 [mod=FWUPG, lvl=INFO] [tid=6411] GetOsClass: whoami is not enable Status
+260116-01:38:52.543941 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.AccountInfo.AccountID"]}, datalen = 84
+260116-01:38:52.546436 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:52.546709 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.AccountInfo.AccountID",
+			"value":	"1457684130600498670",
+			"dataType":	0,
+			"parameterCount":	1,
+			"message":	"Success"
+		}],
+	"statusCode":	0
+}
+260116-01:38:52.546809 [mod=FWUPG, lvl=INFO] [tid=6411] read_RFCProperty() name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.AccountInfo.AccountID,type=0,value=1457684130600498670,status=0
+/usr/bin/WPEFrameworkSecurityUtility: No such file or directory
+260116-01:38:52.570577 [mod=FWUPG, lvl=ERROR] [tid=6411] RunCommand fread fails:0
+260116-01:38:52.570733 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doCurlInit: curl init success
+260116-01:38:52.570781 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] getJsonRpcData : CURL: Setting For jsonrpc_auth_token
+260116-01:38:52.573000 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] Curl Connected to http://127.0.0.1:9998/jsonrpc (127.0.0.1) port 9998
+260116-01:38:52.573094 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] Curl return code =0, http code=200
+260116-01:38:52.573123 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] In performRequest curl_ret_status =0
+260116-01:38:52.573153 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] getJsonRpcData : Bytes Downloaded=71 and curl ret status=0 and http code=200
+260116-01:38:52.573180 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] getJsonRpcData : data received ={"jsonrpc":"2.0","id":3,"result":{"experience":"EntOS","success":true}}
+260116-01:38:52.573210 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doStopDownload : CURL: free resources
+260116-01:38:52.573562 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.MigrationPreparer.MigrationReady"]}, datalen = 66
+260116-01:38:52.608612 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:52.608841 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.MigrationPreparer.MigrationReady",
+			"value":	"",
+			"dataType":	0,
+			"parameterCount":	1,
+			"message":	"Parameter value field is not available"
+		}],
+	"message":	"Parameter value field is not available",
+	"statusCode":	22
+}
+260116-01:38:52.609036 [mod=FWUPG, lvl=ERROR] [tid=6411] error:read_RFCProperty(): status= 22
+260116-01:38:52.609075 [mod=FWUPG, lvl=ERROR] [tid=6411] GetMigrationReady: read_RFCProperty() failed Status 0
+260116-01:38:52.609135 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.SerialNumber"]}, datalen = 46
+260116-01:38:52.616004 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:52.616467 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.SerialNumber",
+			"value":	"IP03SK82112000AFF",
+			"dataType":	0,
+			"parameterCount":	1,
+			"message":	"Success"
+		}],
+	"statusCode":	0
+}
+260116-01:38:52.616587 [mod=FWUPG, lvl=INFO] [tid=6411] read_RFCProperty() name=Device.DeviceInfo.SerialNumber,type=0,value=IP03SK82112000AFF,status=0
+260116-01:38:52.618329 [mod=FWUPG, lvl=INFO] [tid=6411] Certificate does not exist in NVM Path
+260116-01:38:52.619430 [mod=FWUPG, lvl=INFO] [tid=6411] /etc/certs does not exist
+260116-01:38:52.619486 [mod=FWUPG, lvl=INFO] [tid=6411] Certificate does not exist in RFS Path
+260116-01:38:52.619514 [mod=FWUPG, lvl=INFO] [tid=6411] No metadata found only in CPE260116-01:38:52.619543 [mod=FWUPG, lvl=INFO] [tid=6411] GetInstalledBundles: pBundles = 
+260116-01:38:52.619572 [mod=FWUPG, lvl=INFO] [tid=6411] GetInstalledBundles: szRunningLen = 0
+2026-01-16T01:38:53.005Z : /lib/rdk/cdlSupport.sh: /media/apps/rdm/manifests does not exist
+2026-01-16T01:38:53.274Z : /lib/rdk/cdlSupport.sh: Installed RDM Manifest Version in CPE: 
+260116-01:38:53.285111 [mod=FWUPG, lvl=ERROR] [tid=6411] RunCommand fread fails:0
+260116-01:38:53.285464 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] GetTimezone: Timezone value from output.json is empty, Reading from /opt/persistent/timeZoneDST file...
+260116-01:38:53.285536 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] GetTimezone: Got timezone using /opt/persistent/timeZoneDST successfully, value:Europe/London
+260116-01:38:53.285693 [mod=FWUPG, lvl=INFO] [tid=6411] model = SKXI11ADS
+260116-01:38:53.285737 [mod=FWUPG, lvl=INFO] [tid=6411] Received STT flag
+260116-01:38:53.285783 [mod=FWUPG, lvl=INFO] [tid=6411] createJsonString: totlen = 532
+eStbMac=D4:DA:CD:CB:2D:79&firmwareVersion=SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG&additionalFwVerInfo=SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0.bin&remCtrlLC103-10=5103.4.8&env=prod&model=SKXI11ADS&manufacturer=Sky_CP&partnerId=sky-uk&activationInProgress=false&osClass=Not Available&accountId=1457684130600498670&experience=EntOS&serial=IP03SK82112000AFF&localtime=Fri Jan 16 01:38:52 UTC 2026&dlCertBundle=&rdmCatalogueVersion=&timezone=Europe/London&capabilities=rebootDecoupled&capabilities=RCDL&capabilities=supportsFullHttpUrl
+260116-01:38:53.285862 [mod=FWUPG, lvl=INFO] [tid=6411] Trying to communicate with XCONF server260116-01:38:53.285903 [mod=FWUPG, lvl=INFO] [tid=6411]  isDwnlBlock : Checking for direct
+260116-01:38:53.285959 [mod=FWUPG, lvl=ERROR] [tid=6411] getFileLastModifyTime: File: /tmp/.lastdirectfail_cdl not present: -1
+260116-01:38:53.285991 [mod=FWUPG, lvl=INFO] [tid=6411] isDelayFWDownloadActive: Device configured with download delay of 0 minutes.
+260116-01:38:53.286019 [mod=FWUPG, lvl=INFO] [tid=6411] Delayed Trigger Image Upgrade ..!
+260116-01:38:53.286140 [mod=FWUPG, lvl=INFO] [tid=6411] XCONF Download in Progress
+260116-01:38:53.286228 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] isMediaClientDevice: device name from device.property file=mediaclient
+260116-01:38:53.286258 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] Device is a Mediaclient
+260116-01:38:53.286501 [mod=FWUPG, lvl=INFO] [tid=6411] updateFWDownloadStatus(): Going to write:/opt/fwdnldstatus.txt
+260116-01:38:53.286894 [mod=FWUPG, lvl=INFO] [tid=6411] cpu_arch = ARM
+260116-01:38:53.287053 [mod=FWUPG, lvl=INFO] [tid=6411] getAppMode: app mode = 1
+260116-01:38:53.287097 [mod=FWUPG, lvl=INFO] [tid=6411] isStateRedSupported(): Yes file present:/lib/rdk/stateRedRecovery.sh
+260116-01:38:53.287143 [mod=FWUPG, lvl=INFO] [tid=6411] isInStateRed(): No Flag Not prsent:/tmp/stateRedEnabled. Device is not in statered
+260116-01:38:53.287295 [mod=CERTSELECTOR, lvl=ERROR] [tid=6411]  rdkcertselector_new:hrot file, /etc/ssl/certsel/hrot.properties, not found
+260116-01:38:53.287328 [mod=FWUPG, lvl=INFO] [tid=6411] downloadFile, normal state Cert selector initialized successfully
+260116-01:38:53.287367 [mod=FWUPG, lvl=INFO] [tid=6411]  isDwnlBlock : Checking for direct
+260116-01:38:53.287410 [mod=FWUPG, lvl=ERROR] [tid=6411] getFileLastModifyTime: File: /tmp/.lastdirectfail_cdl not present: -1
+260116-01:38:53.287441 [mod=FWUPG, lvl=INFO] [tid=6411] isThrottleEnabled(): DeviceType=XiOne RebootImmediateFlag=
+260116-01:38:53.287475 [mod=FWUPG, lvl=INFO] [tid=6411] Throttle enable rfc is false
+260116-01:38:53.287503 [mod=FWUPG, lvl=INFO] [tid=6411] downloadFile : Throttle is Disable
+260116-01:38:53.287549 [mod=FWUPG, lvl=INFO] [tid=6411] isOCSPEnable() : ocsp status=0
+260116-01:38:53.287577 [mod=FWUPG, lvl=INFO] [tid=6411] downloadFile : Disable OCSP check
+260116-01:38:53.287612 [mod=FWUPG, lvl=INFO] [tid=6411] getPidStore() pid=6411 in string=6411
+
+260116-01:38:53.287690 [mod=FWUPG, lvl=INFO] [tid=6411] savePID() =6411
+ to file=/tmp/.curl.pid
+260116-01:38:53.287792 [mod=FWUPG, lvl=INFO] [tid=6411] savePID() =6411
+ to file=/tmp/.fwdnld.pid
+260116-01:38:53.287853 [mod=FWUPG, lvl=INFO] [tid=6411] setDwnlState: status = 9
+260116-01:38:53.288076 [mod=FWUPG, lvl=INFO] [tid=6411] 2 Fetching MTLS credential for SSR/XCONF
+260116-01:38:53.288158 [mod=FWUPG, lvl=INFO] [tid=6411] isStateRedSupported(): Yes file present:/lib/rdk/stateRedRecovery.sh
+260116-01:38:53.288201 [mod=FWUPG, lvl=INFO] [tid=6411] isInStateRed(): No Flag Not prsent:/tmp/stateRedEnabled. Device is not in statered
+260116-01:38:53.367001 [mod=FWUPG, lvl=INFO] [tid=6411] getMtlscert, MTLS dynamic/static cert success. cert=/opt/certs/devicecert_1.pk12, type=P12, engine=
+260116-01:38:53.367113 [mod=FWUPG, lvl=INFO] [tid=6411] downloadFile, getMtlscert function ret value = 0
+260116-01:38:53.367145 [mod=FWUPG, lvl=INFO] [tid=6411] MTLS is enabled
+MTLS creds for SSR fetched ret=0
+260116-01:38:53.367176 [mod=FWUPG, lvl=INFO] [tid=6411] Calling  doHttpFileDownload() with cert mTlsXConfDownload enable
+260116-01:38:53.367225 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doCurlInit: curl init success
+260116-01:38:53.367264 [mod=FWUPG, lvl=INFO] [tid=6411] setDwnlState: status = 10
+260116-01:38:53.367309 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doHttpFileDownload : CURL: setCommonCurlOpt Success
+260116-01:38:53.367349 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] setMtlsHeaders: certfile:/opt/certs/devicecert_1.pk12:cert type:P12
+260116-01:38:53.367378 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] setMtlsHeaders: engine type:
+260116-01:38:53.367417 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] setMtlsHeaders : set certfile:/opt/certs/devicecert_1.pk12:paswd:<> and type:P12
+260116-01:38:53.367459 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doHttpFileDownload : CURL: setMtlsHeaders Success
+260116-01:38:54.302478 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] Curl Connected to https://xconf.xdp.eu-1.xcal.tv/xconf/swu/stb (184.120.150.216) port 443
+260116-01:38:54.302573 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] Curl return code =0, http code=200
+260116-01:38:54.302603 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] In performRequest curl_ret_status =0
+260116-01:38:54.302635 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doHttpFileDownload : After curl operation no of bytes Downloaded=442 and curl ret status=0 and http code=200
+260116-01:38:54.302667 [mod=FWUPG, lvl=INFO] [tid=6411] setDwnlState: status = 12
+260116-01:38:54.302706 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] doStopDownload : CURL: free resources
+260116-01:38:54.310359 [mod=FWUPG, lvl=INFO] [tid=6411] isIncremetalCDLEnable: Checking IncremetalCDLEnable... Download image name=
+260116-01:38:54.310534 [mod=RFCAPI, lvl=INFO] [tid=6411] getRFCParam data = {"names" : ["Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.IncrementalCDL.Enable"]}, datalen = 84
+260116-01:38:54.315040 [mod=RFCAPI, lvl=INFO] [tid=6411] curl response : 0 http response code: 200
+260116-01:38:54.315365 [mod=RFCAPI, lvl=INFO] [tid=6411] Curl response: {
+	"parameters":	[{
+			"name":	"Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.IncrementalCDL.Enable",
+			"value":	"true",
+			"dataType":	3,
+			"parameterCount":	1,
+			"message":	"Default Value"
+		}],
+	"statusCode":	38
+}
+260116-01:38:54.315498 [mod=FWUPG, lvl=INFO] [tid=6411] read_RFCProperty() name=Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.IncrementalCDL.Enable,type=3,value=true,status=38
+260116-01:38:54.315539 [mod=FWUPG, lvl=INFO] [tid=6411] isIncremetalCDLEnable: rfc IncrementalCDL= true
+260116-01:38:54.315569 [mod=FWUPG, lvl=INFO] [tid=6411] isIncremetalCDLEnable :  incremental cdl is TRUE
+260116-01:38:54.315638 [mod=FWUPG, lvl=INFO] [tid=6411] downloadFile : After curl request the curl status = 0 and http=200 and chunk download=0
+260116-01:38:54.315750 [mod=FWUPG, lvl=INFO] [tid=6411] setDwnlState: status = 13
+260116-01:38:54.315782 [mod=FWUPG, lvl=INFO] [tid=6411] downloadFile : Direct Image upgrade connection success: curl ret:0 http_code:200
+260116-01:38:54.316001 [mod=FWUPG, lvl=INFO] [tid=6411] saveHTTPCode() Writing httpcode=200
+ to file:/opt/xconf_curl_httpcode
+260116-01:38:54.316247 [mod=COMMONUTILITIES, lvl=ERROR] [tid=6411] filePresentCheck Invalid Parameter
+260116-01:38:54.316296 [mod=FWUPG, lvl=INFO] [tid=6411] MakeXconfComms: Calling getXconfRespData with input = {"additionalFwVerInfo":"SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0-signed","firmwareDownloadProtocol":"http","firmwareFilename":"SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin","firmwareLocation":"https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-sign-redirect.pl?partnerid=sky-uk&F=stb_cdl","firmwareVersion":"SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG","mandatoryUpdate":false,"rebootImmediately":false,"remCtrlLC103-10":"LC103-10_firmware_5103.4.8"}
+
+260116-01:38:54.317485 [mod=FWUPG, lvl=INFO] [tid=6411] XCONF Download completed with curl code:0
+260116-01:38:54.317557 [mod=FWUPG, lvl=INFO] [tid=6411] XCONF Download Success
+260116-01:38:54.317632 [mod=FWUPG, lvl=INFO] [tid=6411] cloudFWFile: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.317663 [mod=FWUPG, lvl=INFO] [tid=6411] cloudFWLocation: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-sign-redirect.pl?partnerid=sky-uk&F=stb_cdl
+260116-01:38:54.317690 [mod=FWUPG, lvl=INFO] [tid=6411] ipv6cloudFWLocation: 
+260116-01:38:54.317716 [mod=FWUPG, lvl=INFO] [tid=6411] cloudFWVersion: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+260116-01:38:54.317742 [mod=FWUPG, lvl=INFO] [tid=6411] cloudDelayDownload: 
+260116-01:38:54.317772 [mod=FWUPG, lvl=INFO] [tid=6411] cloudProto: http
+260116-01:38:54.317798 [mod=FWUPG, lvl=INFO] [tid=6411] cloudImmediateRebootFlag: false
+260116-01:38:54.317826 [mod=FWUPG, lvl=INFO] [tid=6411] peripheralFirmwares: LC103-10_firmware_5103.4.8
+260116-01:38:54.317852 [mod=FWUPG, lvl=INFO] [tid=6411] dlCertBundle: 
+260116-01:38:54.317884 [mod=FWUPG, lvl=INFO] [tid=6411] cloudPDRIVersion: SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0-signed
+260116-01:38:54.317911 [mod=FWUPG, lvl=INFO] [tid=6411] rdmCatalogueVersion: 
+260116-01:38:54.323585 [mod=FWUPG, lvl=INFO] [tid=6411] Validate PDRI image with device model number
+260116-01:38:54.323664 [mod=FWUPG, lvl=INFO] [tid=6411] Optimize lastDnldFile: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.323693 [mod=FWUPG, lvl=INFO] [tid=6411] last_dwnl_status=1
+260116-01:38:54.323755 [mod=FWUPG, lvl=INFO] [tid=6411] currentImg tbuff: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+
+260116-01:38:54.323809 [mod=FWUPG, lvl=INFO] [tid=6411] currentImg: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.323839 [mod=FWUPG, lvl=INFO] [tid=6411] currentImg: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.323872 [mod=FWUPG, lvl=INFO] [tid=6411] current_img_status=1
+260116-01:38:54.323899 [mod=FWUPG, lvl=INFO] [tid=6411] myFWVersion = SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+260116-01:38:54.323926 [mod=FWUPG, lvl=INFO] [tid=6411] myFWFile = SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.323952 [mod=FWUPG, lvl=INFO] [tid=6411] lastDnldFile = SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.323978 [mod=FWUPG, lvl=INFO] [tid=6411] cloudFWVersion = SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+260116-01:38:54.324004 [mod=FWUPG, lvl=INFO] [tid=6411] cloudFWFile = SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.324031 [mod=FWUPG, lvl=INFO] [tid=6411] processJsonResponse returned 0
+260116-01:38:54.324090 [mod=FWUPG, lvl=INFO] [tid=6411] checkTriggerUpgrade: reboot_flag =false and delay_dwnl=0
+260116-01:38:54.324119 [mod=FWUPG, lvl=INFO] [tid=6411] Xconf image/PDRI configuration Check
+260116-01:38:54.324147 [mod=FWUPG, lvl=INFO] [tid=6411] Trigger Type=1
+260116-01:38:54.324174 [mod=FWUPG, lvl=INFO] [tid=6411] Optimize lastDnldFile: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.324201 [mod=FWUPG, lvl=INFO] [tid=6411] Optimize currentImg: SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.324229 [mod=FWUPG, lvl=INFO] [tid=6411] last_dwnl_status=1 and current_img_status=1
+260116-01:38:54.324255 [mod=FWUPG, lvl=INFO] [tid=6411] myfwversion:SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+260116-01:38:54.324281 [mod=FWUPG, lvl=INFO] [tid=6411] cloudFWVersion:SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG
+260116-01:38:54.324329 [mod=FWUPG, lvl=INFO] [tid=6411] cloudFWFile:SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.325188 [mod=FWUPG, lvl=INFO] [tid=6411] lastdwnlfile:SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.325298 [mod=FWUPG, lvl=INFO] [tid=6411] currentImg:SKXI11ADS_E040.000.00.8.4p1s1_PRODLOG-signed.bin
+260116-01:38:54.325379 [mod=FWUPG, lvl=INFO] [tid=6411] FW version of the active image and the image to be upgraded are the same. No upgrade required.
+260116-01:38:54.326062 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager: Generate IARM_BUS_NAME current event=FirmwareStateEvent
+260116-01:38:54.326104 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager: event_status = 9
+260116-01:38:54.333242 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager : >> IARM SUCCESS  Event=FirmwareStateEvent,sysStateEvent=43
+260116-01:38:54.333329 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager : IARM_event_sender closing
+260116-01:38:54.334224 [mod=FWUPG, lvl=INFO] [tid=6411] updateFWDownloadStatus(): Going to write:/opt/fwdnldstatus.txt
+260116-01:38:54.337079 [mod=FWUPG, lvl=INFO] [tid=6411] checkForValidPCIUpgrade return false
+260116-01:38:54.337322 [mod=FWUPG, lvl=INFO] [tid=6411] isPDRIEnable: pdri status from device.property file=true
+260116-01:38:54.337357 [mod=FWUPG, lvl=INFO] [tid=6411] cloudImmediateRebootFlag is false. Starting PDRI upgrade check ... 
+260116-01:38:54.337413 [mod=FWUPG, lvl=INFO] [tid=6411] Added .bin in pdri image=SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0-signed.bin
+260116-01:38:54.337442 [mod=FWUPG, lvl=INFO] [tid=6411] pdri imageHTTPURL=https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-sign-redirect.pl?partnerid=sky-uk&F=stb_cdl/SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0-signed.bin
+260116-01:38:54.337471 [mod=FWUPG, lvl=INFO] [tid=6411] pdri DWNL path with img name=/opt/CDL/SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0-signed.bin
+260116-01:38:54.337500 [mod=FWUPG, lvl=INFO] [tid=6411]  isDwnlBlock : Checking for direct
+260116-01:38:54.337543 [mod=FWUPG, lvl=ERROR] [tid=6411] getFileLastModifyTime: File: /tmp/.lastdirectfail_cdl not present: -1
+260116-01:38:54.337656 [mod=FWUPG, lvl=INFO] [tid=6411] isPDRIEnable: pdri status from device.property file=true
+260116-01:38:55.018442 [mod=FWUPG, lvl=INFO] [tid=6411] RunCommand: Successful read 48 bytes
+260116-01:38:55.018550 [mod=FWUPG, lvl=INFO] [tid=6411] GetPDRIFileName: PDRI Version = SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0.bin
+
+260116-01:38:55.019358 [mod=FWUPG, lvl=INFO] [tid=6411] current pdri image = SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0.bin
+
+260116-01:38:55.019408 [mod=FWUPG, lvl=INFO] [tid=6411] After Removing .bin = SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0
+260116-01:38:55.019437 [mod=FWUPG, lvl=INFO] [tid=6411] current pdri image = SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0 and requested image = /opt/CDL/SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0-signed.bin
+260116-01:38:55.019502 [mod=FWUPG, lvl=INFO] [tid=6411] current pdri image = SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0 and requested dwnl pdri image = /opt/CDL/SKXI11ADS_PDRI_PROD_20221208113233_13.0.0.0-signed.bin
+260116-01:38:55.019530 [mod=FWUPG, lvl=INFO] [tid=6411] PDRI version of the active image and the image to be upgraded are the same. No upgrade required.
+260116-01:38:55.019585 [mod=FWUPG, lvl=INFO] [tid=6411] Triggering Peripheral Download cloudFWLocation: https://ssr.xdp.eu-1.xcal.tv/cgi-bin/sky-sign-redirect.pl?partnerid=sky-uk&F=stb_cdl
+peripheralFirmwares: LC103-10_firmware_5103.4.8,
+260116-01:38:55.019614 [mod=FWUPG, lvl=INFO] [tid=6411] peripheral_firmware_dndl: pPeripheralFirmwares = LC103-10_firmware_5103.4.8,
+260116-01:38:55.019650 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] GetFileContents: pFileName = /tmp/downloaded_peripheral_versions.txt
+260116-01:38:55.019701 [mod=COMMONUTILITIES, lvl=ERROR] [tid=6411] getFileSize : File unable to stat
+260116-01:38:55.019730 [mod=COMMONUTILITIES, lvl=ERROR] [tid=6411] GetFileContents: getFileSize failed for /tmp/downloaded_peripheral_versions.txt
+260116-01:38:55.019863 [mod=FWUPG, lvl=INFO] [tid=6411] BuildRemoteInfo: Start
+260116-01:38:55.019899 [mod=FWUPG, lvl=INFO] [tid=6411] BuildRemoteInfo: End
+260116-01:38:55.019928 [mod=FWUPG, lvl=INFO] [tid=6411] peripheral_firmware_dndl: GetRemoteVers found cCurVerBuf = LC103-10_firmware_5103.4.8.tgz,
+260116-01:38:55.019999 [mod=FWUPG, lvl=INFO] [tid=6411] peripheral_firmware_dndl: pFW = LC103-10_firmware_5103.4.8
+260116-01:38:55.020028 [mod=FWUPG, lvl=INFO] [tid=6411] peripheral_firmware_dndl: pDeviceName = LC103-10
+260116-01:38:55.020055 [mod=FWUPG, lvl=INFO] [tid=6411] peripheral_firmware_dndl: pDeviceType = firmware
+260116-01:38:55.020082 [mod=FWUPG, lvl=INFO] [tid=6411] peripheral_firmware_dndl: pDeviceVer = 5103.4.8
+260116-01:38:55.020116 [mod=FWUPG, lvl=INFO] [tid=6411] peripheral_firmware_dndl: Compared pDeviceVer = 5103.4.8 and pCurVer = 5103.4.8.tgz, output = -46
+260116-01:38:55.020143 [mod=FWUPG, lvl=INFO] [tid=6411] peripheral_firmware_dndl: The version in the device is newer or same, no upgrade needed
+260116-01:38:55.020170 [mod=FWUPG, lvl=INFO] [tid=6411] After Trigger Peripheral Download status=0
+260116-01:38:55.020228 [mod=COMMONUTILITIES, lvl=INFO] [tid=6411] printCurlError: curl_easy_strerror =No error
+260116-01:38:55.020257 [mod=FWUPG, lvl=INFO] [tid=6411] curl return code =0 and error message=No error
+260116-01:38:55.020305 [mod=FWUPG, lvl=INFO] [tid=6411] rdkvfwupgrader daemon exit curl code: 0
+260116-01:38:55.020335 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager: Generate IARM_BUS_NAME current event=MaintenanceMGR
+260116-01:38:55.020364 [mod=FWUPG, lvl=INFO] [tid=6411] >>>>> Identified MaintenanceMGR with event value=8
+260116-01:38:55.020967 [mod=FWUPG, lvl=INFO] [tid=6411] >>>>> IARM SUCCESS  Event  = 8
+260116-01:38:55.021009 [mod=FWUPG, lvl=INFO] [tid=6411] eventManager : IARM_event_sender closing
+260116-01:38:55.021063 [mod=RBUS, lvl=INFO] [tid=6411] rbus close for (t2_lib_rdkfwupgrader)
+260116-01:38:55.024056 [mod=RTMESSAGE, lvl=INFO] [tid=6411] Stopping threads
+260116-01:38:55.024445 [mod=RBUS, lvl=INFO] [tid=6411] rbus close (t2_lib_rdkfwupgrader) success
+IARM_Bus_UnRegisterEventHandler Listener removed for [RdkvFWupgrader][0] with IARM Core Handler 
+260116-01:38:55.024616 [mod=FWUPG, lvl=INFO] [tid=6411] Successfully terminated all event handlers:0
+term start init 1
+260116-01:38:55.529860 [mod=FWUPG, lvl=INFO] [tid=6411] Deleting DIFD.pid file
+RDKLOG deinit
+2026-01-16T01:38:55.814Z : /lib/rdk/Start_MaintenanceTasks.sh: SWUpdate Task execution done
+2026-01-16T02:43:43.195Z : eMMC Firmware version from RFC: 08140310.
+2026-01-16T02:43:43.271Z : eMMC_FW_VERS_RFC_split:08140310.
+2026-01-16T02:43:43.416Z : Current running eMMC FW Version:  
+2026-01-16T02:43:43.486Z : Current_eMMC_FW_Version_split:
+2026-01-16T02:43:43.585Z : Cannot Upgrade. Either versions(08140310 & ) are same or Retry count(5) exceeded 5

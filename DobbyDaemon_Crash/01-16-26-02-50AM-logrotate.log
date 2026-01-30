@@ -1,0 +1,408 @@
+reading config file /etc/logrotatedata.conf
+Skip locking state file /tmp/logrotatedata.status
+Reading state from file: /tmp/logrotatedata.status
+Allocating hash table for state file, size 64 entries
+
+Handling 32 logs
+
+rotating pattern: /opt/logs/dnsmasq.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/dnsmasq.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/fog.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/fog.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/rtk_fw.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/rtk_fw.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/sslendpoints.log  204800 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/sslendpoints.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/uimgr_log.txt  512000 bytes (1 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/uimgr_log.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/cec_log.txt  128000 bytes (1 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/cec_log.txt
+  log /opt/logs/cec_log.txt does not exist -- skipping
+
+rotating pattern: /opt/logs/maintenance.log  786432 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/maintenance.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/logrotate.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/logrotate.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/bluez.log  250000 bytes (2 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/bluez.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/dropbear.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/dropbear.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/dcmscript.log  512000 bytes (1 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/dcmscript.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/nfrtool.log  512000 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/nfrtool.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/dobby.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/dobby.log
+  log /opt/logs/dobby.log does not exist -- skipping
+
+rotating pattern: /opt/logs/storagemgr.log  524288 bytes (1 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/storagemgr.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/lighttpd*.log  204800 bytes (1 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/lighttpd.error.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/stunnel.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/stunnel.log
+  log /opt/logs/stunnel.log does not exist -- skipping
+
+rotating pattern: /opt/logs/wpa_supplicant.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/wpa_supplicant.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/webconfig.log  512000 bytes (2 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/webconfig.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/ctrlm_log.txt  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/ctrlm_log.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/btmgrlog.txt  250000 bytes (2 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/btmgrlog.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/sky-messages.log  10485760 bytes (4 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/sky-messages.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/parodus.log  128000 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/parodus.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/wpeframework.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/wpeframework.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 02:23
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/tr69hostif.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/tr69hostif.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/rtrouted.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/rtrouted.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/libledger.log  64000 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/libledger.log
+  log /opt/logs/libledger.log does not exist -- skipping
+
+rotating pattern: /opt/logs/mediarite.log  10485760 bytes (2 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/mediarite.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/routerInfo.log  512000 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/routerInfo.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/rdkappmanagers.log  10485760 bytes (4 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/rdkappmanagers.log
+  log /opt/logs/rdkappmanagers.log does not exist -- skipping
+
+rotating pattern: /opt/logs/xdial.log  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/xdial.log
+  log /opt/logs/xdial.log does not exist -- skipping
+
+rotating pattern: /opt/logs/ecfs.txt  1572864 bytes (3 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/ecfs.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /opt/logs/*.txt
+/opt/logs/*.log
+/opt/logs/*.txt.0 2097152 bytes (1 rotations)
+empty log files are rotated, old logs are removed
+considering log /opt/logs/CapDebug.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/ConnectionStats.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/certinfo.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 02:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/core_log.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/ipSetupLogs.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/lxy.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/messages.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/mount_log.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rdkconfig.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rdkssa.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/skyversion.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/startup_stdout_log.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/top_log.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/version.txt
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/NMMonitor.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/NetworkManager.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/access.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/audiocapturemgr.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/boottypescript.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/caupdate.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/crun.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/device-uid.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/device_details.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/disk_cleanup.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/gst-cleanup.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/hdcp.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/iptables.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/libcertifier.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/memcapture.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/ntp.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/perfmonstatus.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rdk_milestones.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rdm_status.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rebootInfo.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rebootreason.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/remote-debugger.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rfcscript.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/ripple.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rtk_afw_license_check.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/rtk_service.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/sw_mirroring.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/swupdate.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/syslog_fallback.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/system.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/systimemgr.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/testagent_loader.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/zram.log
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /opt/logs/telemetry2_0.txt.0
+  Now: 2026-01-16 02:33
+  Last rotated at 2026-01-16 01:00
+  log does not need rotating (log size is below the 'size' threshold)

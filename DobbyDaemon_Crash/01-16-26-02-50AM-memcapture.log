@@ -1,0 +1,8 @@
+2025-12-03T08:39:00.649Z sh[4009]:  /lib/rdk/start_memcapture.sh: line 67: [: missing `]'
+2025-12-03T08:39:00.680Z sh[4009]:  /lib/rdk/start_memcapture.sh: line 67: xREALTEK: command not found
+2025-12-03T08:39:00.827Z sh[4009]:  4009: 251203-08:39:00: start_memcapture.sh: RFC value for Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.memcapture.Enable is
+2025-12-03T08:39:00.827Z sh[4009]:  4009: 251203-08:39:00: start_memcapture.sh: Disable MemCapture on RDK Platforms!!!
+2025-12-03T08:39:00.827Z sh[4009]:  4009: 251203-08:39:00: start_memcapture.sh: Please set following RFC once enabled to start the MemCapture on RDK Platforms!!!
+2025-12-03T08:39:00.827Z sh[4009]:  4009: 251203-08:39:00: start_memcapture.sh: Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.memcapture.Enable: Enable memcapture
+2025-12-03T08:39:00.827Z sh[4009]:  4009: 251203-08:39:00: start_memcapture.sh: Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.memcapture.Duration: Time in seconds for the duration to run
+2025-12-03T08:39:00.863Z sh[4009]:  4009: 251203-08:39:00: start_memcapture.sh: Stopping active Memcapture service!!!
