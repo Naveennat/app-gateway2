@@ -1,0 +1,2 @@
+/usr/bin/ar qc libl0test_common.a "CMakeFiles/l0test_common.dir/home/kavia/workspace/code-generation/app-gateway2/tests/l0/common/L0Bootstrap.cpp.o"
+/usr/bin/ranlib libl0test_common.a
