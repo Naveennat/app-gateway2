@@ -1,0 +1,4 @@
+precondition = ["Platform"]
+callsign = "org.rdk.Badger"
+autostart = "@PLUGIN_BADGER_AUTOSTART@"
+startuporder = "@PLUGIN_BADGER_STARTUPORDER@"
